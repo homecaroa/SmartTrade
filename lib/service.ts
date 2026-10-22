@@ -9,6 +9,7 @@ import { SourceError, type SourceResult } from "@/lib/sources/types";
 import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities";
 import { dedupeObservations, missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
 import { filterIncomplete, rankOpportunities } from "@/lib/trade/ranking";
+import { MAX_CODES, resolveProductQuery } from "@/lib/trade/product-search";
 
 export interface DataInfo {
   mode: DataMode;
@@ -57,11 +58,13 @@ export function productUniverseWarnings(productCount: number): string[] {
 }
 
 export function parseHsCodes(q?: string): string[] {
-  const tokens = (q ?? "").split(/[,\s;]+/).filter(Boolean);
-  if (tokens.length === 0 || tokens.length > 20 || !tokens.every((t) => /^\d{6}$/.test(t))) {
-    throw new SourceError("config", "En modo de datos reales introduce de 1 a 20 códigos HS de 6 dígitos separados por comas vigentes (p. ej. 220421, 150920).");
+  const r = resolveProductQuery(q);
+  if (r.codes.length === 0) {
+    const why = r.unmatched.length ? `No he encontrado «${r.unmatched.join("», «")}» en el catálogo. ` : "";
+    throw new SourceError("config", `${why}Escribe un código HS de 6 dígitos (p. ej. 220421) o el nombre de un producto (p. ej. vino, aceite de oliva, cerámica). Consulta la guía de uso para buscar otros códigos.`);
   }
-  return [...new Set(tokens)];
+  if (r.tooMany) throw new SourceError("config", `La búsqueda produce ${r.codes.length} códigos; el máximo es ${MAX_CODES}. Hazla más específica.`);
+  return r.codes;
 }
 
 async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: AppConfig) {
@@ -74,6 +77,7 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
   const source = getSource(cfg.mode);
   const markets = allowedMarkets(cfg.mode);
   const codes = cfg.mode === "demo" ? null : parseHsCodes(query.q);
+  const resolution = cfg.mode === "demo" ? null : resolveProductQuery(query.q);
   const key = JSON.stringify([cfg.mode, years, codes]);
   const loaded = await getOrLoad<SourceResult>(key, cfg.cacheTtlMs, () =>
     source.fetchData({ years, productCodes: codes, markets: markets.map((m) => m.code) }).then(validateSourceObservations),
@@ -90,6 +94,8 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
     staleReason: loaded.staleReason,
     warnings: [...loaded.value.warnings],
   };
+  if (resolution?.notes.length) info.warnings.push(`Interpretación de tu búsqueda: ${resolution.notes.join(" | ")}.`);
+  if (resolution?.unmatched.length) info.warnings.push(`No se ha podido interpretar: ${resolution.unmatched.join(", ")} (se han ignorado).`);
   const completeOpps = built.opportunities.filter((o) => o.complete);
   info.warnings.push(...universeWarnings(completeOpps.length));
   info.warnings.push(...productUniverseWarnings(new Set(completeOpps.map((o) => o.productCode)).size));
@@ -108,14 +114,15 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
   return { year, years, built, info };
 }
 
-const toFilters = (q: OpportunityQuery) => ({
-  q: q.q, market: q.market, minSizeM: q.minSize, minGrowth: q.minGrowth, sort: q.sort, order: q.order,
+const toFilters = (q: OpportunityQuery, demo: boolean) => ({
+  q: demo ? q.q : undefined, // en modo real el universo ya se limita a los códigos resueltos
+  market: q.market, minSizeM: q.minSize, minGrowth: q.minGrowth, sort: q.sort, order: q.order,
 });
 
 export async function getFullRanking(query: OpportunityQuery, cfg = getConfig()) {
   const u = await loadUniverse(query, cfg);
-  const ranked = rankOpportunities(u.built.opportunities, toFilters(query));
-  return { ...u, ranked, incomplete: filterIncomplete(u.built.opportunities, { q: query.q, market: query.market }) };
+  const ranked = rankOpportunities(u.built.opportunities, toFilters(query, cfg.mode === "demo"));
+  return { ...u, ranked, incomplete: filterIncomplete(u.built.opportunities, { q: cfg.mode === "demo" ? query.q : undefined, market: query.market }) };
 }
 
 export async function getRanking(query: OpportunityQuery, cfg = getConfig()): Promise<RankingResponse> {
@@ -205,6 +212,6 @@ export function getFilters() {
     markets: allowedMarkets(cfg.mode).map((m) => ({ code: m.code, name: m.name })),
     years: Array.from({ length: 8 }, (_, i) => 2018 + i).filter((y) => y >= 2020),
     defaultYear: cfg.defaultYear,
-    productInput: cfg.mode === "demo" ? "Texto libre o código HS6 (catálogo demo)" : "Códigos HS6 vigentes (HS2022), separados por comas: 220421, 150920",
+    productInput: cfg.mode === "demo" ? "Texto libre o código HS6 (catálogo demo)" : "Nombre o código HS6, separados por comas: vino, aceite de oliva, 220421",
   };
 }

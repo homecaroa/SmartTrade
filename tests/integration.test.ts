@@ -79,7 +79,8 @@ describe("flujo de búsqueda (demo, respuestas controladas)", () => {
 describe("modos reales: errores sin inventar datos", () => {
   const comextCfg = () => getConfig({ SMARTRADE_DATA_MODE: "comext" });
   it("exige códigos HS válidos", async () => {
-    expect(() => parseHsCodes("aceite")).toThrow(SourceError);
+    expect(() => parseHsCodes("xyzzy")).toThrow(SourceError);
+    expect(parseHsCodes("aceite de oliva")).toEqual(["150920", "150930"]);
     expect(parseHsCodes("220421, 150920")).toEqual(["220421", "150920"]);
     await expect(getRanking(q({}), comextCfg())).rejects.toMatchObject({ kind: "config" });
   });

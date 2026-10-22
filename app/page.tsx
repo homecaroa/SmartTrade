@@ -40,11 +40,11 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
     return (
       <>
         {form}
-        <EmptyState title="Introduce uno o más códigos HS de 6 dígitos para empezar" hint="Son los códigos vigentes en la nomenclatura HS2022, separados por comas." />
+        <EmptyState title="Escribe un producto para empezar" hint="Puedes usar nombres (vino, cerámica, coches eléctricos) o códigos HS6 vigentes, separados por comas. Consulta la guía de uso para encontrar códigos." />
         <p className="text-sm">
           Ejemplo:{" "}
-          <Link className="underline" href="/?q=220421,150920">220421, 150920</Link>{" "}
-          (vino en envases ≤ 2 l y aceite de oliva virgen extra).
+          <Link className="underline" href="/?q=vino,aceite de oliva">vino, aceite de oliva</Link>{" "}
+          o <Link className="underline" href="/?q=220421,150920">220421, 150920</Link>. <Link className="underline" href="/guia">Guía de uso</Link>.
         </p>
       </>
     );

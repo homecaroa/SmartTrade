@@ -27,3 +27,6 @@ HTTP 200 y JSON-stat reales; dimensiones, `WORLD`, `ES`, flujos 1/2 e indicadore
 
 ## Ejecución real de la app en modo `comext` (PC del usuario, 18/10/2026)
 `SMARTRADE_DATA_MODE=comext`, búsqueda `220421, 150920`: `/api/opportunities` devolvió `validCount: 49`, `incompleteCount: 1`, `pairsWithoutData: 2`, `synthetic: false`, fuente «Eurostat Comext». Auditoría de los resultados: valores y cuotas plausibles; hallazgos corregidos (peso con error de coma flotante, aviso de pocos productos, lista de pares sin datos, nombres largos en la tabla).
+
+## Búsqueda por nombre (`tests/product-search.test.ts`)
+Valida el catálogo (códigos HS6 únicos), la búsqueda por nombre (acentos, plurales, todas las palabras), la mezcla de códigos, prefijos y nombres, y el límite de 20 códigos. Total actual: 101 pruebas en 10 archivos.
