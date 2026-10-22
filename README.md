@@ -1,0 +1,2 @@
+# SmartTrade
+APP oportunidades Comercio
