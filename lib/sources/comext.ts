@@ -116,7 +116,10 @@ export async function comextFetch(url: string, opts: ComextFetchOpts = {}): Prom
     const c = classifyComextResponse(r.status, r.json);
     if (c.type === "data") return c.json;
     if (c.type === "empty") return null;
-    if (c.type === "error") throw new SourceError("http", `Eurostat rechazó la consulta (HTTP ${c.status})${c.label ? `: ${c.label}` : ""}`, c.status);
+    if (c.type === "error") {
+      const detail = c.label ? `: ${c.label}` : c.status === 403 ? ". Sin detalle del servidor: puede ser un bloqueo de la petición y no un problema del producto; reintenta o prueba otro código" : "";
+      throw new SourceError("http", `Eurostat rechazó la consulta (HTTP ${c.status})${detail}`, c.status);
+    }
     if (i < attempts) await sleep(delayMs * i);
   }
   throw new SourceError("pending", "Eurostat está preparando la consulta de forma asíncrona. Inténtalo de nuevo en unos minutos.");

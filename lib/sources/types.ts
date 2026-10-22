@@ -60,7 +60,9 @@ export async function rawFetchJson(url: string, init: RequestInit = {}): Promise
   const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
   let res: Response;
   try {
-    res = await fetch(url, { ...init, signal: ctrl.signal, cache: "no-store" });
+    const given = init.headers instanceof Headers || Array.isArray(init.headers) ? Object.fromEntries(new Headers(init.headers).entries()) : ((init.headers ?? {}) as Record<string, string>);
+    const headers: Record<string, string> = { accept: "application/json", "user-agent": "SmarTrade/0.1 (proyecto académico de comercio internacional)", ...given };
+    res = await fetch(url, { ...init, headers, signal: ctrl.signal, cache: "no-store" });
   } catch (e) {
     throw new SourceError("network", e instanceof Error && e.name === "AbortError" ? "La fuente no respondió a tiempo" : "No se pudo contactar con la fuente");
   } finally {
