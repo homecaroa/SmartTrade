@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="es">
       <body>
-        <header className="border-b bg-white">
+        <header className="border-b bg-white print:hidden">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
             <Link href="/" className="flex items-baseline gap-3">
               <span className="text-xl font-bold text-indigo-700">SmarTrade</span>

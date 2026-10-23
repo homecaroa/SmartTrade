@@ -24,3 +24,10 @@
 22. **Cuota con España ausente:** si Eurostat no publica el flujo desde España en el último año (p. ej. aceite 150920 en Chipre 2024) la oportunidad queda incompleta aunque el mercado sea pequeño; es el criterio conservador del punto 13.
 
 - Acceso al mercado: sin datos arancelarios automáticos; solo reglas generales (UE) y enlaces oficiales. Aranceles, impuestos, requisitos y logística no entran en la puntuación.
+
+- Redundancia tamaño/expansión de cuota en la puntuación (ver docs/methodology.md). Pendiente de decisión.
+- Vercel: no hay `maxDuration` ni región configurados; no se han verificado los límites de ejecución del plan. La caché es en memoria y no se comparte entre instancias.
+- UN Comtrade: adaptador solo probado con respuestas simuladas; sin validación real ni comparación con Eurostat.
+- El buscador muestra la interpretación de la búsqueda como aviso, pero no pide confirmar el producto antes de analizar.
+- Los datos marcados como estimados por Eurostat bajan la calidad a «media»; no se distinguen años provisionales.
+- La ficha imprimible usa la impresión del navegador (sin PDF propio); los checks de «qué falta por comprobar» no se guardan.

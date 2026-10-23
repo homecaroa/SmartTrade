@@ -6,6 +6,8 @@ import { MarketAccess } from "@/components/market-access";
 import { OpportunityTags } from "@/components/opportunity-tags";
 import { describeOpportunity } from "@/lib/scoring/labels";
 import { MarketChart } from "@/components/market-chart";
+import { PrintButton } from "@/components/print-button";
+import { ResearchChecklist } from "@/components/research-checklist";
 import { ScoreBreakdown } from "@/components/opportunity-score";
 import { fmtMoney, fmtNum, fmtPct } from "@/lib/format";
 import { buildMarketAccess } from "@/lib/market-access";
@@ -40,7 +42,14 @@ export default async function Detail({ params, searchParams }: { params: Promise
 
   return (
     <>
-      <Link href="/" className="text-sm underline">← Volver al ranking</Link>
+      <div className="flex items-center justify-between print:hidden">
+        <Link href="/" className="text-sm underline">← Volver al ranking</Link>
+        <PrintButton />
+      </div>
+      <div className="hidden print:block text-xs text-slate-600">
+        SmarTrade · Ficha de investigación exportadora · Generada el {new Date().toLocaleDateString("es-ES")} ·{" "}
+        {d.info.synthetic ? "DATOS DE DEMOSTRACIÓN SINTÉTICOS: no usar para decisiones comerciales" : `Fuente: ${o.source}`}. Indicador estadístico, no garantía de rentabilidad.
+      </div>
       <section className={card}>
         <h1 className="text-xl font-bold">{o.productName} → {o.marketName}</h1>
         <p className="text-sm text-slate-600">HS {o.productCode} · Clasificación {o.classification} · Ventana {o.importsSeries[0].year}–{o.endYear} · {d.rank ? `Posición ${d.rank} en el ranking por puntuación` : "Fuera del ranking (datos incompletos)"} · Calidad de datos: <b>{o.quality}</b></p>
@@ -99,6 +108,8 @@ export default async function Detail({ params, searchParams }: { params: Promise
       </section>
 
       <MarketAccess info={access} />
+
+      <ResearchChecklist />
 
       <section className={card}>
         <h2 className="font-semibold">Limitaciones y próximas comprobaciones</h2>

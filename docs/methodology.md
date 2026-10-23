@@ -36,3 +36,6 @@ Cada oportunidad muestra hasta 3 etiquetas y una frase («Sube en el ranking por
 - «Crece rápido» exige CAGR positivo; «En retroceso» se aplica a CAGR negativo; «Crecimiento irregular» a CAGR positivo con alguna variación anual negativa.
 - «España ya vende aquí»: cuota española ≥ 10 %. «Poca exportación española»: percentil de exportación ≤ 25.
 - «Datos con reservas»: calidad media o baja. Las etiquetas no son recomendaciones ni predicen rentabilidad.
+
+## Limitación conocida: redundancia entre tamaño y expansión de cuota (auditoría 2026-10)
+El componente «expansión» se calcula como el percentil de las importaciones no españolas (`tamaño × (1 − cuota)`). Con cuotas españolas bajas, ese valor es casi igual al tamaño, así que ambos componentes miden prácticamente lo mismo. Medido sobre el universo demo (76 oportunidades, **datos sintéticos**), la correlación de rangos entre ambos percentiles es 0,993. En la práctica, tamaño y expansión suman un 55 % de peso sobre una misma magnitud. **No se ha modificado la fórmula**: falta contrastarlo con datos reales y decidir una alternativa (por ejemplo, medir la brecha de cuota en lugar del volumen absoluto) con pruebas de sensibilidad.

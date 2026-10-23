@@ -39,3 +39,22 @@ describe("resolveProductQuery", () => {
     expect(resolveProductQuery(HS_CATALOG.map((e) => e.code).join(",")).tooMany).toBe(true);
   });
 });
+
+describe("sinónimos en inglés y erratas", () => {
+  it("entiende nombres en inglés", () => {
+    expect(searchCatalog("olive oil").map((e) => e.code)).toEqual(["150920", "150930"]);
+    expect(searchCatalog("ceramic tiles").map((e) => e.code)).toEqual(["690721", "690722"]);
+    expect(searchCatalog("laptops").map((e) => e.code)).toEqual(["847130"]);
+  });
+  it("tolera erratas solo si la búsqueda exacta no da resultados, y lo avisa", () => {
+    const r = resolveProductQuery("ceramca");
+    expect(r.codes).toEqual(["690721", "690722"]);
+    expect(r.notes[0]).toContain("aproximada");
+    expect(resolveProductQuery("cerámica").notes[0]).not.toContain("aproximada");
+  });
+  it("no inventa coincidencias con palabras cortas o sin relación", () => {
+    expect(resolveProductQuery("vin").codes).toEqual(searchCatalog("vin").map((e) => e.code));
+    expect(resolveProductQuery("xyzzyqwerty").codes).toEqual([]);
+    expect(resolveProductQuery("casa").codes).toEqual([]);
+  });
+});

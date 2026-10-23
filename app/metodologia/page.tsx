@@ -16,7 +16,7 @@ export default function Methodology() {
         <li><b>Valor unitario:</b> valor / peso neto; valor estadístico, no precio de venta.</li>
       </ul>
       <h2 className={h}>Puntuación (0-100)</h2>
-      <p>0,35·tamaño + 0,30·crecimiento + 0,20·expansión de cuota + 0,15·posición exportadora. Cada componente se normaliza por percentil dentro de las oportunidades completas de la carga de datos. El crecimiento se acota (percentiles 5-95) y el negativo se limita a 25. Sin los cuatro componentes no hay puntuación.</p>
+      <p>0,35·tamaño + 0,30·crecimiento + 0,20·expansión de cuota + 0,15·posición exportadora. Cada componente se normaliza por percentil dentro de las oportunidades completas de la carga de datos. El crecimiento se acota (percentiles 5-95) y el negativo se limita a 25. Sin los cuatro componentes no hay puntuación. Limitación conocida: tamaño y expansión de cuota están muy correlacionados (ver docs/methodology.md).</p>
       <h2 className={h}>Fuentes</h2>
       <ul className="list-disc pl-5">
         <li>Eurostat Comext (primaria; mercados de la UE como declarantes).</li>

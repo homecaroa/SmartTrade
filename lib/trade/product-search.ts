@@ -19,6 +19,22 @@ const words = (s: string) => fold(s).split(/[^a-z0-9]+/).filter((w) => w.length 
 
 const INDEX = HS_CATALOG.map((e) => ({ e, ws: words(`${e.name} ${e.keywords}`).map(stem) }));
 
+function distance(a: string, b: string): number {
+  const d = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++)
+    for (let j = 1; j <= b.length; j++) d[i][j] = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+  return d[a.length][b.length];
+}
+const maxTypos = (w: string) => (w.length >= 8 ? 2 : w.length >= 5 ? 1 : 0);
+
+/** Búsqueda aproximada: cada palabra puede diferir en 1-2 letras de alguna palabra del producto (solo palabras de 5+ letras). */
+export function searchCatalogFuzzy(text: string): HsEntry[] {
+  const qs = words(text).map(stem);
+  if (qs.length === 0 || qs.some((q) => maxTypos(q) === 0)) return [];
+  return INDEX.filter(({ ws }) => qs.every((q) => ws.some((w) => distance(q, w.slice(0, q.length)) <= maxTypos(q) || distance(q, w) <= maxTypos(q)))).map(({ e }) => e);
+}
+
 /** Todas las palabras de la búsqueda deben aparecer (singular/plural tolerado) en el nombre o las palabras clave. */
 export function searchCatalog(text: string): HsEntry[] {
   const qs = words(text).map(stem);
@@ -51,10 +67,12 @@ export function resolveProductQuery(q?: string): ProductResolution {
       }
       continue;
     }
-    const hits = searchCatalog(piece);
+    let hits = searchCatalog(piece);
+    let approx = false;
+    if (hits.length === 0) { hits = searchCatalogFuzzy(piece); approx = hits.length > 0; }
     if (hits.length) {
       hits.forEach((h) => add(h.code));
-      out.notes.push(`«${piece}» → ${hits.map((h) => `${h.code} ${h.name}`).join("; ")}`);
+      out.notes.push(`«${piece}»${approx ? " (coincidencia aproximada: comprueba que es lo que buscabas)" : ""} → ${hits.map((h) => `${h.code} ${h.name}`).join("; ")}`);
     } else out.unmatched.push(piece);
   }
   out.tooMany = out.codes.length > MAX_CODES;

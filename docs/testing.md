@@ -39,3 +39,6 @@ Integridad del catálogo de sectores, expansión de `sector:<id>` en la consulta
 
 ## Etiquetas (`tests/labels.test.ts`)
 Umbrales (75 sí, 74 no), crecimiento negativo/irregular, precauciones, ausencia de etiquetas sin puntuación, frase con los dos mayores aportes, ausencia de promesas y de efectos sobre la puntuación. Total actual: 126 pruebas en 13 archivos. También se comprobó que el HTML en modo demo muestra etiquetas en la tabla y «En pocas palabras» en la ficha.
+
+## Auditoría 2026-10: ficha imprimible, CSV, búsqueda
+`tests/research-checklist.test.ts` (pasos pendientes, fuentes, metadatos del CSV) y ampliación de `tests/product-search.test.ts` (inglés y erratas). Total: 134 pruebas en 14 archivos; typecheck y build correctos. Comprobación manual en modo demo: la ficha incluye botón de impresión, cabecera de impresión y lista de comprobaciones; el CSV incluye ventana, universo y percentiles.
