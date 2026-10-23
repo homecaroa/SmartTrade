@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { HS_CATALOG } from "@/lib/config/hs-catalog";
+import { TAG_LEGEND } from "@/lib/scoring/labels";
 
 export const metadata = { title: "Guía de uso · SmarTrade" };
 
@@ -10,6 +11,12 @@ export default function Guide() {
     <article className="max-w-3xl space-y-2 rounded-lg bg-white p-6 text-sm shadow-sm">
       <h1 className="text-xl font-bold">Guía de uso</h1>
       <p>SmarTrade te ayuda a decidir <b>qué investigar</b>: ordena combinaciones producto-mercado según señales estadísticas del comercio exterior. No indica rentabilidad ni garantiza ventas.</p>
+
+      <h2 className={h}>Dos formas de empezar</h2>
+      <ul className="list-disc space-y-1 pl-5">
+        <li><b>Tengo un producto:</b> escribe su nombre o código y verás a qué países de la UE interesa más.</li>
+        <li><b>Quiero descubrir sectores:</b> elige un sector (alimentación, bebidas, automoción…) y compara sus productos y mercados. La puntuación solo compara entre los productos del sector. Puedes combinar sectores escribiendo, por ejemplo, <code>sector:bebidas, sector:automocion</code>.</li>
+      </ul>
 
       <h2 className={h}>1. Cómo buscar</h2>
       <ol className="list-decimal space-y-1 pl-5">
@@ -36,6 +43,12 @@ export default function Guide() {
         <li>Tu agente de aduanas o transitario puede confirmarte el código exacto.</li>
       </ul>
       <p>Los 6 primeros dígitos del código son comunes a todos los países; a partir de ahí cada territorio añade su propio detalle.</p>
+
+      <h2 className={h}>Qué significan las etiquetas</h2>
+      <p>Cada fila resume sus indicadores con etiquetas y una frase. Son reglas fijas, no una recomendación. Las que dicen «de esta búsqueda» comparan con los demás resultados cargados.</p>
+      <ul className="list-disc space-y-1 pl-5">
+        {TAG_LEGEND.map((t) => <li key={t.key}><b>{t.label}:</b> {t.hint}</li>)}
+      </ul>
 
       <h2 className={h}>4. Datos reales y datos de demostración</h2>
       <p>La etiqueta de la cabecera indica el modo. <b>DEMO</b> son datos sintéticos de ejemplo. <b>Eurostat Comext</b> son estadísticas oficiales de comercio de la UE. Los datos reales cubren como mercados de destino los países de la UE.</p>

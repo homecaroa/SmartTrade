@@ -30,3 +30,12 @@ HTTP 200 y JSON-stat reales; dimensiones, `WORLD`, `ES`, flujos 1/2 e indicadore
 
 ## Búsqueda por nombre (`tests/product-search.test.ts`)
 Valida el catálogo (códigos HS6 únicos), la búsqueda por nombre (acentos, plurales, todas las palabras), la mezcla de códigos, prefijos y nombres, y el límite de 20 códigos. Total actual: 101 pruebas en 10 archivos.
+
+## Acceso al mercado (`tests/market-access.test.ts`)
+Origen/destino, UE frente a terceros países, ausencia de datos sin conversión a cero, separación arancel/impuestos/logística, fuentes y enlaces, datos demo y no interferencia con la puntuación. Todas con entradas controladas; ninguna consulta real.
+
+## Sectores (`tests/sectors.test.ts`)
+Integridad del catálogo de sectores, expansión de `sector:<id>` en la consulta, combinación de sectores y filtro del modo demo. Total actual: 116 pruebas en 12 archivos.
+
+## Etiquetas (`tests/labels.test.ts`)
+Umbrales (75 sí, 74 no), crecimiento negativo/irregular, precauciones, ausencia de etiquetas sin puntuación, frase con los dos mayores aportes, ausencia de promesas y de efectos sobre la puntuación. Total actual: 126 pruebas en 13 archivos. También se comprobó que el HTML en modo demo muestra etiquetas en la tabla y «En pocas palabras» en la ficha.

@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { fmtMoney, fmtPct } from "@/lib/format";
 import type { Opportunity } from "@/lib/trade/opportunities";
+import { describeOpportunity, shortTags } from "@/lib/scoring/labels";
 import { ScoreBadge } from "./opportunity-score";
+import { OpportunityTags } from "./opportunity-tags";
 
 const Q: Record<Opportunity["quality"], string> = {
   alta: "bg-emerald-100 text-emerald-800",
@@ -32,11 +34,13 @@ export function OpportunityTable({
           </tr>
         </thead>
         <tbody className="divide-y">
-          {rows.map((o, i) => (
+          {rows.map((o, i) => {
+            const d = describeOpportunity(o);
+            return (
             <tr key={o.id} className="hover:bg-slate-50">
               <td className="px-3 py-2">{offset + i + 1}</td>
               <td className="px-3 py-2"><div className="max-w-xs truncate font-medium" title={o.productName}>{o.productName}</div><div className="text-xs text-slate-500">HS {o.productCode} · {o.classification}</div></td>
-              <td className="px-3 py-2">{o.marketName}</td>
+              <td className="px-3 py-2"><div className="font-medium">{o.marketName}</div><div className="mt-1"><OpportunityTags tags={shortTags(d.tags)} /></div><div className="mt-1 max-w-xs text-xs text-slate-500">{d.why}</div></td>
               <td className="px-3 py-2">{fmtMoney(o.marketSize, o.currency)}<div className="text-xs text-slate-400">{o.endYear}</div></td>
               <td className="px-3 py-2">{fmtPct(o.cagr)}</td>
               <td className="px-3 py-2">{fmtPct(o.spanishShare)}</td>
@@ -44,7 +48,8 @@ export function OpportunityTable({
               <td className="px-3 py-2"><span className={`rounded px-2 py-0.5 text-xs ${Q[o.quality]}`}>{o.quality}</span></td>
               <td className="px-3 py-2"><Link className="text-indigo-700 underline" href={`/oportunidad/${o.id}${detailQuery}`}>Detalle</Link></td>
             </tr>
-          ))}
+            );
+          })}
         </tbody>
       </table>
     </div>

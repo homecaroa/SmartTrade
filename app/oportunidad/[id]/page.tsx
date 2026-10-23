@@ -2,9 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DataSourceLabel } from "@/components/data-source-label";
 import { ErrorState } from "@/components/error-state";
+import { MarketAccess } from "@/components/market-access";
+import { OpportunityTags } from "@/components/opportunity-tags";
+import { describeOpportunity } from "@/lib/scoring/labels";
 import { MarketChart } from "@/components/market-chart";
 import { ScoreBreakdown } from "@/components/opportunity-score";
 import { fmtMoney, fmtNum, fmtPct } from "@/lib/format";
+import { buildMarketAccess } from "@/lib/market-access";
 import { idSchema } from "@/lib/schemas/query";
 import { getOpportunityDetail } from "@/lib/service";
 import { SourceError } from "@/lib/sources/types";
@@ -30,6 +34,8 @@ export default async function Detail({ params, searchParams }: { params: Promise
     ["Eurostat Comext", "https://ec.europa.eu/eurostat/fr/web/user-guides/data-browser/api-data-access/api-getting-started/comext-database"],
     ["UN Comtrade", "https://uncomtrade.org/docs/un-comtrade-api/"],
   ];
+  const access = buildMarketAccess({ marketCode: o.marketCode, marketName: o.marketName, productCode: o.productCode, synthetic: d.info.synthetic });
+  const desc = describeOpportunity(o);
   const card = "rounded-lg bg-white p-4 shadow-sm space-y-2";
 
   return (
@@ -47,6 +53,15 @@ export default async function Detail({ params, searchParams }: { params: Promise
           </div>
         )}
       </section>
+
+      {desc.tags.length > 0 && (
+        <section className={card}>
+          <h2 className="font-semibold">En pocas palabras</h2>
+          <OpportunityTags tags={desc.tags} />
+          <p className="text-sm text-slate-700">{desc.why}</p>
+          <p className="text-xs text-slate-500">Resumen automático de los indicadores de abajo, con reglas fijas (pasa el ratón sobre una etiqueta para ver la regla). Las etiquetas «de esta búsqueda» comparan con los demás resultados cargados, no con el mercado mundial. No es una recomendación.</p>
+        </section>
+      )}
 
       <section className={card}>
         <h2 className="font-semibold">Indicadores</h2>
@@ -82,6 +97,8 @@ export default async function Detail({ params, searchParams }: { params: Promise
           <ul className="text-sm">{d.suppliers.map((s) => <li key={s.code}>{s.name}: {fmtMoney(s.value, o.currency)} ({fmtPct(s.sharePct)})</li>)}</ul>
         )}
       </section>
+
+      <MarketAccess info={access} />
 
       <section className={card}>
         <h2 className="font-semibold">Limitaciones y próximas comprobaciones</h2>
