@@ -1,3 +1,4 @@
+import { resolveProductQuery } from "./product-search";
 import type { Opportunity } from "./opportunities";
 
 export interface RankFilters {
@@ -11,8 +12,9 @@ export interface RankFilters {
 
 const fold = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
-function matchesQuery(o: Opportunity, q?: string): boolean {
+export function matchesQuery(o: Opportunity, q?: string): boolean {
   if (!q) return true;
+  if (/sector:/i.test(q)) return resolveProductQuery(q).codes.includes(o.productCode);
   const tokens = q.split(/[,\s;]+/).filter(Boolean);
   if (tokens.every((t) => /^\d+$/.test(t))) return tokens.some((t) => o.productCode.startsWith(t));
   return fold(o.productName).includes(fold(q)) || o.productCode.startsWith(q.trim());

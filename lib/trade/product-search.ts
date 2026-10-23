@@ -1,4 +1,5 @@
 import { HS_CATALOG, type HsEntry } from "@/lib/config/hs-catalog";
+import { sectorById } from "@/lib/config/sectors";
 
 export const MAX_CODES = 20;
 
@@ -31,6 +32,13 @@ export function resolveProductQuery(q?: string): ProductResolution {
   const seen = new Set<string>();
   const add = (c: string) => { if (!seen.has(c)) { seen.add(c); out.codes.push(c); } };
   for (const piece of (q ?? "").split(/[,;]+/).map((p) => p.trim()).filter(Boolean)) {
+    const sec = /^sector:([a-z0-9-]+)$/i.exec(piece);
+    if (sec) {
+      const sector = sectorById(sec[1].toLowerCase());
+      if (sector) { sector.codes.forEach(add); out.notes.push(`Sector «${sector.name}» → ${sector.codes.length} productos`); }
+      else out.unmatched.push(piece);
+      continue;
+    }
     const tokens = piece.split(/\s+/);
     if (tokens.every((t) => /^\d+$/.test(t))) {
       for (const t of tokens) {

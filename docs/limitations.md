@@ -22,3 +22,5 @@
 20. **Efecto Róterdam:** las importaciones de Países Bajos, Bélgica y otros puntos de entrada incluyen mercancía en tránsito que se reexporta; el tamaño de esos mercados puede estar sobrevalorado como demanda final.
 21. **Crecimiento en valor, no en volumen:** el CAGR se calcula sobre valor en euros; los precios (p. ej. aceite de oliva 2023–2024) pueden explicar buena parte del crecimiento. El peso neto está disponible pero no se usa aún para un CAGR en volumen.
 22. **Cuota con España ausente:** si Eurostat no publica el flujo desde España en el último año (p. ej. aceite 150920 en Chipre 2024) la oportunidad queda incompleta aunque el mercado sea pequeño; es el criterio conservador del punto 13.
+
+- Acceso al mercado: sin datos arancelarios automáticos; solo reglas generales (UE) y enlaces oficiales. Aranceles, impuestos, requisitos y logística no entran en la puntuación.

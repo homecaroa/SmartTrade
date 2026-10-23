@@ -21,7 +21,7 @@ export default function Methodology() {
       <ul className="list-disc pl-5">
         <li>Eurostat Comext (primaria; mercados de la UE como declarantes).</li>
         <li>UN Comtrade (complementaria; requiere clave).</li>
-        <li>ICEX y Access2Markets: solo enlaces de consulta.</li>
+        <li>ICEX y Access2Markets: solo enlaces de consulta. La sección «Acceso al mercado» de la ficha es informativa, no consulta aranceles y no influye en la puntuación.</li>
         <li>Modo DEMO: datos sintéticos, siempre etiquetados.</li>
       </ul>
     </article>

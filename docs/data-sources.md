@@ -52,3 +52,10 @@ HS a 6 dígitos. La versión HS se deduce del año (2012, 2017, 2022). Una venta
 
 ## Datos demo
 `lib/sources/demo.ts`: 8 productos HS6 y 11 mercados, valores sintéticos deterministas, `synthetic=true`. Incluye dos casos incompletos a propósito.
+
+## Acceso al mercado (aranceles y requisitos)
+- Módulo **informativo** en la ficha de oportunidad (`lib/market-access.ts`, `components/market-access.tsx`). No influye en la puntuación.
+- **No hay integración automática**: no se ha verificado que Access2Markets ni otras fuentes ofrezcan una API pública adecuada. Se enlazan Access2Markets e ICEX y se explica cómo consultarlos.
+- Mercados UE: solo reglas generales del mercado único, marcadas «parcial». Terceros países: aranceles, origen, impuestos y requisitos «pendiente de consulta».
+- Ningún dato se marca «verificado». No hay fecha de consulta ni periodo de validez porque no hay consulta.
+- TARIC no se enlaza: regula importaciones a la UE, no la exportación desde España.

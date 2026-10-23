@@ -15,3 +15,7 @@ Página / API  →  lib/service.ts
 - Las páginas son componentes de servidor (búsqueda por GET); solo los gráficos son cliente.
 - Caché: clave por modo+años+códigos. Si la fuente falla y hay entrada caducada se sirve marcada como obsoleta, con su antigüedad; sin entrada se muestra el error.
 - La caché es en memoria por proceso: en despliegues serverless se reinicia con frecuencia (ver limitaciones).
+
+## Sectores y puntos de entrada
+- `lib/config/sectors.ts` agrupa códigos del catálogo en sectores (`sector:<id>` en la consulta). Para añadir un sector basta con un objeto nuevo; las pruebas exigen que sus códigos existan en el catálogo, no se repitan y no superen el máximo por búsqueda.
+- La portada ofrece dos caminos: «Tengo un producto» (búsqueda por nombre o código) y «Quiero descubrir sectores». La puntuación de un sector compara solo entre sus productos.

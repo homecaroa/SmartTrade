@@ -1,10 +1,12 @@
 import Link from "next/link";
 import { DataSourceLabel } from "@/components/data-source-label";
 import { EmptyState } from "@/components/empty-state";
+import { EntryPaths, SectorBanner } from "@/components/entry-paths";
 import { ErrorState } from "@/components/error-state";
 import { OpportunityTable } from "@/components/opportunity-table";
 import { SearchForm } from "@/components/search-form";
 import { getConfig } from "@/lib/config";
+import { sectorFromQuery } from "@/lib/config/sectors";
 import { parseQuery } from "@/lib/schemas/query";
 import { getFilters, getRanking } from "@/lib/service";
 import { SourceError } from "@/lib/sources/types";
@@ -35,17 +37,13 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
     />
   );
 
-  // En modos de datos reales no se consulta nada hasta que el usuario indica códigos HS (evita un error al abrir la web)
+  // En modos de datos reales no se consulta nada hasta que el usuario elige un producto o sector (evita un error al abrir la web)
   if (cfg.mode !== "demo" && !q.q) {
     return (
       <>
+        <EntryPaths />
+        <h2 className="pt-2 text-sm font-semibold text-slate-600">Búsqueda avanzada</h2>
         {form}
-        <EmptyState title="Escribe un producto para empezar" hint="Puedes usar nombres (vino, cerámica, coches eléctricos) o códigos HS6 vigentes, separados por comas. Consulta la guía de uso para encontrar códigos." />
-        <p className="text-sm">
-          Ejemplo:{" "}
-          <Link className="underline" href="/?q=vino,aceite de oliva">vino, aceite de oliva</Link>{" "}
-          o <Link className="underline" href="/?q=220421,150920">220421, 150920</Link>. <Link className="underline" href="/guia">Guía de uso</Link>.
-        </p>
       </>
     );
   }
@@ -63,9 +61,13 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
   const detailQuery = cfg.mode === "demo" ? "" : `?q=${encodeURIComponent(q.q ?? "")}`;
   const exportHref = "/api/opportunities/export?" + href(base).split("?")[1];
 
+  const sector = sectorFromQuery(q.q);
+
   return (
     <>
+      {!q.q && <EntryPaths />}
       {form}
+      {sector && <SectorBanner current={sector} onlyOne />}
       <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm">
