@@ -14,7 +14,7 @@ export type TagTone = "positive" | "neutral" | "caution";
 export interface Tag { key: string; label: string; tone: TagTone; hint: string }
 
 export const TAG_LEGEND: Tag[] = [
-  { key: "hueco", label: "Hueco de cuota", tone: "positive", hint: `Demanda alta y cuota española baja, y España ya exporta el producto (percentil de expansión ≥ ${HIGH_PERCENTILE} en esta búsqueda). Es una señal para investigar, no demanda insatisfecha demostrada.` },
+  { key: "hueco", label: "Hueco de cuota", tone: "positive", hint: `Cuota española muy inferior a la que España tiene de media en este producto en los mercados de esta búsqueda (percentil de expansión ≥ ${HIGH_PERCENTILE}), y España ya exporta el producto. Es una señal para investigar, no demanda insatisfecha demostrada.` },
   { key: "grande", label: "Mercado grande", tone: "positive", hint: `Entre el ${100 - HIGH_PERCENTILE} % de mayores importaciones de esta búsqueda.` },
   { key: "crece", label: "Crece rápido", tone: "positive", hint: `Crecimiento de importaciones positivo y entre el ${100 - HIGH_PERCENTILE} % más alto de esta búsqueda.` },
   { key: "exporta", label: "España exporta mucho", tone: "positive", hint: `Exportaciones españolas del producto entre el ${100 - HIGH_PERCENTILE} % más altas de esta búsqueda.` },
@@ -42,7 +42,7 @@ export function describeOpportunity(o: Opportunity): Description {
   const has = (k: ComponentKey, min: number) => (pct(k) ?? -1) >= min;
 
   const tags: Tag[] = [];
-  if (has("expansion", HIGH_PERCENTILE)) tags.push(TAG.hueco);
+  if (has("expansion", HIGH_PERCENTILE) && o.spanishShare !== null) tags.push(TAG.hueco);
   if (has("size", HIGH_PERCENTILE)) tags.push(TAG.grande);
   if (o.cagr !== null && o.cagr > 0 && has("growth", HIGH_PERCENTILE)) tags.push(TAG.crece);
   if (has("export", HIGH_PERCENTILE)) tags.push(TAG.exporta);

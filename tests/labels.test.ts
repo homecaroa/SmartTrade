@@ -30,6 +30,10 @@ describe("etiquetas en lenguaje llano", () => {
     expect(keys(opp({ expansion: 80 }))).toContain("hueco");
     expect(keys(opp({ expansion: 40 }))).not.toContain("hueco");
   });
+  it("«Hueco de cuota» depende de la brecha de cuota (percentil de expansión) y exige cuota calculable", () => {
+    expect(keys(opp({ expansion: 91 }, { spanishShare: 11.4 }))).toContain("hueco");
+    expect(keys(opp({ expansion: 91 }, { spanishShare: null }))).not.toContain("hueco");
+  });
   it("poca exportación española y datos con reservas son precauciones", () => {
     expect(keys(opp({ export: LOW_EXPORT_PERCENTILE }))).toContain("pocaexpo");
     expect(keys(opp({}, { quality: "media" }))).toContain("reservas");

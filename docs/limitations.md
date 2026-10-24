@@ -25,7 +25,7 @@
 
 - Acceso al mercado: sin datos arancelarios automáticos; solo reglas generales (UE) y enlaces oficiales. Aranceles, impuestos, requisitos y logística no entran en la puntuación.
 
-- Redundancia tamaño/expansión de cuota en la puntuación (ver docs/methodology.md). Pendiente de decisión.
+- Expansión de cuota: la referencia es la cuota española media del producto en los mercados de la búsqueda (no mundial). La corrección de la redundancia con el tamaño está medida solo con datos demo y una ficha real (ver docs/methodology.md).
 - Vercel: no hay `maxDuration` ni región configurados; no se han verificado los límites de ejecución del plan. La caché es en memoria y no se comparte entre instancias.
 - UN Comtrade: adaptador solo probado con respuestas simuladas; sin validación real ni comparación con Eurostat.
 - El buscador muestra la interpretación de la búsqueda como aviso, pero no pide confirmar el producto antes de analizar.

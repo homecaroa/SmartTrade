@@ -42,3 +42,9 @@ Umbrales (75 sí, 74 no), crecimiento negativo/irregular, precauciones, ausencia
 
 ## Auditoría 2026-10: ficha imprimible, CSV, búsqueda
 `tests/research-checklist.test.ts` (pasos pendientes, fuentes, metadatos del CSV) y ampliación de `tests/product-search.test.ts` (inglés y erratas). Total: 134 pruebas en 14 archivos; typecheck y build correctos. Comprobación manual en modo demo: la ficha incluye botón de impresión, cabecera de impresión y lista de comprobaciones; el CSV incluye ventana, universo y percentiles.
+
+## Nombres y etiquetas (ronda 04)
+`tests/names.test.ts` (nombres de país y título de producto) y ampliación de `tests/labels.test.ts` («Hueco de cuota» no convive con «España ya vende aquí»). Total: 140 pruebas en 15 archivos; typecheck y build correctos.
+
+## Expansión de cuota (ronda 05)
+`tests/expansion.test.ts` (independencia del tamaño, referencia por producto, contracción, casos sin referencia, reglas de exportación, reproducibilidad, universo sintético sin redundancia) y adaptación de `tests/score.test.ts` y `tests/labels.test.ts`. Total: 148 pruebas en 16 archivos; typecheck y build correctos.

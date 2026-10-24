@@ -153,7 +153,7 @@ export function buildOpportunities(input: BuildInput): BuildResult {
       productKey: o.productCode,
       size: o.marketSize!,
       cagr: o.cagr!,
-      addressable: o.marketSize! * (1 - o.spanishShare! / 100),
+      spanishImports: (o.marketSize! * o.spanishShare!) / 100,
       spainExports: o.spainExportsWorld!,
     }));
   const scores = scoreUniverse(inputs, input.weights ?? DEFAULT_WEIGHTS);

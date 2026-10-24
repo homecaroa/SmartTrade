@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { DEFAULT_WEIGHTS, percentileRank, quantile, scoreUniverse, topContributors, winsorize, type ScoreInput } from "@/lib/scoring/score";
 
-const inp = (id: string, o: Partial<ScoreInput> = {}): ScoreInput => ({ id, productKey: id, size: 100, cagr: 5, addressable: 90, spainExports: 50, ...o });
+const inp = (id: string, o: Partial<ScoreInput> = {}): ScoreInput => ({ id, productKey: id, size: 100, cagr: 5, spanishImports: 10, spainExports: 50, ...o });
 
 describe("normalización", () => {
   it("percentil por rango medio", () => {
@@ -18,7 +18,7 @@ describe("normalización", () => {
 });
 
 describe("puntuación ponderada", () => {
-  const universe = [1, 2, 3, 4, 5].map((n) => inp("p" + n, { size: n * 100, cagr: n * 3, addressable: n * 80, spainExports: n * 10 }));
+  const universe = [1, 2, 3, 4, 5].map((n) => inp("p" + n, { size: n * 100, cagr: n * 3, spainExports: n * 10 }));
   const res = scoreUniverse(universe);
 
   it("pesos suman 1 y total = suma de aportes", () => {
@@ -36,8 +36,8 @@ describe("puntuación ponderada", () => {
   });
   it("calcula manualmente un caso", () => {
     const p5 = res.get("p5")!;
-    // percentil de rango medio del máximo entre 5 = 90 en los 4 componentes
-    expect(p5.total).toBeCloseTo(0.35 * 90 + 0.3 * 90 + 0.2 * 90 + 0.15 * 90);
+    // percentil de rango medio del máximo entre 5 = 90; con un solo mercado por producto no hay brecha de cuota (neutra: 50)
+    expect(p5.total).toBeCloseTo(0.35 * 90 + 0.3 * 90 + 0.2 * 50 + 0.15 * 90);
     expect(topContributors(p5, 1)[0].key).toBe("size");
   });
   it("crecimiento negativo no recibe puntuación alta", () => {
@@ -46,7 +46,7 @@ describe("puntuación ponderada", () => {
     expect(r.components.find((c) => c.key === "growth")!.normalized).toBeLessThanOrEqual(25);
   });
   it("sin exportaciones españolas observables no hay expansión demostrada", () => {
-    const u = [inp("a", { spainExports: 0, addressable: 1e9 }), inp("b"), inp("c")];
+    const u = [inp("a", { spainExports: 0, spanishImports: 1e9 }), inp("b"), inp("c")];
     const c = scoreUniverse(u).get("a")!.components.find((x) => x.key === "expansion")!;
     expect(c.normalized).toBe(0);
     expect(c.note).toBeTruthy();

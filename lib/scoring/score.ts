@@ -1,5 +1,6 @@
 /**
  * Algoritmo de puntuación 0-100 (ver docs/methodology.md).
+ * Expansión de cuota: brecha de penetración respecto a la cuota española de referencia del producto (independiente del tamaño).
  * Universo de percentiles: oportunidades COMPLETAS de la carga de datos (antes de aplicar filtros del usuario).
  * Sin componente disponible no hay puntuación: no se imputan ceros ni se redistribuyen pesos.
  */
@@ -27,6 +28,22 @@ export const WINSOR_LOW = 5;
 export const WINSOR_HIGH = 95;
 export const NEGATIVE_GROWTH_CAP = 25;
 export const LOW_EXPORT_PERCENTILE = 25;
+/** Fracción de la mediana de mercado del producto usada como «masa» de contracción de la cuota (ver penetrationGap). */
+export const SHRINK_FRACTION = 0.1;
+
+/**
+ * Brecha de penetración de la cuota española, independiente del tamaño del mercado:
+ *   cuota contraída = (importaciones desde España + m·cuota_ref) / (importaciones totales + m)
+ *   brecha = 1 − cuota contraída / cuota_ref
+ * donde cuota_ref es la cuota española del producto sumando todos los mercados del universo y m = SHRINK_FRACTION × mediana
+ * del tamaño de los mercados del producto. La contracción evita que mercados muy pequeños, con cuotas inestables,
+ * obtengan brechas extremas. brecha > 0: cuota inferior a la de referencia; < 0: superior. Devuelve null si cuota_ref ≤ 0.
+ */
+export function penetrationGap(spanishImports: number, size: number, refShare: number, mass: number): number | null {
+  if (!(refShare > 0) || !(size >= 0) || !(mass >= 0) || size + mass === 0) return null;
+  const shrunk = (spanishImports + mass * refShare) / (size + mass);
+  return 1 - shrunk / refShare;
+}
 
 export function quantile(sorted: number[], q: number): number {
   if (sorted.length === 0) throw new Error("quantile: conjunto vacío");
@@ -61,7 +78,7 @@ export interface ScoreInput {
   productKey: string;
   size: number; // importaciones del mercado
   cagr: number; // %
-  addressable: number; // importaciones no españolas = size * (1 - cuota)
+  spanishImports: number; // importaciones del mercado procedentes de España
   spainExports: number; // exportaciones españolas del producto al mundo
 }
 
@@ -88,7 +105,22 @@ export function scoreUniverse(inputs: ScoreInput[], weights: Weights = DEFAULT_W
 
   const sizes = inputs.map((i) => i.size);
   const growthW = winsorize(inputs.map((i) => i.cagr));
-  const addr = inputs.map((i) => i.addressable);
+
+  // Referencia por producto: cuota española agregada y masa de contracción
+  const prod = new Map<string, { imp: number; es: number; sizes: number[] }>();
+  for (const i of inputs) {
+    const p = prod.get(i.productKey) ?? { imp: 0, es: 0, sizes: [] };
+    p.imp += i.size;
+    p.es += i.spanishImports;
+    p.sizes.push(i.size);
+    prod.set(i.productKey, p);
+  }
+  const gaps = inputs.map((i) => {
+    const p = prod.get(i.productKey)!;
+    const mass = SHRINK_FRACTION * quantile([...p.sizes].sort((x, y) => x - y), 0.5);
+    return penetrationGap(i.spanishImports, i.size, p.imp > 0 ? p.es / p.imp : 0, mass);
+  });
+  const gapVals = gaps.filter((g): g is number => g !== null);
 
   // Universo de exportación: un valor por producto (evita ponderar por nº de mercados)
   const byProduct = new Map<string, number>();
@@ -107,8 +139,13 @@ export function scoreUniverse(inputs: ScoreInput[], weights: Weights = DEFAULT_W
 
     const exportN = percentileRank(exportVals, inp.spainExports);
 
-    let expansionN = percentileRank(addr, inp.addressable);
+    const gap = gaps[idx];
+    let expansionN = gap === null ? 0 : percentileRank(gapVals, gap);
     let expansionNote: string | undefined;
+    if (gap === null) {
+      expansionN = 0;
+      expansionNote = "España no vende este producto en ninguno de los mercados analizados: sin cuota de referencia";
+    }
     if (inp.spainExports <= 0) {
       expansionN = 0;
       expansionNote = "España no registra exportaciones observables del producto: sin oportunidad exportadora demostrada";
@@ -129,7 +166,7 @@ export function scoreUniverse(inputs: ScoreInput[], weights: Weights = DEFAULT_W
     const components = [
       mk("size", inp.size, sizeN),
       mk("growth", inp.cagr, growthN, growthNote),
-      mk("expansion", inp.addressable, expansionN, expansionNote),
+      mk("expansion", gap ?? 0, expansionN, expansionNote),
       mk("export", inp.spainExports, exportN),
     ];
     out.set(inp.id, {
