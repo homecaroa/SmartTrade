@@ -86,7 +86,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
         <EmptyState title="No hay oportunidades que cumplan los criterios" hint="Prueba a ampliar el periodo, bajar el tamaño o crecimiento mínimos o quitar el mercado." />
       ) : (
         <>
-          <OpportunityTable rows={data.rows} offset={data.offset} sortHref={sortHref} detailQuery={detailQuery} />
+          <OpportunityTable rows={data.rows} offset={data.offset} sortHref={sortHref} detailQuery={detailQuery} q={q.q} />
           <nav className="flex items-center justify-between text-sm" aria-label="Paginación">
             {data.page > 1 ? <Link className="underline" href={href(base, { page: data.page - 1 })}>← Anterior</Link> : <span />}
             <span>Página {data.page} de {pages}</span>

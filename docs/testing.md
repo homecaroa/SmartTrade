@@ -48,3 +48,6 @@ Umbrales (75 sí, 74 no), crecimiento negativo/irregular, precauciones, ausencia
 
 ## Expansión de cuota (ronda 05)
 `tests/expansion.test.ts` (independencia del tamaño, referencia por producto, contracción, casos sin referencia, reglas de exportación, reproducibilidad, universo sintético sin redundancia) y adaptación de `tests/score.test.ts` y `tests/labels.test.ts`. Total: 148 pruebas en 16 archivos; typecheck y build correctos.
+
+## Comparador (ronda 06)
+`tests/compare.test.ts`: validación de la selección, filas con «n.d.» (nunca cero), estado de aranceles y carga en modo demo con resultados inexistentes. Comprobación manual en modo demo: casillas y botón en la tabla, página `/comparar` con 2 resultados, mensaje de error con 1. Total: 153 pruebas en 17 archivos; typecheck y build correctos.

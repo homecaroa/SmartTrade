@@ -1,5 +1,5 @@
 import { allowedMarkets, getConfig, type AppConfig } from "@/lib/config";
-import { MARKETS } from "@/lib/config/catalog";
+import { countryName, MARKETS } from "@/lib/config/catalog";
 import { getOrLoad } from "@/lib/cache/ttl-cache";
 import type { OpportunityQuery } from "@/lib/schemas/query";
 import type { DataMode } from "@/lib/schemas/trade";
@@ -184,7 +184,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
     const names = new Map(MARKETS.map((m) => [m.code, m.name]));
     suppliers = unique
       .filter((o) => o.period === String(year) && o.tradeValue !== null && o.tradeValue > 0 && o.currency === opp.currency)
-      .map((o) => ({ code: o.partnerCode, name: names.get(o.partnerCode) ?? o.partnerCode, value: o.tradeValue!, sharePct: opp.marketSize ? (o.tradeValue! / opp.marketSize) * 100 : null }))
+      .map((o) => ({ code: o.partnerCode, name: names.get(o.partnerCode) ?? countryName(o.partnerCode), value: o.tradeValue!, sharePct: opp.marketSize ? (o.tradeValue! / opp.marketSize) * 100 : null }))
       .sort((a, b) => b.value - a.value)
       .slice(0, 8);
     if (loaded.stale) supplierWarning = "Proveedores obtenidos de caché antigua (la fuente no respondió).";
@@ -202,6 +202,30 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
     unitValue: unitValuePerKg(opp.marketSize, opp.netWeightEndYear),
     sameProduct: u.built.opportunities.filter((o) => o.productCode === productCode && o.complete).sort((a, b) => b.marketSize! - a.marketSize!).slice(0, 10),
   };
+}
+
+export interface ComparisonResponse {
+  info: DataInfo;
+  universeSize: number;
+  items: { opp: Opportunity; rank: number | null }[];
+  missing: string[];
+}
+
+/** Carga los resultados seleccionados para compararlos, con el mismo universo de percentiles que el ranking. */
+export async function getComparison(ids: string[], q: string | undefined, cfg = getConfig()): Promise<ComparisonResponse> {
+  const year = Number(ids[0].slice(-4));
+  const codes = [...new Set(ids.map((i) => i.split("-")[0]))];
+  const u = await loadUniverse({ q: cfg.mode === "demo" ? undefined : q ?? codes.join(","), year }, cfg);
+  const ranked = rankOpportunities(u.built.opportunities, { sort: "score", order: "desc" });
+  const items: ComparisonResponse["items"] = [];
+  const missing: string[] = [];
+  for (const id of ids) {
+    const opp = u.built.opportunities.find((o) => o.id === id);
+    if (!opp) { missing.push(id); continue; }
+    const i = ranked.findIndex((o) => o.id === id);
+    items.push({ opp, rank: i >= 0 ? i + 1 : null });
+  }
+  return { info: u.info, universeSize: u.built.opportunities.filter((o) => o.complete).length, items, missing };
 }
 
 export function getFilters() {

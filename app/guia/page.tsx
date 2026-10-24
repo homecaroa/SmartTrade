@@ -24,6 +24,7 @@ export default function Guide() {
         <li>Opcional: elige un <b>mercado</b>, el año final, el tamaño mínimo (en millones de €) o el crecimiento mínimo.</li>
         <li>Pulsa <b>Buscar oportunidades</b>. Verás el ranking, la interpretación de tu búsqueda y los avisos de calidad.</li>
         <li>Abre <b>Detalle</b> para ver la serie histórica, los proveedores, el desglose de la puntuación y los enlaces oficiales.</li>
+        <li><b>Comparar:</b> marca de 2 a 5 resultados de la página y pulsa «Comparar seleccionados» para verlos lado a lado (también se puede imprimir). La selección vale solo para la página actual y no se guarda.</li>
         <li><b>Exportar CSV</b> descarga los resultados filtrados.</li>
       </ol>
 
