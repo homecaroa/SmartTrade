@@ -59,3 +59,19 @@ export const DEMO_MARKET_CODES = ["DE", "FR", "IT", "PT", "NL", "PL", "GB", "US"
 export function marketName(code: string): string {
   return MARKETS.find((m) => m.code === code)?.name ?? code;
 }
+
+// Códigos propios de Eurostat que no coinciden con ISO 3166 (o que Intl no resuelve)
+const SPECIAL_NAMES: Record<string, string> = { ES: "España", EL: "Grecia", XI: "Irlanda del Norte", XS: "Serbia", XK: "Kosovo", XC: "Ceuta", XL: "Melilla", UK: "Reino Unido" };
+
+/** Nombre en español de un país por su código de Eurostat/ISO2; si no se puede resolver, devuelve el código (nunca inventa). */
+export function countryName(code: string): string {
+  const known = MARKETS.find((m) => m.code === code)?.name ?? SPECIAL_NAMES[code];
+  if (known) return known;
+  if (/^[A-Z]{2}$/.test(code)) {
+    try {
+      const n = new Intl.DisplayNames(["es"], { type: "region" }).of(code);
+      if (n && n !== code) return n;
+    } catch { /* código no válido para Intl */ }
+  }
+  return code;
+}

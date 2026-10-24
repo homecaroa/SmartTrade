@@ -63,3 +63,10 @@ export const HS_CATALOG: HsEntry[] = [
   { code: "620342", name: "Pantalones de hombre de algodón", keywords: "pantalones vaqueros ropa textil algodon moda hombre trousers jeans cotton men clothing" },
   { code: "620462", name: "Pantalones de mujer de algodón", keywords: "pantalones vaqueros ropa textil algodon moda mujer trousers jeans cotton women clothing" },
 ];
+
+/** Título en español para mostrar (del catálogo, si el código está) y descripción de la fuente si difiere. */
+export function productLabel(code: string, sourceName: string): { title: string; sourceDescription: string | null } {
+  const entry = HS_CATALOG.find((e) => e.code === code);
+  if (!entry) return { title: sourceName, sourceDescription: null };
+  return { title: entry.name, sourceDescription: sourceName && sourceName !== entry.name ? sourceName : null };
+}

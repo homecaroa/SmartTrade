@@ -10,6 +10,7 @@ import { PrintButton } from "@/components/print-button";
 import { ResearchChecklist } from "@/components/research-checklist";
 import { ScoreBreakdown } from "@/components/opportunity-score";
 import { fmtMoney, fmtNum, fmtPct } from "@/lib/format";
+import { productLabel } from "@/lib/config/hs-catalog";
 import { buildMarketAccess } from "@/lib/market-access";
 import { idSchema } from "@/lib/schemas/query";
 import { getOpportunityDetail } from "@/lib/service";
@@ -38,6 +39,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
   ];
   const access = buildMarketAccess({ marketCode: o.marketCode, marketName: o.marketName, productCode: o.productCode, synthetic: d.info.synthetic });
   const desc = describeOpportunity(o);
+  const pl = productLabel(o.productCode, o.productName);
   const card = "rounded-lg bg-white p-4 shadow-sm space-y-2";
 
   return (
@@ -51,7 +53,8 @@ export default async function Detail({ params, searchParams }: { params: Promise
         {d.info.synthetic ? "DATOS DE DEMOSTRACIÓN SINTÉTICOS: no usar para decisiones comerciales" : `Fuente: ${o.source}`}. Indicador estadístico, no garantía de rentabilidad.
       </div>
       <section className={card}>
-        <h1 className="text-xl font-bold">{o.productName} → {o.marketName}</h1>
+        <h1 className="text-xl font-bold">{pl.title} → {o.marketName}</h1>
+        {pl.sourceDescription && <p className="text-xs text-slate-500">Descripción de la fuente: {pl.sourceDescription}</p>}
         <p className="text-sm text-slate-600">HS {o.productCode} · Clasificación {o.classification} · Ventana {o.importsSeries[0].year}–{o.endYear} · {d.rank ? `Posición ${d.rank} en el ranking por puntuación` : "Fuera del ranking (datos incompletos)"} · Calidad de datos: <b>{o.quality}</b></p>
         <DataSourceLabel info={d.info} />
         {!o.complete && (
