@@ -59,3 +59,12 @@ HS a 6 dígitos. La versión HS se deduce del año (2012, 2017, 2022). Una venta
 - Mercados UE: solo reglas generales del mercado único, marcadas «parcial». Terceros países: aranceles, origen, impuestos y requisitos «pendiente de consulta».
 - Ningún dato se marca «verificado». No hay fecha de consulta ni periodo de validez porque no hay consulta.
 - TARIC no se enlaza: regula importaciones a la UE, no la exportación desde España.
+
+## UN Comtrade: verificación real (clave gratuita, 25/10/2026)
+Probado con `data/v1/get/C/A/HS`, Alemania, HS 220421, 2023, socios mundo (0) y España (724), desde un PC de usuario:
+- **Autenticación:** la cabecera `Ocp-Apim-Subscription-Key` funciona (HTTP 200).
+- **Campos:** `primaryValue`, `netWgt`, `qty`, `partnerCode`, `reporterCode`, `isAggregate` y otros están presentes. `reporterISO` y `partnerISO` pueden llegar a `null` (consulta sin `includeDesc`): el adaptador identifica por código numérico.
+- **Desgloses:** sin restricciones, la consulta devuelve una fila por segundo socio, régimen aduanero (`customsCode`) y modo de transporte (`motCode`): 500+ filas truncadas. Con `partner2Code=0&customsCode=C00&motCode=0` devuelve exactamente 2 filas (mundo y España), ambas `isAggregate=true`. Valores: importaciones de Alemania 1.821.053.697 USD (mundo) y 225.056.561 USD (España).
+- **Límites:** 1 llamada por segundo (HTTP 429 «Try again in 1 seconds» si se supera) y un cupo de operaciones (`x-ratelimit-operation-limit: 60`; el periodo del cupo no se indica en las cabeceras, comprobar en «Free vs Premium»).
+- **Adaptador:** serializa las llamadas con 1,1 s de separación, reintenta tras un 429 (hasta 2 veces) y descarta desgloses. Los valores son USD y no se mezclan con EUR.
+- **Pendiente de verificar:** cobertura por país y año (¿están publicados 2024 y 2023 para cada mercado?), nombres de socios fuera del catálogo con `includeDesc`, tamaño de la consulta de proveedores y comparación con Eurostat. El modo Comtrade aún no es un modo separado en la interfaz.

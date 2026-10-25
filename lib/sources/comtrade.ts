@@ -22,6 +22,12 @@ const rowSchema = z.object({
   reporterISO: z.string().nullish(),
   partnerISO: z.string().nullish(),
   partnerCode: z.number().nullish(),
+  reporterCode: z.number().nullish(),
+  partnerDesc: z.string().nullish(),
+  // Desgloses: la API devuelve por defecto una fila por segundo socio / régimen aduanero / modo de transporte
+  partner2Code: z.number().nullish(),
+  customsCode: z.string().nullish(),
+  motCode: z.number().nullish(),
   cmdCode: z.string(),
   cmdDesc: z.string().nullish(),
   flowCode: z.string(),
@@ -34,6 +40,8 @@ const rowSchema = z.object({
 const responseSchema = z.object({ data: z.array(rowSchema), error: z.string().nullish() });
 
 const iso3ToIso2 = new Map([...MARKETS.map((m) => [m.iso3, m.code] as const), [ORIGIN.iso3, ORIGIN.code]]);
+// Verificado con la API real: reporterISO/partnerISO pueden llegar a null, así que se mapea primero por el código numérico.
+const m49ToIso2 = new Map([...MARKETS.map((m) => [m.m49, m.code] as const), [ORIGIN.m49, ORIGIN.code]]);
 
 export function comtradeToObservations(raw: unknown, retrievedAt: string, allowedReporters: Set<string>): TradeObservation[] {
   const p = responseSchema.safeParse(raw);
@@ -41,15 +49,23 @@ export function comtradeToObservations(raw: unknown, retrievedAt: string, allowe
   if (p.data.error) throw new SourceError("http", "Comtrade devolvió un error");
   const out: TradeObservation[] = [];
   for (const r of p.data.data) {
-    const reporter = r.reporterISO ? iso3ToIso2.get(r.reporterISO) : undefined;
+    // Solo totales: se descartan los desgloses (segundo socio, régimen aduanero, transporte) para no duplicar valores
+    if ((r.partner2Code ?? 0) !== 0 || (r.customsCode ?? "C00") !== "C00" || (r.motCode ?? 0) !== 0) continue;
+    const reporter = (r.reporterCode != null ? m49ToIso2.get(r.reporterCode) : undefined) ?? (r.reporterISO ? iso3ToIso2.get(r.reporterISO) : undefined);
     if (!reporter || !allowedReporters.has(reporter)) continue;
     const isWorld = r.partnerCode === 0 || r.partnerISO === "W00";
-    const partner = isWorld ? "WORLD" : r.partnerISO ? iso3ToIso2.get(r.partnerISO) : undefined;
+    let partner: string | undefined;
+    let partnerName: string | null = null;
+    if (isWorld) partner = "WORLD";
+    else {
+      partner = (r.partnerCode != null ? m49ToIso2.get(r.partnerCode) : undefined) ?? (r.partnerISO ? iso3ToIso2.get(r.partnerISO) : undefined);
+      if (!partner && r.partnerCode != null) { partner = `M49-${r.partnerCode}`; partnerName = r.partnerDesc ?? null; }
+    }
     if (!partner || !/^\d{6}$/.test(r.cmdCode) || (r.flowCode !== "M" && r.flowCode !== "X")) continue;
     if (r.primaryValue === null || r.primaryValue === undefined) continue; // ausente ≠ 0
     const year = Number(r.period);
     out.push({
-      period: String(year), reporterCode: reporter, partnerCode: partner, productCode: r.cmdCode,
+      period: String(year), reporterCode: reporter, partnerCode: partner, partnerName, productCode: r.cmdCode,
       productName: r.cmdDesc ?? null, productClassification: r.classificationCode ?? hsVersionForYear(year),
       flow: r.flowCode === "M" ? "import" : "export", tradeValue: r.primaryValue, currency: "USD",
       netWeight: r.netWgt ?? null, quantity: r.qty ?? null, quantityUnit: r.qtyUnitAbbr ?? null,
@@ -73,16 +89,44 @@ export function reportersPerCall(products: number, partners: number, years: numb
   return Math.max(1, Math.floor((COMTRADE_MAX_RECORDS - 1) / Math.max(1, products * partners * years)));
 }
 
+const sleep = (ms: number) => new Promise<void>((r) => setTimeout(r, ms));
+// Límites observados en la clave gratuita: 1 llamada por segundo (HTTP 429 si se supera) y un cupo de operaciones (cabecera x-ratelimit-operation-limit: 60).
+const minGapMs = () => Number(process.env.COMTRADE_MIN_GAP_MS ?? 1100);
+const backoffMs = () => Number(process.env.COMTRADE_BACKOFF_MS ?? 1500);
+let chain: Promise<unknown> = Promise.resolve();
+let lastCallAt = 0;
+
+/** Ejecuta las llamadas de una en una, separadas por el intervalo mínimo. */
+function throttled<T>(fn: () => Promise<T>): Promise<T> {
+  const run = chain.then(async () => {
+    const wait = lastCallAt + minGapMs() - Date.now();
+    if (wait > 0) await sleep(wait);
+    try { return await fn(); } finally { lastCallAt = Date.now(); }
+  });
+  chain = run.catch(() => undefined);
+  return run;
+}
+
 async function call(params: Record<string, string>): Promise<unknown> {
   const key = getConfig().comtradeKey;
   if (!key) throw new SourceError("config", "UN Comtrade requiere COMTRADE_API_KEY (variable de entorno del servidor). Consulta docs/data-sources.md.");
   const u = new URL(BASE);
-  for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
+  // Verificado con la API real: sin estas restricciones una consulta de 1 país/1 producto/1 año devuelve 500+ filas de desglose
+  for (const [k, v] of Object.entries({ partner2Code: "0", customsCode: "C00", motCode: "0", ...params })) u.searchParams.set(k, v);
   u.searchParams.set("includeDesc", "true");
   u.searchParams.set("maxrecords", String(COMTRADE_MAX_RECORDS));
   const inQuery = process.env.COMTRADE_KEY_IN_QUERY === "true";
   if (inQuery) u.searchParams.set("subscription-key", key);
-  const raw = await safeFetchJson(u.toString(), inQuery ? {} : { headers: { "Ocp-Apim-Subscription-Key": key } });
+  let raw: unknown;
+  for (let attempt = 0; ; attempt++) {
+    try {
+      raw = await throttled(() => safeFetchJson(u.toString(), inQuery ? {} : { headers: { "Ocp-Apim-Subscription-Key": key } }));
+      break;
+    } catch (e) {
+      if (e instanceof SourceError && e.kind === "rate_limit" && attempt < 2) { await sleep(backoffMs() * (attempt + 1)); continue; }
+      throw e;
+    }
+  }
   const n = (raw as { data?: unknown[] } | null)?.data?.length ?? 0;
   if (n >= COMTRADE_MAX_RECORDS) {
     throw new SourceError("too_large", `Comtrade devolvió ${n} registros (límite por llamada ${COMTRADE_MAX_RECORDS}): resultado posiblemente truncado. Reduce los productos o años.`);

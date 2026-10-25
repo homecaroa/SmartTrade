@@ -51,3 +51,9 @@ Umbrales (75 sí, 74 no), crecimiento negativo/irregular, precauciones, ausencia
 
 ## Comparador (ronda 06)
 `tests/compare.test.ts`: validación de la selección, filas con «n.d.» (nunca cero), estado de aranceles y carga en modo demo con resultados inexistentes. Comprobación manual en modo demo: casillas y botón en la tabla, página `/comparar` con 2 resultados, mensaje de error con 1. Total: 153 pruebas en 17 archivos; typecheck y build correctos.
+
+## Crecimiento en volumen y avisos (ronda 08)
+Ampliación de `tests/labels.test.ts` (umbrales de crecimiento excepcional y efecto precio), `tests/opportunities.test.ts` (CAGR del peso, null sin pesos) y `tests/research-checklist.test.ts` (nueva columna del CSV). Total: 158 pruebas en 17 archivos; typecheck y build correctos. Comprobación manual en modo demo: la ficha muestra el crecimiento en volumen y el CSV la nueva columna.
+
+## Comtrade: comportamiento observado en la API real (ronda 09)
+`tests/comtrade-adapter.test.ts` incluye fixtures sintéticos con la forma observada: restricciones de totales, identificación por código numérico, descarte de desgloses, reintento tras 429, separación entre llamadas y proveedores fuera del catálogo. Total: 165 pruebas en 17 archivos; typecheck y build correctos. La verificación contra la API real se hizo a mano con `verify-comtrade-detalle.mjs` (resultados en docs/data-sources.md).

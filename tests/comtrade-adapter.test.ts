@@ -1,6 +1,7 @@
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { chunk, comtradeSource, COMTRADE_MAX_RECORDS, reportersPerCall } from "@/lib/sources/comtrade";
 
+beforeEach(() => { vi.stubEnv("COMTRADE_MIN_GAP_MS", "0"); vi.stubEnv("COMTRADE_BACKOFF_MS", "0"); });
 afterEach(() => { vi.restoreAllMocks(); vi.unstubAllEnvs(); });
 
 const row = (o: Record<string, unknown> = {}) => ({ period: 2023, reporterISO: "DEU", partnerISO: "W00", partnerCode: 0, cmdCode: "220421", flowCode: "M", primaryValue: 100, ...o });
@@ -62,3 +63,82 @@ describe("Comtrade opcional", () => {
     expect(imp[0]).toMatchObject({ reporterCode: "DE", partnerCode: "WORLD", currency: "USD" });
   });
 });
+
+// Hallazgos verificados con la API real (clave gratuita, 25/10/2026). Las respuestas son fixtures sintéticos con la forma observada.
+describe("Comtrade: comportamiento observado en la API real", () => {
+  const q = { years: [2023], productCodes: ["220421"], markets: ["DE"] };
+
+  it("pide solo totales: segundo socio 0, régimen aduanero C00 y transporte 0 (si no, 500+ filas de desglose)", async () => {
+    vi.stubEnv("COMTRADE_API_KEY", "k");
+    const f = vi.spyOn(globalThis, "fetch").mockImplementation(async () => respond([]));
+    await comtradeSource.fetchData(q);
+    for (const [url] of f.mock.calls) {
+      const u = new URL(String(url));
+      expect(u.searchParams.get("partner2Code")).toBe("0");
+      expect(u.searchParams.get("customsCode")).toBe("C00");
+      expect(u.searchParams.get("motCode")).toBe("0");
+    }
+    f.mockClear();
+    await comtradeSource.fetchSuppliers({ market: "DE", productCode: "220421", years: [2023] });
+    expect(new URL(String(f.mock.calls[0][0])).searchParams.get("customsCode")).toBe("C00");
+  });
+
+  it("identifica país y socio por código numérico cuando los ISO llegan a null", async () => {
+    vi.stubEnv("COMTRADE_API_KEY", "k");
+    vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      respond([
+        row({ reporterISO: null, partnerISO: null, reporterCode: 276, partnerCode: 0, primaryValue: 1821 }),
+        row({ reporterISO: null, partnerISO: null, reporterCode: 276, partnerCode: 724, primaryValue: 225 }),
+      ]));
+    const r = await comtradeSource.fetchData(q);
+    const imp = r.observations.filter((o) => o.flow === "import");
+    expect(imp.map((o) => [o.reporterCode, o.partnerCode, o.tradeValue])).toEqual([["DE", "WORLD", 1821], ["DE", "ES", 225]]);
+  });
+
+  it("descarta filas de desglose (segundo socio, aduana, transporte) para no duplicar valores", async () => {
+    vi.stubEnv("COMTRADE_API_KEY", "k");
+    vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      respond([row({ partner2Code: 0, customsCode: "C00", motCode: 0, primaryValue: 100 }), row({ partner2Code: 516, primaryValue: 7 }), row({ customsCode: "C04", primaryValue: 8 }), row({ motCode: 1000, primaryValue: 9 })]));
+    const r = await comtradeSource.fetchData(q);
+    expect(r.observations.filter((o) => o.flow === "import").map((o) => o.tradeValue)).toEqual([100]);
+  });
+
+  it("reintenta tras un 429 y devuelve los datos", async () => {
+    vi.stubEnv("COMTRADE_API_KEY", "k");
+    let n = 0;
+    const f = vi.spyOn(globalThis, "fetch").mockImplementation(async () => (++n === 1 ? new Response("{}", { status: 429 }) : respond([row()])));
+    const r = await comtradeSource.fetchData(q);
+    expect(r.observations.some((o) => o.flow === "import")).toBe(true);
+    expect(f.mock.calls.length).toBeGreaterThanOrEqual(3); // 429 + reintento + exportaciones
+  });
+
+  it("si el 429 persiste, falla con rate_limit tras 3 intentos", async () => {
+    vi.stubEnv("COMTRADE_API_KEY", "k");
+    const f = vi.spyOn(globalThis, "fetch").mockImplementation(async () => new Response("{}", { status: 429 }));
+    await expect(comtradeSource.fetchData(q)).rejects.toMatchObject({ kind: "rate_limit" });
+    expect(f).toHaveBeenCalledTimes(3);
+  });
+
+  it("separa las llamadas por el intervalo mínimo (1 por segundo en la clave gratuita)", async () => {
+    vi.stubEnv("COMTRADE_API_KEY", "k");
+    vi.stubEnv("COMTRADE_MIN_GAP_MS", "80");
+    const times: number[] = [];
+    vi.spyOn(globalThis, "fetch").mockImplementation(async () => { times.push(Date.now()); return respond([]); });
+    await comtradeSource.fetchData(q);
+    expect(times.length).toBe(2);
+    expect(times[1] - times[0]).toBeGreaterThanOrEqual(70);
+  });
+
+  it("proveedores fuera del catálogo conservan el nombre de la fuente y no se pierden", async () => {
+    vi.stubEnv("COMTRADE_API_KEY", "k");
+    vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      respond([
+        row({ reporterISO: null, reporterCode: 842, partnerISO: null, partnerCode: 0, primaryValue: 1000 }),
+        row({ reporterISO: null, reporterCode: 842, partnerISO: null, partnerCode: 724, primaryValue: 100 }),
+        row({ reporterISO: null, reporterCode: 842, partnerISO: null, partnerCode: 704, partnerDesc: "Viet Nam", primaryValue: 300 }),
+      ]));
+    const s = await comtradeSource.fetchSuppliers({ market: "US", productCode: "220421", years: [2023] });
+    expect(s.map((o) => [o.partnerCode, o.partnerName ?? null])).toEqual([["ES", null], ["M49-704", "Viet Nam"]]);
+  });
+});
+

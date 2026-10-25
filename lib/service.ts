@@ -184,7 +184,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
     const names = new Map(MARKETS.map((m) => [m.code, m.name]));
     suppliers = unique
       .filter((o) => o.period === String(year) && o.tradeValue !== null && o.tradeValue > 0 && o.currency === opp.currency)
-      .map((o) => ({ code: o.partnerCode, name: names.get(o.partnerCode) ?? countryName(o.partnerCode), value: o.tradeValue!, sharePct: opp.marketSize ? (o.tradeValue! / opp.marketSize) * 100 : null }))
+      .map((o) => ({ code: o.partnerCode, name: names.get(o.partnerCode) ?? o.partnerName ?? countryName(o.partnerCode), value: o.tradeValue!, sharePct: opp.marketSize ? (o.tradeValue! / opp.marketSize) * 100 : null }))
       .sort((a, b) => b.value - a.value)
       .slice(0, 8);
     if (loaded.stale) supplierWarning = "Proveedores obtenidos de caché antigua (la fuente no respondió).";
