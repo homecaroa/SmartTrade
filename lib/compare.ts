@@ -38,6 +38,7 @@ export function buildComparison(items: { opp: Opportunity; rank: number | null }
     row("puntuacion", "Puntuación (0-100)", (o) => (o.score ? fmtNum(o.score.total, 1) : "n.d. (incompleta)")),
     row("importaciones", "Importaciones del mercado", (o) => `${fmtMoney(o.marketSize, o.currency)} (${o.endYear})`),
     row("cagr", "Crecimiento anual compuesto (en valor)", (o) => fmtPct(o.cagr)),
+    row("cagr_vol", "Crecimiento anual en volumen (peso neto)", (o) => fmtPct(o.cagrVolume ?? null)),
     row("cuota", "Cuota española", (o) => fmtPct(o.spanishShare)),
     row("exportaciones", "Exportaciones españolas del producto al mundo", (o) => fmtMoney(o.spainExportsWorld, o.currency)),
     row("p_tamano", "Percentil de tamaño", (o) => pct(o, "size")),

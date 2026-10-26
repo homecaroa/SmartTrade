@@ -1,11 +1,13 @@
 import { errorResponse } from "@/lib/api";
+import { getConfig } from "@/lib/config";
 import { getFilters } from "@/lib/service";
 
 export const dynamic = "force-dynamic";
 
-export async function GET() {
+export async function GET(req: Request) {
   try {
-    return Response.json(getFilters());
+    const fuente = new URL(req.url).searchParams.get("fuente") ?? undefined;
+    return Response.json(getFilters(getConfig(process.env, fuente)));
   } catch (e) {
     return errorResponse(e);
   }

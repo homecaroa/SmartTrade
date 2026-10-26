@@ -27,6 +27,8 @@ export interface Opportunity {
   spanishShare: number | null;
   spainExportsWorld: number | null;
   netWeightEndYear: number | null;
+  /** CAGR del peso neto importado (aproxima el volumen). null si faltan pesos o no son positivos. */
+  cagrVolume: number | null;
   score: ScoreResult | null;
   complete: boolean;
   missing: string[];
@@ -107,6 +109,7 @@ export function buildOpportunities(input: BuildInput): BuildResult {
       if (growth === null && missingYears.length === 0 && compat.ok) {
         missing.push("Crecimiento no calculable (valor inicial o final no positivo)");
       }
+      const growthVolume = compat.ok ? cagr(worldObs[0]?.netWeight ?? null, worldObs[win - 1]?.netWeight ?? null, win - 1) : null;
       const share = compat.ok ? spanishShare(spVals[win - 1], size) : null;
       if (share === null && compat.ok) missing.push("Cuota española no calculable (faltan importaciones desde España o definiciones inconsistentes)");
       const expValue = exp?.tradeValue ?? null;
@@ -134,6 +137,7 @@ export function buildOpportunities(input: BuildInput): BuildResult {
         spanishShare: share,
         spainExportsWorld: expValue,
         netWeightEndYear: worldObs[win - 1]?.netWeight ?? null,
+        cagrVolume: growthVolume,
         score: null,
         complete,
         missing,

@@ -18,6 +18,9 @@ export default function Guide() {
         <li><b>Quiero descubrir sectores:</b> elige un sector (alimentación, bebidas, automoción…) y compara sus productos y mercados. La puntuación solo compara entre los productos del sector. Puedes combinar sectores escribiendo, por ejemplo, <code>sector:bebidas, sector:automocion</code>.</li>
       </ul>
 
+      <h2 className={h}>Mercados fuera de la UE</h2>
+      <p>Si el administrador activa UN Comtrade, aparece un selector «Fuera de la UE». Ese ranking usa otra fuente y otra moneda (dólares), así que <b>nunca se mezcla</b> con el de la UE (Eurostat, euros) y sus puntuaciones no son comparables. Cada país publica con distinto retraso: si le falta el año final, sale como incompleto. Fuera de la UE sí hay aranceles y reglas de origen: compruébalos en la ficha antes de decidir.</p>
+
       <h2 className={h}>1. Cómo buscar</h2>
       <ol className="list-decimal space-y-1 pl-5">
         <li>Escribe en <b>Producto</b> el nombre de un producto o un código HS. Puedes combinar varios separados por comas: <Link className={a} href="/?q=vino,aceite de oliva">vino, aceite de oliva</Link>.</li>

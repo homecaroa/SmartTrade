@@ -3,16 +3,18 @@ import { DataSourceLabel } from "@/components/data-source-label";
 import { ErrorState } from "@/components/error-state";
 import { PrintButton } from "@/components/print-button";
 import { buildComparison, parseCompareIds } from "@/lib/compare";
+import { getConfig } from "@/lib/config";
 import { getComparison } from "@/lib/service";
 import { SourceError } from "@/lib/sources/types";
 
 export const metadata = { title: "Comparar mercados · SmarTrade" };
 
-export default async function Compare({ searchParams }: { searchParams: Promise<{ id?: string | string[]; q?: string }> }) {
+export default async function Compare({ searchParams }: { searchParams: Promise<{ id?: string | string[]; q?: string; fuente?: string }> }) {
   const sp = await searchParams;
   const parsed = parseCompareIds(sp.id);
   const q = sp.q?.slice(0, 80);
-  const back = q ? `/?q=${encodeURIComponent(q)}` : "/";
+  const fx = sp.fuente === "fuera" ? "fuente=fuera" : "";
+  const back = q ? `/?q=${encodeURIComponent(q)}${fx ? `&${fx}` : ""}` : fx ? `/?${fx}` : "/";
   if (!parsed.ok) {
     return (
       <div className="space-y-3">
@@ -24,7 +26,7 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
 
   let data;
   try {
-    data = await getComparison(parsed.ids, q);
+    data = await getComparison(parsed.ids, q, getConfig(process.env, sp.fuente));
   } catch (e) {
     return <ErrorState message={e instanceof SourceError ? e.message : "Error inesperado."} />;
   }
@@ -44,6 +46,10 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
         <Link href={back} className="text-sm underline">← Volver al ranking</Link>
         <PrintButton />
       </div>
+      <div className="hidden print:block text-xs text-slate-600">
+        SmarTrade · Comparación de mercados · Generada el {new Date().toLocaleDateString("es-ES")} ·{" "}
+        {data.info.synthetic ? "DATOS DE DEMOSTRACIÓN SINTÉTICOS: no usar para decisiones comerciales" : "Fuente: Eurostat Comext u otra fuente oficial indicada abajo"}. Indicador estadístico, no garantía de rentabilidad.
+      </div>
       <h1 className="text-xl font-bold">Comparación de mercados</h1>
       <DataSourceLabel info={data.info} />
       {data.missing.length > 0 && (
@@ -56,7 +62,7 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
               <th className="px-3 py-2 text-left text-xs font-semibold uppercase text-slate-500">Indicador</th>
               {data.items.map(({ opp }) => (
                 <th key={opp.id} className="px-3 py-2 text-left text-xs font-semibold text-slate-700">
-                  <Link className="underline" href={`/oportunidad/${opp.id}${q ? `?q=${encodeURIComponent(q)}` : ""}`}>{opp.marketName} · HS {opp.productCode}</Link>
+                  <Link className="underline" href={`/oportunidad/${opp.id}?${[q ? `q=${encodeURIComponent(q)}` : "", fx].filter(Boolean).join("&")}`}>{opp.marketName} · HS {opp.productCode}</Link>
                 </th>
               ))}
             </tr>

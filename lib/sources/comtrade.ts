@@ -41,6 +41,8 @@ const responseSchema = z.object({ data: z.array(rowSchema), error: z.string().nu
 
 const iso3ToIso2 = new Map([...MARKETS.map((m) => [m.iso3, m.code] as const), [ORIGIN.iso3, ORIGIN.code]]);
 // Verificado con la API real: reporterISO/partnerISO pueden llegar a null, así que se mapea primero por el código numérico.
+// Códigos de clasificación de Comtrade → edición del Sistema Armonizado (H6 = HS2022, etc.). Los desconocidos se conservan tal cual.
+const HS_EDITION: Record<string, string> = { H0: "HS1992", H1: "HS1996", H2: "HS2002", H3: "HS2007", H4: "HS2012", H5: "HS2017", H6: "HS2022" };
 const m49ToIso2 = new Map([...MARKETS.map((m) => [m.m49, m.code] as const), [ORIGIN.m49, ORIGIN.code]]);
 
 export function comtradeToObservations(raw: unknown, retrievedAt: string, allowedReporters: Set<string>): TradeObservation[] {
@@ -66,7 +68,7 @@ export function comtradeToObservations(raw: unknown, retrievedAt: string, allowe
     const year = Number(r.period);
     out.push({
       period: String(year), reporterCode: reporter, partnerCode: partner, partnerName, productCode: r.cmdCode,
-      productName: r.cmdDesc ?? null, productClassification: r.classificationCode ?? hsVersionForYear(year),
+      productName: r.cmdDesc ?? null, productClassification: r.classificationCode ? (HS_EDITION[r.classificationCode] ?? r.classificationCode) : hsVersionForYear(year),
       flow: r.flowCode === "M" ? "import" : "export", tradeValue: r.primaryValue, currency: "USD",
       netWeight: r.netWgt ?? null, quantity: r.qty ?? null, quantityUnit: r.qtyUnitAbbr ?? null,
       source: COMTRADE_LABEL, retrievedAt, status: "observed", synthetic: false,

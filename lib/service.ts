@@ -228,8 +228,7 @@ export async function getComparison(ids: string[], q: string | undefined, cfg = 
   return { info: u.info, universeSize: u.built.opportunities.filter((o) => o.complete).length, items, missing };
 }
 
-export function getFilters() {
-  const cfg = getConfig();
+export function getFilters(cfg = getConfig()) {
   return {
     mode: cfg.mode,
     origin: { code: "ES", name: "España" },

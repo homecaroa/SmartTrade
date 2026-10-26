@@ -45,3 +45,12 @@ Cada oportunidad muestra hasta 3 etiquetas y una frase («Sube en el ranking por
 **Resultado medido (demo, datos sintéticos):** correlación tamaño–expansión 0,998 → 0,402; correlación de la puntuación total antes/después 0,954; 9 de las 10 primeras posiciones se mantienen. Las pruebas `tests/expansion.test.ts` comprueban independencia del tamaño, referencia por producto, contracción y que, en un universo sintético con cuotas independientes del tamaño, la correlación es menor de 0,3.
 
 **Limitaciones.** La cuota de referencia depende de los mercados incluidos en la búsqueda (en datos reales, los de la UE como declarantes), no del mercado mundial. Un mercado con cuota baja puede reflejar barreras o falta de competitividad, no una oportunidad. Con datos reales aún no se ha repetido la medición completa: conviene hacerlo con un sector de 10 o más productos.
+
+## Crecimiento en volumen y efecto precio (ronda 08)
+Además del CAGR en valor, la ficha muestra el CAGR del **peso neto** importado (`cagrVolume`), que aproxima el volumen. Es `null` si faltan pesos o no son positivos (nunca cero). No entra en la puntuación. Dos etiquetas de precaución lo usan:
+- «Crecimiento excepcional»: CAGR en valor ≥ 30 % anual. Suele deberse a efectos puntuales (precios, cambios de clasificación, reexportaciones o de quién declara).
+- «Posible efecto precio»: el CAGR en valor supera al del peso en 15 puntos por año o más. El peso es una aproximación: un cambio en la composición del producto (por ejemplo, vehículos más pesados) también separa ambas cifras.
+Los umbrales (30 % y 15 puntos) son decisiones documentadas, no estimadas. Motivo: en datos reales, un mercado (vino en Luxemburgo, CAGR 46 %) llegó al primer puesto de su sector con un crecimiento difícil de explicar solo con demanda; las etiquetas avisan, no corrigen el dato.
+
+## Mercados fuera de la UE
+Se calculan con la misma fórmula, pero sobre un universo propio (UN Comtrade, USD, solo los mercados verificados): sus percentiles y puntuaciones no son comparables con los del ranking de la UE (Eurostat, EUR), por moneda, criterio de valoración y conjunto de mercados distintos. Aranceles, reglas de origen e impuestos, que fuera de la UE sí existen, siguen sin verificarse en la ficha.

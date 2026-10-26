@@ -8,6 +8,7 @@ export const querySchema = z.object({
   year: z.preprocess(empty, z.coerce.number().int().min(2018).max(2025).optional()),
   minSize: z.preprocess(empty, z.coerce.number().min(0).max(1e9).default(0)), // millones
   minGrowth: z.preprocess(empty, z.coerce.number().min(-100).max(10000).optional()), // %
+  fuente: z.preprocess(empty, z.enum(["ue", "fuera"]).optional()), // "fuera" = mercados fuera de la UE (UN Comtrade)
   sort: z.preprocess(empty, z.enum(["score", "size", "growth"]).default("score")),
   order: z.preprocess(empty, z.enum(["asc", "desc"]).default("desc")),
   page: z.preprocess(empty, z.coerce.number().int().min(1).max(10000).default(1)),

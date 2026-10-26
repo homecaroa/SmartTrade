@@ -7,6 +7,13 @@ export interface Market {
   eu: boolean;
 }
 
+/**
+ * Mercados fuera de la UE ofrecidos con UN Comtrade. Verificados el 25/10/2026 con HS 220421 y 2022-2024:
+ * datos de los tres años en US, GB, CH, NO, JP, MX, CA y MA; AE sin 2024 (se muestra como incompleta con ese año final).
+ * Arabia Saudí (SA) no devolvió datos y queda fuera hasta comprobarlo. Añadir un país solo tras verificar su cobertura.
+ */
+export const COMTRADE_MARKET_CODES = ["US", "GB", "CH", "NO", "JP", "MX", "CA", "MA", "AE"];
+
 export const ORIGIN = { code: "ES", iso3: "ESP", m49: 724, name: "España" } as const;
 
 export const MARKETS: Market[] = [

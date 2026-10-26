@@ -1,5 +1,5 @@
 export interface FormDefaults {
-  q?: string; market?: string; year: number; minSize: number; minGrowth?: number; sort: string; order: string;
+  fuente?: string; q?: string; market?: string; year: number; minSize: number; minGrowth?: number; sort: string; order: string;
 }
 
 const input = "w-full rounded border border-slate-300 bg-white px-2 py-1.5 text-sm";
@@ -14,6 +14,7 @@ export function SearchForm({
 }) {
   return (
     <form method="get" action="/" className="grid gap-3 rounded-lg bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
+      {defaults.fuente === "fuera" && <input type="hidden" name="fuente" value="fuera" />}
       <label className="text-xs font-medium">País de origen
         <select disabled className={input}><option>España</option></select>
       </label>

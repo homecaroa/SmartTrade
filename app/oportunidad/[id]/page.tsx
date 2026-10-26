@@ -12,18 +12,19 @@ import { ScoreBreakdown } from "@/components/opportunity-score";
 import { fmtMoney, fmtNum, fmtPct } from "@/lib/format";
 import { productLabel } from "@/lib/config/hs-catalog";
 import { buildMarketAccess } from "@/lib/market-access";
+import { getConfig } from "@/lib/config";
 import { idSchema } from "@/lib/schemas/query";
 import { getOpportunityDetail } from "@/lib/service";
 import { SourceError } from "@/lib/sources/types";
 
-export default async function Detail({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ q?: string }> }) {
+export default async function Detail({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ q?: string; fuente?: string }> }) {
   const { id } = await params;
-  const { q } = await searchParams;
+  const { q, fuente } = await searchParams;
   if (!idSchema.safeParse(id).success) notFound();
 
   let d;
   try {
-    d = await getOpportunityDetail(id, q?.slice(0, 80));
+    d = await getOpportunityDetail(id, q?.slice(0, 80), getConfig(process.env, fuente));
   } catch (e) {
     return <ErrorState message={e instanceof SourceError ? e.message : "Error inesperado."} />;
   }
@@ -45,7 +46,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
   return (
     <>
       <div className="flex items-center justify-between print:hidden">
-        <Link href="/" className="text-sm underline">← Volver al ranking</Link>
+        <Link href={fuente === "fuera" ? `/?${q ? `q=${encodeURIComponent(q.slice(0, 80))}&` : ""}fuente=fuera` : q ? `/?q=${encodeURIComponent(q.slice(0, 80))}` : "/"} className="text-sm underline">← Volver al ranking</Link>
         <PrintButton />
       </div>
       <div className="hidden print:block text-xs text-slate-600">
@@ -80,6 +81,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
         <dl className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
           <div><dt className="text-slate-500">Importaciones {o.endYear}</dt><dd className="text-lg font-bold">{fmtMoney(o.marketSize, o.currency)}</dd></div>
           <div><dt className="text-slate-500">Crecimiento CAGR (2 intervalos)</dt><dd className="text-lg font-bold">{fmtPct(o.cagr)}</dd></div>
+          <div><dt className="text-slate-500">Crecimiento en volumen (peso neto)</dt><dd className="text-lg font-bold">{fmtPct(o.cagrVolume)}</dd><dd className="text-xs text-slate-500">Aproxima el volumen: si el valor crece mucho más, puede haber efecto precio.</dd></div>
           <div><dt className="text-slate-500">Cuota española</dt><dd className="text-lg font-bold">{fmtPct(o.spanishShare)}</dd></div>
           <div><dt className="text-slate-500">Exportaciones españolas al mundo</dt><dd className="text-lg font-bold">{fmtMoney(o.spainExportsWorld, o.currency)}</dd></div>
           <div><dt className="text-slate-500">Concentración top-3 proveedores</dt><dd className="text-lg font-bold">{fmtPct(d.top3Concentration)}</dd></div>

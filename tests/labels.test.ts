@@ -66,3 +66,22 @@ describe("etiquetas en lenguaje llano", () => {
     expect(s.some((t) => t.tone === "caution")).toBe(true);
   });
 });
+
+describe("crecimiento excepcional y efecto precio", () => {
+  it("avisa de crecimiento excepcional a partir del umbral, no antes", () => {
+    expect(keys(opp({}, { cagr: 30 }))).toContain("excepcional");
+    expect(keys(opp({}, { cagr: 29.9 }))).not.toContain("excepcional");
+    expect(keys(opp({}, { cagr: -40 }))).not.toContain("excepcional");
+  });
+  it("avisa de posible efecto precio solo si hay pesos y el valor crece 15+ puntos más que el peso", () => {
+    expect(keys(opp({}, { cagr: 28, cagrVolume: 5 } as Partial<Opportunity>))).toContain("precio");
+    expect(keys(opp({}, { cagr: 28, cagrVolume: 20 } as Partial<Opportunity>))).not.toContain("precio");
+    expect(keys(opp({}, { cagr: 28, cagrVolume: null } as Partial<Opportunity>))).not.toContain("precio");
+  });
+  it("las dos son precauciones y aparecen en la frase", () => {
+    const d = describeOpportunity(opp({}, { cagr: 45, cagrVolume: 10 } as Partial<Opportunity>));
+    expect(d.tags.filter((t) => ["excepcional", "precio"].includes(t.key)).every((t) => t.tone === "caution")).toBe(true);
+    expect(d.why).toContain("crecimiento excepcional");
+    expect(d.why).toContain("posible efecto precio");
+  });
+});

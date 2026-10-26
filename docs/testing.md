@@ -57,3 +57,6 @@ Ampliación de `tests/labels.test.ts` (umbrales de crecimiento excepcional y efe
 
 ## Comtrade: comportamiento observado en la API real (ronda 09)
 `tests/comtrade-adapter.test.ts` incluye fixtures sintéticos con la forma observada: restricciones de totales, identificación por código numérico, descarte de desgloses, reintento tras 429, separación entre llamadas y proveedores fuera del catálogo. Total: 165 pruebas en 17 archivos; typecheck y build correctos. La verificación contra la API real se hizo a mano con `verify-comtrade-detalle.mjs` (resultados en docs/data-sources.md).
+
+## Fuera de la UE (ronda 10)
+`tests/outside-eu.test.ts`: concesión del modo solo con clave y comext, mercados verificados, parámetro `fuente` y un ranking completo con respuestas sintéticas de Comtrade (solo se llama a comtradeapi.un.org, USD, sin datos demo). Total: 170 pruebas en 18 archivos; typecheck y build correctos. Comprobación manual en modo demo: sin permiso, `?fuente=fuera` muestra un aviso y el selector no aparece. **No se ha probado el modo con la clave real dentro de la aplicación.**

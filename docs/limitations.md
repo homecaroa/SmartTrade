@@ -31,3 +31,7 @@
 - El buscador muestra la interpretación de la búsqueda como aviso, pero no pide confirmar el producto antes de analizar.
 - Los datos marcados como estimados por Eurostat bajan la calidad a «media»; no se distinguen años provisionales.
 - La ficha imprimible usa la impresión del navegador (sin PDF propio); los checks de «qué falta por comprobar» no se guardan.
+
+- El crecimiento en volumen se aproxima con el peso neto; no distingue cambios de composición del producto. No entra en la puntuación: solo genera avisos.
+
+- Fuera de la UE: solo 9 mercados, con cobertura verificada para un único producto (HS 220421); otros productos pueden tener huecos. Sin comparación cuantitativa con Eurostat todavía. Cupo gratuito de la API compartido por todos los visitantes.

@@ -8,6 +8,8 @@ import { LOW_EXPORT_PERCENTILE, topContributors } from "./score";
  * Las etiquetas «relativas» comparan con las oportunidades de la búsqueda actual, no con el mercado mundial.
  */
 export const HIGH_PERCENTILE = 75;
+export const EXCEPTIONAL_GROWTH_CAGR = 30; // % anual compuesto a partir del cual se avisa de crecimiento excepcional
+export const PRICE_EFFECT_GAP_PP = 15; // puntos por año de diferencia entre crecimiento en valor y en peso
 export const SPANISH_PRESENCE_SHARE = 10; // % de cuota a partir del cual se dice que España ya vende en el mercado
 
 export type TagTone = "positive" | "neutral" | "caution";
@@ -19,6 +21,8 @@ export const TAG_LEGEND: Tag[] = [
   { key: "crece", label: "Crece rápido", tone: "positive", hint: `Crecimiento de importaciones positivo y entre el ${100 - HIGH_PERCENTILE} % más alto de esta búsqueda.` },
   { key: "exporta", label: "España exporta mucho", tone: "positive", hint: `Exportaciones españolas del producto entre el ${100 - HIGH_PERCENTILE} % más altas de esta búsqueda.` },
   { key: "presencia", label: "España ya vende aquí", tone: "neutral", hint: `Cuota española de al menos ${SPANISH_PRESENCE_SHARE} % en este mercado.` },
+  { key: "excepcional", label: "Crecimiento excepcional", tone: "caution", hint: `Crecimiento anual compuesto de al menos ${EXCEPTIONAL_GROWTH_CAGR} %: suele deberse a efectos puntuales (precios, cambios de clasificación, reexportaciones o de quién declara). Revisa la serie antes de fiarte.` },
+  { key: "precio", label: "Posible efecto precio", tone: "caution", hint: `El valor importado crece al menos ${PRICE_EFFECT_GAP_PP} puntos al año más que el peso neto: parte del crecimiento puede deberse a precios o a un cambio en la composición del producto, no a más volumen.` },
   { key: "irregular", label: "Crecimiento irregular", tone: "caution", hint: "El crecimiento total es positivo, pero alguna variación anual fue negativa: puede depender de un año excepcional." },
   { key: "retroceso", label: "En retroceso", tone: "caution", hint: "Las importaciones del mercado han caído en la ventana analizada." },
   { key: "pocaexpo", label: "Poca exportación española", tone: "caution", hint: `Exportaciones españolas del producto en el ${LOW_EXPORT_PERCENTILE} % más bajo de esta búsqueda: no hay capacidad exportadora observable que respalde la oportunidad.` },
@@ -48,7 +52,11 @@ export function describeOpportunity(o: Opportunity): Description {
   if (has("export", HIGH_PERCENTILE)) tags.push(TAG.exporta);
   if (o.spanishShare !== null && o.spanishShare >= SPANISH_PRESENCE_SHARE) tags.push(TAG.presencia);
   if (o.cagr !== null && o.cagr < 0) tags.push(TAG.retroceso);
-  else if (o.cagr !== null && o.cagr > 0 && o.annualChanges.some((c) => c !== null && c < 0)) tags.push(TAG.irregular);
+  else if (o.cagr !== null && o.cagr > 0) {
+    if (o.cagr >= EXCEPTIONAL_GROWTH_CAGR) tags.push(TAG.excepcional);
+    if (o.cagrVolume != null && o.cagr - o.cagrVolume >= PRICE_EFFECT_GAP_PP) tags.push(TAG.precio);
+    if (o.annualChanges.some((c) => c !== null && c < 0)) tags.push(TAG.irregular);
+  }
   const ex = pct("export");
   if (ex !== undefined && ex <= LOW_EXPORT_PERCENTILE) tags.push(TAG.pocaexpo);
   if (o.quality !== "alta") tags.push(TAG.reservas);

@@ -22,3 +22,6 @@ Página / API  →  lib/service.ts
 
 ## Comparador de mercados
 - `/comparar?id=<id>&id=<id>[&q=<búsqueda>]`: la tabla del ranking es un formulario GET con casillas (sin JavaScript ni almacenamiento); la comparación se recalcula con el mismo universo de percentiles de la búsqueda (`getComparison` en `lib/service.ts`). La lógica de validación y filas está en `lib/compare.ts` (2–5 resultados, mismo año final, datos ausentes como «n.d.»).
+
+## Selector de fuente (UE / fuera de la UE)
+`?fuente=fuera` se resuelve en `getConfig(env, fuente)` (`lib/config/index.ts`): concede el modo `comtrade` solo con `SMARTRADE_DATA_MODE=comext` y clave de Comtrade (`outsideAvailable`). Las páginas y rutas `/api` construyen su configuración con ese parámetro y lo propagan en enlaces y formularios. Cada fuente tiene su caché (clave con el modo) y su universo de percentiles.

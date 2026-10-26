@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { buildOpportunities } from "@/lib/trade/opportunities";
 import { csvCell, opportunitiesToCsv } from "@/lib/trade/csv";
 import { rankOpportunities } from "@/lib/trade/ranking";
-import { pairObs } from "./helpers";
+import { ob, pairObs } from "./helpers";
 
 const markets = [{ code: "DE", name: "Alemania" }, { code: "FR", name: "Francia" }, { code: "IT", name: "Italia" }];
 const build = (obs: ReturnType<typeof pairObs>) => buildOpportunities({ observations: obs, markets, endYear: 2024, mode: "demo" });
@@ -115,5 +115,23 @@ describe("exportación CSV", () => {
   it("marca los datos sintéticos", () => {
     const syn = buildOpportunities({ observations: pairObs({ world: [1, 2, 3], spain: [1, 1, 1], exportES: 10, synthetic: true }), markets, endYear: 2024, mode: "demo" }).opportunities;
     expect(opportunitiesToCsv(syn)).toContain("SI_DEMO_SINTETICO");
+  });
+});
+
+describe("crecimiento en volumen", () => {
+  const w = (period: string, value: number, weight: number | null) =>
+    ob({ period, reporterCode: "DE", partnerCode: "WORLD", tradeValue: value, netWeight: weight });
+  const sp = (period: string, value: number) => ob({ period, reporterCode: "DE", partnerCode: "ES", tradeValue: value });
+  const ex = ob({ period: "2024", reporterCode: "ES", partnerCode: "WORLD", flow: "export", tradeValue: 5000 });
+
+  it("calcula el CAGR del peso neto aparte del CAGR en valor", () => {
+    const o = build([w("2022", 1000, 100), w("2023", 1100, 100), w("2024", 1210, 100), sp("2022", 100), sp("2023", 110), sp("2024", 121), ex]).opportunities[0];
+    expect(o.cagr).toBeCloseTo(10);
+    expect(o.cagrVolume).toBeCloseTo(0);
+  });
+  it("sin pesos disponibles es null, no cero", () => {
+    const o = build([w("2022", 1000, null), w("2023", 1100, null), w("2024", 1210, null), sp("2022", 100), sp("2023", 110), sp("2024", 121), ex]).opportunities[0];
+    expect(o.cagrVolume).toBeNull();
+    expect(o.complete).toBe(true);
   });
 });

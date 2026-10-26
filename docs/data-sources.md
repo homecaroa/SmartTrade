@@ -68,3 +68,19 @@ Probado con `data/v1/get/C/A/HS`, Alemania, HS 220421, 2023, socios mundo (0) y 
 - **Límites:** 1 llamada por segundo (HTTP 429 «Try again in 1 seconds» si se supera) y un cupo de operaciones (`x-ratelimit-operation-limit: 60`; el periodo del cupo no se indica en las cabeceras, comprobar en «Free vs Premium»).
 - **Adaptador:** serializa las llamadas con 1,1 s de separación, reintenta tras un 429 (hasta 2 veces) y descarta desgloses. Los valores son USD y no se mezclan con EUR.
 - **Pendiente de verificar:** cobertura por país y año (¿están publicados 2024 y 2023 para cada mercado?), nombres de socios fuera del catálogo con `includeDesc`, tamaño de la consulta de proveedores y comparación con Eurostat. El modo Comtrade aún no es un modo separado en la interfaz.
+
+### Cobertura verificada de UN Comtrade fuera de la UE (clave gratuita, 25/10/2026)
+Consulta HS 220421, años 2022-2024, importaciones con socios mundo y España (valores en USD):
+- **Con los tres años:** EE. UU., Reino Unido, Suiza, Noruega, Japón, México, Canadá y Marruecos.
+- **Sin 2024:** Emiratos Árabes Unidos (solo 2022 y 2023): aparece como incompleto con año final 2024.
+- **Sin datos:** Arabia Saudí. No se ofrece hasta comprobarlo de nuevo.
+- Con `includeDesc=true` llegan ISO y nombre de cada socio (68 socios de EE. UU. con nombre). Los nombres de socios fuera del catálogo están en inglés (el de la fuente).
+- Las exportaciones de España al mundo de HS 220421 dan 1.972 M$ (2022), 1.935 M$ (2023) y 1.914 M$ (2024). La ficha de la UE muestra 1.879,2 M€ para 2024 (Eurostat): son monedas distintas y no se ha hecho la conversión con el tipo de cambio medio anual; **la diferencia entre fuentes está pendiente de analizar**. Importaciones de Alemania de HS 220421: 1.878,5 / 1.821,1 / 1.631,8 M$ (2022-2024), con 217,2 / 225,1 / 208,9 M$ procedentes de España; pendientes de comparar con Eurostat.
+- Cupo observado: 60 operaciones (1 por llamada); se repone con el tiempo (el periodo exacto no consta en las cabeceras).
+
+### Modo «Fuera de la UE» en la aplicación
+- Se activa solo si `SMARTRADE_DATA_MODE=comext` y existe `COMTRADE_API_KEY` en el servidor. Si no, el selector no aparece y `?fuente=fuera` muestra un aviso (las rutas `/api` ignoran el parámetro y devuelven el modo configurado).
+- Mercados ofrecidos: `COMTRADE_MARKET_CODES` en `lib/config/catalog.ts` (los verificados arriba).
+- El ranking es independiente: su propio universo de percentiles, en USD, con fuente «UN Comtrade». No se combina con los datos de la UE.
+- La clasificación se muestra como edición HS (H6 = HS2022, etc., según la tabla de Comtrade); si un código desconocido aparece, se muestra tal cual.
+- Riesgo: la web es pública y el cupo de la clave es compartido; si se agota, la app muestra un error de límite de la fuente. La caché (1 h por defecto) reduce el consumo.

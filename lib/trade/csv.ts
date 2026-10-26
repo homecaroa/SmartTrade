@@ -6,6 +6,7 @@ const HEADER = [
   "puntuacion", "calidad", "fuente", "fecha_obtencion", "datos_sinteticos",
   "ventana_inicio", "universo_oportunidades", "universo_productos",
   "percentil_tamano", "percentil_crecimiento", "percentil_expansion", "percentil_exportacion",
+  "crecimiento_volumen_cagr_pct",
 ];
 
 /** Neutraliza inyección de fórmulas en hojas de cálculo y escapa comillas. */
@@ -34,6 +35,7 @@ export function opportunitiesToCsv(rows: Opportunity[]): string {
         o.synthetic ? "SI_DEMO_SINTETICO" : "no",
         o.importsSeries[0]?.year ?? null, o.score?.universeSize ?? null, o.score?.productUniverseSize ?? null,
         pct(o, "size"), pct(o, "growth"), pct(o, "expansion"), pct(o, "export"),
+        r(o.cagrVolume ?? null),
       ].map(csvCell).join(","),
     );
   });

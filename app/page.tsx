@@ -5,6 +5,7 @@ import { EntryPaths, SectorBanner } from "@/components/entry-paths";
 import { ErrorState } from "@/components/error-state";
 import { OpportunityTable } from "@/components/opportunity-table";
 import { SearchForm } from "@/components/search-form";
+import { OutsideBanner, SourceSwitch } from "@/components/source-switch";
 import { getConfig } from "@/lib/config";
 import { sectorFromQuery } from "@/lib/config/sectors";
 import { parseQuery } from "@/lib/schemas/query";
@@ -26,13 +27,18 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
   const q = parsed.data;
 
   let cfg;
-  try { cfg = getConfig(); } catch (e) { return <ErrorState message={e instanceof Error ? e.message : "Configuración inválida"} />; }
-  const filters = getFilters();
-  const base = { q: q.q, market: q.market, year: q.year, minSize: q.minSize, minGrowth: q.minGrowth, sort: q.sort, order: q.order, pageSize: q.pageSize === 20 ? undefined : q.pageSize };
+  try { cfg = getConfig(process.env, q.fuente); } catch (e) { return <ErrorState message={e instanceof Error ? e.message : "Configuración inválida"} />; }
+  if (q.fuente === "fuera" && cfg.mode !== "comtrade") {
+    return <ErrorState message="Los mercados fuera de la UE no están activados en este servidor." hint="Requiere el modo Eurostat Comext y una clave de UN Comtrade configurada por el administrador." />;
+  }
+  const outside = cfg.mode === "comtrade";
+  const fuente = outside ? ("fuera" as const) : undefined;
+  const filters = getFilters(cfg);
+  const base = { fuente, q: q.q, market: q.market, year: q.year, minSize: q.minSize, minGrowth: q.minGrowth, sort: q.sort, order: q.order, pageSize: q.pageSize === 20 ? undefined : q.pageSize };
 
   const form = (
     <SearchForm
-      defaults={{ q: q.q, market: q.market, year: q.year ?? cfg.defaultYear, minSize: q.minSize, minGrowth: q.minGrowth, sort: q.sort, order: q.order }}
+      defaults={{ fuente, q: q.q, market: q.market, year: q.year ?? cfg.defaultYear, minSize: q.minSize, minGrowth: q.minGrowth, sort: q.sort, order: q.order }}
       markets={filters.markets} years={filters.years} productHint={filters.productInput}
     />
   );
@@ -41,7 +47,9 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
   if (cfg.mode !== "demo" && !q.q) {
     return (
       <>
-        <EntryPaths />
+        {cfg.outsideAvailable && <SourceSwitch outside={outside} />}
+        {outside && <OutsideBanner markets={filters.markets.map((m) => m.name)} />}
+        <EntryPaths fuente={fuente} />
         <h2 className="pt-2 text-sm font-semibold text-slate-600">Búsqueda avanzada</h2>
         {form}
       </>
@@ -50,7 +58,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
 
   let data;
   try {
-    data = await getRanking(q);
+    data = await getRanking(q, cfg);
   } catch (e) {
     const msg = e instanceof SourceError ? e.message : "Error inesperado al calcular el ranking.";
     return <>{form}<ErrorState message={msg} hint={e instanceof SourceError && e.kind !== "config" ? "Inténtalo de nuevo más tarde. No se muestran datos inventados." : undefined} /></>;
@@ -58,16 +66,18 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
 
   const pages = Math.max(1, Math.ceil(data.total / data.pageSize));
   const sortHref = (s: "score" | "size" | "growth") => href(base, { sort: s, order: q.sort === s && q.order === "desc" ? "asc" : "desc", page: undefined });
-  const detailQuery = cfg.mode === "demo" ? "" : `?q=${encodeURIComponent(q.q ?? "")}`;
+  const detailQuery = cfg.mode === "demo" ? "" : `?q=${encodeURIComponent(q.q ?? "")}${outside ? "&fuente=fuera" : ""}`;
   const exportHref = "/api/opportunities/export?" + href(base).split("?")[1];
 
   const sector = sectorFromQuery(q.q);
 
   return (
     <>
-      {!q.q && <EntryPaths />}
+      {cfg.outsideAvailable && <SourceSwitch outside={outside} />}
+      {outside && <OutsideBanner markets={filters.markets.map((m) => m.name)} />}
+      {!q.q && <EntryPaths fuente={fuente} />}
       {form}
-      {sector && <SectorBanner current={sector} onlyOne />}
+      {sector && <SectorBanner current={sector} onlyOne fuente={fuente} />}
       <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <p className="text-sm">
@@ -86,7 +96,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
         <EmptyState title="No hay oportunidades que cumplan los criterios" hint="Prueba a ampliar el periodo, bajar el tamaño o crecimiento mínimos o quitar el mercado." />
       ) : (
         <>
-          <OpportunityTable rows={data.rows} offset={data.offset} sortHref={sortHref} detailQuery={detailQuery} q={q.q} />
+          <OpportunityTable rows={data.rows} offset={data.offset} sortHref={sortHref} detailQuery={detailQuery} q={q.q} fuente={fuente} />
           <nav className="flex items-center justify-between text-sm" aria-label="Paginación">
             {data.page > 1 ? <Link className="underline" href={href(base, { page: data.page - 1 })}>← Anterior</Link> : <span />}
             <span>Página {data.page} de {pages}</span>

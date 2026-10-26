@@ -26,10 +26,10 @@ describe("CSV con metadatos de interpretación", () => {
     const [h, row] = opportunitiesToCsv([o]).replace("\uFEFF", "").trim().split("\r\n");
     expect(h).toContain("universo_oportunidades");
     expect(h.split(",")).toHaveLength(row.split(",").length);
-    expect(row.endsWith("2022,40,10,80,60,70,90")).toBe(true);
+    expect(row.endsWith("2022,40,10,80,60,70,90,")).toBe(true);
   });
   it("sin puntuación deja los metadatos vacíos (no ceros)", () => {
     const row = opportunitiesToCsv([{ ...o, score: null } as Opportunity]).replace("\uFEFF", "").trim().split("\r\n")[1];
-    expect(row.endsWith("2022,,,,,,")).toBe(true);
+    expect(row.endsWith("2022,,,,,,,")).toBe(true);
   });
 });

@@ -13,18 +13,20 @@ const Q: Record<Opportunity["quality"], string> = {
 };
 
 export function OpportunityTable({
-  rows, offset, sortHref, detailQuery, q,
+  rows, offset, sortHref, detailQuery, q, fuente,
 }: {
   rows: Opportunity[];
   offset: number;
   sortHref: (sort: "score" | "size" | "growth") => string;
   detailQuery: string;
   q?: string;
+  fuente?: string;
 }) {
   const th = "px-3 py-2 text-left text-xs font-semibold uppercase text-slate-500";
   return (
     <form action="/comparar" method="get" className="space-y-2">
       {q && <input type="hidden" name="q" value={q} />}
+      {fuente === "fuera" && <input type="hidden" name="fuente" value="fuera" />}
     <div className="overflow-x-auto rounded-lg bg-white shadow-sm">
       <table className="min-w-full text-sm">
         <thead className="border-b bg-slate-50">
