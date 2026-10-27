@@ -16,6 +16,7 @@ describe("siguientes pasos de investigación", () => {
   it("el paso de transporte no estima costes ni tiempos", () => {
     const t = RESEARCH_STEPS.find((s) => s.id === "transporte")!;
     expect(t.sourceUrl).toBeUndefined();
+    expect(t.internalHref).toBe("/logistica");
     expect(t.verify).toMatch(/no estima/i);
   });
 });

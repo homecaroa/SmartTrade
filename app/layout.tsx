@@ -25,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <nav className="flex items-center gap-4 text-sm">
               <Link href="/guia" className="underline">Guía de uso</Link>
+              <Link href="/logistica" className="underline">Transporte e Incoterms</Link>
               <Link href="/metodologia" className="underline">Metodología y fuentes</Link>
               <ModeBadge mode={mode} />
             </nav>

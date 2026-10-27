@@ -63,3 +63,9 @@ Ampliación de `tests/labels.test.ts` (umbrales de crecimiento excepcional y efe
 
 ## Revisión de fichas reales fuera de la UE (26/10/2026)
 Tras revisar el ranking de «vino» fuera de la UE se corrigió «Crece rápido» (umbral absoluto de 5 %) y la frase explicativa; `tests/labels.test.ts` cubre 0,2 %, 4,9 % y 5 %. Total: 170 pruebas en 18 archivos; typecheck correcto.
+
+## Peso estimado (ronda 12)
+Fixtures sintéticos con la forma observada: el adaptador conserva `isNetWgtEstimated` y la oportunidad expone `weightEstimated`. Total: 172 pruebas en 18 archivos; typecheck y build correctos.
+
+## Guía de transporte e Incoterms (ronda 13)
+`tests/logistics.test.ts` comprueba las 11 reglas (exclusivas marítimas, quién despacha exportación e importación, quién contrata transporte y seguro) y que la guía no contiene tarifas, plazos ni porcentajes. Total: 179 pruebas en 19 archivos; typecheck y build correctos; comprobación manual en modo demo de `/logistica` y del enlace desde la ficha.

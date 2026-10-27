@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { RESEARCH_STEPS } from "@/lib/research-checklist";
 
 export function ResearchChecklist() {
@@ -12,6 +13,7 @@ export function ResearchChecklist() {
             <div>
               <span className="font-medium">{s.task}</span> <span className="text-xs text-amber-700">(pendiente)</span>
               <p className="text-slate-600">{s.verify}</p>
+              {s.internalHref && <Link className="text-xs underline" href={s.internalHref}>{s.internalTitle}</Link>}
               {s.sourceUrl && <a className="text-xs underline" href={s.sourceUrl} target="_blank" rel="noopener noreferrer">{s.sourceTitle}</a>}
             </div>
           </li>

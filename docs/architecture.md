@@ -25,3 +25,6 @@ Página / API  →  lib/service.ts
 
 ## Selector de fuente (UE / fuera de la UE)
 `?fuente=fuera` se resuelve en `getConfig(env, fuente)` (`lib/config/index.ts`): concede el modo `comtrade` solo con `SMARTRADE_DATA_MODE=comext` y clave de Comtrade (`outsideAvailable`). Las páginas y rutas `/api` construyen su configuración con ese parámetro y lo propagan en enlaces y formularios. Cada fuente tiene su caché (clave con el modo) y su universo de percentiles.
+
+## Guía de transporte e Incoterms
+`/logistica` (`lib/logistics/incoterms.ts`, `app/logistica/page.tsx`): modos de transporte descritos cualitativamente y tabla de las 11 reglas Incoterms® 2020 (entrega, riesgo, transporte, seguro y despacho de exportación e importación). Es un resumen parafraseado, sin tarifas, plazos ni costes, enlazado desde el paso «Transporte, seguro y plazos» de cada ficha. Una calculadora de coste puesto en destino queda pendiente: solo tendría sentido con datos aportados por el usuario.
