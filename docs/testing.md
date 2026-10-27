@@ -60,3 +60,6 @@ Ampliación de `tests/labels.test.ts` (umbrales de crecimiento excepcional y efe
 
 ## Fuera de la UE (ronda 10)
 `tests/outside-eu.test.ts`: concesión del modo solo con clave y comext, mercados verificados, parámetro `fuente` y un ranking completo con respuestas sintéticas de Comtrade (solo se llama a comtradeapi.un.org, USD, sin datos demo). Total: 170 pruebas en 18 archivos; typecheck y build correctos. Comprobación manual en modo demo: sin permiso, `?fuente=fuera` muestra un aviso y el selector no aparece. **No se ha probado el modo con la clave real dentro de la aplicación.**
+
+## Revisión de fichas reales fuera de la UE (26/10/2026)
+Tras revisar el ranking de «vino» fuera de la UE se corrigió «Crece rápido» (umbral absoluto de 5 %) y la frase explicativa; `tests/labels.test.ts` cubre 0,2 %, 4,9 % y 5 %. Total: 170 pruebas en 18 archivos; typecheck correcto.

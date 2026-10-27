@@ -33,7 +33,7 @@ Percentiles dependen del universo y con universos pequeños son poco informativo
 ## Etiquetas en lenguaje llano
 Cada oportunidad muestra hasta 3 etiquetas y una frase («Sube en el ranking por…»). Son un resumen con reglas fijas de los indicadores y percentiles ya calculados (`lib/scoring/labels.ts`); no cambian la puntuación ni aportan datos nuevos.
 - Percentil alto = ≥ 75 dentro de las oportunidades de la búsqueda (tamaño, crecimiento, expansión de cuota, exportación). Por eso las etiquetas «de esta búsqueda» son relativas y no comparan con el mercado mundial.
-- «Crece rápido» exige CAGR positivo; «En retroceso» se aplica a CAGR negativo; «Crecimiento irregular» a CAGR positivo con alguna variación anual negativa.
+- «Crece rápido» exige estar en el percentil ≥ 75 de crecimiento **y** un CAGR de al menos 5 % anual (corregido el 26/10/2026: en un universo en retroceso, un +0,2 % quedaba entre el 25 % mejor y se etiquetaba «rápido»); «En retroceso» se aplica a CAGR negativo; «Crecimiento irregular» a CAGR positivo con alguna variación anual negativa.
 - «España ya vende aquí»: cuota española ≥ 10 %. «Poca exportación española»: percentil de exportación ≤ 25.
 - «Datos con reservas»: calidad media o baja. Las etiquetas no son recomendaciones ni predicen rentabilidad.
 
@@ -54,3 +54,5 @@ Los umbrales (30 % y 15 puntos) son decisiones documentadas, no estimadas. Motiv
 
 ## Mercados fuera de la UE
 Se calculan con la misma fórmula, pero sobre un universo propio (UN Comtrade, USD, solo los mercados verificados): sus percentiles y puntuaciones no son comparables con los del ranking de la UE (Eurostat, EUR), por moneda, criterio de valoración y conjunto de mercados distintos. Aranceles, reglas de origen e impuestos, que fuera de la UE sí existen, siguen sin verificarse en la ficha.
+
+La frase «Sube en el ranking por…» usa expresiones neutras («el tamaño de su mercado», «la evolución de sus importaciones»), porque nombrar a un componente como «gran mercado» o «crecimiento» cuando su percentil o su valor no lo justifican contradecía las etiquetas.

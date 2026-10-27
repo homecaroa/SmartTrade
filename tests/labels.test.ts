@@ -17,9 +17,12 @@ describe("etiquetas en lenguaje llano", () => {
     expect(keys(opp({ size: HIGH_PERCENTILE }))).toContain("grande");
     expect(keys(opp({ size: HIGH_PERCENTILE - 1 }))).not.toContain("grande");
   });
-  it("«Crece rápido» exige crecimiento positivo", () => {
-    expect(keys(opp({ growth: 90 }))).toContain("crece");
+  it("«Crece rápido» exige percentil alto Y un crecimiento absoluto mínimo (5 %)", () => {
+    expect(keys(opp({ growth: 90 }, { cagr: 5 }))).toContain("crece");
+    expect(keys(opp({ growth: 90 }, { cagr: 4.9 }))).not.toContain("crece");
+    expect(keys(opp({ growth: 90 }, { cagr: 0.2 }))).not.toContain("crece"); // universo en retroceso: 0,2 % es top 25 % pero no es «rápido»
     expect(keys(opp({ growth: 90 }, { cagr: -3 }))).not.toContain("crece");
+    expect(keys(opp({ growth: 60 }, { cagr: 12 }))).not.toContain("crece");
   });
   it("crecimiento negativo → «En retroceso»; positivo con año negativo → «irregular»", () => {
     expect(keys(opp({}, { cagr: -3, annualChanges: [-1, -2] }))).toContain("retroceso");
@@ -49,7 +52,7 @@ describe("etiquetas en lenguaje llano", () => {
   });
   it("la frase nombra los dos mayores aportes y añade las precauciones", () => {
     const d = describeOpportunity(opp({ size: 100, growth: 100, expansion: 0, export: 0 }, { cagr: -1 }));
-    expect(d.why).toContain("su gran mercado y su crecimiento");
+    expect(d.why).toContain("el tamaño de su mercado y la evolución de sus importaciones");
     expect(d.why).toContain("en retroceso");
   });
   it("no promete rentabilidad ni éxito y no modifica la puntuación", () => {

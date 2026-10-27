@@ -35,3 +35,6 @@
 - El crecimiento en volumen se aproxima con el peso neto; no distingue cambios de composición del producto. No entra en la puntuación: solo genera avisos.
 
 - Fuera de la UE: solo 9 mercados, con cobertura verificada para un único producto (HS 220421); otros productos pueden tener huecos. Sin comparación cuantitativa con Eurostat todavía. Cupo gratuito de la API compartido por todos los visitantes.
+
+- Valor unitario y crecimiento en volumen: con UN Comtrade dependen de que cada país publique peso neto; en la ficha de Japón (HS 220421) salen «n.d.». Pendiente de comprobar qué países lo publican (ver `verify-comtrade-peso.mjs`).
+- Nombres de proveedores fuera del catálogo: llegan en inglés (el que da la fuente); `Intl` no resuelve los códigos numéricos de Comtrade.

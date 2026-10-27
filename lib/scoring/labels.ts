@@ -8,6 +8,7 @@ import { LOW_EXPORT_PERCENTILE, topContributors } from "./score";
  * Las etiquetas «relativas» comparan con las oportunidades de la búsqueda actual, no con el mercado mundial.
  */
 export const HIGH_PERCENTILE = 75;
+export const FAST_GROWTH_MIN_CAGR = 5; // % anual compuesto mínimo para decir que «crece rápido», además de estar entre los mejores de la búsqueda
 export const EXCEPTIONAL_GROWTH_CAGR = 30; // % anual compuesto a partir del cual se avisa de crecimiento excepcional
 export const PRICE_EFFECT_GAP_PP = 15; // puntos por año de diferencia entre crecimiento en valor y en peso
 export const SPANISH_PRESENCE_SHARE = 10; // % de cuota a partir del cual se dice que España ya vende en el mercado
@@ -18,7 +19,7 @@ export interface Tag { key: string; label: string; tone: TagTone; hint: string }
 export const TAG_LEGEND: Tag[] = [
   { key: "hueco", label: "Hueco de cuota", tone: "positive", hint: `Cuota española muy inferior a la que España tiene de media en este producto en los mercados de esta búsqueda (percentil de expansión ≥ ${HIGH_PERCENTILE}), y España ya exporta el producto. Es una señal para investigar, no demanda insatisfecha demostrada.` },
   { key: "grande", label: "Mercado grande", tone: "positive", hint: `Entre el ${100 - HIGH_PERCENTILE} % de mayores importaciones de esta búsqueda.` },
-  { key: "crece", label: "Crece rápido", tone: "positive", hint: `Crecimiento de importaciones positivo y entre el ${100 - HIGH_PERCENTILE} % más alto de esta búsqueda.` },
+  { key: "crece", label: "Crece rápido", tone: "positive", hint: `Crecimiento anual compuesto de al menos ${FAST_GROWTH_MIN_CAGR} % y entre el ${100 - HIGH_PERCENTILE} % más alto de esta búsqueda.` },
   { key: "exporta", label: "España exporta mucho", tone: "positive", hint: `Exportaciones españolas del producto entre el ${100 - HIGH_PERCENTILE} % más altas de esta búsqueda.` },
   { key: "presencia", label: "España ya vende aquí", tone: "neutral", hint: `Cuota española de al menos ${SPANISH_PRESENCE_SHARE} % en este mercado.` },
   { key: "excepcional", label: "Crecimiento excepcional", tone: "caution", hint: `Crecimiento anual compuesto de al menos ${EXCEPTIONAL_GROWTH_CAGR} %: suele deberse a efectos puntuales (precios, cambios de clasificación, reexportaciones o de quién declara). Revisa la serie antes de fiarte.` },
@@ -31,8 +32,8 @@ export const TAG_LEGEND: Tag[] = [
 const TAG = Object.fromEntries(TAG_LEGEND.map((t) => [t.key, t])) as Record<string, Tag>;
 
 const PLAIN: Record<ComponentKey, string> = {
-  size: "su gran mercado",
-  growth: "su crecimiento",
+  size: "el tamaño de su mercado",
+  growth: "la evolución de sus importaciones",
   expansion: "el espacio para ganar cuota",
   export: "la exportación española ya observada",
 };
@@ -48,7 +49,7 @@ export function describeOpportunity(o: Opportunity): Description {
   const tags: Tag[] = [];
   if (has("expansion", HIGH_PERCENTILE) && o.spanishShare !== null) tags.push(TAG.hueco);
   if (has("size", HIGH_PERCENTILE)) tags.push(TAG.grande);
-  if (o.cagr !== null && o.cagr > 0 && has("growth", HIGH_PERCENTILE)) tags.push(TAG.crece);
+  if (o.cagr !== null && o.cagr >= FAST_GROWTH_MIN_CAGR && has("growth", HIGH_PERCENTILE)) tags.push(TAG.crece);
   if (has("export", HIGH_PERCENTILE)) tags.push(TAG.exporta);
   if (o.spanishShare !== null && o.spanishShare >= SPANISH_PRESENCE_SHARE) tags.push(TAG.presencia);
   if (o.cagr !== null && o.cagr < 0) tags.push(TAG.retroceso);
