@@ -81,7 +81,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
         <dl className="grid gap-3 text-sm sm:grid-cols-2 lg:grid-cols-4">
           <div><dt className="text-slate-500">Importaciones {o.endYear}</dt><dd className="text-lg font-bold">{fmtMoney(o.marketSize, o.currency)}</dd></div>
           <div><dt className="text-slate-500">Crecimiento CAGR (2 intervalos)</dt><dd className="text-lg font-bold">{fmtPct(o.cagr)}</dd></div>
-          <div><dt className="text-slate-500">Crecimiento en volumen (peso neto)</dt><dd className="text-lg font-bold">{fmtPct(o.cagrVolume)}</dd><dd className="text-xs text-slate-500">Aproxima el volumen: si el valor crece mucho más, puede haber efecto precio.</dd></div>
+          <div><dt className="text-slate-500">Crecimiento en volumen (peso neto)</dt><dd className="text-lg font-bold">{fmtPct(o.cagrVolume)}</dd><dd className="text-xs text-slate-500">{o.cagrVolume == null ? "No disponible: la fuente no publica un peso neto utilizable para este producto y mercado." : "Aproxima el volumen: si el valor crece mucho más, puede haber efecto precio."}</dd></div>
           <div><dt className="text-slate-500">Cuota española</dt><dd className="text-lg font-bold">{fmtPct(o.spanishShare)}</dd></div>
           <div><dt className="text-slate-500">Exportaciones españolas al mundo</dt><dd className="text-lg font-bold">{fmtMoney(o.spainExportsWorld, o.currency)}</dd></div>
           <div><dt className="text-slate-500">Concentración top-3 proveedores</dt><dd className="text-lg font-bold">{fmtPct(d.top3Concentration)}</dd></div>
