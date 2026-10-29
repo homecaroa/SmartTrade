@@ -9,7 +9,11 @@ export interface PageSignals {
   contactLinks: string[];
 }
 
-const IMPORT_TERMS = [/\bimport(er|ers|ador|adores|ing|s)?\b/i, /\bdistribut(or|ors|eur|ion)\b/i, /\bdistribuidor(es)?\b/i, /\bwholesal(er|e)\b/i, /\bmayorista\b/i, /輸入/, /インポーター/, /総代理店/, /卸売/];
+const IMPORT_TERMS = [
+  /\bimport(er|ers|ador|adores|ing|s)?\b/i, /\bdistribut(or|ors|eur|ion)\b/i, /\bdistribuidor(es)?\b/i, /\bwholesal(er|e)\b/i, /\bmayorista\b/i, /輸入/, /インポーター/, /総代理店/, /卸売/,
+  // alemán, francés, italiano y portugués (mercados europeos del catálogo)
+  /\bimporteur(e|s)?\b/i, /\bimportation\b/i, /\bimportatore\b/i, /\bimportadora\b/i, /gro(ß|ss)handel/i, /\bgrossiste\b/i, /\bgrossista\b/i, /\bgrossisten\b/i, /\bvertrieb\b/i, /\bdistributore\b/i, /\bdistribuidora\b/i,
+];
 export const GENERIC_LOCALPARTS = ["info", "contact", "contacto", "contacts", "sales", "ventas", "export", "import", "imports", "hello", "office", "enquiries", "inquiries", "eigyo", "customer", "support", "service", "mail", "admin", "purchasing", "buyer", "trade"];
 
 const decode = (s: string) => s.replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&#39;/g, "'");

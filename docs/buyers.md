@@ -46,3 +46,29 @@ Investigación manual del 28/10/2026 (unas 10 búsquedas web y lectura de 4 pág
 - Las consultas en vivo usan términos en inglés; faltan términos en el idioma del país.
 - Revisar los datos curados periódicamente: las webs cambian.
 - Siguientes pasos: probar Tavily con clave real en 3 combinaciones; añadir directorios de ferias y asociaciones como fuentes; revisión humana antes de publicar nuevos conjuntos curados.
+
+## Pistas con IA (Gemini) — añadido el 29/10/2026
+Para ampliar a más productos y países sin curar a mano, un script pide a Gemini empresas candidatas y **nuestro código las comprueba**. La web nunca llama a Gemini: las listas se generan en lote desde tu equipo y se guardan como ficheros (`lib/buyers/ia-data/<HS6>-<PAIS>.json`, registrados en `index.ts`, ambos generados por el script).
+
+```bash
+GEMINI_API_KEY=... npm run buyers:generar -- --hs 220421 --pais DE [--max 15] [--dry]
+```
+Variables: `GEMINI_API_KEY` (obligatoria, solo en tu equipo), `GEMINI_MODEL` (opcional; por defecto `gemini-3.8-flash`, el de los ejemplos de su documentación), `GEMINI_BASE_URL` (para pruebas). Se ejecuta con `npx tsx`, que **no** es dependencia del proyecto. Salida 0 correcto, 1 error, 2 uso incorrecto. Revisa la lista antes de commitearla.
+
+### Qué hace
+1. `ia/prompt.ts` construye el prompt (producto, país, idioma, reglas: no inventar, solo dominios conocidos con seguridad, nada de personas ni correos) y pide JSON con esquema.
+2. `ia/gemini.ts` llama a la API **sin herramientas**.
+3. `ia/audit.ts` lee la portada de cada web sugerida (con `fetchPageSafe`: robots.txt, sin hosts internos, límites). **Verificada** = la web responde, nombra a la empresa y menciona el producto. Si no, **pista sin verificar**: sin enlace a la web, sin pruebas y con el motivo. Una web que no nombra a la empresa nunca se enlaza; un dominio atribuido a varias empresas se detecta. Nombres 100 % genéricos («Wein & Vinos GmbH») exigen la frase completa en la página.
+4. El nivel de evidencia sigue deduciéndose de las pruebas: una verificada es como mucho «comprador probable»; una pista es «evidencia insuficiente». **Nunca «confirmado»** (eso exige revisión humana, solo en datos curados).
+5. El vínculo con España **no es un filtro**: se anota como señal (`en_web` si la web leída menciona España; `segun_ia` es la afirmación del modelo, sin comprobar).
+6. Todo el informe y el CSV marcan el origen IA, el modelo, la fecha y la auditoría.
+
+### Por qué SIN la búsqueda de Google (decisión)
+Los [términos adicionales de la API de Gemini](https://ai.google.dev/gemini-api/terms) (leídos el 29/10/2026 con una herramienta que resume la página; **no** se ha leído el texto legal íntegro) dicen, para «Grounding with Google Search», que los resultados solo pueden mostrarse al usuario que envió el prompt, almacenarse hasta 2 años solo para fines concretos (no incluye publicar una lista curada), y no se pueden usar sus enlaces de forma programática para rastrear. Una lista generada en lote y publicada a todos los visitantes, con nuestro rastreador leyendo esos enlaces, **no encaja**. Sin esa herramienta no hay resultados de búsqueda que almacenar. Contrapartida: el modelo puede inventar, y por eso existe la auditoría. No hay ninguna vía para saltarse esos términos y no se busca.
+
+### Riesgos abiertos (no resueltos, aceptados por el dueño el 29/10/2026)
+- **Cláusula del EEE:** los términos indican que solo se usen «Paid Services» al poner un cliente de API a disposición de usuarios del EEE, Suiza o Reino Unido. Aquí los visitantes no usan la API y no hay clave en la web; la interpretación de que no aplica **no está confirmada con Google**. Pasar a nivel de pago lo cerraría (coste sin calcular).
+- **Nivel gratuito:** Google puede usar lo enviado y revisores humanos pueden leerlo. Solo se envían producto y país, nunca datos personales.
+- **Calidad sin búsqueda:** sin medir. La tasa real de empresas verificadas se conocerá con la primera ejecución real. Una lista generada por IA para vino en Alemania, comprobada a mano contra la web (6 de 10 empresas): varias existían, otras no se encontraron y el mismo dominio aparecía para cuatro empresas.
+- **Forma de la respuesta de la API:** la documentación consultada no muestra el JSON de respuesta REST de `/v1beta/interactions`; `extractModelText` prueba varias formas y, si no reconoce ninguna, falla indicando las claves de primer nivel para ajustarlo. **No verificado con la API real.**
+- **Tavily** no se usa en esta parte. Sus términos (leídos el 29/10/2026) no prohíben guardar resultados, pero limitan el uso a «internal business purposes»: no está claro que cubra mostrarlos al público.

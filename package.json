@@ -9,7 +9,8 @@
     "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "verify:comext": "node scripts/verify-comext.mjs",
-    "verify:comtrade": "node scripts/verify-comtrade.mjs"
+    "verify:comtrade": "node scripts/verify-comtrade.mjs",
+    "buyers:generar": "npx --yes tsx scripts/generar-pistas.ts"
   },
   "dependencies": {
     "next": "^16.4.2",

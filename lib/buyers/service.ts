@@ -5,6 +5,7 @@ import { SourceError } from "@/lib/sources/types";
 import { WINE_JP } from "./curated/wine-jp";
 import { extractSignals } from "./extract";
 import { fetchPageSafe, type FetchPageResult } from "./fetch-page";
+import { loadIaSets, type IaSet } from "./ia/store";
 import { getSearchProvider } from "./providers";
 import { dedupeCompanies, enrich, guessSourceType, hostOf, isBrokerHost, sortCompanies } from "./rules";
 import { type BuyerQuery, type BuyerResult, type Company, type CompanyInput, type CompanyType, type SearchHit, type SearchProvider } from "./types";
@@ -100,7 +101,7 @@ export async function discoverLive(q: BuyerQuery, deps: LiveDeps): Promise<{ com
   return { companies: out, warnings };
 }
 
-export interface ServiceDeps { provider?: SearchProvider | null; fetchPage?: LiveDeps["fetchPage"]; now?: () => Date; ttlMs?: number }
+export interface ServiceDeps { provider?: SearchProvider | null; fetchPage?: LiveDeps["fetchPage"]; now?: () => Date; ttlMs?: number; iaSets?: IaSet[] }
 
 export async function searchBuyers(query: BuyerQuery, deps: ServiceDeps = {}): Promise<BuyerResult> {
   const now = deps.now ?? (() => new Date());
@@ -114,6 +115,14 @@ export async function searchBuyers(query: BuyerQuery, deps: ServiceDeps = {}): P
     companies.push(...set.companies.map(enrich));
     origins.push("curado");
     warnings.push(`Datos curados a mano el ${set.asOf} para ${set.scope}: la información de las webs puede haber cambiado.`);
+  }
+  const ia = deps.iaSets ? { sets: deps.iaSets, errors: [] as string[] } : loadIaSets();
+  warnings.push(...ia.errors);
+  const iaSet = ia.sets.find((s) => s.country === query.country && s.hs6 === query.hs6);
+  if (iaSet && iaSet.companies.length) {
+    companies.push(...iaSet.companies.map(enrich));
+    origins.push("ia");
+    warnings.push(`Lista generada con IA (${iaSet.modelo}) el ${iaSet.generadoEn} para ${iaSet.scope}. Las marcadas «pista sin verificar» las sugiere la IA y no se han podido comprobar: pueden contener errores o empresas inexistentes. Las «web verificada» solo prueban que la web existe, nombra a la empresa y menciona el producto.`);
   }
   if (provider) {
     try {
@@ -129,7 +138,7 @@ export async function searchBuyers(query: BuyerQuery, deps: ServiceDeps = {}): P
   } else {
     warnings.push("Búsqueda en vivo no configurada (falta TAVILY_API_KEY): solo se muestran datos curados, si existen para este producto y país.");
   }
-  if (!set && !provider) warnings.push("No hay datos curados para esta combinación de producto y país.");
+  if (!set && !iaSet && !provider) warnings.push("No hay datos curados para esta combinación de producto y país.");
 
   companies = sortCompanies(dedupeCompanies(companies));
   return {
@@ -140,6 +149,8 @@ export async function searchBuyers(query: BuyerQuery, deps: ServiceDeps = {}): P
       probable: companies.filter((c) => c.evidenceLevel === "probable").length,
       insuficiente: companies.filter((c) => c.evidenceLevel === "insuficiente").length,
       withVerifiedContact: companies.filter((c) => c.contactVerified).length,
+      iaVerificadas: companies.filter((c) => c.origin === "ia" && c.ia?.verificacion === "verificada").length,
+      iaSinVerificar: companies.filter((c) => c.origin === "ia" && c.ia?.verificacion === "sin_verificar").length,
     },
     info: { origins, providerConfigured: !!provider, consultedAt: now().toISOString(), warnings },
     noData: companies.length === 0,

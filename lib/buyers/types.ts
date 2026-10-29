@@ -4,6 +4,8 @@ export const EVIDENCE_LEVELS = ["confirmado", "probable", "insuficiente"] as con
 export const COMPANY_TYPES = ["importador", "distribuidor", "mayorista", "minorista", "mixto", "otro"] as const;
 export const SOURCE_TYPES = ["corporativa", "gobierno", "feria", "asociacion", "directorio", "prensa", "empleo", "otra"] as const;
 
+export const BUYER_ORIGINS = ["curado", "busqueda_en_vivo", "ia"] as const;
+export type BuyerOrigin = (typeof BUYER_ORIGINS)[number];
 export type EvidenceLevel = (typeof EVIDENCE_LEVELS)[number];
 export type CompanyType = (typeof COMPANY_TYPES)[number];
 export type SourceType = (typeof SOURCE_TYPES)[number];
@@ -46,6 +48,23 @@ const contactSchema = z.object({
   emailScope: z.enum(["general", "personal"]).nullish(),
 });
 
+/**
+ * Datos de una empresa sugerida por IA (origen «ia»). `verificacion` NO es el nivel de evidencia: dice solo si nuestro
+ * código pudo leer la web de la empresa y comprobar que nombra a la empresa y al producto. «sin_verificar» = pista.
+ * `senalEspana`: «en_web» solo si la web leída menciona España; «segun_ia» es la afirmación del modelo, no comprobada.
+ */
+export const iaMetaSchema = z.object({
+  verificacion: z.enum(["verificada", "sin_verificar"]),
+  modelo: z.string().min(1),
+  generadoEn: isoDate,
+  confianza: z.enum(["alta", "media", "baja"]),
+  senalEspana: z.enum(["en_web", "segun_ia", "desconocida"]),
+  auditoria: z.array(z.string()),
+});
+export type IaMeta = z.infer<typeof iaMetaSchema>;
+export const IA_VERIFICATION_LABEL = { verificada: "IA · web verificada", sin_verificar: "IA · pista sin verificar" } as const;
+export const IA_SPAIN_LABEL = { en_web: "la web leída menciona España", segun_ia: "lo afirma la IA, no comprobado", desconocida: "desconocida" } as const;
+
 /** Empresa tal como se almacena. El nivel de evidencia NO se guarda: se deduce de las pruebas (ver rules.ts). */
 export const companyInputSchema = z
   .object({
@@ -58,15 +77,19 @@ export const companyInputSchema = z
     websiteStatus: z.enum(["verificada", "segun_listado", "sin_verificar"]),
     type: z.enum(COMPANY_TYPES),
     brands: z.array(z.string()).default([]),
-    evidence: z.array(evidenceSchema).min(1),
+    evidence: z.array(evidenceSchema),
     contact: contactSchema.default({}),
     people: z.array(z.object({ name: z.string().min(1), role: z.string().min(1), sourceUrl: httpUrl })).default([]),
     reason: z.string().min(1),
     pending: z.array(z.string()).default([]),
     notes: z.array(z.string()).default([]),
-    origin: z.enum(["curado", "busqueda_en_vivo"]),
+    origin: z.enum(BUYER_ORIGINS),
+    ia: iaMetaSchema.nullish(),
   })
   .superRefine((c, ctx) => {
+    if (c.origin !== "ia" && c.evidence.length === 0) ctx.addIssue({ code: "custom", message: "Una empresa curada o de búsqueda necesita al menos una prueba", path: ["evidence"] });
+    if (c.origin === "ia" && !c.ia) ctx.addIssue({ code: "custom", message: "Una empresa de origen «ia» necesita sus metadatos de IA", path: ["ia"] });
+    if (c.origin !== "ia" && c.ia) ctx.addIssue({ code: "custom", message: "Solo las empresas de origen «ia» llevan metadatos de IA", path: ["ia"] });
     if (c.contact.email && !c.contact.emailSourceUrl) ctx.addIssue({ code: "custom", message: "Un correo solo se admite con la URL pública donde aparece", path: ["contact", "emailSourceUrl"] });
     if (c.contact.email && c.contact.emailScope === "personal") ctx.addIssue({ code: "custom", message: "No se almacenan correos personales", path: ["contact", "email"] });
     if (c.contact.phone && !c.contact.phoneSourceUrl) ctx.addIssue({ code: "custom", message: "Un teléfono solo se admite con la URL pública donde aparece", path: ["contact", "phoneSourceUrl"] });
@@ -86,8 +109,8 @@ export interface BuyerQuery { hs6: string; country: string; keywords?: string[] 
 export interface BuyerResult {
   query: BuyerQuery;
   companies: Company[];
-  summary: { total: number; confirmado: number; probable: number; insuficiente: number; withVerifiedContact: number };
-  info: { origins: ("curado" | "busqueda_en_vivo")[]; providerConfigured: boolean; consultedAt: string; warnings: string[] };
+  summary: { total: number; confirmado: number; probable: number; insuficiente: number; withVerifiedContact: number; iaVerificadas: number; iaSinVerificar: number };
+  info: { origins: BuyerOrigin[]; providerConfigured: boolean; consultedAt: string; warnings: string[] };
   noData: boolean;
 }
 
