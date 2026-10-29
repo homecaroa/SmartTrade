@@ -13,7 +13,7 @@ import type { Candidate } from "./prompt";
  * nombre en la página lo descarta.
  */
 
-export interface AuditDeps { fetchPage: (url: string) => Promise<FetchPageResult>; now: () => Date }
+export interface AuditDeps { fetchPage: (url: string) => Promise<FetchPageResult>; now: () => Date; onProgress?: (msg: string) => void }
 export interface AuditContext { hs6: string; country: string; terms: string[]; model: string }
 
 const GENERIC = new Set([
@@ -71,7 +71,8 @@ export async function auditCandidates(cands: Candidate[], ctx: AuditContext, dep
   for (const c of cands) { const w = normalizeWeb(c.web); if (w.ok) { const h = hostOf(w.url) ?? ""; hostUse.set(h, (hostUse.get(h) ?? 0) + 1); } }
 
   const out: CompanyInput[] = [];
-  for (const c of cands) {
+  for (const [i, c] of cands.entries()) {
+    deps.onProgress?.(`  (${i + 1}/${cands.length}) ${c.nombre}`);
     const id = `ia-${ctx.hs6}-${ctx.country}-${slug(c.nombre)}`.toLowerCase();
     if (seenIds.has(id)) { discarded.push(`${c.nombre}: duplicada`); continue; }
     seenIds.add(id);

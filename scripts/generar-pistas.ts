@@ -5,6 +5,7 @@
  *   GEMINI_API_KEY=... npm run buyers:generar -- --hs 220421 --pais DE [--max 15] [--dry]
  *
  * Variables: GEMINI_API_KEY (obligatoria; clave de Google AI Studio, solo en tu equipo), GEMINI_MODEL (opcional),
+ * GEMINI_FALLBACK_MODEL (opcional; «ninguno» lo desactiva), GEMINI_TIMEOUT_S (opcional, por intento; 90 por defecto),
  * GEMINI_BASE_URL (opcional; para pruebas contra un servidor simulado).
  * Con --dry muestra el resultado sin escribir ficheros. Se ejecuta con `npx tsx` (no es una dependencia del proyecto).
  * Códigos de salida: 0 correcto · 1 error (configuración, API o formato) · 2 uso incorrecto.
@@ -32,8 +33,12 @@ async function main(): Promise<number> {
   try {
     const { set, stats } = await generatePistas(v.query, {
       apiKey: process.env.GEMINI_API_KEY, model: process.env.GEMINI_MODEL, baseUrl: process.env.GEMINI_BASE_URL, max: Number.isFinite(max) ? max : 15,
+      fallbackModel: process.env.GEMINI_FALLBACK_MODEL === "ninguno" ? null : process.env.GEMINI_FALLBACK_MODEL || undefined,
+      timeoutMs: Number(process.env.GEMINI_TIMEOUT_S) > 0 ? Number(process.env.GEMINI_TIMEOUT_S) * 1000 : undefined,
+      onProgress: (m) => console.log(m),
     });
-    console.log(`Modelo: ${set.modelo} · sugeridas: ${stats.suggested} · web verificada: ${stats.verified} · pistas sin verificar: ${stats.unverified}`);
+    console.log("");
+    console.log(`Modelo usado: ${set.modelo}${stats.modelsTried.length > 1 ? ` (probados: ${stats.modelsTried.join(", ")})` : ""} · sugeridas: ${stats.suggested} · web verificada: ${stats.verified} · pistas sin verificar: ${stats.unverified}`);
     for (const c of set.companies) {
       console.log(`${c.ia?.verificacion === "verificada" ? "✅" : "⚠️ "} ${c.name} — ${c.ia?.auditoria.join(" ") || "sin web que comprobar"}`);
     }

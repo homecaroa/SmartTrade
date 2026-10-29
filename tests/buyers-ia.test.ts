@@ -93,8 +93,54 @@ describe("cliente de Gemini (sin red real)", () => {
     expect(e.message).not.toMatch(/secreto/);
   });
   it("errores de red y JSON roto se tipifican", async () => {
-    await expect(callGemini({ ...base, fetchImpl: (async () => { throw new TypeError("fail"); }) as unknown as typeof fetch })).rejects.toMatchObject({ kind: "network" });
+    await expect(callGemini({ ...base, sleep: async () => {}, fetchImpl: (async () => { throw new TypeError("fail"); }) as unknown as typeof fetch })).rejects.toMatchObject({ kind: "network" });
     await expect(callGemini({ ...base, fetchImpl: ok({ output_text: "no es json" }) as unknown as typeof fetch })).rejects.toMatchObject({ kind: "format" });
+  });
+});
+
+describe("cliente de Gemini: respuesta real, reintentos y modelo de respaldo", () => {
+  // Forma OBSERVADA en la API real el 29/10/2026 (gemini-3.5-flash-lite, petición mínima); ids y firma acortados.
+  const REAL = { id: "v1_x", status: "completed", object: "interaction", model: "gemini-3.5-flash-lite", service_tier: "standard",
+    usage: { total_tokens: 9, total_thought_tokens: 0 },
+    steps: [{ signature: "Em…", type: "thought" }, { content: [{ text: "ok", type: "text" }], type: "model_output" }] };
+  it("lee el texto de la forma de respuesta real", () => { expect(extractModelText(REAL)).toBe("ok"); });
+  const res = (status: number, body: unknown) => new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } });
+  const okJson = (data: unknown) => res(200, { ...REAL, steps: [{ type: "thought" }, { type: "model_output", content: [{ type: "text", text: JSON.stringify(data) }] }] });
+  const base = { apiKey: KEY, system: "s", input: "i", schema: {} };
+  it("reintenta una vez ante un 503 y avisa del reintento", async () => {
+    const f = vi.fn().mockResolvedValueOnce(res(503, { error: { message: "overloaded" } })).mockResolvedValueOnce(okJson({ a: 1 }));
+    const sleep = vi.fn(async () => {});
+    const onRetry = vi.fn();
+    const r = await callGemini({ ...base, fetchImpl: f as unknown as typeof fetch, sleep, onRetry });
+    expect(r.data).toEqual({ a: 1 });
+    expect(f).toHaveBeenCalledTimes(2);
+    expect(sleep).toHaveBeenCalledTimes(1);
+    expect(onRetry).toHaveBeenCalledTimes(1);
+  });
+  it("no reintenta errores que no son pasajeros (clave, modelo inexistente)", async () => {
+    for (const status of [400, 401, 403, 404]) {
+      const f = vi.fn(async () => res(status, { error: { message: "x" } }));
+      await expect(callGemini({ ...base, fetchImpl: f as unknown as typeof fetch, sleep: async () => {} })).rejects.toMatchObject({ kind: "http", status });
+      expect(f).toHaveBeenCalledTimes(1);
+    }
+  });
+  it("si el modelo principal sigue saturado, usa el de respaldo y lo deja anotado", async () => {
+    const answer = { terminosProducto: ["wein"], empresas: [cand({ nombre: "Weinhandel Ficticio GmbH", web: "weinhandel-ficticio.test" })] };
+    const f = vi.fn(async (_u: string, init: RequestInit) => JSON.parse(init.body as string).model === "principal" ? res(503, {}) : okJson(answer));
+    const msgs: string[] = [];
+    const { set, stats } = await generatePistas(q, { apiKey: KEY, model: "principal", fallbackModel: "respaldo", fetchImpl: f as unknown as typeof fetch, fetchPage, now: () => day, sleep: async () => {}, onProgress: (m) => msgs.push(m) });
+    expect(set.modelo).toBe("respaldo");
+    expect(stats.modelsTried).toEqual(["principal", "respaldo"]);
+    expect(set.companies[0].ia?.modelo).toBe("respaldo");
+    expect(msgs.join("\n")).toMatch(/respaldo/);
+    expect(msgs.join("\n")).toMatch(/\(1\/1\) Weinhandel Ficticio GmbH/);
+  });
+  it("sin respaldo, o con un error no pasajero, no se cambia de modelo", async () => {
+    const sat = vi.fn(async () => res(503, {}));
+    await expect(generatePistas(q, { apiKey: KEY, model: "principal", fallbackModel: null, fetchImpl: sat as unknown as typeof fetch, fetchPage, sleep: async () => {} })).rejects.toMatchObject({ status: 503 });
+    const notFound = vi.fn(async () => res(404, {}));
+    await expect(generatePistas(q, { apiKey: KEY, model: "principal", fallbackModel: "respaldo", fetchImpl: notFound as unknown as typeof fetch, fetchPage, sleep: async () => {} })).rejects.toMatchObject({ status: 404 });
+    expect(notFound).toHaveBeenCalledTimes(1);
   });
 });
 
