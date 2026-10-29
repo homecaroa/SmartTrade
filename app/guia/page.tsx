@@ -18,6 +18,9 @@ export default function Guide() {
         <li><b>Quiero descubrir sectores:</b> elige un sector (alimentación, bebidas, automoción…) y compara sus productos y mercados. La puntuación solo compara entre los productos del sector. Puedes combinar sectores escribiendo, por ejemplo, <code>sector:bebidas, sector:automocion</code>.</li>
       </ul>
 
+      <h2 className={h}>Importadores y compradores</h2>
+      <p>Desde cada ficha (o en <Link className="underline" href="/compradores">/compradores</Link>) puedes buscar empresas que importan o distribuyen un producto en un país. Cada una trae sus pruebas enlazadas y un nivel de evidencia; ninguna es un comprador asegurado, y solo se muestran contactos públicos con su fuente. Por ahora hay datos curados para vino embotellado en Japón.</p>
+
       <h2 className={h}>Mercados fuera de la UE</h2>
       <p>Si el administrador activa UN Comtrade, aparece un selector «Fuera de la UE». Ese ranking usa otra fuente y otra moneda (dólares), así que <b>nunca se mezcla</b> con el de la UE (Eurostat, euros) y sus puntuaciones no son comparables. Cada país publica con distinto retraso: si le falta el año final, sale como incompleto. Fuera de la UE sí hay aranceles y reglas de origen: compruébalos en la ficha antes de decidir.</p>
 

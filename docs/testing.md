@@ -69,3 +69,6 @@ Fixtures sintéticos con la forma observada: el adaptador conserva `isNetWgtEsti
 
 ## Guía de transporte e Incoterms (ronda 13)
 `tests/logistics.test.ts` comprueba las 11 reglas (exclusivas marítimas, quién despacha exportación e importación, quién contrata transporte y seguro) y que la guía no contiene tarifas, plazos ni porcentajes. Total: 179 pruebas en 19 archivos; typecheck y build correctos; comprobación manual en modo demo de `/logistica` y del enlace desde la ficha.
+
+## Importadores y compradores (ronda 14)
+`tests/buyers-*.test.ts` (6 archivos): reglas de evidencia, integridad del conjunto curado del piloto, extracción, descarga segura (SSRF, robots, tamaño, redirecciones), proveedor Tavily con respuestas simuladas, servicio (curado + en vivo, caché, errores) y CSV. Las fixtures de búsqueda en vivo son ficticias y están marcadas como tales; el conjunto curado son datos reales con fuente. Total: 223 pruebas en 25 archivos; typecheck y build correctos. Comprobación manual en modo demo: página, filtros, estado sin datos, validación, CSV y enlace desde la ficha. **Tavily no se ha probado con una clave real.**

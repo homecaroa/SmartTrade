@@ -142,3 +142,14 @@ describe("Comtrade: comportamiento observado en la API real", () => {
   });
 });
 
+
+describe("Comtrade: peso neto estimado (observado el 26/10/2026 en EE. UU. y Canadá)", () => {
+  it("conserva el indicador de peso estimado de la fuente", async () => {
+    vi.stubEnv("COMTRADE_API_KEY", "k");
+    vi.spyOn(globalThis, "fetch").mockImplementation(async () =>
+      respond([row({ partnerCode: 0, netWgt: 684131446.4, isNetWgtEstimated: true }), row({ partnerCode: 724, partnerISO: "ESP", netWgt: null, isNetWgtEstimated: false })]));
+    const r = await comtradeSource.fetchData({ years: [2023], productCodes: ["220421"], markets: ["DE"] });
+    const imp = r.observations.filter((o) => o.flow === "import");
+    expect(imp.map((o) => [o.partnerCode, o.netWeight, o.netWeightEstimated])).toEqual([["WORLD", 684131446.4, true], ["ES", null, false]]);
+  });
+});

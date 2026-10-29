@@ -19,6 +19,7 @@ export const observationSchema = z.object({
   tradeValue: z.number().finite().nonnegative().nullable(),
   currency: z.enum(["EUR", "USD"]),
   netWeight: z.number().finite().nonnegative().nullable(), // kg
+  netWeightEstimated: z.boolean().nullish(), // true si la fuente indica que el peso es una estimación (UN Comtrade: isNetWgtEstimated)
   quantity: z.number().finite().nullable(),
   quantityUnit: z.string().nullable(),
   source: z.string().min(1),

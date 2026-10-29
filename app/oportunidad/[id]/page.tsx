@@ -85,7 +85,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
           <div><dt className="text-slate-500">Cuota española</dt><dd className="text-lg font-bold">{fmtPct(o.spanishShare)}</dd></div>
           <div><dt className="text-slate-500">Exportaciones españolas al mundo</dt><dd className="text-lg font-bold">{fmtMoney(o.spainExportsWorld, o.currency)}</dd></div>
           <div><dt className="text-slate-500">Concentración top-3 proveedores</dt><dd className="text-lg font-bold">{fmtPct(d.top3Concentration)}</dd></div>
-          <div><dt className="text-slate-500">Valor unitario estadístico</dt><dd className="text-lg font-bold">{d.unitValue === null ? "n.d." : `${fmtNum(d.unitValue, 2)} ${cur}/kg`}</dd><dd className="text-xs text-slate-400">No es un precio de venta.</dd></div>
+          <div><dt className="text-slate-500">Valor unitario estadístico</dt><dd className="text-lg font-bold">{d.unitValue === null ? "n.d." : `${fmtNum(d.unitValue, 2)} ${cur}/kg`}</dd><dd className="text-xs text-slate-400">No es un precio de venta.</dd>{o.weightEstimated && <dd className="text-xs text-amber-700">Peso neto estimado por la fuente (no observado): orientativo, igual que el crecimiento en volumen.</dd>}</div>
         </dl>
         <p className="text-xs text-slate-500">Variaciones anuales: {o.annualChanges.map((c, i) => `${o.importsSeries[i + 1].year}: ${fmtPct(c)}`).join(" · ")}</p>
       </section>
@@ -114,7 +114,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
 
       <MarketAccess info={access} />
 
-      <ResearchChecklist />
+      <ResearchChecklist buyersHref={`/compradores?hs=${o.productCode}&pais=${o.marketCode}`} />
 
       <section className={card}>
         <h2 className="font-semibold">Limitaciones y próximas comprobaciones</h2>

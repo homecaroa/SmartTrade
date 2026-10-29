@@ -38,3 +38,5 @@
 
 - Valor unitario y crecimiento en volumen: con UN Comtrade dependen de que cada país publique peso neto; en la ficha de Japón (HS 220421) salen «n.d.». Pendiente de comprobar qué países lo publican (ver `verify-comtrade-peso.mjs`).
 - Nombres de proveedores fuera del catálogo: llegan en inglés (el que da la fuente); `Intl` no resuelve los códigos numéricos de Comtrade.
+
+- Importadores y compradores: datos curados solo para HS 220421 en Japón; búsqueda en vivo sin probar con clave real; sin directorios de ferias ni asociaciones; nunca hay correos inferidos ni datos personales sin fuente. Ver docs/buyers.md.

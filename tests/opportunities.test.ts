@@ -135,3 +135,16 @@ describe("crecimiento en volumen", () => {
     expect(o.complete).toBe(true);
   });
 });
+
+describe("peso estimado", () => {
+  const w = (period: string, value: number, estimated: boolean | null) =>
+    ob({ period, reporterCode: "DE", partnerCode: "WORLD", tradeValue: value, netWeight: 100, netWeightEstimated: estimated });
+  const sp = (period: string, value: number) => ob({ period, reporterCode: "DE", partnerCode: "ES", tradeValue: value });
+  const ex = ob({ period: "2024", reporterCode: "ES", partnerCode: "WORLD", flow: "export", tradeValue: 5000 });
+  it("marca weightEstimated si algún año lo estima la fuente", () => {
+    const est = build([w("2022", 1000, false), w("2023", 1100, true), w("2024", 1210, false), sp("2022", 100), sp("2023", 110), sp("2024", 121), ex]).opportunities[0];
+    expect(est.weightEstimated).toBe(true);
+    const obs = build([w("2022", 1000, false), w("2023", 1100, null), w("2024", 1210, false), sp("2022", 100), sp("2023", 110), sp("2024", 121), ex]).opportunities[0];
+    expect(obs.weightEstimated).toBe(false);
+  });
+});

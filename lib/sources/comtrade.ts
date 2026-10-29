@@ -34,6 +34,7 @@ const rowSchema = z.object({
   classificationCode: z.string().nullish(),
   primaryValue: z.number().nullable().optional(),
   netWgt: z.number().nullable().optional(),
+  isNetWgtEstimated: z.boolean().nullish(),
   qty: z.number().nullable().optional(),
   qtyUnitAbbr: z.string().nullish(),
 });
@@ -70,7 +71,7 @@ export function comtradeToObservations(raw: unknown, retrievedAt: string, allowe
       period: String(year), reporterCode: reporter, partnerCode: partner, partnerName, productCode: r.cmdCode,
       productName: r.cmdDesc ?? null, productClassification: r.classificationCode ? (HS_EDITION[r.classificationCode] ?? r.classificationCode) : hsVersionForYear(year),
       flow: r.flowCode === "M" ? "import" : "export", tradeValue: r.primaryValue, currency: "USD",
-      netWeight: r.netWgt ?? null, quantity: r.qty ?? null, quantityUnit: r.qtyUnitAbbr ?? null,
+      netWeight: r.netWgt ?? null, netWeightEstimated: r.isNetWgtEstimated ?? null, quantity: r.qty ?? null, quantityUnit: r.qtyUnitAbbr ?? null,
       source: COMTRADE_LABEL, retrievedAt, status: "observed", synthetic: false,
     });
   }

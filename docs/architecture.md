@@ -28,3 +28,6 @@ Página / API  →  lib/service.ts
 
 ## Guía de transporte e Incoterms
 `/logistica` (`lib/logistics/incoterms.ts`, `app/logistica/page.tsx`): modos de transporte descritos cualitativamente y tabla de las 11 reglas Incoterms® 2020 (entrega, riesgo, transporte, seguro y despacho de exportación e importación). Es un resumen parafraseado, sin tarifas, plazos ni costes, enlazado desde el paso «Transporte, seguro y plazos» de cada ficha. Una calculadora de coste puesto en destino queda pendiente: solo tendría sentido con datos aportados por el usuario.
+
+## Importadores y compradores
+`/compradores` y `/api/buyers/export` (módulo `lib/buyers/`): proveedores de búsqueda intercambiables, descarga segura de páginas, extracción, reglas de evidencia y un conjunto curado del piloto. Detalle, fuentes, coste y resultados del piloto en `docs/buyers.md`. Enlazado desde el paso «Distribuidores y compradores» de cada ficha.

@@ -29,6 +29,8 @@ export interface Opportunity {
   netWeightEndYear: number | null;
   /** CAGR del peso neto importado (aproxima el volumen). null si faltan pesos o no son positivos. */
   cagrVolume: number | null;
+  /** true si el peso de algún año de la ventana lo estima la fuente (no es observado): valor unitario y crecimiento en volumen son orientativos. */
+  weightEstimated: boolean;
   score: ScoreResult | null;
   complete: boolean;
   missing: string[];
@@ -138,6 +140,7 @@ export function buildOpportunities(input: BuildInput): BuildResult {
         spainExportsWorld: expValue,
         netWeightEndYear: worldObs[win - 1]?.netWeight ?? null,
         cagrVolume: growthVolume,
+        weightEstimated: worldObs.some((w) => w?.netWeightEstimated === true),
         score: null,
         complete,
         missing,

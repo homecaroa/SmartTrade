@@ -84,3 +84,8 @@ Consulta HS 220421, años 2022-2024, importaciones con socios mundo y España (v
 - El ranking es independiente: su propio universo de percentiles, en USD, con fuente «UN Comtrade». No se combina con los datos de la UE.
 - La clasificación se muestra como edición HS (H6 = HS2022, etc., según la tabla de Comtrade); si un código desconocido aparece, se muestra tal cual.
 - Riesgo: la web es pública y el cupo de la clave es compartido; si se agota, la app muestra un error de límite de la fuente. La caché (1 h por defecto) reduce el consumo.
+
+### Peso neto en UN Comtrade (verificado el 26/10/2026, HS 220421/220429/220410, 2024, importaciones del mundo)
+- **Publicado** por Canadá, México, Marruecos, Noruega, Suiza (220421, 220410), Japón (220410, 220429) y EE. UU., entre otros.
+- **No publicado** (peso nulo, cantidad 0 y unidad N/A): Japón 220421, Suiza 220429, Reino Unido 220421 y 220429. En la app salen «n.d.» (no cero).
+- **Estimado por la fuente** (`isNetWgtEstimated=true`): Canadá 220421 y 220429, y EE. UU. 220421 y 220429. En esos casos el peso en toneladas coincide numéricamente con la cantidad en litros, es decir, una estimación de 1 kg por litro. La ficha lo indica («Peso neto estimado por la fuente»). En los demás países la cantidad en litros coincide con el peso en bastantes casos (Japón 220410, Noruega, Suiza 220410), pero la fuente no lo marca como estimado: no se afirma nada más.
