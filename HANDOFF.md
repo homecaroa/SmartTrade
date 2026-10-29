@@ -129,7 +129,7 @@ Los «porqués» son los que dan los docs. Quién decidió cada cosa y cuándo: 
 2. **`README.md` desfasado:** dice que Comtrade está «sin probar» y que Comext tiene «API sin ejecutar con datos reales», cuando `docs/data-sources.md` y `PROGRESS.md` dicen que ambos se probaron. Tampoco menciona los módulos nuevos ni `TAVILY_API_KEY`.
 3. **`docs/data-sources.md` se contradice:** la tabla de arriba dice «verificado de principio a fin», y el párrafo siguiente dice «falta comprobar la app completa en modo `comext`».
 4. **`docs/limitations.md` §1** dice que Comtrade «no se ha probado» y no recoge la verificación del 25/10.
-5. **Faltan archivos que el repo nombra:** `.env.example` (README) y `.devcontainer/` (README: «incluida la carpeta oculta») no están en el repositorio; probablemente se perdieron al subir por «Add files via upload» (**inferido**). Tampoco están `scripts/verify-comtrade-peso.mjs` ni `verify-comtrade-detalle.mjs` (citados en `limitations.md` y `testing.md`). Solo existen `verify-comext.mjs` y `verify-comtrade.mjs`. Si se necesitan, hay que reescribirlos o recuperarlos del PC de origen.
+5. **El repo nombra archivos que ya no existen:** `.env.example` y `.devcontainer/` (README) y `scripts/verify-comtrade-peso.mjs` y `verify-comtrade-detalle.mjs` (`limitations.md`, `testing.md`). **Según el dueño (29/10/2026) eran de una prueba o duplicados y ya se borraron a propósito**, así que no hay nada que recuperar. Lo que queda por hacer es quitar esas referencias de README y docs (y el aviso del `.env.example`), porque hoy apuntan a archivos inexistentes. Solo existen `verify-comext.mjs` y `verify-comtrade.mjs`.
 6. **`docs/testing.md`** mezcla en cabecera «94 pruebas» con secciones posteriores hasta 223.
 
 ---
@@ -164,7 +164,7 @@ Solo las que aparecen como descartadas o no adoptadas en el repo. Las razones so
 Orden mío, **inferido** de los pendientes de `PROGRESS.md`, los docs y los riesgos de arriba. La prioridad es una propuesta, no una decisión del proyecto.
 
 1. **Cerrar la alerta de GitGuardian** (seguridad, barato). Ver qué archivo marca; si es una clave real, rotarla; si es de prueba, marcarla falso positivo. Esto ya figuraba como primera tarea en `PROGRESS.md`.
-2. **Recuperar los archivos perdidos:** `.env.example`, `.devcontainer/` (si se va a usar Codespaces) y los scripts `verify-comtrade-*.mjs`. Comprobar en el PC de origen si existen.
+2. **Quitar las referencias a archivos borrados a propósito** (`.env.example`, `.devcontainer/`, `verify-comtrade-peso/detalle.mjs`) en README y docs. Si se quiere Codespaces, habría que crear `.devcontainer` de nuevo; no está decidido.
 3. **Actualizar `PROGRESS.md`, `README.md` y las incoherencias de `docs/data-sources.md` y `limitations.md`.** Es poco trabajo y quien herede el proyecto se guiará por ellos.
 4. **Ejecutar `npm run build` y arrancar la app** para confirmar el estado real; hoy solo está confirmada la parte de tests y tipos. Mirar la UI en un navegador (limitación nº 11).
 5. **Desplegar o confirmar el despliegue** en Vercel con `SMARTRADE_DATA_MODE=comext`. Decidir antes qué hacer con la caché en memoria (en serverless se reinicia) y con el cupo compartido de Comtrade.
@@ -181,7 +181,7 @@ Orden mío, **inferido** de los pendientes de `PROGRESS.md`, los docs y los ries
 
 ```bash
 npm ci
-cp .env.example .env.local   # NO existe en el repo: crear a mano con SMARTRADE_DATA_MODE=demo
+# .env.example ya no existe (borrado a propósito): sin .env.local arranca en modo demo
 npm run dev                  # http://localhost:3000
 npm test && npm run typecheck && npm run build
 SMARTRADE_DATA_MODE=comext npm run dev   # buscar: 220421, 150920
