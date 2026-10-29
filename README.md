@@ -53,4 +53,4 @@ Ver `.env.example`: `SMARTRADE_DATA_MODE`, `CACHE_TTL_SECONDS`, `DEFAULT_END_YEA
 Parámetros: `q, market, year, minSize (millones), minGrowth (%), sort (score|size|growth), order, page, pageSize`.
 
 ## Documentación
-`docs/architecture.md`, `docs/data-sources.md`, `docs/methodology.md`, `docs/testing.md`, `docs/limitations.md`.
+`docs/architecture.md`, `docs/data-sources.md`, `docs/methodology.md`, `docs/testing.md`, `docs/limitations.md`, `docs/aprendizaje.md` (Modo Aprendizaje: simulador educativo con datos simulados, en `/aprendizaje`).
