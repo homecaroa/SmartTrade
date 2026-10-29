@@ -23,10 +23,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <span className="text-xl font-bold text-indigo-700">SmarTrade</span>
               <span className="text-sm text-slate-600">Descubre oportunidades comerciales con datos de comercio internacional</span>
             </Link>
-            <nav className="flex items-center gap-4 text-sm">
+            <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
               <Link href="/guia" className="underline">Guía de uso</Link>
               <Link href="/logistica" className="underline">Transporte e Incoterms</Link>
               <Link href="/metodologia" className="underline">Metodología y fuentes</Link>
+              <Link href="/aprendizaje" className="rounded bg-emerald-700 px-2 py-1 font-semibold text-white hover:bg-emerald-800">Modo Aprendizaje</Link>
               <ModeBadge mode={mode} />
             </nav>
           </div>

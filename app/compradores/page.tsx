@@ -41,6 +41,7 @@ export default async function Buyers({ searchParams }: { searchParams: Promise<S
     <section className="space-y-1 rounded-lg border border-amber-300 bg-amber-50 p-3 text-xs text-amber-900">
       <p><b>Cómo leer esto.</b> Las estadísticas de importación de un país no son un registro de compradores. Aquí aparecen empresas con pruebas enlazadas de que trabajan con el producto; <b>ninguna es un comprador asegurado</b>.</p>
       <p>«Importador confirmado» = una página leída de la propia empresa lo afirma. «Comprador probable» = solo fuentes secundarias. Solo se muestran contactos públicos con su fuente; nunca correos inferidos ni datos personales sin fuente pública fiable.</p>
+      <p><b>Listas con IA.</b> Algunas empresas las sugiere un modelo de IA (Gemini). Las marcadas «web verificada» tienen una web que hemos leído y que nombra a la empresa y al producto. Las «pista sin verificar» pueden ser erróneas o no existir: compruébalas antes de usarlas.</p>
       <p>Antes de escribir a nadie, revisa la normativa de comunicaciones comerciales y protección de datos aplicable (por ejemplo, RGPD y las leyes antispam del país). Esto no es asesoramiento legal.</p>
     </section>
   );
@@ -61,7 +62,7 @@ export default async function Buyers({ searchParams }: { searchParams: Promise<S
       {intro}
       {form}
       <section className="space-y-1 rounded-lg bg-white p-4 text-sm shadow-sm">
-        <p><b>{r.summary.total}</b> empresas encontradas: {r.summary.confirmado} importadores confirmados, {r.summary.probable} compradores probables, {r.summary.insuficiente} con evidencia insuficiente. Con contacto oficial verificable: <b>{r.summary.withVerifiedContact}</b>.</p>
+        <p><b>{r.summary.total}</b> empresas encontradas: {r.summary.confirmado} importadores confirmados, {r.summary.probable} compradores probables, {r.summary.insuficiente} con evidencia insuficiente. Con contacto oficial verificable: <b>{r.summary.withVerifiedContact}</b>.{r.summary.iaVerificadas + r.summary.iaSinVerificar > 0 && <> De las sugeridas por IA, {r.summary.iaVerificadas} con web verificada y {r.summary.iaSinVerificar} pistas sin verificar.</>}</p>
         <ul className="list-disc pl-5 text-xs text-slate-600">{r.info.warnings.map((w) => <li key={w}>{w}</li>)}</ul>
         {!r.noData && <a className="inline-block text-xs underline" href={`/api/buyers/export?${exportQs}`}>Exportar a CSV (guarda este resultado en tu equipo)</a>}
       </section>

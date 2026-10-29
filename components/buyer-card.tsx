@@ -1,9 +1,18 @@
-import { LEVEL_LABEL, SOURCE_LABEL, TYPE_LABEL, type Company } from "@/lib/buyers/types";
+import { IA_SPAIN_LABEL, IA_VERIFICATION_LABEL, LEVEL_LABEL, SOURCE_LABEL, TYPE_LABEL, type Company } from "@/lib/buyers/types";
 
 const LEVEL_STYLE = { confirmado: "bg-emerald-100 text-emerald-900", probable: "bg-amber-100 text-amber-900", insuficiente: "bg-slate-200 text-slate-700" } as const;
 const WEB_LABEL = { verificada: "web verificada", segun_listado: "web según listado, no visitada", sin_verificar: "web sin verificar" } as const;
 
+function originBadge(c: Company): { label: string; style: string } {
+  if (c.origin === "curado") return { label: "Curado a mano", style: "bg-slate-100 text-slate-700" };
+  if (c.origin === "ia") return c.ia?.verificacion === "verificada"
+    ? { label: IA_VERIFICATION_LABEL.verificada, style: "bg-sky-100 text-sky-900" }
+    : { label: IA_VERIFICATION_LABEL.sin_verificar, style: "bg-rose-100 text-rose-900" };
+  return { label: "Búsqueda automática, sin revisar", style: "bg-slate-100 text-slate-700" };
+}
+
 export function BuyerCard({ c }: { c: Company }) {
+  const badge = originBadge(c);
   return (
     <li className="space-y-2 rounded-lg bg-white p-4 text-sm shadow-sm">
       <div className="flex flex-wrap items-start justify-between gap-2">
@@ -14,11 +23,18 @@ export function BuyerCard({ c }: { c: Company }) {
         </div>
         <div className="flex flex-wrap gap-1">
           <span className={`rounded px-2 py-0.5 text-xs ${LEVEL_STYLE[c.evidenceLevel]}`}>{LEVEL_LABEL[c.evidenceLevel]}</span>
-          <span className="rounded bg-slate-100 px-2 py-0.5 text-xs text-slate-700">{c.origin === "curado" ? "Curado a mano" : "Búsqueda automática, sin revisar"}</span>
+          <span className={`rounded px-2 py-0.5 text-xs ${badge.style}`}>{badge.label}</span>
         </div>
       </div>
       <p>{c.reason}</p>
       <p className="text-xs text-slate-600">{c.levelReason} Producto español: <b>{c.spainOriginVerified ? "verificado en fuente primaria u oficial" : "no verificado"}</b>.</p>
+      {c.ia && (
+        <div className={`rounded border p-2 text-xs ${c.ia.verificacion === "verificada" ? "border-sky-200 bg-sky-50" : "border-rose-200 bg-rose-50"}`}>
+          <p className="font-medium">{c.ia.verificacion === "verificada" ? "Sugerida por IA y comprobada en su web" : "Pista sin verificar: sugerida por IA, no comprobada"}</p>
+          <p>Modelo {c.ia.modelo} · {c.ia.generadoEn} · confianza declarada por la IA: {c.ia.confianza}. Producto español: {IA_SPAIN_LABEL[c.ia.senalEspana]}.</p>
+          {c.ia.auditoria.length > 0 && <ul className="list-disc pl-5 text-slate-700">{c.ia.auditoria.map((a) => <li key={a}>{a}</li>)}</ul>}
+        </div>
+      )}
       {c.brands.length > 0 && <p className="text-xs">Marcas relacionadas: {c.brands.join(", ")}</p>}
       <div className="rounded border border-slate-200 p-2 text-xs">
         <p className="font-medium">Contacto público verificable</p>

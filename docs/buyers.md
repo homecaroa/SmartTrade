@@ -46,3 +46,37 @@ Investigación manual del 28/10/2026 (unas 10 búsquedas web y lectura de 4 pág
 - Las consultas en vivo usan términos en inglés; faltan términos en el idioma del país.
 - Revisar los datos curados periódicamente: las webs cambian.
 - Siguientes pasos: probar Tavily con clave real en 3 combinaciones; añadir directorios de ferias y asociaciones como fuentes; revisión humana antes de publicar nuevos conjuntos curados.
+
+## Pistas con IA (Gemini) — añadido el 29/10/2026
+Para ampliar a más productos y países sin curar a mano, un script pide a Gemini empresas candidatas y **nuestro código las comprueba**. La web nunca llama a Gemini: las listas se generan en lote desde tu equipo y se guardan como ficheros (`lib/buyers/ia-data/<HS6>-<PAIS>.json`, registrados en `index.ts`, ambos generados por el script).
+
+```bash
+GEMINI_API_KEY=... npm run buyers:generar -- --hs 220421 --pais DE [--max 15] [--dry]
+```
+Variables: `GEMINI_API_KEY` (obligatoria, solo en tu equipo), `GEMINI_MODEL` (opcional; por defecto `gemini-3.8-flash`, el que recomienda Google), `GEMINI_FALLBACK_MODEL` (opcional; por defecto `gemini-3.5-flash-lite`; `ninguno` lo desactiva), `GEMINI_TIMEOUT_S` (por intento; 90 por defecto), `GEMINI_BASE_URL` (para pruebas). Ante un fallo pasajero (429, 5xx, tiempo de espera) se reintenta una vez y, si persiste, se pasa al modelo de respaldo; el modelo realmente usado queda guardado en la lista. Los errores de clave o de modelo inexistente no se reintentan. El script muestra avances mientras trabaja. Se ejecuta con `npx tsx`, que **no** es dependencia del proyecto. Salida 0 correcto, 1 error, 2 uso incorrecto. Revisa la lista antes de commitearla.
+
+### Qué hace
+1. `ia/prompt.ts` construye el prompt (producto, país, idioma, reglas: no inventar, solo dominios conocidos con seguridad, nada de personas ni correos) y pide JSON con esquema.
+2. `ia/gemini.ts` llama a la API **sin herramientas**.
+3. `ia/audit.ts` lee la portada de cada web sugerida (con `fetchPageSafe`: robots.txt, sin hosts internos, límites). **Verificada** = la web responde, nombra a la empresa y menciona el producto. Si no, **pista sin verificar**: sin enlace a la web, sin pruebas y con el motivo. Una web que no nombra a la empresa nunca se enlaza; un dominio atribuido a varias empresas se detecta. Nombres 100 % genéricos («Wein & Vinos GmbH») exigen la frase completa en la página.
+4. El nivel de evidencia sigue deduciéndose de las pruebas: una verificada es como mucho «comprador probable»; una pista es «evidencia insuficiente». **Nunca «confirmado»** (eso exige revisión humana, solo en datos curados).
+5. El vínculo con España **no es un filtro**: se anota como señal (`en_web` si la web leída menciona España; `segun_ia` es la afirmación del modelo, sin comprobar).
+6. Todo el informe y el CSV marcan el origen IA, el modelo, la fecha y la auditoría.
+
+### Por qué SIN la búsqueda de Google (decisión)
+Los [términos adicionales de la API de Gemini](https://ai.google.dev/gemini-api/terms) (leídos el 29/10/2026 con una herramienta que resume la página; **no** se ha leído el texto legal íntegro) dicen, para «Grounding with Google Search», que los resultados solo pueden mostrarse al usuario que envió el prompt, almacenarse hasta 2 años solo para fines concretos (no incluye publicar una lista curada), y no se pueden usar sus enlaces de forma programática para rastrear. Una lista generada en lote y publicada a todos los visitantes, con nuestro rastreador leyendo esos enlaces, **no encaja**. Sin esa herramienta no hay resultados de búsqueda que almacenar. Contrapartida: el modelo puede inventar, y por eso existe la auditoría. No hay ninguna vía para saltarse esos términos y no se busca.
+
+### Riesgos abiertos (no resueltos, aceptados por el dueño el 29/10/2026)
+- **Cláusula del EEE:** los términos indican que solo se usen «Paid Services» al poner un cliente de API a disposición de usuarios del EEE, Suiza o Reino Unido. Aquí los visitantes no usan la API y no hay clave en la web; la interpretación de que no aplica **no está confirmada con Google**. Pasar a nivel de pago lo cerraría (coste sin calcular).
+- **Nivel gratuito:** Google puede usar lo enviado y revisores humanos pueden leerlo. Solo se envían producto y país, nunca datos personales.
+- **Calidad sin búsqueda:** sin medir. La tasa real de empresas verificadas se conocerá con la primera ejecución real. Una lista generada por IA para vino en Alemania, comprobada a mano contra la web (6 de 10 empresas): varias existían, otras no se encontraron y el mismo dominio aparecía para cuatro empresas.
+- **Forma de la respuesta de la API:** comprobada con la API real el 29/10/2026 (`steps[]` → paso `model_output` → `content[].text`), con una petición mínima y `gemini-3.5-flash-lite`. **Aún no** se ha ejecutado una generación completa con el prompt y el esquema reales.
+- **Disponibilidad de modelos (observada el 29/10/2026 con una clave nueva, desde Windows):** `gemini-2.5-flash` → 404 «no longer available to new users»; `gemini-3.8-flash` → tiempos de espera y 503 repetidos, incluso con una petición mínima; `gemini-3.5-flash-lite` → respuesta en 3 s. Un modelo «lite» puede conocer menos empresas e inventar más: la auditoría lo contiene, pero conviene repetir con `gemini-3.8-flash` cuando responda y comparar.
+- **Tavily** no se usa en esta parte. Sus términos (leídos el 29/10/2026) no prohíben guardar resultados, pero limitan el uso a «internal business purposes»: no está claro que cubra mostrarlos al público.
+
+### Primera ejecución real (29/10/2026, vino HS 220421 en Alemania, `--dry`, desde Windows)
+`gemini-3.8-flash` no respondió (503) y se usó el respaldo `gemini-3.5-flash-lite`. Pedidas hasta 15 empresas, **sugirió 5**:
+- **Tesdorpf** → web verificada (la web la nombra, menciona el producto y España).
+- **Hawesko** y **Wein & Vinos** → empresas reales, pero sus webs responden **403 a lecturas automáticas** (comprobado con nuestra identidad declarada). Quedan «sin verificar». **No se elude** la protección (ni cambiando la identidad del lector): una persona puede abrirlas. Desde ese día el motivo lo dice así en vez de «no respondió correctamente».
+- **Meridian Wine** y **Gutmann Wein** → sin web; una búsqueda no encontró ninguna empresa alemana con esos nombres (sí una distribuidora sudafricana «Meridian Wine Merchants»). Muy probablemente **inventadas**; la auditoría las dejó como pistas sin verificar, que es lo previsto.
+Lectura: con el modelo ligero, rendimiento bajo (1 verificada de 5). Las 2 sin web resultaron inventadas, pero con 2 casos no es una regla. Pendiente: repetir con `gemini-3.8-flash` cuando responda y comparar.

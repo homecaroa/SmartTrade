@@ -1,4 +1,4 @@
-import { COMPANY_TYPES, EVIDENCE_LEVELS, type Company, type CompanyInput, type CompanyType, type Evidence, type EvidenceLevel } from "./types";
+import { COMPANY_TYPES, EVIDENCE_LEVELS, type BuyerOrigin, type Company, type CompanyInput, type CompanyType, type Evidence, type EvidenceLevel } from "./types";
 
 /** Webs de brokers de datos: contienen datos personales y correos inferidos. Sus resultados se descartan siempre. */
 export const BROKER_HOSTS = ["zoominfo.com", "prospeo.io", "importgenius.com", "panjiva.com", "apollo.io", "rocketreach.co", "lusha.com", "signalhire.com", "hunter.io", "contactout.com"];
@@ -23,11 +23,12 @@ export function guessSourceType(url: string): Evidence["sourceType"] {
 /**
  * Nivel de evidencia deducido SOLO de las pruebas:
  * - confirmado: una página de la propia empresa, leída, afirma que importa/distribuye la categoría de producto.
+ *   Solo para datos curados a mano: lo automático (búsqueda en vivo o IA) nunca pasa de «probable».
  * - probable: otra fuente (oficial, directorio, feria, asociación, prensa o extracto de su web) lo afirma.
  * - insuficiente: sin afirmación de la categoría, o solo ofertas de empleo u otras fuentes débiles.
  * Los resultados de búsqueda en vivo nunca superan «probable» (extracción automática sin revisión humana).
  */
-export function classifyEvidence(evidence: Evidence[], origin: "curado" | "busqueda_en_vivo" = "curado"): { level: EvidenceLevel; spainOriginVerified: boolean; reason: string } {
+export function classifyEvidence(evidence: Evidence[], origin: BuyerOrigin = "curado"): { level: EvidenceLevel; spainOriginVerified: boolean; reason: string } {
   const cat = evidence.filter((e) => e.claims.includes("categoria"));
   const strong = cat.some((e) => e.sourceType === "corporativa" && e.howConsulted === "pagina_leida");
   const spainOriginVerified = evidence.some((e) => e.claims.includes("origen_espana") && ["corporativa", "gobierno", "feria", "asociacion"].includes(e.sourceType));
@@ -44,6 +45,7 @@ export function enrich(c: CompanyInput): Company {
 }
 
 const LEVEL_RANK: Record<EvidenceLevel, number> = { confirmado: 0, probable: 1, insuficiente: 2 };
+/** Una pista de IA sin verificar no tiene pruebas, así que su nivel es «insuficiente» y ya queda detrás de las demás. */
 export const sortCompanies = (list: Company[]) => [...list].sort((a, b) => LEVEL_RANK[a.evidenceLevel] - LEVEL_RANK[b.evidenceLevel] || Number(b.contactVerified) - Number(a.contactVerified) || a.name.localeCompare(b.name));
 
 /** Fusiona duplicados por dominio (o nombre+país): une pruebas por URL y conserva el nivel más alto. */
