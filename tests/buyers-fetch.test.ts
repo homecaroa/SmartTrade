@@ -23,6 +23,16 @@ describe("robots.txt", () => {
 });
 
 describe("fetchPageSafe", () => {
+  it("una web que rechaza robots (401/403/429) se distingue de un error genérico y se lee una sola vez", async () => {
+    for (const status of [401, 403, 429]) {
+      const f = vi.spyOn(globalThis, "fetch").mockImplementation(async (u) => String(u).endsWith("/robots.txt") ? new Response("", { status: 404 }) : new Response("no", { status }));
+      expect(await fetchPageSafe("https://empresa.test/")).toEqual({ ok: false, reason: "forbidden" });
+      expect(f.mock.calls.filter(([u]) => !String(u).endsWith("/robots.txt"))).toHaveLength(1);
+      f.mockRestore();
+    }
+    vi.spyOn(globalThis, "fetch").mockImplementation(async (u) => String(u).endsWith("/robots.txt") ? new Response("", { status: 404 }) : new Response("x", { status: 404 }));
+    expect(await fetchPageSafe("https://empresa.test/")).toEqual({ ok: false, reason: "http_error" });
+  });
   it("no hace ninguna petición a hosts internos", async () => {
     const f = vi.spyOn(globalThis, "fetch");
     expect(await fetchPageSafe("http://127.0.0.1/admin")).toEqual({ ok: false, reason: "blocked_host" });

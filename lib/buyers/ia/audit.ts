@@ -137,6 +137,8 @@ export async function auditCandidates(cands: Candidate[], ctx: AuditContext, dep
 }
 
 const REASON: Record<string, string> = {
-  blocked_host: "dirección no permitida", robots: "su robots.txt no permite la lectura", http_error: "no respondió correctamente", not_html: "no es una página web",
+  blocked_host: "dirección no permitida", robots: "su robots.txt no permite la lectura",
+  forbidden: "la web existe pero rechaza las lecturas automáticas (protección anti-bots), así que no se ha podido comprobar; ábrela tú en el navegador",
+  http_error: "no respondió correctamente", not_html: "no es una página web",
   too_large: "página demasiado grande", timeout: "tiempo de espera agotado", network: "no se pudo conectar", bad_url: "dirección no válida",
 };

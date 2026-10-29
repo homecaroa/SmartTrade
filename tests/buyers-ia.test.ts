@@ -198,6 +198,12 @@ describe("auditoría: verificada o pista sin verificar", () => {
     expect(b.ia?.auditoria.join(" ")).toMatch(/no nombra/);
     expect(b.ia?.auditoria.join(" ")).toMatch(/mismo dominio/);
   });
+  it("una web que bloquea robots queda sin verificar, sin enlace, y el motivo lo dice (caso real del 29/10/2026)", async () => {
+    const { companies } = await auditCandidates([cand({ nombre: "Bloqueada Ficticia GmbH", web: "bloqueada-ficticia.test" })], ctx, { fetchPage: async () => ({ ok: false, reason: "forbidden" }), now: () => day });
+    expect(companies[0].ia?.verificacion).toBe("sin_verificar");
+    expect(companies[0].website).toBeNull();
+    expect(companies[0].ia?.auditoria.join(" ")).toMatch(/rechaza las lecturas automáticas/);
+  });
   it("la web nombra a la empresa pero no habla del producto → sin verificar", async () => {
     const { companies } = await auditCandidates([cand({ nombre: "Sinvino Ficticio GmbH", web: "sinvino-ficticio.test" })], ctx, deps);
     expect(companies[0].ia?.verificacion).toBe("sin_verificar");

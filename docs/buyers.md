@@ -73,3 +73,10 @@ Los [términos adicionales de la API de Gemini](https://ai.google.dev/gemini-api
 - **Forma de la respuesta de la API:** comprobada con la API real el 29/10/2026 (`steps[]` → paso `model_output` → `content[].text`), con una petición mínima y `gemini-3.5-flash-lite`. **Aún no** se ha ejecutado una generación completa con el prompt y el esquema reales.
 - **Disponibilidad de modelos (observada el 29/10/2026 con una clave nueva, desde Windows):** `gemini-2.5-flash` → 404 «no longer available to new users»; `gemini-3.8-flash` → tiempos de espera y 503 repetidos, incluso con una petición mínima; `gemini-3.5-flash-lite` → respuesta en 3 s. Un modelo «lite» puede conocer menos empresas e inventar más: la auditoría lo contiene, pero conviene repetir con `gemini-3.8-flash` cuando responda y comparar.
 - **Tavily** no se usa en esta parte. Sus términos (leídos el 29/10/2026) no prohíben guardar resultados, pero limitan el uso a «internal business purposes»: no está claro que cubra mostrarlos al público.
+
+### Primera ejecución real (29/10/2026, vino HS 220421 en Alemania, `--dry`, desde Windows)
+`gemini-3.8-flash` no respondió (503) y se usó el respaldo `gemini-3.5-flash-lite`. Pedidas hasta 15 empresas, **sugirió 5**:
+- **Tesdorpf** → web verificada (la web la nombra, menciona el producto y España).
+- **Hawesko** y **Wein & Vinos** → empresas reales, pero sus webs responden **403 a lecturas automáticas** (comprobado con nuestra identidad declarada). Quedan «sin verificar». **No se elude** la protección (ni cambiando la identidad del lector): una persona puede abrirlas. Desde ese día el motivo lo dice así en vez de «no respondió correctamente».
+- **Meridian Wine** y **Gutmann Wein** → sin web; una búsqueda no encontró ninguna empresa alemana con esos nombres (sí una distribuidora sudafricana «Meridian Wine Merchants»). Muy probablemente **inventadas**; la auditoría las dejó como pistas sin verificar, que es lo previsto.
+Lectura: con el modelo ligero, rendimiento bajo (1 verificada de 5). Las 2 sin web resultaron inventadas, pero con 2 casos no es una regla. Pendiente: repetir con `gemini-3.8-flash` cuando responda y comparar.

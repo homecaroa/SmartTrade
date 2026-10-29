@@ -4,7 +4,7 @@ const MAX_BYTES = 500_000;
 
 export type FetchPageResult =
   | { ok: true; html: string; finalUrl: string }
-  | { ok: false; reason: "blocked_host" | "robots" | "http_error" | "not_html" | "too_large" | "timeout" | "network" | "bad_url" };
+  | { ok: false; reason: "blocked_host" | "robots" | "forbidden" | "http_error" | "not_html" | "too_large" | "timeout" | "network" | "bad_url" };
 
 export function isBlockedHost(host: string): boolean {
   const h = host.toLowerCase();
@@ -68,6 +68,9 @@ export async function fetchPageSafe(url: string, timeoutMs = 8000): Promise<Fetc
         current = new URL(loc, current);
         continue;
       }
+      // 401/403/429: la web rechaza lecturas automáticas (protección anti-bots). Se respeta: no se reintenta ni se cambia
+      // de identidad. Se distingue de un error genérico porque la web SÍ existe y una persona puede comprobarla.
+      if (res.status === 401 || res.status === 403 || res.status === 429) return { ok: false, reason: "forbidden" };
       if (!res.ok) return { ok: false, reason: "http_error" };
       if (!/text\/html|application\/xhtml/i.test(res.headers.get("content-type") ?? "")) return { ok: false, reason: "not_html" };
       if (Number(res.headers.get("content-length") ?? 0) > MAX_BYTES) return { ok: false, reason: "too_large" };
