@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "mode": "comtrade",
+  "code": "080520",
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "generatedAt": "2026-10-30T11:34:06.825Z",
+  "sourceLabel": "UN Comtrade",
+  "warnings": [
+    "Valores en USD (UN Comtrade)."
+  ],
+  "observations": []
+}
