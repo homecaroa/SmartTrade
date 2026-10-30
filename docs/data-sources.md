@@ -89,3 +89,16 @@ Consulta HS 220421, años 2022-2024, importaciones con socios mundo y España (v
 - **Publicado** por Canadá, México, Marruecos, Noruega, Suiza (220421, 220410), Japón (220410, 220429) y EE. UU., entre otros.
 - **No publicado** (peso nulo, cantidad 0 y unidad N/A): Japón 220421, Suiza 220429, Reino Unido 220421 y 220429. En la app salen «n.d.» (no cero).
 - **Estimado por la fuente** (`isNetWgtEstimated=true`): Canadá 220421 y 220429, y EE. UU. 220421 y 220429. En esos casos el peso en toneladas coincide numéricamente con la cantidad en litros, es decir, una estimación de 1 kg por litro. La ficha lo indica («Peso neto estimado por la fuente»). En los demás países la cantidad en litros coincide con el peso en bastantes casos (Japón 220410, Noruega, Suiza 220410), pero la fuente no lo marca como estimado: no se afirma nada más.
+
+## Datos guardados y actualización bimensual (desde el 30/10/2026)
+**Problema.** La caché vivía en memoria y en Vercel se pierde a menudo; además el cupo de UN Comtrade (60 operaciones) lo comparten todos los visitantes. Cada búsqueda podía tardar segundos o fallar.
+
+**Solución.** `data/snapshots/<modo>/<HS6>.json` guarda, por fuente y código del catálogo, las observaciones de los **cuatro últimos años completos** (cubren las ventanas de 3 años que terminan en los dos últimos). La web los usa primero y solo consulta en vivo los códigos que no estén guardados; si esa consulta falla, muestra los guardados con aviso. La ficha de cada oportunidad muestra la fecha («Datos guardados el …») y, a partir de **75 días** (dos meses más dos semanas para revisar el PR: decisión documentada, no estimada), un aviso de que la actualización pudo fallar. Los proveedores de la ficha y el modo demo siguen como antes.
+
+**Actualización (decisión del dueño: cada dos meses).** `.github/workflows/actualizar-datos.yml` ejecuta `npm run datos:actualizar` el día 1 de enero, marzo, mayo, julio, septiembre y noviembre, y abre un PR con los cambios y un resumen (`data/snapshots/RESUMEN.md`). Si un grupo de códigos falla, se conservan sus datos anteriores y el fallo aparece en el resumen; si falla todo, la ejecución termina en error (GitHub avisa por correo). También se puede lanzar a mano desde la pestaña Actions o con `npm run datos:actualizar`.
+
+**Requisitos en GitHub:** secreto `COMTRADE_API_KEY` (sin él solo se actualiza Eurostat) y, en Settings → Actions → General → Workflow permissions, permitir que GitHub Actions cree pull requests.
+
+**Primera carga (30/10/2026, real):** Eurostat Comext, 49 códigos, 2022–2025, 9.610 observaciones, 4,6 MB. UN Comtrade aún sin guardar (necesita la clave; lo hará la primera ejecución automática o una manual). En esa carga el **080520** (mandarinas) no devolvió datos: probablemente la HS2022 lo dividió en varios códigos (no verificado); el catálogo debería revisarse.
+
+**Riesgos.** Los datos quedan fijos entre actualizaciones (por eso se muestra la fecha). GitHub desactiva los flujos programados de los repositorios públicos tras 60 días sin actividad: con una ejecución cada dos meses, fusionar el PR a tiempo mantiene la actividad (comportamiento de GitHub no comprobado en este repositorio). Cada actualización añade unos megas al historial del repositorio.

@@ -25,10 +25,22 @@ export function DataSourceLabel({ info }: { info: DataInfo }) {
           La fuente no respondió. Se muestran datos de caché obtenidos {fmtAge(info.ageMs)}; pueden no estar actualizados.
         </p>
       )}
-      <p>
-        Fuente: <b>{info.sourceLabel}</b> · Obtenido: {fmtDate(info.retrievedAt)} ({fmtAge(info.ageMs)}
-        {info.fromCache ? ", desde caché" : ""})
-      </p>
+      {info.snapshot?.stale && (
+        <p className="rounded border border-amber-400 bg-amber-50 p-2 font-medium text-amber-900">
+          Los datos guardados tienen {info.snapshot.ageDays} días: se actualizan cada dos meses y la última actualización puede no haberse completado.
+        </p>
+      )}
+      {info.snapshot ? (
+        <p>
+          Fuente: <b>{info.sourceLabel}</b> · Datos guardados el {fmtDate(info.snapshot.generatedAt)} ({fmtAge(info.ageMs)}; se actualizan cada dos meses)
+          {info.snapshot.liveCodes.length ? <> · consultados en vivo: {info.snapshot.liveCodes.join(", ")}</> : null}
+        </p>
+      ) : (
+        <p>
+          Fuente: <b>{info.sourceLabel}</b> · Obtenido: {fmtDate(info.retrievedAt)} ({fmtAge(info.ageMs)}
+          {info.fromCache ? ", desde caché" : ""})
+        </p>
+      )}
     </div>
   );
 }
