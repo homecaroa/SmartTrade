@@ -101,4 +101,6 @@ Consulta HS 220421, años 2022-2024, importaciones con socios mundo y España (v
 
 **Primera carga (30/10/2026, real):** Eurostat Comext, 49 códigos, 2022–2025, 9.610 observaciones, 4,6 MB. UN Comtrade aún sin guardar (necesita la clave; lo hará la primera ejecución automática o una manual). En esa carga el **080520** (mandarinas) no devolvió datos: probablemente la HS2022 lo dividió en varios códigos (no verificado); el catálogo debería revisarse.
 
+**Diffs legibles (30/10/2026).** Las observaciones se guardan sin la hora de descarga (antes cambiaba en cada línea y el PR mostraba miles de cambios con datos idénticos) y en orden fijo; la fecha vive una vez en `generatedAt` y se repone al leer. Comprobado con dos descargas reales seguidas: solo cambia esa línea. Los ficheros guardados antes de ese día aún la llevan, así que **la próxima actualización mostrará una vez todas las líneas cambiadas**; a partir de la siguiente, solo los cambios reales.
+
 **Riesgos.** Los datos quedan fijos entre actualizaciones (por eso se muestra la fecha). GitHub desactiva los flujos programados de los repositorios públicos tras 60 días sin actividad: con una ejecución cada dos meses, fusionar el PR a tiempo mantiene la actividad (comportamiento de GitHub no comprobado en este repositorio). Cada actualización añade unos megas al historial del repositorio.

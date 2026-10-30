@@ -50,7 +50,10 @@ export function lookupSnapshot(mode: SnapshotMode, years: number[], codes: strin
     if (!oldest || s.generatedAt < oldest) oldest = s.generatedAt;
     s.warnings.forEach((w) => warnings.add(w));
     const wanted = new Set(years.map(String));
-    raw.push(...s.observations.filter((o) => typeof o === "object" && o !== null && wanted.has(String((o as { period?: unknown }).period))));
+    // La fecha de descarga se guarda una vez por fichero (generatedAt) y se repone en cada observación al leer.
+    raw.push(...s.observations
+      .filter((o): o is Record<string, unknown> => typeof o === "object" && o !== null && wanted.has(String((o as { period?: unknown }).period)))
+      .map((o) => ({ ...o, retrievedAt: s.generatedAt })));
   }
   const { valid, invalid } = parseObservations(raw);
   if (invalid) warnings.add(`${invalid} observaciones guardadas no superaron la validación de esquema y se descartaron.`);
