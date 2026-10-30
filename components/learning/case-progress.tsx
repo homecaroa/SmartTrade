@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { isExportSession, progress } from "@/lib/learning/export/engine";
 import { exportScenario } from "@/lib/learning/export/scenarios";
+import { isLogisticsSession, LOGISTICS_STEPS, type LogisticsSession } from "@/lib/learning/logistics/session";
 import { isNegotiationSession } from "@/lib/learning/negotiation/session";
 import { clearState, loadState, storageKey, type LearningModule } from "@/lib/learning/storage";
 
@@ -19,6 +20,10 @@ export function CaseProgress({ module, caseId, href }: { module: LearningModule;
       const sc = exportScenario(caseId);
       const s = loadState(key, (x): x is Parameters<typeof progress>[1] => isExportSession(x, caseId));
       if (sc && s && s.confirmed.length) { const p = progress(sc, s); setStarted(true); setLabel(p.complete ? "Terminado" : `${p.done} de ${p.total} decisiones`); } else setLabel("Sin empezar");
+    } else if (module === "logistica") {
+      const s = loadState(key, (x): x is LogisticsSession => isLogisticsSession(x, caseId));
+      const i = s ? LOGISTICS_STEPS.findIndex((st) => st.id === s.step) : 0;
+      if (s && i > 0) { setStarted(true); setLabel(s.step === "resultado" ? "Terminado" : `Paso ${i + 1} de ${LOGISTICS_STEPS.length}: ${LOGISTICS_STEPS[i].title}`); } else setLabel("Sin empezar");
     } else {
       const s = loadState(key, (x): x is { step: keyof typeof NEG_STEP; rounds: unknown[] } & object => isNegotiationSession(x, caseId));
       if (s && s.step !== "presentacion") { setStarted(true); setLabel(`${NEG_STEP[s.step]}${s.rounds.length ? ` · ${s.rounds.length} ${s.rounds.length === 1 ? "ronda" : "rondas"}` : ""}`); } else setLabel("Sin empezar");

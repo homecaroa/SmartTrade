@@ -1,6 +1,6 @@
 # Limitaciones conocidas
 
-1. **Datos oficiales reales parcialmente verificados.** La API de Comext responde con valores reales y las dimensiones, `WORLD`, flujos e indicadores están confirmados; la app completa en modo `comext` se ejecutó con datos reales (49 oportunidades, 2 productos). Faltan más productos, Grecia (`EL`) sin confirmar y los indicadores de estado. Comtrade (opcional) no se ha probado: necesita clave.
+1. **Datos oficiales reales parcialmente verificados.** La API de Comext responde con valores reales y las dimensiones, `WORLD`, flujos e indicadores están confirmados; la app completa en modo `comext` se ejecutó con datos reales (49 oportunidades, 2 productos). Faltan más productos y los indicadores de estado. Grecia resuelta el 30/10/2026: Comext la publica como `GR`, no `EL`. Comtrade (opcional) no se ha probado: necesita clave.
 2. **Comext solo cubre mercados UE.** Mercados no UE requieren Comtrade (USD).
 3. **Catálogo de productos:** no hay catálogo HS ni categorías agregadas. En modos reales hay que introducir códigos HS6 (máx. 20). Los nombres vienen de la etiqueta de la fuente.
 4. **Cambios de revisión HS:** ventanas que cruzan 2017/2022 quedan incompletas (no hay tabla de correspondencias validada).

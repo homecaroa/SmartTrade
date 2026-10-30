@@ -10,7 +10,7 @@ Ejecutadas realmente en el entorno de desarrollo (Node 22, Vitest 5): `npm test`
 | `opportunities.test.ts` | 13 | no hay puntuación con datos faltantes, filtros, ordenación, CSV |
 | `quality.test.ts` | 14 | casos límite: valor final cero, España > total, cuota 0 observada, exportación 0, `unavailable`, estimados, monedas, series de 2 años, cambio de revisión HS, sin cobertura, empates, valores negativos |
 | `sources.test.ts` | 11 | JSON-stat controlado, Comtrade controlado, errores HTTP/red/JSON, caché obsoleta, separación real/sintético |
-| `comext-adapter.test.ts` | 12 | clasificación de respuestas oficiales (datos/vacío/413/errores), reintentos asíncronos, URLs filtradas con el formato documentado, GR→EL, celdas ausentes ≠ 0, proveedores, **scripts `verify:comext` contra servidor simulado** (códigos 0/1/2) |
+| `comext-adapter.test.ts` | 12 | clasificación de respuestas oficiales (datos/vacío/413/errores), reintentos asíncronos, URLs filtradas con el formato documentado, Grecia enviada como GR (Comext no usa EL), celdas ausentes ≠ 0, proveedores, **scripts `verify:comext` contra servidor simulado** (códigos 0/1/2) |
 | `comtrade-adapter.test.ts` | 5 | sin clave no llama a la red, clave por cabecera/query y nunca en errores, truncado, troceo, filas ignoradas |
 | `integration.test.ts` | 13 | flujo completo en demo, filtros, paginación, detalle, errores en modos reales, aviso de universo pequeño, año incompleto |
 

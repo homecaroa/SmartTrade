@@ -4,14 +4,17 @@
 | Fuente | Estado |
 |---|---|
 | DEMO (sintético) | Funciona; siempre etiquetado. |
-| Eurostat Comext | **Verificado de principio a fin con datos reales** (18/10/2026): `verify:comext` y la app en modo `comext` con `220421, 150920` → 49 oportunidades válidas, 1 incompleta. Los códigos HS6 siguen la nomenclatura de cada año (150910 no existe desde HS2022). Pendiente: más productos, Grecia (`EL`), indicadores de estado. |
+| Eurostat Comext | **Verificado de principio a fin con datos reales** (18/10/2026): `verify:comext` y la app en modo `comext` con `220421, 150920` → 49 oportunidades válidas, 1 incompleta. Los códigos HS6 siguen la nomenclatura de cada año (150910 no existe desde HS2022). Pendiente: más productos, indicadores de estado. Grecia corregida el 30/10/2026 (Comext usa `GR`). |
 | UN Comtrade | Opcional, sin clave ni llamadas reales. |
 
 ## Datos guardados con actualización bimensual (30/10/2026)
-La web lee primero `data/snapshots` (Eurostat: 49 códigos, 2022–2025, cargados de verdad) y consulta en vivo solo lo que falte; GitHub Actions los actualiza cada dos meses con un PR. Pendiente: secreto `COMTRADE_API_KEY` y permiso de Actions para crear PRs en GitHub, y la primera carga de Comtrade. Hallazgo: 080520 sin datos (revisar el catálogo HS2022). Detalle en `docs/data-sources.md`.
+La web lee primero `data/snapshots` (Eurostat: 49 códigos, 2022–2025, cargados de verdad) y consulta en vivo solo lo que falte; GitHub Actions los actualiza cada dos meses con un PR. Pendiente: secreto `COMTRADE_API_KEY` y permiso de Actions para crear PRs en GitHub, y la primera carga de Comtrade. Mandarinas corregidas el 30/10/2026: el 080520 se sustituyó por 080521 y 080522 (HS2022); Eurostat recargado; Comtrade de esos dos códigos pendiente de la próxima actualización. Detalle en `docs/data-sources.md`.
 
 ## Modo Aprendizaje (29/10/2026, publicado)
 Simulador educativo separado del análisis (`/aprendizaje`): exportación (2 casos: intracomunitario y tercer país) y negociación B2B (2 casos), con datos simulados etiquetados, reglas deterministas, evaluación de conocimientos separada de la económica y progreso en el navegador. Detalle, fórmulas y limitaciones en `docs/aprendizaje.md`.
+
+## Laboratorio de logística (30/10/2026, en la rama, sin publicar)
+`/aprendizaje/logistica`: cuatro casos desde Sevilla (Múnich, Casablanca, Nueva York, Tokio) en siete pasos (pedido, alternativas, selección y justificación, Incoterm, presupuesto, incidencia, resultado). Peso tasable, W/M, contenedores 20'/40', reparto por Incoterm, aranceles e impuestos aparte, margen; la mejor ruta es la más barata de las que llegan a tiempo. Todo «Estimaciones simuladas con fines educativos». Acceso desde la portada del Modo Aprendizaje y desde la decisión de transporte del simulador de exportación. Detalle en `docs/aprendizaje.md`.
 
 ## Añadido el 29/10/2026 (pendiente de la primera ejecución real)
 - **Pistas de empresas con IA** (`lib/buyers/ia/`, `npm run buyers:generar`): Gemini sin búsqueda de Google + auditoría que lee cada web. Dos niveles en la web y el CSV: «web verificada» y «pista sin verificar». Detalle, decisiones y riesgos en `docs/buyers.md`. **Falta:** ejecutarlo con una clave real, medir la tasa de verificadas con la lista de vino en Alemania y revisar los términos del EEE.

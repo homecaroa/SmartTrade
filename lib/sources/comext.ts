@@ -25,7 +25,10 @@ export const COMEXT = {
   indWeight: "QUANTITY_IN_100KG",
 };
 const WORLD = () => process.env.COMEXT_WORLD_CODE ?? "WORLD";
-const toComext = (iso2: string) => (iso2 === "GR" ? "EL" : iso2);
+// Grecia: en otras bases de Eurostat es «EL», pero Comext usa «GR» (comprobado el 30/10/2026: reporter=GR devuelve
+// datos y reporter=EL ninguno). Hasta entonces se enviaba EL y Grecia salía siempre «sin datos». Al leer se sigue
+// aceptando EL por si algún socio llega con ese código.
+const toComext = (iso2: string) => iso2;
 const fromComext = (c: string) => (c === "EL" ? "GR" : c);
 
 export function buildComextUrl(base: string, dataset: string, params: Record<string, string[]>): string {
