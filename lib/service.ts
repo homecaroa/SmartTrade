@@ -5,6 +5,10 @@ import type { OpportunityQuery } from "@/lib/schemas/query";
 import type { DataMode } from "@/lib/schemas/trade";
 import { topSuppliersShare, unitValuePerKg } from "@/lib/scoring/indicators";
 import { getSource } from "@/lib/sources";
+import { isSnapshotStale, lookupSnapshot, snapshotAgeDays } from "@/lib/snapshots/store";
+import { STALE_AFTER_DAYS } from "@/lib/snapshots/schema";
+import type { Loaded } from "@/lib/cache/ttl-cache";
+import type { TradeObservation } from "@/lib/schemas/trade";
 import { SourceError, type SourceResult } from "@/lib/sources/types";
 import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities";
 import { dedupeObservations, missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
@@ -21,6 +25,8 @@ export interface DataInfo {
   stale: boolean;
   staleReason?: string;
   warnings: string[];
+  /** Datos guardados usados (actualización bimensual); null si todo se consultó en vivo o es demo. */
+  snapshot: { generatedAt: string; ageDays: number; stale: boolean; liveCodes: string[] } | null;
 }
 
 export interface RankingResponse {
@@ -74,14 +80,10 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
     throw new SourceError("config", `El año ${year} puede tener datos incompletos o provisionales: el último año completo es ${lastFullYear}.`);
   }
   const years = [year - 2, year - 1, year];
-  const source = getSource(cfg.mode);
   const markets = allowedMarkets(cfg.mode);
   const codes = cfg.mode === "demo" ? null : parseHsCodes(query.q);
   const resolution = cfg.mode === "demo" ? null : resolveProductQuery(query.q);
-  const key = JSON.stringify([cfg.mode, years, codes]);
-  const loaded = await getOrLoad<SourceResult>(key, cfg.cacheTtlMs, () =>
-    source.fetchData({ years, productCodes: codes, markets: markets.map((m) => m.code) }).then(validateSourceObservations),
-  );
+  const { loaded, snapshot } = await loadSourceData(cfg, years, codes, markets.map((m) => m.code));
   const built = buildOpportunities({ observations: loaded.value.observations, markets, endYear: year, mode: cfg.mode });
   const info: DataInfo = {
     mode: cfg.mode,
@@ -93,7 +95,9 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
     stale: loaded.stale,
     staleReason: loaded.staleReason,
     warnings: [...loaded.value.warnings],
+    snapshot,
   };
+  if (snapshot?.stale) info.warnings.push(`Los datos guardados tienen ${snapshot.ageDays} días (se actualizan cada dos meses; aviso a partir de ${STALE_AFTER_DAYS}): puede que la última actualización no se haya completado.`);
   if (resolution?.notes.length) info.warnings.push(`Interpretación de tu búsqueda: ${resolution.notes.join(" | ")}.`);
   if (resolution?.unmatched.length) info.warnings.push(`No se ha podido interpretar: ${resolution.unmatched.join(", ")} (se han ignorado).`);
   const completeOpps = built.opportunities.filter((o) => o.complete);
@@ -112,6 +116,43 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
     info.warnings.push(`${built.pairsWithoutData} combinaciones producto-mercado sin datos: ${built.pairsWithoutDataList.join(", ")}${extra} (ausencia de datos no implica ausencia de comercio).`);
   }
   return { year, years, built, info };
+}
+
+/**
+ * Datos de la fuente para unos años y códigos. En modos reales usa primero los datos guardados (data/snapshots,
+ * actualizados cada dos meses) y solo consulta en vivo los códigos que no estén guardados. Motivo: la caché en memoria
+ * se pierde en Vercel y el cupo de UN Comtrade lo comparten todos los visitantes. Si la consulta en vivo de los códigos
+ * restantes falla, se muestran los guardados con un aviso en vez de un error.
+ */
+async function loadSourceData(cfg: AppConfig, years: number[], codes: string[] | null, marketCodes: string[]): Promise<{ loaded: Loaded<SourceResult>; snapshot: DataInfo["snapshot"] }> {
+  const source = getSource(cfg.mode);
+  const live = (cs: string[] | null) => getOrLoad<SourceResult>(JSON.stringify([cfg.mode, years, cs]), cfg.cacheTtlMs, () =>
+    source.fetchData({ years, productCodes: cs, markets: marketCodes }).then(validateSourceObservations));
+  if (cfg.mode === "demo" || !codes) return { loaded: await live(codes), snapshot: null };
+  const snap = lookupSnapshot(cfg.mode, years, codes);
+  if (!snap.covered.length || !snap.generatedAt) return { loaded: await live(codes), snapshot: null };
+  const warnings = [...snap.warnings];
+  let liveObs: TradeObservation[] = [];
+  let stale = false;
+  let staleReason: string | undefined;
+  let liveCodes = snap.missing;
+  if (snap.missing.length) {
+    try {
+      const l = await live(snap.missing);
+      liveObs = l.value.observations;
+      warnings.push(...l.value.warnings);
+      stale = l.stale;
+      staleReason = l.staleReason;
+    } catch (e) {
+      liveCodes = [];
+      warnings.push(`No se pudieron consultar en vivo ${snap.missing.join(", ")} (no están entre los datos guardados): ${e instanceof Error ? e.message : "error desconocido"}.`);
+    }
+  }
+  const fetchedAt = Date.parse(snap.generatedAt);
+  return {
+    loaded: { value: { observations: [...snap.observations, ...liveObs], retrievedAt: snap.generatedAt, sourceLabel: snap.sourceLabel ?? source.label, warnings, synthetic: false }, fetchedAt, ageMs: Date.now() - fetchedAt, fromCache: false, stale, staleReason },
+    snapshot: { generatedAt: snap.generatedAt, ageDays: snapshotAgeDays(snap.generatedAt), stale: isSnapshotStale(snap.generatedAt), liveCodes },
+  };
 }
 
 const toFilters = (q: OpportunityQuery, demo: boolean) => ({

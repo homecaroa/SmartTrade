@@ -1,3 +1,6 @@
+import { mkdtempSync } from "node:fs";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { clearCache } from "@/lib/cache/ttl-cache";
 import { getConfig } from "@/lib/config";
@@ -84,9 +87,15 @@ describe("modos reales: errores sin inventar datos", () => {
     expect(parseHsCodes("220421, 150920")).toEqual(["220421", "150920"]);
     await expect(getRanking(q({}), comextCfg())).rejects.toMatchObject({ kind: "config" });
   });
-  it("si la fuente falla y no hay caché, propaga el error (no muestra datos)", async () => {
-    vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("sin red"));
-    await expect(getRanking(q({ q: "220421" }), comextCfg())).rejects.toMatchObject({ kind: "network" });
+  it("si la fuente falla y no hay caché ni datos guardados, propaga el error (no muestra datos)", async () => {
+    // Antes del 30/10/2026 bastaba con cortar la red. Desde entonces el repositorio trae datos guardados reales
+    // (data/snapshots) y con ellos la web SÍ muestra datos aunque la fuente falle (ver tests/snapshots.test.ts). Para
+    // seguir probando la regla «sin datos, error y nunca datos inventados», se apunta a una carpeta de datos vacía.
+    process.env.SMARTRADE_SNAPSHOT_DIR = mkdtempSync(path.join(tmpdir(), "sin-datos-"));
+    try {
+      vi.spyOn(globalThis, "fetch").mockRejectedValue(new Error("sin red"));
+      await expect(getRanking(q({ q: "220421" }), comextCfg())).rejects.toMatchObject({ kind: "network" });
+    } finally { delete process.env.SMARTRADE_SNAPSHOT_DIR; }
   });
   it("Comtrade sin clave devuelve error de configuración", async () => {
     const cfg = getConfig({ SMARTRADE_DATA_MODE: "comtrade" });

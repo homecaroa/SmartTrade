@@ -1,0 +1,17 @@
+{
+  "v": 1,
+  "mode": "comext",
+  "code": "080520",
+  "years": [
+    2022,
+    2023,
+    2024,
+    2025
+  ],
+  "generatedAt": "2026-10-30T06:00:30.998Z",
+  "sourceLabel": "Eurostat Comext",
+  "warnings": [
+    "Comext solo cubre como mercados de destino a los Estados miembros de la UE."
+  ],
+  "observations": []
+}

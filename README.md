@@ -42,6 +42,9 @@ Códigos de salida: `0` coherente · `1` fallo/discrepancia (dice qué corregir)
 SMARTRADE_DATA_MODE=comext npm run dev    # en el buscador: 220421, 150920 (códigos HS6 vigentes en HS2022)
 ```
 
+## Datos guardados (actualización bimensual)
+En modos reales, la web usa primero los datos guardados en `data/snapshots/` y solo consulta en vivo lo que falte. Se actualizan cada dos meses con GitHub Actions, que abre un PR para revisarlos (`npm run datos:actualizar` para hacerlo a mano). Detalle y requisitos en `docs/data-sources.md`.
+
 ## Variables de entorno
 Ver `.env.example`: `SMARTRADE_DATA_MODE`, `CACHE_TTL_SECONDS`, `DEFAULT_END_YEAR`, `COMEXT_BASE_URL`, `COMEXT_DATASET`, `COMEXT_WORLD_CODE`, `COMTRADE_API_KEY`, `COMTRADE_KEY_IN_QUERY`. Ninguna se expone al navegador.
 

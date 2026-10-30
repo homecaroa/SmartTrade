@@ -13,6 +13,7 @@ Alcance: esta sesión trabaja **solo** sobre el repo `homecaroa/SmartTrade`. Otr
 - **Sin promesas** en textos de la app: las etiquetas y la puntuación no son recomendaciones.
 - **Gemini siempre SIN la herramienta de búsqueda de Google** y nunca se publican sus resultados de búsqueda: los términos lo restringen (ver `docs/buyers.md`). Las listas de IA llevan siempre origen, modelo, fecha y «sin verificar» si no se comprobó.
 - **Modo Aprendizaje** (`/aprendizaje`, `lib/learning`): separado del análisis, sin red ni azar, todo dato inventado etiquetado como simulado. Ver `docs/aprendizaje.md`.
+- **Datos guardados** (`data/snapshots`): los genera `npm run datos:actualizar` (cada dos meses vía GitHub Actions → PR). No se editan a mano. Ver `docs/data-sources.md`.
 - **No instalar dependencias** sin justificación técnica clara.
 - Español en UI, código comentado y docs.
 
