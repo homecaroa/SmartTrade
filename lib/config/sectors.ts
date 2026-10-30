@@ -7,7 +7,7 @@ export interface Sector { id: string; name: string; description: string; codes: 
 
 export const SECTORS: Sector[] = [
   { id: "alimentacion", name: "Alimentación", description: "Aceite, frutas, hortalizas, conservas, cárnicos, lácteos, dulces y café.",
-    codes: ["150920", "150930", "200570", "160414", "020329", "021011", "040690", "190531", "180690", "090121", "100630", "080510", "080520", "080930", "081010", "070200", "070960"] },
+    codes: ["150920", "150930", "200570", "160414", "020329", "021011", "040690", "190531", "180690", "090121", "100630", "080510", "080521", "080522", "080930", "081010", "070200", "070960"] },
   { id: "bebidas", name: "Vinos y bebidas", description: "Vino, espumosos, cerveza y destilados.", codes: ["220421", "220429", "220410", "220300", "220830"] },
   { id: "salud-quimica", name: "Salud, química y cosmética", description: "Medicamentos, perfumería, plásticos, fertilizantes y neumáticos.", codes: ["300490", "330499", "330300", "392690", "310210", "401110"] },
   { id: "automocion", name: "Automoción", description: "Turismos, vehículos eléctricos y componentes.", codes: ["870323", "870324", "870380", "870829", "870899"] },

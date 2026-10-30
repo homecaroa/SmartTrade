@@ -105,7 +105,7 @@ Los «porqués» son los que dan los docs. Quién decidió cada cosa y cuándo: 
 - **Medición de la expansión de cuota con datos reales** (sector de 10+ productos): pendiente.
 - **Comparación cuantitativa Comext vs Comtrade:** pendiente (hay diferencia sin explicar en exportaciones de España de HS 220421: 1.879,2 M€ en Eurostat 2024 frente a 1.914 M$ en Comtrade; monedas distintas, sin conversión).
 - **Cobertura Comtrade:** Emiratos sin 2024; Arabia Saudí sin datos (no se ofrece).
-- **Grecia (`EL`) como declarante** y el significado de los indicadores de estado (`c`, `e`) de JSON-stat: sin confirmar.
+- **Indicadores de estado** (`c`, `e`) de JSON-stat: sin confirmar. (Grecia resuelta el 30/10/2026: Comext usa `GR`.)
 - **Peso neto en Comtrade:** no lo publican todos los países (p. ej. Japón 220421, Reino Unido 220421/220429: `n.d.`). Pendiente de cartografiar qué países lo publican.
 - **Compradores:** datos curados solo para HS 220421 en Japón; consultas en vivo solo en inglés; faltan ferias (p. ej. Foodex) y asociaciones.
 - **Calculadora de coste puesto en destino:** no existe, y solo tendría sentido con datos que aporte el usuario.
@@ -171,7 +171,7 @@ Orden mío, **inferido** de los pendientes de `PROGRESS.md`, los docs y los ries
 6. **Ampliar la prueba real de Comext a 10+ productos / un sector** (el siguiente paso que ya marcaba `PROGRESS.md`). Hasta entonces la «posición exportadora» y los percentiles son poco informativos. Aprovechar para repetir la medición de la expansión de cuota con datos reales.
 7. **Probar Comtrade dentro de la app con clave real** y comparar cuantitativamente con Eurostat (resolver la diferencia en exportaciones de HS 220421).
 8. **Probar Tavily con clave real en 3 combinaciones producto–país**, añadir términos en el idioma del país y fuentes de ferias/asociaciones; revisión humana antes de ampliar los datos curados.
-9. **Confirmar Grecia (`EL`) y los indicadores de estado** de Comext (`c`, `e`) para poder señalar datos provisionales.
+9. **Confirmar los indicadores de estado** de Comext (`c`, `e`) para poder señalar datos provisionales.
 10. **Más mercados/productos fuera de la UE** (cobertura verificada solo para HS 220421 y 9 mercados) y cartografiar qué países publican peso neto.
 11. **Pruebas de interfaz** (hoy no hay). Puede esperar si el uso es interno.
 

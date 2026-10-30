@@ -17,7 +17,10 @@ export const HS_CATALOG: HsEntry[] = [
   { code: "220300", name: "Cerveza de malta", keywords: "cerveza malta beer" },
   { code: "220830", name: "Whisky", keywords: "whisky licor destilado whisky whiskey spirits" },
   { code: "080510", name: "Naranjas", keywords: "naranjas citricos fruta oranges citrus fruit" },
-  { code: "080520", name: "Mandarinas y clementinas", keywords: "mandarinas clementinas citricos fruta mandarins clementines citrus" },
+  // HS2022 dividió el antiguo 080520 (sin datos desde 2022; comprobado en Eurostat Comext el 30/10/2026) en 080521,
+  // 080522 y 080529 (otros híbridos de cítricos, poco relevante para la exportación española y fuera del catálogo).
+  { code: "080521", name: "Mandarinas (incl. tangerinas y satsumas)", keywords: "mandarinas tangerinas satsumas citricos fruta mandarins tangerines satsumas citrus" },
+  { code: "080522", name: "Clementinas", keywords: "clementinas citricos fruta clementines citrus" },
   { code: "080930", name: "Melocotones y nectarinas", keywords: "melocoton nectarina fruta peaches nectarines fruit" },
   { code: "081010", name: "Fresas", keywords: "fresas fruta strawberries fruit" },
   { code: "070200", name: "Tomates frescos", keywords: "tomates hortalizas verdura tomatoes vegetables" },

@@ -66,7 +66,7 @@ describe("comextSource.fetchData (servidor simulado)", () => {
     const imp = m.requests.find((u) => u.searchParams.get("flow") === "1")!;
     expect(imp.pathname).toBe("/data/ds-045409");
     expect(imp.searchParams.get("format")).toBe("JSON");
-    expect(imp.searchParams.getAll("reporter")).toEqual(["DE", "FR", "EL"]); // US excluido (no UE); GR→EL (código Eurostat)
+    expect(imp.searchParams.getAll("reporter")).toEqual(["DE", "FR", "GR"]); // US excluido (no UE). Antes se enviaba EL: Comext usa GR (comprobado 30/10/2026)
     expect(imp.searchParams.getAll("partner")).toEqual(["WORLD", "ES"]);
     expect(imp.searchParams.getAll("time")).toEqual(["2022", "2023", "2024"]);
     expect(imp.searchParams.getAll("indicators")).toEqual(["VALUE_IN_EUROS", "QUANTITY_IN_100KG"]);

@@ -4,7 +4,7 @@
  * guardado se valida antes de usarse: nunca se mezclan sesiones de casos distintos ni de versiones anteriores.
  */
 export const STORAGE_VERSION = 1;
-export type LearningModule = "exportacion" | "negociacion";
+export type LearningModule = "exportacion" | "negociacion" | "logistica";
 
 export const storageKey = (module: LearningModule, caseId: string) => `smartrade:aprendizaje:v${STORAGE_VERSION}:${module}:${caseId}`;
 

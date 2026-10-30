@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import { resolve, ctxOf } from "@/lib/learning/export/engine";
 import { displayOrder } from "@/lib/learning/order";
@@ -20,6 +21,7 @@ export function ExportDecision({ sc, d, answers, onConfirm }: { sc: ExportScenar
         <legend className="text-base font-semibold">{d.incident ? "⚠️ " : ""}{d.title}</legend>
         <p className="text-sm">{resolve(d.prompt, ctx)}</p>
         {d.concept && <p className="rounded bg-slate-50 p-2 text-xs text-slate-700"><b>Concepto:</b> {d.concept}</p>}
+        {d.stage === "logistica" && d.id === "transport" && <p className="text-xs text-slate-700">¿Quieres comparar modalidades con más detalle (peso tasable, contenedores, presupuesto por conceptos)? <Link href="/aprendizaje/logistica" target="_blank" className="font-semibold text-indigo-700 underline">Abre el Laboratorio de logística</Link> en otra pestaña: tu progreso aquí se conserva.</p>}
         {d.kind === "single" ? (
           <div className="space-y-2">
             {displayOrder(d.options, `${sc.id}:${d.id}`).map((o) => (

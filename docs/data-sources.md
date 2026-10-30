@@ -32,7 +32,9 @@ Docs oficiales consultadas: [Getting started – Comext](https://ec.europa.eu/eu
 ### Confirmado además: consultas con varios valores por dimensión (reporter, partner, product, flow, indicators, time) en una sola petición.
 
 ### Supuestos aún NO confirmados (centralizados en `COMEXT` en `lib/sources/comext.ts`)
-Grecia = `EL` como declarante, y el significado de los indicadores de estado (`c`, `e`) del JSON-stat.
+El significado de los indicadores de estado (`c`, `e`) del JSON-stat.
+
+**Grecia (resuelto el 30/10/2026).** Comext usa `GR`, no `EL` (el código de Grecia en otras bases de Eurostat): con `reporter=GR` devuelve datos y con `EL` ninguno. El adaptador enviaba `EL` y Grecia salía siempre «sin datos»; ahora envía el ISO2 tal cual. Al leer se sigue aceptando `EL` por si llega en algún socio.
 
 ### Consultas del adaptador
 1) Importaciones: declarantes UE × socios {mundo, ES} × productos HS6 × 3 años, flujo 1, valor y peso. 2) Exportaciones: declarante ES × socio mundo × productos × años, flujo 2. 3) Ficha: declarante × producto × año sin filtrar socio (proveedores; se descartan agregados que no sean ISO2).
@@ -99,7 +101,9 @@ Consulta HS 220421, años 2022-2024, importaciones con socios mundo y España (v
 
 **Requisitos en GitHub:** secreto `COMTRADE_API_KEY` (sin él solo se actualiza Eurostat) y, en Settings → Actions → General → Workflow permissions, permitir que GitHub Actions cree pull requests.
 
-**Primera carga (30/10/2026, real):** Eurostat Comext, 49 códigos, 2022–2025, 9.610 observaciones, 4,6 MB. UN Comtrade aún sin guardar (necesita la clave; lo hará la primera ejecución automática o una manual). En esa carga el **080520** (mandarinas) no devolvió datos: probablemente la HS2022 lo dividió en varios códigos (no verificado); el catálogo debería revisarse.
+**Primera carga (30/10/2026, real):** Eurostat Comext, 49 códigos, 2022–2025, 9.610 observaciones, 4,6 MB. UN Comtrade aún sin guardar (necesita la clave; lo hará la primera ejecución automática o una manual). En esa carga el **080520** (mandarinas) no devolvió datos.
+
+**Mandarinas (corregido el 30/10/2026).** La HS2022 dividió el 080520 en **080521** (mandarinas, tangerinas y satsumas), **080522** (clementinas) y 080529 (los demás híbridos); comprobado en Comext: 080520 sin valores en 2022–2025 y los nuevos con datos. El catálogo y el sector de alimentación usan 080521 y 080522, y se borraron los ficheros guardados del 080520. Eurostat se recargó ese día (50 códigos, 10.406 observaciones, Grecia incluida); **Comtrade de 080521/080522 no está guardado todavía**: se consulta en vivo hasta la próxima actualización bimensual (o una manual con la clave).
 
 **Diffs legibles (30/10/2026).** Las observaciones se guardan sin la hora de descarga (antes cambiaba en cada línea y el PR mostraba miles de cambios con datos idénticos) y en orden fijo; la fecha vive una vez en `generatedAt` y se repone al leer. Comprobado con dos descargas reales seguidas: solo cambia esa línea. Los ficheros guardados antes de ese día aún la llevan, así que **la próxima actualización mostrará una vez todas las líneas cambiadas**; a partir de la siguiente, solo los cambios reales.
 
