@@ -1,13 +1,16 @@
 import { ESTIMACION, REAL_HS, REAL_MARKET, SUPUESTO, VERIFICAR } from "../../provenance";
 import { round2 } from "../../money";
 import { computeOperation, sellerBearsTransitRisk, sellerMustInsure, incotermOf } from "../costs";
+import { R } from "../../logistics/types";
 import type { DecisionCtx, ExportScenario } from "../types";
-import { eur, opt, productName, sellerCarries } from "./shared";
+import { bySea, eur, leg, opt, ownershipDecision, productName, routeDecisions, sellerCarries } from "./shared";
 
 /**
  * CASO A1 (básico, intracomunitario). Todo lo que no sea el código HS o la pertenencia de Alemania a la UE es SIMULADO:
  * empresas ficticias, precios, costes y plazos inventados con fines educativos.
  * Idea didáctica: dentro de la UE no hay aduana; lo que importa es el IVA (entrega intracomunitaria) y la prueba del transporte.
+ * Logística: con 20 palés y 15 días (5 de preparación), el camión completo es lo lógico; el barco vía Hamburgo es más
+ * barato pero no llega, y grupaje y tren solo llegan si todo va bien. Rutas didácticas: tarifas en rangos inventados.
  */
 const revenueOf = (ctx: DecisionCtx) => computeOperation(ctx.scenario, ctx.settings).revenue;
 
@@ -34,24 +37,52 @@ export const ACEITE_ALEMANIA: ExportScenario = {
     { label: "Producto", value: `${productName("150920")} (HS 150920)`, prov: REAL_HS },
     { label: "Destino", value: "Alemania, Estado miembro de la UE: no hay aduana ni aranceles entre España y Alemania", prov: REAL_MARKET },
     { label: "Pedido", value: "1.000 cajas de 12 botellas de 0,75 l", prov: SUPUESTO },
-    { label: "Peso y volumen", value: "≈ 17.000 kg brutos en 20 palets europeos (un camión completo)", prov: ESTIMACION },
+    { label: "Peso y volumen", value: "≈ 17.000 kg brutos y 32 m³ en 20 palés europeos (un camión completo)", prov: ESTIMACION },
     { label: "Precio en origen (EXW)", value: "48,00 € por caja, embalaje estándar incluido", prov: SUPUESTO },
     { label: "Coste de producción", value: "38,40 € por caja", prov: SUPUESTO },
     { label: "Plazo pactado", value: "Entrega en Múnich como máximo 15 días después de confirmar el pedido", prov: SUPUESTO },
     { label: "Petición del comprador", value: "Precio entregado en su almacén de Múnich y pago a 30 días", prov: SUPUESTO },
     { label: "Etiquetado", value: "Información alimentaria obligatoria en alemán para la venta en Alemania", prov: VERIFICAR },
   ],
-  transport: [
-    { id: "camion_completo", label: "Camión completo (FTL) Jaén–Múnich", mode: "carretera", cost: 2300, days: 4 },
-    { id: "grupaje", label: "Grupaje por carretera", mode: "carretera", cost: 2900, days: 7 },
-    { id: "maritimo", label: "Marítimo Algeciras–Hamburgo y camión", mode: "maritimo", cost: 2600, days: 16 },
-    { id: "aereo", label: "Aéreo", mode: "aereo", cost: 21000, days: 2 },
-  ],
+  logistics: {
+    origin: "Jaén", destinationPlace: "Múnich (almacén del comprador)",
+    cargo: { goods: "fragil", pallets: 20, grossKg: 17_000, volumeM3: 32 },
+    routes: [
+      { id: "camion_completo", modality: "carretera", label: "Camión completo (FTL) Jaén–Múnich puerta a puerta", transshipments: [], waitDays: R(0, 1),
+        legs: [leg("camion", "Jaén", "Múnich", [4, 5], "principal", { kind: "camion_completo", km: 2300 })],
+        terminal: { kind: "por_camion", origin: R(0, 0), destination: R(0, 0) }, destinationCharges: R(0, 0), suitability: [] },
+      { id: "grupaje", modality: "carretera", label: "Grupaje por carretera (plataformas)", transshipments: ["plataforma de Madrid"], waitDays: R(0, 2),
+        legs: [leg("camion", "Jaén", "Múnich (vía plataformas)", [6, 9], "principal", { kind: "grupaje_carretera", ratePer100Kg: R(18, 26) })],
+        terminal: { kind: "por_palet", origin: R(4, 7), destination: R(4, 7) }, destinationCharges: R(0, 0),
+        suitability: [{ penalty: 15, note: "Más manipulaciones en las plataformas: más riesgo de roturas en botellas de vidrio." }] },
+      { id: "tren", modality: "ferroviario", label: "Tren con camión en los extremos", transshipments: ["frontera franco-española (cambio de ancho de vía)"], waitDays: R(1, 3),
+        transshipmentCost: R(180, 280),
+        legs: [leg("camion", "Jaén", "terminal ferroviaria de Madrid", [1, 1], "recogida", { kind: "camion_completo", km: 330 }),
+          leg("tren", "Madrid", "frontera (ancho ibérico)", [2, 3], "principal", { kind: "tren", perContainer40: R(1900, 2600) }, "Incluye los dos tramos ferroviarios."),
+          leg("tren", "frontera (ancho internacional)", "terminal de Múnich", [3, 4], "principal"),
+          leg("camion", "terminal de Múnich", "almacén del comprador", [1, 1], "ultima_milla")],
+        terminal: { kind: "por_contenedor", origin: R(120, 200), destination: R(120, 200) }, destinationCharges: R(0, 0),
+        suitability: [{ penalty: 10, note: "El cambio de ancho de vía obliga a transbordar la carga: una manipulación más." }] },
+      { id: "maritimo", modality: "maritimo_fcl", label: "Contenedor por mar Algeciras–Hamburgo y camión", transshipments: [], waitDays: R(2, 5),
+        legs: [leg("camion", "Jaén", "puerto de Algeciras", [1, 1], "recogida", { kind: "camion_completo", km: 300 }),
+          leg("barco", "Algeciras", "Hamburgo", [7, 9], "principal", { kind: "fcl", per20: R(700, 1100), per40: R(950, 1400) }),
+          leg("camion", "Hamburgo", "almacén del comprador (Múnich)", [2, 2], "ultima_milla", { kind: "camion_completo", km: 780 })],
+        terminal: { kind: "por_contenedor", origin: R(180, 260), destination: R(180, 260) }, destinationCharges: R(80, 160), suitability: [] },
+      { id: "aereo", modality: "aereo", label: "Avión Madrid–Múnich con camión en los extremos", transshipments: [], waitDays: R(1, 2),
+        legs: [leg("camion", "Jaén", "aeropuerto de Madrid-Barajas", [1, 1], "recogida", { kind: "camion_completo", km: 330 }),
+          leg("avion", "Madrid", "Múnich", [1, 1], "principal", { kind: "aereo", perChargeableKg: R(1.9, 2.8) }),
+          leg("camion", "aeropuerto de Múnich", "almacén del comprador", [0, 1], "ultima_milla")],
+        terminal: { kind: "por_kg_tasable", origin: R(0.08, 0.14), destination: R(0.08, 0.14) }, destinationCharges: R(60, 120),
+        suitability: [{ penalty: 10, note: "17 toneladas en avión exigen carguero o varios vuelos." }] },
+    ],
+    infeasible: [],
+    geographyNote: "Múnich no tiene puerto marítimo: por barco o avión hacen falta tramos por carretera hasta el almacén del comprador.",
+    decisiveReason: "barata_que_cumple",
+  },
   packing: [
     { id: "protegido", label: "Cajas con separadores, palet retractilado y esquineros", cost: 1300, protects: true },
     { id: "basico", label: "Cajas sin separadores", cost: 700, protects: false },
   ],
-  fees: { loading: 150, exportClearance: 0, importClearance: 0, unloading: 120, insuranceRatePct: 0.3 },
   duty: null,
   importVatRatePct: null,
   sellerVatRegisteredAtDestination: false,
@@ -95,6 +126,7 @@ export const ACEITE_ALEMANIA: ExportScenario = {
       ],
       best: "DAP", whyBest: "DAP es una regla multimodal que entrega en el lugar que pide el comprador.",
     },
+    ownershipDecision,
     {
       id: "payment", stage: "contrato", kind: "single", title: "Forma de cobro",
       prompt: "Es un cliente nuevo, de un país de la UE, que pide pagar a 30 días. ¿Qué forma de cobro propones?",
@@ -106,18 +138,7 @@ export const ACEITE_ALEMANIA: ExportScenario = {
       ],
       best: "anticipo_30_70", whyBest: "Con un cliente nuevo conviene repartir el riesgo; más adelante, con historial, se puede pasar a cuenta abierta.",
     },
-    {
-      id: "transport", stage: "logistica", kind: "single", title: "Modo de transporte",
-      prompt: "Tienes 20 palets (≈17 t) y 15 días de plazo, de los que 5 son de preparación en almacén. ¿Cómo envías?",
-      appliesIf: sellerCarries,
-      options: [
-        opt("camion_completo", "Camión completo (FTL), 4 días, 2.300 €", "correcta", "Es la opción natural: llenas un camión, va directo y llega con margen."),
-        opt("grupaje", "Grupaje por carretera, 7 días, 2.900 €", "razonable", "Llegas a tiempo, pero el grupaje compensa con cargas pequeñas: con un camión completo pagas más y la mercancía se manipula más."),
-        opt("maritimo", "Marítimo y camión, 16 días, 2.600 €", "grave", "16 días de viaje más 5 de preparación superan el plazo de 15 días pactado."),
-        opt("aereo", "Aéreo, 2 días, 21.000 €", "grave", "Desproporcionado: el flete se come todo el margen de la operación."),
-      ],
-      best: "camion_completo", whyBest: "Carga completa, distancia europea y plazo holgado: camión completo.",
-    },
+    ...routeDecisions("Tienes 20 palés (≈17 t, 32 m³) de botellas de vidrio y 15 días de plazo, de los que 5 son de preparación en almacén. Compara las alternativas y elige la ruta."),
     {
       id: "packing", stage: "logistica", kind: "single", title: "Embalaje",
       prompt: "Son botellas de vidrio que viajarán 2.000 km. ¿Qué embalaje usas?",
@@ -132,7 +153,7 @@ export const ACEITE_ALEMANIA: ExportScenario = {
       prompt: (ctx) => `En ${ctx.settings.incoterm} el riesgo del viaje es tuyo hasta Múnich y la regla no te obliga a asegurar. ¿Contratas seguro?`,
       appliesIf: (ctx) => !!ctx.settings.incoterm && sellerBearsTransitRisk(incotermOf(ctx.settings.incoterm)) && !sellerMustInsure(incotermOf(ctx.settings.incoterm)),
       options: [
-        opt("si", "Sí, al 110 % del valor de la mercancía", "correcta", "Por unos 160 € cubres un riesgo de unos 50.000 €."),
+        opt("si", "Sí, al 110 % del valor de la mercancía", "correcta", "Por una prima de en torno al 0,25 % del valor (estimación) cubres un riesgo de unos 50.000 €."),
         opt("no", "No, para ahorrar el coste", "razonable", "Te ahorras la prima, pero si el camión sufre un accidente pierdes la mercancía y la venta."),
       ],
       best: "si", whyBest: "Quien soporta el riesgo del transporte es quien debe valorar asegurarlo.",
@@ -143,8 +164,9 @@ export const ACEITE_ALEMANIA: ExportScenario = {
       docs: (ctx) => [
         { id: "factura", label: "Factura comercial", need: "obligatorio", explain: "Con el NIF-IVA de las dos empresas y la mención de entrega intracomunitaria exenta." },
         { id: "packing_list", label: "Packing list (lista de bultos)", need: "recomendado", explain: "Detalla palets, cajas y pesos; facilita la carga y la recepción." },
-        { id: "cmr", label: "CMR (carta de porte por carretera)", need: ctx.settings.transport === "maritimo" ? "recomendado" : "obligatorio", explain: "Es el contrato de transporte por carretera y, firmado en destino, prueba que la mercancía salió de España (necesario para no repercutir IVA)." },
-        ...(ctx.settings.transport === "maritimo" ? [{ id: "bl", label: "Conocimiento de embarque (B/L)", need: "obligatorio" as const, explain: "Es el documento del tramo marítimo." }] : []),
+        { id: "cmr", label: "CMR (carta de porte por carretera)", need: bySea(ctx) || ctx.settings.transport === "tren" ? "recomendado" : "obligatorio", explain: "Es el contrato de transporte por carretera y, firmado en destino, prueba que la mercancía salió de España (necesario para no repercutir IVA)." },
+        ...(bySea(ctx) ? [{ id: "bl", label: "Conocimiento de embarque (B/L)", need: "obligatorio" as const, explain: "Es el documento del tramo marítimo." }] : []),
+        ...(ctx.settings.transport === "tren" ? [{ id: "cim", label: "Carta de porte ferroviaria (CIM)", need: "obligatorio" as const, explain: "Es el contrato del tramo por ferrocarril y prueba la salida de la mercancía." }] : []),
         { id: "dua_exportacion", label: "DUA de exportación", need: "incorrecto", explain: "No hay despacho de exportación entre países de la UE." },
         { id: "eur1", label: "Certificado de circulación EUR.1", need: "incorrecto", explain: "Prueba el origen preferencial frente a terceros países; dentro de la UE no se usa." },
         { id: "certificado_origen", label: "Certificado de origen de la Cámara de Comercio", need: "innecesario", explain: "No lo exige una venta dentro de la UE; solo si el comprador lo pidiera por motivos comerciales." },
@@ -164,7 +186,7 @@ export const ACEITE_ALEMANIA: ExportScenario = {
     {
       id: "incidencia", stage: "entrega", kind: "single", incident: true, title: "Incidencia: avería en ruta",
       prompt: (ctx) => sellerCarries(ctx)
-        ? `El camión que contrataste sufre una avería en Francia y llegará 3 días tarde. El contrato prevé una penalización del 0,5 % del valor del pedido por día de retraso (${eur(round2(0.005 * revenueOf(ctx)))} por día).`
+        ? `El transporte que contrataste sufre una avería en ruta y la mercancía llegará 3 días tarde. El contrato prevé una penalización del 0,5 % del valor del pedido por día de retraso (${eur(round2(0.005 * revenueOf(ctx)))} por día).`
         : "El camión que contrató el comprador sufre una avería en Francia y llegará 3 días tarde. El comprador te llama molesto.",
       options: [
         opt("avisar", "Avisar enseguida, dar una nueva fecha y ofrecer asumir un día de penalización", "correcta",

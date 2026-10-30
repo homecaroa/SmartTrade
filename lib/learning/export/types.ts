@@ -1,4 +1,5 @@
 import type { Fact } from "../provenance";
+import type { Cargo, InfeasibleOption, JustificationId, RouteOption } from "../logistics/types";
 import type { PaymentId } from "../payments";
 
 /**
@@ -25,6 +26,7 @@ export type Answers = Record<string, string | string[]>;
 export interface Settings {
   incoterm?: string;
   payment?: PaymentId;
+  /** Ruta elegida (id de `logistics.routes`). */
   transport?: string;
   packing?: string;
   /** Solo se pregunta cuando el vendedor soporta el riesgo del transporte sin obligación de asegurar (reglas D). */
@@ -63,9 +65,23 @@ interface BaseDecision {
 }
 export interface SingleDecision extends BaseDecision { kind: "single"; options: Option[]; best: Dyn<string>; whyBest: Dyn<string> }
 export interface MultiDecision extends BaseDecision { kind: "multi"; docs: Dyn<DocOption[]> }
-export type Decision = SingleDecision | MultiDecision;
+/** Elegir ruta entre `logistics.routes`: se corrige con assess.ts (la mejor es la más barata de las que llegan a tiempo). */
+export interface RouteDecision extends BaseDecision { kind: "route" }
+/** Justificar la ruta elegida marcando motivos: se corrige contra los mismos datos que ve el alumno. */
+export interface JustifyDecision extends BaseDecision { kind: "justify" }
+export type Decision = SingleDecision | MultiDecision | RouteDecision | JustifyDecision;
 
-export interface TransportOption { id: string; label: string; mode: "carretera" | "maritimo" | "aereo"; cost: number; days: number }
+/** Planificación logística del caso: carga, rutas didácticas y alternativas no viables (lib/learning/logistics). */
+export interface ShipmentPlan {
+  origin: string;
+  destinationPlace: string;
+  /** Carga física; el valor de la mercancía se calcula con el precio EXW del caso. */
+  cargo: Omit<Cargo, "valueEur" | "units" | "unit" | "hs6" | "product">;
+  routes: RouteOption[];
+  infeasible: InfeasibleOption[];
+  geographyNote: string;
+  decisiveReason: JustificationId;
+}
 export interface PackingOption { id: string; label: string; cost: number; protects: boolean }
 
 export interface ExportScenario {
@@ -87,9 +103,9 @@ export interface ExportScenario {
   unitCost: number;
   targetMarginPct: number;
   facts: Fact[];
-  transport: TransportOption[];
+  /** Rutas, carga y plazos del envío. Fletes, terminales, despachos y seguro salen de lib/learning/logistics/params.ts. */
+  logistics: ShipmentPlan;
   packing: PackingOption[];
-  fees: { loading: number; exportClearance: number; importClearance: number; unloading: number; insuranceRatePct: number };
   /** null en operaciones dentro de la UE (no hay aranceles ni despacho). Tipos SIMULADOS, no tarifas oficiales. */
   duty: { generalRatePct: number; preferentialRatePct: number; originProofDoc: string } | null;
   importVatRatePct: number | null;
@@ -97,7 +113,7 @@ export interface ExportScenario {
   /** Días disponibles desde la confirmación del pedido hasta la entrega pactada, y días de preparación en almacén. */
   deadlineDays: number;
   prepDays: number;
-  /** Opciones con las que se calculó el escandallo de precios (lo que el vendedor repercute en cada Incoterm). */
+  /** Ruta y embalaje con los que se calculó el escandallo de precios (lo que el vendedor repercute en cada Incoterm). */
   standard: { transport: string; packing: string };
   incoterms: string[];
   decisions: Decision[];

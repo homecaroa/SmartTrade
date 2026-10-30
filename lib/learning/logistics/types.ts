@@ -1,9 +1,6 @@
-import type { Fact } from "../provenance";
-import type { Incident } from "./incidents";
-
 /**
- * Tipos del Laboratorio de logística. Los casos son DATOS; las reglas viven en capacity.ts, allocation.ts,
- * calculator.ts, assess.ts y evaluation.ts. Todo importe o plazo es un RANGO simulado: no hay precisión inventada.
+ * Tipos de la planificación logística de las operaciones de exportación. Las rutas son DATOS; las reglas viven en capacity.ts, allocation.ts,
+ * calculator.ts y assess.ts. Todo importe o plazo es un RANGO simulado: no hay precisión inventada.
  */
 export interface Range { min: number; max: number }
 export const R = (min: number, max: number): Range => ({ min, max });
@@ -71,33 +68,26 @@ export interface Cargo {
 
 export type JustificationId = "plazo" | "barata_que_cumple" | "mas_barata" | "mas_rapida" | "aprovecha_capacidad" | "menos_manipulaciones" | "adecuada_mercancia";
 
-export interface LogisticsCase {
-  id: string;
-  title: string;
-  difficulty: "básica" | "media" | "avanzada";
-  summary: string;
-  learningGoal: string;
+/**
+ * Envío que se planifica dentro de una operación de exportación (`ExportScenario.logistics` + datos del caso). Las
+ * rutas son datos didácticos; el cálculo vive en calculator.ts y la valoración en assess.ts.
+ */
+export interface Shipment {
   origin: string;
   destination: string;
   /** Código del mercado de destino en el catálogo de SmarTrade (de ahí sale si es UE). */
   market: string;
   cargo: Cargo;
-  /** Días disponibles desde que la mercancía está lista hasta la entrega pactada. */
+  /** Días disponibles desde que se confirma el pedido hasta la entrega pactada, y días de preparación en almacén. */
   deadlineDays: number;
   prepDays: number;
-  /** Lo pactado con el comprador: precio por unidad y regla en que se calculó. */
-  agreed: { unitPrice: number; incoterm: string; place: string; buyerRequest: string };
-  unitCost: number;
-  facts: Fact[];
   routes: RouteOption[];
   infeasible: InfeasibleOption[];
-  /** Si no hay ruta marítima/aérea directa: por qué no se ofrece (didáctico). */
+  /** Por qué no hay ruta directa o qué tramos obliga la geografía (didáctico). */
   geographyNote: string;
-  incoterms: { correct: string[]; reasonable: string[]; why: string };
   /** Razón que decide el caso: la justificación debe incluirla para ser plenamente correcta. */
   decisiveReason: JustificationId;
-  dutyPct: { preferential: number; general: number; originProof: string } | null;
+  /** Tipos SIMULADOS de arancel (general y preferencial con prueba de origen) e impuesto de importación. */
+  duty: { general: number; preferential: number } | null;
   importVatPct: number | null;
-  /** Incidencia del caso según la ruta y el Incoterm elegidos (determinista). */
-  incident: (c: LogisticsCase, route: RouteOption, incoterm: string) => Incident;
 }

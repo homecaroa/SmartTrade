@@ -1,4 +1,7 @@
+import { assessRoutes, gradeJustification, JUSTIFICATIONS } from "../logistics/assess";
+import type { JustificationId } from "../logistics/types";
 import type { PaymentId } from "../payments";
+import { shipmentOf } from "./costs";
 import { STAGES, type Answers, type Decision, type DecisionCtx, type DocOption, type Dyn, type ExportScenario, type ExtraCost, type Grade, type Settings, type StageId } from "./types";
 
 /** Motor de decisiones del simulador de exportación. Puro y determinista: mismo escenario y respuestas → mismo resultado. */
@@ -53,6 +56,19 @@ export function gradeAnswer(sc: ExportScenario, d: Decision, answers: Answers): 
   const a = answers[d.id];
   if (a === undefined) return null;
   if (d.kind === "multi") return gradeDoc(resolve(d.docs, ctx), Array.isArray(a) ? a : []);
+  if (d.kind === "route") {
+    const { all, best } = assessRoutes(shipmentOf(sc));
+    const me = all.find((x) => x.route.id === a);
+    if (!me) return null;
+    return { grade: me.grade, feedback: me.reasons, best: best.label, why: "La mejor ruta es la más barata de las que llegan a tiempo con seguridad, no la más barata a secas." };
+  }
+  if (d.kind === "justify") {
+    const routeId = ctx.settings.transport;
+    if (!routeId || !Array.isArray(a)) return null;
+    const g = gradeJustification(shipmentOf(sc), routeId, a as JustificationId[]);
+    const decisive = JUSTIFICATIONS.find((j) => j.id === sc.logistics.decisiveReason)!.label;
+    return { grade: g.grade, feedback: g.feedback, best: `Motivos ciertos para tu ruta que incluyan «${decisive}»`, why: "Una decisión logística se justifica con datos comprobables: plazo, coste, capacidad, manipulaciones y adecuación a la mercancía." };
+  }
   const opt = d.options.find((o) => o.id === a);
   if (!opt) return null;
   const bestId = resolve(d.best, ctx);
@@ -74,14 +90,18 @@ export function extrasFrom(sc: ExportScenario, answers: Answers): ExtraCost[] {
 }
 
 /** Estado de una sesión. `confirmed` = decisiones cuya explicación ya vio el alumno (no se pueden cambiar después). */
-export interface ExportSession { v: 1; module: "exportacion"; caseId: string; answers: Answers; confirmed: string[]; startedAt: string }
+/**
+ * v2 (30/10/2026): la etapa logística pasó a elegir ruta y justificarla con el motor de logística, y se añadió la
+ * pregunta de riesgo frente a propiedad. Las sesiones v1 guardadas tienen otra secuencia de decisiones y se descartan.
+ */
+export interface ExportSession { v: 2; module: "exportacion"; caseId: string; answers: Answers; confirmed: string[]; startedAt: string }
 
-export const newSession = (caseId: string, now = new Date()): ExportSession => ({ v: 1, module: "exportacion", caseId, answers: {}, confirmed: [], startedAt: now.toISOString() });
+export const newSession = (caseId: string, now = new Date()): ExportSession => ({ v: 2, module: "exportacion", caseId, answers: {}, confirmed: [], startedAt: now.toISOString() });
 
 export function isExportSession(x: unknown, caseId: string): x is ExportSession {
   if (!x || typeof x !== "object") return false;
   const s = x as Partial<ExportSession>;
-  return s.v === 1 && s.module === "exportacion" && s.caseId === caseId && !!s.answers && typeof s.answers === "object" && Array.isArray(s.confirmed) && typeof s.startedAt === "string";
+  return s.v === 2 && s.module === "exportacion" && s.caseId === caseId && !!s.answers && typeof s.answers === "object" && Array.isArray(s.confirmed) && typeof s.startedAt === "string";
 }
 
 /** Decisión pendiente: la primera visible sin confirmar. Las decisiones que dejan de aplicar se ignoran. */
@@ -102,5 +122,7 @@ export function answerAndConfirm(sc: ExportScenario, s: ExportSession, decisionI
   if (!d) throw new Error(`La decisión ${decisionId} no aplica en este momento.`);
   if (d.kind === "single" && (typeof value !== "string" || !d.options.some((o) => o.id === value))) throw new Error("Opción no válida.");
   if (d.kind === "multi" && !Array.isArray(value)) throw new Error("Selección no válida.");
+  if (d.kind === "route" && (typeof value !== "string" || !sc.logistics.routes.some((r) => r.id === value))) throw new Error("Ruta no disponible en este caso.");
+  if (d.kind === "justify" && (!Array.isArray(value) || value.some((v) => !JUSTIFICATIONS.some((j) => j.id === v)))) throw new Error("Motivo no válido.");
   return { ...s, answers: { ...s.answers, [decisionId]: value }, confirmed: [...s.confirmed, decisionId] };
 }

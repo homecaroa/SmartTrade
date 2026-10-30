@@ -4,4 +4,12 @@
 export default {
   allowedDevOrigins: ["*.app.github.dev"],
   outputFileTracingIncludes: { "/**": ["./data/snapshots/**/*.json"] },
+  // El Laboratorio de logística (publicado el 30/10/2026) se integró ese mismo día en las operaciones de exportación:
+  // sus enlaces llevan a la portada del Modo Aprendizaje en lugar de dar 404.
+  async redirects() {
+    return [
+      { source: "/aprendizaje/logistica", destination: "/aprendizaje", permanent: false },
+      { source: "/aprendizaje/logistica/:caso", destination: "/aprendizaje", permanent: false },
+    ];
+  },
 };

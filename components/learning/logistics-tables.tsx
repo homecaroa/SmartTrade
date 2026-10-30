@@ -3,12 +3,11 @@ import { DEADLINE_LABEL, type RouteAssessment } from "@/lib/learning/logistics/a
 import { computeQuote, transitDays, type Quote } from "@/lib/learning/logistics/calculator";
 import { fmtDays, fmtPctRange, fmtRangeEur } from "@/lib/learning/logistics/format";
 import { LOGISTICS_NOTICE } from "@/lib/learning/logistics/params";
-import { MODALITY_LABEL, VEHICLE_LABEL, type LogisticsCase, type RouteOption } from "@/lib/learning/logistics/types";
+import { MODALITY_LABEL, VEHICLE_LABEL, type RouteOption, type Shipment } from "@/lib/learning/logistics/types";
 import { incotermOf } from "@/lib/learning/export/costs";
-import { fmtEur } from "@/lib/learning/money";
 import { ProvenanceBadge } from "./provenance-badge";
 
-/** Aviso fijo del Laboratorio de logística: en todas sus pantallas. */
+/** Aviso de las estimaciones logísticas: acompaña a la tabla de rutas y a cada presupuesto. */
 export function LogisticsNotice() {
   return (
     <p role="note" className="rounded border border-amber-300 bg-amber-50 p-2 text-xs text-amber-900">
@@ -20,11 +19,11 @@ export function LogisticsNotice() {
 const STATUS_STYLE = { seguro: "bg-emerald-100 text-emerald-900", riesgo: "bg-amber-100 text-amber-900", no_llega: "bg-rose-100 text-rose-900" } as const;
 
 /** Tabla de alternativas: tramos, transbordos, plazo, equipo y coste logístico total (lo paguen vendedor o comprador). */
-export function RoutesTable({ c, rows }: { c: LogisticsCase; rows: Pick<RouteAssessment, "route" | "status">[] }) {
+export function RoutesTable({ c, rows }: { c: Shipment; rows: Pick<RouteAssessment, "route" | "status">[] }) {
   return (
     <div className="space-y-3">
       {rows.map(({ route, status }) => {
-        const q = computeQuote(c, route, c.agreed.incoterm);
+        const q = computeQuote(c, route, "DAP");
         return (
           <article key={route.id} className="space-y-1 rounded border border-slate-200 p-3 text-sm">
             <div className="flex flex-wrap items-center gap-2">
@@ -54,8 +53,9 @@ export function RoutesTable({ c, rows }: { c: LogisticsCase; rows: Pick<RouteAss
 const PARTY_STYLE = { vendedor: "bg-indigo-100 text-indigo-900", comprador: "bg-slate-200 text-slate-800" } as const;
 
 /** Presupuesto: cada concepto una sola vez, con rango y pagador; aranceles e impuestos aparte. */
-export function QuoteView({ c, q, title = "Presupuesto logístico" }: { c: LogisticsCase; q: Quote; title?: string }) {
+export function QuoteView({ c, q, title = "Presupuesto logístico" }: { c: Shipment; q: Quote; title?: string }) {
   const cg = c.cargo;
+  const t = q.taxes;
   return (
     <div className="space-y-3 text-sm">
       <h3 className="font-semibold">{title} · {q.incoterm}</h3>
@@ -72,14 +72,6 @@ export function QuoteView({ c, q, title = "Presupuesto logístico" }: { c: Logis
                 <td className="py-1">{l.note} <ProvenanceBadge prov={l.prov} /></td>
               </tr>
             ))}
-            {q.extras.map((e) => (
-              <tr key={e.label} className="border-b border-slate-100 bg-rose-50 align-top">
-                <td className="py-1 pr-2 font-medium">{e.label}</td>
-                <td className="whitespace-nowrap py-1 pr-2">{fmtEur(e.amount)}</td>
-                <td className="py-1 pr-2"><span className={`rounded px-1.5 py-0.5 ${PARTY_STYLE[e.payer]}`}>{e.payer}</span></td>
-                <td className="py-1">Por la incidencia. {e.note}</td>
-              </tr>
-            ))}
           </tbody>
           <tfoot>
             <tr className="font-semibold"><td className="py-1 pr-2">Coste logístico total</td><td className="whitespace-nowrap py-1 pr-2">{fmtRangeEur(q.logistics.total)}</td><td colSpan={2} className="py-1">vendedor {fmtRangeEur(q.logistics.seller)} · comprador {fmtRangeEur(q.logistics.buyer)}</td></tr>
@@ -88,28 +80,24 @@ export function QuoteView({ c, q, title = "Presupuesto logístico" }: { c: Logis
       </div>
       <div className="rounded bg-slate-50 p-2 text-xs">
         <p className="font-semibold">Aranceles e impuestos (no son costes logísticos)</p>
-        {q.taxes ? (
-          <p>Arancel {fmtRangeEur(q.taxes.duty)} ({c.dutyPct?.preferential} % preferencial; general {c.dutyPct?.general} % · {c.dutyPct?.originProof}). {c.importVatPct === null ? "Sin impuesto de importación tipo IVA en este caso (los impuestos sobre ventas locales no se simulan)." : <>Impuesto de importación {fmtRangeEur(q.taxes.vat)} ({c.importVatPct} %), a cargo del {q.taxes.vatPayer}{q.taxes.vatRecoverable ? ": normalmente recuperable por el importador, por eso no se suma como coste." : ": en DDP lo adelanta el vendedor y, si no está registrado allí, no lo recupera."}</>} Se calculan sobre el valor en aduana (mercancía + flete principal + seguro), simplificación didáctica.</p>
-        ) : <p>{c.dutyPct === null && c.importVatPct === null ? "Operación dentro de la UE: sin despacho de aduanas, aranceles ni IVA de importación (el IVA intracomunitario lo declara el comprador)." : "Sin datos de aranceles para este caso."}</p>}
+        {t ? (
+          <p>Arancel {fmtRangeEur(t.duty)} ({t.dutyPct} %{t.preferential ? ", preferencial con prueba de origen" : ", tipo general: sin prueba de origen acreditada o sin acuerdo preferencial"}; a cargo del {t.payer}). {t.vatPct === null ? "Sin impuesto de importación tipo IVA en este caso (los impuestos sobre ventas locales no se simulan)." : <>Impuesto de importación {fmtRangeEur(t.vat)} ({t.vatPct} %), a cargo del {t.payer}{t.vatRecoverable ? ": recuperable, por eso no se suma como coste." : ": no recuperable, se suma como coste."}</>} Valor en aduana ≈ mercancía + flete principal + seguro ({fmtRangeEur(t.customsValue)}), simplificación didáctica.</p>
+        ) : <p>Operación dentro de la UE: sin despacho de aduanas, aranceles ni IVA de importación.</p>}
       </div>
       <dl className="grid gap-2 text-xs sm:grid-cols-3">
         <Metric label="Coste por kg" value={fmtRangeEur(q.perKg, 2)} />
         <Metric label="Coste por tonelada" value={fmtRangeEur(q.perTonne)} />
         <Metric label="Coste por palé" value={fmtRangeEur(q.perPallet, 2)} />
-        <Metric label={`Coste por ${cg.unit}`} value={fmtRangeEur(q.perUnit, 2)} />
-        <Metric label={`Coste puesto en destino por ${cg.unit} (mercancía + logística + impuestos no recuperables)`} value={fmtRangeEur(q.deliveredCostPerUnit, 2)} />
+        <Metric label={`Coste logístico por ${cg.unit}`} value={fmtRangeEur(q.perUnit, 2)} />
+        <Metric label={`Coste puesto en destino por ${cg.unit} (valor EXW + logística + impuestos no recuperables)`} value={fmtRangeEur(q.deliveredCostPerUnit, 2)} />
         <Metric label="% logístico sobre el valor" value={fmtPctRange(q.logisticsPct)} />
         <Metric label="Plazo de entrega (con preparación)" value={`${fmtDays(q.deliveryDays)} (máx. ${c.deadlineDays})`} />
-        <Metric label="Margen del vendedor" value={fmtRangeEur(q.margin)} />
-        <Metric label="Margen sobre ventas (valor central)" value={`${q.marginPct.toLocaleString("es-ES", { maximumFractionDigits: 1 })} %`} />
+        <Metric label="Equipo" value={`${q.equipment.description} · ${q.equipment.chargeable}`} />
       </dl>
-      <p className="text-xs text-slate-600">Margen = precio pactado ({fmtEur(c.agreed.unitPrice)} × {cg.units.toLocaleString("es-ES")} {plural(cg.unit)}) − coste de producto ({fmtEur(c.unitCost)} por {cg.unit}) − costes logísticos y fiscales que paga el vendedor con {q.incoterm}.</p>
+      <p className="text-xs text-slate-600">La liquidación de la operación usa el valor central de cada rango; el margen final lo verás en el resumen.</p>
     </div>
   );
 }
-
-/** Plural español sencillo para las unidades de los casos (caja → cajas, par → pares). */
-const plural = (w: string) => (/[aeiou]$/.test(w) ? `${w}s` : `${w}es`);
 
 function Metric({ label, value }: { label: string; value: string }) {
   return <div className="rounded border border-slate-200 p-2"><dt className="text-slate-600">{label}</dt><dd className="font-semibold">{value}</dd></div>;
@@ -117,7 +105,7 @@ function Metric({ label, value }: { label: string; value: string }) {
 
 const CONCEPTS: LogisticsConcept[] = ["recogida", "terminal_origen", "despacho_exportacion", "transporte_principal", "seguro", "terminal_destino", "ultima_milla", "despacho_importacion", "aranceles"];
 
-/** Obligaciones de un Incoterm aplicadas a la ruta elegida (vista previa antes de confirmar). */
+/** Quién paga cada concepto con un Incoterm y si encaja con la ruta (se muestra tras decidir el Incoterm). */
 export function IncotermObligations({ code, route }: { code: string; route: RouteOption }) {
   const i = incotermOf(code);
   const ap = applicability(code, route);

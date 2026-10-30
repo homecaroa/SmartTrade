@@ -1,4 +1,4 @@
-import { mid, type JustificationId, type LogisticsCase, type Range, type RouteOption } from "./types";
+import { mid, type JustificationId, type Range, type RouteOption, type Shipment } from "./types";
 import { computeQuote, transitDays } from "./calculator";
 import { fillRate } from "./capacity";
 
@@ -9,12 +9,13 @@ import { fillRate } from "./capacity";
  * - La mejor opción es la MÁS BARATA DE LAS QUE LLEGAN SEGURO (no la más barata a secas).
  * - Nota de la ruta: la mejor → adecuada; segura y hasta 2× su coste, o en riesgo pero más barata → razonable;
  *   no llega, o más de 3× el coste de la mejor sin necesidad → error importante.
- * El coste que se compara es el logístico total (lo paguen el vendedor o el comprador), con el valor central del rango.
+ * El coste que se compara es el logístico total, seguro incluido (lo paguen el vendedor o el comprador), con el valor
+ * central del rango: el Incoterm reparte ese coste pero no lo cambia.
  */
 export type DeadlineStatus = "seguro" | "riesgo" | "no_llega";
 export const DEADLINE_LABEL: Record<DeadlineStatus, string> = { seguro: "Llega a tiempo", riesgo: "Solo en el mejor caso", no_llega: "No llega a tiempo" };
 
-export function deadlineStatus(c: LogisticsCase, route: RouteOption, extraDays = 0): DeadlineStatus {
+export function deadlineStatus(c: Shipment, route: RouteOption, extraDays = 0): DeadlineStatus {
   const t = transitDays(route);
   const d: Range = { min: t.min + c.prepDays + extraDays, max: t.max + c.prepDays + extraDays };
   return d.max <= c.deadlineDays ? "seguro" : d.min <= c.deadlineDays ? "riesgo" : "no_llega";
@@ -22,8 +23,8 @@ export function deadlineStatus(c: LogisticsCase, route: RouteOption, extraDays =
 
 export interface RouteAssessment { route: RouteOption; status: DeadlineStatus; cost: number; grade: "correcta" | "razonable" | "grave"; reasons: string[] }
 
-export function assessRoutes(c: LogisticsCase): { all: RouteAssessment[]; best: RouteOption } {
-  const base = c.routes.map((route) => ({ route, status: deadlineStatus(c, route), cost: mid(computeQuote(c, route, c.agreed.incoterm).logistics.total) }));
+export function assessRoutes(c: Shipment): { all: RouteAssessment[]; best: RouteOption } {
+  const base = c.routes.map((route) => ({ route, status: deadlineStatus(c, route), cost: mid(computeQuote(c, route, "DAP").logistics.total) }));
   const safe = base.filter((b) => b.status === "seguro");
   const pool = safe.length ? safe : base.filter((b) => b.status === "riesgo");
   const best = [...(pool.length ? pool : base)].sort((a, b) => a.cost - b.cost)[0];
@@ -53,7 +54,7 @@ export const JUSTIFICATIONS: { id: JustificationId; label: string }[] = [
 ];
 
 /** ¿Es verdad cada motivo para la ruta elegida? Se calcula con los mismos datos que ve el alumno. */
-export function justificationTruth(c: LogisticsCase, routeId: string): Record<JustificationId, boolean> {
+export function justificationTruth(c: Shipment, routeId: string): Record<JustificationId, boolean> {
   const { all } = assessRoutes(c);
   const me = all.find((a) => a.route.id === routeId)!;
   const safe = all.filter((a) => a.status === "seguro");
@@ -70,7 +71,7 @@ export function justificationTruth(c: LogisticsCase, routeId: string): Record<Ju
   };
 }
 
-export function gradeJustification(c: LogisticsCase, routeId: string, selected: JustificationId[]): { grade: "correcta" | "razonable" | "grave"; feedback: string[] } {
+export function gradeJustification(c: Shipment, routeId: string, selected: JustificationId[]): { grade: "correcta" | "razonable" | "grave"; feedback: string[] } {
   if (!selected.length) return { grade: "grave", feedback: ["No has justificado la elección: en una empresa, toda decisión logística debe poder explicarse."] };
   const truth = justificationTruth(c, routeId);
   const label = (id: JustificationId) => JUSTIFICATIONS.find((j) => j.id === id)!.label;

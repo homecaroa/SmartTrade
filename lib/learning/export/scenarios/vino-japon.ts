@@ -1,14 +1,16 @@
 import { ESTIMACION, REAL_HS, REAL_MARKET, SUPUESTO, VERIFICAR } from "../../provenance";
 import { round2 } from "../../money";
 import { computeOperation, sellerBearsTransitRisk, sellerMustInsure, incotermOf } from "../costs";
+import { R } from "../../logistics/types";
 import type { DecisionCtx, ExportScenario, ExtraCost } from "../types";
-import { eur, opt, productName, sellerCarries, sellerClearsExport } from "./shared";
+import { byAir, eur, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
 
 /**
  * CASO A2 (medio, fuera de la UE). Reales: el código HS y que Japón no es de la UE. TODO lo demás es SIMULADO, incluidos
  * los tipos de arancel (15 % general / 0 % preferencial) y de impuesto de importación (10 %): sirven para practicar el
  * cálculo, NO son las tarifas japonesas. En una operación real se consultan en Access2Markets.
  * Idea didáctica: fuera de la UE aparecen el despacho de exportación, el origen preferencial y la coherencia documental.
+ * Logística: 18 m³ llenan bien un contenedor de 20'; el grupaje solo llega si todo va bien y el avión es desproporcionado.
  */
 const revenueOf = (ctx: DecisionCtx) => computeOperation(ctx.scenario, ctx.settings).revenue;
 const hasOriginProof = (ctx: DecisionCtx) => (ctx.settings.documents ?? []).includes("declaracion_origen");
@@ -49,22 +51,44 @@ export const VINO_JAPON: ExportScenario = {
     { label: "Destino", value: "Japón, país fuera de la UE: hay despacho de exportación y de importación", prov: REAL_MARKET },
     { label: "Acuerdo comercial", value: "Existe un acuerdo de asociación económica UE–Japón con reglas de origen propias", prov: VERIFICAR },
     { label: "Pedido", value: "900 cajas de 12 botellas de 0,75 l, un contenedor de 20 pies", prov: SUPUESTO },
-    { label: "Peso", value: "≈ 10.800 kg brutos", prov: ESTIMACION },
+    { label: "Peso y volumen", value: "≈ 10.800 kg brutos y 18 m³ en 15 palés", prov: ESTIMACION },
     { label: "Precio en origen (EXW)", value: "33,60 € por caja, embalaje estándar incluido", prov: SUPUESTO },
     { label: "Coste de producción", value: "26,40 € por caja", prov: SUPUESTO },
     { label: "Plazo pactado", value: "Llegada a Yokohama como máximo 60 días después de confirmar el pedido", prov: SUPUESTO },
     { label: "Aranceles e impuestos del caso", value: "Arancel general 15 %, preferencial 0 % con prueba de origen; impuesto de importación 10 %: tipos SIMULADOS", prov: ESTIMACION },
   ],
-  transport: [
-    { id: "fcl", label: "Contenedor completo de 20' (FCL) Valencia–Yokohama", mode: "maritimo", cost: 3400, days: 38 },
-    { id: "lcl", label: "Grupaje marítimo (LCL)", mode: "maritimo", cost: 4100, days: 45 },
-    { id: "aereo", label: "Aéreo Madrid–Tokio", mode: "aereo", cost: 26000, days: 4 },
-  ],
+  logistics: {
+    origin: "Logroño", destinationPlace: "Yokohama (almacén del importador)",
+    cargo: { goods: "fragil", pallets: 15, grossKg: 10_800, volumeM3: 18 },
+    routes: [
+      { id: "fcl", modality: "maritimo_fcl", label: "Contenedor completo de 20' (FCL) Valencia–Yokohama", transshipments: [], waitDays: R(2, 5),
+        legs: [leg("camion", "Logroño", "puerto de Valencia", [1, 1], "recogida", { kind: "camion_completo", km: 400 }),
+          leg("barco", "Valencia", "Yokohama", [36, 40], "principal", { kind: "fcl", per20: R(2600, 3600), per40: R(3500, 4800) }),
+          leg("camion", "terminal de Yokohama", "almacén del importador", [1, 1], "ultima_milla")],
+        terminal: { kind: "por_contenedor", origin: R(200, 300), destination: R(250, 380) }, destinationCharges: R(150, 260), suitability: [] },
+      { id: "lcl", modality: "maritimo_lcl", label: "Grupaje marítimo (LCL) consolidado en Valencia", transshipments: ["consolidación en Valencia", "desconsolidación en Yokohama"], waitDays: R(4, 8),
+        legs: [leg("camion", "Logroño", "almacén de consolidación (Valencia)", [1, 1], "recogida", { kind: "camion_completo", km: 400 }),
+          leg("barco", "Valencia", "Yokohama", [40, 48], "principal", { kind: "lcl", perRevenueTon: R(150, 210) }),
+          leg("camion", "almacén de desconsolidación", "almacén del importador", [1, 2], "ultima_milla")],
+        terminal: { kind: "por_tonelada_volumen", origin: R(30, 45), destination: R(35, 55) }, destinationCharges: R(180, 300),
+        suitability: [{ penalty: 20, note: "Botellas de vidrio en grupaje: consolidar y desconsolidar añade manipulaciones y riesgo de roturas." }] },
+      { id: "aereo", modality: "aereo", label: "Avión Madrid–Tokio con camión en los extremos", transshipments: [], waitDays: R(1, 2),
+        legs: [leg("camion", "Logroño", "aeropuerto de Madrid-Barajas", [1, 1], "recogida", { kind: "camion_completo", km: 330 }),
+          leg("avion", "Madrid", "Tokio Narita", [1, 2], "principal", { kind: "aereo", perChargeableKg: R(2.2, 3.0) }),
+          leg("camion", "aeropuerto de Narita", "almacén del importador (Yokohama)", [1, 1], "ultima_milla")],
+        terminal: { kind: "por_kg_tasable", origin: R(0.08, 0.14), destination: R(0.1, 0.16) }, destinationCharges: R(90, 160), suitability: [] },
+    ],
+    infeasible: [
+      { modality: "carretera", reason: "Japón es un archipiélago: no hay conexión terrestre." },
+      { modality: "ferroviario", reason: "No hay conexión ferroviaria con Japón; un corredor Europa–Asia necesitaría además un tramo marítimo final y no compensa para este envío." },
+    ],
+    geographyNote: "Logroño no tiene puerto: el contenedor va en camión hasta Valencia, que tiene servicio regular con Japón.",
+    decisiveReason: "aprovecha_capacidad",
+  },
   packing: [
     { id: "termico", label: "Cajas con separadores y manta térmica en el contenedor", cost: 900, protects: true },
     { id: "estandar", label: "Cajas estándar sin protección térmica", cost: 400, protects: false },
   ],
-  fees: { loading: 180, exportClearance: 250, importClearance: 400, unloading: 300, insuranceRatePct: 0.35 },
   duty: { generalRatePct: 15, preferentialRatePct: 0, originProofDoc: "declaracion_origen" },
   importVatRatePct: 10,
   sellerVatRegisteredAtDestination: false,
@@ -108,6 +132,7 @@ export const VINO_JAPON: ExportScenario = {
       ],
       best: "CIP", whyBest: "Transporte y seguro pagados hasta destino con contenedor: CIP.",
     },
+    ownershipDecision,
     {
       id: "payment", stage: "contrato", kind: "single", title: "Forma de cobro",
       prompt: "Primera operación con este importador, en un país de riesgo bajo, envío marítimo con conocimiento de embarque. ¿Qué forma de cobro propones?",
@@ -119,17 +144,7 @@ export const VINO_JAPON: ExportScenario = {
       ],
       best: "cobro_documentario", whyBest: "Con transporte marítimo, el conocimiento de embarque controla la mercancía: vincular su entrega al pago reduce el riesgo a bajo coste.",
     },
-    {
-      id: "transport", stage: "logistica", kind: "single", title: "Modo de transporte",
-      prompt: "900 cajas (≈10,8 t), 60 días de plazo y 7 de preparación. ¿Cómo envías?",
-      appliesIf: sellerCarries,
-      options: [
-        opt("fcl", "Contenedor completo de 20' (FCL), 38 días, 3.400 €", "correcta", "Llenas un contenedor, la carga no se manipula en ruta y llegas a tiempo."),
-        opt("lcl", "Grupaje marítimo (LCL), 45 días, 4.100 €", "razonable", "Llegas a tiempo, pero pagas más que por un contenedor completo y la mercancía se manipula en consolidación."),
-        opt("aereo", "Aéreo, 4 días, 26.000 €", "grave", "El flete aéreo de casi 11 toneladas de vino hace la operación ruinosa."),
-      ],
-      best: "fcl", whyBest: "Volumen de contenedor completo y plazo suficiente: FCL.",
-    },
+    ...routeDecisions("900 cajas (≈10,8 t, 18 m³) de botellas de vidrio, 60 días de plazo y 7 de preparación. Compara las alternativas y elige la ruta."),
     {
       id: "packing", stage: "logistica", kind: "single", title: "Embalaje",
       prompt: "El contenedor cruzará zonas tropicales durante más de un mes. ¿Qué embalaje usas?",
@@ -156,7 +171,9 @@ export const VINO_JAPON: ExportScenario = {
       docs: (ctx) => [
         { id: "factura", label: "Factura comercial", need: "obligatorio", explain: "Base del despacho en los dos países y del cobro." },
         { id: "packing_list", label: "Packing list (lista de bultos)", need: "obligatorio", explain: "La aduana y el importador la necesitan para comprobar bultos y pesos." },
-        { id: "bl", label: "Conocimiento de embarque (B/L)", need: ctx.settings.incoterm === "EXW" || ctx.settings.incoterm === "FCA" ? "recomendado" : "obligatorio", explain: "Contrato del transporte marítimo y título que da derecho a retirar la mercancía; en el cobro documentario es clave." },
+        byAir(ctx)
+          ? { id: "awb", label: "Conocimiento aéreo (AWB)", need: "obligatorio", explain: "Contrato del transporte aéreo. No es un título de la mercancía: con avión, el cobro documentario protege menos." }
+          : { id: "bl", label: "Conocimiento de embarque (B/L)", need: ctx.settings.incoterm === "EXW" || ctx.settings.incoterm === "FCA" ? "recomendado" : "obligatorio", explain: "Contrato del transporte marítimo y título que da derecho a retirar la mercancía; en el cobro documentario es clave." },
         { id: "dua_exportacion", label: "DUA de exportación", need: sellerClearsExport(ctx) ? "obligatorio" : "innecesario", explain: sellerClearsExport(ctx) ? "Despachas tú la exportación: además, el DUA con salida prueba la exención de IVA de la exportación." : "Con EXW la exportación la despacha el comprador." },
         { id: "declaracion_origen", label: "Declaración de origen en la factura (acuerdo UE–Japón)", need: "obligatorio", explain: "Sin ella el importador no puede pedir el arancel preferencial y pagará el general." },
         { id: "eur1", label: "Certificado de circulación EUR.1", need: "incorrecto", explain: "No es la prueba de origen que usa el acuerdo UE–Japón." },
