@@ -7,7 +7,7 @@ import { clearCache } from "@/lib/cache/ttl-cache";
 import { getRanking } from "@/lib/service";
 import { snapshotFileSchema, STALE_AFTER_DAYS, type SnapshotFile } from "@/lib/snapshots/schema";
 import { clearSnapshotMemo, isSnapshotStale, lookupSnapshot, snapshotAgeDays } from "@/lib/snapshots/store";
-import { serializeSnapshot, snapshotYears, summarize, updateSnapshots } from "@/lib/snapshots/update";
+import { serializeSnapshot, snapshotYears, stableObservations, summarize, updateSnapshots } from "@/lib/snapshots/update";
 import { parseQuery } from "@/lib/schemas/query";
 import { pairObs } from "./helpers";
 import type { TradeObservation } from "@/lib/schemas/trade";
@@ -25,7 +25,8 @@ const put = (f: SnapshotFile | string, mode = "comext", code = typeof f === "str
   writeFileSync(path.join(dir, mode, `${code}.json`), typeof f === "string" ? f : serializeSnapshot(f));
 };
 beforeEach(() => { dir = mkdtempSync(path.join(tmpdir(), "snap-")); clearSnapshotMemo(); clearCache(); });
-afterEach(() => { vi.restoreAllMocks(); delete process.env.SMARTRADE_SNAPSHOT_DIR; });
+const DEFAULT_DIR = process.env.SMARTRADE_SNAPSHOT_DIR; // carpeta vacía de tests/setup.ts
+afterEach(() => { vi.restoreAllMocks(); process.env.SMARTRADE_SNAPSHOT_DIR = DEFAULT_DIR; });
 
 describe("lectura de datos guardados", () => {
   it("separa los códigos guardados de los que faltan y filtra por años", () => {
@@ -61,6 +62,26 @@ describe("lectura de datos guardados", () => {
     expect(serializeSnapshot(f).split("\n").filter((l) => l.startsWith('    {"period"')).length).toBe(f.observations.length);
   });
   it("guarda los cuatro últimos años completos", () => { expect(snapshotYears(new Date("2026-10-30T00:00:00Z"))).toEqual([2022, 2023, 2024, 2025]); });
+});
+
+describe("ficheros estables para revisar en un PR", () => {
+  it("dos descargas con los mismos datos solo difieren en la línea de fecha", () => {
+    const obs = file("220421").observations as TradeObservation[];
+    const a = { ...file("220421"), generatedAt: "2026-11-01T04:23:00.000Z", observations: stableObservations(obs.map((o) => ({ ...o, retrievedAt: "2026-11-01T04:23:00.000Z" }))) };
+    const b = { ...file("220421"), generatedAt: "2027-01-01T04:23:00.000Z", observations: stableObservations([...obs].reverse().map((o) => ({ ...o, retrievedAt: "2027-01-01T04:23:00.000Z" }))) };
+    const la = serializeSnapshot(a).split("\n"), lb = serializeSnapshot(b).split("\n");
+    const diff = la.filter((l, i) => l !== lb[i]);
+    expect(diff).toHaveLength(1);
+    expect(diff[0]).toMatch(/generatedAt/);
+    expect(serializeSnapshot(a)).not.toMatch(/retrievedAt/);
+  });
+  it("al leer, cada observación recupera la fecha del fichero", () => {
+    const obs = stableObservations(file("220421").observations as TradeObservation[]);
+    put(file("220421", { generatedAt: "2026-09-15T00:00:00.000Z", observations: obs }));
+    const r = lookupSnapshot("comext", [2022, 2023, 2024], ["220421"], dir);
+    expect(r.observations.length).toBe(obs.filter((o) => ["2022", "2023", "2024"].includes(o.period)).length);
+    expect(r.observations.every((o) => o.retrievedAt === "2026-09-15T00:00:00.000Z")).toBe(true);
+  });
 });
 
 describe("actualización", () => {

@@ -20,6 +20,15 @@ export interface ModePlan { mode: SnapshotMode; markets: string[]; skipReason?: 
 export interface ModeReport { mode: SnapshotMode; skipped?: string; updated: string[]; changed: string[]; added: string[]; empty: string[]; failed: { codes: string[]; reason: string }[]; observations: number }
 
 const obsKey = (o: TradeObservation) => [o.period, o.reporterCode, o.partnerCode, o.productCode, o.flow].join("|");
+
+/**
+ * Forma estable para guardar: sin `retrievedAt` (la hora de descarga cambiaba en CADA línea en cada ejecución y el PR
+ * mostraba miles de cambios con datos idénticos; la fecha vive una vez en `generatedAt` y store.ts la repone al leer) y
+ * en orden fijo, para que el diff del PR enseñe solo cambios reales de datos.
+ */
+export function stableObservations(obs: TradeObservation[]): Omit<TradeObservation, "retrievedAt">[] {
+  return [...obs].sort((a, b) => obsKey(a).localeCompare(obsKey(b))).map(({ retrievedAt: _drop, ...rest }) => rest);
+}
 const sameData = (a: unknown[], b: TradeObservation[]) => {
   const fmt = (o: Partial<TradeObservation>) => `${obsKey(o as TradeObservation)}=${o.tradeValue}/${o.netWeight}/${o.status}`;
   return a.length === b.length && JSON.stringify(a.map((x) => fmt(x as TradeObservation)).sort()) === JSON.stringify(b.map(fmt).sort());
@@ -45,7 +54,7 @@ export async function updateSnapshots(plans: ModePlan[], codes: string[], years:
       for (const code of group) {
         const obs = res.observations.filter((o) => o.productCode === code);
         const prev = deps.read(plan.mode, code);
-        deps.write({ v: 1, mode: plan.mode, code, years, generatedAt: at, sourceLabel: res.sourceLabel, warnings: res.warnings, observations: obs });
+        deps.write({ v: 1, mode: plan.mode, code, years, generatedAt: at, sourceLabel: res.sourceLabel, warnings: res.warnings, observations: stableObservations(obs) });
         r.updated.push(code);
         r.observations += obs.length;
         if (!obs.length) r.empty.push(code);
