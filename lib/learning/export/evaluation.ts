@@ -1,3 +1,4 @@
+import { JUSTIFICATIONS } from "../logistics/assess";
 import { round2 } from "../money";
 import { computeOperation, type OperationResult } from "./costs";
 import { ctxOf, extrasFrom, gradeAnswer, resolve, visibleDecisions, type ExportSession } from "./engine";
@@ -30,7 +31,9 @@ export function evaluateExport(sc: ExportScenario, s: ExportSession): ExportEval
     const g = gradeAnswer(sc, d, s.answers);
     if (!g) continue;
     const a = s.answers[d.id];
-    const answer = d.kind === "single" ? d.options.find((o) => o.id === a)?.label ?? String(a) : (() => {
+    const answer = d.kind === "single" ? d.options.find((o) => o.id === a)?.label ?? String(a)
+      : d.kind === "route" ? sc.logistics.routes.find((r) => r.id === a)?.label ?? String(a)
+      : d.kind === "justify" ? ((a as string[]).map((id) => JUSTIFICATIONS.find((j) => j.id === id)?.label ?? id).join("; ") || "Sin justificar") : (() => {
       const docs = resolve(d.docs, ctx);
       const chosen = docs.filter((x) => (a as string[]).includes(x.id)).map((x) => x.label);
       return chosen.length ? chosen.join(", ") : "Ningún documento";

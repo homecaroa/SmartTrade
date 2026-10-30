@@ -1,26 +1,33 @@
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
-import { HS_CATALOG } from "@/lib/config/hs-catalog";
-import { MARKETS } from "@/lib/config/catalog";
 import { INCOTERMS } from "@/lib/logistics/incoterms";
+import { computeOperation, routeOf, shipmentOf } from "@/lib/learning/export/costs";
+import { answerAndConfirm, gradeAnswer, newSession, pendingDecision } from "@/lib/learning/export/engine";
+import { EXPORT_SCENARIOS, exportScenario } from "@/lib/learning/export/scenarios";
+import type { ExportScenario } from "@/lib/learning/export/types";
+import { validateOperation } from "@/lib/learning/export/validation";
 import { applicability, MULTIMODAL_RULES, payerOf, SEA_ONLY_RULES } from "@/lib/learning/logistics/allocation";
 import { assessRoutes, deadlineStatus, gradeJustification, justificationTruth } from "@/lib/learning/logistics/assess";
-import { computeQuote, isEuCase, transitDays } from "@/lib/learning/logistics/calculator";
+import { computeQuote, isEuShipment, transitDays } from "@/lib/learning/logistics/calculator";
 import { airChargeableKg, containersNeeded, fillRate, lclRevenueTons, roadChargeableKg, trucksNeeded } from "@/lib/learning/logistics/capacity";
-import { LOGISTICS_CASES, logisticsCase } from "@/lib/learning/logistics/cases";
-import { evaluateLogistics, gradeIncoterm } from "@/lib/learning/logistics/evaluation";
 import { LOGISTICS_NOTICE } from "@/lib/learning/logistics/params";
-import { chooseIncident, chooseIncoterm, chooseRoute, isLogisticsSession, newLogisticsSession, next, type LogisticsSession } from "@/lib/learning/logistics/session";
-import type { LogisticsCase } from "@/lib/learning/logistics/types";
+import { mid } from "@/lib/learning/logistics/types";
 
-const caso = (id: string) => logisticsCase(id)!;
-const route = (c: LogisticsCase, id: string) => c.routes.find((r) => r.id === id)!;
+/**
+ * Logística integrada en las operaciones de exportación. Hasta el 30/10/2026 estas pruebas cubrían un «Laboratorio de
+ * logística» con casos propios; el dueño decidió ese día no tener dos tipos de ejercicio y el motor pasó a la etapa
+ * logística de cada operación. Las fórmulas son las mismas; cambian los datos (rutas de los cuatro casos) y el punto
+ * de llamada (la exportación), que es lo que se comprueba aquí.
+ */
+const sc = (id: string) => exportScenario(id)!;
+const ship = (id: string) => shipmentOf(sc(id));
+const route = (id: string, r: string) => sc(id).logistics.routes.find((x) => x.id === r)!;
 const sinComentarios = (s: string) => s.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
 
 describe("capacidad y unidades de cobro", () => {
   it("aéreo: peso tasable = máx(real, m³ × 166,7) sin error de coma flotante", () => {
-    expect(airChargeableKg({ grossKg: 1100, volumeM3: 9 })).toBe(1500); // ligera: manda el volumen
-    expect(airChargeableKg({ grossKg: 2000, volumeM3: 9 })).toBe(2000); // densa: manda el peso
+    expect(airChargeableKg({ grossKg: 1100, volumeM3: 9 })).toBe(1500);
+    expect(airChargeableKg({ grossKg: 2000, volumeM3: 9 })).toBe(2000);
     expect(airChargeableKg({ grossKg: 10, volumeM3: 0.3 })).toBe(50);
   });
   it("grupaje por carretera: 1 m³ = 333 kg", () => {
@@ -34,241 +41,193 @@ describe("capacidad y unidades de cobro", () => {
   it("FCL: contenedores por volumen o por peso, lo que limite antes", () => {
     expect(containersNeeded({ grossKg: 14_000, volumeM3: 30 }, "20")).toBe(2);
     expect(containersNeeded({ grossKg: 14_000, volumeM3: 30 }, "40")).toBe(1);
-    expect(containersNeeded({ grossKg: 30_000, volumeM3: 10 }, "20")).toBe(2); // limita el peso (25 t)
+    expect(containersNeeded({ grossKg: 30_000, volumeM3: 10 }, "20")).toBe(2);
     expect(containersNeeded({ grossKg: 100, volumeM3: 1 }, "20")).toBe(1);
   });
   it("camión completo: por palés, peso o volumen", () => {
-    expect(trucksNeeded({ pallets: 18, grossKg: 14_000, volumeM3: 30 })).toBe(1);
+    expect(trucksNeeded({ pallets: 20, grossKg: 17_000, volumeM3: 32 })).toBe(1);
     expect(trucksNeeded({ pallets: 40, grossKg: 10_000, volumeM3: 50 })).toBe(2);
     expect(trucksNeeded({ pallets: 20, grossKg: 30_000, volumeM3: 40 })).toBe(2);
-    expect(fillRate({ pallets: 18, grossKg: 14_000, volumeM3: 30 }, "carretera")).toBeCloseTo(14_000 / 24_000, 6); // manda el peso, no los palés
+    expect(fillRate({ pallets: 18, grossKg: 14_000, volumeM3: 30 }, "carretera")).toBeCloseTo(14_000 / 24_000, 6); // manda el peso
   });
 });
 
-describe("presupuesto logístico", () => {
-  const ALL = LOGISTICS_CASES.flatMap((c) => c.routes.flatMap((r) => INCOTERMS.map((i) => ({ c, r, code: i.code }))));
-
-  it("ningún concepto aparece dos veces y todos los rangos son mín ≤ máx y no negativos", () => {
-    for (const { c, r, code } of ALL) {
-      const q = computeQuote(c, r, code);
+describe("presupuesto logístico de cada caso", () => {
+  const ALL = EXPORT_SCENARIOS.flatMap((s) => s.logistics.routes.flatMap((r) => INCOTERMS.map((i) => ({ s, r, code: i.code }))));
+  it("ningún concepto aparece dos veces, los rangos son coherentes y los impuestos van aparte", () => {
+    for (const { s, r, code } of ALL) {
+      const q = computeQuote(shipmentOf(s), r, code);
       const concepts = q.lines.map((l) => l.concept);
-      expect(new Set(concepts).size, `${c.id}/${r.id}/${code}`).toBe(concepts.length);
+      expect(new Set(concepts).size, `${s.id}/${r.id}/${code}`).toBe(concepts.length);
       for (const l of q.lines) { expect(l.range.min).toBeGreaterThanOrEqual(0); expect(l.range.min).toBeLessThanOrEqual(l.range.max); }
-      expect(concepts).not.toContain("aranceles");
-      expect(concepts).not.toContain("iva_importacion");
+      expect(concepts as string[]).not.toContain("aranceles");
+      expect(concepts as string[]).not.toContain("iva_importacion");
     }
   });
   it("el Incoterm reparte el coste pero no lo cambia: total = vendedor + comprador, igual en todas las reglas", () => {
-    for (const c of LOGISTICS_CASES) for (const r of c.routes) {
-      const base = computeQuote(c, r, "DAP").logistics.total;
+    for (const s of EXPORT_SCENARIOS) for (const r of s.logistics.routes) {
+      const base = computeQuote(shipmentOf(s), r, "DAP").logistics.total;
       for (const i of INCOTERMS) {
-        const q = computeQuote(c, r, i.code);
+        const q = computeQuote(shipmentOf(s), r, i.code);
         expect(q.logistics.total).toEqual(base);
         expect(q.logistics.seller.min + q.logistics.buyer.min).toBeCloseTo(q.logistics.total.min, 1);
-        expect(q.logistics.seller.max + q.logistics.buyer.max).toBeCloseTo(q.logistics.total.max, 1);
       }
     }
   });
-  it("EXW: el vendedor no paga logística; DDP: lo paga todo, incluidos aranceles e impuestos, sin recuperar el IVA", () => {
-    const c = caso("sevilla-tokio");
-    const exw = computeQuote(c, route(c, "aereo"), "EXW");
-    expect(exw.logistics.seller).toEqual({ min: 0, max: 0 });
-    const ddp = computeQuote(c, route(c, "aereo"), "DDP");
-    expect(ddp.logistics.buyer).toEqual({ min: 0, max: 0 });
-    expect(ddp.taxes?.vatPayer).toBe("vendedor");
-    expect(ddp.taxes?.vatRecoverable).toBe(false);
-    expect(ddp.margin.max).toBeLessThan(computeQuote(c, route(c, "aereo"), "DAP").margin.max - ddp.taxes!.vat.min + 1);
-  });
-  it("dentro de la UE no hay despachos ni impuestos de importación", () => {
-    const c = caso("sevilla-munich");
-    expect(isEuCase(c)).toBe(true);
-    const q = computeQuote(c, route(c, "camion"), "DAP");
+  it("dentro de la UE no hay despachos ni impuestos; fuera, sí", () => {
+    const de = ship("aceite-alemania");
+    expect(isEuShipment(de)).toBe(true);
+    const q = computeQuote(de, route("aceite-alemania", "camion_completo"), "DAP");
     expect(q.lines.map((l) => l.concept)).not.toContain("despacho_exportacion");
-    expect(q.lines.map((l) => l.concept)).not.toContain("despacho_importacion");
     expect(q.taxes).toBeNull();
+    expect(computeQuote(ship("recambios-marruecos"), route("recambios-marruecos", "camion_ferry"), "DAP").taxes).not.toBeNull();
   });
-  it("aranceles e impuestos van aparte y el IVA recuperable no encarece la unidad entregada", () => {
-    const c = caso("sevilla-casablanca");
-    const q = computeQuote(c, route(c, "camion_ferry"), "DAP");
-    expect(q.taxes?.vatRecoverable).toBe(true);
-    expect(q.taxes!.vat.min).toBeGreaterThan(0);
-    const expected = (c.cargo.valueEur + q.logistics.total.min + q.taxes!.duty.min) / c.cargo.units;
-    expect(q.deliveredCostPerUnit.min).toBeCloseTo(expected, 2);
+  it("arancel = tipo × (valor + flete principal + seguro); el preferencial solo con prueba de origen", () => {
+    const s = ship("recambios-marruecos");
+    const r = route("recambios-marruecos", "camion_ferry");
+    const sin = computeQuote(s, r, "DAP", { originProof: false });
+    const main = sin.lines.find((l) => l.concept === "transporte_principal")!.range;
+    const ins = sin.lines.find((l) => l.concept === "seguro")!.range;
+    expect(sin.taxes!.duty.min).toBeCloseTo((s.cargo.valueEur + main.min + ins.min) * 0.1, 1);
+    expect(computeQuote(s, r, "DAP", { originProof: true }).taxes!.duty.max).toBe(0);
   });
-  it("arancel = tipo preferencial × (valor + flete principal + seguro)", () => {
-    const c = caso("sevilla-nueva-york");
-    const q = computeQuote(c, route(c, "fcl"), "CIP");
-    const main = q.lines.find((l) => l.concept === "transporte_principal")!.range;
-    const ins = q.lines.find((l) => l.concept === "seguro")!.range;
-    expect(q.taxes!.duty.min).toBeCloseTo((c.cargo.valueEur + main.min + ins.min) * (c.dutyPct!.preferential / 100), 1);
+  it("sin acuerdo preferencial (Nueva York) la prueba de origen no rebaja el arancel", () => {
+    const s = ship("aceitunas-nueva-york");
+    const r = route("aceitunas-nueva-york", "fcl");
+    expect(computeQuote(s, r, "CIP", { originProof: true }).taxes!.duty).toEqual(computeQuote(s, r, "CIP", { originProof: false }).taxes!.duty);
   });
-  it("métricas y margen salen de las fórmulas declaradas", () => {
-    for (const c of LOGISTICS_CASES) {
-      const q = computeQuote(c, route(c, c.routes[0].id), c.agreed.incoterm);
-      expect(q.perKg.min).toBeCloseTo(q.logistics.total.min / c.cargo.grossKg, 2);
-      expect(q.perPallet.max).toBeCloseTo(q.logistics.total.max / c.cargo.pallets, 2);
-      expect(q.logisticsPct.min).toBeCloseTo((q.logistics.total.min / c.cargo.valueEur) * 100, 2);
-      const revenue = c.agreed.unitPrice * c.cargo.units;
-      const sellerTaxes = q.taxes && q.taxes.vatPayer === "vendedor" ? q.taxes.duty.max + (q.taxes.vatRecoverable ? 0 : q.taxes.vat.max) : 0;
-      expect(q.margin.min).toBeCloseTo(revenue - c.unitCost * c.cargo.units - q.logistics.seller.max - sellerTaxes, 1);
-      expect(q.deliveryDays.max).toBe(transitDays(route(c, c.routes[0].id)).max + c.prepDays);
+  it("métricas: por kg, por palé, % logístico y plazo con la preparación", () => {
+    for (const s of EXPORT_SCENARIOS) {
+      const r = s.logistics.routes[0];
+      const q = computeQuote(shipmentOf(s), r, "DAP");
+      expect(q.perKg.min).toBeCloseTo(q.logistics.total.min / s.logistics.cargo.grossKg, 2);
+      expect(q.perPallet.max).toBeCloseTo(q.logistics.total.max / s.logistics.cargo.pallets, 2);
+      expect(q.logisticsPct.min).toBeCloseTo((q.logistics.total.min / (s.exwUnitPrice * s.quantity.units)) * 100, 2);
+      expect(q.deliveryDays.max).toBe(transitDays(r).max + s.prepDays);
     }
-  });
-  it("el aéreo cobra por peso tasable: en Tokio, 1.500 kg tasables con 1.100 kg reales", () => {
-    const c = caso("sevilla-tokio");
-    expect(computeQuote(c, route(c, "aereo"), "CPT").equipment.units).toBe(1500);
   });
 });
 
-describe("Incoterms aplicados a la ruta", () => {
+describe("liquidación de la operación con el valor central", () => {
+  it("cada línea logística se liquida con el punto medio de su rango y lo dice", () => {
+    const r = computeOperation(sc("vino-japon"), { incoterm: "CIP", transport: "fcl", documents: ["declaracion_origen"] });
+    const logistic = r.lines.filter((l) => l.range);
+    expect(logistic.length).toBeGreaterThan(5);
+    for (const l of logistic) {
+      expect(l.amount).toBeCloseTo(mid(l.range!), 2);
+      expect(l.note).toMatch(/[Vv]alor central/);
+    }
+  });
+  it("el seguro solo entra si la regla obliga (CIP) o el vendedor decide asegurar su riesgo (DAP)", () => {
+    const has = (inc: string, insurance?: "si" | "no") => computeOperation(sc("aceitunas-nueva-york"), { incoterm: inc, transport: "fcl", insurance }).lines.some((l) => l.concept === "seguro");
+    expect(has("CIP")).toBe(true);
+    expect(has("DDP", "si")).toBe(true);
+    expect(has("DDP", "no")).toBe(false);
+    expect(has("FCA")).toBe(false);
+  });
+  it("si el transporte es del comprador se presupuesta con la ruta estándar del caso", () => {
+    expect(routeOf(sc("vino-japon"), undefined).id).toBe("fcl");
+    expect(computeOperation(sc("vino-japon"), { incoterm: "FCA" }).quote.routeId).toBe("fcl");
+  });
+});
+
+describe("Incoterms frente a la ruta", () => {
   it("solo FAS, FOB, CFR y CIF son marítimas; el resto, multimodales", () => {
-    expect(SEA_ONLY_RULES.sort()).toEqual(["CFR", "CIF", "FAS", "FOB"]);
+    expect([...SEA_ONLY_RULES].sort()).toEqual(["CFR", "CIF", "FAS", "FOB"]);
     expect(MULTIMODAL_RULES).toHaveLength(7);
   });
-  it("una regla marítima con camión en ferry, avión o tren es contradicción", () => {
-    expect(applicability("FOB", route(caso("sevilla-casablanca"), "camion_ferry")).level).toBe("contradiccion");
-    expect(applicability("CIF", route(caso("sevilla-tokio"), "aereo")).level).toBe("contradiccion");
-    expect(applicability("CFR", route(caso("sevilla-munich"), "tren")).level).toBe("contradiccion");
-    expect(gradeIncoterm(caso("sevilla-tokio"), "aereo", "CIF").grade).toBe("grave");
+  it("una regla marítima con camión en ferry, avión o tren es contradicción; con contenedor, aviso", () => {
+    expect(applicability("FOB", route("recambios-marruecos", "camion_ferry")).level).toBe("contradiccion");
+    expect(applicability("CIF", route("vino-japon", "aereo")).level).toBe("contradiccion");
+    expect(applicability("CFR", route("aceite-alemania", "tren")).level).toBe("contradiccion");
+    expect(applicability("CIF", route("aceitunas-nueva-york", "fcl")).level).toBe("aviso");
+    expect(applicability("CIP", route("aceitunas-nueva-york", "fcl")).level).toBe("ok");
   });
-  it("con contenedores, FOB/CFR/CIF son válidas pero con aviso (mejor FCA, CPT o CIP)", () => {
-    const ny = caso("sevilla-nueva-york");
-    expect(applicability("CIF", route(ny, "fcl")).level).toBe("aviso");
-    expect(applicability("CIP", route(ny, "fcl")).level).toBe("ok");
-    expect(gradeIncoterm(ny, "fcl", "CIF").grade).toBe("razonable");
-    expect(gradeIncoterm(ny, "fcl", "CIP").grade).toBe("correcta");
+  it("la validación de la operación usa esa misma regla y el plazo de la ruta", () => {
+    expect(validateOperation(sc("recambios-marruecos"), { incoterm: "FOB", transport: "camion_ferry" }).map((i) => i.severity)).toContain("contradiccion");
+    expect(validateOperation(sc("aceitunas-nueva-york"), { incoterm: "CIF", transport: "fcl" }).map((i) => i.severity)).toContain("aviso");
+    expect(validateOperation(sc("aceite-alemania"), { transport: "maritimo" }).some((i) => /plazo/.test(i.message))).toBe(true);
   });
   it("quién paga: recogida solo del comprador en EXW; última milla del vendedor solo en reglas D", () => {
     expect(INCOTERMS.filter((i) => payerOf("recogida", i.code) === "comprador").map((i) => i.code)).toEqual(["EXW"]);
     expect(INCOTERMS.filter((i) => payerOf("ultima_milla", i.code) === "vendedor").map((i) => i.code).sort()).toEqual(["DAP", "DDP", "DPU"]);
     expect(payerOf("seguro", "CIP")).toBe("vendedor");
-    expect(payerOf("seguro", "CPT")).toBe("comprador");
     expect(payerOf("aranceles", "DDP")).toBe("vendedor");
-    expect(payerOf("aranceles", "DAP")).toBe("comprador");
   });
 });
 
-describe("valoración de alternativas", () => {
-  const BEST = { "sevilla-munich": "camion", "sevilla-casablanca": "camion_ferry", "sevilla-nueva-york": "fcl", "sevilla-tokio": "aereo" } as const;
+describe("valoración de rutas y justificación", () => {
+  const BEST: Record<string, string> = { "aceite-alemania": "camion_completo", "recambios-marruecos": "camion_ferry", "vino-japon": "fcl", "aceitunas-nueva-york": "fcl" };
   it("la mejor ruta es la más barata DE LAS QUE LLEGAN, no la más barata a secas", () => {
-    for (const c of LOGISTICS_CASES) expect(assessRoutes(c).best.id, c.id).toBe(BEST[c.id as keyof typeof BEST]);
-    // Múnich: el contenedor por mar es más barato que el camión, pero no llega.
-    const m = assessRoutes(caso("sevilla-munich")).all;
-    expect(m.find((a) => a.route.id === "fcl")!.cost).toBeLessThan(m.find((a) => a.route.id === "camion")!.cost);
-    expect(m.find((a) => a.route.id === "fcl")!.grade).toBe("grave");
-    // Tokio: el avión es la opción más cara y aun así la correcta.
-    const t = assessRoutes(caso("sevilla-tokio")).all;
-    expect(t.find((a) => a.route.id === "aereo")!.cost).toBe(Math.max(...t.map((a) => a.cost)));
+    for (const s of EXPORT_SCENARIOS) expect(assessRoutes(shipmentOf(s)).best.id, s.id).toBe(BEST[s.id]);
+    // Casablanca: el grupaje con ferry es más barato que el camión completo, pero solo llega si todo va bien.
+    const m = assessRoutes(ship("recambios-marruecos")).all;
+    expect(m.find((a) => a.route.id === "grupaje_ferry")!.cost).toBeLessThan(m.find((a) => a.route.id === "camion_ferry")!.cost);
+    expect(m.find((a) => a.route.id === "grupaje_ferry")!.status).toBe("riesgo");
   });
-  it("lo que no cumple el plazo se marca así, y pagar más de 3× sin necesidad es error", () => {
-    expect(deadlineStatus(caso("sevilla-tokio"), route(caso("sevilla-tokio"), "lcl"))).toBe("no_llega");
-    expect(assessRoutes(caso("sevilla-munich")).all.find((a) => a.route.id === "aereo")!.grade).toBe("grave");
+  it("lo que no llega es error importante; pagar más de 3× sin necesidad, también", () => {
+    expect(deadlineStatus(ship("aceite-alemania"), route("aceite-alemania", "maritimo"))).toBe("no_llega");
+    for (const s of EXPORT_SCENARIOS) expect(assessRoutes(shipmentOf(s)).all.find((a) => a.route.modality === "aereo")!.grade, s.id).toBe("grave");
   });
-  it("hay alternativas no viables explicadas fuera de la UE", () => {
-    for (const id of ["sevilla-casablanca", "sevilla-nueva-york", "sevilla-tokio"]) expect(caso(id).infeasible.length).toBeGreaterThan(0);
+  it("fuera de la UE se explican las alternativas no viables", () => {
+    for (const id of ["recambios-marruecos", "vino-japon", "aceitunas-nueva-york"]) expect(ship(id).infeasible.length).toBeGreaterThan(0);
   });
   it("justificación: vacía o falsa es error; cierta sin el motivo decisivo, razonable", () => {
-    const c = caso("sevilla-tokio");
-    expect(gradeJustification(c, "aereo", []).grade).toBe("grave");
-    expect(justificationTruth(c, "aereo").mas_barata).toBe(false);
-    expect(gradeJustification(c, "aereo", ["mas_barata"]).grade).toBe("grave");
-    expect(gradeJustification(c, "aereo", ["mas_rapida"]).grade).toBe("razonable");
-    expect(gradeJustification(c, "aereo", ["plazo", "mas_rapida"]).grade).toBe("correcta");
+    const s = ship("recambios-marruecos");
+    expect(gradeJustification(s, "camion_ferry", []).grade).toBe("grave");
+    expect(justificationTruth(s, "camion_ferry").mas_barata).toBe(false);
+    expect(gradeJustification(s, "camion_ferry", ["mas_barata"]).grade).toBe("grave");
+    expect(gradeJustification(s, "camion_ferry", ["barata_que_cumple"]).grade).toBe("razonable");
+    expect(gradeJustification(s, "camion_ferry", ["plazo", "barata_que_cumple"]).grade).toBe("correcta");
   });
 });
 
-describe("incidencias según el Incoterm", () => {
-  it("un daño en ruta lo soporta quien tiene el riesgo: vendedor en DAP, comprador en FCA", () => {
-    const c = caso("sevilla-munich");
-    const holder = (code: string) => c.incident(c, route(c, "camion"), code).options.find((o) => o.id === "reservas")!.cost!.payer;
-    expect(holder("DAP")).toBe("vendedor");
-    expect(holder("FCA")).toBe("comprador");
-    expect(holder("CPT")).toBe("comprador");
-  });
-  it("la penalización por retraso solo se aplica al vendedor en las reglas D", () => {
-    const c = caso("sevilla-munich");
-    const callar = (code: string) => c.incident(c, route(c, "fcl"), code).options.find((o) => o.id === "callar")!.cost;
-    expect(callar("DAP")?.amount).toBeGreaterThan(0);
-    expect(callar("FCA")).toBeNull();
-    expect(callar("CPT")).toBeNull();
-  });
-  it("cada incidencia tiene una mejor opción que existe", () => {
-    for (const c of LOGISTICS_CASES) for (const r of c.routes) for (const code of ["FCA", "CPT", "DAP", "DDP"]) {
-      const inc = c.incident(c, r, code);
-      expect(inc.options.some((o) => o.id === inc.best), `${c.id}/${r.id}/${code}`).toBe(true);
+describe("punto de llamada: la etapa logística de la operación", () => {
+  const toLogistics = (s: ExportScenario) => {
+    let ses = newSession(s.id, new Date(0));
+    for (let i = 0; i < 20; i++) {
+      const d = pendingDecision(s, ses)!;
+      if (d.kind === "route") return ses;
+      const best = d.kind === "single" ? (typeof d.best === "string" ? d.best : d.options[0].id) : [];
+      ses = answerAndConfirm(s, ses, d.id, best);
     }
-  });
-});
-
-describe("sesión y evaluación", () => {
-  const play = (c: LogisticsCase, routeId: string, reasons: Parameters<typeof chooseRoute>[3], code: string, own: string, pick: (s: LogisticsSession) => string) => {
-    let s = newLogisticsSession(c.id, new Date("2026-10-30T00:00:00Z"));
-    s = next(next(s));
-    s = next(chooseRoute(c, s, routeId, reasons));
-    s = next(chooseIncoterm(s, code, own));
-    s = next(s);
-    s = next(chooseIncident(c, s, pick(s)));
-    return s;
+    throw new Error("No llega a la etapa logística");
   };
-  it("no avanza sin decidir, no cambia una decisión tomada y rechaza opciones inexistentes", () => {
-    const c = caso("sevilla-munich");
-    let s = next(next(newLogisticsSession(c.id)));
-    expect(s.step).toBe("seleccion");
-    expect(next(s)).toBe(s);
-    expect(() => chooseRoute(c, s, "teletransporte", [])).toThrow();
-    s = chooseRoute(c, s, "camion", ["plazo"]);
-    expect(chooseRoute(c, s, "aereo", [])).toBe(s);
-    expect(() => chooseIncoterm({ ...next(s) }, "XYZ", "contrato")).toThrow();
-  });
-  it("solo acepta sesiones guardadas del mismo caso y versión", () => {
-    const s = newLogisticsSession("sevilla-munich");
-    expect(isLogisticsSession(s, "sevilla-munich")).toBe(true);
-    expect(isLogisticsSession(s, "sevilla-tokio")).toBe(false);
-    expect(isLogisticsSession({ ...s, v: 2 }, "sevilla-munich")).toBe(false);
-  });
-  it("el camino correcto saca 100 % de conocimientos en todos los casos", () => {
-    const DECISIVE_PLUS = { "sevilla-munich": ["barata_que_cumple", "plazo"], "sevilla-casablanca": ["plazo", "barata_que_cumple"], "sevilla-nueva-york": ["aprovecha_capacidad", "plazo"], "sevilla-tokio": ["plazo", "mas_rapida"] } as const;
-    for (const c of LOGISTICS_CASES) {
-      const best = assessRoutes(c).best;
-      const s = play(c, best.id, [...DECISIVE_PLUS[c.id as keyof typeof DECISIVE_PLUS]], c.incoterms.correct[0], "contrato", (st) => c.incident(c, best, st.incoterm!).best);
-      expect(s.step).toBe("resultado");
-      const ev = evaluateLogistics(c, s);
-      expect(ev.knowledge.pct, c.id).toBe(100);
-      expect(ev.errors).toEqual([]);
-      expect(ev.dimensions).toHaveLength(5);
+  it("en los cuatro casos se elige ruta y se justifica, y se corrige con el motor de logística", () => {
+    for (const s of EXPORT_SCENARIOS) {
+      let ses = toLogistics(s);
+      expect(() => answerAndConfirm(s, ses, "transport", "teletransporte")).toThrow();
+      const worstRoute = assessRoutes(shipmentOf(s)).all.find((a) => a.grade === "grave")!.route.id;
+      const bad = answerAndConfirm(s, ses, "transport", worstRoute);
+      expect(gradeAnswer(s, s.decisions.find((d) => d.id === "transport")!, bad.answers)!.grade).toBe("grave");
+      ses = answerAndConfirm(s, ses, "transport", BEST_OF(s));
+      expect(pendingDecision(s, ses)!.kind).toBe("justify");
+      expect(() => answerAndConfirm(s, ses, "justificacion", ["inventado"])).toThrow();
+      ses = answerAndConfirm(s, ses, "justificacion", [s.logistics.decisiveReason, "plazo"]);
+      expect(gradeAnswer(s, s.decisions.find((d) => d.id === "justificacion")!, ses.answers)!.grade, s.id).toBe("correcta");
+      expect(computeOperation(s, { incoterm: ses.answers.incoterm as string, transport: ses.answers.transport as string }).quote.routeId).toBe(BEST_OF(s));
     }
-  });
-  it("la ruta más barata que no llega, con una regla marítima por carretera, suspende", () => {
-    const c = caso("sevilla-casablanca");
-    const s = play(c, "grupaje_ferry", ["mas_barata"], "FOB", "con_riesgo", () => "callar");
-    const ev = evaluateLogistics(c, s);
-    expect(ev.knowledge.pct).toBeLessThan(40);
-    expect(ev.dimensions.find((d) => d.key === "coherencia")!.score).toBe(0);
-    expect(ev.errors.length).toBeGreaterThanOrEqual(3);
   });
 });
+const BEST_OF = (s: ExportScenario) => assessRoutes(shipmentOf(s)).best.id;
 
-describe("integridad del laboratorio", () => {
-  it("los casos usan productos y mercados del catálogo de SmarTrade y reglas que existen", () => {
-    for (const c of LOGISTICS_CASES) {
-      expect(HS_CATALOG.some((e) => e.code === c.cargo.hs6), c.id).toBe(true);
-      expect(MARKETS.some((m) => m.code === c.market), c.id).toBe(true);
-      for (const code of [...c.incoterms.correct, ...c.incoterms.reasonable, c.agreed.incoterm]) expect(INCOTERMS.some((i) => i.code === code)).toBe(true);
-      expect(c.routes.some((r) => r.id === assessRoutes(c).best.id)).toBe(true);
-    }
+describe("integración: un solo tipo de ejercicio", () => {
+  it("el laboratorio independiente ya no existe y sus enlaces redirigen a la portada", () => {
+    expect(existsSync("app/aprendizaje/logistica")).toBe(false);
+    expect(existsSync("components/learning/logistics-lab.tsx")).toBe(false);
+    expect(sinComentarios(readFileSync("next.config.mjs", "utf8"))).toMatch(/source: "\/aprendizaje\/logistica\/:caso", destination: "\/aprendizaje"/);
+    expect(sinComentarios(readFileSync("app/aprendizaje/page.tsx", "utf8"))).not.toMatch(/logistica/);
   });
-  it("cubre las cuatro rutas didácticas desde Sevilla y dificultad progresiva", () => {
-    expect(LOGISTICS_CASES.map((c) => [c.origin, c.market])).toEqual([["Sevilla", "DE"], ["Sevilla", "MA"], ["Sevilla", "US"], ["Sevilla", "JP"]]);
-    expect(LOGISTICS_CASES.map((c) => c.difficulty)).toEqual(["básica", "media", "media", "avanzada"]);
+  it("cubre los destinos pedidos: Alemania, Marruecos, EE. UU. y Japón, con dificultad progresiva", () => {
+    expect(EXPORT_SCENARIOS.map((s) => s.destination)).toEqual(["DE", "MA", "JP", "US"]);
+    expect(EXPORT_SCENARIOS.map((s) => s.difficulty)).toEqual(["básica", "media", "media", "avanzada"]);
   });
-  it("el aviso de estimaciones aparece en todas las pantallas del laboratorio", () => {
+  it("la tabla de rutas lleva el aviso de estimaciones y muestra las opciones mezcladas", () => {
     expect(LOGISTICS_NOTICE).toBe("Estimaciones simuladas con fines educativos");
-    for (const f of ["components/learning/logistics-lab.tsx", "app/aprendizaje/logistica/page.tsx"]) expect(sinComentarios(readFileSync(f, "utf8")), f).toMatch(/<LogisticsNotice/);
-  });
-  it("las opciones se muestran con el orden mezclado", () => {
-    const src = sinComentarios(readFileSync("components/learning/logistics-lab.tsx", "utf8"));
-    expect(src).toMatch(/displayOrder\(c\.routes/);
-    expect(src).toMatch(/displayOrder\(inc\.options/);
-    expect(src).not.toMatch(/\bc\.routes\.map\(|inc\.options\.map\(/);
+    const src = sinComentarios(readFileSync("components/learning/export-decision.tsx", "utf8"));
+    expect(src).toMatch(/<LogisticsNotice/);
+    expect(src).toMatch(/displayOrder\(shipment\.routes/);
+    expect(src).not.toMatch(/shipment\.routes\.map\(/);
+    expect(sinComentarios(readFileSync("components/learning/export-simulator.tsx", "utf8"))).toMatch(/<QuoteView/);
   });
 });

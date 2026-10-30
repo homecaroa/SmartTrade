@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { computeOperation } from "@/lib/learning/export/costs";
+import { computeOperation, routeOf, shipmentOf } from "@/lib/learning/export/costs";
 import { answerAndConfirm, ctxOf, extrasFrom, gradeAnswer, isExportSession, newSession, pendingDecision, progress, stagesFor, visibleDecisions, type ExportSession } from "@/lib/learning/export/engine";
 import { evaluateExport } from "@/lib/learning/export/evaluation";
 import { exportScenario } from "@/lib/learning/export/scenarios";
@@ -11,6 +11,7 @@ import { clearState, loadState, saveState, storageKey } from "@/lib/learning/sto
 import { ExportDecision } from "./export-decision";
 import { ExportSummary } from "./export-summary";
 import { GradeBadge } from "./grade-badge";
+import { IncotermObligations, LogisticsNotice, QuoteView } from "./logistics-tables";
 import { FactList, ProvenanceLegend } from "./provenance-badge";
 import { SimulatedNotice } from "./simulated-notice";
 import { StageProgress } from "./stage-progress";
@@ -85,6 +86,8 @@ export function ExportSimulator({ caseId }: { caseId: string }) {
             <h2 ref={feedbackRef} tabIndex={-1} className="flex flex-wrap items-center gap-2 text-base font-semibold">Consecuencia: {shownDecision.title} <GradeBadge grade={graded.grade} /></h2>
             <ul className="list-disc space-y-1 pl-5 text-sm">{graded.feedback.map((f) => <li key={f}>{f}</li>)}</ul>
             {graded.grade !== "correcta" && <p className="rounded bg-emerald-50 p-2 text-sm text-emerald-900"><b>Lo más adecuado:</b> {graded.best}. {graded.why}</p>}
+            {shownDecision.id === "incoterm" && ctx.settings.incoterm && <IncotermObligations code={ctx.settings.incoterm} route={routeOf(sc, ctx.settings.transport)} />}
+            {shownDecision.kind === "justify" && provisional && <><QuoteView c={shipmentOf(sc)} q={provisional.quote} title="Tu presupuesto logístico" /><LogisticsNotice /></>}
             {issues.length > 0 && <ul className="list-disc pl-5 text-xs text-amber-900">{issues.map((i) => <li key={i.message}>{i.severity === "contradiccion" ? "Contradicción" : "Aviso"}: {i.message}</li>)}</ul>}
             <button type="button" onClick={() => setShown(null)} className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700">{pending ? "Continuar" : "Ver el resumen final"}</button>
           </section>

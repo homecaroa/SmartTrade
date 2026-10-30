@@ -13,8 +13,8 @@ La web lee primero `data/snapshots` (Eurostat: 49 códigos, 2022–2025, cargado
 ## Modo Aprendizaje (29/10/2026, publicado)
 Simulador educativo separado del análisis (`/aprendizaje`): exportación (2 casos: intracomunitario y tercer país) y negociación B2B (2 casos), con datos simulados etiquetados, reglas deterministas, evaluación de conocimientos separada de la económica y progreso en el navegador. Detalle, fórmulas y limitaciones en `docs/aprendizaje.md`.
 
-## Laboratorio de logística (30/10/2026, en la rama, sin publicar)
-`/aprendizaje/logistica`: cuatro casos desde Sevilla (Múnich, Casablanca, Nueva York, Tokio) en siete pasos (pedido, alternativas, selección y justificación, Incoterm, presupuesto, incidencia, resultado). Peso tasable, W/M, contenedores 20'/40', reparto por Incoterm, aranceles e impuestos aparte, margen; la mejor ruta es la más barata de las que llegan a tiempo. Todo «Estimaciones simuladas con fines educativos». Acceso desde la portada del Modo Aprendizaje y desde la decisión de transporte del simulador de exportación. Detalle en `docs/aprendizaje.md`.
+## Logística integrada en las operaciones de exportación (30/10/2026)
+El «Laboratorio de logística» publicado ese día (#5) se integró en la exportación por decisión del dueño (un solo tipo de ejercicio): cuatro operaciones completas (Alemania, Marruecos, Japón, EE. UU.), cada una con elección y justificación de ruta, presupuesto por conceptos en rangos y liquidación con el valor central. `/aprendizaje/logistica` redirige a la portada. Las sesiones guardadas de exportación anteriores se descartan (versión 2). Detalle en `docs/aprendizaje.md`.
 
 ## Añadido el 29/10/2026 (pendiente de la primera ejecución real)
 - **Pistas de empresas con IA** (`lib/buyers/ia/`, `npm run buyers:generar`): Gemini sin búsqueda de Google + auditoría que lee cada web. Dos niveles en la web y el CSV: «web verificada» y «pista sin verificar». Detalle, decisiones y riesgos en `docs/buyers.md`. **Falta:** ejecutarlo con una clave real, medir la tasa de verificadas con la lista de vino en Alemania y revisar los términos del EEE.

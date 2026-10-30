@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { computeOperation, priceForIncoterm } from "@/lib/learning/export/costs";
+import { computeOperation, priceForIncoterm, shipmentOf } from "@/lib/learning/export/costs";
+import { assessRoutes } from "@/lib/learning/logistics/assess";
+import { EXPORT_SCENARIOS } from "@/lib/learning/export/scenarios";
 import { answerAndConfirm, ctxOf, gradeDoc, isExportSession, newSession, pendingDecision, resolve, visibleDecisions, type ExportSession } from "@/lib/learning/export/engine";
 import { evaluateExport } from "@/lib/learning/export/evaluation";
 import { ACEITE_ALEMANIA } from "@/lib/learning/export/scenarios/aceite-alemania";
@@ -19,29 +21,38 @@ function play(sc: ExportScenario, overrides: Record<string, string | string[]> =
   throw new Error("El caso no termina");
 }
 function bestPick(sc: ExportScenario): Picker {
-  return (d, s) => d.kind === "multi"
-    ? resolve(d.docs, ctxOf(sc, s.answers)).filter((x) => x.need === "obligatorio" || x.need === "recomendado").map((x) => x.id)
+  return (d, s) => d.kind === "multi" ? resolve(d.docs, ctxOf(sc, s.answers)).filter((x) => x.need === "obligatorio" || x.need === "recomendado").map((x) => x.id)
+    : d.kind === "route" ? assessRoutes(shipmentOf(sc)).best.id
+    : d.kind === "justify" ? [sc.logistics.decisiveReason, "plazo"]
     : resolve(d.best, ctxOf(sc, s.answers));
 }
-const lastPick: Picker = (d) => (d.kind === "multi" ? [] : d.options[d.options.length - 1].id);
+function lastPick(sc: ExportScenario): Picker {
+  return (d) => d.kind === "multi" || d.kind === "justify" ? [] : d.kind === "route" ? sc.logistics.routes[sc.logistics.routes.length - 1].id : d.options[d.options.length - 1].id;
+}
 
 describe("costes: reparto por Incoterm, sin contar dos veces", () => {
   it("el precio sale del escandallo: EXW + costes logísticos estándar del vendedor por unidad", () => {
-    // Aceite DAP: 48 + (carga 150 + camión 2.300 + seguro 0,3 % × 48.000 × 1,1 = 158,40) / 1.000 = 50,6084 → 50,61
-    expect(priceForIncoterm(ACEITE_ALEMANIA, "DAP")).toBe(50.61);
+    // Hasta el 30/10/2026 se comprobaba una cifra fija (50,61 €) porque cada caso tenía un coste de transporte exacto.
+    // Desde que la logística sale del motor de rangos, se comprueba la fórmula: EXW + (costes del vendedor sin el
+    // embalaje, a valor central, con la ruta estándar) / unidades.
+    const r = computeOperation(ACEITE_ALEMANIA, { incoterm: "DAP", transport: "camion_completo", insurance: "si" });
+    const sellerLogistics = r.lines.filter((l) => l.payer === "vendedor" && l.concept !== "embalaje").reduce((a, l) => a + l.amount, 0);
+    expect(priceForIncoterm(ACEITE_ALEMANIA, "DAP")).toBeCloseTo(48 + sellerLogistics / 1000, 2);
     expect(priceForIncoterm(ACEITE_ALEMANIA, "EXW")).toBe(48);
-    expect(priceForIncoterm(ACEITE_ALEMANIA, "FCA")).toBe(48.15); // solo la carga
+    expect(priceForIncoterm(ACEITE_ALEMANIA, "FCA")).toBe(48); // puerta a puerta: sin recogida ni terminal en origen
+    expect(priceForIncoterm(VINO_JAPON, "FCA")).toBeGreaterThan(33.6); // recogida hasta Valencia y despacho, del vendedor
   });
   it("quién paga cada tramo sale de la tabla de Incoterms", () => {
-    const payer = (inc: string, concept: string) => computeOperation(ACEITE_ALEMANIA, { incoterm: inc, transport: "camion_completo", packing: "protegido", insurance: "si" }).lines.find((l) => l.concept === concept)?.payer;
-    expect(payer("DAP", "transporte")).toBe("vendedor");
-    expect(payer("FCA", "transporte")).toBe("comprador");
-    expect(payer("EXW", "carga")).toBe("comprador");
-    expect(payer("DAP", "carga")).toBe("vendedor");
-    expect(payer("DAP", "descarga")).toBe("comprador");
+    const payer = (inc: string, concept: string) => computeOperation(VINO_JAPON, { incoterm: inc, transport: "fcl", packing: "termico", insurance: "si" }).lines.find((l) => l.concept === concept)?.payer;
+    expect(payer("CIP", "transporte_principal")).toBe("vendedor");
+    expect(payer("FCA", "transporte_principal")).toBe("comprador");
+    expect(payer("EXW", "recogida")).toBe("comprador");
+    expect(payer("FCA", "recogida")).toBe("vendedor");
+    expect(payer("CIP", "ultima_milla")).toBe("comprador");
+    expect(payer("DDP", "ultima_milla")).toBe("vendedor");
   });
   it("cada concepto aparece una sola vez y el margen es ingresos − producto − costes del vendedor", () => {
-    for (const sc of [ACEITE_ALEMANIA, VINO_JAPON]) for (const inc of sc.incoterms) {
+    for (const sc of EXPORT_SCENARIOS) for (const inc of sc.incoterms) {
       const r = computeOperation(sc, { incoterm: inc, insurance: "si", documents: ["declaracion_origen"] });
       const concepts = r.lines.map((l) => l.concept);
       expect(new Set(concepts).size).toBe(concepts.length);
@@ -118,7 +129,7 @@ describe("motor de decisiones: itinerario adaptado al caso", () => {
     const s = newSession("aceite-alemania");
     expect(isExportSession(s, "aceite-alemania")).toBe(true);
     expect(isExportSession(s, "vino-japon")).toBe(false);
-    expect(isExportSession({ ...s, v: 2 }, "aceite-alemania")).toBe(false);
+    expect(isExportSession({ ...s, v: 1 }, "aceite-alemania")).toBe(false); // v1: secuencia anterior a la etapa de rutas
     expect(isExportSession(null, "aceite-alemania")).toBe(false);
   });
 });
@@ -128,7 +139,7 @@ describe("incidencias y efecto económico", () => {
     const cost = (s: ExportSession) => evaluateExport(ACEITE_ALEMANIA, s).economics.lines.find((l) => l.concept === "incidencia")?.amount ?? 0;
     const avisar = cost(play(ACEITE_ALEMANIA, { incidencia: "avisar" }));
     const callar = cost(play(ACEITE_ALEMANIA, { incidencia: "callar" }));
-    expect(avisar).toBeCloseTo(0.005 * 50610, 2);
+    expect(avisar).toBeCloseTo(0.005 * priceForIncoterm(ACEITE_ALEMANIA, "DAP") * 1000, 2);
     expect(callar).toBeCloseTo(3 * avisar, 1);
     expect(cost(play(ACEITE_ALEMANIA, { incoterm: "FCA", incidencia: "avisar" }))).toBe(0); // transporte del comprador
   });
@@ -145,16 +156,19 @@ describe("incidencias y efecto económico", () => {
 });
 
 describe("evaluación: conocimientos y economía por separado", () => {
-  it("el camino recomendado saca 100 y un margen cercano al objetivo; el peor, nota baja y pérdidas", () => {
-    for (const sc of [ACEITE_ALEMANIA, VINO_JAPON]) {
+  it("el camino recomendado saca 100 y un margen cercano al objetivo; el peor, nota baja y peor margen", () => {
+    // Hasta el 30/10/2026 se exigía que el peor camino diera pérdidas. Con el caso de Nueva York ya no es cierto: el peor
+    // camino elige EXW, donde el vendedor no paga transporte, y el margen sigue positivo aunque la nota sea casi cero
+    // (precisamente lo que el simulador quiere enseñar: margen y conocimientos van por separado). Se exige peor margen.
+    for (const sc of EXPORT_SCENARIOS) {
       const best = evaluateExport(sc, play(sc));
       expect(best.knowledge.pct).toBe(100);
       expect(best.graveErrors).toHaveLength(0);
       expect(best.issues).toHaveLength(0);
       expect(Math.abs(best.marginVsTarget)).toBeLessThan(2);
-      const worst = evaluateExport(sc, play(sc, {}, lastPick));
+      const worst = evaluateExport(sc, play(sc, {}, lastPick(sc)));
       expect(worst.knowledge.pct).toBeLessThan(30);
-      expect(worst.economics.margin).toBeLessThan(0);
+      expect(worst.economics.margin).toBeLessThan(best.economics.margin);
     }
   });
   it("una decisión arriesgada puede subir el margen y bajar la nota a la vez", () => {
