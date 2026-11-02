@@ -96,9 +96,11 @@ describe("comextSource.fetchData (servidor simulado)", () => {
     await expect(comextSource.fetchData({ years: [2023], productCodes: ["220421"], markets: ["DE"] })).rejects.toBeInstanceOf(SourceError);
   });
 
-  it("proveedores: excluye agregados y el propio mercado", async () => {
-    await mock("ok");
+  it("proveedores: excluye agregados y el propio mercado, y pide valor y peso", async () => {
+    const m = await mock("ok");
     const sup = await comextSource.fetchSuppliers({ market: "DE", productCode: "220421", years: [2023] });
+    // El peso por proveedor hace falta para comparar valores unitarios con los competidores.
+    expect(m.requests.at(-1)!.searchParams.getAll("indicators")).toEqual(["VALUE_IN_EUROS", "QUANTITY_IN_100KG"]);
     const codes = new Set(sup.map((o) => o.partnerCode));
     expect(codes.has("WORLD")).toBe(false);
     expect(codes.has("DE")).toBe(false);

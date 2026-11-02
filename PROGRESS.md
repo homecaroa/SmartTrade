@@ -16,6 +16,10 @@ Simulador educativo separado del análisis (`/aprendizaje`): exportación (2 cas
 ## Logística integrada en las operaciones de exportación (30/10/2026)
 El «Laboratorio de logística» publicado ese día (#5) se integró en la exportación por decisión del dueño (un solo tipo de ejercicio): cuatro operaciones completas (Alemania, Marruecos, Japón, EE. UU.), cada una con elección y justificación de ruta, presupuesto por conceptos en rangos y liquidación con el valor central. `/aprendizaje/logistica` redirige a la portada. Las sesiones guardadas de exportación anteriores se descartan (versión 2). Detalle en `docs/aprendizaje.md`.
 
+## Competidores y validación histórica del ranking (02/11/2026)
+- **España frente a sus competidores** (ficha de cada oportunidad, `lib/trade/competitors.ts`): cuota, variación de cuota en la ventana y valor unitario de cada proveedor frente al de España. La consulta de proveedores de Comext pide ahora valor y peso (comprobado en vivo). Advertencias: el valor unitario es un indicio, no un precio; dentro de la UE el proveedor es el Estado miembro de expedición (metadata de Eurostat).
+- **Backtest del ranking** (`scripts/backtest-ranking.ts`, `docs/backtest-ranking.md`): orígenes 2019–2021, Eurostat, 46 productos. El crecimiento pasado no anticipa el futuro; para el aumento en euros de las ventas españolas, el tamaño solo acierta más que la puntuación; el potencial de cuota anticipa el crecimiento porcentual. **Pendiente: decisión del dueño sobre pesos o diseño de la puntuación** (no se ha cambiado nada). Detalle en `docs/methodology.md`.
+
 ## Añadido el 29/10/2026 (pendiente de la primera ejecución real)
 - **Pistas de empresas con IA** (`lib/buyers/ia/`, `npm run buyers:generar`): Gemini sin búsqueda de Google + auditoría que lee cada web. Dos niveles en la web y el CSV: «web verificada» y «pista sin verificar». Detalle, decisiones y riesgos en `docs/buyers.md`. **Falta:** ejecutarlo con una clave real, medir la tasa de verificadas con la lista de vino en Alemania y revisar los términos del EEE.
 

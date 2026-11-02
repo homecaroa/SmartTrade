@@ -165,7 +165,8 @@ export const comextSource: TradeSource = {
     const D = COMEXT.dims;
     const url = buildComextUrl(cfg.comextBase, cfg.comextDataset, {
       [D.reporter]: [toComext(q.market)], [D.product]: [q.productCode], [D.flow]: [COMEXT.flowImport],
-      [D.indicators]: [COMEXT.indValue], [D.time]: q.years.map(String),
+      // Valor y peso: el peso por proveedor permite comparar valores unitarios (comprobado en vivo el 02/11/2026).
+      [D.indicators]: [COMEXT.indValue, COMEXT.indWeight], [D.time]: q.years.map(String),
     });
     const raw = await comextFetch(url);
     if (raw === null) return [];

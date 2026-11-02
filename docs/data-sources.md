@@ -37,7 +37,7 @@ El significado de los indicadores de estado (`c`, `e`) del JSON-stat.
 **Grecia (resuelto el 30/10/2026).** Comext usa `GR`, no `EL` (el código de Grecia en otras bases de Eurostat): con `reporter=GR` devuelve datos y con `EL` ninguno. El adaptador enviaba `EL` y Grecia salía siempre «sin datos»; ahora envía el ISO2 tal cual. Al leer se sigue aceptando `EL` por si llega en algún socio.
 
 ### Consultas del adaptador
-1) Importaciones: declarantes UE × socios {mundo, ES} × productos HS6 × 3 años, flujo 1, valor y peso. 2) Exportaciones: declarante ES × socio mundo × productos × años, flujo 2. 3) Ficha: declarante × producto × año sin filtrar socio (proveedores; se descartan agregados que no sean ISO2).
+1) Importaciones: declarantes UE × socios {mundo, ES} × productos HS6 × 3 años, flujo 1, valor y peso. 2) Exportaciones: declarante ES × socio mundo × productos × años, flujo 2. 3) Ficha: declarante × producto × años de la ventana sin filtrar socio, valor y peso (proveedores y comparación con competidores; se descartan agregados que no sean ISO2). Dentro de la UE el socio es el Estado miembro de expedición, no necesariamente el de origen (metadata de Eurostat).
 
 **Cobertura:** declarantes de la UE. Mercados no UE requieren Comtrade (o el dataset DS-059341 tras verificarlo).
 
