@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DataSourceLabel } from "@/components/data-source-label";
+import { CompetitorsTable } from "@/components/competitors-table";
 import { ErrorState } from "@/components/error-state";
 import { MarketAccess } from "@/components/market-access";
 import { OpportunityTags } from "@/components/opportunity-tags";
@@ -10,6 +11,7 @@ import { PrintButton } from "@/components/print-button";
 import { ResearchChecklist } from "@/components/research-checklist";
 import { ScoreBreakdown } from "@/components/opportunity-score";
 import { fmtMoney, fmtNum, fmtPct } from "@/lib/format";
+import { MARKETS } from "@/lib/config/catalog";
 import { productLabel } from "@/lib/config/hs-catalog";
 import { buildMarketAccess } from "@/lib/market-access";
 import { getConfig } from "@/lib/config";
@@ -105,10 +107,10 @@ export default async function Detail({ params, searchParams }: { params: Promise
       </section>
 
       <section className={card}>
-        <h2 className="font-semibold">Principales países proveedores ({o.endYear})</h2>
+        <h2 className="font-semibold">España frente a sus competidores ({o.endYear})</h2>
         {d.supplierWarning && <p className="text-sm text-amber-700">{d.supplierWarning}</p>}
-        {d.suppliers.length === 0 ? <p className="text-sm text-slate-500">Sin datos bilaterales compatibles.</p> : (
-          <ul className="text-sm">{d.suppliers.map((s) => <li key={s.code}>{s.name}: {fmtMoney(s.value, o.currency)} ({fmtPct(s.sharePct)})</li>)}</ul>
+        {!d.competitors ? <p className="text-sm text-slate-500">Sin datos bilaterales compatibles.</p> : (
+          <CompetitorsTable a={d.competitors} currency={o.currency} euMarket={MARKETS.find((m) => m.code === o.marketCode)?.eu === true} />
         )}
       </section>
 
@@ -121,7 +123,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
         <ul className="list-disc pl-5 text-sm text-slate-700">
           <li>Las estadísticas muestran comercio declarado, no rentabilidad ni capacidad productiva o competitividad de una empresa concreta.</li>
           <li>Esta aplicación no ha validado aranceles, requisitos de importación ni costes logísticos: solo enlaza a fuentes externas.</li>
-          <li>Pendiente de investigar: requisitos de importación, aranceles aplicables, presupuestos de transporte, distribuidores y compradores, competidores y precios comerciales.</li>
+          <li>Pendiente de investigar: requisitos de importación, aranceles aplicables, presupuestos de transporte, distribuidores y compradores, y precios comerciales reales (el valor unitario de la tabla de competidores es solo un indicio).</li>
         </ul>
         <ul className="flex flex-wrap gap-4 text-sm">{links.map(([t, u]) => <li key={u}><a className="underline" href={u} target="_blank" rel="noopener noreferrer">{t}</a></li>)}</ul>
       </section>

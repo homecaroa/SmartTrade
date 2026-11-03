@@ -4,6 +4,7 @@ import { getOrLoad } from "@/lib/cache/ttl-cache";
 import type { OpportunityQuery } from "@/lib/schemas/query";
 import type { DataMode } from "@/lib/schemas/trade";
 import { topSuppliersShare, unitValuePerKg } from "@/lib/scoring/indicators";
+import { buildCompetitors, type CompetitorAnalysis } from "@/lib/trade/competitors";
 import { getSource } from "@/lib/sources";
 import { isSnapshotStale, lookupSnapshot, snapshotAgeDays } from "@/lib/snapshots/store";
 import { STALE_AFTER_DAYS } from "@/lib/snapshots/schema";
@@ -202,6 +203,8 @@ export interface DetailResponse {
   suppliers: Supplier[];
   top3Concentration: number | null;
   supplierWarning?: string;
+  /** España frente a sus competidores en el mercado (cuota, variación y valor unitario): lib/trade/competitors.ts. */
+  competitors: CompetitorAnalysis | null;
   unitValue: number | null;
   sameProduct: Opportunity[]; // mismo producto en otros mercados (completos)
 }
@@ -216,18 +219,23 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
   const rank = ranked.findIndex((o) => o.id === id);
 
   let suppliers: Supplier[] = [];
+  let competitors: CompetitorAnalysis | null = null;
   let supplierWarning: string | undefined;
   try {
-    const loaded = await getOrLoad(JSON.stringify(["sup", cfg.mode, productCode, marketCode, year]), cfg.cacheTtlMs, async () =>
-      getSource(cfg.mode).fetchSuppliers({ market: marketCode, productCode, years: [year] }),
+    // Toda la ventana del ranking (no solo el último año): permite ver qué competidores ganan o pierden cuota.
+    const years = opp.importsSeries.map((p) => p.year);
+    const loaded = await getOrLoad(JSON.stringify(["sup", cfg.mode, productCode, marketCode, years]), cfg.cacheTtlMs, async () =>
+      getSource(cfg.mode).fetchSuppliers({ market: marketCode, productCode, years }),
     );
     const { unique } = dedupeObservations(loaded.value);
     const names = new Map(MARKETS.map((m) => [m.code, m.name]));
+    const nameOf = (code: string, fallback?: string | null) => names.get(code) ?? fallback ?? countryName(code);
     suppliers = unique
       .filter((o) => o.period === String(year) && o.tradeValue !== null && o.tradeValue > 0 && o.currency === opp.currency)
-      .map((o) => ({ code: o.partnerCode, name: names.get(o.partnerCode) ?? o.partnerName ?? countryName(o.partnerCode), value: o.tradeValue!, sharePct: opp.marketSize ? (o.tradeValue! / opp.marketSize) * 100 : null }))
+      .map((o) => ({ code: o.partnerCode, name: nameOf(o.partnerCode, o.partnerName), value: o.tradeValue!, sharePct: opp.marketSize ? (o.tradeValue! / opp.marketSize) * 100 : null }))
       .sort((a, b) => b.value - a.value)
       .slice(0, 8);
+    competitors = buildCompetitors({ observations: unique, totals: opp.importsSeries, names: nameOf, currency: opp.currency });
     if (loaded.stale) supplierWarning = "Proveedores obtenidos de caché antigua (la fuente no respondió).";
   } catch (e) {
     supplierWarning = e instanceof SourceError ? `No se pudieron obtener los proveedores: ${e.message}` : "No se pudieron obtener los proveedores.";
@@ -240,6 +248,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
     suppliers,
     top3Concentration: topSuppliersShare(suppliers, opp.marketSize, 3),
     supplierWarning,
+    competitors,
     unitValue: unitValuePerKg(opp.marketSize, opp.netWeightEndYear),
     sameProduct: u.built.opportunities.filter((o) => o.productCode === productCode && o.complete).sort((a, b) => b.marketSize! - a.marketSize!).slice(0, 10),
   };

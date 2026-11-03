@@ -56,3 +56,26 @@ Los umbrales (30 % y 15 puntos) son decisiones documentadas, no estimadas. Motiv
 Se calculan con la misma fórmula, pero sobre un universo propio (UN Comtrade, USD, solo los mercados verificados): sus percentiles y puntuaciones no son comparables con los del ranking de la UE (Eurostat, EUR), por moneda, criterio de valoración y conjunto de mercados distintos. Aranceles, reglas de origen e impuestos, que fuera de la UE sí existen, siguen sin verificarse en la ficha.
 
 La frase «Sube en el ranking por…» usa expresiones neutras («el tamaño de su mercado», «la evolución de sus importaciones»), porque nombrar a un componente como «gran mercado» o «crecimiento» cuando su percentil o su valor no lo justifican contradecía las etiquetas.
+
+## Validación histórica del ranking (backtest, 2026-11)
+**Problema.** Los pesos (35/30/20/15) son una decisión documentada, no una medición: no sabíamos si el orden de mercados anticipa algo.
+
+**Medición.** `scripts/backtest-ranking.ts` (método en `lib/backtest/ranking.ts`, pruebas en `tests/backtest.test.ts`) calcula el ranking con el mismo algoritmo como si fuera 2019, 2020 y 2021 (Eurostat, 50 códigos del catálogo, 26 mercados de la UE, unas 1.140 oportunidades por año) y lo compara con lo ocurrido en los 3 años siguientes. Métrica principal: correlación de Spearman **dentro de cada producto** (el orden que ve quien busca su producto), en 45–46 productos. No se pueden usar 2022 ni 2023 como origen: sus ventanas mezclan HS2017 y HS2022 y la app las marca como incompatibles. Resultados completos: `docs/backtest-ranking.md`.
+
+**Resultado medido (ρ media dentro del producto, orígenes 2019 / 2020 / 2021):**
+| Resultado posterior | Puntuación | Solo tamaño | Solo crecimiento pasado | Solo potencial de cuota |
+|---|---|---|---|---|
+| Crecimiento del mercado (CAGR) | −0,13 / −0,30 / −0,28 | −0,18 / −0,30 / −0,30 | 0,00 / −0,15 / −0,11 | −0,03 / −0,11 / −0,05 |
+| Crecimiento de las ventas españolas (CAGR) | 0,06 / −0,03 / −0,02 | −0,10 / −0,16 / −0,10 | 0,06 / −0,01 / −0,01 | 0,21 / 0,17 / 0,18 |
+| Aumento de las ventas españolas (€) | 0,21 / 0,15 / 0,08 | 0,35 / 0,40 / 0,35 | −0,01 / −0,03 / −0,06 | −0,12 / −0,22 / −0,18 |
+
+Lectura:
+- **El crecimiento pasado no anticipa el crecimiento futuro** (ρ ≈ 0) y pondera un 30 %.
+- La puntuación **no anticipa** el crecimiento del mercado (correlación negativa: los mercados grandes crecieron menos en porcentaje) ni el crecimiento porcentual de las ventas españolas (≈ 0).
+- Para el **aumento en euros** de las ventas españolas, ordenar **solo por tamaño** acierta más que la puntuación en los tres años (0,35–0,40 frente a 0,08–0,21). Parte es mecánica: en un mercado grande cualquier variación mueve más euros.
+- El **potencial de cuota** anticipa el **crecimiento porcentual** de las ventas españolas (ρ ≈ 0,17–0,21, positivo en ~80 % de los productos). Parte puede ser regresión a la media (cuotas españolas bajas parten de bases pequeñas y volátiles).
+- En resumen: la mezcla actual combina dos señales que funcionan para objetivos distintos (tamaño → euros; potencial de cuota → crecimiento relativo) con una que no aporta (crecimiento pasado), y el resultado queda por debajo de usar el tamaño solo.
+
+**Corrección.** Ninguna todavía: cambiar los pesos o el diseño de la puntuación es una decisión del dueño. La web informa del resultado en /metodologia.
+
+**Limitaciones.** Un solo periodo (2017–2024) con la COVID y la inflación de 2022 dentro; solo mercados de la UE; parejas no independientes (sin p-valores); los códigos que cambiaron en HS2022 quedan fuera del resultado posterior; el catálogo es una selección orientativa, no una muestra aleatoria.

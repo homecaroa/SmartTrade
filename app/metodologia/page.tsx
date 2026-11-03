@@ -17,6 +17,14 @@ export default function Methodology() {
       </ul>
       <h2 className={h}>Puntuación (0-100)</h2>
       <p>0,35·tamaño + 0,30·crecimiento + 0,20·expansión de cuota + 0,15·posición exportadora. Cada componente se normaliza por percentil dentro de las oportunidades completas de la carga de datos. El crecimiento se acota (percentiles 5-95) y el negativo se limita a 25. Sin los cuatro componentes no hay puntuación. La expansión de cuota mide cuánto por debajo está la cuota española del mercado respecto a la cuota media del producto en los mercados de la búsqueda, con independencia del tamaño (ver docs/methodology.md).</p>
+      <h2 className={h}>Validación histórica (backtest)</h2>
+      <p>Se calculó el ranking como si fuera 2019, 2020 y 2021, con datos reales de Eurostat (50 productos, 26 mercados de la UE), y se comparó con lo que pasó en los 3 años siguientes. Resultado, igual en los tres años:</p>
+      <ul className="list-disc pl-5">
+        <li>El crecimiento pasado de un mercado <b>no anticipó</b> su crecimiento posterior.</li>
+        <li>Para saber dónde aumentaron más en euros las ventas españolas, ordenar <b>solo por tamaño del mercado</b> acertó más que la puntuación.</li>
+        <li>El potencial de cuota española sí anticipó, con correlación modesta, dónde crecieron más <b>en porcentaje</b> las ventas españolas.</li>
+      </ul>
+      <p>Por tanto, la puntuación es una forma de ordenar señales, no una previsión: úsala junto con los componentes por separado. Es un único periodo (con la COVID y la inflación de 2022) y solo mercados de la UE. Detalle en <code>docs/methodology.md</code> y <code>docs/backtest-ranking.md</code>.</p>
       <h2 className={h}>Fuentes</h2>
       <ul className="list-disc pl-5">
         <li>Eurostat Comext (primaria; mercados de la UE como declarantes).</li>
