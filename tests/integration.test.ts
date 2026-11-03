@@ -74,6 +74,7 @@ describe("flujo de búsqueda (demo, respuestas controladas)", () => {
     expect(d!.suppliers.length).toBeGreaterThan(0);
     expect(d!.top3Concentration).not.toBeNull();
     expect(d!.sameProduct.length).toBeGreaterThan(1);
+    expect(d!.tariff).toBeUndefined(); // modo demo: nunca se consulta WITS
     expect(d!.rank.volumen).toBe(1); // la primera fila del ranking por defecto («Mercados grandes»)
     expect(d!.rank.potencial).toBeGreaterThanOrEqual(1);
   });

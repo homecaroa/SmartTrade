@@ -8,6 +8,7 @@ export interface AppConfig {
   comextBase: string;
   comextDataset: string;
   comtradeKey: string | null;
+  witsBase: string;
   /** true si el servidor permite consultar mercados fuera de la UE (modo comext + clave de Comtrade). */
   outsideAvailable: boolean;
 }
@@ -38,6 +39,8 @@ export function getConfig(env: Record<string, string | undefined> = process.env,
       env.COMEXT_BASE_URL ?? "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data",
     comextDataset: env.COMEXT_DATASET ?? "ds-045409",
     comtradeKey: key,
+    // Aranceles NMF (UNCTAD TRAINS vía WITS, Banco Mundial): sin clave. Ver lib/sources/wits.ts.
+    witsBase: env.WITS_BASE_URL ?? "https://wits.worldbank.org/API/V1/SDMX/V21",
   };
 }
 

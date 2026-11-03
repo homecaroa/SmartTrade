@@ -21,6 +21,12 @@ El «Laboratorio de logística» publicado ese día (#5) se integró en la expor
 - **Backtest del ranking** (`scripts/backtest-ranking.ts`, `docs/backtest-ranking.md`): orígenes 2019–2021, Eurostat, 46 productos. El crecimiento pasado no anticipa el futuro; para el aumento en euros de las ventas españolas, el tamaño solo acierta más que la puntuación; el potencial de cuota anticipa el crecimiento porcentual. Detalle en `docs/methodology.md`.
 - **Dos rankings (03/11/2026, decisión del dueño)**: la puntuación única se sustituye por «Mercados grandes» (tamaño, por defecto) y «Potencial de cuota» (expansión). El crecimiento pasado y la exportación quedan como datos informativos. Enlaces antiguos `sort=score/size` → «Mercados grandes»; el CSV pierde la columna `puntuacion`.
 
+## Fuentes externas evaluadas (03/11/2026)
+- **Trade Map (ITC):** solo enlace (#10). Empresas de Kompass y D&B con licencia; sin API abierta.
+- **Aranceles con WITS (Banco Mundial, UNCTAD TRAINS): implementado en la rama, NO publicado.** `lib/sources/wits.ts` consulta el arancel general (NMF) a 6 dígitos como equivalente ad valorem (con `reported` Japón/vino daba un 0 % falso) y «Acceso al mercado» lo muestra para mercados fuera de la UE, con aviso del preferencial. **Bloqueo:** el cortafuegos de Cloudflare de WITS responde 403 («Request Blocked by WAF») a las peticiones del `fetch` de Node (curl sí pasa), así que en producción no funcionaría. No se esquiva la protección. Vías: pedir a WITS (wits@worldbank.org) que admita el acceso de la aplicación, o evaluar la API de la OMC. Pendiente además: política de difusión de UNCTAD TRAINS (no localizada).
+- **Pendientes por decisión del dueño:** paso «Financiación y seguro» con enlaces (ICO, COFIDES, CESCE, FIEM); contexto del país con indicadores del Banco Mundial (API sin clave, CC BY 4.0, comprobada); DataComex (API con registro gratuito; falta leer su aviso legal).
+- **Descartadas:** TARIC (arancel de entrada en la UE, no el del destino), CIRCE (creación de empresas), CEOE (patronal: no se encontró API ni datos abiertos; no verificado a fondo).
+
 ## Añadido el 29/10/2026 (pendiente de la primera ejecución real)
 - **Pistas de empresas con IA** (`lib/buyers/ia/`, `npm run buyers:generar`): Gemini sin búsqueda de Google + auditoría que lee cada web. Dos niveles en la web y el CSV: «web verificada» y «pista sin verificar». Detalle, decisiones y riesgos en `docs/buyers.md`. **Falta:** ejecutarlo con una clave real, medir la tasa de verificadas con la lista de vino en Alemania y revisar los términos del EEE.
 

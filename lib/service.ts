@@ -11,6 +11,8 @@ import { STALE_AFTER_DAYS } from "@/lib/snapshots/schema";
 import type { Loaded } from "@/lib/cache/ttl-cache";
 import type { TradeObservation } from "@/lib/schemas/trade";
 import { SourceError, type SourceResult } from "@/lib/sources/types";
+import { fetchWitsTariff, WITS_YEARS_BACK } from "@/lib/sources/wits";
+import type { TariffLookup } from "@/lib/market-access";
 import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities";
 import { dedupeObservations, missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
 import { filterIncomplete, lensRanks, rankOpportunities, type LensRanks } from "@/lib/trade/ranking";
@@ -203,10 +205,25 @@ export interface DetailResponse {
   suppliers: Supplier[];
   top3Concentration: number | null;
   supplierWarning?: string;
+  /** Arancel NMF del destino (WITS), solo fuera de la UE y con datos reales; undefined si no se consulta. */
+  tariff?: TariffLookup;
   /** España frente a sus competidores en el mercado (cuota, variación y valor unitario): lib/trade/competitors.ts. */
   competitors: CompetitorAnalysis | null;
   unitValue: number | null;
   sameProduct: Opportunity[]; // mismo producto en otros mercados (completos)
+}
+
+async function lookupTariff(opp: Opportunity, cfg: AppConfig): Promise<TariffLookup | undefined> {
+  const market = MARKETS.find((m) => m.code === opp.marketCode);
+  if (opp.synthetic || cfg.mode === "demo" || !market || market.eu) return undefined;
+  const yearsTried: [number, number] = [opp.endYear, opp.endYear - WITS_YEARS_BACK];
+  try {
+    const loaded = await getOrLoad(JSON.stringify(["wits", opp.marketCode, opp.productCode, opp.endYear]), cfg.cacheTtlMs, () =>
+      fetchWitsTariff(cfg.witsBase, opp.marketCode, opp.productCode, opp.endYear));
+    return { tariff: loaded.value, checkedAt: new Date(loaded.fetchedAt).toISOString(), yearsTried };
+  } catch (e) {
+    return { tariff: null, checkedAt: new Date().toISOString(), yearsTried, error: e instanceof SourceError ? `No se pudo consultar WITS: ${e.message}` : "No se pudo consultar WITS" };
+  }
 }
 
 export async function getOpportunityDetail(id: string, q: string | undefined, cfg = getConfig()): Promise<DetailResponse | null> {
@@ -217,6 +234,8 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
   if (!opp) return null;
   const rank = lensRanks(u.built.opportunities, id);
 
+  // Arancel NMF (solo fuera de la UE y con datos reales): en paralelo a los proveedores, y nunca rompe la ficha.
+  const tariffPromise = lookupTariff(opp, cfg);
   let suppliers: Supplier[] = [];
   let competitors: CompetitorAnalysis | null = null;
   let supplierWarning: string | undefined;
@@ -248,6 +267,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
     top3Concentration: topSuppliersShare(suppliers, opp.marketSize, 3),
     supplierWarning,
     competitors,
+    tariff: await tariffPromise,
     unitValue: unitValuePerKg(opp.marketSize, opp.netWeightEndYear),
     sameProduct: u.built.opportunities.filter((o) => o.productCode === productCode && o.complete).sort((a, b) => b.marketSize! - a.marketSize!).slice(0, 10),
   };

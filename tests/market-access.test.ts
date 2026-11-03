@@ -52,9 +52,13 @@ describe("acceso al mercado", () => {
     expect(buildMarketAccess({ marketCode: "US", marketName: "Estados Unidos", productCode: "220421", synthetic: true }).demo).toBe(true);
     expect(eu().demo).toBe(false);
   });
-  it("no influye en la puntuación: no importa nada de scoring ni de oportunidades", () => {
-    const src = readFileSync("lib/market-access.ts", "utf8");
-    expect(src).not.toMatch(/scoring|opportunities|ranking/);
-    expect(src).toMatch(/no altera la puntuación/i);
+  // Desde el 03/11/2026 hay dos rankings en vez de una puntuación, y el módulo dice en prosa (comentario y texto de la
+  // interfaz) que no los altera: buscar «ranking» en todo el fuente encontraba esa frase. Lo que importa son los imports.
+  it("no influye en los rankings: no importa nada de scoring ni de oportunidades", () => {
+    const raw = readFileSync("lib/market-access.ts", "utf8");
+    const imports = raw.split("\n").filter((l) => l.startsWith("import ")).join("\n");
+    expect(imports).toMatch(/^import /);
+    expect(imports).not.toMatch(/scoring|opportunities|ranking/);
+    expect(raw).toMatch(/no altera los rankings/i);
   });
 });

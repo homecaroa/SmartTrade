@@ -1,9 +1,11 @@
 import { MARKETS, ORIGIN } from "@/lib/config/catalog";
+import { WITS_SOURCE, type WitsTariff } from "@/lib/sources/wits";
 
 /**
- * Módulo INFORMATIVO de acceso al mercado. No altera la puntuación y no consulta ninguna API:
- * ninguna fuente de aranceles ha sido verificada como consultable de forma automática, por lo que
- * ningún dato se marca como «verificado». El tipo lo admite para futuros adaptadores.
+ * Módulo INFORMATIVO de acceso al mercado. No altera los rankings y no consulta ninguna API por sí mismo: recibe, si
+ * lo hay, el arancel NMF que el servicio obtiene de WITS (lib/sources/wits.ts) para mercados fuera de la UE. Hasta el
+ * 03/11/2026 ningún arancel se consultaba de forma automática. Aun así nada se marca como «verificado»: el dato de WITS
+ * es el arancel general (no el preferencial que puede corresponder a un producto español) y lleva retraso.
  */
 export type Verification = "verified" | "partial" | "pending" | "unavailable";
 export type AccessTopic = "arancel" | "origen" | "impuestos" | "requisitos" | "logistica";
@@ -28,8 +30,8 @@ export interface MarketAccessInfo {
   hs6: string;
   scope: "eu" | "third" | "unknown";
   demo: boolean;
-  /** Sin consulta automática: no hay fecha de consulta ni periodo de validez. */
-  checkedAt: null;
+  /** Fecha de la consulta automática del arancel (WITS), si la hubo; null si no se consultó nada. */
+  checkedAt: string | null;
   validity: null;
   items: AccessItem[];
   links: AccessLink[];
@@ -50,7 +52,29 @@ export const TRADE_MAP = ACCESS_LINKS[2];
 const GENERAL_EU = "Regla general de la UE (no es una consulta del producto concreto)";
 const NOT_QUERIED = "Sin consulta automática: consultar la fuente oficial";
 
-export function buildMarketAccess(input: { marketCode: string; marketName: string; productCode: string; synthetic: boolean }): MarketAccessInfo {
+/** Resultado de la consulta del arancel NMF: el dato (o null si WITS no lo tiene), o el error si la consulta falló. */
+export interface TariffLookup { tariff: WitsTariff | null; checkedAt: string; error?: string; yearsTried: [number, number] }
+
+const pct = (v: number) => `${v.toLocaleString("es-ES", { maximumFractionDigits: 1 })} %`;
+
+/** Texto del arancel NMF. El preferencial (acuerdo UE–destino) no está en la API: se avisa siempre. */
+export function tariffItem(t: TariffLookup, marketName: string): AccessItem {
+  const pref = `Es el arancel GENERAL (nación más favorecida). Si hay acuerdo comercial UE–${marketName}, un producto de origen español que cumpla las reglas de origen puede pagar menos: compruébalo en Access2Markets.`;
+  if (t.error) return { topic: "arancel", label: "Aranceles de importación", value: null, status: "pending", source: `${WITS_SOURCE}: la consulta falló`, note: `${t.error}. ${pref}` };
+  if (!t.tariff) return { topic: "arancel", label: "Aranceles de importación", value: null, status: "unavailable", source: `${WITS_SOURCE}: sin datos para este producto entre ${t.yearsTried[1]} y ${t.yearsTried[0]}`, note: pref };
+  const a = t.tariff;
+  const range = a.min !== null && a.max !== null && a.min !== a.max ? ` (entre ${pct(a.min)} y ${pct(a.max)})` : "";
+  const na = a.naLines > 0 ? ` ${a.naLines} línea(s) sin equivalente calculable no entran en la media.` : "";
+  return {
+    topic: "arancel", label: "Aranceles de importación",
+    value: `Arancel general medio: ${pct(a.average)}${range}, año ${a.year}.`,
+    status: "partial",
+    source: `${WITS_SOURCE}, año ${a.year}`,
+    note: `Media simple de ${a.lines} línea(s) arancelaria(s) nacional(es) del código HS6, como equivalente ad valorem estimado (incluye derechos por unidad convertidos a %).${na} ${pref}`,
+  };
+}
+
+export function buildMarketAccess(input: { marketCode: string; marketName: string; productCode: string; synthetic: boolean; tariff?: TariffLookup }): MarketAccessInfo {
   const market = MARKETS.find((m) => m.code === input.marketCode);
   const scope: MarketAccessInfo["scope"] = !market ? "unknown" : market.eu ? "eu" : "third";
   const eu = scope === "eu";
@@ -58,7 +82,9 @@ export function buildMarketAccess(input: { marketCode: string; marketName: strin
   const items: AccessItem[] = [
     eu
       ? { topic: "arancel", label: "Aranceles de importación", value: "No se aplican aranceles aduaneros a mercancías en libre circulación dentro de la UE.", status: "partial", source: GENERAL_EU, note: "Regla general del mercado único; no se ha comprobado el producto concreto." }
-      : { topic: "arancel", label: "Aranceles de importación", value: null, status: "pending", source: NOT_QUERIED, note: "Depende del código arancelario completo, del origen y de si existe un acuerdo comercial UE–destino." },
+      : input.tariff && !input.synthetic
+        ? tariffItem(input.tariff, input.marketName)
+        : { topic: "arancel", label: "Aranceles de importación", value: null, status: "pending", source: NOT_QUERIED, note: "Depende del código arancelario completo, del origen y de si existe un acuerdo comercial UE–destino." },
     eu
       ? { topic: "origen", label: "Origen preferencial", value: "No aplica entre Estados miembros de la UE.", status: "partial", source: GENERAL_EU }
       : { topic: "origen", label: "Origen preferencial", value: null, status: "pending", source: NOT_QUERIED, note: "Si hay acuerdo, la preferencia exige cumplir las reglas de origen del producto." },
@@ -77,7 +103,7 @@ export function buildMarketAccess(input: { marketCode: string; marketName: strin
     hs6: input.productCode,
     scope,
     demo: input.synthetic,
-    checkedAt: null,
+    checkedAt: input.tariff && !input.synthetic && !eu ? input.tariff.checkedAt : null,
     validity: null,
     items,
     links: ACCESS_LINKS,
@@ -88,10 +114,12 @@ export function buildMarketAccess(input: { marketCode: string; marketName: strin
       "Confirma el código arancelario completo con tu agente de aduanas o transitario.",
     ],
     limitations: [
-      "SmarTrade no consulta aranceles ni requisitos de forma automática: ningún dato de esta sección está verificado para tu producto.",
+      eu || !input.tariff || input.synthetic
+        ? "SmarTrade no consulta aranceles ni requisitos de forma automática para este mercado: ningún dato de esta sección está verificado para tu producto."
+        : "Fuera de la UE, SmarTrade consulta solo el arancel general (NMF) a 6 dígitos en WITS; origen, impuestos y requisitos no se consultan. Nada de esta sección está verificado para tu producto.",
       "Un arancel general no es necesariamente el aplicable: depende del código completo, el origen, las preferencias y las condiciones del momento.",
       ...(scope === "unknown" ? ["El mercado no está clasificado en el catálogo: todo queda pendiente de consulta."] : []),
-      "Esta sección no influye en la puntuación de la oportunidad.",
+      "Esta sección no influye en los rankings de la oportunidad.",
     ],
   };
 }
