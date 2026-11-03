@@ -13,6 +13,11 @@ describe("siguientes pasos de investigación", () => {
   it("cubre requisitos, aranceles, origen, impuestos, competencia, canales y transporte", () => {
     expect(RESEARCH_STEPS.map((s) => s.id)).toEqual(["requisitos", "aranceles", "origen", "impuestos", "competencia", "canales", "transporte"]);
   });
+  it("el paso de compradores enlaza a Trade Map sin integrarlo", () => {
+    const c = RESEARCH_STEPS.find((s) => s.id === "canales")!;
+    expect(c.sourceUrl).toBe("https://www.trademap.org/");
+    expect(ACCESS_LINKS.find((l) => l.url === c.sourceUrl)!.purpose).toMatch(/Kompass.*Dun & Bradstreet.*cuenta del ITC/);
+  });
   it("el paso de transporte no estima costes ni tiempos", () => {
     const t = RESEARCH_STEPS.find((s) => s.id === "transporte")!;
     expect(t.sourceUrl).toBeUndefined();
