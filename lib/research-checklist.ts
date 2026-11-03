@@ -8,6 +8,7 @@ export interface ResearchStep { id: string; task: string; verify: string; source
 
 const A2M = ACCESS_LINKS[0];
 const ICEX = ACCESS_LINKS[1];
+const TRADE_MAP = ACCESS_LINKS[2];
 
 export const RESEARCH_STEPS: ResearchStep[] = [
   { id: "requisitos", task: "Requisitos de importación y de producto", verify: "Normas técnicas, sanitarias, etiquetado, licencias o restricciones del país de destino para tu código.", sourceTitle: A2M.title, sourceUrl: A2M.url },
@@ -15,6 +16,6 @@ export const RESEARCH_STEPS: ResearchStep[] = [
   { id: "origen", task: "Reglas de origen", verify: "Qué exige el acuerdo para que tu producto se considere originario y cómo se acredita.", sourceTitle: A2M.title, sourceUrl: A2M.url },
   { id: "impuestos", task: "IVA y otros impuestos de importación", verify: "Impuestos y trámites aduaneros del país de destino, distintos del arancel.", sourceTitle: A2M.title, sourceUrl: A2M.url },
   { id: "competencia", task: "Competidores y precios comerciales", verify: "Quién abastece ese mercado, a qué precios de venta y con qué marcas o canales (el valor unitario estadístico no es un precio).", sourceTitle: ICEX.title, sourceUrl: ICEX.url },
-  { id: "canales", task: "Distribuidores y compradores", verify: "Importadores, distribuidores o plataformas que podrían comprar tu producto." },
+  { id: "canales", task: "Distribuidores y compradores", verify: "Importadores, distribuidores o plataformas que podrían comprar tu producto.", sourceTitle: "Buscar empresas en Trade Map (requiere cuenta del ITC)", sourceUrl: TRADE_MAP.url },
   { id: "transporte", task: "Transporte, seguro y plazos", verify: "Presupuestos reales de transporte y seguro, y el Incoterm de la oferta; SmarTrade no estima costes ni tiempos.", internalHref: "/logistica", internalTitle: "Guía de transporte e Incoterms" },
 ];

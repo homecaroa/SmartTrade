@@ -1,3 +1,4 @@
+import { TRADE_MAP } from "@/lib/market-access";
 import Link from "next/link";
 import { BuyerCard } from "@/components/buyer-card";
 import { ErrorState } from "@/components/error-state";
@@ -66,6 +67,7 @@ export default async function Buyers({ searchParams }: { searchParams: Promise<S
         <ul className="list-disc pl-5 text-xs text-slate-600">{r.info.warnings.map((w) => <li key={w}>{w}</li>)}</ul>
         {!r.noData && <a className="inline-block text-xs underline" href={`/api/buyers/export?${exportQs}`}>Exportar a CSV (guarda este resultado en tu equipo)</a>}
       </section>
+      <p className="rounded-lg bg-white p-3 text-xs text-slate-600 shadow-sm">Otra fuente para buscar por tu cuenta: <a className="underline" href={TRADE_MAP.url} target="_blank" rel="noopener noreferrer">{TRADE_MAP.title}</a>. {TRADE_MAP.purpose} SmarTrade no consulta ni copia sus datos.</p>
       {r.noData ? (
         <section className="rounded-lg bg-white p-4 text-sm shadow-sm"><p className="font-medium">No hay datos suficientes para esta combinación.</p><p className="text-slate-600">Eso no significa que no existan compradores. Prueba con otro producto o país, añade palabras clave en inglés o consulta las fuentes oficiales de la <Link className="underline" href="/guia">guía</Link>.</p></section>
       ) : list.length === 0 ? (

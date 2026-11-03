@@ -44,7 +44,8 @@ describe("acceso al mercado", () => {
     expect(i.validity).toBeNull();
   });
   it("solo enlaza a las fuentes oficiales conocidas, por https", () => {
-    expect(ACCESS_LINKS.map((l) => new URL(l.url).hostname).sort()).toEqual(["trade.ec.europa.eu", "www.icex.es"]);
+    // www.trademap.org añadido el 03/11/2026 (ITC, organismo de la ONU y la OMC): solo enlace, sin integración.
+    expect(ACCESS_LINKS.map((l) => new URL(l.url).hostname).sort()).toEqual(["trade.ec.europa.eu", "www.icex.es", "www.trademap.org"]);
     expect(ACCESS_LINKS.every((l) => l.url.startsWith("https://"))).toBe(true);
   });
   it("marca los datos de demostración sin mezclarlos con datos reales", () => {

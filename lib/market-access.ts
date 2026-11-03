@@ -41,7 +41,11 @@ export interface MarketAccessInfo {
 export const ACCESS_LINKS: AccessLink[] = [
   { title: "Access2Markets (Comisión Europea)", url: "https://trade.ec.europa.eu/access-to-markets/es/home", purpose: "Aranceles, reglas de origen, requisitos de producto, impuestos y trámites de importación del país de destino." },
   { title: "ICEX · estadísticas y mercados", url: "https://www.icex.es/es/estadisticas", purpose: "Información comercial complementaria del mercado." },
+  // Solo enlace (decisión del 03/11/2026): sus empresas vienen de Kompass y Dun & Bradstreet con licencia, no hay API
+  // abierta y la extracción automatizada no está permitida, así que SmarTrade no copia nada; la consulta la hace el usuario.
+  { title: "Trade Map (ITC) · empresas importadoras y exportadoras", url: "https://www.trademap.org/", purpose: "Directorio de empresas por producto y país (fuentes: Kompass y Dun & Bradstreet; cobertura parcial, sin valores ni destinos por empresa). Requiere cuenta del ITC; el módulo de empresas puede exigir suscripción." },
 ];
+export const TRADE_MAP = ACCESS_LINKS[2];
 
 const GENERAL_EU = "Regla general de la UE (no es una consulta del producto concreto)";
 const NOT_QUERIED = "Sin consulta automática: consultar la fuente oficial";
