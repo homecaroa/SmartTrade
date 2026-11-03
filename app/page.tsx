@@ -1,3 +1,5 @@
+import { LensSwitch } from "@/components/lens-switch";
+import type { RankingLens } from "@/lib/scoring/score";
 import Link from "next/link";
 import { DataSourceLabel } from "@/components/data-source-label";
 import { EmptyState } from "@/components/empty-state";
@@ -65,7 +67,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
   }
 
   const pages = Math.max(1, Math.ceil(data.total / data.pageSize));
-  const sortHref = (s: "score" | "size" | "growth") => href(base, { sort: s, order: q.sort === s && q.order === "desc" ? "asc" : "desc", page: undefined });
+  const sortHref = (s: RankingLens | "growth") => href(base, { sort: s, order: q.sort === s && q.order === "desc" ? "asc" : "desc", page: undefined });
   const detailQuery = cfg.mode === "demo" ? "" : `?q=${encodeURIComponent(q.q ?? "")}${outside ? "&fuente=fuera" : ""}`;
   const exportHref = "/api/opportunities/export?" + href(base).split("?")[1];
 
@@ -90,6 +92,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
           <ul className="list-disc pl-5 text-xs text-slate-500">{data.info.warnings.map((w) => <li key={w}>{w}</li>)}</ul>
         )}
         <p className="text-xs text-slate-500">Los percentiles se calculan sobre {data.universeSize} oportunidades completas de esta carga de datos (antes de aplicar los filtros).</p>
+        <LensSwitch current={q.sort} hrefFor={(s) => href(base, { sort: s, order: "desc", page: undefined })} />
       </section>
 
       {data.rows.length === 0 ? (

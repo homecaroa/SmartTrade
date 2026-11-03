@@ -52,13 +52,13 @@ describe("backtest del ranking", () => {
     expect(r.stats.marketGrowth.pastGrowth.products).toBe(1);
     expect(r.stats.marketGrowth.pastGrowth.meanRho).toBeCloseTo(1, 6);
     expect(r.stats.marketGrowth.pastGrowth.topBeatsBottomPct).toBe(100);
-    expect(r.stats.marketGrowth.score.meanRho).toBeGreaterThan(0.9); // tamaño y crecimiento van en la misma dirección
+    expect(r.stats.marketGrowth.volumen.meanRho).toBeGreaterThan(0.9); // tamaño y crecimiento van en la misma dirección
   });
   it(`productos con menos de ${MIN_MARKETS} mercados evaluables no cuentan`, () => {
     const { markets, obs } = synthetic();
     const few = markets.slice(0, MIN_MARKETS - 1).map((m) => m.code);
     const r = runBacktest(obs.filter((o) => o.flow === "export" || few.includes(o.reporterCode)), markets, 2022, 3);
-    expect(r.stats.marketGrowth.score.products).toBe(0);
-    expect(r.stats.marketGrowth.score.meanRho).toBeNull();
+    expect(r.stats.marketGrowth.volumen.products).toBe(0);
+    expect(r.stats.marketGrowth.volumen.meanRho).toBeNull();
   });
 });

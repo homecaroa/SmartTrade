@@ -3,6 +3,7 @@ import { fmtMoney, fmtPct } from "@/lib/format";
 import type { Opportunity } from "@/lib/trade/opportunities";
 import { productLabel } from "@/lib/config/hs-catalog";
 import { describeOpportunity, shortTags } from "@/lib/scoring/labels";
+import type { RankingLens } from "@/lib/scoring/score";
 import { ScoreBadge } from "./opportunity-score";
 import { OpportunityTags } from "./opportunity-tags";
 
@@ -17,7 +18,7 @@ export function OpportunityTable({
 }: {
   rows: Opportunity[];
   offset: number;
-  sortHref: (sort: "score" | "size" | "growth") => string;
+  sortHref: (sort: RankingLens | "growth") => string;
   detailQuery: string;
   q?: string;
   fuente?: string;
@@ -32,10 +33,11 @@ export function OpportunityTable({
         <thead className="border-b bg-slate-50">
           <tr>
             <th className={th}><span className="sr-only">Comparar</span></th><th className={th}>#</th><th className={th}>Producto</th><th className={th}>Mercado</th>
-            <th className={th}><Link href={sortHref("size")} className="underline">Importaciones</Link></th>
+            <th className={th}>Importaciones</th>
             <th className={th}><Link href={sortHref("growth")} className="underline">Crecimiento (CAGR)</Link></th>
             <th className={th}>Cuota española</th>
-            <th className={th}><Link href={sortHref("score")} className="underline">Puntuación</Link></th>
+            <th className={th}><Link href={sortHref("volumen")} className="underline">Mercados grandes</Link></th>
+            <th className={th}><Link href={sortHref("potencial")} className="underline">Potencial de cuota</Link></th>
             <th className={th}>Calidad</th><th className={th}></th>
           </tr>
         </thead>
@@ -52,7 +54,8 @@ export function OpportunityTable({
               <td className="px-3 py-2">{fmtMoney(o.marketSize, o.currency)}<div className="text-xs text-slate-400">{o.endYear}</div></td>
               <td className="px-3 py-2">{fmtPct(o.cagr)}</td>
               <td className="px-3 py-2">{fmtPct(o.spanishShare)}</td>
-              <td className="px-3 py-2">{o.score && <ScoreBadge score={o.score} />}</td>
+              <td className="px-3 py-2">{o.score && <ScoreBadge score={o.score} lens="volumen" />}</td>
+              <td className="px-3 py-2">{o.score && <ScoreBadge score={o.score} lens="potencial" />}</td>
               <td className="px-3 py-2"><span className={`rounded px-2 py-0.5 text-xs ${Q[o.quality]}`}>{o.quality}</span></td>
               <td className="px-3 py-2"><Link className="text-indigo-700 underline" href={`/oportunidad/${o.id}${detailQuery}`}>Detalle</Link></td>
             </tr>

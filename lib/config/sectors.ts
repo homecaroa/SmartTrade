@@ -1,7 +1,7 @@
 /**
  * Sectores para descubrir oportunidades sin conocer códigos HS. Cada sector agrupa códigos del catálogo
  * (`hs-catalog.ts`). Para añadir un sector: nuevo objeto aquí con códigos que existan en el catálogo.
- * La puntuación se calcula comparando solo los productos del sector elegido.
+ * Los rankings se calculan comparando solo los productos del sector elegido.
  */
 export interface Sector { id: string; name: string; description: string; codes: string[] }
 

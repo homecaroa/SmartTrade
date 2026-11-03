@@ -15,21 +15,25 @@ export default function Methodology() {
         <li><b>Concentración:</b> proporción de las importaciones que aportan los 3 mayores proveedores (cuando hay datos bilaterales).</li>
         <li><b>Valor unitario:</b> valor / peso neto; valor estadístico, no precio de venta.</li>
       </ul>
-      <h2 className={h}>Puntuación (0-100)</h2>
-      <p>0,35·tamaño + 0,30·crecimiento + 0,20·expansión de cuota + 0,15·posición exportadora. Cada componente se normaliza por percentil dentro de las oportunidades completas de la carga de datos. El crecimiento se acota (percentiles 5-95) y el negativo se limita a 25. Sin los cuatro componentes no hay puntuación. La expansión de cuota mide cuánto por debajo está la cuota española del mercado respecto a la cuota media del producto en los mercados de la búsqueda, con independencia del tamaño (ver docs/methodology.md).</p>
+      <h2 className={h}>Dos rankings (índices 0-100)</h2>
+      <ul className="list-disc pl-5">
+        <li><b>Mercados grandes:</b> percentil del tamaño del mercado.</li>
+        <li><b>Potencial de cuota:</b> percentil de cuánto está la cuota española del mercado por debajo de la cuota media de España en ese producto en los mercados de la búsqueda, con independencia del tamaño. Se limita si España apenas exporta el producto.</li>
+      </ul>
+      <p>Los percentiles se calculan sobre las oportunidades completas de la carga de datos; sin los cuatro datos (tamaño, crecimiento, cuota y exportación española) la oportunidad queda fuera. El crecimiento y la posición exportadora se muestran como datos informativos, pero no ordenan. Hasta el 03/11/2026 había una puntuación única (0,35·tamaño + 0,30·crecimiento + 0,20·expansión + 0,15·exportación); se sustituyó por estos dos rankings tras la validación histórica de abajo.</p>
       <h2 className={h}>Validación histórica (backtest)</h2>
-      <p>Se calculó el ranking como si fuera 2019, 2020 y 2021, con datos reales de Eurostat (50 productos, 26 mercados de la UE), y se comparó con lo que pasó en los 3 años siguientes. Resultado, igual en los tres años:</p>
+      <p>Se calculó la antigua puntuación única como si fuera 2019, 2020 y 2021, con datos reales de Eurostat (50 productos, 26 mercados de la UE), y se comparó con lo que pasó en los 3 años siguientes. Resultado, igual en los tres años:</p>
       <ul className="list-disc pl-5">
         <li>El crecimiento pasado de un mercado <b>no anticipó</b> su crecimiento posterior.</li>
-        <li>Para saber dónde aumentaron más en euros las ventas españolas, ordenar <b>solo por tamaño del mercado</b> acertó más que la puntuación.</li>
+        <li>Para saber dónde aumentaron más en euros las ventas españolas, ordenar <b>solo por tamaño del mercado</b> acertó más que la puntuación única.</li>
         <li>El potencial de cuota española sí anticipó, con correlación modesta, dónde crecieron más <b>en porcentaje</b> las ventas españolas.</li>
       </ul>
-      <p>Por tanto, la puntuación es una forma de ordenar señales, no una previsión: úsala junto con los componentes por separado. Es un único periodo (con la COVID y la inflación de 2022) y solo mercados de la UE. Detalle en <code>docs/methodology.md</code> y <code>docs/backtest-ranking.md</code>.</p>
+      <p>Por eso hay dos rankings, uno por cada señal que funcionó, y el crecimiento pasado ya no ordena. Siguen siendo señales para decidir qué investigar, no previsiones. Es un único periodo (con la COVID y la inflación de 2022) y solo mercados de la UE. Detalle en <code>docs/methodology.md</code> y <code>docs/backtest-ranking.md</code>.</p>
       <h2 className={h}>Fuentes</h2>
       <ul className="list-disc pl-5">
         <li>Eurostat Comext (primaria; mercados de la UE como declarantes).</li>
         <li>UN Comtrade (complementaria; requiere clave).</li>
-        <li>ICEX y Access2Markets: solo enlaces de consulta. La sección «Acceso al mercado» de la ficha es informativa, no consulta aranceles y no influye en la puntuación.</li>
+        <li>ICEX y Access2Markets: solo enlaces de consulta. La sección «Acceso al mercado» de la ficha es informativa, no consulta aranceles y no influye en los rankings.</li>
         <li>Modo DEMO: datos sintéticos, siempre etiquetados.</li>
       </ul>
     </article>

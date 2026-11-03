@@ -1,4 +1,5 @@
 import { resolveProductQuery } from "./product-search";
+import type { RankingLens } from "@/lib/scoring/score";
 import type { Opportunity } from "./opportunities";
 
 export interface RankFilters {
@@ -6,7 +7,8 @@ export interface RankFilters {
   market?: string;
   minSizeM?: number; // millones de la moneda de la fuente
   minGrowth?: number; // %
-  sort: "score" | "size" | "growth";
+  /** Uno de los dos rankings, o el crecimiento pasado como orden informativo (no validado como señal). */
+  sort: RankingLens | "growth";
   order: "asc" | "desc";
 }
 
@@ -20,7 +22,7 @@ export function matchesQuery(o: Opportunity, q?: string): boolean {
   return fold(o.productName).includes(fold(q)) || o.productCode.startsWith(q.trim());
 }
 
-/** Filtra y ordena. Solo las oportunidades completas con puntuación entran en el ranking. Desempate por id: reproducible. */
+/** Filtra y ordena. Solo las oportunidades completas (con sus índices) entran en el ranking. Desempate por id: reproducible. */
 export function rankOpportunities(all: Opportunity[], f: RankFilters): Opportunity[] {
   const rows = all.filter((o) => {
     if (!o.complete || !o.score) return false;
@@ -30,11 +32,20 @@ export function rankOpportunities(all: Opportunity[], f: RankFilters): Opportuni
     if (f.minGrowth !== undefined && (o.cagr ?? -Infinity) < f.minGrowth) return false;
     return true;
   });
-  const val = (o: Opportunity) => (f.sort === "score" ? o.score!.total : f.sort === "size" ? o.marketSize! : o.cagr!);
+  // «volumen» ordena por tamaño real (no por su percentil) para desempatar mejor; el orden es el mismo.
+  const val = (o: Opportunity) => (f.sort === "volumen" ? o.marketSize! : f.sort === "potencial" ? o.score!.potencial : o.cagr!);
   const dir = f.order === "asc" ? 1 : -1;
   return rows.sort((a, b) => dir * (val(a) - val(b)) || a.id.localeCompare(b.id));
 }
 
 export function filterIncomplete(all: Opportunity[], f: Pick<RankFilters, "q" | "market">): Opportunity[] {
   return all.filter((o) => !o.complete && matchesQuery(o, f.q) && (!f.market || o.marketCode === f.market));
+}
+
+export type LensRanks = Record<RankingLens, number | null>;
+
+/** Puesto de una oportunidad en cada ranking, dentro de las oportunidades completas de la carga de datos. */
+export function lensRanks(all: Opportunity[], id: string): LensRanks {
+  const pos = (lens: RankingLens) => { const i = rankOpportunities(all, { sort: lens, order: "desc" }).findIndex((o) => o.id === id); return i >= 0 ? i + 1 : null; };
+  return { volumen: pos("volumen"), potencial: pos("potencial") };
 }

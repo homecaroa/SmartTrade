@@ -1,20 +1,25 @@
 /**
- * Algoritmo de puntuación 0-100 (ver docs/methodology.md).
+ * Dos rankings en lugar de una puntuación única (ver docs/methodology.md).
+ * Hasta el 03/11/2026 se ordenaba por 0,35·tamaño + 0,30·crecimiento + 0,20·expansión + 0,15·exportación. La validación
+ * histórica (orígenes 2019–2021) mostró que el crecimiento pasado no anticipaba el futuro, que el tamaño solo acertaba más
+ * que la mezcla para el aumento en euros de las ventas españolas y que la expansión anticipaba su crecimiento en %. El
+ * dueño decidió sustituir la mezcla por dos rankings, cada uno con el único componente que lo validó:
+ *   - «Mercados grandes» (volumen): percentil del tamaño del mercado.
+ *   - «Potencial de cuota» (potencial): percentil de la brecha de penetración española (componente de expansión).
+ * Crecimiento y posición exportadora se siguen calculando como datos informativos (la exportación limita la expansión).
  * Expansión de cuota: brecha de penetración respecto a la cuota española de referencia del producto (independiente del tamaño).
  * Universo de percentiles: oportunidades COMPLETAS de la carga de datos (antes de aplicar filtros del usuario).
- * Sin componente disponible no hay puntuación: no se imputan ceros ni se redistribuyen pesos.
+ * Sin los cuatro datos no hay índices: no se imputan ceros.
  */
 
 export type ComponentKey = "size" | "growth" | "expansion" | "export";
 
-export interface Weights {
-  size: number;
-  growth: number;
-  expansion: number;
-  export: number;
-}
-
-export const DEFAULT_WEIGHTS: Weights = { size: 0.35, growth: 0.3, expansion: 0.2, export: 0.15 };
+/** Los dos rankings. Cada uno ordena por un único componente validado; no se combinan. */
+export type RankingLens = "volumen" | "potencial";
+export const LENSES: Record<RankingLens, { label: string; component: ComponentKey; summary: string }> = {
+  volumen: { label: "Mercados grandes", component: "size", summary: "Ordena por el tamaño del mercado. En la validación histórica fue lo que mejor anticipó dónde aumentaron más, en euros, las ventas españolas." },
+  potencial: { label: "Potencial de cuota", component: "expansion", summary: "Ordena por cuánto está la cuota española por debajo de la que España tiene de media en el producto. En la validación histórica anticipó, con correlación modesta, dónde crecieron más en porcentaje las ventas españolas." },
+};
 
 export const COMPONENT_LABELS: Record<ComponentKey, string> = {
   size: "Tamaño del mercado",
@@ -87,19 +92,19 @@ export interface ScoreComponent {
   label: string;
   raw: number;
   normalized: number;
-  weight: number;
-  contribution: number;
   note?: string;
 }
 
 export interface ScoreResult {
-  total: number;
+  /** Índice de cada ranking (0-100): el percentil del componente que lo define. */
+  volumen: number;
+  potencial: number;
   components: ScoreComponent[];
   universeSize: number;
   productUniverseSize: number;
 }
 
-export function scoreUniverse(inputs: ScoreInput[], weights: Weights = DEFAULT_WEIGHTS): Map<string, ScoreResult> {
+export function scoreUniverse(inputs: ScoreInput[]): Map<string, ScoreResult> {
   const out = new Map<string, ScoreResult>();
   if (inputs.length === 0) return out;
 
@@ -159,8 +164,6 @@ export function scoreUniverse(inputs: ScoreInput[], weights: Weights = DEFAULT_W
       label: COMPONENT_LABELS[key],
       raw,
       normalized,
-      weight: weights[key],
-      contribution: weights[key] * normalized,
       note,
     });
     const components = [
@@ -170,7 +173,8 @@ export function scoreUniverse(inputs: ScoreInput[], weights: Weights = DEFAULT_W
       mk("export", inp.spainExports, exportN),
     ];
     out.set(inp.id, {
-      total: components.reduce((s, c) => s + c.contribution, 0),
+      volumen: sizeN,
+      potencial: expansionN,
       components,
       universeSize: inputs.length,
       productUniverseSize: exportVals.length,
@@ -179,7 +183,5 @@ export function scoreUniverse(inputs: ScoreInput[], weights: Weights = DEFAULT_W
   return out;
 }
 
-/** Componentes ordenados por su aportación a la puntuación. */
-export function topContributors(score: ScoreResult, n = 2): ScoreComponent[] {
-  return [...score.components].sort((a, b) => b.contribution - a.contribution).slice(0, n);
-}
+/** Índice de una oportunidad en uno de los dos rankings. */
+export const lensValue = (score: ScoreResult, lens: RankingLens) => score[lens];

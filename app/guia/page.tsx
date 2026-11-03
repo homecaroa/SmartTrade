@@ -15,21 +15,21 @@ export default function Guide() {
       <h2 className={h}>Dos formas de empezar</h2>
       <ul className="list-disc space-y-1 pl-5">
         <li><b>Tengo un producto:</b> escribe su nombre o código y verás a qué países de la UE interesa más.</li>
-        <li><b>Quiero descubrir sectores:</b> elige un sector (alimentación, bebidas, automoción…) y compara sus productos y mercados. La puntuación solo compara entre los productos del sector. Puedes combinar sectores escribiendo, por ejemplo, <code>sector:bebidas, sector:automocion</code>.</li>
+        <li><b>Quiero descubrir sectores:</b> elige un sector (alimentación, bebidas, automoción…) y compara sus productos y mercados. Los rankings solo comparan entre los productos del sector. Puedes combinar sectores escribiendo, por ejemplo, <code>sector:bebidas, sector:automocion</code>.</li>
       </ul>
 
       <h2 className={h}>Importadores y compradores</h2>
       <p>Desde cada ficha (o en <Link className="underline" href="/compradores">/compradores</Link>) puedes buscar empresas que importan o distribuyen un producto en un país. Cada una trae sus pruebas enlazadas y un nivel de evidencia; ninguna es un comprador asegurado, y solo se muestran contactos públicos con su fuente. Por ahora hay datos curados para vino embotellado en Japón.</p>
 
       <h2 className={h}>Mercados fuera de la UE</h2>
-      <p>Si el administrador activa UN Comtrade, aparece un selector «Fuera de la UE». Ese ranking usa otra fuente y otra moneda (dólares), así que <b>nunca se mezcla</b> con el de la UE (Eurostat, euros) y sus puntuaciones no son comparables. Cada país publica con distinto retraso: si le falta el año final, sale como incompleto. Fuera de la UE sí hay aranceles y reglas de origen: compruébalos en la ficha antes de decidir.</p>
+      <p>Si el administrador activa UN Comtrade, aparece un selector «Fuera de la UE». Ese ranking usa otra fuente y otra moneda (dólares), así que <b>nunca se mezcla</b> con el de la UE (Eurostat, euros) y sus índices no son comparables. Cada país publica con distinto retraso: si le falta el año final, sale como incompleto. Fuera de la UE sí hay aranceles y reglas de origen: compruébalos en la ficha antes de decidir.</p>
 
       <h2 className={h}>1. Cómo buscar</h2>
       <ol className="list-decimal space-y-1 pl-5">
         <li>Escribe en <b>Producto</b> el nombre de un producto o un código HS. Puedes combinar varios separados por comas: <Link className={a} href="/?q=vino,aceite de oliva">vino, aceite de oliva</Link>.</li>
         <li>Opcional: elige un <b>mercado</b>, el año final, el tamaño mínimo (en millones de €) o el crecimiento mínimo.</li>
         <li>Pulsa <b>Buscar oportunidades</b>. Verás el ranking, la interpretación de tu búsqueda y los avisos de calidad.</li>
-        <li>Abre <b>Detalle</b> para ver la serie histórica, los proveedores, el desglose de la puntuación y los enlaces oficiales.</li>
+        <li>Abre <b>Detalle</b> para ver la serie histórica, los competidores, la posición en los dos rankings y los enlaces oficiales.</li>
         <li><b>Comparar:</b> marca de 2 a 5 resultados de la página y pulsa «Comparar seleccionados» para verlos lado a lado (también se puede imprimir). La selección vale solo para la página actual y no se guarda.</li>
         <li><b>Exportar CSV</b> descarga los resultados filtrados.</li>
       </ol>
@@ -39,7 +39,7 @@ export default function Guide() {
         <li><b>Por nombre:</b> <code>cerámica</code>, <code>coches eléctricos</code>, <code>jamón</code>. Se busca en el catálogo de esta página (selección orientativa, no la nomenclatura completa).</li>
         <li><b>Por código HS6:</b> <code>220421</code>. Es la forma exacta y admite cualquier código vigente, aunque no esté en el catálogo.</li>
         <li><b>Por capítulo o partida (2-5 dígitos):</b> <code>2204</code> devuelve los códigos del catálogo que empiezan así.</li>
-        <li>Máximo 20 códigos por búsqueda. Cuantos más productos compares (idealmente 10 o más), más informativa es la puntuación.</li>
+        <li>Máximo 20 códigos por búsqueda. Cuantos más productos compares (idealmente 10 o más), más informativos son los percentiles.</li>
       </ul>
 
       <h2 className={h}>3. Dónde encontrar el código HS de un producto</h2>
@@ -70,7 +70,7 @@ export default function Guide() {
 
       <h2 className={h}>6. Cómo interpretar los resultados</h2>
       <ul className="list-disc space-y-1 pl-5">
-        <li>Una puntuación alta significa <b>prioridad estadística para investigar</b>, no rentabilidad.</li>
+        <li>Un índice alto en «Mercados grandes» o en «Potencial de cuota» significa <b>prioridad estadística para investigar</b>, no rentabilidad.</li>
         <li>«Sin datos para…» suele indicar que el código no existe en la nomenclatura vigente en esos años o que la fuente no publica ese periodo. Prueba con el código actualizado.</li>
         <li>Ausencia de datos no implica ausencia de comercio.</li>
         <li>Antes de decidir, verifica requisitos de importación, aranceles, transporte, compradores y competencia. Más detalle en <Link className={a} href="/metodologia">Metodología y fuentes</Link>.</li>

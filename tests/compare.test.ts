@@ -23,18 +23,18 @@ describe("selección para comparar", () => {
 describe("tabla comparativa", () => {
   const base = { productCode: "220421", productName: "Wine", classification: "HS2022", marketCode: "DE", marketName: "Alemania", endYear: 2024, currency: "EUR", synthetic: false, quality: "alta", complete: true, annualChanges: [], marketSize: 1e9, cagr: 4, spanishShare: 3, spainExportsWorld: 2e9, score: null } as unknown as Opportunity;
   it("muestra n.d. y nunca cero cuando faltan datos", () => {
-    const rows = buildComparison([{ opp: base, rank: 1 }, { opp: { ...base, marketCode: "FR", marketName: "Francia", cagr: null, spanishShare: null, spainExportsWorld: null } as Opportunity, rank: null }]);
+    const rows = buildComparison([{ opp: base, rank: { volumen: 1, potencial: 3 } }, { opp: { ...base, marketCode: "FR", marketName: "Francia", cagr: null, spanishShare: null, spainExportsWorld: null } as Opportunity, rank: { volumen: null, potencial: null } }]);
     const cell = (k: string, i: number) => rows.find((r) => r.key === k)!.cells[i];
     expect(cell("cagr", 1)).toBe("n.d.");
     expect(cell("cuota", 1)).toBe("n.d.");
     expect(cell("exportaciones", 1)).toBe("n.d.");
-    expect(cell("posicion", 1)).toBe("fuera del ranking");
-    expect(cell("puntuacion", 0)).toMatch(/n\.d\./);
+    expect(cell("pos_volumen", 1)).toMatch(/fuera del ranking/);
+    expect(cell("pos_potencial", 0)).toBe("3");
     expect(cell("producto", 0)).toContain("Vino en envases");
   });
   it("incluye una celda por resultado en cada fila y marca los aranceles como no verificados", () => {
     const US = { ...base, marketCode: "US", marketName: "Estados Unidos" } as Opportunity;
-    const rows = buildComparison([{ opp: base, rank: 1 }, { opp: US, rank: 2 }]);
+    const rows = buildComparison([{ opp: base, rank: { volumen: 1, potencial: 3 } }, { opp: US, rank: { volumen: 2, potencial: 1 } }]);
     expect(rows.every((r) => r.cells.length === 2)).toBe(true);
     const a = rows.find((r) => r.key === "arancel")!.cells;
     expect(a[0]).toMatch(/Parcial/);
@@ -45,13 +45,13 @@ describe("tabla comparativa", () => {
 describe("carga de la comparación (modo demo, datos sintéticos)", () => {
   it("devuelve los resultados pedidos con su posición y avisa de los que no existen", async () => {
     const cfg = getConfig({ SMARTRADE_DATA_MODE: "demo" } as never);
-    const r = (await getFullRanking({ sort: "score", order: "desc", page: 1, pageSize: 50 } as never, cfg)) as never as { ranked?: Opportunity[]; rows?: Opportunity[] };
+    const r = (await getFullRanking({ sort: "volumen", order: "desc", page: 1, pageSize: 50 } as never, cfg)) as never as { ranked?: Opportunity[]; rows?: Opportunity[] };
     const rows = (r.ranked ?? r.rows ?? (r as unknown as Opportunity[])).filter((o) => o.score);
     const [a, b] = rows;
     const c = await getComparison([a.id, b.id, "999999-DE-2024"], undefined, cfg);
     expect(c.info.synthetic).toBe(true);
     expect(c.items.map((i) => i.opp.id)).toEqual([a.id, b.id]);
-    expect(c.items.every((i) => typeof i.rank === "number")).toBe(true);
+    expect(c.items.every((i) => typeof i.rank.volumen === "number" && typeof i.rank.potencial === "number")).toBe(true);
     expect(c.missing).toEqual(["999999-DE-2024"]);
   });
 });

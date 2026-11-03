@@ -41,7 +41,7 @@ export function SearchForm({
       <label className="text-xs font-medium">Ordenar por
         <div className="flex gap-2">
           <select name="sort" defaultValue={defaults.sort} className={input}>
-            <option value="score">Puntuación</option><option value="size">Tamaño</option><option value="growth">Crecimiento</option>
+            <option value="volumen">Ranking: mercados grandes</option><option value="potencial">Ranking: potencial de cuota</option><option value="growth">Crecimiento pasado (informativo)</option>
           </select>
           <select name="order" defaultValue={defaults.order} className={input}>
             <option value="desc">Desc.</option><option value="asc">Asc.</option>

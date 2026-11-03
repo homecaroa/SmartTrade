@@ -11,24 +11,28 @@ Unidad de análisis: producto HS6 × mercado de destino × ventana de 3 años (a
 - **Valor unitario:** valor / peso neto (kg). Valor estadístico, no precio de venta.
 
 ## Inclusión en el ranking
-Solo con: importaciones de los 3 años, CAGR calculable, cuota calculable, exportaciones españolas, clasificación y moneda homogéneas. Si falta algo → **incompleta**, sin puntuación y con el motivo. No hay puntuación parcial ni redistribución de pesos. Combinaciones sin ninguna observación se cuentan como "sin datos" (no implican ausencia de comercio).
+Solo con: importaciones de los 3 años, CAGR calculable, cuota calculable, exportaciones españolas, clasificación y moneda homogéneas. Si falta algo → **incompleta**, fuera de los dos rankings y con el motivo. No se imputan datos (criterio que se mantuvo al pasar a dos rankings, aunque cada uno use un solo componente: así las dos listas tienen el mismo conjunto de oportunidades). Combinaciones sin ninguna observación se cuentan como "sin datos" (no implican ausencia de comercio).
 
-## Puntuación (0–100)
-`0,35·tamaño + 0,30·crecimiento + 0,20·expansión + 0,15·exportadora`, cada componente normalizado a 0–100 por **percentil de rango medio**.
+## Dos rankings (índices 0–100)
+Desde el 03/11/2026 (ver «Validación histórica» abajo) no hay puntuación única. Hay dos rankings, cada uno con un solo componente normalizado a 0–100 por **percentil de rango medio**:
+- **«Mercados grandes»** (`volumen`): percentil del tamaño del mercado. Ranking por defecto (decisión documentada, no estimada: responde a «dónde puedo vender más en euros»).
+- **«Potencial de cuota»** (`potencial`): percentil de la expansión de cuota (brecha de penetración, abajo), con sus límites por baja exportación española.
 
-**Universo:** todas las oportunidades completas de la carga de datos (año y, en modos reales, los códigos consultados), calculado **antes** de los filtros de mercado/tamaño/crecimiento/texto. Así filtrar no cambia la puntuación. Cambiar año o códigos cambia el universo y, por tanto, las puntuaciones: no son comparables entre cargas distintas. En modo demo el universo son los 8 productos × 11 mercados.
+Crecimiento y posición exportadora se siguen calculando y mostrando como datos informativos; no ordenan. Ordenar por crecimiento pasado sigue disponible en la interfaz, con un aviso. Antes la puntuación era `0,35·tamaño + 0,30·crecimiento + 0,20·expansión + 0,15·exportadora` (pesos en `DEFAULT_WEIGHTS`, ya eliminado).
+
+**Universo:** todas las oportunidades completas de la carga de datos (año y, en modos reales, los códigos consultados), calculado **antes** de los filtros de mercado/tamaño/crecimiento/texto. Así filtrar no cambia los índices. Cambiar año o códigos cambia el universo y, por tanto, los índices: no son comparables entre cargas distintas. En modo demo el universo son los 8 productos × 11 mercados.
 
 - **Crecimiento:** CAGR winsorizado en los percentiles 5–95 del universo y luego percentil. Crecimiento ≤ 0 → componente limitado a 25.
 - **Expansión de cuota (brecha de penetración):** compara la cuota española del mercado con la cuota española de referencia del mismo producto (suma de todos los mercados de la búsqueda), de forma independiente del tamaño. `cuota contraída = (imp. desde España + m·cuota_ref) / (imp. totales + m)`; `brecha = 1 − cuota contraída / cuota_ref`; `m = 0,1 × mediana del tamaño de los mercados del producto`. Se normaliza por percentil. Brecha > 0: cuota inferior a la de referencia. Si España no vende el producto en ningún mercado analizado → 0. Si España no exporta el producto (valor 0) → 0. Si su percentil exportador < 25 → limitado a 25. Con un solo mercado por producto no hay referencia: brecha neutra.
 - **Posición exportadora:** percentil del valor exportado, con un valor por producto (no se pondera por número de mercados).
 
-Los pesos están en `DEFAULT_WEIGHTS` (`lib/scoring/score.ts`) y son configurables en código. La interfaz muestra aporte por componente y los dos mayores contribuyentes.
+La interfaz muestra, para cada oportunidad, su índice y su puesto en los dos rankings, y los percentiles informativos de crecimiento y exportación. Los enlaces antiguos con `sort=score` o `sort=size` llevan a «Mercados grandes». El CSV ya no tiene columna `puntuacion`: los índices son `percentil_tamano` y `percentil_expansion`.
 
 ## Calidad
 `alta`: completa y todo observado · `media`: completa con alguna observación estimada · `baja`: incompleta.
 
 ## Limitaciones del método
-Percentiles dependen del universo y con universos pequeños son poco informativos. La puntuación ordena señales estadísticas; no es probabilidad de éxito, rentabilidad ni evaluación de costes, aranceles o barreras.
+Percentiles dependen del universo y con universos pequeños son poco informativos. Los rankings ordenan señales estadísticas; no es probabilidad de éxito, rentabilidad ni evaluación de costes, aranceles o barreras.
 
 ## Etiquetas en lenguaje llano
 Cada oportunidad muestra hasta 3 etiquetas y una frase («Sube en el ranking por…»). Son un resumen con reglas fijas de los indicadores y percentiles ya calculados (`lib/scoring/labels.ts`); no cambian la puntuación ni aportan datos nuevos.
@@ -76,6 +80,6 @@ Lectura:
 - El **potencial de cuota** anticipa el **crecimiento porcentual** de las ventas españolas (ρ ≈ 0,17–0,21, positivo en ~80 % de los productos). Parte puede ser regresión a la media (cuotas españolas bajas parten de bases pequeñas y volátiles).
 - En resumen: la mezcla actual combina dos señales que funcionan para objetivos distintos (tamaño → euros; potencial de cuota → crecimiento relativo) con una que no aporta (crecimiento pasado), y el resultado queda por debajo de usar el tamaño solo.
 
-**Corrección.** Ninguna todavía: cambiar los pesos o el diseño de la puntuación es una decisión del dueño. La web informa del resultado en /metodologia.
+**Corrección (03/11/2026, decisión del dueño).** La puntuación única se sustituye por dos rankings, uno por cada señal que funcionó: «Mercados grandes» (tamaño) y «Potencial de cuota» (expansión). El crecimiento pasado deja de ordenar. No se buscaron pesos nuevos a propósito: ajustar una mezcla a un único periodo arriesgaba sobreajustar. Cada ranking es exactamente el predictor medido, así que `docs/backtest-ranking.md` (regenerado ese día con los dos rankings) es su validación directa. Coste: el ranking «Mercados grandes» es, en la práctica, ordenar por tamaño; y «Potencial de cuota» favorece mercados donde España vende poco, que pueden ser pequeños o tener barreras (la ficha muestra el tamaño y los competidores al lado).
 
 **Limitaciones.** Un solo periodo (2017–2024) con la COVID y la inflación de 2022 dentro; solo mercados de la UE; parejas no independientes (sin p-valores); los códigos que cambiaron en HS2022 quedan fuera del resultado posterior; el catálogo es una selección orientativa, no una muestra aleatoria.

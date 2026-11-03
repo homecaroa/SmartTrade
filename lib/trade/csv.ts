@@ -1,9 +1,14 @@
 import type { Opportunity } from "./opportunities";
 
+/**
+ * Columnas del CSV. Desde el 03/11/2026 no hay columna «puntuacion»: la puntuación única se sustituyó por dos rankings,
+ * cuyos índices son exactamente «percentil_tamano» (Mercados grandes) y «percentil_expansion» (Potencial de cuota).
+ * «posicion» es el orden de la descarga, que sigue el ranking elegido en pantalla.
+ */
 const HEADER = [
   "posicion", "codigo_producto", "producto", "clasificacion", "mercado_codigo", "mercado", "anio_final",
   "importaciones", "moneda", "crecimiento_cagr_pct", "cuota_espana_pct", "exportaciones_espana_mundo",
-  "puntuacion", "calidad", "fuente", "fecha_obtencion", "datos_sinteticos",
+  "calidad", "fuente", "fecha_obtencion", "datos_sinteticos",
   "ventana_inicio", "universo_oportunidades", "universo_productos",
   "percentil_tamano", "percentil_crecimiento", "percentil_expansion", "percentil_exportacion",
   "crecimiento_volumen_cagr_pct",
@@ -31,7 +36,7 @@ export function opportunitiesToCsv(rows: Opportunity[]): string {
       [
         i + 1, o.productCode, o.productName, o.classification, o.marketCode, o.marketName, o.endYear,
         o.marketSize, o.currency, r(o.cagr), r(o.spanishShare), o.spainExportsWorld,
-        o.score ? r(o.score.total, 1) : null, o.quality, o.source, o.retrievedAt,
+        o.quality, o.source, o.retrievedAt,
         o.synthetic ? "SI_DEMO_SINTETICO" : "no",
         o.importsSeries[0]?.year ?? null, o.score?.universeSize ?? null, o.score?.productUniverseSize ?? null,
         pct(o, "size"), pct(o, "growth"), pct(o, "expansion"), pct(o, "export"),

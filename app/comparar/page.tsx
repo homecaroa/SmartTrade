@@ -79,7 +79,7 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
       </div>
       <ul className="list-disc space-y-1 pl-5 text-xs text-slate-600">
         <li>Los percentiles se calculan sobre {data.universeSize} oportunidades completas de esta búsqueda: no son comparables con los de otra búsqueda.</li>
-        <li>La puntuación es una prioridad estadística para investigar, no una previsión de rentabilidad ni de éxito.</li>
+        <li>Los dos rankings son señales estadísticas para decidir qué investigar, no previsiones de rentabilidad ni de éxito.</li>
         <li>«n.d.» significa dato no disponible, no cero. Comparar productos distintos exige cautela: sus mercados y unidades pueden no ser equivalentes.</li>
         <li>Aranceles, requisitos, impuestos y costes logísticos no están verificados: abre la ficha de cada mercado para ver qué falta comprobar.</li>
       </ul>

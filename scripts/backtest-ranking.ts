@@ -48,7 +48,7 @@ const f2 = (v: number | null) => (v === null ? "n.d." : v.toLocaleString("es-ES"
 const f0 = (v: number | null) => (v === null ? "n.d." : `${Math.round(v)} %`);
 
 function table(r: OriginResult, out: OutcomeKey): string[] {
-  const preds: PredictorKey[] = ["score", "size", "pastGrowth", "expansion"];
+  const preds: PredictorKey[] = ["volumen", "potencial", "pastGrowth"];
   return [
     `**${OUTCOME_LABEL[out]}**`, "",
     "| Ordenación | Productos | ρ media dentro del producto | ρ mediana | Productos con ρ > 0 | Tercio superior > inferior | ρ global |",
@@ -77,7 +77,7 @@ async function main(): Promise<number> {
   const lines = [
     "# Validación histórica del ranking (backtest)", "",
     `Generado el ${at} por \`scripts/backtest-ranking.ts\` con datos reales de Eurostat Comext (${YEARS[0]}–${YEARS.at(-1)}, ${codes.length} códigos del catálogo, ${markets.length} mercados de la UE, ${obs.length} observaciones). Método en \`lib/backtest/ranking.ts\`.`, "",
-    `Pregunta: si en el año T se hubiera usado el ranking de SmarTrade (mismo algoritmo y pesos que la web), ¿los mercados mejor puntuados para un producto fueron los que más crecieron en los ${HORIZON} años siguientes? Se compara con ordenar solo por tamaño o solo por crecimiento pasado.`, "",
+    `Pregunta: si en el año T se hubieran usado los dos rankings de SmarTrade (mismo algoritmo que la web), ¿los mercados mejor situados para un producto fueron los que más crecieron en los ${HORIZON} años siguientes? El crecimiento pasado se mide como referencia.`, "",
     "Cómo leerlo: ρ es la correlación de rangos de Spearman (1 = el orden acierta del todo, 0 = ninguna relación, −1 = al revés). «Dentro del producto» = el orden de mercados que ve quien busca su producto; solo cuentan productos con al menos " + MIN_MARKETS + " mercados evaluables. «Tercio superior > inferior» = % de productos en que la mediana del resultado de los mercados del tercio superior del ranking superó a la del tercio inferior. Las parejas no son independientes: no hay p-valores y diferencias pequeñas no deben interpretarse.", "",
     ...(failed.length ? [`**Grupos que fallaron en la descarga (excluidos):** ${failed.join("; ")}`, ""] : []),
   ];

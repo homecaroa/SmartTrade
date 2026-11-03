@@ -3,12 +3,11 @@ import { describeOpportunity, HIGH_PERCENTILE, shortTags, SPANISH_PRESENCE_SHARE
 import { LOW_EXPORT_PERCENTILE, type ComponentKey } from "@/lib/scoring/score";
 import type { Opportunity } from "@/lib/trade/opportunities";
 
-const W = { size: 0.35, growth: 0.3, expansion: 0.2, export: 0.15 } as const;
+const KEYS: ComponentKey[] = ["size", "growth", "expansion", "export"];
 function opp(p: Partial<Record<ComponentKey, number>> = {}, o: Partial<Opportunity> = {}): Opportunity {
   const n = { size: 50, growth: 50, expansion: 50, export: 50, ...p };
-  const components = (Object.keys(W) as ComponentKey[]).map((key) => ({ key, label: key, weight: W[key], normalized: n[key], contribution: W[key] * n[key], note: null }));
-  const total = components.reduce((a, c) => a + c.contribution, 0);
-  return { complete: true, quality: "alta", cagr: 4, annualChanges: [3, 5], spanishShare: 2, score: { total, components, universeSize: 40, productUniverseSize: 10 }, ...o } as unknown as Opportunity;
+  const components = KEYS.map((key) => ({ key, label: key, normalized: n[key], note: null }));
+  return { complete: true, quality: "alta", cagr: 4, annualChanges: [3, 5], spanishShare: 2, score: { volumen: n.size, potencial: n.expansion, components, universeSize: 40, productUniverseSize: 10 }, ...o } as unknown as Opportunity;
 }
 const keys = (o: Opportunity) => describeOpportunity(o).tags.map((t) => t.key);
 
@@ -38,7 +37,11 @@ describe("etiquetas en lenguaje llano", () => {
     expect(keys(opp({ expansion: 91 }, { spanishShare: null }))).not.toContain("hueco");
   });
   it("poca exportación española y datos con reservas son precauciones", () => {
-    expect(keys(opp({ export: LOW_EXPORT_PERCENTILE }))).toContain("pocaexpo");
+    // Hasta el 03/11/2026 un percentil exactamente igual a LOW_EXPORT_PERCENTILE ya era «poca exportación»; el tope del
+    // «Potencial de cuota» es estricto (<), así que la etiqueta contradecía al índice (visto en datos reales con 2
+    // productos: etiqueta + potencial 99). Se le da la vuelta: el umbral es estricto en los dos sitios.
+    expect(keys(opp({ export: LOW_EXPORT_PERCENTILE - 1 }))).toContain("pocaexpo");
+    expect(keys(opp({ export: LOW_EXPORT_PERCENTILE }))).not.toContain("pocaexpo");
     expect(keys(opp({}, { quality: "media" }))).toContain("reservas");
     expect(TAG_LEGEND.filter((t) => ["pocaexpo", "reservas", "retroceso", "irregular"].includes(t.key)).every((t) => t.tone === "caution")).toBe(true);
   });
@@ -50,12 +53,17 @@ describe("etiquetas en lenguaje llano", () => {
     expect(describeOpportunity(opp({}, { complete: false }))).toEqual({ tags: [], why: "" });
     expect(describeOpportunity(opp({}, { score: null }))).toEqual({ tags: [], why: "" });
   });
-  it("la frase nombra los dos mayores aportes y añade las precauciones", () => {
+  // Hasta el 03/11/2026 la frase nombraba los dos componentes que más aportaban a la puntuación única («Sube en el
+  // ranking por el tamaño de su mercado y…»). Con dos rankings, dice en cuál destaca (índice ≥ HIGH_PERCENTILE).
+  it("la frase dice en qué ranking destaca y añade las precauciones", () => {
     const d = describeOpportunity(opp({ size: 100, growth: 100, expansion: 0, export: 0 }, { cagr: -1 }));
-    expect(d.why).toContain("el tamaño de su mercado y la evolución de sus importaciones");
+    expect(d.why).toContain("Destaca en «Mercados grandes».");
+    expect(d.why).not.toContain("Potencial de cuota");
     expect(d.why).toContain("en retroceso");
+    expect(describeOpportunity(opp({ size: HIGH_PERCENTILE, expansion: HIGH_PERCENTILE })).why).toContain("«Mercados grandes» y «Potencial de cuota»");
+    expect(describeOpportunity(opp({ size: HIGH_PERCENTILE - 1, expansion: 10 })).why).toMatch(/^No destaca/);
   });
-  it("no promete rentabilidad ni éxito y no modifica la puntuación", () => {
+  it("no promete rentabilidad ni éxito y no modifica los índices", () => {
     const o = opp({ size: 95, growth: 95, expansion: 95, export: 95 });
     const before = JSON.stringify(o);
     const d = describeOpportunity(o);

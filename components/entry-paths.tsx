@@ -51,7 +51,7 @@ export function SectorBanner({ current, onlyOne, fuente }: { current: { id: stri
   const others = SECTORS.filter((s) => s.id !== current.id);
   return (
     <section className="space-y-2 rounded-lg border border-indigo-200 bg-indigo-50 p-3 text-sm">
-      <p><b>Sector: {current.name}</b> · {current.codes.length} productos. La puntuación compara solo entre estos productos: no es comparable con otras búsquedas.</p>
+      <p><b>Sector: {current.name}</b> · {current.codes.length} productos. Los rankings comparan solo entre estos productos: no es comparable con otras búsquedas.</p>
       {onlyOne && (
         <p className="text-xs text-slate-700">
           Explorar otro sector:{" "}
