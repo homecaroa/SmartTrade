@@ -1,6 +1,6 @@
 # SmarTrade (MVP)
 
-Análisis de oportunidades comerciales producto-mercado para empresas españolas exportadoras, a partir de estadísticas de comercio internacional. Ranking con puntuación explicable, ficha de detalle, gráficos, trazabilidad de datos y exportación CSV.
+Análisis de oportunidades comerciales producto-mercado para empresas españolas exportadoras, a partir de estadísticas de comercio internacional. Dos rankings explicables («Mercados grandes» y «Potencial de cuota», validados con datos históricos), ficha de detalle, gráficos, trazabilidad de datos y exportación CSV.
 
 **Estado honesto:** funciona de extremo a extremo con datos de **demostración sintéticos** (`demo`) y con **datos reales de Eurostat Comext** (`comext`, verificado el 18/10/2026 con `220421, 150920`: 49 oportunidades en 26 mercados UE). UN Comtrade está implementado pero **sin probar** (requiere clave). Ver `docs/data-sources.md` y `docs/limitations.md`. Es una app Next.js con servidor: **no se ejecuta en GitHub Pages**; hay que ejecutarla en local o desplegarla (p. ej. Vercel).
 
@@ -49,7 +49,7 @@ En modos reales, la web usa primero los datos guardados en `data/snapshots/` y s
 Ver `.env.example`: `SMARTRADE_DATA_MODE`, `CACHE_TTL_SECONDS`, `DEFAULT_END_YEAR`, `COMEXT_BASE_URL`, `COMEXT_DATASET`, `COMEXT_WORLD_CODE`, `COMTRADE_API_KEY`, `COMTRADE_KEY_IN_QUERY`. Ninguna se expone al navegador.
 
 ## Estructura
-`app/` páginas y rutas API · `components/` UI · `lib/schemas` contratos Zod · `lib/sources` adaptadores · `lib/trade` normalización, oportunidades, ranking, CSV · `lib/scoring` indicadores y puntuación · `lib/cache` caché TTL · `tests/` · `docs/`.
+`app/` páginas y rutas API · `components/` UI · `lib/schemas` contratos Zod · `lib/sources` adaptadores · `lib/trade` normalización, oportunidades, ranking, CSV · `lib/scoring` indicadores y rankings · `lib/cache` caché TTL · `tests/` · `docs/`.
 
 ## API
 `GET /api/opportunities` · `GET /api/opportunities/[id]` · `GET /api/opportunities/export` (CSV) · `GET /api/filters`.

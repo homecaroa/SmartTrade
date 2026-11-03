@@ -3,27 +3,28 @@ import { cagr } from "@/lib/scoring/indicators";
 import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities";
 
 /**
- * Validación histórica del ranking («backtest»). Se calcula el ranking como si fuera el año T (ventana T−2..T, el mismo
- * algoritmo y pesos de la web) y se compara con lo que pasó después, entre T y T+H:
+ * Validación histórica de los rankings («backtest»). Se calculan como si fuera el año T (ventana T−2..T, el mismo
+ * algoritmo de la web) y se comparan con lo que pasó después, entre T y T+H:
  *   - crecimiento del mercado: CAGR de las importaciones totales T→T+H;
  *   - crecimiento de las ventas españolas: CAGR de las importaciones desde España T→T+H;
  *   - aumento de las ventas españolas: importaciones desde España en T+H − en T (en euros).
  * Métrica principal: correlación de rangos de Spearman DENTRO de cada producto (el orden de mercados que ve quien busca
- * su producto), con al menos MIN_MARKETS mercados evaluables. Se compara con dos ordenaciones ingenuas: solo tamaño y
- * solo crecimiento pasado (y el componente de potencial de cuota por separado). Si la puntuación no supera a esas alternativas, sus pesos no aportan información.
+ * su producto), con al menos MIN_MARKETS mercados evaluables. El crecimiento pasado se mide como referencia.
+ * Historia: hasta el 03/11/2026 se medía también la puntuación única (0,35/0,30/0,20/0,15); sus resultados, que llevaron
+ * a sustituirla por los dos rankings, están en docs/methodology.md.
  * Limitaciones: las parejas producto-mercado no son independientes (mismos países, mismo ciclo económico), así que no
  * se calculan p-valores; un periodo con shocks (2020–2022) puede no repetirse.
  */
 export const MIN_MARKETS = 6;
 
 export type OutcomeKey = "marketGrowth" | "spainGrowth" | "spainIncrease";
-export type PredictorKey = "score" | "size" | "pastGrowth" | "expansion";
+export type PredictorKey = "volumen" | "potencial" | "pastGrowth";
 export const OUTCOME_LABEL: Record<OutcomeKey, string> = {
   marketGrowth: "Crecimiento posterior del mercado (CAGR)",
   spainGrowth: "Crecimiento posterior de las ventas españolas (CAGR)",
   spainIncrease: "Aumento posterior de las ventas españolas (€)",
 };
-export const PREDICTOR_LABEL: Record<PredictorKey, string> = { score: "Puntuación de SmarTrade", size: "Solo tamaño del mercado", pastGrowth: "Solo crecimiento pasado", expansion: "Solo potencial de cuota española" };
+export const PREDICTOR_LABEL: Record<PredictorKey, string> = { volumen: "Ranking «Mercados grandes» (tamaño)", potencial: "Ranking «Potencial de cuota»", pastGrowth: "Crecimiento pasado (referencia)" };
 
 /** Rangos con empates promediados (1 = menor). */
 export function ranks(xs: number[]): number[] {
@@ -130,7 +131,7 @@ export function evaluatePairs(opps: Opportunity[], observations: TradeObservatio
     const e1 = v(o.marketCode, "ES", o.productCode, end);
     return {
       id: o.id, product: o.productCode, market: o.marketCode,
-      predictors: { score: o.score!.total, size: o.marketSize!, pastGrowth: o.cagr!, expansion: o.score!.components.find((c) => c.key === "expansion")?.normalized ?? 0 },
+      predictors: { volumen: o.marketSize!, potencial: o.score!.potencial, pastGrowth: o.cagr! },
       outcomes: {
         marketGrowth: cagr(w0, w1, horizon),
         spainGrowth: cagr(e0, e1, horizon),
@@ -144,7 +145,7 @@ export function runBacktest(observations: TradeObservation[], markets: { code: s
   const built = buildOpportunities({ observations, markets, endYear: originYear, mode: "comext" });
   const pairs = evaluatePairs(built.opportunities, observations, originYear, horizon);
   const outs: OutcomeKey[] = ["marketGrowth", "spainGrowth", "spainIncrease"];
-  const preds: PredictorKey[] = ["score", "size", "pastGrowth", "expansion"];
+  const preds: PredictorKey[] = ["volumen", "potencial", "pastGrowth"];
   const stats = Object.fromEntries(outs.map((o) => [o, Object.fromEntries(preds.map((p) => [p, cell(pairs, p, o)]))])) as OriginResult["stats"];
   const pooled = Object.fromEntries(outs.map((o) => {
     const ok = pairs.filter((p) => p.outcomes[o] !== null);

@@ -13,7 +13,7 @@ import type { TradeObservation } from "@/lib/schemas/trade";
 import { SourceError, type SourceResult } from "@/lib/sources/types";
 import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities";
 import { dedupeObservations, missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
-import { filterIncomplete, rankOpportunities } from "@/lib/trade/ranking";
+import { filterIncomplete, lensRanks, rankOpportunities, type LensRanks } from "@/lib/trade/ranking";
 import { MAX_CODES, resolveProductQuery } from "@/lib/trade/product-search";
 
 export interface DataInfo {
@@ -60,7 +60,7 @@ export const MIN_PRODUCTS = 10;
 /** La posición exportadora se normaliza por percentiles entre PRODUCTOS: con pocos productos solo toma unos pocos valores. */
 export function productUniverseWarnings(productCount: number): string[] {
   return productCount > 0 && productCount < MIN_PRODUCTS
-    ? [`La posición exportadora (15 % de la puntuación) se normaliza sobre solo ${productCount} producto(s) (mínimo recomendado ${MIN_PRODUCTS}): toma pocos valores distintos y favorece sistemáticamente a los productos más exportados. Añade más códigos HS para compararla con sentido.`]
+    ? [`La posición exportadora (dato informativo que además limita el «Potencial de cuota» cuando es baja) se normaliza sobre solo ${productCount} producto(s) (mínimo recomendado ${MIN_PRODUCTS}): toma pocos valores distintos. Añade más códigos HS para compararla con sentido.`]
     : [];
 }
 
@@ -198,8 +198,8 @@ export interface Supplier {
 export interface DetailResponse {
   info: DataInfo;
   opportunity: Opportunity;
-  /** Posición en el ranking por puntuación (null si incompleta). */
-  rank: number | null;
+  /** Posición en cada uno de los dos rankings (null si la oportunidad está incompleta). */
+  rank: LensRanks;
   suppliers: Supplier[];
   top3Concentration: number | null;
   supplierWarning?: string;
@@ -215,8 +215,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
   const u = await loadUniverse({ q: cfg.mode === "demo" ? undefined : q ?? productCode, year }, cfg);
   const opp = u.built.opportunities.find((o) => o.id === id);
   if (!opp) return null;
-  const ranked = rankOpportunities(u.built.opportunities, { sort: "score", order: "desc" });
-  const rank = ranked.findIndex((o) => o.id === id);
+  const rank = lensRanks(u.built.opportunities, id);
 
   let suppliers: Supplier[] = [];
   let competitors: CompetitorAnalysis | null = null;
@@ -244,7 +243,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
   return {
     info: u.info,
     opportunity: opp,
-    rank: rank >= 0 ? rank + 1 : null,
+    rank,
     suppliers,
     top3Concentration: topSuppliersShare(suppliers, opp.marketSize, 3),
     supplierWarning,
@@ -257,7 +256,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
 export interface ComparisonResponse {
   info: DataInfo;
   universeSize: number;
-  items: { opp: Opportunity; rank: number | null }[];
+  items: { opp: Opportunity; rank: LensRanks }[];
   missing: string[];
 }
 
@@ -266,14 +265,12 @@ export async function getComparison(ids: string[], q: string | undefined, cfg = 
   const year = Number(ids[0].slice(-4));
   const codes = [...new Set(ids.map((i) => i.split("-")[0]))];
   const u = await loadUniverse({ q: cfg.mode === "demo" ? undefined : q ?? codes.join(","), year }, cfg);
-  const ranked = rankOpportunities(u.built.opportunities, { sort: "score", order: "desc" });
   const items: ComparisonResponse["items"] = [];
   const missing: string[] = [];
   for (const id of ids) {
     const opp = u.built.opportunities.find((o) => o.id === id);
     if (!opp) { missing.push(id); continue; }
-    const i = ranked.findIndex((o) => o.id === id);
-    items.push({ opp, rank: i >= 0 ? i + 1 : null });
+    items.push({ opp, rank: lensRanks(u.built.opportunities, id) });
   }
   return { info: u.info, universeSize: u.built.opportunities.filter((o) => o.complete).length, items, missing };
 }

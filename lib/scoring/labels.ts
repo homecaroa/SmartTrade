@@ -1,10 +1,10 @@
 import type { Opportunity } from "@/lib/trade/opportunities";
 import type { ComponentKey, ScoreResult } from "./score";
-import { LOW_EXPORT_PERCENTILE, topContributors } from "./score";
+import { LENSES, LOW_EXPORT_PERCENTILE } from "./score";
 
 /**
  * Etiquetas en lenguaje llano para cada oportunidad. Son un RESUMEN de reglas simples sobre los indicadores y
- * percentiles ya calculados: no añaden información nueva ni cambian la puntuación. Los umbrales son fijos y documentados.
+ * percentiles ya calculados: no añaden información nueva ni cambian los rankings. Los umbrales son fijos y documentados.
  * Las etiquetas «relativas» comparan con las oportunidades de la búsqueda actual, no con el mercado mundial.
  */
 export const HIGH_PERCENTILE = 75;
@@ -26,17 +26,11 @@ export const TAG_LEGEND: Tag[] = [
   { key: "precio", label: "Posible efecto precio", tone: "caution", hint: `El valor importado crece al menos ${PRICE_EFFECT_GAP_PP} puntos al año más que el peso neto: parte del crecimiento puede deberse a precios o a un cambio en la composición del producto, no a más volumen.` },
   { key: "irregular", label: "Crecimiento irregular", tone: "caution", hint: "El crecimiento total es positivo, pero alguna variación anual fue negativa: puede depender de un año excepcional." },
   { key: "retroceso", label: "En retroceso", tone: "caution", hint: "Las importaciones del mercado han caído en la ventana analizada." },
-  { key: "pocaexpo", label: "Poca exportación española", tone: "caution", hint: `Exportaciones españolas del producto en el ${LOW_EXPORT_PERCENTILE} % más bajo de esta búsqueda: no hay capacidad exportadora observable que respalde la oportunidad.` },
+  { key: "pocaexpo", label: "Poca exportación española", tone: "caution", hint: `Exportaciones españolas del producto por debajo del percentil ${LOW_EXPORT_PERCENTILE} de esta búsqueda: no hay capacidad exportadora observable que respalde la oportunidad, y su «Potencial de cuota» se limita a ${LOW_EXPORT_PERCENTILE}.` },
   { key: "reservas", label: "Datos con reservas", tone: "caution", hint: "Calidad de datos media o baja: revisa los avisos de la ficha." },
 ];
 const TAG = Object.fromEntries(TAG_LEGEND.map((t) => [t.key, t])) as Record<string, Tag>;
 
-const PLAIN: Record<ComponentKey, string> = {
-  size: "el tamaño de su mercado",
-  growth: "la evolución de sus importaciones",
-  expansion: "el espacio para ganar cuota",
-  export: "la exportación española ya observada",
-};
 
 export interface Description { tags: Tag[]; why: string }
 
@@ -59,13 +53,17 @@ export function describeOpportunity(o: Opportunity): Description {
     if (o.annualChanges.some((c) => c !== null && c < 0)) tags.push(TAG.irregular);
   }
   const ex = pct("export");
-  if (ex !== undefined && ex <= LOW_EXPORT_PERCENTILE) tags.push(TAG.pocaexpo);
+  // Estricto (<), igual que el tope del «Potencial de cuota» en score.ts. Hasta el 03/11/2026 era ≤: con 2 productos el
+  // percentil vale 25 o 75, y el menos exportado salía con esta etiqueta y a la vez con potencial 99, sin tope.
+  if (ex !== undefined && ex < LOW_EXPORT_PERCENTILE) tags.push(TAG.pocaexpo);
   if (o.quality !== "alta") tags.push(TAG.reservas);
 
-  const top = topContributors(sc, 2).map((c) => PLAIN[c.key]);
-  const lead = sc.total >= 60 ? "Sube en el ranking por" : "Puntúa sobre todo por";
+  // Hasta el 03/11/2026 decía «Sube en el ranking por…» con los componentes que más aportaban a la puntuación única.
+  // Con dos rankings de un solo componente, lo útil es decir en cuál destaca (índice ≥ HIGH_PERCENTILE).
+  const strong = (["volumen", "potencial"] as const).filter((l) => sc[l] >= HIGH_PERCENTILE).map((l) => `«${LENSES[l].label}»`);
+  const lead = strong.length ? `Destaca en ${strong.join(" y ")}.` : "No destaca en ninguno de los dos rankings de esta búsqueda.";
   const cautions = tags.filter((t) => t.tone === "caution").map((t) => t.label.toLowerCase());
-  const why = `${lead} ${top.join(" y ")}.${cautions.length ? ` Ten en cuenta: ${cautions.join(", ")}.` : ""}`;
+  const why = `${lead}${cautions.length ? ` Ten en cuenta: ${cautions.join(", ")}.` : ""}`;
   return { tags, why };
 }
 

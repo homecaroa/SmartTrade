@@ -1,6 +1,6 @@
 import type { DataMode, TradeObservation } from "@/lib/schemas/trade";
 import { annualChanges, cagr, spanishShare } from "@/lib/scoring/indicators";
-import { scoreUniverse, type ScoreInput, type ScoreResult, type Weights, DEFAULT_WEIGHTS } from "@/lib/scoring/score";
+import { scoreUniverse, type ScoreInput, type ScoreResult } from "@/lib/scoring/score";
 import { checkCompatible, dedupeObservations } from "./normalize";
 
 export type Quality = "alta" | "media" | "baja";
@@ -47,7 +47,6 @@ export interface BuildInput {
   endYear: number;
   mode: DataMode;
   windowYears?: number;
-  weights?: Weights;
 }
 
 export interface BuildResult {
@@ -163,7 +162,7 @@ export function buildOpportunities(input: BuildInput): BuildResult {
       spanishImports: (o.marketSize! * o.spanishShare!) / 100,
       spainExports: o.spainExportsWorld!,
     }));
-  const scores = scoreUniverse(inputs, input.weights ?? DEFAULT_WEIGHTS);
+  const scores = scoreUniverse(inputs);
   for (const o of opportunities) o.score = scores.get(o.id) ?? null;
 
   return { opportunities, duplicatesRemoved: duplicates, pairsWithoutData, pairsWithoutDataList };

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { DEFAULT_WEIGHTS, percentileRank, quantile, scoreUniverse, topContributors, winsorize, type ScoreInput } from "@/lib/scoring/score";
+import { LENSES, lensValue, percentileRank, quantile, scoreUniverse, winsorize, type ScoreInput } from "@/lib/scoring/score";
 
 const inp = (id: string, o: Partial<ScoreInput> = {}): ScoreInput => ({ id, productKey: id, size: 100, cagr: 5, spanishImports: 10, spainExports: 50, ...o });
 
@@ -17,28 +17,40 @@ describe("normalización", () => {
   });
 });
 
-describe("puntuación ponderada", () => {
+/**
+ * Hasta el 03/11/2026 aquí se comprobaba la puntuación ponderada (pesos que suman 1, total = suma de aportes, caso
+ * manual 0,35·90 + 0,30·90 + 0,20·50 + 0,15·90). Se sustituyó por dos rankings de un solo componente cada uno
+ * (docs/methodology.md, validación histórica): ahora se comprueba que cada índice es exactamente su percentil.
+ */
+describe("dos rankings", () => {
   const universe = [1, 2, 3, 4, 5].map((n) => inp("p" + n, { size: n * 100, cagr: n * 3, spainExports: n * 10 }));
   const res = scoreUniverse(universe);
 
-  it("pesos suman 1 y total = suma de aportes", () => {
-    expect(Object.values(DEFAULT_WEIGHTS).reduce((a, b) => a + b, 0)).toBeCloseTo(1);
-    for (const r of res.values()) {
-      expect(r.total).toBeCloseTo(r.components.reduce((s, c) => s + c.weight * c.normalized, 0));
-      expect(r.total).toBeGreaterThanOrEqual(0);
-      expect(r.total).toBeLessThanOrEqual(100);
+  it("cada índice es el percentil del componente que define su ranking, entre 0 y 100", () => {
+    for (const r of res.values()) for (const lens of ["volumen", "potencial"] as const) {
+      const c = r.components.find((x) => x.key === LENSES[lens].component)!;
+      expect(lensValue(r, lens)).toBe(c.normalized);
+      expect(r[lens]).toBeGreaterThanOrEqual(0);
+      expect(r[lens]).toBeLessThanOrEqual(100);
     }
   });
-  it("es monótona y reproducible", () => {
-    expect(res.get("p5")!.total).toBeGreaterThan(res.get("p1")!.total);
+  it("el crecimiento y la exportación no cambian ningún índice", () => {
+    const flat = [1, 2, 3, 4, 5].map((n) => inp("p" + n, { size: n * 100, cagr: 50 - n * 9, spainExports: 500 - n * 10 }));
+    const other = scoreUniverse(flat);
+    for (const id of ["p1", "p3", "p5"]) {
+      expect(other.get(id)!.volumen).toBe(res.get(id)!.volumen);
+    }
+  });
+  it("es monótono en tamaño y reproducible", () => {
+    expect(res.get("p5")!.volumen).toBeGreaterThan(res.get("p1")!.volumen);
     const again = scoreUniverse(universe);
     expect([...again.entries()]).toEqual([...res.entries()]);
   });
   it("calcula manualmente un caso", () => {
     const p5 = res.get("p5")!;
     // percentil de rango medio del máximo entre 5 = 90; con un solo mercado por producto no hay brecha de cuota (neutra: 50)
-    expect(p5.total).toBeCloseTo(0.35 * 90 + 0.3 * 90 + 0.2 * 50 + 0.15 * 90);
-    expect(topContributors(p5, 1)[0].key).toBe("size");
+    expect(p5.volumen).toBeCloseTo(90);
+    expect(p5.potencial).toBeCloseTo(50);
   });
   it("crecimiento negativo no recibe puntuación alta", () => {
     const u = [inp("a", { cagr: -10 }), inp("b", { cagr: -20 }), inp("c", { cagr: -30 })];

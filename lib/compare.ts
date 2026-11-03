@@ -1,9 +1,11 @@
+import { LENSES } from "@/lib/scoring/score";
 import { productLabel } from "@/lib/config/hs-catalog";
 import { fmtMoney, fmtNum, fmtPct } from "@/lib/format";
 import { buildMarketAccess } from "@/lib/market-access";
 import { describeOpportunity } from "@/lib/scoring/labels";
 import { idSchema } from "@/lib/schemas/query";
 import type { Opportunity } from "@/lib/trade/opportunities";
+import type { LensRanks } from "@/lib/trade/ranking";
 
 export const MIN_COMPARE = 2;
 export const MAX_COMPARE = 5;
@@ -29,13 +31,14 @@ const pct = (o: Opportunity, k: string) => {
 };
 
 /** Filas de la tabla comparativa. Los datos ausentes se muestran como «n.d.», nunca como cero. */
-export function buildComparison(items: { opp: Opportunity; rank: number | null }[]): CompareRow[] {
-  const row = (key: string, label: string, f: (o: Opportunity, rank: number | null) => string): CompareRow => ({ key, label, cells: items.map((i) => f(i.opp, i.rank)) });
+export function buildComparison(items: { opp: Opportunity; rank: LensRanks }[]): CompareRow[] {
+  const row = (key: string, label: string, f: (o: Opportunity, rank: LensRanks) => string): CompareRow => ({ key, label, cells: items.map((i) => f(i.opp, i.rank)) });
+  const pos = (n: number | null) => (n ? `${n}` : "fuera del ranking (incompleta)");
   return [
     row("producto", "Producto", (o) => `${productLabel(o.productCode, o.productName).title} (HS ${o.productCode})`),
     row("mercado", "Mercado de destino", (o) => o.marketName),
-    row("posicion", "Posición en el ranking", (_o, r) => (r ? `${r}` : "fuera del ranking")),
-    row("puntuacion", "Puntuación (0-100)", (o) => (o.score ? fmtNum(o.score.total, 1) : "n.d. (incompleta)")),
+    row("pos_volumen", `Posición en «${LENSES.volumen.label}»`, (_o, r) => pos(r.volumen)),
+    row("pos_potencial", `Posición en «${LENSES.potencial.label}»`, (_o, r) => pos(r.potencial)),
     row("importaciones", "Importaciones del mercado", (o) => `${fmtMoney(o.marketSize, o.currency)} (${o.endYear})`),
     row("cagr", "Crecimiento anual compuesto (en valor)", (o) => fmtPct(o.cagr)),
     row("cagr_vol", "Crecimiento anual en volumen (peso neto)", (o) => fmtPct(o.cagrVolume ?? null)),

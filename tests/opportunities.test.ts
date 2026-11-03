@@ -80,25 +80,25 @@ function universe() {
 describe("filtros y ordenación del ranking", () => {
   const all = universe();
   it("solo entran oportunidades completas", () => expect(all.every((o) => o.complete)).toBe(true));
-  it("ordena por puntuación, tamaño y crecimiento, de forma reproducible", () => {
-    const bySize = rankOpportunities(all, { sort: "size", order: "desc" }).map((o) => o.marketCode);
+  it("ordena por los dos rankings y por crecimiento, de forma reproducible", () => {
+    const bySize = rankOpportunities(all, { sort: "volumen", order: "desc" }).map((o) => o.marketCode);
     expect(bySize).toEqual(["IT", "DE", "FR"]);
-    expect(rankOpportunities(all, { sort: "size", order: "asc" }).map((o) => o.marketCode)).toEqual(["FR", "DE", "IT"]);
+    expect(rankOpportunities(all, { sort: "volumen", order: "asc" }).map((o) => o.marketCode)).toEqual(["FR", "DE", "IT"]);
     const g = rankOpportunities(all, { sort: "growth", order: "desc" });
     expect(g[0].marketCode).toBe("IT");
-    expect(rankOpportunities(all, { sort: "score", order: "desc" })).toEqual(rankOpportunities(all, { sort: "score", order: "desc" }));
+    expect(rankOpportunities(all, { sort: "potencial", order: "desc" })).toEqual(rankOpportunities(all, { sort: "potencial", order: "desc" }));
   });
   it("filtra por mercado, tamaño mínimo, crecimiento mínimo y texto", () => {
-    expect(rankOpportunities(all, { sort: "score", order: "desc", market: "DE" })).toHaveLength(1);
-    expect(rankOpportunities(all, { sort: "size", order: "desc", minSizeM: 100 }).map((o) => o.marketCode)).toEqual(["IT", "DE"]);
+    expect(rankOpportunities(all, { sort: "potencial", order: "desc", market: "DE" })).toHaveLength(1);
+    expect(rankOpportunities(all, { sort: "volumen", order: "desc", minSizeM: 100 }).map((o) => o.marketCode)).toEqual(["IT", "DE"]);
     expect(rankOpportunities(all, { sort: "growth", order: "desc", minGrowth: 20 }).map((o) => o.marketCode)).toEqual(["IT"]);
-    expect(rankOpportunities(all, { sort: "score", order: "desc", q: "220421" })).toHaveLength(3);
-    expect(rankOpportunities(all, { sort: "score", order: "desc", q: "zzz" })).toHaveLength(0);
+    expect(rankOpportunities(all, { sort: "potencial", order: "desc", q: "220421" })).toHaveLength(3);
+    expect(rankOpportunities(all, { sort: "potencial", order: "desc", q: "zzz" })).toHaveLength(0);
   });
 });
 
 describe("exportación CSV", () => {
-  const rows = rankOpportunities(universe(), { sort: "size", order: "desc", minSizeM: 100 });
+  const rows = rankOpportunities(universe(), { sort: "volumen", order: "desc", minSizeM: 100 });
   it("exporta solo los resultados filtrados con cabecera y fuente", () => {
     const csv = opportunitiesToCsv(rows);
     const lines = csv.replace("\uFEFF", "").trim().split("\r\n");

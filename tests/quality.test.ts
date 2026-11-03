@@ -88,12 +88,12 @@ describe("calidad de datos: casos límite", () => {
     expect(pairsWithoutData).toBe(0);
   });
 
-  it("empates de puntuación se ordenan de forma determinista por id", () => {
+  it("empates en un ranking se ordenan de forma determinista por id", () => {
     const mk = (m: string) => pairObs({ market: m, world: [100, 110, 121], spain: [10, 11, 12], exportES: 100 });
     const obs = [...mk("DE"), ...mk("FR").filter((o) => o.flow !== "export")];
     const opps = build(obs);
-    const a = rankOpportunities(opps, { sort: "score", order: "desc" }).map((o) => o.id);
-    const b = rankOpportunities([...opps].reverse(), { sort: "score", order: "desc" }).map((o) => o.id);
+    const a = rankOpportunities(opps, { sort: "potencial", order: "desc" }).map((o) => o.id);
+    const b = rankOpportunities([...opps].reverse(), { sort: "potencial", order: "desc" }).map((o) => o.id);
     expect(a).toEqual(b);
   });
 });

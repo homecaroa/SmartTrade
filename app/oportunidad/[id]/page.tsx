@@ -58,11 +58,11 @@ export default async function Detail({ params, searchParams }: { params: Promise
       <section className={card}>
         <h1 className="text-xl font-bold">{pl.title} → {o.marketName}</h1>
         {pl.sourceDescription && <p className="text-xs text-slate-500">Descripción de la fuente: {pl.sourceDescription}</p>}
-        <p className="text-sm text-slate-600">HS {o.productCode} · Clasificación {o.classification} · Ventana {o.importsSeries[0].year}–{o.endYear} · {d.rank ? `Posición ${d.rank} en el ranking por puntuación` : "Fuera del ranking (datos incompletos)"} · Calidad de datos: <b>{o.quality}</b></p>
+        <p className="text-sm text-slate-600">HS {o.productCode} · Clasificación {o.classification} · Ventana {o.importsSeries[0].year}–{o.endYear} · {d.rank.volumen ? `Puesto ${d.rank.volumen} en «Mercados grandes» y ${d.rank.potencial} en «Potencial de cuota»` : "Fuera de los rankings (datos incompletos)"} · Calidad de datos: <b>{o.quality}</b></p>
         <DataSourceLabel info={d.info} />
         {!o.complete && (
           <div className="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-900">
-            <b>Oportunidad incompleta, sin puntuación.</b>
+            <b>Oportunidad incompleta, fuera de los rankings.</b>
             <ul className="list-disc pl-5">{o.missing.map((m) => <li key={m}>{m}</li>)}</ul>
             <p className="mt-1 text-xs">Ausencia de datos no significa ausencia de comercio.</p>
           </div>
@@ -92,7 +92,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
         <p className="text-xs text-slate-500">Variaciones anuales: {o.annualChanges.map((c, i) => `${o.importsSeries[i + 1].year}: ${fmtPct(c)}`).join(" · ")}</p>
       </section>
 
-      {o.score && <section className={card}><h2 className="font-semibold">Desglose de la puntuación</h2><ScoreBreakdown score={o.score} /></section>}
+      {o.score && <section className={card}><h2 className="font-semibold">Posición en los dos rankings</h2><ScoreBreakdown score={o.score} ranks={d.rank} /></section>}
 
       <section className={card}>
         <h2 className="font-semibold">Evolución de las importaciones ({cur})</h2>

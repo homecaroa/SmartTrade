@@ -49,11 +49,11 @@ describe("expansión de cuota: brecha de penetración", () => {
     const u = [mk("a", 1000, 10, { spainExports: 0 }), mk("b", 1000, 100), mk("c", 1000, 300)];
     expect(exp(u, "a").normalized).toBe(0);
   });
-  it("es reproducible y no cambia los pesos", () => {
+  it("es reproducible y el ranking «Potencial de cuota» es exactamente el componente de expansión", () => {
     const u = [mk("a", 1000, 20), mk("b", 2000, 100), mk("c", 3000, 600)];
     expect([...scoreUniverse(u).entries()]).toEqual([...scoreUniverse(u).entries()]);
     const r = scoreUniverse(u).get("a")!;
-    expect(r.components.map((c) => c.weight)).toEqual([0.35, 0.3, 0.2, 0.15]);
+    expect(r.potencial).toBe(r.components.find((c) => c.key === "expansion")!.normalized);
   });
   it("en un universo sintético con cuotas independientes del tamaño, tamaño y expansión ya no son redundantes", () => {
     const rnd = rng(42);

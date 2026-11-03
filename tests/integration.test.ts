@@ -19,7 +19,8 @@ describe("flujo de búsqueda (demo, respuestas controladas)", () => {
     expect(r.incompleteCount).toBeGreaterThan(0); // portátiles sin exportaciones; MX coches con valor inicial 0
     for (const o of r.rows) {
       expect(o.score!.components).toHaveLength(4);
-      expect(o.score!.total).toBeGreaterThanOrEqual(0);
+      expect(o.score!.volumen).toBeGreaterThanOrEqual(0);
+      expect(o.score!.potencial).toBeGreaterThanOrEqual(0);
       expect(o.source).toContain("DEMO");
     }
     expect(r.rows.length).toBeLessThanOrEqual(20);
@@ -48,11 +49,12 @@ describe("flujo de búsqueda (demo, respuestas controladas)", () => {
     expect(none.rows).toHaveLength(0);
   });
 
-  it("la puntuación no cambia al filtrar (universo estable) y es reproducible", async () => {
+  it("los índices no cambian al filtrar (universo estable) y son reproducibles", async () => {
     const all = await getRanking(q({ pageSize: "50" }), demoCfg());
     const de = await getRanking(q({ market: "DE" }), demoCfg());
     const id = de.rows[0].id;
-    expect(all.rows.find((o) => o.id === id)?.score?.total ?? de.rows[0].score!.total).toBeCloseTo(de.rows[0].score!.total);
+    const inAll = all.rows.find((o) => o.id === id);
+    if (inAll) expect(inAll.score!.potencial).toBeCloseTo(de.rows[0].score!.potencial);
     const again = await getRanking(q({ market: "DE" }), demoCfg());
     expect(again.rows.map((o) => o.id)).toEqual(de.rows.map((o) => o.id));
   });
@@ -72,7 +74,8 @@ describe("flujo de búsqueda (demo, respuestas controladas)", () => {
     expect(d!.suppliers.length).toBeGreaterThan(0);
     expect(d!.top3Concentration).not.toBeNull();
     expect(d!.sameProduct.length).toBeGreaterThan(1);
-    expect(d!.rank).toBe(1);
+    expect(d!.rank.volumen).toBe(1); // la primera fila del ranking por defecto («Mercados grandes»)
+    expect(d!.rank.potencial).toBeGreaterThanOrEqual(1);
   });
 });
 
