@@ -56,10 +56,19 @@ HS a 6 dígitos. La versión HS se deduce del año (2012, 2017, 2022). Una venta
 `lib/sources/demo.ts`: 8 productos HS6 y 11 mercados, valores sintéticos deterministas, `synthetic=true`. Incluye dos casos incompletos a propósito.
 
 ## Acceso al mercado (aranceles y requisitos)
-- Módulo **informativo** en la ficha de oportunidad (`lib/market-access.ts`, `components/market-access.tsx`). No influye en la puntuación.
-- **No hay integración automática**: no se ha verificado que Access2Markets ni otras fuentes ofrezcan una API pública adecuada. Se enlazan Access2Markets e ICEX y se explica cómo consultarlos.
-- Mercados UE: solo reglas generales del mercado único, marcadas «parcial». Terceros países: aranceles, origen, impuestos y requisitos «pendiente de consulta».
-- Ningún dato se marca «verificado». No hay fecha de consulta ni periodo de validez porque no hay consulta.
+- Módulo **informativo** en la ficha de oportunidad (`lib/market-access.ts`, `components/market-access.tsx`). No influye en los rankings.
+- Se enlazan Access2Markets, ICEX y Trade Map, y se explica cómo consultarlos.
+- Mercados UE: solo reglas generales del mercado único, marcadas «parcial».
+- **Terceros países: aranceles desde la API Timeseries de la OMC** (desde el 03/11/2026, `lib/sources/wto.ts`); origen, impuestos y requisitos siguen «pendiente de consulta». Ningún dato se marca «verificado».
+
+### Aranceles: API Timeseries de la OMC («WTO Tariff and Trade Data»)
+- **Clave:** gratuita, en `WTO_API_KEY` (solo servidor; en Vercel, variable de entorno sin `NEXT_PUBLIC_`). Sin clave no se consulta y la ficha queda como antes. Va en la cabecera `Ocp-Apim-Subscription-Key`, nunca en la URL.
+- **Indicadores (HS6, una petición por indicador):** `HS_A_0010` media simple NMF de las líneas *ad valorem*; `HS_A_0040` líneas nacionales; `HS_A_0050` líneas no ad valorem (derechos por unidad); `HS_P_0070` arancel preferencial más bajo, con socio España (`p=724`). Se toma el último año disponible de los cinco últimos.
+- **Comprobado en vivo (03/11/2026):** vino en Japón, EE. UU., Reino Unido y Suiza tiene todas las líneas por unidad: no hay porcentaje y se dice así (nunca «0 %»). Calzado en Japón: 28,5 % sobre 2 de 7 líneas, preferencial para España 8,4 %. El preferencial aparece con Canadá, Japón, Marruecos, Suiza y Noruega; **no** con Reino Unido ni México aunque hay acuerdos UE, así que su ausencia no significa que no haya preferencia. Emiratos no tiene datos; Marruecos llega a 2023.
+- **Códigos de economía:** los de la OMC (ISO numérico), en `WTO_ECONOMY`. El campo `m49` del catálogo es el de UN Comtrade, distinto para EE. UU. (842), Suiza (757) y Noruega (579): con él la OMC respondía 400.
+- **Sin datos** = 204 con cuerpo vacío. **Límites:** la clave tiene cupo (429 tras una ráfaga de exploración) y la API a veces tarda más de 25 s: caché de 24 h y límite de 8 s por consulta; si falla, la ficha muestra «pendiente».
+- **Condiciones:** citar «WTO Tariff and Trade Data»; las descargas masivas o la redistribución mediante bases de datos requieren permiso (idb@wto.org). Por eso se consulta ficha a ficha y no se guarda en `data/snapshots` ni va en el CSV.
+- **Descartado: WITS (Banco Mundial).** Su cortafuegos de Cloudflare bloqueaba el `fetch` de Node (403) y su API no ofrecía el preferencial para la UE; con `reported`, el vino en Japón salía con un 0 % falso.
 - TARIC no se enlaza: regula importaciones a la UE, no la exportación desde España.
 
 ## UN Comtrade: verificación real (clave gratuita, 25/10/2026)

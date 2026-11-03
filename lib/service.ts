@@ -11,7 +11,7 @@ import { STALE_AFTER_DAYS } from "@/lib/snapshots/schema";
 import type { Loaded } from "@/lib/cache/ttl-cache";
 import type { TradeObservation } from "@/lib/schemas/trade";
 import { SourceError, type SourceResult } from "@/lib/sources/types";
-import { fetchWitsTariff, WITS_YEARS_BACK } from "@/lib/sources/wits";
+import { fetchWtoTariff } from "@/lib/sources/wto";
 import type { TariffLookup } from "@/lib/market-access";
 import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities";
 import { dedupeObservations, missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
@@ -205,7 +205,7 @@ export interface DetailResponse {
   suppliers: Supplier[];
   top3Concentration: number | null;
   supplierWarning?: string;
-  /** Arancel NMF del destino (WITS), solo fuera de la UE y con datos reales; undefined si no se consulta. */
+  /** Aranceles del destino (API de la OMC), solo fuera de la UE, con datos reales y con clave; undefined si no se consulta. */
   tariff?: TariffLookup;
   /** España frente a sus competidores en el mercado (cuota, variación y valor unitario): lib/trade/competitors.ts. */
   competitors: CompetitorAnalysis | null;
@@ -213,16 +213,20 @@ export interface DetailResponse {
   sameProduct: Opportunity[]; // mismo producto en otros mercados (completos)
 }
 
-async function lookupTariff(opp: Opportunity, cfg: AppConfig): Promise<TariffLookup | undefined> {
+const TARIFF_TTL_MS = 24 * 3600 * 1000;
+
+export async function lookupTariff(opp: Opportunity, cfg: AppConfig): Promise<TariffLookup | undefined> {
   const market = MARKETS.find((m) => m.code === opp.marketCode);
-  if (opp.synthetic || cfg.mode === "demo" || !market || market.eu) return undefined;
-  const yearsTried: [number, number] = [opp.endYear, opp.endYear - WITS_YEARS_BACK];
+  if (opp.synthetic || cfg.mode === "demo" || !market || market.eu || !cfg.wtoKey) return undefined;
+  const key = cfg.wtoKey;
   try {
-    const loaded = await getOrLoad(JSON.stringify(["wits", opp.marketCode, opp.productCode, opp.endYear]), cfg.cacheTtlMs, () =>
-      fetchWitsTariff(cfg.witsBase, opp.marketCode, opp.productCode, opp.endYear));
-    return { tariff: loaded.value, checkedAt: new Date(loaded.fetchedAt).toISOString(), yearsTried };
+    // Los aranceles cambian como mucho una vez al año y la clave tiene cupo (comprobado: 429 tras una ráfaga), así que
+    // se guardan al menos 24 h en caché, aunque el resto de datos use un TTL menor.
+    const loaded = await getOrLoad(JSON.stringify(["wto", opp.marketCode, opp.productCode]), Math.max(cfg.cacheTtlMs, TARIFF_TTL_MS), () =>
+      fetchWtoTariff(cfg.wtoBase, key, opp.marketCode, opp.productCode));
+    return { tariff: loaded.value, checkedAt: new Date(loaded.fetchedAt).toISOString() };
   } catch (e) {
-    return { tariff: null, checkedAt: new Date().toISOString(), yearsTried, error: e instanceof SourceError ? `No se pudo consultar WITS: ${e.message}` : "No se pudo consultar WITS" };
+    return { tariff: null, checkedAt: new Date().toISOString(), error: e instanceof SourceError ? `No se pudo consultar la OMC: ${e.message}` : "No se pudo consultar la OMC" };
   }
 }
 
@@ -234,7 +238,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
   if (!opp) return null;
   const rank = lensRanks(u.built.opportunities, id);
 
-  // Arancel NMF (solo fuera de la UE y con datos reales): en paralelo a los proveedores, y nunca rompe la ficha.
+  // Aranceles (solo fuera de la UE, con datos reales y clave): en paralelo a los proveedores, y nunca rompe la ficha.
   const tariffPromise = lookupTariff(opp, cfg);
   let suppliers: Supplier[] = [];
   let competitors: CompetitorAnalysis | null = null;
