@@ -3,8 +3,9 @@ import { round2 } from "../../money";
 import { R } from "../../logistics/types";
 import { computeOperation, incotermOf, routeOf, sellerBearsTransitRisk, sellerMustInsure } from "../costs";
 import type { DecisionCtx, ExportScenario } from "../types";
-import { byAir, leg, opt, ownershipDecision, productName, routeDecisions, sellerCarries, sellerClearsExport } from "./shared";
+import { byAir, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
 import { byVehicle, damageIncident, delayIncident, lateCollectionIncident } from "./incidents";
+import { dangerousBookingDecision } from "./dangerous";
 
 /**
  * CASO A5 (avanzado, fuera de la UE, MERCANCÍA PELIGROSA). Propuesta 4 (04/11/2026), decisión del dueño: las mercancías
@@ -141,20 +142,7 @@ export const PERFUMES_DUBAI: ExportScenario = {
       best: "carta_credito", whyBest: "Pedido grande, cliente nuevo y práctica habitual en la región: carta de crédito confirmada.",
     },
     ...routeDecisions("6 palés (≈2,4 t, 9 m³) de líquido inflamable de clase 3, 35 días de plazo y 5 de preparación. Compara las alternativas y elige la ruta."),
-    {
-      id: "reserva_peligrosa", stage: "logistica", kind: "single", title: "Reserva como mercancía peligrosa",
-      appliesIf: sellerCarries,
-      prompt: "Vas a reservar el transporte. ¿Cómo lo haces?",
-      concept: "Navieras, consolidadores y aerolíneas aceptan la mercancía peligrosa caso a caso: piden número ONU, clase, grupo de embalaje, cantidades y la ficha de datos de seguridad, y aprueban la reserva antes de que la carga llegue a la terminal.",
-      options: [
-        opt("solicitud", "Pedir la reserva como mercancía peligrosa con número ONU, clase, grupo de embalaje, cantidades y la ficha de datos de seguridad, y esperar la aprobación", "correcta", "Correcto: la aceptación previa evita que la carga se quede en tierra."),
-        opt("transitario", "Pedir al transitario que lo gestione, sin pasarle la ficha de datos de seguridad", "razonable", "Delegar está bien, pero sin la ficha no puede declarar la mercancía: te la pedirá y perderás días.",
-          () => ({ concept: "incidencia", label: "Salida perdida por falta de datos de la mercancía peligrosa", amount: 250, payer: "vendedor", note: "Almacenaje y nueva reserva (simulados)." })),
-        opt("general", "Reservar como carga general y explicarlo al entregar la mercancía", "grave", "Ocultar mercancía peligrosa es una infracción grave: la terminal rechaza la carga y puede haber sanciones. Además, pone en riesgo el buque y a las personas.",
-          (ctx) => ({ concept: "incidencia", label: "Rechazo en terminal y nueva reserva como peligrosa", amount: round2(900 + 0.01 * revenueOf(ctx)), payer: "vendedor", note: "Gastos de rechazo, nueva reserva y descuento por el retraso (simulados)." })),
-      ],
-      best: "solicitud", whyBest: "La mercancía peligrosa se declara y se acepta antes de embarcar.",
-    },
+    dangerousBookingDecision,
     {
       id: "packing", stage: "logistica", kind: "single", title: "Embalaje y etiquetado",
       prompt: "¿Cómo embalas y marcas los frascos para el viaje?",
