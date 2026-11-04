@@ -30,7 +30,7 @@ const incidentLine = (x: ExportSession, s: ExportScenario) => evaluateExport(s, 
 describe("variantes", () => {
   it("todos los casos tienen A (la original), B (daño) y C (retraso); los marítimos, también D (retirada tardía)", () => {
     expect(Object.fromEntries(EXPORT_SCENARIOS.map((s) => [s.id, variantsOf(s).join("")]))).toEqual({
-      "aceite-alemania": "ABC", "recambios-marruecos": "ABC", "vino-japon": "ABCD", "aceitunas-nueva-york": "ABCD",
+      "aceite-alemania": "ABC", "recambios-marruecos": "ABC", "vino-japon": "ABCD", "aceitunas-nueva-york": "ABCD", "perfumes-dubai": "ABCD",
     });
   });
   it("cada variante muestra exactamente una incidencia, en la etapa de entrega y antes del cierre", () => {

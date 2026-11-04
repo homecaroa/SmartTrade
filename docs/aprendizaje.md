@@ -9,6 +9,7 @@ Simulador educativo para el Grado Superior de Comercio Internacional, en `/apren
 | Exportación | Recambios de Sevilla a Casablanca (HS 870899, MA) | media | Cruce del Estrecho con plazo de 7 días: camión en ferry frente a grupaje (más barato pero arriesgado); FOB con camión es contradicción; EUR.1; anticipo porque el CMR no controla la mercancía. |
 | Exportación | Vino de Logroño a Yokohama (HS 220421, JP) | media | Tercer país: CIP para contenedor, contenedor de 20' bien aprovechado frente a LCL y avión, cobro documentario, DUA, origen preferencial, coherencia documental. |
 | Exportación | Aceitunas de Sevilla a Nueva York (HS 200570, US) | avanzada | Contenedor vía Algeciras, CIP, requisitos de la FDA, arancel general sin acuerdo preferencial (la prueba de origen no rebaja nada). |
+| Exportación | Perfumes de Granollers a Dubái (HS 330300, AE) — **mercancía peligrosa** | avanzada | UN 1266, clase 3 (líquido inflamable): ficha de datos de seguridad, norma de cada tramo (ADR, IMDG, IATA DGR), reserva como peligrosa, embalaje homologado y etiquetas, declaración de mercancías peligrosas y certificado de arrumazón. Ruta: el contenedor gana; el grupaje es más barato pero no asegura el plazo; el avión de carga cuesta más del triple. Carta de crédito. |
 | Negociación | Aceite para un distribuidor mexicano (MX) | media | Punto de retirada, aplazamiento con seguro de crédito, exclusividad a cambio de volumen. |
 | Negociación | Calzado para una cadena británica (GB) | avanzada | Plazo y garantías por encima del precio; DDP inviable sin registro de IVA. |
 
@@ -42,6 +43,12 @@ Cada caso tiene **variantes** que cambian la incidencia del viaje: A es la origi
 - **Retraso:** penalización del 0,5 % por día solo si el vendedor entrega en destino (reglas D). Notificar en 48 h con la causa documentada se acoge a la fuerza mayor del contrato (supuesto del caso).
 - **Retirada tardía:** el coste es de quien lo causa (el comprador), aunque la naviera lo facture a quien contrató el flete: se paga y se repercute. Asumirlo o dejarlo sin pagar es grave.
 - Importes simulados (porcentajes dañados, reposiciones, transportes urgentes, tarifas de demora).
+
+## Mercancía peligrosa (desde el 04/11/2026)
+Decisión del dueño: va **dentro de las operaciones**, no en un modo aparte. La carga puede declararse peligrosa (`cargo.dangerous`: número ONU, designación, clase y grupo de embalaje); entonces el presupuesto añade un **recargo por mercancía peligrosa** que paga quien paga el flete (simulado: 150–300 € por contenedor, 25–45 € por tonelada-volumen en grupaje, 120–220 € por envío aéreo, 60–120 € por camión). El primer caso es el de perfumes (UN 1266, clase 3).
+- **Fuentes:** UN 1266 y su clase 3 son datos reales (Recomendaciones de la ONU). El Código IMDG enmienda 42-24 es obligatorio desde el 1/1/2026 (OMI, consultado el 04/11/2026). El grupo de embalaje del caso (II), las cantidades limitadas y los límites en avión dependen de la ficha de datos de seguridad y de la edición vigente: se marcan «verificar» y **no se dan cifras normativas** que no se hayan podido confirmar en fuente primaria.
+- El etiquetado y la declaración son del expedidor (el vendedor) con cualquier Incoterm: la incidencia A del caso aplica también en FCA. La reserva como peligrosa solo se pregunta si el transporte es del vendedor.
+- El código HS (aduana) y el número ONU (transporte) son cosas distintas: confundirlos es error grave.
 
 ## Logística dentro de la operación (`lib/learning/logistics/`)
 **Decisión del dueño (30/10/2026): un solo tipo de ejercicio.** Ese día se publicó un «Laboratorio de logística» con casos propios y se retiró el mismo día: la logística vive en la etapa «Preparación logística» de cada operación de exportación, y `/aprendizaje/logistica` redirige a la portada (`next.config.mjs`). Antes, cada caso de exportación tenía una lista fija de transportes con coste exacto; ahora hay un único modelo de transporte.
@@ -83,7 +90,7 @@ Cada caso declara su envío en `logistics` (origen, carga física, rutas didáct
 - Las afirmaciones normativas (etiquetado en alemán, declaración de origen UE–Japón, notificación sanitaria del importador, IVA intracomunitario y modelo 349) están marcadas **«verificar en una operación real»**: son el planteamiento didáctico habitual, no asesoramiento.
 - El comprador simulado es un modelo de reglas: no imita el comportamiento humano ni culturas concretas más allá de lo descrito en su perfil.
 - La valoración es orientativa y no sustituye la evaluación del profesorado.
-- Logística: tarifas, distancias, plazos, frecuencias y tipos son inventados y redondos; no hay demoras de contenedor ni restricciones de mercancía peligrosa (los recargos de combustible y temporada alta y el tipo de cambio sí, simulados). Las rutas son didácticas: en una operación real hay que confirmar servicios y salidas con transitarios. El reparto de los conceptos que la tabla de Incoterms no detalla (terminales, gastos en destino) es una simplificación y en la práctica se pacta por escrito.
+- Logística: tarifas, distancias, plazos, frecuencias y tipos son inventados y redondos. La mercancía peligrosa se trata en un caso, sin cifras normativas (cantidades limitadas, límites por bulto en avión, segregación): se remite a la norma vigente. Las rutas son didácticas: en una operación real hay que confirmar servicios y salidas con transitarios. El reparto de los conceptos que la tabla de Incoterms no detalla (terminales, gastos en destino) es una simplificación y en la práctica se pacta por escrito.
 - Las rutas de casos inexistentes muestran la página 404 pero responden con código 200, como el resto del proyecto, por el `app/loading.tsx` global.
 
 ## Pruebas

@@ -17,12 +17,12 @@ import type { Modality, RouteOption } from "./types";
  * contrato de compraventa y de la ley aplicable.
  */
 export type LogisticsConcept =
-  | "recogida" | "terminal_origen" | "despacho_exportacion" | "transporte_principal" | "recargos_flete" | "transbordos" | "seguro"
+  | "recogida" | "terminal_origen" | "despacho_exportacion" | "transporte_principal" | "recargos_flete" | "recargo_peligrosa" | "transbordos" | "seguro"
   | "terminal_destino" | "gastos_destino" | "despacho_importacion" | "ultima_milla" | "aranceles" | "iva_importacion";
 
 export const CONCEPT_LABEL: Record<LogisticsConcept, string> = {
   recogida: "Recogida y transporte interior en origen", terminal_origen: "Manipulación y terminal de origen",
-  despacho_exportacion: "Despacho de exportación", transporte_principal: "Transporte principal", recargos_flete: "Recargos del flete (combustible y temporada alta)", transbordos: "Transbordos y cambios de medio",
+  despacho_exportacion: "Despacho de exportación", transporte_principal: "Transporte principal", recargos_flete: "Recargos del flete (combustible y temporada alta)", recargo_peligrosa: "Recargo por mercancía peligrosa", transbordos: "Transbordos y cambios de medio",
   seguro: "Seguro de la mercancía", terminal_destino: "Manipulación y terminal de destino", gastos_destino: "Gastos en destino",
   despacho_importacion: "Despacho de importación", ultima_milla: "Última milla hasta el almacén del comprador",
   aranceles: "Aranceles", iva_importacion: "IVA o impuesto de importación",
@@ -37,7 +37,7 @@ export function payerOf(concept: LogisticsConcept, code: string): Party {
     case "terminal_origen": return ["EXW", "FCA", "FAS"].includes(code) ? "comprador" : "vendedor";
     case "despacho_exportacion": return i.exportClearance;
     // Los recargos van con el flete: los paga quien contrata el transporte principal.
-    case "transporte_principal": case "recargos_flete": case "transbordos": return i.carriage;
+    case "transporte_principal": case "recargos_flete": case "recargo_peligrosa": case "transbordos": return i.carriage;
     case "seguro": return sellerMustInsure(i) || sellerBearsTransitRisk(i) ? "vendedor" : "comprador";
     case "terminal_destino": case "gastos_destino": case "ultima_milla": return D_RULES.includes(code) ? "vendedor" : "comprador";
     case "despacho_importacion": case "aranceles": case "iva_importacion": return i.importClearance;
