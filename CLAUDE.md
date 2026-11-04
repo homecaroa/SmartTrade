@@ -29,6 +29,8 @@ Estado confirmado el 04/11/2026: 402 pruebas correctas, `tsc` y `build` sin erro
 
 Diagnosticar antes de arreglar; cambios mínimos; commit en español explicando la decisión; actualizar `PROGRESS.md` al terminar un encargo.
 
+Al terminar y verificar un encargo: commit, push, **PR y fusión a `main` sin preguntar** (decisión del dueño, 04/11/2026: quiere ver los cambios en cuanto acaban). Si el encargo dice «no fusiones» o «espera mi revisión», eso manda.
+
 ## Archivos borrados a propósito
 
 `.env.example`, `.devcontainer/` y `scripts/verify-comtrade-peso.mjs` / `verify-comtrade-detalle.mjs` se eliminaron (pruebas o duplicados, según el dueño). No recrearlos; si README o docs los citan, la referencia es la que sobra.
