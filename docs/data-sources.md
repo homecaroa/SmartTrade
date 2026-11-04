@@ -71,6 +71,17 @@ HS a 6 dígitos. La versión HS se deduce del año (2012, 2017, 2022). Una venta
 - **Descartado: WITS (Banco Mundial).** Su cortafuegos de Cloudflare bloqueaba el `fetch` de Node (403) y su API no ofrecía el preferencial para la UE; con `reported`, el vino en Japón salía con un 0 % falso.
 - TARIC no se enlaza: regula importaciones a la UE, no la exportación desde España.
 
+## Contexto económico del país (desde el 04/11/2026)
+
+Informativo: crecimiento del PIB real, PIB por habitante y población del destino. **No entra en los rankings.** Código: `lib/sources/country-context.ts`; se consulta ficha a ficha (caché 24 h, límite 8 s) y no se guarda en `data/snapshots` ni va en el CSV.
+
+- **UE → Eurostat** (API de difusión, JSON-stat): `nama_10_gdp` (B1GQ, `CLV_PCH_PRE`), `nama_10_pc` (B1GQ, `CP_EUR_HAB`), `demo_pjan` (TOTAL, T). Grecia es **`EL`**: con `GR` la respuesta llega vacía sin error. Los últimos años vienen marcados «p» y se muestran como provisionales.
+- **Fuera de la UE → OCDE, Economic Outlook** (`sdmx.oecd.org/public/rest/data/OECD.ECO.MAD,DSD_EO@DF_EO/{ISO3}.POP+GDPVD_CAP+GDPV_ANNPCT.A?format=csvfile`), sin versión = última edición. Años anteriores al actual = observado; desde el actual = **previsión OCDE**, rotulada como tal. EE. UU., Reino Unido, Suiza, Noruega, Japón, México y Canadá. **Marruecos y Emiratos no son miembros: sin datos** (no se consulta).
+- **Cabeceras (comprobado en vivo):** la OCDE responde 500 con `Accept: text/csv` o JSON y con el `Accept-Language: *` que Node envía por defecto; responde con `Accept: */*` y `Accept-Language: en`.
+- **Unidades:** PIB por habitante en euros corrientes (Eurostat) o USD a PPA constante (OCDE). No se convierten ni se comparan; cada cifra lleva su unidad.
+- **Condiciones:** Eurostat permite reutilizar citando la fuente; la OCDE permite usar sus datos citándola.
+- **Descartados:** Banco Mundial (403 de Cloudflare al `fetch` de Node, no se esquiva) y FMI DataMapper (intermitente e ignoraba el filtro de país).
+
 ## UN Comtrade: verificación real (clave gratuita, 25/10/2026)
 Probado con `data/v1/get/C/A/HS`, Alemania, HS 220421, 2023, socios mundo (0) y España (724), desde un PC de usuario:
 - **Autenticación:** la cabecera `Ocp-Apim-Subscription-Key` funciona (HTTP 200).

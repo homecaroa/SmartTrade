@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DataSourceLabel } from "@/components/data-source-label";
 import { CompetitorsTable } from "@/components/competitors-table";
+import { CountryContextCard } from "@/components/country-context";
 import { ErrorState } from "@/components/error-state";
 import { MarketAccess } from "@/components/market-access";
 import { OpportunityTags } from "@/components/opportunity-tags";
@@ -113,6 +114,8 @@ export default async function Detail({ params, searchParams }: { params: Promise
           <CompetitorsTable a={d.competitors} currency={o.currency} euMarket={MARKETS.find((m) => m.code === o.marketCode)?.eu === true} />
         )}
       </section>
+
+      {d.context && <CountryContextCard data={d.context} marketName={o.marketName} />}
 
       <MarketAccess info={access} />
 

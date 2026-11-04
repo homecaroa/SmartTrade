@@ -23,11 +23,13 @@ Alcance: esta sesión trabaja **solo** sobre el repo `homecaroa/SmartTrade`. Otr
 npm test && npm run typecheck && npm run build
 ```
 
-Estado confirmado el 04/11/2026: 393 pruebas correctas, `tsc` y `build` sin errores. Antes de usar datos reales: `npm run verify:comext` / `verify:comtrade` (salida 0 coherente, 1 fallo, 2 no concluyente).
+Estado confirmado el 04/11/2026: 402 pruebas correctas, `tsc` y `build` sin errores. Antes de usar datos reales: `npm run verify:comext` / `verify:comtrade` (salida 0 coherente, 1 fallo, 2 no concluyente).
 
 ## Ritmo
 
 Diagnosticar antes de arreglar; cambios mínimos; commit en español explicando la decisión; actualizar `PROGRESS.md` al terminar un encargo.
+
+Al terminar y verificar un encargo: commit, push, **PR y fusión a `main` sin preguntar** (decisión del dueño, 04/11/2026: quiere ver los cambios en cuanto acaban). Si el encargo dice «no fusiones» o «espera mi revisión», eso manda.
 
 ## Archivos borrados a propósito
 

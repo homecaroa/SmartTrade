@@ -12,6 +12,7 @@ import type { Loaded } from "@/lib/cache/ttl-cache";
 import type { TradeObservation } from "@/lib/schemas/trade";
 import { SourceError, type SourceResult } from "@/lib/sources/types";
 import { fetchWtoTariff } from "@/lib/sources/wto";
+import { fetchCountryContext, type CountryContext } from "@/lib/sources/country-context";
 import type { TariffLookup } from "@/lib/market-access";
 import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities";
 import { dedupeObservations, missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
@@ -205,6 +206,8 @@ export interface DetailResponse {
   suppliers: Supplier[];
   top3Concentration: number | null;
   supplierWarning?: string;
+  /** Contexto económico del país (Eurostat o OCDE), solo con datos reales; undefined si no se consulta. */
+  context?: ContextLookup;
   /** Aranceles del destino (API de la OMC), solo fuera de la UE, con datos reales y con clave; undefined si no se consulta. */
   tariff?: TariffLookup;
   /** España frente a sus competidores en el mercado (cuota, variación y valor unitario): lib/trade/competitors.ts. */
@@ -214,6 +217,20 @@ export interface DetailResponse {
 }
 
 const TARIFF_TTL_MS = 24 * 3600 * 1000;
+
+export interface ContextLookup { context: CountryContext | null; checkedAt: string; error?: string }
+
+/** Contexto del país: nunca en demo ni con datos sintéticos; caché de 24 h (datos anuales); un fallo no rompe la ficha. */
+export async function lookupContext(opp: Opportunity, cfg: AppConfig): Promise<ContextLookup | undefined> {
+  if (opp.synthetic || cfg.mode === "demo" || !MARKETS.some((m) => m.code === opp.marketCode)) return undefined;
+  try {
+    const loaded = await getOrLoad(JSON.stringify(["ctx", opp.marketCode]), Math.max(cfg.cacheTtlMs, TARIFF_TTL_MS), () =>
+      fetchCountryContext({ eurostat: cfg.eurostatBase, oecd: cfg.oecdBase }, opp.marketCode));
+    return { context: loaded.value, checkedAt: new Date(loaded.fetchedAt).toISOString() };
+  } catch (e) {
+    return { context: null, checkedAt: new Date().toISOString(), error: e instanceof SourceError ? e.message : "No se pudo consultar la fuente" };
+  }
+}
 
 export async function lookupTariff(opp: Opportunity, cfg: AppConfig): Promise<TariffLookup | undefined> {
   const market = MARKETS.find((m) => m.code === opp.marketCode);
@@ -240,6 +257,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
 
   // Aranceles (solo fuera de la UE, con datos reales y clave): en paralelo a los proveedores, y nunca rompe la ficha.
   const tariffPromise = lookupTariff(opp, cfg);
+  const contextPromise = lookupContext(opp, cfg);
   let suppliers: Supplier[] = [];
   let competitors: CompetitorAnalysis | null = null;
   let supplierWarning: string | undefined;
@@ -272,6 +290,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
     supplierWarning,
     competitors,
     tariff: await tariffPromise,
+    context: await contextPromise,
     unitValue: unitValuePerKg(opp.marketSize, opp.netWeightEndYear),
     sameProduct: u.built.opportunities.filter((o) => o.productCode === productCode && o.complete).sort((a, b) => b.marketSize! - a.marketSize!).slice(0, 10),
   };
