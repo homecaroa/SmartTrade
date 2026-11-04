@@ -4,6 +4,7 @@ import { R } from "../../logistics/types";
 import { computeOperation, incotermOf, sellerBearsTransitRisk, sellerMustInsure } from "../costs";
 import type { DecisionCtx, ExportScenario, ExtraCost } from "../types";
 import { byAir, bySea, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
+import { byVehicle, damageIncident, delayIncident } from "./incidents";
 
 /**
  * CASO A3 (medio, fuera de la UE, cruce del Estrecho). Reales: el código HS y que Marruecos no es de la UE. TODO lo
@@ -211,7 +212,7 @@ export const RECAMBIOS_MARRUECOS: ExportScenario = {
       best: "segun_origen", whyBest: "El arancel depende del origen acreditado y del acuerdo; quién lo paga depende del Incoterm.",
     },
     {
-      id: "incidencia", stage: "entrega", kind: "single", incident: true, title: "Incidencia: retención en la aduana de destino",
+      id: "incidencia", variant: "A", stage: "entrega", kind: "single", incident: true, title: "Incidencia: retención en la aduana de destino",
       prompt: (ctx) => `La aduana marroquí retiene la mercancía: la descripción de la factura no coincide con la del ${transportDoc(ctx)} y el EUR.1 cita otra partida. La planta tiene la línea parada esperando; cada día cuesta 120 € de almacenaje y el cliente pide compensación por el retraso.`,
       options: [
         opt("corregir", "Comprobar cuál es la descripción correcta, emitir las correcciones hoy y enviarlas al agente del importador", "correcta",
@@ -226,6 +227,8 @@ export const RECAMBIOS_MARRUECOS: ExportScenario = {
       ],
       best: "corregir", whyBest: "Los documentos deben coincidir entre sí: quien los emitió mal debe corregirlos cuanto antes, aunque el despacho lo haga otro.",
     },
+    damageIncident({ variant: "B", what: "las cajas de recambios", damagedPct: 2, reshipCost: 900 }),
+    delayIncident({ variant: "C", days: 3, urgentCost: 1600, cause: byVehicle({ camion: "Un temporal de levante suspende los ferris del Estrecho.", ferry: "Un temporal de levante suspende los ferris del Estrecho.", barco: "Un temporal de levante cierra el puerto de Algeciras al tráfico de buques.", avion: "Una huelga de personal de tierra en el aeropuerto de destino retrasa la descarga del avión." }) }),
     {
       id: "cierre", stage: "entrega", kind: "single", title: "Cobro y cierre",
       prompt: "La planta ha recibido las piezas y has cobrado. ¿Qué haces para cerrar la operación?",

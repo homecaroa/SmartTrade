@@ -70,6 +70,8 @@ interface BaseDecision {
   appliesIf?: (ctx: DecisionCtx) => boolean;
   /** Si es la incidencia del caso (se resalta en pantalla). */
   incident?: boolean;
+  /** Variante del caso a la que pertenece (A, B, C…); sin variante, aplica en todas. Ver scenarios/incidents.ts. */
+  variant?: string;
 }
 export interface SingleDecision extends BaseDecision { kind: "single"; options: Option[]; best: Dyn<string>; whyBest: Dyn<string> }
 export interface MultiDecision extends BaseDecision { kind: "multi"; docs: Dyn<DocOption[]> }

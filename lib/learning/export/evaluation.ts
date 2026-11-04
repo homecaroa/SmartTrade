@@ -1,7 +1,7 @@
 import { JUSTIFICATIONS } from "../logistics/assess";
 import { round2 } from "../money";
 import { computeOperation, type OperationResult } from "./costs";
-import { ctxOf, extrasFrom, gradeAnswer, resolve, visibleDecisions, type ExportSession } from "./engine";
+import { ctxOf, extrasFrom, gradeAnswer, resolve, variantOf, variantsOf, visibleDecisions, type ExportSession } from "./engine";
 import { validateOperation, type Issue } from "./validation";
 import { STAGES, type ExportScenario, type Grade, type StageId } from "./types";
 
@@ -21,6 +21,8 @@ export interface ExportEvaluation {
   economics: OperationResult;
   marginVsTarget: number;
   issues: Issue[];
+  /** Variante jugada, si el caso tiene varias (cada una con su incidencia). */
+  variant: string | null;
 }
 
 export function evaluateExport(sc: ExportScenario, s: ExportSession): ExportEvaluation {
@@ -54,5 +56,6 @@ export function evaluateExport(sc: ExportScenario, s: ExportSession): ExportEval
     economics,
     marginVsTarget: round2(economics.marginPct - sc.targetMarginPct),
     issues: validateOperation(sc, ctx.settings),
+    variant: variantsOf(sc).length > 1 ? variantOf(s.answers) : null,
   };
 }

@@ -4,6 +4,7 @@ import { computeOperation, sellerBearsTransitRisk, sellerMustInsure, incotermOf 
 import { R } from "../../logistics/types";
 import type { DecisionCtx, ExportScenario } from "../types";
 import { bySea, eur, leg, opt, ownershipDecision, productName, routeDecisions, sellerCarries } from "./shared";
+import { byVehicle, damageIncident, delayIncident } from "./incidents";
 
 /**
  * CASO A1 (básico, intracomunitario). Todo lo que no sea el código HS o la pertenencia de Alemania a la UE es SIMULADO:
@@ -184,7 +185,7 @@ export const ACEITE_ALEMANIA: ExportScenario = {
       best: "exenta", whyBest: "Venta a empresa de otro país de la UE con NIF-IVA válido y transporte probado: entrega intracomunitaria exenta.",
     },
     {
-      id: "incidencia", stage: "entrega", kind: "single", incident: true, title: "Incidencia: avería en ruta",
+      id: "incidencia", variant: "A", stage: "entrega", kind: "single", incident: true, title: "Incidencia: avería en ruta",
       prompt: (ctx) => sellerCarries(ctx)
         ? `El transporte que contrataste sufre una avería en ruta y la mercancía llegará 3 días tarde. El contrato prevé una penalización del 0,5 % del valor del pedido por día de retraso (${eur(round2(0.005 * revenueOf(ctx)))} por día).`
         : "El camión que contrató el comprador sufre una avería en Francia y llegará 3 días tarde. El comprador te llama molesto.",
@@ -201,6 +202,8 @@ export const ACEITE_ALEMANIA: ExportScenario = {
       ],
       best: "avisar", whyBest: "Ante un retraso, comunicar pronto y proponer una solución suele reducir el daño económico y comercial.",
     },
+    damageIncident({ variant: "B", what: "las cajas de botellas de aceite", damagedPct: 3, reshipCost: 650 }),
+    delayIncident({ variant: "C", days: 2, urgentCost: 900, cause: byVehicle({ camion: "Bloqueos de carreteras por protestas de agricultores en Francia paralizan el camión.", tren: "Una huelga ferroviaria en Francia detiene el tren de contenedores.", barco: "Un temporal en el golfo de Vizcaya retrasa el buque.", avion: "Una huelga de personal de tierra en el aeropuerto de destino retrasa la descarga del avión." }) }),
     {
       id: "cierre", stage: "entrega", kind: "single", title: "Cobro y cierre",
       prompt: "La mercancía ha llegado y has cobrado. ¿Qué haces para cerrar la operación?",

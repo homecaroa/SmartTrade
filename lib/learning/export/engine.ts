@@ -20,11 +20,28 @@ export function settingsFrom(answers: Answers): Settings {
 
 export const ctxOf = (scenario: ExportScenario, answers: Answers): DecisionCtx => ({ scenario, answers, settings: settingsFrom(answers) });
 
+/**
+ * Variantes del caso (propuesta 3, 04/11/2026): cada una cambia la incidencia del viaje. Se elige antes de empezar y se
+ * guarda en las respuestas como `variante` (no es una decisión: no puntúa). Sin elegir, la A (la incidencia original),
+ * así las sesiones guardadas antes de las variantes siguen igual.
+ */
+export const variantOf = (answers: Answers): string => (typeof answers.variante === "string" ? answers.variante : "A");
+export const variantsOf = (sc: ExportScenario): string[] => [...new Set(sc.decisions.map((d) => d.variant).filter((v): v is string => !!v))].sort();
+export const variantIncident = (sc: ExportScenario, v: string) => sc.decisions.find((d) => d.variant === v && d.incident);
+
+/** Elegir la variante solo antes de la primera decisión: después cambiaría un caso ya empezado. */
+export function chooseVariant(sc: ExportScenario, s: ExportSession, v: string): ExportSession {
+  if (s.confirmed.length) return s;
+  if (!variantsOf(sc).includes(v)) throw new Error(`Variante no disponible: ${v}`);
+  return { ...s, answers: { ...s.answers, variante: v } };
+}
+
 /** Decisiones que aplican a este caso con las respuestas dadas, en orden de etapa. */
 export function visibleDecisions(sc: ExportScenario, answers: Answers): Decision[] {
   const ctx = ctxOf(sc, answers);
   const order = (s: StageId) => STAGES.findIndex((x) => x.id === s);
-  return sc.decisions.filter((d) => !d.appliesIf || d.appliesIf(ctx)).sort((a, b) => order(a.stage) - order(b.stage));
+  const v = variantOf(answers);
+  return sc.decisions.filter((d) => (!d.variant || d.variant === v) && (!d.appliesIf || d.appliesIf(ctx))).sort((a, b) => order(a.stage) - order(b.stage));
 }
 
 export function stagesFor(sc: ExportScenario, answers: Answers) {
