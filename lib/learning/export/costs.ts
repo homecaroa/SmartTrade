@@ -68,6 +68,7 @@ export function shipmentOf(sc: ExportScenario): Shipment {
     deadlineDays: sc.deadlineDays, prepDays: sc.prepDays, routes: L.routes, infeasible: L.infeasible, geographyNote: L.geographyNote, decisiveReason: L.decisiveReason,
     duty: sc.duty ? { general: sc.duty.generalRatePct, preferential: sc.duty.preferentialRatePct } : null,
     importVatPct: sc.importVatRatePct,
+    peakSeason: sc.logistics.peakSeason,
   };
 }
 

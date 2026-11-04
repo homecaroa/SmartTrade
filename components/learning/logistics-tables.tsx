@@ -103,7 +103,7 @@ function Metric({ label, value }: { label: string; value: string }) {
   return <div className="rounded border border-slate-200 p-2"><dt className="text-slate-600">{label}</dt><dd className="font-semibold">{value}</dd></div>;
 }
 
-const CONCEPTS: LogisticsConcept[] = ["recogida", "terminal_origen", "despacho_exportacion", "transporte_principal", "seguro", "terminal_destino", "ultima_milla", "despacho_importacion", "aranceles"];
+const CONCEPTS: LogisticsConcept[] = ["recogida", "terminal_origen", "despacho_exportacion", "transporte_principal", "recargos_flete", "seguro", "terminal_destino", "ultima_milla", "despacho_importacion", "aranceles"];
 
 /** Quién paga cada concepto con un Incoterm y si encaja con la ruta (se muestra tras decidir el Incoterm). */
 export function IncotermObligations({ code, route }: { code: string; route: RouteOption }) {

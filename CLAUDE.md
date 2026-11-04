@@ -23,7 +23,7 @@ Alcance: esta sesión trabaja **solo** sobre el repo `homecaroa/SmartTrade`. Otr
 npm test && npm run typecheck && npm run build
 ```
 
-Estado confirmado el 04/11/2026: 424 pruebas correctas, `tsc` y `build` sin errores. Antes de usar datos reales: `npm run verify:comext` / `verify:comtrade` (salida 0 coherente, 1 fallo, 2 no concluyente).
+Estado confirmado el 04/11/2026: 430 pruebas correctas, `tsc` y `build` sin errores. Antes de usar datos reales: `npm run verify:comext` / `verify:comtrade` (salida 0 coherente, 1 fallo, 2 no concluyente).
 
 ## Ritmo
 

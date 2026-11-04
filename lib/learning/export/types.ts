@@ -89,6 +89,8 @@ export interface ShipmentPlan {
   infeasible: InfeasibleOption[];
   geographyNote: string;
   decisiveReason: JustificationId;
+  /** El envío sale en temporada alta: la naviera aplica recargo de temporada alta (PSS). Supuesto del caso. */
+  peakSeason?: boolean;
 }
 export interface PackingOption { id: string; label: string; cost: number; protects: boolean }
 

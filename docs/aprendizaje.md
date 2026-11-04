@@ -32,6 +32,10 @@ En los casos de Japón (JPY) y Nueva York (USD) el importador pide la factura en
 - No se aplica dentro de la UE ni a Marruecos (el dírham no es libremente convertible y el caso se factura en euros).
 - Las sesiones guardadas antes de esta pregunta (v2) se descartan: la secuencia de decisiones cambió.
 
+## Recargos del flete (desde el 04/11/2026)
+El presupuesto separa el **flete base** de sus **recargos** (concepto «Recargos del flete», lo paga quien paga el transporte principal): combustible en todas las rutas como % del flete base (barco/BAF 10–18 %, avión 20–35 %, camión 5–9 %, tren 6–10 %; en avión suele cobrarse por kg, simplificado) y **temporada alta (PSS)** solo por barco y solo en los casos que la declaran (Japón): 250–450 € por contenedor o 8–15 € por tonelada-volumen. Todo simulado. El flete del valor en aduana incluye los recargos. Comprobado que no cambia qué ruta es la mejor en ningún caso.
+En la etapa logística, si el transporte es del vendedor, una pregunta pide el importe a presupuestar con las cifras de su ruta: base + todos los recargos (correcta), base + combustible (razonable si hay temporada alta; correcta si no la hay) o solo el base (error grave). No tiene efecto económico propio: los recargos ya están en la liquidación. Sesión v4.
+
 ## Logística dentro de la operación (`lib/learning/logistics/`)
 **Decisión del dueño (30/10/2026): un solo tipo de ejercicio.** Ese día se publicó un «Laboratorio de logística» con casos propios y se retiró el mismo día: la logística vive en la etapa «Preparación logística» de cada operación de exportación, y `/aprendizaje/logistica` redirige a la portada (`next.config.mjs`). Antes, cada caso de exportación tenía una lista fija de transportes con coste exacto; ahora hay un único modelo de transporte.
 
@@ -72,7 +76,7 @@ Cada caso declara su envío en `logistics` (origen, carga física, rutas didáct
 - Las afirmaciones normativas (etiquetado en alemán, declaración de origen UE–Japón, notificación sanitaria del importador, IVA intracomunitario y modelo 349) están marcadas **«verificar en una operación real»**: son el planteamiento didáctico habitual, no asesoramiento.
 - El comprador simulado es un modelo de reglas: no imita el comportamiento humano ni culturas concretas más allá de lo descrito en su perfil.
 - La valoración es orientativa y no sustituye la evaluación del profesorado.
-- Logística: tarifas, distancias, plazos, frecuencias y tipos son inventados y redondos; no hay recargos (combustible, BAF, temporada alta), tipo de cambio, demoras de contenedor ni restricciones de mercancía peligrosa. Las rutas son didácticas: en una operación real hay que confirmar servicios y salidas con transitarios. El reparto de los conceptos que la tabla de Incoterms no detalla (terminales, gastos en destino) es una simplificación y en la práctica se pacta por escrito.
+- Logística: tarifas, distancias, plazos, frecuencias y tipos son inventados y redondos; no hay demoras de contenedor ni restricciones de mercancía peligrosa (los recargos de combustible y temporada alta y el tipo de cambio sí, simulados). Las rutas son didácticas: en una operación real hay que confirmar servicios y salidas con transitarios. El reparto de los conceptos que la tabla de Incoterms no detalla (terminales, gastos en destino) es una simplificación y en la práctica se pacta por escrito.
 - Las rutas de casos inexistentes muestran la página 404 pero responden con código 200, como el resto del proyecto, por el `app/loading.tsx` global.
 
 ## Pruebas
