@@ -21,7 +21,7 @@ import type { ExportScenario, ExtraCost, Party, Settings } from "./types";
  *   30/10/2026) cada caso tenía su propia lista de transportes con un coste exacto: había dos modelos de transporte que
  *   podían contradecirse y se unificaron en uno.
  */
-export type CostConcept = "embalaje" | Exclude<LogisticsConcept, "aranceles"> | "arancel" | "medio_pago" | "incidencia" | "ajuste_comercial";
+export type CostConcept = "embalaje" | Exclude<LogisticsConcept, "aranceles"> | "arancel" | "medio_pago" | "incidencia" | "ajuste_comercial" | "diferencia_cambio";
 
 /** `range`: estimación de la que sale el importe (se liquida con su valor central). */
 export interface CostLine { concept: CostConcept; label: string; amount: number; payer: Party; prov: Provenance; note: string; range?: Range }

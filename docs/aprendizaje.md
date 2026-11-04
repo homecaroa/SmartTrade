@@ -25,6 +25,13 @@ Cada dato de la ficha lleva su procedencia (`lib/learning/provenance.ts`): **dat
 - Itinerario **adaptativo**: dentro de la UE no hay despacho ni aranceles (el DUA es un error); si el transporte lo contrata el comprador no se pregunta el modo; el seguro solo se pregunta en reglas D. Las reglas de `validation.ts` detectan contradicciones (CIF con camión, DUA intracomunitario, plazo imposible, DDP sin registro…).
 - Una decisión confirmada no se puede cambiar. Cada caso tiene al menos una incidencia con efecto económico coherente con el Incoterm (por ejemplo, la penalización por retraso solo la paga el vendedor si el transporte era suyo; sin declaración de origen compensa el arancel al comprador, salvo en DDP, donde ya lo pagó él).
 
+## Divisa de facturación y riesgo de cambio (`lib/learning/export/fx.ts`, desde el 04/11/2026)
+En los casos de Japón (JPY) y Nueva York (USD) el importador pide la factura en su moneda; en «Oferta y contrato» el alumno elige: **en su divisa con seguro de cambio** (correcta), **en euros** (razonable: el comprador asume el riesgo y pide un 2 % de descuento) o **en su divisa sin cubrir** (error grave: con un margen estrecho y cobro a semanas, dejar la posición abierta es especular). Se califica la gestión del riesgo, no el resultado.
+- Tipos en unidades de divisa por euro, **simulados y fijos por caso** (sin azar): USD 1,10 al ofertar, 1,16 al cobrar, 1,106 a plazo; JPY 160, 168 y 159,2. Los puntos a plazo siguen la diferencia de tipos de interés: con el dólar el seguro cuesta algo, con el yen da una pequeña ganancia.
+- Fórmulas: factura = ingresos × tipo al ofertar; euros cobrados = factura ÷ tipo al cobrar (sin cobertura) o ÷ tipo a plazo (con seguro); diferencia de cambio = ingresos − euros cobrados (positiva = pérdida; negativa = ganancia, se muestra con signo).
+- No se aplica dentro de la UE ni a Marruecos (el dírham no es libremente convertible y el caso se factura en euros).
+- Las sesiones guardadas antes de esta pregunta (v2) se descartan: la secuencia de decisiones cambió.
+
 ## Logística dentro de la operación (`lib/learning/logistics/`)
 **Decisión del dueño (30/10/2026): un solo tipo de ejercicio.** Ese día se publicó un «Laboratorio de logística» con casos propios y se retiró el mismo día: la logística vive en la etapa «Preparación logística» de cada operación de exportación, y `/aprendizaje/logistica` redirige a la portada (`next.config.mjs`). Antes, cada caso de exportación tenía una lista fija de transportes con coste exacto; ahora hay un único modelo de transporte.
 
@@ -61,7 +68,7 @@ Cada caso declara su envío en `logistics` (origen, carga física, rutas didáct
 `localStorage` del navegador, con clave por módulo, caso y versión (`smartrade:aprendizaje:v1:…`), validada al cargar: no se mezclan sesiones de casos o versiones distintas. Si el navegador lo bloquea, la simulación funciona sin guardar.
 
 ## Limitaciones educativas
-- Los casos simplifican la realidad: un pedido, un envío, importes redondos, sin tipo de cambio (todo en euros), sin impuestos especiales, sin seguros de cambio ni financiación bancaria.
+- Los casos simplifican la realidad: un pedido, un envío, importes redondos, sin impuestos especiales ni financiación bancaria. El tipo de cambio solo existe en los casos de Japón y Nueva York, con tipos fijos y simulados.
 - Las afirmaciones normativas (etiquetado en alemán, declaración de origen UE–Japón, notificación sanitaria del importador, IVA intracomunitario y modelo 349) están marcadas **«verificar en una operación real»**: son el planteamiento didáctico habitual, no asesoramiento.
 - El comprador simulado es un modelo de reglas: no imita el comportamiento humano ni culturas concretas más allá de lo descrito en su perfil.
 - La valoración es orientativa y no sustituye la evaluación del profesorado.

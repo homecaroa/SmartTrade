@@ -2,8 +2,9 @@ import { HS_CATALOG } from "@/lib/config/hs-catalog";
 import { marketName } from "@/lib/config/catalog";
 import type { Leg } from "../../logistics/types";
 import { fmtEur } from "../../money";
-import { incotermOf, routeOf } from "../costs";
-import type { Decision, DecisionCtx, Option } from "../types";
+import { computeOperation, incotermOf, routeOf } from "../costs";
+import { fmtFxRate, fxCost, fxOutcome } from "../fx";
+import type { Decision, DecisionCtx, FxChoice, FxSetup, Option } from "../types";
 
 /** Ayudas comunes a los escenarios de exportación. */
 export const productName = (hs6: string) => HS_CATALOG.find((e) => e.code === hs6)?.name ?? `HS ${hs6}`;
@@ -46,3 +47,25 @@ export const ownershipDecision: Decision = {
   ],
   best: "contrato", whyBest: "El Incoterm no transmite la propiedad: se pacta en el contrato.",
 };
+
+/**
+ * Divisa de facturación (solo en casos con `fx`). El comprador pide factura en su moneda; el cobro llega semanas
+ * después. Se califica la gestión del riesgo, no la suerte: dejar la posición abierta con un margen estrecho es
+ * especular, aunque en otro escenario el tipo pudiera moverse a favor.
+ */
+export function currencyDecision(fx: FxSetup): Decision {
+  const revenue = (ctx: DecisionCtx) => computeOperation(ctx.scenario, ctx.settings).revenue;
+  const cost = (c: FxChoice) => (ctx: DecisionCtx) => fxCost(fx, revenue(ctx), c);
+  const result = (ctx: DecisionCtx, c: FxChoice) => { const o = fxOutcome(fx, revenue(ctx), c); return `Factura de ${o.invoice.toLocaleString("es-ES")} ${fx.currency}; cobras ${eur(o.collectedEur)} frente a ${eur(revenue(ctx))} previstos.`; };
+  return {
+    id: "currency", stage: "contrato", kind: "single", title: "Divisa de facturación",
+    prompt: (ctx) => `El importador pide la factura en ${fx.currency}. Cobrarás dentro de unas semanas. Hoy el tipo es ${fmtFxRate(fx, fx.quoteRate)} y tu banco te ofrece un seguro de cambio a ${fmtFxRate(fx, fx.forwardRate)}. Tu margen objetivo es del ${ctx.scenario.targetMarginPct} %. ¿Cómo facturas?`,
+    concept: "El riesgo de cambio aparece cuando cobras en una moneda distinta de la tuya: si el euro se aprecia antes del cobro, recibes menos euros. El seguro de cambio fija hoy el tipo al que venderás la divisa en la fecha de cobro; su tipo a plazo depende de la diferencia de tipos de interés entre las dos monedas.",
+    options: [
+      opt("divisa_cubierta", `Factura en ${fx.currency} con seguro de cambio`, "correcta", (ctx) => `Das al cliente lo que pide y fijas hoy los euros que cobrarás. ${result(ctx, "divisa_cubierta")}`, cost("divisa_cubierta")),
+      opt("eur", "Factura en euros", "razonable", `Sin riesgo de cambio para ti, pero lo asume el importador, que pide un descuento del ${fx.buyerDiscountPct} % y puede preferir a un competidor que facture en su moneda.`, cost("eur")),
+      opt("divisa", `Factura en ${fx.currency} sin cubrir el riesgo`, "grave", (ctx) => `Dejas abierta la posición: es especular con el margen de la operación. En este caso el euro se apreció hasta ${fmtFxRate(fx, fx.collectionRate)}. ${result(ctx, "divisa")}`, cost("divisa")),
+    ],
+    best: "divisa_cubierta", whyBest: "Facturar en la moneda del cliente ayuda a vender; cubrir el riesgo protege el margen. La cobertura se decide al ofertar, no al cobrar.",
+  };
+}
