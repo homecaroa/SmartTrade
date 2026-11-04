@@ -16,6 +16,11 @@ export function ResearchChecklist({ buyersHref }: { buyersHref?: string }) {
               {s.id === "canales" && buyersHref && <Link className="mr-3 text-xs underline" href={buyersHref}>Buscar importadores y compradores</Link>}
               {s.internalHref && <Link className="text-xs underline" href={s.internalHref}>{s.internalTitle}</Link>}
               {s.sourceUrl && <a className="text-xs underline" href={s.sourceUrl} target="_blank" rel="noopener noreferrer">{s.sourceTitle}</a>}
+              {s.links && (
+                <ul className="mt-1 space-y-0.5 text-xs">
+                  {s.links.map((l) => <li key={l.url}><a className="underline" href={l.url} target="_blank" rel="noopener noreferrer">{l.title}</a> <span className="text-slate-500">— {l.purpose}</span></li>)}
+                </ul>
+              )}
             </div>
           </li>
         ))}
