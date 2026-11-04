@@ -122,7 +122,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
         <h2 className="font-semibold">Limitaciones y próximas comprobaciones</h2>
         <ul className="list-disc pl-5 text-sm text-slate-700">
           <li>Las estadísticas muestran comercio declarado, no rentabilidad ni capacidad productiva o competitividad de una empresa concreta.</li>
-          <li>Esta aplicación no ha validado aranceles, requisitos de importación ni costes logísticos: solo enlaza a fuentes externas.</li>
+          <li>Esta aplicación no ha validado aranceles, requisitos de importación ni costes logísticos. Fuera de la UE muestra los aranceles medios a 6 dígitos de la OMC; para lo demás, enlaza a fuentes externas.</li>
           <li>Pendiente de investigar: requisitos de importación, aranceles aplicables, presupuestos de transporte, distribuidores y compradores, y precios comerciales reales (el valor unitario de la tabla de competidores es solo un indicio).</li>
         </ul>
         <ul className="flex flex-wrap gap-4 text-sm">{links.map(([t, u]) => <li key={u}><a className="underline" href={u} target="_blank" rel="noopener noreferrer">{t}</a></li>)}</ul>

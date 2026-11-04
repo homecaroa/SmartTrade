@@ -17,8 +17,8 @@ export type ComponentKey = "size" | "growth" | "expansion" | "export";
 /** Los dos rankings. Cada uno ordena por un único componente validado; no se combinan. */
 export type RankingLens = "volumen" | "potencial";
 export const LENSES: Record<RankingLens, { label: string; component: ComponentKey; summary: string }> = {
-  volumen: { label: "Mercados grandes", component: "size", summary: "Ordena por el tamaño del mercado. En la validación histórica fue lo que mejor anticipó dónde aumentaron más, en euros, las ventas españolas." },
-  potencial: { label: "Potencial de cuota", component: "expansion", summary: "Ordena por cuánto está la cuota española por debajo de la que España tiene de media en el producto. En la validación histórica anticipó, con correlación modesta, dónde crecieron más en porcentaje las ventas españolas." },
+  volumen: { label: "Mercados grandes", component: "size", summary: "Ordena por el tamaño del mercado. En la validación histórica (mercados de la UE, 2019–2024) fue lo que mejor anticipó dónde aumentaron más, en valor, las ventas españolas." },
+  potencial: { label: "Potencial de cuota", component: "expansion", summary: "Ordena por cuánto está la cuota española por debajo de la que España tiene de media en el producto. En la validación histórica (mercados de la UE, 2019–2024) anticipó, con correlación modesta, dónde crecieron más en porcentaje las ventas españolas." },
 };
 
 export const COMPONENT_LABELS: Record<ComponentKey, string> = {

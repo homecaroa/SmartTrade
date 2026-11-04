@@ -55,6 +55,8 @@ describe("los dos rankings", () => {
     expect(header).toContain("percentil_expansion");
     expect(LENSES.volumen.component).toBe("size");
     expect(LENSES.potencial.component).toBe("expansion");
+    // La validación solo cubrió mercados de la UE en euros: el texto no puede presumir más (visto en una ficha en USD).
+    for (const l of Object.values(LENSES)) { expect(l.summary).toMatch(/mercados de la UE, 2019–2024/); expect(l.summary).not.toMatch(/euros/); }
   });
   it("la portada y la ficha muestran los dos rankings, sin rastro de los pesos antiguos", () => {
     const page = sinComentarios(readFileSync("app/page.tsx", "utf8"));
