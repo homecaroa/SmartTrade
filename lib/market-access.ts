@@ -66,7 +66,8 @@ const pct = (v: number) => `${v.toLocaleString("es-ES", { maximumFractionDigits:
 export function tariffItem(t: TariffLookup, marketName: string): AccessItem {
   const base = { topic: "arancel" as const, label: "Aranceles de importación" };
   const checkOrigin = `Compruébalo en Access2Markets con el código completo: el tipo real depende del código nacional y, el preferencial, de cumplir las reglas de origen.`;
-  if (t.error) return { ...base, value: null, status: "pending", source: `${WTO_SOURCE}: la consulta falló`, note: `${t.error}. ${checkOrigin}` };
+  // El fallo no se guarda en caché: recargar la ficha vuelve a consultar (en producción se vio un tiempo agotado puntual).
+  if (t.error) return { ...base, value: null, status: "pending", source: `${WTO_SOURCE}: la consulta falló`, note: `${t.error}. Recarga la página dentro de un momento para reintentarlo. ${checkOrigin}` };
   const m = t.tariff?.mfn ?? null;
   const p = t.tariff?.preference ?? null;
   if (!m && !p) return { ...base, value: null, status: "unavailable", source: `${WTO_SOURCE}: sin datos de ${marketName} para este producto`, note: checkOrigin };

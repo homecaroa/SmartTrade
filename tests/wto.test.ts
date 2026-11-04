@@ -125,6 +125,7 @@ describe("aranceles en «Acceso al mercado»", () => {
   it("sin ningún dato: «no disponible»; con error: pendiente; nunca «verificado»", () => {
     expect(arancel({ tariff: { mfn: null, preference: null }, checkedAt: at }).status).toBe("unavailable");
     expect(arancel({ tariff: null, checkedAt: at, error: "No se pudo consultar la OMC: tiempo agotado" }).status).toBe("pending");
+    expect(arancel({ tariff: null, checkedAt: at, error: "No se pudo consultar la OMC: tiempo agotado" }).note).toMatch(/Recarga la página/);
     expect(JSON.stringify(jp(lookup("640399")))).not.toMatch(/"verified"/);
     expect(jp(lookup("640399")).checkedAt).toBe(at);
   });
