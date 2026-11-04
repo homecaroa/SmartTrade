@@ -2,7 +2,9 @@ import { HS_CATALOG } from "@/lib/config/hs-catalog";
 import { marketName } from "@/lib/config/catalog";
 import type { Leg } from "../../logistics/types";
 import { fmtEur } from "../../money";
-import { computeOperation, incotermOf, routeOf } from "../costs";
+import { computeOperation, incotermOf, routeOf, shipmentOf } from "../costs";
+import { equipmentFor, surcharges } from "../../logistics/calculator";
+import { mid } from "../../logistics/types";
 import { fmtFxRate, fxCost, fxOutcome } from "../fx";
 import type { Decision, DecisionCtx, FxChoice, FxSetup, Option } from "../types";
 
@@ -33,7 +35,38 @@ export const routeDecisions = (prompt: string): Decision[] => [
     concept: "Se compara coste logístico total, plazo de entrega (preparación + espera + tramos), transbordos y adecuación a la mercancía. La mejor opción es la más barata de las que llegan a tiempo, no la más barata a secas." },
   { id: "justificacion", stage: "logistica", kind: "justify", title: "Justificación de la ruta", appliesIf: sellerCarries,
     prompt: "Marca todos los motivos que sean ciertos para la ruta que has elegido. Se comprueban con los mismos datos de la tabla." },
+  surchargeDecision,
 ];
+
+/** Flete base y recargos de la ruta elegida, a valor central (los mismos que entran en la liquidación). */
+export function freightBreakdown(ctx: DecisionCtx) {
+  const sh = shipmentOf(ctx.scenario);
+  const route = routeOf(ctx.scenario, ctx.settings.transport);
+  const main = computeOperation(ctx.scenario, ctx.settings).quote.lines.find((l) => l.concept === "transporte_principal")!.range;
+  const s = surcharges(sh, route, equipmentFor(sh, route), main);
+  const c = (r: { min: number; max: number }) => Math.round(mid(r) * 100) / 100;
+  return { base: c(main), fuel: c(s.fuel), fuelPct: s.fuelPct, peak: c(s.peak), total: c(main) + c(s.fuel) + c(s.peak) };
+}
+
+/**
+ * Recargos del flete (propuesta 2, 04/11/2026): la cotización trae un flete base y recargos aparte. Pregunta de
+ * conocimiento sin efecto económico propio: los recargos ya están en el presupuesto y en la liquidación.
+ */
+export const surchargeDecision: Decision = {
+  id: "recargos", stage: "logistica", kind: "single", title: "Recargos del flete", appliesIf: sellerCarries,
+  prompt: (ctx) => {
+    const f = freightBreakdown(ctx);
+    return `La cotización de tu ruta dice: flete base ${eur(f.base)}, más recargo de combustible del ${f.fuelPct.min}–${f.fuelPct.max} % (≈ ${eur(f.fuel)})${f.peak > 0 ? `, más recargo de temporada alta (≈ ${eur(f.peak)})` : ""}. ¿Qué importe presupuestas para el transporte principal?`;
+  },
+  concept: "Navieras, aerolíneas y transportistas cotizan un flete base y recargos aparte: combustible (BAF en barco), temporada alta (PSS), seguridad… Para comparar ofertas y fijar el precio hay que usar el total «todo incluido».",
+  options: [
+    opt("todo", "El flete base más todos los recargos de la cotización", "correcta", (ctx) => `Correcto: ${eur(freightBreakdown(ctx).total)} es lo que facturará el transportista.`),
+    opt("base_combustible", "El flete base más el recargo de combustible", (ctx) => (freightBreakdown(ctx).peak > 0 ? "razonable" : "correcta"),
+      (ctx) => { const f = freightBreakdown(ctx); return f.peak > 0 ? `Te falta el recargo de temporada alta: presupuestas ${eur(f.base + f.fuel)} y pagarás ${eur(f.total)}.` : `Correcto: en tu ruta no hay recargo de temporada alta; el total es ${eur(f.total)}.`; }),
+    opt("base", "Solo el flete base: los recargos son orientativos", "grave", (ctx) => { const f = freightBreakdown(ctx); return `Los recargos se facturan siempre: presupuestarías ${eur(f.base)} y pagarás ${eur(f.total)} (${eur(f.total - f.base)} más).`; }),
+  ],
+  best: "todo", whyBest: "El coste del flete es el total con recargos; el flete base solo es una parte.",
+};
 
 /** Riesgo frente a propiedad: el Incoterm reparte costes, riesgos y trámites, pero no regula la propiedad. */
 export const ownershipDecision: Decision = {

@@ -65,9 +65,10 @@ describe("en los casos", () => {
     const g = (c: string) => gradeAnswer(sc, d, { currency: c })!.grade;
     expect([g("divisa_cubierta"), g("eur"), g("divisa")]).toEqual(["correcta", "razonable", "grave"]);
   });
-  it("las sesiones guardadas antes de la pregunta (v2) se descartan", () => {
+  it("las sesiones guardadas con otra secuencia de preguntas (v2, v3) se descartan", () => {
     const s = newSession("vino-japon");
     expect(isExportSession(s, "vino-japon")).toBe(true);
     expect(isExportSession({ ...s, v: 2 }, "vino-japon")).toBe(false);
+    expect(isExportSession({ ...s, v: 3 }, "vino-japon")).toBe(false); // v3: antes de la pregunta de recargos
   });
 });

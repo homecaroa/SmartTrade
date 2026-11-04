@@ -82,13 +82,16 @@ describe("presupuesto logístico de cada caso", () => {
     expect(q.taxes).toBeNull();
     expect(computeQuote(ship("recambios-marruecos"), route("recambios-marruecos", "camion_ferry"), "DAP").taxes).not.toBeNull();
   });
-  it("arancel = tipo × (valor + flete principal + seguro); el preferencial solo con prueba de origen", () => {
+  // Desde el 04/11/2026 el flete del valor en aduana incluye sus recargos (combustible y temporada alta): forman parte
+  // del precio del transporte. Antes la fórmula era valor + flete base + seguro.
+  it("arancel = tipo × (valor + flete principal con recargos + seguro); el preferencial solo con prueba de origen", () => {
     const s = ship("recambios-marruecos");
     const r = route("recambios-marruecos", "camion_ferry");
     const sin = computeQuote(s, r, "DAP", { originProof: false });
     const main = sin.lines.find((l) => l.concept === "transporte_principal")!.range;
     const ins = sin.lines.find((l) => l.concept === "seguro")!.range;
-    expect(sin.taxes!.duty.min).toBeCloseTo((s.cargo.valueEur + main.min + ins.min) * 0.1, 1);
+    const sur = sin.lines.find((l) => l.concept === "recargos_flete")!.range;
+    expect(sin.taxes!.duty.min).toBeCloseTo((s.cargo.valueEur + main.min + sur.min + ins.min) * 0.1, 1);
     expect(computeQuote(s, r, "DAP", { originProof: true }).taxes!.duty.max).toBe(0);
   });
   it("sin acuerdo preferencial (Nueva York) la prueba de origen no rebaja el arancel", () => {

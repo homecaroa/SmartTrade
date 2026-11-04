@@ -4,7 +4,7 @@ import { round2 } from "../money";
 import { ESTIMACION, type Provenance } from "../provenance";
 import { CONCEPT_LABEL, payerOf, type LogisticsConcept } from "./allocation";
 import { airChargeableKg, containersNeeded, lclRevenueTons, roadChargeableKg, trucksNeeded } from "./capacity";
-import { CAPACITY, RATES } from "./params";
+import { CAPACITY, RATES, SURCHARGES } from "./params";
 import { addR, mid, mulR, ZERO, type Leg, type Range, type RouteOption, type Shipment } from "./types";
 
 /**
@@ -112,6 +112,22 @@ export function transitDays(route: RouteOption): Range {
   return route.legs.reduce((acc, l) => addR(acc, l.days), route.waitDays);
 }
 
+/**
+ * Recargos del flete principal: combustible (% del flete base según el medio del tramo principal) y, en los casos en
+ * temporada alta, recargo de temporada alta marítimo (por contenedor en FCL o por tonelada-volumen en LCL).
+ */
+export function surcharges(s: Shipment, route: RouteOption, eq: Equipment, base: Range): { fuel: Range; fuelPct: Range; peak: Range; total: Range; note: string } {
+  const vehicle = route.legs.find((l) => l.role === "principal")?.vehicle;
+  const fuelPct = vehicle === "barco" || vehicle === "avion" || vehicle === "camion" || vehicle === "tren" ? SURCHARGES.fuelPct[vehicle] : ZERO;
+  const fuel = { min: base.min * fuelPct.min / 100, max: base.max * fuelPct.max / 100 };
+  const seaPeak = s.peakSeason && vehicle === "barco";
+  const peak = !seaPeak ? ZERO : route.modality === "maritimo_lcl" ? mulR(SURCHARGES.peakPerRevenueTon, lclRevenueTons(s.cargo)) : route.modality === "maritimo_fcl" ? mulR(SURCHARGES.peakPerContainer, eq.units) : ZERO;
+  const pct = `${fuelPct.min}–${fuelPct.max} %`;
+  const name = vehicle === "barco" ? "BAF (combustible)" : "recargo de combustible";
+  const note = `${name}: ${pct} del flete base${peak.max > 0 ? `; temporada alta (PSS): ${route.modality === "maritimo_lcl" ? `${SURCHARGES.peakPerRevenueTon.min}–${SURCHARGES.peakPerRevenueTon.max} € por tonelada-volumen` : `${SURCHARGES.peakPerContainer.min}–${SURCHARGES.peakPerContainer.max} € por contenedor`}` : ""}. Recargos simulados.`;
+  return { fuel: roundR(fuel), fuelPct, peak: roundR(peak), total: roundR(addR(fuel, peak)), note };
+}
+
 export function computeQuote(s: Shipment, route: RouteOption, incoterm: string, opts: QuoteOptions = {}): Quote {
   const { insurance = true, originProof = true, sellerVatRegistered = false } = opts;
   const eu = isEuShipment(s);
@@ -132,7 +148,9 @@ export function computeQuote(s: Shipment, route: RouteOption, incoterm: string, 
   add("terminal_origen", mulR(route.terminal.origin, termUnits), "Carga, estiba y tasas de la terminal de salida.");
   if (!eu) add("despacho_exportacion", RATES.customsExport, "Agente de aduanas en España (DUA de exportación).");
   const main = sumR(mainLegs.map((l) => legCost(s, route, l)));
-  add("transporte_principal", main, `${mainLegs.map((l) => `${l.from} → ${l.to}`).join("; ")} · ${eq.chargeable}.`);
+  add("transporte_principal", main, `${mainLegs.map((l) => `${l.from} → ${l.to}`).join("; ")} · ${eq.chargeable}. Flete base, sin recargos.`);
+  const sur = surcharges(s, route, eq, main);
+  add("recargos_flete", sur.total, sur.note);
   if (route.transshipments.length && route.transshipmentCost)
     add("transbordos", mulR(route.transshipmentCost, eq.units * route.transshipments.length), `Transbordo en ${route.transshipments.join(", ")}.`);
   const insuranceCost = mulR(RATES.insurancePct, (s.cargo.valueEur * 1.1) / 100);
@@ -146,7 +164,8 @@ export function computeQuote(s: Shipment, route: RouteOption, incoterm: string, 
   let taxes: Quote["taxes"] = null;
   if (!eu && s.duty) {
     // El valor en aduana incluye el seguro aunque nadie lo contrate: la aduana lo estima igualmente (simplificación).
-    const customsValue = addR(addR(fixed(s.cargo.valueEur), main), insuranceCost);
+    // El flete en el valor en aduana incluye sus recargos: forman parte del precio del transporte.
+    const customsValue = addR(addR(addR(fixed(s.cargo.valueEur), main), sur.total), insuranceCost);
     const dutyPct = originProof ? s.duty.preferential : s.duty.general;
     const duty = mulR(customsValue, dutyPct / 100);
     const vat = mulR(addR(customsValue, duty), (s.importVatPct ?? 0) / 100);

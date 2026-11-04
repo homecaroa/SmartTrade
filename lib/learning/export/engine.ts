@@ -94,15 +94,16 @@ export function extrasFrom(sc: ExportScenario, answers: Answers): ExtraCost[] {
  * v2 (30/10/2026): la etapa logística pasó a elegir ruta y justificarla con el motor de logística, y se añadió la
  * pregunta de riesgo frente a propiedad. Las sesiones v1 guardadas tienen otra secuencia de decisiones y se descartan.
  * v3 (04/11/2026): pregunta de divisa de facturación en los casos con riesgo de cambio; las v2 se descartan por lo mismo.
+ * v4 (04/11/2026): pregunta de recargos del flete en la etapa logística.
  */
-export interface ExportSession { v: 3; module: "exportacion"; caseId: string; answers: Answers; confirmed: string[]; startedAt: string }
+export interface ExportSession { v: 4; module: "exportacion"; caseId: string; answers: Answers; confirmed: string[]; startedAt: string }
 
-export const newSession = (caseId: string, now = new Date()): ExportSession => ({ v: 3, module: "exportacion", caseId, answers: {}, confirmed: [], startedAt: now.toISOString() });
+export const newSession = (caseId: string, now = new Date()): ExportSession => ({ v: 4, module: "exportacion", caseId, answers: {}, confirmed: [], startedAt: now.toISOString() });
 
 export function isExportSession(x: unknown, caseId: string): x is ExportSession {
   if (!x || typeof x !== "object") return false;
   const s = x as Partial<ExportSession>;
-  return s.v === 3 && s.module === "exportacion" && s.caseId === caseId && !!s.answers && typeof s.answers === "object" && Array.isArray(s.confirmed) && typeof s.startedAt === "string";
+  return s.v === 4 && s.module === "exportacion" && s.caseId === caseId && !!s.answers && typeof s.answers === "object" && Array.isArray(s.confirmed) && typeof s.startedAt === "string";
 }
 
 /** Decisión pendiente: la primera visible sin confirmar. Las decisiones que dejan de aplicar se ignoran. */

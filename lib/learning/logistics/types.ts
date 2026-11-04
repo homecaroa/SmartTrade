@@ -90,4 +90,6 @@ export interface Shipment {
   /** Tipos SIMULADOS de arancel (general y preferencial con prueba de origen) e impuesto de importación. */
   duty: { general: number; preferential: number } | null;
   importVatPct: number | null;
+  /** Envío en temporada alta: la naviera cobra recargo de temporada alta (PSS). Supuesto del caso. */
+  peakSeason?: boolean;
 }

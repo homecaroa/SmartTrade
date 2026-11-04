@@ -1,4 +1,4 @@
-import { R } from "./types";
+import { R, type Range } from "./types";
 
 /**
  * PARÁMETROS del Laboratorio de logística: separados de los cálculos para poder actualizarlos.
@@ -41,4 +41,16 @@ export const RATES = {
   smallLoadMaxPallets: 4,
   /** Penalización por retraso pactada en los casos: % del valor por día. Supuesto de los escenarios. */
   latePenaltyPctPerDay: 0.5,
+};
+
+/**
+ * Recargos del flete principal (propuesta 2, 04/11/2026). ESTIMACIONES SIMULADAS. Simplificación didáctica: el de
+ * combustible se expresa siempre como % del flete base (en avión suele cobrarse por kg tasable, junto al de seguridad).
+ * - Combustible: BAF en barco; «fuel surcharge» en avión, camión y tren. Siempre aplica.
+ * - Temporada alta (PSS): solo marítimo y solo en los casos que la declaran (`peakSeason`), por contenedor o por W/M.
+ */
+export const SURCHARGES = {
+  fuelPct: { barco: R(10, 18), avion: R(20, 35), camion: R(5, 9), tren: R(6, 10) } as Record<"barco" | "avion" | "camion" | "tren", Range>,
+  peakPerContainer: R(250, 450),
+  peakPerRevenueTon: R(8, 15),
 };

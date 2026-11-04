@@ -58,6 +58,7 @@ export const VINO_JAPON: ExportScenario = {
     { label: "Peso y volumen", value: "≈ 10.800 kg brutos y 18 m³ en 15 palés", prov: ESTIMACION },
     { label: "Precio en origen (EXW)", value: "33,60 € por caja, embalaje estándar incluido", prov: SUPUESTO },
     { label: "Coste de producción", value: "26,40 € por caja", prov: SUPUESTO },
+    { label: "Temporada", value: "El contenedor sale en temporada alta hacia Asia: la naviera aplica recargo de temporada alta (PSS) además del de combustible (BAF). Importes simulados", prov: ESTIMACION },
     { label: "Plazo pactado", value: "Llegada a Yokohama como máximo 60 días después de confirmar el pedido", prov: SUPUESTO },
     { label: "Aranceles e impuestos del caso", value: "Arancel general 15 %, preferencial 0 % con prueba de origen; impuesto de importación 10 %: tipos SIMULADOS", prov: ESTIMACION },
   ],
@@ -88,6 +89,7 @@ export const VINO_JAPON: ExportScenario = {
     ],
     geographyNote: "Logroño no tiene puerto: el contenedor va en camión hasta Valencia, que tiene servicio regular con Japón.",
     decisiveReason: "aprovecha_capacidad",
+    peakSeason: true, // supuesto: el contenedor sale en temporada alta hacia Asia (recargo PSS de la naviera)
   },
   packing: [
     { id: "termico", label: "Cajas con separadores y manta térmica en el contenedor", cost: 900, protects: true },
