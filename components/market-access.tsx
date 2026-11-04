@@ -13,7 +13,7 @@ export function MarketAccess({ info }: { info: MarketAccessInfo }) {
       <h2 id="acceso-mercado" className="font-semibold">Acceso al mercado</h2>
       <p className="text-sm text-slate-600">
         Origen: <b>{info.originName}</b> · Destino: <b>{info.destinationName}</b> · Producto: <b>HS {info.hs6}</b>
-        {" "}· Fecha de consulta: <b>sin consulta automática</b>
+        {" "}· Fecha de consulta: <b>{info.checkedAt ? `${new Date(info.checkedAt).toLocaleDateString("es-ES")} (solo los aranceles, en la API de la OMC)` : "sin consulta automática"}</b>
       </p>
       {info.demo && (
         <p className="rounded border border-amber-300 bg-amber-50 p-2 text-xs text-amber-900">

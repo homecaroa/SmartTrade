@@ -55,9 +55,9 @@ export interface RawResponse {
  * fetch con timeout y límite de tamaño. Devuelve el estado HTTP y el JSON (si lo hay) sin interpretar errores de la
  * fuente, salvo 429 (rate_limit). Nunca incluye cabeceras/claves ni la URL en los mensajes de error.
  */
-export async function rawFetchJson(url: string, init: RequestInit = {}): Promise<RawResponse> {
+export async function rawFetchJson(url: string, init: RequestInit = {}, timeoutMs = REQUEST_TIMEOUT_MS): Promise<RawResponse> {
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), REQUEST_TIMEOUT_MS);
+  const timer = setTimeout(() => ctrl.abort(), timeoutMs);
   let res: Response;
   try {
     const given = init.headers instanceof Headers || Array.isArray(init.headers) ? Object.fromEntries(new Headers(init.headers).entries()) : ((init.headers ?? {}) as Record<string, string>);
@@ -73,6 +73,8 @@ export async function rawFetchJson(url: string, init: RequestInit = {}): Promise
   if (len > MAX_RESPONSE_BYTES) throw new SourceError("too_large", "Respuesta de la fuente demasiado grande");
   const text = await res.text();
   if (text.length > MAX_RESPONSE_BYTES) throw new SourceError("too_large", "Respuesta de la fuente demasiado grande");
+  // Cuerpo vacío (p. ej. 204 No Content de la API de la OMC cuando no hay datos): sin JSON, no es un error de formato.
+  if (text.trim() === "") return { status: res.status, json: null };
   try {
     return { status: res.status, json: JSON.parse(text) };
   } catch {

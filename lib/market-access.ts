@@ -1,9 +1,11 @@
 import { MARKETS, ORIGIN } from "@/lib/config/catalog";
+import { WTO_SOURCE, type WtoTariff } from "@/lib/sources/wto";
 
 /**
- * Módulo INFORMATIVO de acceso al mercado. No altera la puntuación y no consulta ninguna API:
- * ninguna fuente de aranceles ha sido verificada como consultable de forma automática, por lo que
- * ningún dato se marca como «verificado». El tipo lo admite para futuros adaptadores.
+ * Módulo INFORMATIVO de acceso al mercado. No altera los rankings y no consulta ninguna API por sí mismo: recibe, si
+ * lo hay, el arancel que el servicio obtiene de la API de la OMC (lib/sources/wto.ts) para mercados fuera de la UE.
+ * Hasta el 03/11/2026 ningún arancel se consultaba de forma automática. Aun así nada se marca como «verificado»: son
+ * medias a 6 dígitos (el tipo real depende del código nacional completo) y el preferencial exige cumplir el origen.
  */
 export type Verification = "verified" | "partial" | "pending" | "unavailable";
 export type AccessTopic = "arancel" | "origen" | "impuestos" | "requisitos" | "logistica";
@@ -28,8 +30,8 @@ export interface MarketAccessInfo {
   hs6: string;
   scope: "eu" | "third" | "unknown";
   demo: boolean;
-  /** Sin consulta automática: no hay fecha de consulta ni periodo de validez. */
-  checkedAt: null;
+  /** Fecha de la consulta automática del arancel (API de la OMC), si la hubo; null si no se consultó nada. */
+  checkedAt: string | null;
   validity: null;
   items: AccessItem[];
   links: AccessLink[];
@@ -50,7 +52,41 @@ export const TRADE_MAP = ACCESS_LINKS[2];
 const GENERAL_EU = "Regla general de la UE (no es una consulta del producto concreto)";
 const NOT_QUERIED = "Sin consulta automática: consultar la fuente oficial";
 
-export function buildMarketAccess(input: { marketCode: string; marketName: string; productCode: string; synthetic: boolean }): MarketAccessInfo {
+/** Resultado de la consulta del arancel: el dato (o null si la OMC no lo tiene), o el error si la consulta falló. */
+export interface TariffLookup { tariff: WtoTariff | null; checkedAt: string; error?: string }
+
+const pct = (v: number) => `${v.toLocaleString("es-ES", { maximumFractionDigits: 1 })} %`;
+
+/**
+ * Texto del arancel. Reglas (comprobadas con datos reales, ver lib/sources/wto.ts):
+ * - Si todas las líneas son derechos por unidad, no hay porcentaje: se dice así, nunca «0 %».
+ * - Si solo parte de las líneas es ad valorem, la media se presenta como «sobre N de M líneas».
+ * - Que la OMC no publique un preferencial para España NO significa que no haya acuerdo (Reino Unido, México).
+ */
+export function tariffItem(t: TariffLookup, marketName: string): AccessItem {
+  const base = { topic: "arancel" as const, label: "Aranceles de importación" };
+  const checkOrigin = `Compruébalo en Access2Markets con el código completo: el tipo real depende del código nacional y, el preferencial, de cumplir las reglas de origen.`;
+  if (t.error) return { ...base, value: null, status: "pending", source: `${WTO_SOURCE}: la consulta falló`, note: `${t.error}. ${checkOrigin}` };
+  const m = t.tariff?.mfn ?? null;
+  const p = t.tariff?.preference ?? null;
+  if (!m && !p) return { ...base, value: null, status: "unavailable", source: `${WTO_SOURCE}: sin datos de ${marketName} para este producto`, note: checkOrigin };
+  const parts: string[] = [];
+  if (m) {
+    const adv = m.lines - m.nonAdValoremLines;
+    if (m.average === null) parts.push(`Arancel general (NMF): derechos por unidad (por ejemplo, por litro o por kilo) en ${m.lines === 1 ? "su única línea" : `sus ${m.lines} líneas`}; no se puede expresar en %. Año ${m.year}.`);
+    else {
+      const rest = m.nonAdValoremLines === 1 ? "la otra es un derecho por unidad y no entra en la media" : `las otras ${m.nonAdValoremLines} son derechos por unidad y no entran en la media`;
+      parts.push(`Arancel general (NMF) medio: ${pct(m.average)}${m.nonAdValoremLines ? `, sobre ${adv} de ${m.lines} líneas (${rest})` : ` (${m.lines} línea${m.lines === 1 ? "" : "s"})`}. Año ${m.year}.`);
+    }
+  } else parts.push("Arancel general (NMF): sin datos en la OMC.");
+  parts.push(p
+    ? `Preferencial para productos españoles: ${pct(p.average)} (año ${p.year}), si cumplen las reglas de origen del acuerdo UE–${marketName}.`
+    : `Preferencial para productos españoles: la OMC no publica un tipo para este producto; puede existir igualmente un acuerdo UE–${marketName}.`);
+  const years = [m?.year, p?.year].filter((y): y is number => typeof y === "number");
+  return { ...base, value: parts.join(" "), status: "partial", source: `${WTO_SOURCE}, año ${Math.max(...years)}`, note: `Medias simples a 6 dígitos de las líneas arancelarias nacionales. ${checkOrigin}` };
+}
+
+export function buildMarketAccess(input: { marketCode: string; marketName: string; productCode: string; synthetic: boolean; tariff?: TariffLookup }): MarketAccessInfo {
   const market = MARKETS.find((m) => m.code === input.marketCode);
   const scope: MarketAccessInfo["scope"] = !market ? "unknown" : market.eu ? "eu" : "third";
   const eu = scope === "eu";
@@ -58,7 +94,9 @@ export function buildMarketAccess(input: { marketCode: string; marketName: strin
   const items: AccessItem[] = [
     eu
       ? { topic: "arancel", label: "Aranceles de importación", value: "No se aplican aranceles aduaneros a mercancías en libre circulación dentro de la UE.", status: "partial", source: GENERAL_EU, note: "Regla general del mercado único; no se ha comprobado el producto concreto." }
-      : { topic: "arancel", label: "Aranceles de importación", value: null, status: "pending", source: NOT_QUERIED, note: "Depende del código arancelario completo, del origen y de si existe un acuerdo comercial UE–destino." },
+      : input.tariff && !input.synthetic
+        ? tariffItem(input.tariff, input.marketName)
+        : { topic: "arancel", label: "Aranceles de importación", value: null, status: "pending", source: NOT_QUERIED, note: "Depende del código arancelario completo, del origen y de si existe un acuerdo comercial UE–destino." },
     eu
       ? { topic: "origen", label: "Origen preferencial", value: "No aplica entre Estados miembros de la UE.", status: "partial", source: GENERAL_EU }
       : { topic: "origen", label: "Origen preferencial", value: null, status: "pending", source: NOT_QUERIED, note: "Si hay acuerdo, la preferencia exige cumplir las reglas de origen del producto." },
@@ -77,7 +115,7 @@ export function buildMarketAccess(input: { marketCode: string; marketName: strin
     hs6: input.productCode,
     scope,
     demo: input.synthetic,
-    checkedAt: null,
+    checkedAt: input.tariff && !input.synthetic && !eu ? input.tariff.checkedAt : null,
     validity: null,
     items,
     links: ACCESS_LINKS,
@@ -88,10 +126,12 @@ export function buildMarketAccess(input: { marketCode: string; marketName: strin
       "Confirma el código arancelario completo con tu agente de aduanas o transitario.",
     ],
     limitations: [
-      "SmarTrade no consulta aranceles ni requisitos de forma automática: ningún dato de esta sección está verificado para tu producto.",
+      eu || !input.tariff || input.synthetic
+        ? "SmarTrade no consulta aranceles ni requisitos de forma automática para este mercado: ningún dato de esta sección está verificado para tu producto."
+        : "Fuera de la UE, SmarTrade consulta solo los aranceles a 6 dígitos en la API de la OMC (general y preferencial para España); origen, impuestos y requisitos no se consultan. Nada de esta sección está verificado para tu producto.",
       "Un arancel general no es necesariamente el aplicable: depende del código completo, el origen, las preferencias y las condiciones del momento.",
       ...(scope === "unknown" ? ["El mercado no está clasificado en el catálogo: todo queda pendiente de consulta."] : []),
-      "Esta sección no influye en la puntuación de la oportunidad.",
+      "Esta sección no influye en los rankings de la oportunidad.",
     ],
   };
 }

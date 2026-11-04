@@ -8,6 +8,8 @@ export interface AppConfig {
   comextBase: string;
   comextDataset: string;
   comtradeKey: string | null;
+  wtoBase: string;
+  wtoKey: string | null;
   /** true si el servidor permite consultar mercados fuera de la UE (modo comext + clave de Comtrade). */
   outsideAvailable: boolean;
 }
@@ -38,6 +40,9 @@ export function getConfig(env: Record<string, string | undefined> = process.env,
       env.COMEXT_BASE_URL ?? "https://ec.europa.eu/eurostat/api/comext/dissemination/statistics/1.0/data",
     comextDataset: env.COMEXT_DATASET ?? "ds-045409",
     comtradeKey: key,
+    // Aranceles (API Timeseries de la OMC): clave gratuita, solo en servidor. Sin clave no se consultan. Ver lib/sources/wto.ts.
+    wtoBase: env.WTO_BASE_URL ?? "https://api.wto.org/timeseries/v1",
+    wtoKey: env.WTO_API_KEY?.trim() || null,
   };
 }
 

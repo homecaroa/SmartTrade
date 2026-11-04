@@ -21,6 +21,12 @@ El «Laboratorio de logística» publicado ese día (#5) se integró en la expor
 - **Backtest del ranking** (`scripts/backtest-ranking.ts`, `docs/backtest-ranking.md`): orígenes 2019–2021, Eurostat, 46 productos. El crecimiento pasado no anticipa el futuro; para el aumento en euros de las ventas españolas, el tamaño solo acierta más que la puntuación; el potencial de cuota anticipa el crecimiento porcentual. Detalle en `docs/methodology.md`.
 - **Dos rankings (03/11/2026, decisión del dueño)**: la puntuación única se sustituye por «Mercados grandes» (tamaño, por defecto) y «Potencial de cuota» (expansión). El crecimiento pasado y la exportación quedan como datos informativos. Enlaces antiguos `sort=score/size` → «Mercados grandes»; el CSV pierde la columna `puntuacion`.
 
+## Fuentes externas evaluadas (03/11/2026)
+- **Trade Map (ITC):** solo enlace (#10). Empresas de Kompass y D&B con licencia; sin API abierta.
+- **Aranceles con la API de la OMC (Timeseries):** NMF a 6 dígitos (con aviso cuando son derechos por unidad) y preferencial para España, en «Acceso al mercado» de mercados fuera de la UE. Necesita `WTO_API_KEY` en el servidor (y en Vercel). Sustituye al intento con WITS (bloqueado por su cortafuegos). Detalle en `docs/data-sources.md`. Sin comprobar en una ficha real fuera de la UE: requiere la clave de Comtrade, que este entorno no tiene.
+- **Pendientes por decisión del dueño:** paso «Financiación y seguro» con enlaces (ICO, COFIDES, CESCE, FIEM); contexto del país con indicadores del Banco Mundial (API sin clave, CC BY 4.0, comprobada); DataComex (API con registro gratuito; falta leer su aviso legal).
+- **Descartadas:** TARIC (arancel de entrada en la UE, no el del destino), CIRCE (creación de empresas), CEOE (patronal: no se encontró API ni datos abiertos; no verificado a fondo).
+
 ## Añadido el 29/10/2026 (pendiente de la primera ejecución real)
 - **Pistas de empresas con IA** (`lib/buyers/ia/`, `npm run buyers:generar`): Gemini sin búsqueda de Google + auditoría que lee cada web. Dos niveles en la web y el CSV: «web verificada» y «pista sin verificar». Detalle, decisiones y riesgos en `docs/buyers.md`. **Falta:** ejecutarlo con una clave real, medir la tasa de verificadas con la lista de vino en Alemania y revisar los términos del EEE.
 

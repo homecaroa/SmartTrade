@@ -40,7 +40,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
     ["Eurostat Comext", "https://ec.europa.eu/eurostat/fr/web/user-guides/data-browser/api-data-access/api-getting-started/comext-database"],
     ["UN Comtrade", "https://uncomtrade.org/docs/un-comtrade-api/"],
   ];
-  const access = buildMarketAccess({ marketCode: o.marketCode, marketName: o.marketName, productCode: o.productCode, synthetic: d.info.synthetic });
+  const access = buildMarketAccess({ marketCode: o.marketCode, marketName: o.marketName, productCode: o.productCode, synthetic: d.info.synthetic, tariff: d.tariff });
   const desc = describeOpportunity(o);
   const pl = productLabel(o.productCode, o.productName);
   const card = "rounded-lg bg-white p-4 shadow-sm space-y-2";
