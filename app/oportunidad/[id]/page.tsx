@@ -13,11 +13,11 @@ import { ResearchChecklist } from "@/components/research-checklist";
 import { ScoreBreakdown } from "@/components/opportunity-score";
 import { fmtMoney, fmtNum, fmtPct } from "@/lib/format";
 import { MARKETS } from "@/lib/config/catalog";
-import { productLabel } from "@/lib/config/hs-catalog";
+import { codeLabel, hs6Of, nc8Entry, productLabel } from "@/lib/config/hs-catalog";
 import { buildMarketAccess } from "@/lib/market-access";
 import { getConfig } from "@/lib/config";
 import { idSchema } from "@/lib/schemas/query";
-import { getOpportunityDetail } from "@/lib/service";
+import { getOpportunityDetail, spanishOriginWarning } from "@/lib/service";
 import { SourceError } from "@/lib/sources/types";
 
 export default async function Detail({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ q?: string; fuente?: string }> }) {
@@ -59,7 +59,8 @@ export default async function Detail({ params, searchParams }: { params: Promise
       <section className={card}>
         <h1 className="text-xl font-bold">{pl.title} → {o.marketName}</h1>
         {pl.sourceDescription && <p className="text-xs text-slate-500">Descripción de la fuente: {pl.sourceDescription}</p>}
-        <p className="text-sm text-slate-600">HS {o.productCode} · Clasificación {o.classification} · Ventana {o.importsSeries[0].year}–{o.endYear} · {d.rank.volumen ? `Puesto ${d.rank.volumen} en «Mercados grandes» y ${d.rank.potencial} en «Potencial de cuota»` : "Fuera de los rankings (datos incompletos)"} · Calidad de datos: <b>{o.quality}</b></p>
+        <p className="text-sm text-slate-600">{codeLabel(o.productCode)} · Clasificación {o.classification} · Ventana {o.importsSeries[0].year}–{o.endYear} · {d.rank.volumen ? `Puesto ${d.rank.volumen} en «Mercados grandes» y ${d.rank.potencial} en «Potencial de cuota»` : "Fuera de los rankings (datos incompletos)"} · Calidad de datos: <b>{o.quality}</b></p>
+        {nc8Entry(o.productCode)?.spanishOrigin && <p className="rounded border border-amber-300 bg-amber-50 p-2 text-sm text-amber-900">{spanishOriginWarning([pl.title])}</p>}
         <DataSourceLabel info={d.info} />
         {!o.complete && (
           <div className="rounded border border-red-300 bg-red-50 p-3 text-sm text-red-900">
@@ -119,7 +120,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
 
       <MarketAccess info={access} />
 
-      <ResearchChecklist buyersHref={`/compradores?hs=${o.productCode}&pais=${o.marketCode}`} />
+      <ResearchChecklist buyersHref={`/compradores?hs=${hs6Of(o.productCode)}&pais=${o.marketCode}`} />
 
       <section className={card}>
         <h2 className="font-semibold">Limitaciones y próximas comprobaciones</h2>

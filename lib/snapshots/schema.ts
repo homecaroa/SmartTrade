@@ -11,7 +11,7 @@ export type SnapshotMode = (typeof SNAPSHOT_MODES)[number];
 export const snapshotFileSchema = z.object({
   v: z.literal(1),
   mode: z.enum(SNAPSHOT_MODES),
-  code: z.string().regex(/^\d{6}$/),
+  code: z.string().regex(/^\d{6}(\d{2})?$/), // HS6, o NC8 solo en comext
   years: z.array(z.number().int()).min(1),
   generatedAt: z.string().datetime(),
   sourceLabel: z.string().min(1),

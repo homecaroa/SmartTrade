@@ -40,8 +40,10 @@ export async function updateSnapshots(plans: ModePlan[], codes: string[], years:
     const r: ModeReport = { mode: plan.mode, updated: [], changed: [], added: [], empty: [], failed: [], observations: 0 };
     reports.push(r);
     if (plan.skipReason) { r.skipped = plan.skipReason; continue; }
-    for (let i = 0; i < codes.length; i += groupSize) {
-      const group = codes.slice(i, i + groupSize);
+    // Las subcategorías NC8 (8 dígitos) solo existen en Eurostat Comext: UN Comtrade llega a HS6.
+    const planCodes = plan.mode === "comext" ? codes : codes.filter((c) => c.length === 6);
+    for (let i = 0; i < planCodes.length; i += groupSize) {
+      const group = planCodes.slice(i, i + groupSize);
       deps.log?.(`${plan.mode}: ${group.join(", ")}`);
       let res: SourceResult;
       try {

@@ -1,3 +1,4 @@
+import { hs6Of } from "@/lib/config/hs-catalog";
 import { MARKETS, ORIGIN } from "@/lib/config/catalog";
 import { WTO_SOURCE, type WtoTariff } from "@/lib/sources/wto";
 
@@ -113,7 +114,7 @@ export function buildMarketAccess(input: { marketCode: string; marketName: strin
     originName: ORIGIN.name,
     destinationCode: input.marketCode,
     destinationName: input.marketName,
-    hs6: input.productCode,
+    hs6: hs6Of(input.productCode), // Access2Markets y la OMC trabajan con la partida HS6
     scope,
     demo: input.synthetic,
     checkedAt: input.tariff && !input.synthetic && !eu ? input.tariff.checkedAt : null,

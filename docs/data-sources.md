@@ -52,6 +52,17 @@ Docs: https://uncomtrade.org/docs/un-comtrade-api/
 ## Clasificación
 HS a 6 dígitos. La versión HS se deduce del año (2012, 2017, 2022). Una ventana que cruce revisiones (p. ej. 2021–2023) **no se combina**: queda incompleta. Por eso el año final por defecto es 2024 (ventana 2022–2024). Años posteriores al último año completo se rechazan (datos provisionales/incompletos).
 
+### Subcategorías NC8, solo UE (desde el 04/11/2026)
+Para precisar más que el HS6 (Rioja, naranjas navel, coches eléctricos usados…), el catálogo incluye 15 códigos de 8 dígitos de la Nomenclatura Combinada europea (`NC8_CATALOG` en `lib/config/hs-catalog.ts`). Decisión del dueño: **solo para mercados de la UE**.
+- **Por qué solo UE:** la NC8 es europea. Eurostat Comext la publica; UN Comtrade y la OMC llegan a 6 dígitos. Con «fuera de la UE», la búsqueda usa la partida HS6 y lo dice. Aranceles, Access2Markets y compradores usan siempre la partida HS6.
+- **Comprobado en vivo (04/11/2026):** los 15 códigos tienen datos 2022–2025 en Alemania y Francia (p. ej. Rioja tinto: Alemania importó 44,0 M€ desde España en 2024).
+- **No existen en la estadística oficial** y no se aproximan: Ribera del Duero, Rueda, Priorat… por separado (van en «otras DOP de la UE», mezcladas con DOP de otros países en el total mundial) y los coches por carrocería (SUV).
+- **Clasificación `NC8-HS2022`:** se rotula con la versión HS y no con el año. Rotularla «NC2022», «NC2023»… hacía incompatible toda ventana y todas las oportunidades salían incompletas (visto al abrir la app). Eurostat da estos códigos como válidos desde 2010.
+- **Sin solapes:** una búsqueda por nombre que encuentra una partida y sus subcategorías se queda con la partida (sumarlas contaría dos veces el mismo comercio) y lo avisa. Los prefijos numéricos (p. ej. «2204») solo dan HS6. Los sectores no incluyen NC8.
+- **DOP que solo produce España** (Rioja, Navarra, Penedés, Valdepeñas, Valencia, Cava): la cuota española es casi el 100 % por definición (97,7 % en Alemania). El «Potencial de cuota» no informa ahí; la lista y la ficha lo avisan.
+- **Más sensibles a cómo se declara:** Cava en Alemania pasó de 42,7 M€ (2023) a 6,7 M€ (2025) mientras crecían los espumosos «varietales sin DOP». Un subcódigo puede moverse por reclasificación, no solo por demanda.
+- Los datos guardados de UN Comtrade no incluyen NC8 (`lib/snapshots/update.ts` los filtra).
+
 ## Datos demo
 `lib/sources/demo.ts`: 8 productos HS6 y 11 mercados, valores sintéticos deterministas, `synthetic=true`. Incluye dos casos incompletos a propósito.
 

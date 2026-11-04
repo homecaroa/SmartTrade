@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { HS_CATALOG } from "@/lib/config/hs-catalog";
+import { HS_CATALOG, NC8_CATALOG } from "@/lib/config/hs-catalog";
 import { TAG_LEGEND } from "@/lib/scoring/labels";
 
 export const metadata = { title: "Guía de uso · SmarTrade" };
@@ -83,6 +83,26 @@ export default function Guide() {
           <thead><tr className="border-b"><th className="py-1 pr-3">Código HS6</th><th className="py-1">Producto</th></tr></thead>
           <tbody>
             {HS_CATALOG.map((e) => (
+              <tr key={e.code} className="border-b border-slate-100">
+                <td className="py-1 pr-3 font-mono"><Link className={a} href={`/?q=${e.code}`}>{e.code}</Link></td>
+                <td className="py-1">{e.name}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2 className={h} id="subcategorias">Subcategorías más precisas, solo UE ({NC8_CATALOG.length})</h2>
+      <p>Códigos de 8 dígitos de la Nomenclatura Combinada europea (NC8). Solo Eurostat los publica, así que sirven para los mercados de la UE; fuera de la UE se usa la partida general de 6 dígitos y se avisa. Puedes buscarlas por nombre (p. ej. «Rioja», «naranjas navel», «coches eléctricos usados») o por código.</p>
+      <ul className="list-disc space-y-1 pl-5">
+        <li>No existen en ninguna estadística oficial y por eso no se ofrecen: denominaciones como Ribera del Duero, Rueda o Priorat por separado (van juntas en «otras DOP») ni los coches por carrocería (SUV): la nomenclatura los clasifica por motor.</li>
+        <li>En las denominaciones que solo produce España (Rioja, Navarra, Penedés, Valdepeñas, Valencia, Cava), la cuota española es casi el 100 % por definición: el ranking «Potencial de cuota» no informa ahí.</li>
+      </ul>
+      <div className="overflow-x-auto">
+        <table className="w-full text-left text-xs">
+          <thead><tr className="border-b"><th className="py-1 pr-3">Código NC8</th><th className="py-1">Producto</th></tr></thead>
+          <tbody>
+            {NC8_CATALOG.map((e) => (
               <tr key={e.code} className="border-b border-slate-100">
                 <td className="py-1 pr-3 font-mono"><Link className={a} href={`/?q=${e.code}`}>{e.code}</Link></td>
                 <td className="py-1">{e.name}</td>

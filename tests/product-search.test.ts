@@ -15,7 +15,10 @@ describe("búsqueda por nombre", () => {
     expect(searchCatalog("vinos").map((e) => e.code)).toContain("220421");
   });
   it("exige todas las palabras", () => {
-    expect(searchCatalog("coches eléctricos").map((e) => e.code)).toEqual(["870380"]);
+    // Desde el 04/11/2026 el catálogo incluye subcategorías NC8; la búsqueda en bruto las devuelve y
+    // resolveProductQuery se queda con la partida (ver tests/nc8.test.ts).
+    expect(searchCatalog("coches eléctricos").map((e) => e.code)).toEqual(["870380", "87038010", "87038090"]);
+    expect(searchCatalog("coches eléctricos usados").map((e) => e.code)).toEqual(["87038090"]);
   });
   it("devuelve vacío si no hay coincidencias", () => {
     expect(searchCatalog("xyzzy")).toEqual([]);
@@ -53,7 +56,8 @@ describe("sinónimos en inglés y erratas", () => {
     expect(resolveProductQuery("cerámica").notes[0]).not.toContain("aproximada");
   });
   it("no inventa coincidencias con palabras cortas o sin relación", () => {
-    expect(resolveProductQuery("vin").codes).toEqual(searchCatalog("vin").map((e) => e.code));
+    // Las subcategorías NC8 de una partida encontrada se descartan (contarían dos veces el mismo comercio).
+    expect(resolveProductQuery("vin").codes).toEqual(searchCatalog("vin").map((e) => e.code).filter((c) => c.length === 6));
     expect(resolveProductQuery("xyzzyqwerty").codes).toEqual([]);
     expect(resolveProductQuery("casa").codes).toEqual([]);
   });
