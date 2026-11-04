@@ -11,12 +11,19 @@ describe("siguientes pasos de investigación", () => {
     expect(JSON.stringify(RESEARCH_STEPS)).not.toMatch(/verificad|validad|completad/i);
   });
   it("cubre requisitos, aranceles, origen, impuestos, competencia, canales y transporte", () => {
-    expect(RESEARCH_STEPS.map((s) => s.id)).toEqual(["requisitos", "aranceles", "origen", "impuestos", "competencia", "canales", "transporte"]);
+    expect(RESEARCH_STEPS.map((s) => s.id)).toEqual(["requisitos", "aranceles", "origen", "impuestos", "competencia", "canales", "financiacion", "transporte"]);
   });
   it("el paso de compradores enlaza a Trade Map sin integrarlo", () => {
     const c = RESEARCH_STEPS.find((s) => s.id === "canales")!;
     expect(c.sourceUrl).toBe("https://www.trademap.org/");
     expect(ACCESS_LINKS.find((l) => l.url === c.sourceUrl)!.purpose).toMatch(/Kompass.*Dun & Bradstreet.*cuenta del ITC/);
+  });
+  it("financiación y seguro: solo enlaces a los organismos públicos, por https y sin promesas", () => {
+    const f = RESEARCH_STEPS.find((s) => s.id === "financiacion")!;
+    expect(f.links!.map((l) => new URL(l.url).hostname).sort()).toEqual(["comercio.gob.es", "www.cesce.es", "www.cofides.es", "www.ico.es"]);
+    expect(f.links!.every((l) => l.url.startsWith("https://"))).toBe(true);
+    expect(JSON.stringify(f)).not.toMatch(/garantiz|asegura(mos|do)|aprobad|concede/i);
+    expect(f.verify).toMatch(/no evalúa el riesgo/);
   });
   it("el paso de transporte no estima costes ni tiempos", () => {
     const t = RESEARCH_STEPS.find((s) => s.id === "transporte")!;

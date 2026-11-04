@@ -24,7 +24,9 @@ El «Laboratorio de logística» publicado ese día (#5) se integró en la expor
 ## Fuentes externas evaluadas (03/11/2026)
 - **Trade Map (ITC):** solo enlace (#10). Empresas de Kompass y D&B con licencia; sin API abierta.
 - **Aranceles con la API de la OMC (Timeseries):** NMF a 6 dígitos (con aviso cuando son derechos por unidad) y preferencial para España, en «Acceso al mercado» de mercados fuera de la UE. Necesita `WTO_API_KEY` en el servidor (y en Vercel). Sustituye al intento con WITS (bloqueado por su cortafuegos). Detalle en `docs/data-sources.md`. Primera ficha real en producción (04/11/2026, vino en Canadá): la consulta se hizo pero superó los 8 s; desde el entorno de desarrollo la OMC responde en 1–2 s. Recargar reintenta (los fallos no se guardan en caché). Pendiente menor: países fuera del catálogo salen con el nombre en inglés de Comtrade («New Zealand»).
-- **Pendientes por decisión del dueño:** paso «Financiación y seguro» con enlaces (ICO, COFIDES, CESCE, FIEM); contexto del país con indicadores del Banco Mundial (API sin clave, CC BY 4.0, comprobada); DataComex (API con registro gratuito; falta leer su aviso legal).
+- **Hecho (04/11/2026):** paso «Cobro, seguro de crédito y financiación» en «Qué falta por comprobar», con enlaces a CESCE, ICO, COFIDES y FIEM.
+- **Contexto del país: bloqueado.** La API del Banco Mundial responde 403 de Cloudflare al `fetch` de Node (curl sí pasa), igual que WITS; el FMI (DataMapper) dejó pasar a Node y minutos después devolvió 403 a curl, y además ignora el filtro de país (devuelve todos). No se esquivan esas protecciones. Pendiente de decidir otra fuente.
+- **Pendiente:** DataComex (API con registro gratuito; falta leer su aviso legal).
 - **Descartadas:** TARIC (arancel de entrada en la UE, no el del destino), CIRCE (creación de empresas), CEOE (patronal: no se encontró API ni datos abiertos; no verificado a fondo).
 
 ## Añadido el 29/10/2026 (pendiente de la primera ejecución real)
