@@ -13,7 +13,7 @@ export const HS_CATALOG: HsEntry[] = [
   { code: "200570", name: "Aceitunas preparadas o conservadas", keywords: "aceitunas olivas conserva olives preserved" },
   { code: "220421", name: "Vino en envases de hasta 2 l", keywords: "vino botella tinto blanco rosado wine bottles" },
   { code: "220429", name: "Vino en otros envases (granel)", keywords: "vino granel wine bulk" },
-  { code: "220410", name: "Vino espumoso", keywords: "vino espumoso cava champagne sparkling wine cava champagne" },
+  { code: "220410", name: "Vino espumoso", keywords: "vino espumoso champagne sparkling wine champagne" /* «cava» lleva a la subcategoría NC8 Cava DOP (o a esta partida fuera de la UE) */ },
   { code: "220300", name: "Cerveza de malta", keywords: "cerveza malta beer" },
   { code: "220830", name: "Whisky", keywords: "whisky licor destilado whisky whiskey spirits" },
   { code: "080510", name: "Naranjas", keywords: "naranjas citricos fruta oranges citrus fruit" },
@@ -67,9 +67,53 @@ export const HS_CATALOG: HsEntry[] = [
   { code: "620462", name: "Pantalones de mujer de algodón", keywords: "pantalones vaqueros ropa textil algodon moda mujer trousers jeans cotton women clothing" },
 ];
 
+/**
+ * Subcategorías a 8 dígitos de la Nomenclatura Combinada de la UE (NC8), para precisar más que el HS6. Decisión del
+ * dueño (04/11/2026): SOLO para mercados de la UE. La NC8 es europea: Eurostat Comext la publica, pero UN Comtrade y la
+ * OMC solo llegan a 6 dígitos. Fuera de la UE la búsqueda usa la partida general HS6 y lo dice.
+ *
+ * Comprobado en vivo el 04/11/2026 (Comext ds-045409, Alemania y Francia, 2022–2025): todos los códigos tienen datos
+ * los cuatro años. Lo que NO existe en ninguna estadística oficial y por eso no se ofrece: Ribera del Duero, Rueda,
+ * Priorat… (van juntas en «otros vinos con DOP») y «SUV» (la nomenclatura clasifica turismos por motor, no por
+ * carrocería). No se aproximan con cifras inventadas.
+ *
+ * `spanishOrigin`: la denominación solo se produce en España (Rioja, Navarra…). Su cuota española es casi el 100 % por
+ * definición (medido: 98 % en Alemania), así que el ranking «Potencial de cuota» no informa en esos productos; la app lo
+ * avisa. Sirven para ver dónde se vende la denominación y cómo evoluciona.
+ *
+ * Ojo: un subcódigo es más sensible que su partida a cambios en cómo declaran los importadores (p. ej. Cava en
+ * Alemania: de 42,7 M€ en 2023 a 6,7 M€ en 2025 mientras crecían los espumosos «varietales sin DOP»).
+ */
+export interface Nc8Entry extends HsEntry { spanishOrigin?: true }
+
+export const NC8_CATALOG: Nc8Entry[] = [
+  { code: "22042176", name: "Vino tinto o rosado DOP Rioja (hasta 2 l)", keywords: "vino tinto rosado rioja denominacion origen dop wine red", spanishOrigin: true },
+  { code: "22042136", name: "Vino blanco DOP Rioja (hasta 2 l)", keywords: "vino blanco rioja denominacion origen dop wine white", spanishOrigin: true },
+  { code: "22042171", name: "Vino tinto o rosado DOP Navarra (hasta 2 l)", keywords: "vino tinto rosado navarra denominacion origen dop wine red", spanishOrigin: true },
+  { code: "22042174", name: "Vino tinto o rosado DOP Penedés (hasta 2 l)", keywords: "vino tinto rosado penedes denominacion origen dop wine red", spanishOrigin: true },
+  { code: "22042134", name: "Vino blanco DOP Penedés (hasta 2 l)", keywords: "vino blanco penedes denominacion origen dop wine white", spanishOrigin: true },
+  { code: "22042177", name: "Vino tinto o rosado DOP Valdepeñas (hasta 2 l)", keywords: "vino tinto rosado valdepenas denominacion origen dop wine red", spanishOrigin: true },
+  { code: "22042137", name: "Vino blanco DOP Valencia (hasta 2 l)", keywords: "vino blanco valencia denominacion origen dop wine white", spanishOrigin: true },
+  { code: "22042178", name: "Vino tinto o rosado con otras DOP de la UE (incl. Ribera del Duero, Priorat, Toro…; hasta 2 l)", keywords: "vino tinto rosado otras denominacion origen dop ribera duero priorat toro jumilla bierzo wine red" },
+  { code: "22042138", name: "Vino blanco con otras DOP de la UE (incl. Rueda, Rías Baixas…; hasta 2 l)", keywords: "vino blanco otras denominacion origen dop rueda rias baixas albarino wine white" },
+  { code: "22041013", name: "Cava DOP", keywords: "cava espumoso vino denominacion origen dop sparkling wine", spanishOrigin: true },
+  { code: "08051022", name: "Naranjas navel", keywords: "naranjas navel citricos fruta oranges navel citrus fruit" },
+  { code: "08051024", name: "Naranjas blancas", keywords: "naranjas blancas citricos fruta oranges white citrus fruit" },
+  { code: "08051028", name: "Naranjas dulces (otras: sanguinas, Valencia late…)", keywords: "naranjas dulces sanguinas otras citricos fruta oranges sweet blood citrus fruit" },
+  { code: "87038010", name: "Turismos solo eléctricos nuevos", keywords: "coches electricos nuevos vehiculos automoviles turismos electric cars new vehicles" },
+  { code: "87038090", name: "Turismos solo eléctricos usados", keywords: "coches electricos usados segunda mano vehiculos automoviles turismos electric cars used vehicles" },
+];
+
+export const isNc8 = (code: string) => /^\d{8}$/.test(code);
+/** Partida HS6 de un código (el propio código si ya es HS6). */
+export const hs6Of = (code: string) => code.slice(0, 6);
+/** «HS 220421» o «NC 22042176»: la nomenclatura a la que pertenece el código, para no presentar un NC8 como HS. */
+export const codeLabel = (code: string) => `${isNc8(code) ? "NC" : "HS"} ${code}`;
+export const nc8Entry = (code: string) => NC8_CATALOG.find((e) => e.code === code);
+
 /** Título en español para mostrar (del catálogo, si el código está) y descripción de la fuente si difiere. */
 export function productLabel(code: string, sourceName: string): { title: string; sourceDescription: string | null } {
-  const entry = HS_CATALOG.find((e) => e.code === code);
+  const entry = HS_CATALOG.find((e) => e.code === code) ?? nc8Entry(code);
   if (!entry) return { title: sourceName, sourceDescription: null };
   return { title: entry.name, sourceDescription: sourceName && sourceName !== entry.name ? sourceName : null };
 }

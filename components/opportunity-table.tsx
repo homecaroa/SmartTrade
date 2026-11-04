@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { fmtMoney, fmtPct } from "@/lib/format";
 import type { Opportunity } from "@/lib/trade/opportunities";
-import { productLabel } from "@/lib/config/hs-catalog";
+import { codeLabel, productLabel } from "@/lib/config/hs-catalog";
 import { describeOpportunity, shortTags } from "@/lib/scoring/labels";
 import type { RankingLens } from "@/lib/scoring/score";
 import { ScoreBadge } from "./opportunity-score";
@@ -49,7 +49,7 @@ export function OpportunityTable({
             <tr key={o.id} className="hover:bg-slate-50">
               <td className="px-3 py-2">{o.complete && <input type="checkbox" name="id" value={o.id} aria-label={`Comparar ${pl.title} en ${o.marketName}`} />}</td>
               <td className="px-3 py-2">{offset + i + 1}</td>
-              <td className="px-3 py-2"><div className="max-w-xs truncate font-medium" title={pl.sourceDescription ?? pl.title}>{pl.title}</div><div className="text-xs text-slate-500">HS {o.productCode} · {o.classification}</div></td>
+              <td className="px-3 py-2"><div className="max-w-xs truncate font-medium" title={pl.sourceDescription ?? pl.title}>{pl.title}</div><div className="text-xs text-slate-500">{codeLabel(o.productCode)} · {o.classification}</div></td>
               <td className="px-3 py-2"><div className="font-medium">{o.marketName}</div><div className="mt-1"><OpportunityTags tags={shortTags(d.tags)} /></div><div className="mt-1 max-w-xs text-xs text-slate-500">{d.why}</div></td>
               <td className="px-3 py-2">{fmtMoney(o.marketSize, o.currency)}<div className="text-xs text-slate-400">{o.endYear}</div></td>
               <td className="px-3 py-2">{fmtPct(o.cagr)}</td>

@@ -12,7 +12,7 @@ export const observationSchema = z.object({
   reporterCode: z.string().min(2).max(8), // ISO2 del declarante
   partnerCode: z.string().min(2).max(8), // ISO2, "WORLD" o "M49-<código>" (países fuera del catálogo, solo UN Comtrade)
   partnerName: z.string().nullish(), // nombre aportado por la fuente cuando el socio no está en el catálogo
-  productCode: z.string().regex(/^\d{6}$/, "HS a 6 dígitos"),
+  productCode: z.string().regex(/^\d{6}(\d{2})?$/, "HS a 6 dígitos o NC a 8 (solo Comext)"),
   productName: z.string().nullable(),
   productClassification: z.string().min(1), // p. ej. HS2022
   flow: flowSchema,

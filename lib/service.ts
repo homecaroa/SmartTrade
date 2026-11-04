@@ -18,6 +18,7 @@ import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities"
 import { dedupeObservations, missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
 import { filterIncomplete, lensRanks, rankOpportunities, type LensRanks } from "@/lib/trade/ranking";
 import { MAX_CODES, resolveProductQuery } from "@/lib/trade/product-search";
+import { hs6Of, nc8Entry } from "@/lib/config/hs-catalog";
 
 export interface DataInfo {
   mode: DataMode;
@@ -67,11 +68,16 @@ export function productUniverseWarnings(productCount: number): string[] {
     : [];
 }
 
-export function parseHsCodes(q?: string): string[] {
-  const r = resolveProductQuery(q);
+/** Denominaciones que solo produce España: su cuota española es casi el 100 % por definición (ver NC8_CATALOG). */
+export function spanishOriginWarning(names: string[]): string {
+  return `${names.join(", ")}: solo se produce${names.length > 1 ? "n" : ""} en España, así que la cuota española es casi el 100 % por definición y el ranking «Potencial de cuota» no informa. Sirve para ver dónde se vende y cómo evoluciona.`;
+}
+
+export function parseHsCodes(q?: string, opts: { nc8: boolean } = { nc8: true }): string[] {
+  const r = resolveProductQuery(q, opts);
   if (r.codes.length === 0) {
     const why = r.unmatched.length ? `No he encontrado «${r.unmatched.join("», «")}» en el catálogo. ` : "";
-    throw new SourceError("config", `${why}Escribe un código HS de 6 dígitos (p. ej. 220421) o el nombre de un producto (p. ej. vino, aceite de oliva, cerámica). Consulta la guía de uso para buscar otros códigos.`);
+    throw new SourceError("config", `${why}Escribe un código HS de 6 dígitos (p. ej. 220421; en la UE también NC de 8, p. ej. 22042176) o el nombre de un producto (p. ej. vino, aceite de oliva, cerámica). Consulta la guía de uso para buscar otros códigos.`);
   }
   if (r.tooMany) throw new SourceError("config", `La búsqueda produce ${r.codes.length} códigos; el máximo es ${MAX_CODES}. Hazla más específica.`);
   return r.codes;
@@ -85,8 +91,10 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
   }
   const years = [year - 2, year - 1, year];
   const markets = allowedMarkets(cfg.mode);
-  const codes = cfg.mode === "demo" ? null : parseHsCodes(query.q);
-  const resolution = cfg.mode === "demo" ? null : resolveProductQuery(query.q);
+  // Subcategorías NC8 solo con Eurostat Comext (UE): UN Comtrade no las tiene y se usa su partida HS6.
+  const nc8 = { nc8: cfg.mode === "comext" };
+  const codes = cfg.mode === "demo" ? null : parseHsCodes(query.q, nc8);
+  const resolution = cfg.mode === "demo" ? null : resolveProductQuery(query.q, nc8);
   const { loaded, snapshot } = await loadSourceData(cfg, years, codes, markets.map((m) => m.code));
   const built = buildOpportunities({ observations: loaded.value.observations, markets, endYear: year, mode: cfg.mode });
   const info: DataInfo = {
@@ -103,6 +111,8 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
   };
   if (snapshot?.stale) info.warnings.push(`Los datos guardados tienen ${snapshot.ageDays} días (se actualizan cada dos meses; aviso a partir de ${STALE_AFTER_DAYS}): puede que la última actualización no se haya completado.`);
   if (resolution?.notes.length) info.warnings.push(`Interpretación de tu búsqueda: ${resolution.notes.join(" | ")}.`);
+  const ownDo = (codes ?? []).map(nc8Entry).filter((e) => e?.spanishOrigin).map((e) => e!.name);
+  if (ownDo.length) info.warnings.push(spanishOriginWarning(ownDo));
   if (resolution?.unmatched.length) info.warnings.push(`No se ha podido interpretar: ${resolution.unmatched.join(", ")} (se han ignorado).`);
   const completeOpps = built.opportunities.filter((o) => o.complete);
   info.warnings.push(...universeWarnings(completeOpps.length));
@@ -240,7 +250,7 @@ export async function lookupTariff(opp: Opportunity, cfg: AppConfig): Promise<Ta
     // Los aranceles cambian como mucho una vez al año y la clave tiene cupo (comprobado: 429 tras una ráfaga), así que
     // se guardan al menos 24 h en caché, aunque el resto de datos use un TTL menor.
     const loaded = await getOrLoad(JSON.stringify(["wto", opp.marketCode, opp.productCode]), Math.max(cfg.cacheTtlMs, TARIFF_TTL_MS), () =>
-      fetchWtoTariff(cfg.wtoBase, key, opp.marketCode, opp.productCode));
+      fetchWtoTariff(cfg.wtoBase, key, opp.marketCode, hs6Of(opp.productCode))); // la OMC llega a 6 dígitos
     return { tariff: loaded.value, checkedAt: new Date(loaded.fetchedAt).toISOString() };
   } catch (e) {
     return { tariff: null, checkedAt: new Date().toISOString(), error: e instanceof SourceError ? `No se pudo consultar la OMC: ${e.message}` : "No se pudo consultar la OMC" };

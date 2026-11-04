@@ -6,13 +6,15 @@
  *   npm run datos:actualizar -- --modo comext     # solo Eurostat
  *   npm run datos:actualizar -- --codigos 220421,150920
  *
+ * Las subcategorías NC8 del catálogo (8 dígitos) solo se guardan para comext: UN Comtrade no las publica.
+ *
  * UN Comtrade necesita COMTRADE_API_KEY (sin clave se omite y se dice en el resumen). Escribe data/snapshots/RESUMEN.md.
  * Salida 0 si al menos un modo se actualizó; 1 si todo falló; 2 uso incorrecto. Se ejecuta con `npx tsx`.
  */
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { allowedMarkets } from "@/lib/config";
-import { HS_CATALOG } from "@/lib/config/hs-catalog";
+import { HS_CATALOG, NC8_CATALOG } from "@/lib/config/hs-catalog";
 import { getSource } from "@/lib/sources";
 import { SNAPSHOT_MODES, snapshotFileSchema, type SnapshotMode } from "@/lib/snapshots/schema";
 import { serializeSnapshot, snapshotYears, summarize, updateSnapshots, type ModePlan } from "@/lib/snapshots/update";
@@ -23,8 +25,8 @@ async function main(): Promise<number> {
   const modeArg = arg("modo") ?? "todos";
   if (!["todos", ...SNAPSHOT_MODES].includes(modeArg)) { console.error("❌ --modo debe ser comext, comtrade o todos"); return 2; }
   const modes = (modeArg === "todos" ? [...SNAPSHOT_MODES] : [modeArg]) as SnapshotMode[];
-  const codes = arg("codigos")?.split(",").map((c) => c.trim()) ?? [...new Set(HS_CATALOG.map((e) => e.code))];
-  if (!codes.every((c) => /^\d{6}$/.test(c))) { console.error("❌ --codigos: códigos HS6 separados por comas"); return 2; }
+  const codes = arg("codigos")?.split(",").map((c) => c.trim()) ?? [...new Set([...HS_CATALOG, ...NC8_CATALOG].map((e) => e.code))];
+  if (!codes.every((c) => /^\d{6}(\d{2})?$/.test(c))) { console.error("❌ --codigos: códigos HS6 (o NC8, solo comext) separados por comas"); return 2; }
   const dir = process.env.SMARTRADE_SNAPSHOT_DIR || path.resolve(process.cwd(), "data", "snapshots");
   const now = new Date();
   const years = snapshotYears(now);

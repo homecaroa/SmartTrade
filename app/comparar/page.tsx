@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { codeLabel } from "@/lib/config/hs-catalog";
 import { DataSourceLabel } from "@/components/data-source-label";
 import { ErrorState } from "@/components/error-state";
 import { PrintButton } from "@/components/print-button";
@@ -62,7 +63,7 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
               <th className="px-3 py-2 text-left text-xs font-semibold uppercase text-slate-500">Indicador</th>
               {data.items.map(({ opp }) => (
                 <th key={opp.id} className="px-3 py-2 text-left text-xs font-semibold text-slate-700">
-                  <Link className="underline" href={`/oportunidad/${opp.id}?${[q ? `q=${encodeURIComponent(q)}` : "", fx].filter(Boolean).join("&")}`}>{opp.marketName} · HS {opp.productCode}</Link>
+                  <Link className="underline" href={`/oportunidad/${opp.id}?${[q ? `q=${encodeURIComponent(q)}` : "", fx].filter(Boolean).join("&")}`}>{opp.marketName} · {codeLabel(opp.productCode)}</Link>
                 </th>
               ))}
             </tr>

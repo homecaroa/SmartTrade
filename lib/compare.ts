@@ -1,5 +1,5 @@
 import { LENSES } from "@/lib/scoring/score";
-import { productLabel } from "@/lib/config/hs-catalog";
+import { codeLabel, productLabel } from "@/lib/config/hs-catalog";
 import { fmtMoney, fmtNum, fmtPct } from "@/lib/format";
 import { buildMarketAccess } from "@/lib/market-access";
 import { describeOpportunity } from "@/lib/scoring/labels";
@@ -35,7 +35,7 @@ export function buildComparison(items: { opp: Opportunity; rank: LensRanks }[]):
   const row = (key: string, label: string, f: (o: Opportunity, rank: LensRanks) => string): CompareRow => ({ key, label, cells: items.map((i) => f(i.opp, i.rank)) });
   const pos = (n: number | null) => (n ? `${n}` : "fuera del ranking (incompleta)");
   return [
-    row("producto", "Producto", (o) => `${productLabel(o.productCode, o.productName).title} (HS ${o.productCode})`),
+    row("producto", "Producto", (o) => `${productLabel(o.productCode, o.productName).title} (${codeLabel(o.productCode)})`),
     row("mercado", "Mercado de destino", (o) => o.marketName),
     row("pos_volumen", `Posición en «${LENSES.volumen.label}»`, (_o, r) => pos(r.volumen)),
     row("pos_potencial", `Posición en «${LENSES.potencial.label}»`, (_o, r) => pos(r.potencial)),

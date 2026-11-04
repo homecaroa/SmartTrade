@@ -62,14 +62,17 @@ export function comextToObservations(js: JsonStat, retrievedAt: string): TradeOb
   for (const e of acc.values()) {
     if (e.value === undefined) continue;
     const year = Number(e.c.time.slice(0, 4));
-    if (!/^\d{6}$/.test(e.c.product) || !Number.isInteger(year)) continue;
+    if (!/^\d{6}(\d{2})?$/.test(e.c.product) || !Number.isInteger(year)) continue; // HS6 o NC8 (subcategorías, solo UE)
     out.push({
       period: String(year),
       reporterCode: fromComext(e.c.reporter),
       partnerCode: fromComext(e.c.partner),
       productCode: e.c.product,
       productName: e.name,
-      productClassification: hsVersionForYear(year),
+      // NC8: se rotula con la versión HS en la que se apoya, no con el año. La NC se publica cada año, pero rotularla
+      // «NC2022», «NC2023»… hacía incompatible cualquier ventana de 3 años y TODAS las oportunidades salían incompletas
+      // (visto al abrir la app el 04/11/2026). Los códigos del catálogo son estables (Eurostat los da válidos desde 2010).
+      productClassification: e.c.product.length === 8 ? `NC8-${hsVersionForYear(year)}` : hsVersionForYear(year),
       flow: e.c.flow === COMEXT.flowImport ? "import" : "export",
       tradeValue: e.value,
       currency: "EUR",
