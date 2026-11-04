@@ -4,6 +4,7 @@ import { computeOperation, sellerBearsTransitRisk, sellerMustInsure, incotermOf 
 import { R } from "../../logistics/types";
 import type { DecisionCtx, ExportScenario, FxSetup, ExtraCost } from "../types";
 import { currencyDecision, byAir, eur, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
+import { byVehicle, damageIncident, delayIncident, lateCollectionIncident } from "./incidents";
 
 /**
  * CASO A2 (medio, fuera de la UE). Reales: el código HS y que Japón no es de la UE. TODO lo demás es SIMULADO, incluidos
@@ -214,7 +215,7 @@ export const VINO_JAPON: ExportScenario = {
       best: "segun_origen", whyBest: "El arancel depende del origen acreditado y del acuerdo; quién lo paga depende del Incoterm.",
     },
     {
-      id: "incidencia", stage: "entrega", kind: "single", incident: true, title: "Incidencia: discrepancia documental",
+      id: "incidencia", variant: "A", stage: "entrega", kind: "single", incident: true, title: "Incidencia: discrepancia documental",
       prompt: "La aduana japonesa retiene el contenedor: el peso bruto del conocimiento de embarque (10.400 kg) no coincide con el de la factura y la packing list (10.800 kg). Cada día de retención cuesta 150 € de almacenaje y demoras, y el importador te los reclamará.",
       options: [
         opt("corregir", "Comprobar el peso real, pedir al transitario la corrección del B/L y enviar a todos la documentación coherente", "correcta",
@@ -229,6 +230,9 @@ export const VINO_JAPON: ExportScenario = {
       ],
       best: "corregir", whyBest: "Los documentos deben ser coherentes entre sí y con la realidad: se corrige el que está mal, tras comprobarlo.",
     },
+    damageIncident({ variant: "B", what: "las cajas de vino (botellas rotas por una mala estiba)", damagedPct: 2, reshipCost: 1800 }),
+    delayIncident({ variant: "C", days: 7, urgentCost: 3500, cause: byVehicle({ camion: "Un fallo en el transporte retrasa la entrega.", barco: "La naviera hace «roll-over»: el contenedor no cabe en el buque previsto y sale en el siguiente.", avion: "Una huelga de personal de tierra en el aeropuerto de destino retrasa la descarga del avión." }) }),
+    lateCollectionIncident({ variant: "D", daysOver: 6, perDay: 110 }),
     {
       id: "cierre", stage: "entrega", kind: "single", title: "Cobro y cierre",
       prompt: "El importador ha pagado y retirado la mercancía. ¿Qué haces para cerrar la operación?",

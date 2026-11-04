@@ -4,6 +4,7 @@ import { R } from "../../logistics/types";
 import { computeOperation, incotermOf, sellerBearsTransitRisk, sellerMustInsure } from "../costs";
 import type { DecisionCtx, ExportScenario, FxSetup } from "../types";
 import { currencyDecision, byAir, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
+import { byVehicle, damageIncident, delayIncident, lateCollectionIncident } from "./incidents";
 
 /**
  * CASO A4 (avanzado, fuera de la UE, sin acuerdo comercial). Reales: el código HS y que EE. UU. no es de la UE. TODO
@@ -196,7 +197,7 @@ export const ACEITUNAS_NUEVA_YORK: ExportScenario = {
       best: "general", whyBest: "Sin acuerdo comercial se aplica el arancel general; quién lo paga depende del Incoterm.",
     },
     {
-      id: "incidencia", stage: "entrega", kind: "single", incident: true, title: "Incidencia: retención de la FDA",
+      id: "incidencia", variant: "A", stage: "entrega", kind: "single", incident: true, title: "Incidencia: retención de la FDA",
       prompt: "La FDA retiene el contenedor en Nueva Jersey: el aviso previo se presentó sin el número de registro de tu instalación. Cada día de retención cuesta 180 € de almacenaje y demoras del contenedor, y el importador te los reclamará.",
       options: [
         opt("enviar", "Enviar hoy al agente del importador el número de registro y la documentación, y confirmar la corrección del aviso", "correcta",
@@ -211,6 +212,9 @@ export const ACEITUNAS_NUEVA_YORK: ExportScenario = {
       ],
       best: "enviar", whyBest: "Los trámites de destino los presenta el importador, pero con tus datos: si falta uno, aportarlo cuanto antes es lo que reduce el daño.",
     },
+    damageIncident({ variant: "B", what: "las cajas de tarros de aceitunas", damagedPct: 2, reshipCost: 1500 }),
+    delayIncident({ variant: "C", days: 5, urgentCost: 2800, cause: byVehicle({ camion: "Un fallo en el transporte retrasa la entrega.", barco: "Una huelga de estibadores en el puerto de Nueva York detiene la descarga.", avion: "Una huelga de personal de tierra en el aeropuerto de destino retrasa la descarga del avión." }) }),
+    lateCollectionIncident({ variant: "D", daysOver: 5, perDay: 130 }),
     {
       id: "cierre", stage: "entrega", kind: "single", title: "Cobro y cierre",
       prompt: "El importador ha pagado y retirado el contenedor. ¿Qué haces para cerrar la operación?",

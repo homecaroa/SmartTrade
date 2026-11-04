@@ -10,7 +10,7 @@ export function ExportSummary({ sc, ev, onRestart }: { sc: ExportScenario; ev: E
   const h = "text-base font-semibold";
   return (
     <section className="space-y-4" aria-labelledby="resumen-final">
-      <h2 id="resumen-final" tabIndex={-1} className="text-lg font-bold">Resumen de la operación</h2>
+      <h2 id="resumen-final" tabIndex={-1} className="text-lg font-bold">Resumen de la operación{ev.variant && <span className="ml-2 text-sm font-normal text-slate-600">· variante {ev.variant}</span>}</h2>
       <SimulatedNotice compact />
       <div className="grid gap-3 md:grid-cols-2">
         <div className="rounded-lg bg-white p-4 shadow-sm">

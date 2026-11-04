@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { computeOperation, routeOf, shipmentOf } from "@/lib/learning/export/costs";
-import { answerAndConfirm, ctxOf, extrasFrom, gradeAnswer, isExportSession, newSession, pendingDecision, progress, stagesFor, visibleDecisions, type ExportSession } from "@/lib/learning/export/engine";
+import { answerAndConfirm, chooseVariant, ctxOf, extrasFrom, gradeAnswer, isExportSession, newSession, pendingDecision, progress, stagesFor, variantOf, variantsOf, visibleDecisions, type ExportSession } from "@/lib/learning/export/engine";
 import { evaluateExport } from "@/lib/learning/export/evaluation";
 import { exportScenario } from "@/lib/learning/export/scenarios";
 import { validateOperation } from "@/lib/learning/export/validation";
@@ -24,7 +24,13 @@ export function ExportSimulator({ caseId }: { caseId: string }) {
   const feedbackRef = useRef<HTMLHeadingElement>(null);
   const stepRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => { setSession(loadState(key, (x): x is ExportSession => isExportSession(x, caseId)) ?? newSession(caseId)); }, [key, caseId]);
+  useEffect(() => {
+    const saved = loadState(key, (x): x is ExportSession => isExportSession(x, caseId)) ?? newSession(caseId);
+    // Un enlace con ?variante=B (p. ej. del profesor) fija la variante, pero solo si el caso aún no ha empezado.
+    const v = new URLSearchParams(window.location.search).get("variante")?.toUpperCase();
+    const s = sc && v && !saved.confirmed.length && variantsOf(sc).includes(v) ? chooseVariant(sc, saved, v) : saved;
+    setSession(s);
+  }, [key, caseId, sc]);
   useEffect(() => { if (session) saveState(key, session); }, [key, session]);
   useEffect(() => { if (shown) feedbackRef.current?.focus(); }, [shown]);
 
@@ -45,7 +51,7 @@ export function ExportSimulator({ caseId }: { caseId: string }) {
     if (session.confirmed.length && !window.confirm("¿Reiniciar el caso? Se borrarán tus decisiones de esta sesión.")) return;
     clearState(key);
     setShown(null);
-    setSession(newSession(caseId));
+    setSession(newSession(caseId)); // al reiniciar se vuelve a la variante A: se puede elegir otra antes de empezar
   };
   const shownDecision = shown ? visibleDecisions(sc, session.answers).find((d) => d.id === shown) ?? sc.decisions.find((d) => d.id === shown) : null;
   const graded = shownDecision ? gradeAnswer(sc, shownDecision, session.answers) : null;
@@ -63,6 +69,7 @@ export function ExportSimulator({ caseId }: { caseId: string }) {
           <ul className="mt-1 list-disc pl-5">{sc.instructions.map((i) => <li key={i}>{i}</li>)}</ul>
         </details>
         <SimulatedNotice compact />
+        <VariantPicker variants={variantsOf(sc)} current={variantOf(session.answers)} locked={session.confirmed.length > 0} onPick={(v) => setSession(chooseVariant(sc, session, v))} />
         <div className="flex flex-wrap items-center justify-between gap-2">
           <StageProgress items={stageItems} label="Etapas de la operación" />
           <p className="text-xs text-slate-600">{prog.done} de {prog.total} decisiones</p>
@@ -120,5 +127,25 @@ export function ExportSimulator({ caseId }: { caseId: string }) {
         <button type="button" onClick={restart} className="text-xs text-slate-600 underline">Reiniciar este caso</button>
       </div>
     </div>
+  );
+}
+
+/**
+ * Variante del caso: cada una cambia la incidencia del viaje (lib/learning/export/scenarios/incidents.ts). Se elige antes
+ * de la primera decisión; después queda fija. No se dice cuál es la incidencia: se descubre en la etapa de entrega.
+ */
+function VariantPicker({ variants, current, locked, onPick }: { variants: string[]; current: string; locked: boolean; onPick: (v: string) => void }) {
+  if (variants.length < 2) return null;
+  if (locked) return <p className="text-xs text-slate-600">Variante <b>{current}</b> de {variants.length} (cada variante cambia la incidencia del viaje).</p>;
+  return (
+    <fieldset className="flex flex-wrap items-center gap-2 text-sm">
+      <legend className="sr-only">Variante del caso</legend>
+      <span className="text-slate-700">Variante:</span>
+      {variants.map((v) => (
+        <button key={v} type="button" aria-pressed={v === current} onClick={() => onPick(v)}
+          className={`rounded border px-2 py-0.5 font-semibold ${v === current ? "border-indigo-600 bg-indigo-600 text-white" : "border-slate-300 bg-white text-slate-700 hover:border-indigo-400"}`}>{v}</button>
+      ))}
+      <span className="text-xs text-slate-600">Cada variante trae una incidencia distinta durante el viaje. Elige antes de empezar (o usa la que te indique tu profesor).</span>
+    </fieldset>
   );
 }
