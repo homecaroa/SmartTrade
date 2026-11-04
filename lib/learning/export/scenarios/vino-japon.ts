@@ -2,8 +2,8 @@ import { ESTIMACION, REAL_HS, REAL_MARKET, SUPUESTO, VERIFICAR } from "../../pro
 import { round2 } from "../../money";
 import { computeOperation, sellerBearsTransitRisk, sellerMustInsure, incotermOf } from "../costs";
 import { R } from "../../logistics/types";
-import type { DecisionCtx, ExportScenario, ExtraCost } from "../types";
-import { byAir, eur, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
+import type { DecisionCtx, ExportScenario, FxSetup, ExtraCost } from "../types";
+import { currencyDecision, byAir, eur, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
 
 /**
  * CASO A2 (medio, fuera de la UE). Reales: el código HS y que Japón no es de la UE. TODO lo demás es SIMULADO, incluidos
@@ -27,6 +27,9 @@ function originCompensation(ctx: DecisionCtx): ExtraCost | null {
   return extra > 0 ? { concept: "ajuste_comercial", label: "Compensación al comprador por el arancel general pagado", amount: extra, payer: "vendedor", note: "Sin declaración de origen no se aplicó el arancel preferencial; el comprador lo descuenta del pago." } : null;
 }
 
+/** Riesgo de cambio del caso: tipos SIMULADOS (ver lib/learning/export/fx.ts). */
+const JP_FX: FxSetup = { currency: "JPY", quoteRate: 160, collectionRate: 168, forwardRate: 159.2, buyerDiscountPct: 2 };
+
 export const VINO_JAPON: ExportScenario = {
   id: "vino-japon",
   title: "Vino tinto embotellado a Yokohama",
@@ -47,6 +50,7 @@ export const VINO_JAPON: ExportScenario = {
   unitCost: 26.4,
   targetMarginPct: 14,
   facts: [
+    { label: "Divisa y tipo de cambio", value: "El importador pide factura en yenes: 160 JPY/€ al ofertar; 168 JPY/€ el día del cobro; seguro de cambio a 159,2 JPY/€ (los puntos a plazo favorecen al vendedor porque el interés del yen es menor). Tipos SIMULADOS", prov: ESTIMACION },
     { label: "Producto", value: `${productName("220421")} (HS 220421)`, prov: REAL_HS },
     { label: "Destino", value: "Japón, país fuera de la UE: hay despacho de exportación y de importación", prov: REAL_MARKET },
     { label: "Acuerdo comercial", value: "Existe un acuerdo de asociación económica UE–Japón con reglas de origen propias", prov: VERIFICAR },
@@ -96,6 +100,7 @@ export const VINO_JAPON: ExportScenario = {
   prepDays: 7,
   standard: { transport: "fcl", packing: "termico" },
   incoterms: ["CIP", "CIF", "FCA", "DDP", "EXW"],
+  fx: JP_FX,
   decisions: [
     {
       id: "verificacion", stage: "ficha", kind: "single", title: "Primera comprobación",
@@ -144,6 +149,7 @@ export const VINO_JAPON: ExportScenario = {
       ],
       best: "cobro_documentario", whyBest: "Con transporte marítimo, el conocimiento de embarque controla la mercancía: vincular su entrega al pago reduce el riesgo a bajo coste.",
     },
+    currencyDecision(JP_FX),
     ...routeDecisions("900 cajas (≈10,8 t, 18 m³) de botellas de vidrio, 60 días de plazo y 7 de preparación. Compara las alternativas y elige la ruta."),
     {
       id: "packing", stage: "logistica", kind: "single", title: "Embalaje",

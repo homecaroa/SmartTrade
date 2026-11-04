@@ -34,11 +34,19 @@ export interface Settings {
   documents?: string[];
 }
 
+/** Facturar en euros, en la divisa del comprador sin cubrir el riesgo o en su divisa con seguro de cambio. */
+export type FxChoice = "eur" | "divisa" | "divisa_cubierta";
+/**
+ * Riesgo de cambio del caso (lib/learning/export/fx.ts). Tipos en unidades de divisa por euro, SIMULADOS y fijos:
+ * al ofertar, al cobrar (si no se cubre) y a plazo (seguro de cambio contratado al ofertar).
+ */
+export interface FxSetup { currency: "USD" | "JPY"; quoteRate: number; collectionRate: number; forwardRate: number; buyerDiscountPct: number }
+
 export interface DecisionCtx { scenario: ExportScenario; answers: Answers; settings: Settings }
 export type Dyn<T> = T | ((ctx: DecisionCtx) => T);
 
 /** Coste extra que provoca una decisión (por ejemplo, una penalización por retraso). */
-export interface ExtraCost { concept: "incidencia" | "ajuste_comercial"; label: string; amount: number; payer: Party; note: string }
+export interface ExtraCost { concept: "incidencia" | "ajuste_comercial" | "diferencia_cambio"; label: string; amount: number; payer: Party; note: string }
 
 export interface Option {
   id: string;
@@ -116,5 +124,7 @@ export interface ExportScenario {
   /** Ruta y embalaje con los que se calculó el escandallo de precios (lo que el vendedor repercute en cada Incoterm). */
   standard: { transport: string; packing: string };
   incoterms: string[];
+  /** Solo en casos en los que el comprador pide factura en su moneda. */
+  fx?: FxSetup;
   decisions: Decision[];
 }

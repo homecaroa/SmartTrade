@@ -2,8 +2,8 @@ import { ESTIMACION, REAL_HS, REAL_MARKET, SUPUESTO, VERIFICAR } from "../../pro
 import { round2 } from "../../money";
 import { R } from "../../logistics/types";
 import { computeOperation, incotermOf, sellerBearsTransitRisk, sellerMustInsure } from "../costs";
-import type { DecisionCtx, ExportScenario } from "../types";
-import { byAir, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
+import type { DecisionCtx, ExportScenario, FxSetup } from "../types";
+import { currencyDecision, byAir, leg, opt, ownershipDecision, productName, routeDecisions, sellerClearsExport } from "./shared";
 
 /**
  * CASO A4 (avanzado, fuera de la UE, sin acuerdo comercial). Reales: el código HS y que EE. UU. no es de la UE. TODO
@@ -14,6 +14,9 @@ import { byAir, leg, opt, ownershipDecision, productName, routeDecisions, seller
  * rebaja el arancel; y un dato que falta en el aviso previo a la FDA retiene el contenedor.
  */
 const revenueOf = (ctx: DecisionCtx) => computeOperation(ctx.scenario, ctx.settings).revenue;
+
+/** Riesgo de cambio del caso: tipos SIMULADOS (ver lib/learning/export/fx.ts). */
+const US_FX: FxSetup = { currency: "USD", quoteRate: 1.1, collectionRate: 1.16, forwardRate: 1.106, buyerDiscountPct: 2 };
 
 export const ACEITUNAS_NUEVA_YORK: ExportScenario = {
   id: "aceitunas-nueva-york",
@@ -35,6 +38,7 @@ export const ACEITUNAS_NUEVA_YORK: ExportScenario = {
   unitCost: 23.4,
   targetMarginPct: 16,
   facts: [
+    { label: "Divisa y tipo de cambio", value: "El importador pide factura en dólares: 1,10 USD/€ al ofertar; 1,16 USD/€ el día del cobro; seguro de cambio a 1,106 USD/€ (los puntos a plazo cuestan algo porque el interés del dólar es mayor). Tipos SIMULADOS", prov: ESTIMACION },
     { label: "Producto", value: `${productName("200570")} (HS 200570)`, prov: REAL_HS },
     { label: "Destino", value: "Estados Unidos, fuera de la UE: despacho de exportación y de importación", prov: REAL_MARKET },
     { label: "Acuerdo comercial", value: "En el caso no hay acuerdo preferencial UE–EE. UU.: se paga el arancel general (compruébalo en Access2Markets)", prov: VERIFICAR },
@@ -84,6 +88,7 @@ export const ACEITUNAS_NUEVA_YORK: ExportScenario = {
   prepDays: 5,
   standard: { transport: "fcl", packing: "separadores" },
   incoterms: ["CIP", "CIF", "FCA", "DDP", "EXW"],
+  fx: US_FX,
   decisions: [
     {
       id: "verificacion", stage: "ficha", kind: "single", title: "Primera comprobación",
@@ -132,6 +137,7 @@ export const ACEITUNAS_NUEVA_YORK: ExportScenario = {
       ],
       best: "cobro_documentario", whyBest: "Por mar, el conocimiento de embarque controla la mercancía: vincular su entrega al pago reduce el riesgo a bajo coste.",
     },
+    currencyDecision(US_FX),
     ...routeDecisions("14 palés (≈11 t, 20 m³) de tarros de vidrio, 45 días de plazo y 5 de preparación. Compara las alternativas y elige la ruta."),
     {
       id: "packing", stage: "logistica", kind: "single", title: "Embalaje",
