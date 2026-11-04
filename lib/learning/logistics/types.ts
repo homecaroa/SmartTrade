@@ -56,7 +56,12 @@ export interface InfeasibleOption { modality: Modality; reason: string }
 export interface Cargo {
   product: string;
   hs6: string;
-  goods: "general" | "fragil" | "perecedera";
+  goods: "general" | "fragil" | "perecedera" | "peligrosa";
+  /**
+   * Mercancía peligrosa (propuesta 4, 04/11/2026): identificación según la sección 14 de su ficha de datos de seguridad.
+   * Cada tramo sigue su norma: ADR por carretera, IMDG por mar, IATA DGR por avión (RID en tren).
+   */
+  dangerous?: { un: string; name: string; hazardClass: string; packingGroup: string };
   units: number;
   unit: string;
   pallets: number;

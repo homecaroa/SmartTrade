@@ -4,7 +4,7 @@ import { round2 } from "../money";
 import { ESTIMACION, type Provenance } from "../provenance";
 import { CONCEPT_LABEL, payerOf, type LogisticsConcept } from "./allocation";
 import { airChargeableKg, containersNeeded, lclRevenueTons, roadChargeableKg, trucksNeeded } from "./capacity";
-import { CAPACITY, RATES, SURCHARGES } from "./params";
+import { CAPACITY, DANGEROUS, RATES, SURCHARGES } from "./params";
 import { addR, mid, mulR, ZERO, type Leg, type Range, type RouteOption, type Shipment } from "./types";
 
 /**
@@ -151,6 +151,11 @@ export function computeQuote(s: Shipment, route: RouteOption, incoterm: string, 
   add("transporte_principal", main, `${mainLegs.map((l) => `${l.from} → ${l.to}`).join("; ")} · ${eq.chargeable}. Flete base, sin recargos.`);
   const sur = surcharges(s, route, eq, main);
   add("recargos_flete", sur.total, sur.note);
+  if (s.cargo.dangerous) {
+    const d = route.modality === "aereo" ? DANGEROUS.airPerShipment : route.modality === "maritimo_lcl" ? mulR(DANGEROUS.perRevenueTon, lclRevenueTons(s.cargo))
+      : route.modality === "maritimo_fcl" || route.modality === "ferroviario" ? mulR(DANGEROUS.perContainer, eq.units) : mulR(DANGEROUS.perTruck, trucksNeeded(s.cargo));
+    add("recargo_peligrosa", d, `${s.cargo.dangerous.un}, clase ${s.cargo.dangerous.hazardClass}: reserva y aceptación como mercancía peligrosa, manipulación especial. Simulado.`);
+  }
   if (route.transshipments.length && route.transshipmentCost)
     add("transbordos", mulR(route.transshipmentCost, eq.units * route.transshipments.length), `Transbordo en ${route.transshipments.join(", ")}.`);
   const insuranceCost = mulR(RATES.insurancePct, (s.cargo.valueEur * 1.1) / 100);

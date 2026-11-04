@@ -160,7 +160,7 @@ describe("Incoterms frente a la ruta", () => {
 });
 
 describe("valoración de rutas y justificación", () => {
-  const BEST: Record<string, string> = { "aceite-alemania": "camion_completo", "recambios-marruecos": "camion_ferry", "vino-japon": "fcl", "aceitunas-nueva-york": "fcl" };
+  const BEST: Record<string, string> = { "aceite-alemania": "camion_completo", "recambios-marruecos": "camion_ferry", "vino-japon": "fcl", "aceitunas-nueva-york": "fcl", "perfumes-dubai": "fcl" };
   it("la mejor ruta es la más barata DE LAS QUE LLEGAN, no la más barata a secas", () => {
     for (const s of EXPORT_SCENARIOS) expect(assessRoutes(shipmentOf(s)).best.id, s.id).toBe(BEST[s.id]);
     // Casablanca: el grupaje con ferry es más barato que el camión completo, pero solo llega si todo va bien.
@@ -221,9 +221,10 @@ describe("integración: un solo tipo de ejercicio", () => {
     expect(sinComentarios(readFileSync("next.config.mjs", "utf8"))).toMatch(/source: "\/aprendizaje\/logistica\/:caso", destination: "\/aprendizaje"/);
     expect(sinComentarios(readFileSync("app/aprendizaje/page.tsx", "utf8"))).not.toMatch(/logistica/);
   });
-  it("cubre los destinos pedidos: Alemania, Marruecos, EE. UU. y Japón, con dificultad progresiva", () => {
-    expect(EXPORT_SCENARIOS.map((s) => s.destination)).toEqual(["DE", "MA", "JP", "US"]);
-    expect(EXPORT_SCENARIOS.map((s) => s.difficulty)).toEqual(["básica", "media", "media", "avanzada"]);
+  // Desde el 04/11/2026 hay un quinto caso, de mercancía peligrosa (perfumes a Dubái, propuesta 4).
+  it("cubre los destinos pedidos: Alemania, Marruecos, EE. UU., Japón y Emiratos, con dificultad progresiva", () => {
+    expect(EXPORT_SCENARIOS.map((s) => s.destination)).toEqual(["DE", "MA", "JP", "US", "AE"]);
+    expect(EXPORT_SCENARIOS.map((s) => s.difficulty)).toEqual(["básica", "media", "media", "avanzada", "avanzada"]);
   });
   it("la tabla de rutas lleva el aviso de estimaciones y muestra las opciones mezcladas", () => {
     expect(LOGISTICS_NOTICE).toBe("Estimaciones simuladas con fines educativos");

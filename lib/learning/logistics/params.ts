@@ -54,3 +54,14 @@ export const SURCHARGES = {
   peakPerContainer: R(250, 450),
   peakPerRevenueTon: R(8, 15),
 };
+
+/**
+ * Recargo por mercancía peligrosa (propuesta 4). ESTIMACIONES SIMULADAS: gestión de la reserva, aceptación y
+ * manipulación especial que cobran navieras, consolidadores, aerolíneas y transportistas ADR.
+ */
+export const DANGEROUS = {
+  perContainer: R(150, 300),
+  perRevenueTon: R(25, 45),
+  airPerShipment: R(120, 220),
+  perTruck: R(60, 120),
+};
