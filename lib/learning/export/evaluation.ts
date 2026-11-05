@@ -3,6 +3,7 @@ import { round2 } from "../money";
 import { computeOperation, type OperationResult } from "./costs";
 import { ctxOf, extrasFrom, gradeAnswer, resolve, variantOf, variantsOf, visibleDecisions, type ExportSession } from "./engine";
 import { validateOperation, type Issue } from "./validation";
+import { reviewScore } from "./review";
 import { STAGES, type ExportScenario, type Grade, type StageId } from "./types";
 
 /**
@@ -23,6 +24,8 @@ export interface ExportEvaluation {
   issues: Issue[];
   /** Variante jugada, si el caso tiene varias (cada una con su incidencia). */
   variant: string | null;
+  /** Repaso de conceptos al cerrar cada etapa (propuesta 9): se puntúa aparte, no entra en la nota. */
+  quiz: { correct: number; answered: number; total: number };
 }
 
 export function evaluateExport(sc: ExportScenario, s: ExportSession): ExportEvaluation {
@@ -57,5 +60,6 @@ export function evaluateExport(sc: ExportScenario, s: ExportSession): ExportEval
     marginVsTarget: round2(economics.marginPct - sc.targetMarginPct),
     issues: validateOperation(sc, ctx.settings),
     variant: variantsOf(sc).length > 1 ? variantOf(s.answers) : null,
+    quiz: reviewScore(sc, s),
   };
 }

@@ -15,12 +15,16 @@ import { IncotermObligations, LogisticsNotice, QuoteView } from "./logistics-tab
 import { FactList, ProvenanceLegend } from "./provenance-badge";
 import { SimulatedNotice } from "./simulated-notice";
 import { StageProgress } from "./stage-progress";
+import { StageReview } from "./stage-review";
+import { answerReview, pendingReview } from "@/lib/learning/export/review";
+import { STAGES, type StageId } from "@/lib/learning/export/types";
 
 export function ExportSimulator({ caseId }: { caseId: string }) {
   const sc = exportScenario(caseId);
   const key = storageKey("exportacion", caseId);
   const [session, setSession] = useState<ExportSession | null>(null);
   const [shown, setShown] = useState<string | null>(null);
+  const [reviewShown, setReviewShown] = useState<StageId | null>(null);
   const feedbackRef = useRef<HTMLHeadingElement>(null);
   const stepRef = useRef<HTMLDivElement>(null);
 
@@ -38,6 +42,8 @@ export function ExportSimulator({ caseId }: { caseId: string }) {
   if (!session) return <p className="text-sm text-slate-600">Cargando la simulación…</p>;
 
   const pending = pendingDecision(sc, session);
+  const reviewStage = pendingReview(sc, session);
+  const stageTitle = (id: StageId) => STAGES.find((s) => s.id === id)?.title ?? id;
   const prog = progress(sc, session);
   const stages = stagesFor(sc, session.answers);
   const currentStage = shown ? visibleDecisions(sc, session.answers).find((d) => d.id === shown)?.stage : pending?.stage;
@@ -51,6 +57,7 @@ export function ExportSimulator({ caseId }: { caseId: string }) {
     if (session.confirmed.length && !window.confirm("¿Reiniciar el caso? Se borrarán tus decisiones de esta sesión.")) return;
     clearState(key);
     setShown(null);
+    setReviewShown(null);
     setSession(newSession(caseId)); // al reiniciar se vuelve a la variante A: se puede elegir otra antes de empezar
   };
   const shownDecision = shown ? visibleDecisions(sc, session.answers).find((d) => d.id === shown) ?? sc.decisions.find((d) => d.id === shown) : null;
@@ -96,8 +103,13 @@ export function ExportSimulator({ caseId }: { caseId: string }) {
             {shownDecision.id === "incoterm" && ctx.settings.incoterm && <IncotermObligations code={ctx.settings.incoterm} route={routeOf(sc, ctx.settings.transport)} />}
             {shownDecision.kind === "justify" && provisional && <><QuoteView c={shipmentOf(sc)} q={provisional.quote} title="Tu presupuesto logístico" /><LogisticsNotice /></>}
             {issues.length > 0 && <ul className="list-disc pl-5 text-xs text-amber-900">{issues.map((i) => <li key={i.message}>{i.severity === "contradiccion" ? "Contradicción" : "Aviso"}: {i.message}</li>)}</ul>}
-            <button type="button" onClick={() => setShown(null)} className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700">{pending ? "Continuar" : "Ver el resumen final"}</button>
+            <button type="button" onClick={() => setShown(null)} className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700">{pending || reviewStage ? "Continuar" : "Ver el resumen final"}</button>
           </section>
+        ) : reviewShown ? (
+          <StageReview key={`hecho-${reviewShown}`} caseId={sc.id} stage={reviewShown} title={stageTitle(reviewShown)} answers={session.answers} onContinue={() => setReviewShown(null)} />
+        ) : reviewStage ? (
+          <StageReview key={`repaso-${reviewStage}`} caseId={sc.id} stage={reviewStage} title={stageTitle(reviewStage)} answers={session.answers}
+            onSubmit={(picks) => { setSession(answerReview(sc, session, reviewStage, picks)); setReviewShown(reviewStage); }} />
         ) : pending ? (
           <ExportDecision key={pending.id} sc={sc} d={pending} answers={session.answers} onConfirm={(v) => { setSession(answerAndConfirm(sc, session, pending.id, v)); setShown(pending.id); }} />
         ) : (
