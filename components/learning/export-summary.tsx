@@ -18,6 +18,7 @@ export function ExportSummary({ sc, ev, onRestart }: { sc: ExportScenario; ev: E
           <p className="text-3xl font-bold text-indigo-700">{fmtPctLearning(ev.knowledge.pct, 0)}</p>
           <p className="text-xs text-slate-600">{ev.knowledge.points} de {ev.knowledge.max} puntos. Criterio: decisión adecuada 10, razonable con inconvenientes 6, error importante 0.</p>
           <ul className="mt-2 space-y-1 text-sm">{ev.knowledge.byStage.map((s) => <li key={s.stage} className="flex justify-between gap-2"><span>{s.title}</span><span className="tabular-nums">{s.points}/{s.max}</span></li>)}</ul>
+          {ev.quiz.answered > 0 && <p className="mt-2 rounded bg-slate-50 p-2 text-xs text-slate-700">Repaso de conceptos: <b>{ev.quiz.correct} de {ev.quiz.answered}</b> aciertos. Es para repasar: no cuenta en la nota.</p>}
         </div>
         <div className="rounded-lg bg-white p-4 shadow-sm">
           <h3 className={h}>Resultado económico</h3>
