@@ -1,4 +1,6 @@
 import { observationSchema, type TradeObservation } from "@/lib/schemas/trade";
+import { HS_CATALOG } from "@/lib/config/hs-catalog";
+import { canBridgeHs2017To2022 } from "./hs-revisions";
 
 /** Versión HS vigente en un año (revisiones 2012, 2017, 2022). Series que cruzan revisiones no se combinan. */
 export function hsVersionForYear(year: number): string {
@@ -35,11 +37,12 @@ export function checkCompatible(obs: TradeObservation[]): Compat {
   const set = (f: (o: TradeObservation) => string) => new Set(obs.map(f));
   if (set((o) => o.productCode).size > 1) return { ok: false, reason: "Códigos de producto distintos" };
   const cls = set((o) => o.productClassification);
-  if (cls.size > 1) return { ok: false, reason: `Clasificaciones incompatibles en la ventana (${[...cls].join(" vs ")})` };
+  // HS2017 + HS2022 solo se unen si el código no cambió entre ambas ediciones (lib/trade/hs-revisions.ts).
+  const bridge = cls.size === 2 && cls.has("HS2017") && cls.has("HS2022") && canBridgeHs2017To2022(first.productCode, HS_CATALOG.map((e) => e.code));
+  if (cls.size > 1 && !bridge) return { ok: false, reason: `Clasificaciones incompatibles en la ventana (${[...cls].join(" vs ")}): el código cambió entre ediciones del Sistema Armonizado o no se ha comprobado su continuidad` };
   const cur = set((o) => o.currency);
   if (cur.size > 1) return { ok: false, reason: `Monedas distintas (${[...cur].join(", ")})` };
   if (set((o) => String(o.synthetic)).size > 1) return { ok: false, reason: "Mezcla de datos sintéticos y reales" };
-  void first;
   return { ok: true };
 }
 

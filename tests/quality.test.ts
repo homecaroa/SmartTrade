@@ -1,25 +1,30 @@
 import { describe, expect, it } from "vitest";
 import { buildOpportunities } from "@/lib/trade/opportunities";
 import { missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
-import { rankOpportunities } from "@/lib/trade/ranking";
+import { rankMarkets } from "@/lib/trade/ranking";
 import { ob, pairObs } from "./helpers";
 
 const markets = [{ code: "DE", name: "Alemania" }, { code: "FR", name: "Francia" }];
 const build = (obs: ReturnType<typeof pairObs>) => buildOpportunities({ observations: obs, markets, endYear: 2024, mode: "comext" }).opportunities;
 const one = (o: Parameters<typeof pairObs>[0]) => build(pairObs(o))[0];
 
+// Desde el 06/11/2026 no hay puntuación. «complete» significa ahora «serie de importaciones completa y comparable»;
+// lo que antes dejaba la oportunidad «sin puntuar» (valor final cero, España > total) se ve en el indicador concreto,
+// que queda en null con su explicación en «missing».
 describe("calidad de datos: casos límite", () => {
-  it("valor final cero: tamaño 0 observado, crecimiento no calculable y sin puntuación", () => {
+  it("valor final cero: tamaño 0 observado y crecimiento no calculable, explicado", () => {
     const o = one({ world: [100, 50, 0], spain: [1, 1, 0], exportES: 10 });
     expect(o.marketSize).toBe(0);
     expect(o.cagr).toBeNull();
-    expect(o.complete).toBe(false);
+    expect(o.spanishShare).toBeNull();
+    expect(o.missing.join(" ")).toMatch(/Crecimiento no calculable/);
   });
 
-  it("España mayor que el total (definiciones inconsistentes): sin cuota ni puntuación", () => {
+  it("España mayor que el total (definiciones inconsistentes): sin participación y explicado", () => {
     const o = one({ world: [100, 100, 100], spain: [1, 1, 150], exportES: 10 });
     expect(o.spanishShare).toBeNull();
-    expect(o.complete).toBe(false);
+    expect(o.spanishShareChangePp).toBeNull();
+    expect(o.missing.join(" ")).toMatch(/superan al total/);
   });
 
   it("cuota cero observada es válida (España exporta 0 al mercado), no es dato ausente", () => {
@@ -28,17 +33,11 @@ describe("calidad de datos: casos límite", () => {
     expect(o.complete).toBe(true);
   });
 
-  it("exportaciones españolas 0 observadas: completa, pero sin oportunidad exportadora demostrada", () => {
-    const rows = [
-      ...pairObs({ product: "111111", world: [100, 110, 121], spain: [1, 1, 1], exportES: 0 }),
-      ...pairObs({ product: "222222", world: [100, 120, 150], spain: [1, 1, 1], exportES: 500 }),
-      ...pairObs({ product: "333333", world: [90, 100, 130], spain: [1, 1, 1], exportES: 300 }),
-    ];
-    const opps = build(rows);
-    const zero = opps.find((o) => o.productCode === "111111")!;
-    expect(zero.complete).toBe(true);
-    expect(zero.score!.components.find((c) => c.key === "expansion")!.normalized).toBe(0);
-    expect(zero.score!.components.find((c) => c.key === "expansion")!.note).toMatch(/sin oportunidad exportadora demostrada/);
+  it("exportaciones españolas 0 observadas: se muestran como 0 (dato), no como ausentes", () => {
+    const o = one({ world: [100, 110, 121], spain: [1, 1, 1], exportES: 0 });
+    expect(o.complete).toBe(true);
+    expect(o.spainExportsWorld).toBe(0);
+    expect(one({ world: [100, 110, 121], spain: [1, 1, 1], exportES: null }).spainExportsWorld).toBeNull();
   });
 
   it("observaciones 'unavailable' se tratan como datos ausentes, no como 0", () => {
@@ -57,28 +56,47 @@ describe("calidad de datos: casos límite", () => {
     expect(o.quality).toBe("media");
   });
 
-  it("moneda de exportaciones distinta de la de importaciones: incompleta", () => {
+  // Antes dejaba la oportunidad incompleta porque las exportaciones entraban en la puntuación; ahora son informativas,
+  // así que la serie del mercado sigue siendo válida, pero el dato en otra moneda NO se muestra con la etiqueta equivocada.
+  it("moneda de exportaciones distinta de la de importaciones: no se muestran y se explica", () => {
     const obs = pairObs({ world: [100, 110, 121], spain: [1, 1, 1], exportES: 10 });
     const i = obs.findIndex((o) => o.flow === "export");
     obs[i] = { ...obs[i], currency: "USD" };
     const o = build(obs)[0];
+    expect(o.spainExportsWorld).toBeNull();
+    expect(o.missing.join(" ")).toMatch(/otra moneda/);
+  });
+
+  it("moneda de la serie de España distinta de la del mercado: incompleta", () => {
+    const obs = pairObs({ world: [100, 110, 121], spain: [1, 1, 1], exportES: 10 });
+    const i = obs.findIndex((o) => o.partnerCode === "ES");
+    obs[i] = { ...obs[i], currency: "USD" };
+    const o = build(obs)[0];
     expect(o.complete).toBe(false);
+    expect(o.spanishShare).toBeNull();
     expect(o.missing.join(" ")).toMatch(/Monedas distintas/);
   });
 
   it("serie con solo 2 de 3 años: incompleta aunque haya crecimiento calculable entre extremos", () => {
     const o = one({ world: [100, null, 144], spain: [1, 1, 1], exportES: 10 });
     expect(o.complete).toBe(false);
-    expect(o.score).toBeNull();
+    expect(o.cagr).toBeNull();
+    expect(o.missing.join(" ")).toMatch(/Faltan importaciones del mercado en 2023/);
   });
 
-  it("ventana que cruza revisiones HS (2021→2022) no se combina; 2022-2024 sí es homogénea", () => {
-    const withCls = (end: number) =>
-      pairObs({ world: [100, 110, 121], spain: [1, 1, 1], exportES: 10, endYear: end }).map((o) => ({ ...o, productClassification: Number(o.period) >= 2022 ? "HS2022" : "HS2017" }));
-    const crossing = buildOpportunities({ observations: withCls(2023), markets, endYear: 2023, mode: "comext" }).opportunities[0];
-    expect(crossing.complete).toBe(false);
-    expect(crossing.missing.join(" ")).toMatch(/Clasificaciones incompatibles/);
-    const homogeneous = buildOpportunities({ observations: withCls(2024), markets, endYear: 2024, mode: "comext" }).opportunities[0];
+  // Hasta el 06/11/2026 ninguna ventana que cruzara 2022 se combinaba, y los años finales 2022 y 2023 salían vacíos
+  // para todos los productos. Ahora se une si el código no cambió entre HS2017 y HS2022 (tabla de correlación OMA).
+  it("ventana que cruza la revisión HS2022: se une si el código no cambió, no si cambió", () => {
+    const withCls = (end: number, product?: string) =>
+      pairObs({ product, world: [100, 110, 121], spain: [1, 1, 1], exportES: 10, endYear: end }).map((o) => ({ ...o, productClassification: Number(o.period) >= 2022 ? "HS2022" : "HS2017" }));
+    const bridged = buildOpportunities({ observations: withCls(2023), markets, endYear: 2023, mode: "comext" }).opportunities[0];
+    expect(bridged.complete).toBe(true);
+    expect(bridged.cagr).not.toBeNull();
+    const changed = buildOpportunities({ observations: withCls(2023, "150920"), markets, endYear: 2023, mode: "comext" }).opportunities[0];
+    expect(changed.complete).toBe(false);
+    expect(changed.cagr).toBeNull();
+    expect(changed.missing.join(" ")).toMatch(/Clasificaciones incompatibles.*cambió entre ediciones/);
+    const homogeneous = buildOpportunities({ observations: withCls(2024, "150920"), markets, endYear: 2024, mode: "comext" }).opportunities[0];
     expect(homogeneous.complete).toBe(true);
   });
 
@@ -92,8 +110,9 @@ describe("calidad de datos: casos límite", () => {
     const mk = (m: string) => pairObs({ market: m, world: [100, 110, 121], spain: [10, 11, 12], exportES: 100 });
     const obs = [...mk("DE"), ...mk("FR").filter((o) => o.flow !== "export")];
     const opps = build(obs);
-    const a = rankOpportunities(opps, { sort: "potencial", order: "desc" }).map((o) => o.id);
-    const b = rankOpportunities([...opps].reverse(), { sort: "potencial", order: "desc" }).map((o) => o.id);
+    const a = rankMarkets(opps, "220421", { sort: "valor", order: "desc" }).rows.map((o) => o.id);
+    const b = rankMarkets([...opps].reverse(), "220421", { sort: "valor", order: "desc" }).rows.map((o) => o.id);
+    expect(a).toHaveLength(2);
     expect(a).toEqual(b);
   });
 });

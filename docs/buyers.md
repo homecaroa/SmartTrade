@@ -1,4 +1,10 @@
-# Importadores y compradores (módulo piloto)
+# Importadores y compradores (módulo piloto, RETIRADO de la interfaz)
+
+> **Desde el 06/11/2026 este módulo no está en la interfaz.** Solo cubría vino en Japón (9 empresas curadas, 7 con una
+> única prueba genérica), anunciaba listas de IA que no existían y la búsqueda en vivo no se había probado con clave
+> real (segunda auditoría independiente). `/compradores` es ahora una página estática que no consulta nada; se borró
+> `/api/buyers/export` y los enlaces desde la ficha. El código de `lib/buyers/` y sus pruebas se conservan para una
+> posible versión futura con cobertura y evidencia suficientes. Lo que sigue describe ese código, no la app actual.
 
 Dado un producto HS6 y un país de destino, muestra empresas con **pruebas enlazadas** de que importan, distribuyen o compran ese tipo de producto, para que una pyme valore contactarlas. Las estadísticas de importación de un país **no son un registro de compradores**: ninguna empresa se presenta como compradora asegurada.
 

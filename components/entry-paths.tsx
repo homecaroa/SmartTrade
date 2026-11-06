@@ -6,16 +6,18 @@ const card = "rounded-lg bg-white p-4 shadow-sm space-y-3";
 export function EntryPaths({ fuente }: { fuente?: "fuera" }) {
   const sfx = fuente ? "&fuente=fuera" : "";
   return (
-    <section aria-label="Cómo empezar" className="space-y-3">
+    <section aria-labelledby="titulo-portada" className="space-y-3">
+      <h1 id="titulo-portada" className="text-xl font-bold">Estudia los mercados de exportación de tu producto</h1>
+      <p className="text-sm text-slate-700">Estadísticas oficiales de comercio exterior: cuánto importa cada país, cómo ha evolucionado, qué parte llega desde España y qué otros países lo abastecen. Sin puntuaciones ni previsiones.</p>
       <ol className="flex flex-wrap gap-x-6 gap-y-1 text-xs text-slate-600">
         <li><b>1.</b> Elige cómo empezar</li>
-        <li><b>2.</b> Revisa el ranking de mercados</li>
-        <li><b>3.</b> Abre el detalle y comprueba aranceles y requisitos</li>
+        <li><b>2.</b> Revisa los mercados del producto</li>
+        <li><b>3.</b> Abre el diagnóstico de un mercado y anota qué falta comprobar</li>
       </ol>
       <div className="grid gap-4 lg:grid-cols-2">
         <div className={card}>
           <h2 className="font-semibold">Tengo un producto</h2>
-          <p className="text-sm text-slate-600">Dime qué quieres exportar y te muestro a qué países de la UE merece la pena mirar primero.</p>
+          <p className="text-sm text-slate-600">Escribe qué quieres exportar y verás cuánto lo importa cada país, cómo ha evolucionado y qué parte llega desde España.</p>
           <form method="get" action="/" className="flex gap-2">
             {fuente && <input type="hidden" name="fuente" value="fuera" />}
             <input name="q" required maxLength={80} aria-label="Producto o código HS" placeholder="Ej.: vino, cerámica, 220421" className="w-full rounded border border-slate-300 px-2 py-1.5 text-sm" />
@@ -28,7 +30,7 @@ export function EntryPaths({ fuente }: { fuente?: "fuera" }) {
         </div>
         <div className={card}>
           <h2 className="font-semibold">Quiero descubrir sectores</h2>
-          <p className="text-sm text-slate-600">Explora un sector y compara sus productos y mercados entre sí.</p>
+          <p className="text-sm text-slate-600">Explora un sector: verás sus productos y, para cada uno, sus mercados.</p>
           <ul className="grid gap-2 sm:grid-cols-2">
             {SECTORS.map((s) => (
               <li key={s.id}>
@@ -51,7 +53,7 @@ export function SectorBanner({ current, onlyOne, fuente }: { current: { id: stri
   const others = SECTORS.filter((s) => s.id !== current.id);
   return (
     <section className="space-y-2 rounded-lg border border-indigo-200 bg-indigo-50 p-3 text-sm">
-      <p><b>Sector: {current.name}</b> · {current.codes.length} productos. Los rankings comparan solo entre estos productos: no es comparable con otras búsquedas.</p>
+      <p><b>Sector: {current.name}</b> · {current.codes.length} productos. Cada producto se analiza por separado: elige cuál ver.</p>
       {onlyOne && (
         <p className="text-xs text-slate-700">
           Explorar otro sector:{" "}

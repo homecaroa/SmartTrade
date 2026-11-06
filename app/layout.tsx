@@ -5,8 +5,8 @@ import { getConfig } from "@/lib/config";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SmarTrade · Oportunidades comerciales",
-  description: "Descubre oportunidades comerciales con datos de comercio internacional",
+  title: "SmarTrade · Diagnóstico de mercados de exportación",
+  description: "Datos oficiales de comercio exterior para estudiar mercados de exportación",
 };
 
 export const dynamic = "force-dynamic";
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-4 py-3">
             <Link href="/" className="flex items-baseline gap-3">
               <span className="text-xl font-bold text-indigo-700">SmarTrade</span>
-              <span className="text-sm text-slate-600">Descubre oportunidades comerciales con datos de comercio internacional</span>
+              <span className="text-sm text-slate-600">Datos oficiales de comercio exterior para estudiar mercados de exportación</span>
             </Link>
             <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
               <Link href="/guia" className="underline">Guía de uso</Link>

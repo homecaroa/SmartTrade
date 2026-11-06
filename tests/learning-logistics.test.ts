@@ -64,14 +64,20 @@ describe("presupuesto logístico de cada caso", () => {
       expect(concepts as string[]).not.toContain("iva_importacion");
     }
   });
-  it("el Incoterm reparte el coste pero no lo cambia: total = vendedor + comprador, igual en todas las reglas", () => {
+  // Desde el 06/11/2026 la prima del seguro depende de la cobertura: CIF exige como mínimo cláusulas (C), más baratas;
+  // el resto se calcula con cláusulas (A) (Incoterms® 2020). Por eso el total de CIF difiere SOLO en la línea del seguro.
+  it("el Incoterm reparte el coste pero no lo cambia: total = vendedor + comprador; solo el seguro de CIF (cláusulas C) difiere", () => {
+    const withoutInsurance = (q: ReturnType<typeof computeQuote>) => q.lines.filter((l) => l.concept !== "seguro").reduce((a, l) => ({ min: a.min + l.range.min, max: a.max + l.range.max }), { min: 0, max: 0 });
     for (const s of EXPORT_SCENARIOS) for (const r of s.logistics.routes) {
-      const base = computeQuote(shipmentOf(s), r, "DAP").logistics.total;
+      const dap = computeQuote(shipmentOf(s), r, "DAP");
       for (const i of INCOTERMS) {
         const q = computeQuote(shipmentOf(s), r, i.code);
-        expect(q.logistics.total).toEqual(base);
+        if (i.code !== "CIF") expect(q.logistics.total).toEqual(dap.logistics.total);
+        expect(withoutInsurance(q).min).toBeCloseTo(withoutInsurance(dap).min, 1);
         expect(q.logistics.seller.min + q.logistics.buyer.min).toBeCloseTo(q.logistics.total.min, 1);
       }
+      const ins = (code: string) => computeQuote(shipmentOf(s), r, code).lines.find((l) => l.concept === "seguro")!.range.max;
+      expect(ins("CIF")).toBeLessThan(ins("CIP"));
     }
   });
   it("dentro de la UE no hay despachos ni impuestos; fuera, sí", () => {
@@ -82,16 +88,16 @@ describe("presupuesto logístico de cada caso", () => {
     expect(q.taxes).toBeNull();
     expect(computeQuote(ship("recambios-marruecos"), route("recambios-marruecos", "camion_ferry"), "DAP").taxes).not.toBeNull();
   });
-  // Desde el 04/11/2026 el flete del valor en aduana incluye sus recargos (combustible y temporada alta): forman parte
-  // del precio del transporte. Antes la fórmula era valor + flete base + seguro.
-  it("arancel = tipo × (valor + flete principal con recargos + seguro); el preferencial solo con prueba de origen", () => {
+  // Base CIF del valor en aduana (06/11/2026): mercancía + costes en origen (recogida, terminal, despacho de
+  // exportación) + flete principal con recargos + seguro. Antes faltaban los costes en origen (04/11: valor + flete con
+  // recargos + seguro; hasta entonces, sin recargos).
+  it("arancel (base CIF) = tipo × (valor + costes en origen + flete con recargos + seguro); el preferencial solo con prueba de origen", () => {
     const s = ship("recambios-marruecos");
     const r = route("recambios-marruecos", "camion_ferry");
     const sin = computeQuote(s, r, "DAP", { originProof: false });
-    const main = sin.lines.find((l) => l.concept === "transporte_principal")!.range;
-    const ins = sin.lines.find((l) => l.concept === "seguro")!.range;
-    const sur = sin.lines.find((l) => l.concept === "recargos_flete")!.range;
-    expect(sin.taxes!.duty.min).toBeCloseTo((s.cargo.valueEur + main.min + sur.min + ins.min) * 0.1, 1);
+    const min = (c: string) => sin.lines.find((l) => l.concept === c)?.range.min ?? 0;
+    const base = s.cargo.valueEur + ["recogida", "terminal_origen", "despacho_exportacion", "transporte_principal", "recargos_flete", "transbordos", "seguro"].reduce((a, c) => a + min(c), 0);
+    expect(sin.taxes!.duty.min).toBeCloseTo(base * 0.1, 1);
     expect(computeQuote(s, r, "DAP", { originProof: true }).taxes!.duty.max).toBe(0);
   });
   it("sin acuerdo preferencial (Nueva York) la prueba de origen no rebaja el arancel", () => {

@@ -1,86 +1,52 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import { getConfig } from "@/lib/config";
 import { parseQuery } from "@/lib/schemas/query";
-import { LENSES } from "@/lib/scoring/score";
-import { opportunitiesToCsv } from "@/lib/trade/csv";
-import { buildOpportunities } from "@/lib/trade/opportunities";
-import { lensRanks, rankOpportunities } from "@/lib/trade/ranking";
-import { pairObs } from "./helpers";
+import { getRanking } from "@/lib/service";
 
 /**
- * Dos rankings en lugar de la puntuación única (03/11/2026, docs/methodology.md). Se comprueba el punto de llamada: la
- * URL, el orden, el puesto en cada ranking y el CSV, no solo la función de puntuación.
+ * Clasificaciones descriptivas (06/11/2026). Sustituyen a los dos rankings por percentiles («Mercados grandes» y
+ * «Potencial de cuota»), retirados porque no superaban a reglas triviales en su validación histórica. Se comprueba el
+ * punto de llamada: URL, orden dentro de un producto, búsqueda de varios productos y paginación.
  */
 const sinComentarios = (s: string) => s.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
+const q = (raw: Record<string, string>) => { const p = parseQuery(raw); if (!p.success) throw new Error("query"); return p.data; };
+const demo = () => getConfig({ SMARTRADE_DATA_MODE: "demo" });
 
-/** Mercados con tamaño y cuota española en sentidos opuestos: el orden de los dos rankings tiene que diferir. */
-function universe() {
-  const markets = [{ code: "DE", name: "Alemania" }, { code: "FR", name: "Francia" }, { code: "IT", name: "Italia" }, { code: "NL", name: "Países Bajos" }];
-  const obs = [
-    ...pairObs({ market: "DE", world: [900, 950, 1000], spain: [300, 320, 350], exportES: 5000 }), // grande, mucha cuota
-    ...pairObs({ market: "FR", world: [600, 640, 700], spain: [150, 160, 175], exportES: 5000 }).filter((o) => o.flow !== "export"),
-    ...pairObs({ market: "IT", world: [300, 310, 320], spain: [10, 9, 8], exportES: 5000 }).filter((o) => o.flow !== "export"), // pequeño, casi sin cuota
-    ...pairObs({ market: "NL", world: [100, 105, 110], spain: [2, 2, 2], exportES: 5000 }).filter((o) => o.flow !== "export"),
-  ];
-  return buildOpportunities({ observations: obs, markets, endYear: 2024, mode: "comext" }).opportunities;
-}
-
-describe("los dos rankings", () => {
-  it("ordenan distinto: tamaño frente a hueco de cuota española", () => {
-    const all = universe();
-    expect(rankOpportunities(all, { sort: "volumen", order: "desc" }).map((o) => o.marketCode)).toEqual(["DE", "FR", "IT", "NL"]);
-    const pot = rankOpportunities(all, { sort: "potencial", order: "desc" }).map((o) => o.marketCode);
-    expect(pot.slice(0, 2).sort()).toEqual(["IT", "NL"]);
-    expect(pot.at(-1)).toBe("DE");
-  });
-  it("el puesto de cada oportunidad se da en los dos rankings; incompleta = null", () => {
-    const all = universe();
-    const de = all.find((o) => o.marketCode === "DE")!;
-    expect(lensRanks(all, de.id)).toEqual({ volumen: 1, potencial: 4 });
-    expect(lensRanks(all, "999999-DE-2024")).toEqual({ volumen: null, potencial: null });
-  });
-  it("la URL acepta los dos rankings; «score» y «size» de enlaces antiguos llevan a «volumen», que es el de defecto", () => {
+describe("URL", () => {
+  it("métricas descriptivas; los enlaces antiguos de los rankings retirados siguen funcionando", () => {
     const sort = (s?: string) => { const r = parseQuery(s === undefined ? {} : { sort: s }); return r.success ? r.data.sort : "ERROR"; };
-    expect(sort()).toBe("volumen");
-    expect(sort("potencial")).toBe("potencial");
-    expect(sort("growth")).toBe("growth");
-    expect(sort("score")).toBe("volumen");
-    expect(sort("size")).toBe("volumen");
+    expect(sort()).toBe("valor");
+    for (const s of ["crecimiento", "peso", "espana"]) expect(sort(s)).toBe(s);
+    for (const old of ["score", "size", "volumen", "potencial"]) expect(sort(old)).toBe("valor");
+    expect(sort("growth")).toBe("crecimiento");
     expect(sort("otro")).toBe("ERROR");
-  });
-  it("el CSV ya no tiene columna «puntuacion»; los índices son los percentiles de tamaño y expansión", () => {
-    const header = opportunitiesToCsv(universe()).replace("﻿", "").split("\r\n")[0].split(",");
-    expect(header).not.toContain("puntuacion");
-    expect(header).toContain("percentil_tamano");
-    expect(header).toContain("percentil_expansion");
-    expect(LENSES.volumen.component).toBe("size");
-    expect(LENSES.potencial.component).toBe("expansion");
-    // La validación solo cubrió mercados de la UE en euros: el texto no puede presumir más (visto en una ficha en USD).
-    for (const l of Object.values(LENSES)) { expect(l.summary).toMatch(/mercados de la UE, 2019–2024/); expect(l.summary).not.toMatch(/euros/); }
-  });
-  it("la portada y la ficha muestran los dos rankings, sin rastro de los pesos antiguos", () => {
-    const page = sinComentarios(readFileSync("app/page.tsx", "utf8"));
-    expect(page).toMatch(/<LensSwitch/);
-    const table = sinComentarios(readFileSync("components/opportunity-table.tsx", "utf8"));
-    expect(table).toMatch(/lens="volumen"/);
-    expect(table).toMatch(/lens="potencial"/);
-    for (const f of ["components/opportunity-score.tsx", "app/metodologia/page.tsx", "lib/scoring/score.ts", "lib/scoring/labels.ts"]) {
-      const src = sinComentarios(readFileSync(f, "utf8"));
-      expect(src, f).not.toMatch(/DEFAULT_WEIGHTS|\.total\b|contribution/);
-    }
+    expect(parseQuery({ producto: "12345" }).success).toBe(false);
   });
 });
 
-describe("coherencia entre etiquetas e índices", () => {
-  it("una oportunidad con «Poca exportación española» nunca tiene «Potencial de cuota» por encima del tope", async () => {
-    const { describeOpportunity } = await import("@/lib/scoring/labels");
-    const { LOW_EXPORT_PERCENTILE } = await import("@/lib/scoring/score");
-    // Dos productos (percentiles de exportación 25 y 75): el caso real que destapó la contradicción.
-    const mk = (prod: string, exp: number) => ["DE", "FR", "IT", "NL", "AT"].flatMap((m, i) =>
-      pairObs({ product: prod, market: m, world: [100 * (i + 1), 110 * (i + 1), 120 * (i + 1)], spain: [i + 1, i + 1, i + 1], exportES: m === "DE" ? exp : null }));
-    const markets = ["DE", "FR", "IT", "NL", "AT"].map((code) => ({ code, name: code }));
-    const opps = buildOpportunities({ observations: [...mk("150920", 9000), ...mk("150930", 100)], markets, endYear: 2024, mode: "comext" }).opportunities.filter((o) => o.complete);
-    expect(opps.length).toBeGreaterThan(4);
-    for (const o of opps) if (describeOpportunity(o).tags.some((t) => t.key === "pocaexpo")) expect(o.score!.potencial).toBeLessThanOrEqual(LOW_EXPORT_PERCENTILE);
+describe("búsqueda con varios productos (modo demo, datos sintéticos)", () => {
+  it("nunca ordena productos distintos entre sí: la tabla es de UN producto y los demás se ofrecen para elegir", async () => {
+    const r = await getRanking(q({}), demo());
+    expect(r.products.length).toBeGreaterThan(1);
+    expect(new Set(r.rows.map((o) => o.productCode))).toEqual(new Set([r.product!.code]));
+    const other = r.products[1].code;
+    const r2 = await getRanking(q({ producto: other }), demo());
+    expect(r2.rows.every((o) => o.productCode === other)).toBe(true);
+  });
+  it("orden por valor descendente, reproducible", async () => {
+    const r = await getRanking(q({ pageSize: "50" }), demo());
+    const v = r.rows.map((o) => o.marketSize!);
+    expect(v).toEqual([...v].sort((a, b) => b - a));
+    expect((await getRanking(q({ pageSize: "50" }), demo())).rows.map((o) => o.id)).toEqual(r.rows.map((o) => o.id));
+  });
+  it("una página que no existe se detecta (no se presenta como «no hay resultados»)", async () => {
+    const r = await getRanking(q({ page: "999" }), demo());
+    expect(r.pageOutOfRange).toBe(true);
+    expect(r.rows).toHaveLength(0);
+    expect(r.total).toBeGreaterThan(0);
+    const page = sinComentarios(readFileSync("app/page.tsx", "utf8"));
+    expect(page).toMatch(/data\.pageOutOfRange \?/);
+    expect(page).toMatch(/no existe: hay/);
   });
 });

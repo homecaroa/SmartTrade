@@ -1,6 +1,13 @@
 import type { DataMode, TradeObservation } from "@/lib/schemas/trade";
 
-export type SourceErrorKind = "config" | "http" | "rate_limit" | "network" | "parse" | "too_large" | "pending";
+/**
+ * Tipos de error de las fuentes. «config» y «not_found» son de la consulta del usuario (código no válido o que la fuente
+ * no reconoce); el resto son fallos del proveedor (temporales o de formato). La UI los distingue (app/page.tsx).
+ */
+export type SourceErrorKind = "config" | "not_found" | "http" | "rate_limit" | "network" | "parse" | "too_large" | "pending";
+
+/** ¿Es un problema de la consulta (no tiene sentido reintentar) o del proveedor? */
+export const isQueryError = (k: SourceErrorKind) => k === "config" || k === "not_found";
 
 export class SourceError extends Error {
   constructor(

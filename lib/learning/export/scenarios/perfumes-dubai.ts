@@ -158,7 +158,7 @@ export const PERFUMES_DUBAI: ExportScenario = {
       prompt: (ctx) => `En ${ctx.settings.incoterm} el riesgo del viaje es tuyo y la regla no te obliga a asegurar. ¿Contratas seguro?`,
       appliesIf: (ctx) => !!ctx.settings.incoterm && sellerBearsTransitRisk(incotermOf(ctx.settings.incoterm)) && !sellerMustInsure(incotermOf(ctx.settings.incoterm)),
       options: [
-        opt("si", "Sí, al 110 % del valor, declarando que es mercancía peligrosa", "correcta", "Cubres un riesgo que es tuyo; la póliza debe saber qué se transporta."),
+        opt("si", "Sí, por el 110 % del precio del contrato, declarando que es mercancía peligrosa", "correcta", "Cubres un riesgo que es tuyo; la póliza debe saber qué se transporta."),
         opt("no", "No", "razonable", "Ahorras la prima, pero una pérdida o un derrame en el viaje lo pagarías tú."),
       ],
       best: "si", whyBest: "Quien soporta el riesgo del transporte es quien debe valorar asegurarlo.",

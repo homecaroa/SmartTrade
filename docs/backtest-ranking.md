@@ -1,5 +1,10 @@
 # Validación histórica del ranking (backtest)
 
+> **Registro histórico.** Los dos rankings evaluados aquí se retiraron el 06/11/2026 y el código que generó este informe
+> (`scripts/backtest-ranking.ts`, `lib/backtest/ranking.ts`) se borró con ellos. Se conserva porque explica la decisión.
+> La segunda auditoría independiente comparó estas cifras con reglas triviales (ordenar por cuota española baja, o por
+> lo que España ya vende) y los rankings no las superaban: ver «Historial» en `docs/methodology.md`.
+
 Generado el 2026-11-03 por `scripts/backtest-ranking.ts` con datos reales de Eurostat Comext (2017–2025, 50 códigos del catálogo, 26 mercados de la UE, 22304 observaciones). Método en `lib/backtest/ranking.ts`.
 
 Pregunta: si en el año T se hubieran usado los dos rankings de SmarTrade (mismo algoritmo que la web), ¿los mercados mejor situados para un producto fueron los que más crecieron en los 3 años siguientes? El crecimiento pasado se mide como referencia.

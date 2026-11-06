@@ -33,16 +33,23 @@ describe("siguientes pasos de investigación", () => {
   });
 });
 
-describe("CSV con metadatos de interpretación", () => {
-  const o = { productCode: "220421", productName: "Vino", classification: "HS2022", marketCode: "DE", marketName: "Alemania", endYear: 2024, marketSize: 1, currency: "EUR", cagr: 3, spanishShare: 2, spainExportsWorld: 5, quality: "alta", source: "x", retrievedAt: "t", synthetic: false, importsSeries: [{ year: 2022, value: 1 }], score: { total: 50, universeSize: 40, productUniverseSize: 10, components: [{ key: "size", normalized: 80 }, { key: "growth", normalized: 60 }, { key: "expansion", normalized: 70 }, { key: "export", normalized: 90 }] } } as unknown as Opportunity;
-  it("incluye ventana, universo y percentiles de cada componente", () => {
-    const [h, row] = opportunitiesToCsv([o]).replace("\uFEFF", "").trim().split("\r\n");
-    expect(h).toContain("universo_oportunidades");
+// Hasta el 06/11/2026 el CSV llevaba universo y percentiles de la puntuación; ahora lleva indicadores descriptivos,
+// el puesto según la métrica elegida y en qué se basa el socio España.
+describe("CSV descriptivo", () => {
+  const o = { productCode: "220421", productName: "Vino", classification: "HS2022", marketCode: "DE", marketName: "Alemania", endYear: 2024, marketSize: 1000, currency: "EUR", yoyChange: 2, cagr: 3, cagrVolume: null, netWeightEndYear: null, spainValue: 20, spanishShare: 2, spanishShareChangePp: null, partnerBasis: "expedicion", spainExportsWorld: 5, complete: true, quality: "alta", source: "x", retrievedAt: "t", synthetic: false, importsSeries: [{ year: 2022, value: 1 }] } as unknown as Opportunity;
+  it("cabecera sin puntuación ni percentiles y una celda por columna", () => {
+    const [h, row] = opportunitiesToCsv([o], "crecimiento").replace("\uFEFF", "").trim().split("\r\n");
+    expect(h).not.toMatch(/puntuacion|percentil|universo/);
+    expect(h).toContain("metrica_orden");
+    expect(h).toContain("socio_espana_es");
     expect(h.split(",")).toHaveLength(row.split(",").length);
-    expect(row.endsWith("2022,40,10,80,60,70,90,")).toBe(true);
+    expect(row.startsWith("1,crecimiento,220421")).toBe(true);
   });
-  it("sin puntuación deja los metadatos vacíos (no ceros)", () => {
-    const row = opportunitiesToCsv([{ ...o, score: null } as Opportunity]).replace("\uFEFF", "").trim().split("\r\n")[1];
-    expect(row.endsWith("2022,,,,,,,")).toBe(true);
+  it("los datos ausentes quedan vacíos (no ceros)", () => {
+    const [h, row] = opportunitiesToCsv([o]).replace("\uFEFF", "").trim().split("\r\n");
+    const cells = Object.fromEntries(h.split(",").map((k, i) => [k, row.split(",")[i]]));
+    expect(cells.peso_neto_kg).toBe("");
+    expect(cells.crecimiento_volumen_cagr_pct).toBe("");
+    expect(cells.variacion_participacion_pp).toBe("");
   });
 });

@@ -59,7 +59,7 @@ Para precisar más que el HS6 (Rioja, naranjas navel, coches eléctricos usados�
 - **No existen en la estadística oficial** y no se aproximan: Ribera del Duero, Rueda, Priorat… por separado (van en «otras DOP de la UE», mezcladas con DOP de otros países en el total mundial) y los coches por carrocería (SUV).
 - **Clasificación `NC8-HS2022`:** se rotula con la versión HS y no con el año. Rotularla «NC2022», «NC2023»… hacía incompatible toda ventana y todas las oportunidades salían incompletas (visto al abrir la app). Eurostat da estos códigos como válidos desde 2010.
 - **Sin solapes:** una búsqueda por nombre que encuentra una partida y sus subcategorías se queda con la partida (sumarlas contaría dos veces el mismo comercio) y lo avisa. Los prefijos numéricos (p. ej. «2204») solo dan HS6. Los sectores no incluyen NC8.
-- **DOP que solo produce España** (Rioja, Navarra, Penedés, Valdepeñas, Valencia, Cava): la cuota española es casi el 100 % por definición (97,7 % en Alemania). El «Potencial de cuota» no informa ahí; la lista y la ficha lo avisan.
+- **DOP que solo produce España** (Rioja, Navarra, Penedés, Valdepeñas, Valencia, Cava): la cuota española es casi el 100 % por definición (97,7 % en Alemania). La participación española no mide competencia ahí; la lista y la ficha lo avisan.
 - **Más sensibles a cómo se declara:** Cava en Alemania pasó de 42,7 M€ (2023) a 6,7 M€ (2025) mientras crecían los espumosos «varietales sin DOP». Un subcódigo puede moverse por reclasificación, no solo por demanda.
 - Los datos guardados de UN Comtrade no incluyen NC8 (`lib/snapshots/update.ts` los filtra).
 
@@ -114,7 +114,7 @@ Consulta HS 220421, años 2022-2024, importaciones con socios mundo y España (v
 ### Modo «Fuera de la UE» en la aplicación
 - Se activa solo si `SMARTRADE_DATA_MODE=comext` y existe `COMTRADE_API_KEY` en el servidor. Si no, el selector no aparece y `?fuente=fuera` muestra un aviso (las rutas `/api` ignoran el parámetro y devuelven el modo configurado).
 - Mercados ofrecidos: `COMTRADE_MARKET_CODES` en `lib/config/catalog.ts` (los verificados arriba).
-- El ranking es independiente: su propio universo de percentiles, en USD, con fuente «UN Comtrade». No se combina con los datos de la UE.
+- Los resultados fuera de la UE van aparte, en USD, con fuente «UN Comtrade». No se combinan con los datos de la UE.
 - La clasificación se muestra como edición HS (H6 = HS2022, etc., según la tabla de Comtrade); si un código desconocido aparece, se muestra tal cual.
 - Riesgo: la web es pública y el cupo de la clave es compartido; si se agota, la app muestra un error de límite de la fuente. La caché (1 h por defecto) reduce el consumo.
 

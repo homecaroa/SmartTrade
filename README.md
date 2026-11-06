@@ -1,6 +1,6 @@
 # SmarTrade (MVP)
 
-Análisis de oportunidades comerciales producto-mercado para empresas españolas exportadoras, a partir de estadísticas de comercio internacional. Dos rankings explicables («Mercados grandes» y «Potencial de cuota», validados con datos históricos), ficha de detalle, gráficos, trazabilidad de datos y exportación CSV.
+Diagnóstico descriptivo de mercados de exportación para empresas españolas, a partir de estadísticas oficiales de comercio exterior: por producto, cuánto importa cada mercado, cómo ha evolucionado, qué parte llega desde España y quién más lo abastece. Indicadores en su unidad, sin puntuación ni previsiones (la puntuación se retiró el 06/11/2026: ver `docs/methodology.md`). Ficha por mercado, comparación, gráficos con tabla, trazabilidad de datos y exportación CSV.
 
 **Estado honesto:** funciona de extremo a extremo con datos de **demostración sintéticos** (`demo`) y con **datos reales de Eurostat Comext** (`comext`, verificado el 18/10/2026 con `220421, 150920`: 49 oportunidades en 26 mercados UE). UN Comtrade está implementado pero **sin probar** (requiere clave). Ver `docs/data-sources.md` y `docs/limitations.md`. Es una app Next.js con servidor: **no se ejecuta en GitHub Pages**; hay que ejecutarla en local o desplegarla (p. ej. Vercel).
 
@@ -10,20 +10,13 @@ Node.js 20+ y npm.
 ## Instalación y ejecución
 ```bash
 npm install
-cp .env.example .env.local        # opcional; por defecto SMARTRADE_DATA_MODE=demo
 npm run dev                       # http://localhost:3000
 npm test                          # pruebas (Vitest)
 npm run typecheck && npm run build
 ```
 
-## Verla funcionando desde GitHub (Codespaces)
-GitHub Pages solo sirve páginas estáticas y SmarTrade necesita servidor, pero puedes ejecutarla en la nube desde tu repositorio:
-1. Sube el proyecto a GitHub (incluida la carpeta oculta `.devcontainer`).
-2. En el repositorio: botón verde **Code → Codespaces → Create codespace on main**.
-3. Espera a que se instale y compile (1–3 min). Se abre sola una pestaña con la web; si no, pestaña **Ports → puerto 3000 → icono del globo**.
-4. Arranca en modo `comext` (datos reales de Eurostat): escribe `220421, 150920` en el buscador.
-La URL del puerto es privada para tu cuenta. Codespaces tiene una cuota gratuita mensual limitada; **detén el codespace** cuando termines (Code → Codespaces → ⋯ → Stop).
-Para una URL pública permanente haría falta desplegarla (p. ej. Vercel).
+## Verla funcionando
+Necesita servidor (no sirve GitHub Pages): en local con `npm run dev` o desplegada (Vercel).
 
 ## Modos de datos (`SMARTRADE_DATA_MODE`)
 | Modo | Fuente | Notas |
@@ -46,14 +39,14 @@ SMARTRADE_DATA_MODE=comext npm run dev    # en el buscador: 220421, 150920 (cód
 En modos reales, la web usa primero los datos guardados en `data/snapshots/` y solo consulta en vivo lo que falte. Se actualizan cada dos meses con GitHub Actions, que abre un PR para revisarlos (`npm run datos:actualizar` para hacerlo a mano). Detalle y requisitos en `docs/data-sources.md`.
 
 ## Variables de entorno
-Ver `.env.example`: `SMARTRADE_DATA_MODE`, `CACHE_TTL_SECONDS`, `DEFAULT_END_YEAR`, `COMEXT_BASE_URL`, `COMEXT_DATASET`, `COMEXT_WORLD_CODE`, `COMTRADE_API_KEY`, `COMTRADE_KEY_IN_QUERY`. Ninguna se expone al navegador.
+`SMARTRADE_DATA_MODE`, `CACHE_TTL_SECONDS`, `DEFAULT_END_YEAR`, `COMEXT_BASE_URL`, `COMEXT_DATASET`, `COMEXT_WORLD_CODE`, `COMTRADE_API_KEY`, `COMTRADE_KEY_IN_QUERY`. Ninguna se expone al navegador.
 
 ## Estructura
-`app/` páginas y rutas API · `components/` UI · `lib/schemas` contratos Zod · `lib/sources` adaptadores · `lib/trade` normalización, oportunidades, ranking, CSV · `lib/scoring` indicadores y rankings · `lib/cache` caché TTL · `tests/` · `docs/`.
+`app/` páginas y rutas API · `components/` UI · `lib/schemas` contratos Zod · `lib/sources` adaptadores · `lib/trade` normalización, indicadores por mercado, ordenación, lectura del mercado, revisiones HS, CSV · `lib/scoring/indicators.ts` fórmulas (CAGR, cuota…) · `lib/cache` caché TTL · `tests/` · `docs/`.
 
 ## API
 `GET /api/opportunities` · `GET /api/opportunities/[id]` · `GET /api/opportunities/export` (CSV) · `GET /api/filters`.
-Parámetros: `q, market, year, minSize (millones), minGrowth (%), sort (score|size|growth), order, page, pageSize`.
+Parámetros: `q, producto, market, year, minSize (millones), minGrowth (%), sort (valor|crecimiento|peso|espana), order, page, pageSize`. Los enlaces antiguos con `sort=score|size|volumen|potencial` se leen como `valor`, y `growth` como `crecimiento`.
 
 ## Documentación
 `docs/architecture.md`, `docs/data-sources.md`, `docs/methodology.md`, `docs/testing.md`, `docs/limitations.md`, `docs/aprendizaje.md` (Modo Aprendizaje: simulador educativo con datos simulados, en `/aprendizaje`).

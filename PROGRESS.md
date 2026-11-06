@@ -7,8 +7,18 @@
 | Eurostat Comext | **Verificado de principio a fin con datos reales** (18/10/2026): `verify:comext` y la app en modo `comext` con `220421, 150920` → 49 oportunidades válidas, 1 incompleta. Los códigos HS6 siguen la nomenclatura de cada año (150910 no existe desde HS2022). Pendiente: más productos, indicadores de estado. Grecia corregida el 30/10/2026 (Comext usa `GR`). |
 | UN Comtrade | Opcional, sin clave ni llamadas reales. |
 
+## Transformación: diagnóstico descriptivo (06/11/2026, sin commit: pendiente de revisión del dueño)
+Tras la segunda auditoría independiente. Detalle y porqués en `docs/methodology.md`.
+- **Sin puntuación:** se retiran los dos rankings por percentiles (no superaban a reglas triviales en su validación). Indicadores en su unidad, calculados solo con el producto y mercado de cada fila; los mercados se ordenan dentro de un producto por una métrica (valor, crecimiento, volumen, socio España). Ficha nueva por bloques (lectura con plantillas fijas, tamaño, evolución, presencia española, proveedores, el producto en otros mercados), comparación y CSV descriptivos.
+- **España = país de expedición** en los mercados de la UE: se avisa en listado, ficha, comparación y CSV.
+- **Compradores retirados de la interfaz:** `/compradores` es un aviso estático; `lib/buyers` se conserva.
+- **Ventanas 2022/2023:** se unen HS2017→HS2022 para los códigos sin cambios (tabla de la OMA); antes salían vacías.
+- **Errores:** código no reconocido por Eurostat (413 `EXTRACTION_TOO_BIG`) → «Revisa el producto»; fallo del proveedor y error interno con mensajes distintos; página fuera de rango explicada.
+- **Modo Aprendizaje:** valor en aduana de EE. UU. con base FOB (CBP); capital asegurado = 110 % del precio con transporte hasta destino; CIF con cláusulas (C) y CIP con (A) en prima e incidencias.
+- Verificado: 453 pruebas, `tsc`, `next build`, navegador (Playwright contra `next start`, demo y comext con datos guardados, escritorio y 390 px).
+
 ## Datos guardados con actualización bimensual (30/10/2026)
-La web lee primero `data/snapshots` (Eurostat: 49 códigos, 2022–2025, cargados de verdad) y consulta en vivo solo lo que falte; GitHub Actions los actualiza cada dos meses con un PR. Pendiente: secreto `COMTRADE_API_KEY` y permiso de Actions para crear PRs en GitHub, y la primera carga de Comtrade. Mandarinas corregidas el 30/10/2026: el 080520 se sustituyó por 080521 y 080522 (HS2022); Eurostat recargado; Comtrade de esos dos códigos pendiente de la próxima actualización. Detalle en `docs/data-sources.md`.
+La web lee primero `data/snapshots` (Eurostat: 49 códigos, 2022–2025, cargados de verdad) y consulta en vivo solo lo que falte; GitHub Actions los actualiza cada dos meses con un PR. Pendiente: secreto `COMTRADE_API_KEY` y permiso de Actions para crear PRs en GitHub, y la primera carga de Comtrade. Mandarinas corregidas el 30/10/2026: el 080520 se sustituyó por 080521 y 080522 (división de HS2017, no de HS2022: corregido el 06/11/2026); Eurostat recargado; Comtrade de esos dos códigos pendiente de la próxima actualización. Detalle en `docs/data-sources.md`.
 
 ## Modo Aprendizaje (29/10/2026, publicado)
 Simulador educativo separado del análisis (`/aprendizaje`): exportación (2 casos: intracomunitario y tercer país) y negociación B2B (2 casos), con datos simulados etiquetados, reglas deterministas, evaluación de conocimientos separada de la económica y progreso en el navegador. Detalle, fórmulas y limitaciones en `docs/aprendizaje.md`.

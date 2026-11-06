@@ -167,7 +167,7 @@ export const RECAMBIOS_MARRUECOS: ExportScenario = {
       prompt: (ctx) => `En ${ctx.settings.incoterm} el riesgo del viaje es tuyo hasta Casablanca y la regla no te obliga a asegurar. ¿Contratas seguro?`,
       appliesIf: (ctx) => !!ctx.settings.incoterm && sellerBearsTransitRisk(incotermOf(ctx.settings.incoterm)) && !sellerMustInsure(incotermOf(ctx.settings.incoterm)),
       options: [
-        opt("si", "Sí, al 110 % del valor", "correcta", "Cubres un riesgo que es tuyo hasta la planta del cliente, incluido el cruce en ferry."),
+        opt("si", "Sí, por el 110 % del precio del contrato", "correcta", "Cubres un riesgo que es tuyo hasta la planta del cliente, incluido el cruce en ferry."),
         opt("no", "No", "razonable", "Ahorras la prima, pero una pérdida en ruta la asumirías tú."),
       ],
       best: "si", whyBest: "Quien soporta el riesgo del transporte es quien debe valorar asegurarlo.",

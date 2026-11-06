@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = { title: "Metodología y fuentes · SmarTrade" };
 
 export default function Methodology() {
@@ -5,37 +7,40 @@ export default function Methodology() {
   return (
     <article className="max-w-3xl space-y-2 rounded-lg bg-white p-6 text-sm shadow-sm">
       <h1 className="text-xl font-bold">Metodología y fuentes</h1>
-      <p>SmarTrade ordena combinaciones producto-mercado según señales estadísticas. No predice rentabilidad ni éxito comercial. Documentación completa en <code>docs/methodology.md</code> y <code>docs/data-sources.md</code>.</p>
+      <p>SmarTrade hace un <b>diagnóstico descriptivo</b>: muestra indicadores independientes de cada producto en cada mercado, en su unidad y con su periodo. <b>No hay puntuación</b>, ni índices, ni previsiones. Documentación completa en <code>docs/methodology.md</code> y <code>docs/data-sources.md</code>.</p>
+
       <h2 className={h}>Indicadores</h2>
       <ul className="list-disc pl-5">
-        <li><b>Tamaño:</b> importaciones anuales del producto por el mercado (año final).</li>
-        <li><b>Crecimiento:</b> CAGR = ((final / inicial)^(1/2) − 1) × 100 sobre 3 años. No se calcula con valores no positivos.</li>
-        <li><b>Cuota española:</b> importaciones desde España / importaciones totales × 100.</li>
-        <li><b>Posición exportadora:</b> exportaciones españolas del producto al mundo.</li>
-        <li><b>Concentración:</b> proporción de las importaciones que aportan los 3 mayores proveedores (cuando hay datos bilaterales).</li>
-        <li><b>Valor unitario:</b> valor / peso neto; valor estadístico, no precio de venta.</li>
+        <li><b>Importaciones:</b> valor importado por el mercado desde todos los países en cada año de la ventana (3 años).</li>
+        <li><b>Variación interanual:</b> (último año / año anterior − 1) × 100.</li>
+        <li><b>Crecimiento anual compuesto (CAGR):</b> ((final / inicial)^(1/2) − 1) × 100. Solo con la serie completa y valores positivos. Es evolución pasada, no previsión.</li>
+        <li><b>Volumen:</b> peso neto importado (kg) y su crecimiento anual; no todos los países lo publican.</li>
+        <li><b>Presencia española:</b> valor importado con socio España y su participación en el total. Ver el aviso de expedición.</li>
+        <li><b>Países proveedores:</b> valor, participación, variación de participación y valor unitario (valor / peso, un indicio, no un precio).</li>
+        <li><b>Exportaciones españolas al mundo:</b> lo que declara España; es otra declaración y no se compara con la del mercado.</li>
       </ul>
-      <h2 className={h}>Dos rankings (índices 0-100)</h2>
-      <ul className="list-disc pl-5">
-        <li><b>Mercados grandes:</b> percentil del tamaño del mercado.</li>
-        <li><b>Potencial de cuota:</b> percentil de cuánto está la cuota española del mercado por debajo de la cuota media de España en ese producto en los mercados de la búsqueda, con independencia del tamaño. Se limita si España apenas exporta el producto.</li>
-      </ul>
-      <p>Los percentiles se calculan sobre las oportunidades completas de la carga de datos; sin los cuatro datos (tamaño, crecimiento, cuota y exportación española) la oportunidad queda fuera. El crecimiento y la posición exportadora se muestran como datos informativos, pero no ordenan. Hasta el 03/11/2026 había una puntuación única (0,35·tamaño + 0,30·crecimiento + 0,20·expansión + 0,15·exportación); se sustituyó por estos dos rankings tras la validación histórica de abajo.</p>
-      <h2 className={h}>Validación histórica (backtest)</h2>
-      <p>Se calculó la antigua puntuación única como si fuera 2019, 2020 y 2021, con datos reales de Eurostat (50 productos, 26 mercados de la UE), y se comparó con lo que pasó en los 3 años siguientes. Resultado, igual en los tres años:</p>
-      <ul className="list-disc pl-5">
-        <li>El crecimiento pasado de un mercado <b>no anticipó</b> su crecimiento posterior.</li>
-        <li>Para saber dónde aumentaron más en euros las ventas españolas, ordenar <b>solo por tamaño del mercado</b> acertó más que la puntuación única.</li>
-        <li>El potencial de cuota española sí anticipó, con correlación modesta, dónde crecieron más <b>en porcentaje</b> las ventas españolas.</li>
-      </ul>
-      <p>Por eso hay dos rankings, uno por cada señal que funcionó, y el crecimiento pasado ya no ordena. Siguen siendo señales para decidir qué investigar, no previsiones. Es un único periodo (con la COVID y la inflación de 2022) y solo mercados de la UE. Detalle en <code>docs/methodology.md</code> y <code>docs/backtest-ranking.md</code>.</p>
+
+      <h2 className={h}>España como país de expedición</h2>
+      <p>En los mercados de la UE, Eurostat atribuye cada importación procedente de otro Estado miembro al país de <b>expedición</b>, no necesariamente al de origen; en las importaciones de fuera de la UE usa el país de origen (metadatos de Eurostat, «International trade in goods»). Por eso, en un mercado de la UE, «España» significa «expedido desde España»: el producto español que llega a través de otro país cuenta como de ese país. SmarTrade no corrige este dato con estimaciones: lo muestra tal cual y lo avisa. UN Comtrade (mercados fuera de la UE) usa el país de origen.</p>
+
+      <h2 className={h}>Ordenar mercados</h2>
+      <p>Los mercados se ordenan siempre <b>dentro de un mismo producto</b> y por <b>una sola métrica</b>: valor importado, crecimiento anual pasado, volumen o importaciones con socio España. Los productos no se ordenan entre sí. Solo entran los mercados con dato para esa métrica; el crecimiento exige los 3 años.</p>
+
+      <h2 className={h}>Por qué ya no hay puntuación</h2>
+      <p>Hasta el 06/11/2026 había dos rankings por percentiles («Mercados grandes» y «Potencial de cuota»). Una validación histórica con datos reales de Eurostat (orígenes 2019–2021, 50 productos) mostró que no aportaban información propia: el «Potencial de cuota» era casi lo mismo que ordenar por cuota española baja y predecía peor que esa regla trivial; «Mercados grandes» no superaba de forma consistente a ordenar por lo que España ya vendía en cada mercado. Además, los índices cambiaban según qué más se buscara. Se retiraron. Detalle en <code>docs/backtest-ranking.md</code>.</p>
+
+      <h2 className={h}>Periodos y nomenclatura</h2>
+      <p>Una ventana que cruza el cambio del Sistema Armonizado de 2022 (años finales 2022 y 2023) se une solo para los códigos que no cambiaron entre HS2017 y HS2022, según la tabla oficial de correlación de la Organización Mundial de Aduanas. Para los que cambiaron (por ejemplo, el aceite de oliva virgen extra 150920, nuevo en 2022) la ficha lo explica y no calcula el crecimiento.</p>
+
       <h2 className={h}>Fuentes</h2>
       <ul className="list-disc pl-5">
-        <li>Eurostat Comext (primaria; mercados de la UE como declarantes).</li>
-        <li>UN Comtrade (complementaria; requiere clave).</li>
-        <li>ICEX y Access2Markets: solo enlaces de consulta. La sección «Acceso al mercado» de la ficha es informativa, no consulta aranceles y no influye en los rankings.</li>
+        <li>Eurostat Comext (primaria; mercados de la UE como declarantes; euros).</li>
+        <li>UN Comtrade (mercados fuera de la UE; dólares; requiere clave). Nunca se mezcla con Eurostat ni se convierte de moneda.</li>
+        <li>OMC (aranceles medios a 6 dígitos fuera de la UE, con clave), Eurostat y OCDE (contexto del país).</li>
+        <li>ICEX y Access2Markets: solo enlaces de consulta.</li>
         <li>Modo DEMO: datos sintéticos, siempre etiquetados.</li>
       </ul>
+      <p><Link className="underline" href="/guia">Guía de uso</Link></p>
     </article>
   );
 }

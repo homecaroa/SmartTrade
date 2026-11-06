@@ -3,7 +3,7 @@ import { MARKETS } from "@/lib/config/catalog";
 import { round2, sum } from "../money";
 import { HS_CATALOG } from "@/lib/config/hs-catalog";
 import type { LogisticsConcept } from "../logistics/allocation";
-import { computeQuote, type Quote } from "../logistics/calculator";
+import { computeQuote, customsBasisOf, type Quote } from "../logistics/calculator";
 import { fmtRangeEur } from "../logistics/format";
 import { mid, type Range, type RouteOption, type Shipment } from "../logistics/types";
 import { ESTIMACION, SUPUESTO, type Provenance } from "../provenance";
@@ -101,7 +101,9 @@ function logisticLines(sc: ExportScenario, x: LineInput): { lines: CostLine[]; c
   if (t) {
     customsValue = central(t.customsValue);
     add({ concept: "arancel", label: `Arancel simulado (${t.dutyPct} % sobre el valor en aduana${sc.duty && sc.duty.generalRatePct === sc.duty.preferentialRatePct ? ", sin acuerdo preferencial" : x.originProof ? ", con origen preferencial acreditado" : ", sin prueba de origen"})`, payer: t.payer, prov: ESTIMACION, range: t.duty,
-      note: `Valor en aduana aproximado = mercancía + transporte principal + seguro (${fmtRangeEur(t.customsValue)}). Tipo SIMULADO: el real se consulta en Access2Markets.` }, central(t.duty));
+      note: `${customsBasisOf(sc.destination) === "FOB"
+        ? `Valor en aduana (base FOB de EE. UU.) = mercancía + transporte interior hasta el embarque${x.incoterm.code === "EXW" ? " (excluido aquí: venta en fábrica)" : ""}, SIN el flete ni el seguro internacionales`
+        : "Valor en aduana (base CIF) = mercancía + costes en origen + transporte principal y recargos + seguro"} (${fmtRangeEur(t.customsValue)}). Tipo SIMULADO: el real se consulta en Access2Markets.` }, central(t.duty));
     if (t.vatPct !== null) {
       const amount = central(t.vat);
       vat = { amount, payer: t.payer, recoverable: t.vatRecoverable, note: t.vatRecoverable

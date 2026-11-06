@@ -154,7 +154,7 @@ export const ACEITUNAS_NUEVA_YORK: ExportScenario = {
       prompt: (ctx) => `En ${ctx.settings.incoterm} el riesgo del viaje es tuyo y la regla no te obliga a asegurar. ¿Contratas seguro?`,
       appliesIf: (ctx) => !!ctx.settings.incoterm && sellerBearsTransitRisk(incotermOf(ctx.settings.incoterm)) && !sellerMustInsure(incotermOf(ctx.settings.incoterm)),
       options: [
-        opt("si", "Sí, al 110 % del valor", "correcta", "Cubres un riesgo que es tuyo hasta destino."),
+        opt("si", "Sí, por el 110 % del precio del contrato", "correcta", "Cubres un riesgo que es tuyo hasta destino."),
         opt("no", "No", "razonable", "Ahorras la prima, pero una pérdida en el mar la asumirías tú."),
       ],
       best: "si", whyBest: "Quien soporta el riesgo del transporte es quien debe valorar asegurarlo.",

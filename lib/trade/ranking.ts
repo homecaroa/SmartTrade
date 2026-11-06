@@ -1,51 +1,59 @@
-import { resolveProductQuery } from "./product-search";
-import type { RankingLens } from "@/lib/scoring/score";
 import type { Opportunity } from "./opportunities";
 
+/**
+ * Clasificaciones DESCRIPTIVAS (desde el 06/11/2026). Sustituyen a los rankings por percentiles. Reglas:
+ * - Siempre dentro de UN producto y con UNA métrica: nunca se ordenan productos distintos entre sí.
+ * - Cada métrica en su unidad (valor en la moneda de la fuente, crecimiento en %, peso en kg). Sin percentiles.
+ * - Solo entran los mercados con esa métrica disponible; el crecimiento exige la serie completa de 3 años.
+ * - El crecimiento es histórico: no es una previsión.
+ */
+export type RankMetric = "valor" | "crecimiento" | "peso" | "espana";
+
+export const METRICS: Record<RankMetric, { label: string; unit: (cur: string) => string; explain: string }> = {
+  valor: { label: "Valor de las importaciones", unit: (c) => c || "moneda de la fuente", explain: "Importaciones del producto por el mercado en el último año de la ventana, desde todos los países." },
+  crecimiento: { label: "Crecimiento anual compuesto", unit: () => "% anual", explain: "CAGR de las importaciones en valor entre el primer y el último año de la ventana: ((final / inicial)^(1/2) − 1) × 100. Es crecimiento pasado, no una previsión. Solo mercados con los 3 años y valores positivos." },
+  peso: { label: "Volumen importado (peso neto)", unit: () => "kg", explain: "Peso neto importado en el último año. Aproxima el volumen; no todos los países lo publican y a veces es una estimación de la fuente." },
+  espana: { label: "Importaciones con socio España", unit: (c) => c || "moneda de la fuente", explain: "Valor que el mercado declara con socio España en el último año. En los mercados de la UE es lo EXPEDIDO desde España, no necesariamente de origen español." },
+};
+
 export interface RankFilters {
-  q?: string;
   market?: string;
   minSizeM?: number; // millones de la moneda de la fuente
   minGrowth?: number; // %
-  /** Uno de los dos rankings, o el crecimiento pasado como orden informativo (no validado como señal). */
-  sort: RankingLens | "growth";
+  sort: RankMetric;
   order: "asc" | "desc";
 }
 
-const fold = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+export const metricValue = (o: Opportunity, m: RankMetric): number | null =>
+  m === "valor" ? o.marketSize : m === "crecimiento" ? (o.complete ? o.cagr : null) : m === "peso" ? o.netWeightEndYear : o.spainValue;
 
-export function matchesQuery(o: Opportunity, q?: string): boolean {
-  if (!q) return true;
-  if (/sector:/i.test(q)) return resolveProductQuery(q).codes.includes(o.productCode);
-  const tokens = q.split(/[,\s;]+/).filter(Boolean);
-  if (tokens.every((t) => /^\d+$/.test(t))) return tokens.some((t) => o.productCode.startsWith(t));
-  return fold(o.productName).includes(fold(q)) || o.productCode.startsWith(q.trim());
-}
-
-/** Filtra y ordena. Solo las oportunidades completas (con sus índices) entran en el ranking. Desempate por id: reproducible. */
-export function rankOpportunities(all: Opportunity[], f: RankFilters): Opportunity[] {
-  const rows = all.filter((o) => {
-    if (!o.complete || !o.score) return false;
-    if (!matchesQuery(o, f.q)) return false;
+/** Mercados de UN producto ordenados por una métrica. Desempate por código de mercado: reproducible. */
+export function rankMarkets(all: Opportunity[], productCode: string, f: RankFilters): { rows: Opportunity[]; withoutMetric: Opportunity[] } {
+  const ofProduct = all.filter((o) => o.productCode === productCode);
+  const passes = (o: Opportunity) => {
     if (f.market && o.marketCode !== f.market) return false;
     if (f.minSizeM && (o.marketSize ?? 0) < f.minSizeM * 1e6) return false;
     if (f.minGrowth !== undefined && (o.cagr ?? -Infinity) < f.minGrowth) return false;
     return true;
-  });
-  // «volumen» ordena por tamaño real (no por su percentil) para desempatar mejor; el orden es el mismo.
-  const val = (o: Opportunity) => (f.sort === "volumen" ? o.marketSize! : f.sort === "potencial" ? o.score!.potencial : o.cagr!);
+  };
+  const filtered = ofProduct.filter(passes);
+  const rows = filtered.filter((o) => metricValue(o, f.sort) !== null);
   const dir = f.order === "asc" ? 1 : -1;
-  return rows.sort((a, b) => dir * (val(a) - val(b)) || a.id.localeCompare(b.id));
+  rows.sort((a, b) => dir * (metricValue(a, f.sort)! - metricValue(b, f.sort)!) || a.marketCode.localeCompare(b.marketCode));
+  return { rows, withoutMetric: filtered.filter((o) => metricValue(o, f.sort) === null) };
 }
 
-export function filterIncomplete(all: Opportunity[], f: Pick<RankFilters, "q" | "market">): Opportunity[] {
-  return all.filter((o) => !o.complete && matchesQuery(o, f.q) && (!f.market || o.marketCode === f.market));
-}
+export interface Position { position: number; of: number }
 
-export type LensRanks = Record<RankingLens, number | null>;
-
-/** Puesto de una oportunidad en cada ranking, dentro de las oportunidades completas de la carga de datos. */
-export function lensRanks(all: Opportunity[], id: string): LensRanks {
-  const pos = (lens: RankingLens) => { const i = rankOpportunities(all, { sort: lens, order: "desc" }).findIndex((o) => o.id === id); return i >= 0 ? i + 1 : null; };
-  return { volumen: pos("volumen"), potencial: pos("potencial") };
+/** Puesto de una oportunidad entre los mercados de SU producto, por cada métrica (sin filtros). Estable por definición. */
+export function positionsFor(all: Opportunity[], id: string): Record<RankMetric, Position | null> {
+  const o = all.find((x) => x.id === id);
+  const out = { valor: null, crecimiento: null, peso: null, espana: null } as Record<RankMetric, Position | null>;
+  if (!o) return out;
+  for (const m of Object.keys(METRICS) as RankMetric[]) {
+    const { rows } = rankMarkets(all, o.productCode, { sort: m, order: "desc" });
+    const i = rows.findIndex((r) => r.id === id);
+    out[m] = i >= 0 ? { position: i + 1, of: rows.length } : null;
+  }
+  return out;
 }

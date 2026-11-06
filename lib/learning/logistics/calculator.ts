@@ -112,6 +112,34 @@ export function transitDays(route: RouteOption): Range {
   return route.legs.reduce((acc, l) => addR(acc, l.days), route.waitDays);
 }
 
+/** Conceptos que forman el precio hasta la llegada al destino principal (base CIF/CIP del seguro y de la aduana). */
+const PRE_ARRIVAL: QuoteConcept[] = ["recogida", "terminal_origen", "despacho_exportacion", "transporte_principal", "recargos_flete", "recargo_peligrosa", "transbordos"];
+/** Costes hasta el embarque en origen (base FOB). */
+const PRE_LOADING: QuoteConcept[] = ["recogida", "terminal_origen", "despacho_exportacion"];
+
+/**
+ * Base del valor en aduana por país de destino (corregido el 06/11/2026; antes, mercancía + flete principal + seguro para
+ * todos los destinos, sin los costes en origen).
+ * - «CIF» (UE, Japón, Marruecos, México, Emiratos… en los casos): mercancía + transporte y seguro hasta la llegada al
+ *   destino, incluidos los costes en origen (recogida, terminal y despacho de exportación). Simplificación didáctica.
+ * - «FOB» (EE. UU.): el valor de transacción EXCLUYE el transporte y el seguro internacionales (19 U.S.C. §1401a(b)(4)(A);
+ *   19 CFR §152.103). El transporte interior en el país de exportación SÍ forma parte del valor, salvo en una venta en
+ *   fábrica (EXW) en la que se factura aparte (resoluciones de la CBP 547886 y 544875).
+ * Si quien despacha no puede separar el flete internacional, la CBP no admite deducirlo: el caso supone que sí.
+ */
+export const CUSTOMS_VALUE_BASIS: Record<string, "CIF" | "FOB"> = { US: "FOB" };
+export const customsBasisOf = (market: string) => CUSTOMS_VALUE_BASIS[market] ?? "CIF";
+
+export function customsValueOf(s: Shipment, incoterm: string, lines: QuoteLine[], insuranceCost: Range): Range {
+  const sumOf = (cs: QuoteConcept[]) => sumR(lines.filter((l) => cs.includes(l.concept)).map((l) => l.range));
+  if (customsBasisOf(s.market) === "FOB") {
+    const inland = incoterm === "EXW" ? ZERO : sumOf(PRE_LOADING);
+    return addR(fixed(s.cargo.valueEur), inland);
+  }
+  // El seguro entra aunque nadie lo contrate: la aduana lo estima igualmente (simplificación).
+  return addR(addR(fixed(s.cargo.valueEur), sumOf(PRE_ARRIVAL)), insuranceCost);
+}
+
 /**
  * Recargos del flete principal: combustible (% del flete base según el medio del tramo principal) y, en los casos en
  * temporada alta, recargo de temporada alta marítimo (por contenedor en FCL o por tonelada-volumen en LCL).
@@ -158,8 +186,17 @@ export function computeQuote(s: Shipment, route: RouteOption, incoterm: string, 
   }
   if (route.transshipments.length && route.transshipmentCost)
     add("transbordos", mulR(route.transshipmentCost, eq.units * route.transshipments.length), `Transbordo en ${route.transshipments.join(", ")}.`);
-  const insuranceCost = mulR(RATES.insurancePct, (s.cargo.valueEur * 1.1) / 100);
-  if (insurance) add("seguro", insuranceCost, "Prima sobre el 110 % del valor de la mercancía (práctica habitual).");
+  // Capital asegurado (corregido el 06/11/2026): 110 % del precio del contrato con el transporte hasta destino, no del
+  // valor en fábrica. Incoterms® 2020 (CIP y CIF, A5): «el precio previsto en el contrato más un 10 %». Se aproxima con el
+  // valor de la mercancía más los costes hasta la llegada al destino principal (lo que forma el precio CIP/CIF); omitir
+  // la propia prima en su base cambia el resultado en menos del 0,01 % del valor. Antes se usaba el 110 % del valor EXW.
+  const toDestination = sumR(lines.filter((l) => PRE_ARRIVAL.includes(l.concept)).map((l) => l.range));
+  const insuredValue = mulR(addR(fixed(s.cargo.valueEur), toDestination), 1.1);
+  // CIF: cobertura mínima con cláusulas (C); CIP y seguro propio en reglas D: cláusulas (A). Primas simuladas.
+  const clausesC = incoterm === "CIF";
+  const rate = clausesC ? RATES.insurancePctClausesC : RATES.insurancePct;
+  const insuranceCost: Range = { min: (insuredValue.min * rate.min) / 100, max: (insuredValue.max * rate.max) / 100 };
+  if (insurance) add("seguro", insuranceCost, `Prima sobre el capital asegurado: 110 % del precio con transporte hasta destino (${Math.round(insuredValue.min).toLocaleString("es-ES")}–${Math.round(insuredValue.max).toLocaleString("es-ES")} €). Cobertura ${clausesC ? "mínima de CIF, cláusulas (C): solo riesgos mayores (incendio, naufragio, colisión…), no roturas por manipulación" : "amplia, cláusulas (A)"}.`);
   add("terminal_destino", mulR(route.terminal.destination, termUnits), "Descarga y tasas de la terminal de llegada.");
   add("gastos_destino", route.destinationCharges, "Documentación y entrega de la mercancía por la naviera, aerolínea o transportista.");
   if (!eu) add("despacho_importacion", RATES.customsImport, "Agente de aduanas en destino.");
@@ -168,9 +205,7 @@ export function computeQuote(s: Shipment, route: RouteOption, incoterm: string, 
 
   let taxes: Quote["taxes"] = null;
   if (!eu && s.duty) {
-    // El valor en aduana incluye el seguro aunque nadie lo contrate: la aduana lo estima igualmente (simplificación).
-    // El flete en el valor en aduana incluye sus recargos: forman parte del precio del transporte.
-    const customsValue = addR(addR(addR(fixed(s.cargo.valueEur), main), sur.total), insuranceCost);
+    const customsValue = customsValueOf(s, incoterm, lines, insuranceCost);
     const dutyPct = originProof ? s.duty.preferential : s.duty.general;
     const duty = mulR(customsValue, dutyPct / 100);
     const vat = mulR(addR(customsValue, duty), (s.importVatPct ?? 0) / 100);

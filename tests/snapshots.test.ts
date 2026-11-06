@@ -122,7 +122,7 @@ describe("integración con el servicio", () => {
     const r = await getRanking(q({ q: "220421" }), cfg());
     expect(f).not.toHaveBeenCalled();
     expect(r.info.snapshot).toMatchObject({ ageDays: 10, stale: false, liveCodes: [] });
-    expect(r.validCount).toBeGreaterThan(0);
+    expect(r.total).toBeGreaterThan(0); // «validCount» (oportunidades puntuables) desapareció con la puntuación
   });
   it("si faltan códigos y la consulta en vivo falla, muestra los guardados con un aviso", async () => {
     put(file("220421"));
@@ -130,7 +130,7 @@ describe("integración con el servicio", () => {
     const f = vi.spyOn(globalThis, "fetch").mockRejectedValue(new TypeError("sin red"));
     const r = await getRanking(q({ q: "220421, 150920" }), cfg());
     expect(f).toHaveBeenCalled();
-    expect(r.validCount).toBeGreaterThan(0);
+    expect(r.total).toBeGreaterThan(0); // «validCount» (oportunidades puntuables) desapareció con la puntuación
     expect(r.info.warnings.join(" ")).toMatch(/No se pudieron consultar en vivo 150920/);
     expect(r.info.snapshot?.liveCodes).toEqual([]);
   });

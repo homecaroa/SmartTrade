@@ -30,7 +30,13 @@ export const RATES = {
   truckPerKm: R(1.15, 1.45),
   customsExport: R(90, 160),
   customsImport: R(120, 250),
+  /**
+   * Prima del seguro de transporte (% del capital asegurado). Cobertura amplia, Institute Cargo Clauses (A): la mínima
+   * en CIP desde Incoterms® 2020 y la que se supone cuando el vendedor asegura por decisión propia (reglas D).
+   */
   insurancePct: R(0.15, 0.35),
+  /** Prima con la cobertura mínima de CIF, cláusulas (C): solo riesgos mayores; más barata. Estimación didáctica. */
+  insurancePctClausesC: R(0.08, 0.2),
   /** Recogida en origen (Sevilla) hasta puerto, terminal o aeropuerto, por camión o por envío pequeño. */
   pickupTruck: R(120, 220),
   pickupSmall: R(80, 150),
