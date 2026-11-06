@@ -68,7 +68,7 @@ describe("modo «fuera de la UE»: ranking con respuestas controladas", () => {
     expect(r.info.synthetic).toBe(false);
     expect(r.info.sourceLabel).toMatch(/Comtrade/);
     expect(r.ranked.map((o) => o.marketCode).sort()).toEqual(["CH", "GB", "US"]);
-    expect(r.ranked.every((o) => o.currency === "USD" && o.complete && o.score !== null && !o.synthetic)).toBe(true);
+    expect(r.ranked.every((o) => o.currency === "USD" && o.complete && o.partnerBasis === "origen" && !o.synthetic)).toBe(true);
     expect(r.ranked[0].classification).toBe("HS2022");
   });
 });

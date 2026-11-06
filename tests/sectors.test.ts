@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { HS_CATALOG } from "@/lib/config/hs-catalog";
 import { SECTORS, sectorFromQuery } from "@/lib/config/sectors";
-import { matchesQuery } from "@/lib/trade/ranking";
+import { getConfig } from "@/lib/config";
+import { getFullRanking } from "@/lib/service";
 import { MAX_CODES, resolveProductQuery } from "@/lib/trade/product-search";
-import type { Opportunity } from "@/lib/trade/opportunities";
 
 describe("sectores", () => {
   it("ids únicos y en formato slug", () => {
@@ -34,9 +34,13 @@ describe("consulta por sector", () => {
     expect(r.codes.length).toBe(10);
     expect(resolveProductQuery("sector:xyz").unmatched).toEqual(["sector:xyz"]);
   });
-  it("el filtro del ranking (modo demo) respeta el sector", () => {
-    const o = (productCode: string) => ({ productCode, productName: "x" }) as Opportunity;
-    expect(matchesQuery(o("220421"), "sector:bebidas")).toBe(true);
-    expect(matchesQuery(o("870323"), "sector:bebidas")).toBe(false);
+  // matchesQuery desapareció con el ranking por puntuación (06/11/2026); el filtro de la demo vive en el servicio.
+  it("el filtro de la búsqueda (modo demo) respeta el sector", async () => {
+    const cfg = getConfig({ SMARTRADE_DATA_MODE: "demo" } as never);
+    const bebidas = new Set(SECTORS.find((s) => s.id === "bebidas")!.codes);
+    const r = await getFullRanking({ q: "sector:bebidas", sort: "valor", order: "desc", page: 1, pageSize: 25 } as never, cfg);
+    expect(r.products.length).toBeGreaterThan(0);
+    expect(r.products.every((p) => bebidas.has(p.code))).toBe(true);
+    expect(r.ranked.every((o) => bebidas.has(o.productCode))).toBe(true);
   });
 });

@@ -14,7 +14,7 @@ export default function Learning() {
       <section className="space-y-2 rounded-lg bg-white p-6 shadow-sm">
         <h1 className="text-xl font-bold">Modo Aprendizaje</h1>
         <p className="text-sm">Practica dos situaciones reales del comercio internacional, pensadas para el Grado Superior de Comercio Internacional: <b>gestionar una exportación</b> de principio a fin (incluida la planificación del transporte internacional) y <b>negociar con un comprador extranjero</b>. Cada decisión tiene consecuencias y al final recibes una nota de conocimientos y, por separado, el resultado económico.</p>
-        <p className="text-sm">Es independiente del análisis de mercados: sus resultados no afectan a los rankings ni a las puntuaciones, y no se consulta ninguna API externa. El progreso se guarda solo en este navegador.</p>
+        <p className="text-sm">Es independiente del análisis de mercados: sus resultados no afectan a los datos de mercados, y no se consulta ninguna API externa. El progreso se guarda solo en este navegador.</p>
         <SimulatedNotice />
       </section>
 

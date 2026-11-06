@@ -7,7 +7,7 @@ const people = (v: number) => (v >= 1e6 ? `${num(v / 1e6)} millones` : v.toLocal
 const tag = (v: ContextValue) => `${v.year}${v.provisional ? ", provisional" : ""}`;
 
 /**
- * Contexto económico del país de destino (Eurostat en la UE, OCDE fuera). Informativo: no influye en los rankings.
+ * Contexto económico del país de destino (Eurostat en la UE, OCDE fuera). Informativo.
  * Las unidades del PIB por habitante difieren entre fuentes y no se convierten.
  */
 export function CountryContextCard({ data, marketName }: { data: ContextLookup; marketName: string }) {
@@ -29,7 +29,7 @@ export function CountryContextCard({ data, marketName }: { data: ContextLookup; 
           {c.growthForecasts.length > 0 && (
             <p className="text-sm">Previsión de crecimiento de la OCDE: {c.growthForecasts.map((f) => `${f.year}: ${pct(f.value)}`).join(" · ")}. <span className="text-xs text-slate-500">Son previsiones, no datos observados.</span></p>
           )}
-          <p className="text-xs text-slate-500">Fuente: {c.source === "eurostat" ? EUROSTAT_SOURCE : OECD_SOURCE}. Las cifras de Eurostat y de la OCDE usan unidades distintas: no las compares entre países de la UE y de fuera. Contexto informativo: no influye en los rankings.</p>
+          <p className="text-xs text-slate-500">Fuente: {c.source === "eurostat" ? EUROSTAT_SOURCE : OECD_SOURCE}. Las cifras de Eurostat y de la OCDE usan unidades distintas: no las compares entre países de la UE y de fuera. Contexto informativo.</p>
         </>
       )}
     </section>

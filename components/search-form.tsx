@@ -15,9 +15,7 @@ export function SearchForm({
   return (
     <form method="get" action="/" className="grid gap-3 rounded-lg bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
       {defaults.fuente === "fuera" && <input type="hidden" name="fuente" value="fuera" />}
-      <label className="text-xs font-medium">País de origen
-        <select disabled className={input}><option>España</option></select>
-      </label>
+      <p className="text-xs font-medium">País exportador<span className="block py-1.5 text-sm font-normal text-slate-700">España (único disponible)</span></p>
       <label className="text-xs font-medium">Mercado de destino
         <select name="market" defaultValue={defaults.market ?? ""} className={input}>
           <option value="">Todos los disponibles</option>
@@ -32,7 +30,7 @@ export function SearchForm({
           {years.map((y) => <option key={y} value={y}>{y - 2}–{y}</option>)}
         </select>
       </label>
-      <label className="text-xs font-medium">Tamaño mínimo (millones)
+      <label className="text-xs font-medium">Importaciones mínimas (millones de {defaults.fuente === "fuera" ? "USD" : "EUR"})
         <input name="minSize" type="number" min={0} step="any" defaultValue={defaults.minSize || ""} className={input} />
       </label>
       <label className="text-xs font-medium">Crecimiento mínimo (% CAGR)
@@ -41,7 +39,7 @@ export function SearchForm({
       <label className="text-xs font-medium">Ordenar por
         <div className="flex gap-2">
           <select name="sort" defaultValue={defaults.sort} className={input}>
-            <option value="volumen">Ranking: mercados grandes</option><option value="potencial">Ranking: potencial de cuota</option><option value="growth">Crecimiento pasado (informativo)</option>
+            <option value="valor">Valor importado</option><option value="crecimiento">Crecimiento anual (pasado)</option><option value="peso">Volumen (peso neto)</option><option value="espana">Importaciones con socio España</option>
           </select>
           <select name="order" defaultValue={defaults.order} className={input}>
             <option value="desc">Desc.</option><option value="asc">Asc.</option>
@@ -49,7 +47,7 @@ export function SearchForm({
         </div>
       </label>
       <div className="sm:col-span-2 lg:col-span-4">
-        <button className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Buscar oportunidades</button>
+        <button className="rounded bg-indigo-700 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-800">Ver mercados</button>
       </div>
     </form>
   );

@@ -9,9 +9,15 @@ export const querySchema = z.object({
   minSize: z.preprocess(empty, z.coerce.number().min(0).max(1e9).default(0)), // millones
   minGrowth: z.preprocess(empty, z.coerce.number().min(-100).max(10000).optional()), // %
   fuente: z.preprocess(empty, z.enum(["ue", "fuera"]).optional()), // "fuera" = mercados fuera de la UE (UN Comtrade)
-  // Desde el 03/11/2026 hay dos rankings (volumen, potencial). Los enlaces guardados con la antigua puntuación única
-  // («score») o con «size» llevan a «volumen», que ordena por tamaño. Por defecto, «volumen» (decisión documentada).
-  sort: z.preprocess((v) => { const e = empty(v); return e === "score" || e === "size" ? "volumen" : e; }, z.enum(["volumen", "potencial", "growth"]).default("volumen")),
+  // Desde el 06/11/2026 no hay puntuación ni índices: se ordena por una métrica descriptiva (lib/trade/ranking.ts).
+  // Enlaces antiguos: «score», «size», «volumen» y «potencial» (rankings retirados) llevan a «valor»; «growth», a
+  // «crecimiento». Así una URL guardada sigue funcionando en lugar de dar error.
+  sort: z.preprocess((v) => {
+    const e = empty(v);
+    return e === "score" || e === "size" || e === "volumen" || e === "potencial" ? "valor" : e === "growth" ? "crecimiento" : e;
+  }, z.enum(["valor", "crecimiento", "peso", "espana"]).default("valor")),
+  // Producto cuya clasificación se muestra cuando la búsqueda incluye varios (nunca se ordenan productos entre sí).
+  producto: z.preprocess(empty, z.string().regex(/^\d{6}(\d{2})?$/).optional()),
   order: z.preprocess(empty, z.enum(["asc", "desc"]).default("desc")),
   page: z.preprocess(empty, z.coerce.number().int().min(1).max(10000).default(1)),
   pageSize: z.preprocess(empty, z.coerce.number().int().min(5).max(50).default(20)),

@@ -6,11 +6,11 @@ Alcance: esta sesión trabaja **solo** sobre el repo `homecaroa/SmartTrade`. Otr
 
 - **Honestidad sobre la verificación.** Nada se escribe como «verificado» sin haberlo ejecutado. Los fixtures de tests son simulados y no prueban que la API real use esos ids.
 - **Lo sintético siempre etiquetado** (DEMO en UI, `SI_DEMO_SINTETICO` en CSV). EUR (Comext) y USD (Comtrade) no se mezclan ni se convierten.
-- **Ausente ≠ cero.** Dato ausente = `n.d.`; la oportunidad con datos faltantes es «incompleta» y no puntúa. Sin puntuación parcial ni redistribución de pesos.
+- **Ausente ≠ cero.** Dato ausente = `n.d.` con su motivo. Desde el 06/11/2026 no hay puntuación: indicadores descriptivos en su unidad, ordenados solo dentro de un producto (ver `docs/methodology.md`).
 - **Claves de API solo en servidor**; nunca en el navegador ni en mensajes de error.
 - **Sin base de datos**: caché TTL en memoria; «guardar» = CSV.
 - **Cambios de metodología** se documentan en `docs/methodology.md` (problema, corrección, resultado medido). Los umbrales salen de una medición o se declaran «decisión documentada, no estimada».
-- **Sin promesas** en textos de la app: las etiquetas y la puntuación no son recomendaciones.
+- **Sin promesas** en textos de la app: los indicadores y avisos no son recomendaciones ni previsiones.
 - **Gemini siempre SIN la herramienta de búsqueda de Google** y nunca se publican sus resultados de búsqueda: los términos lo restringen (ver `docs/buyers.md`). Las listas de IA llevan siempre origen, modelo, fecha y «sin verificar» si no se comprobó.
 - **Modo Aprendizaje** (`/aprendizaje`, `lib/learning`): separado del análisis, sin red ni azar, todo dato inventado etiquetado como simulado. Ver `docs/aprendizaje.md`.
 - **Datos guardados** (`data/snapshots`): los genera `npm run datos:actualizar` (cada dos meses vía GitHub Actions → PR). No se editan a mano. Ver `docs/data-sources.md`.
@@ -23,7 +23,7 @@ Alcance: esta sesión trabaja **solo** sobre el repo `homecaroa/SmartTrade`. Otr
 npm test && npm run typecheck && npm run build
 ```
 
-Estado confirmado el 04/11/2026: 454 pruebas correctas, `tsc` y `build` sin errores. Antes de usar datos reales: `npm run verify:comext` / `verify:comtrade` (salida 0 coherente, 1 fallo, 2 no concluyente).
+Estado confirmado el 06/11/2026: 453 pruebas correctas (42 archivos), `tsc` y `build` sin errores. Antes de usar datos reales: `npm run verify:comext` / `verify:comtrade` (salida 0 coherente, 1 fallo, 2 no concluyente).
 
 ## Ritmo
 

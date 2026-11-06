@@ -92,15 +92,21 @@ export type ComextClass =
   | { type: "data"; json: unknown }
   | { type: "empty" }
   | { type: "pending" }
+  | { type: "too_big"; label: string }
   | { type: "error"; status: number; label: string };
 
 /** Interpreta una respuesta de la API Statistics de Eurostat según sus códigos documentados. */
 export function classifyComextResponse(status: number, json: unknown): ComextClass {
-  const j = json as { warning?: { status?: number; label?: string }; error?: { status?: string | number; label?: string } } | null;
+  type Msg = { status?: string | number; id?: number; label?: string };
+  const j = json as { warning?: Msg; error?: Msg | Msg[] } | null;
   if (j?.warning && (Number(j.warning.status) === 413 || /asynchronous/i.test(j.warning.label ?? ""))) return { type: "pending" };
-  if (j?.error || status >= 400) {
-    const label = String(j?.error?.label ?? "").slice(0, 300);
+  // Eurostat devuelve `error` como objeto o como lista (comprobado el 05/11/2026 con un código inexistente:
+  // {"error":[{"status":413,"label":"EXTRACTION_TOO_BIG: …"}]}). Antes se leía solo como objeto y se perdía el texto.
+  const err = Array.isArray(j?.error) ? j!.error[0] : j?.error;
+  if (err || status >= 400) {
+    const label = String(err?.label ?? "").slice(0, 300);
     if (/no results/i.test(label) || /^100\b/.test(label)) return { type: "empty" };
+    if (/EXTRACTION_TOO_BIG/i.test(label)) return { type: "too_big", label };
     return { type: "error", status, label };
   }
   return { type: "data", json };
@@ -122,6 +128,10 @@ export async function comextFetch(url: string, opts: ComextFetchOpts = {}): Prom
     const c = classifyComextResponse(r.status, r.json);
     if (c.type === "data") return c.json;
     if (c.type === "empty") return null;
+    // Las consultas de la app siempre filtran por producto y son pequeñas. Si Eurostat dice que la extracción es
+    // demasiado grande es porque NO reconoce ninguno de los códigos pedidos y descarta ese filtro (comprobado con
+    // 999999: estima ~12 millones de filas). No es un fallo temporal: es un código que no existe en esos años.
+    if (c.type === "too_big") throw new SourceError("not_found", "Eurostat no reconoce el código de producto en los años consultados: puede no existir o pertenecer a otra versión de la nomenclatura. Comprueba el código (por ejemplo, en Access2Markets).", 413);
     if (c.type === "error") {
       const detail = c.label ? `: ${c.label}` : c.status === 403 ? ". Sin detalle del servidor: puede ser un bloqueo de la petición y no un problema del producto; reintenta o prueba otro código" : "";
       throw new SourceError("http", `Eurostat rechazó la consulta (HTTP ${c.status})${detail}`, c.status);

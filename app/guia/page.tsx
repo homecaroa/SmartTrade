@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { HS_CATALOG, NC8_CATALOG } from "@/lib/config/hs-catalog";
-import { TAG_LEGEND } from "@/lib/scoring/labels";
 
 export const metadata = { title: "Guía de uso · SmarTrade" };
 
@@ -10,26 +9,23 @@ export default function Guide() {
   return (
     <article className="max-w-3xl space-y-2 rounded-lg bg-white p-6 text-sm shadow-sm">
       <h1 className="text-xl font-bold">Guía de uso</h1>
-      <p>SmarTrade te ayuda a decidir <b>qué investigar</b>: ordena combinaciones producto-mercado según señales estadísticas del comercio exterior. No indica rentabilidad ni garantiza ventas.</p>
+      <p>SmarTrade describe, con estadísticas oficiales de comercio exterior, <b>cuánto importa cada país un producto, cómo ha evolucionado, qué parte llega desde España y qué otros países lo abastecen</b>. No puntúa mercados, no predice ventas ni indica rentabilidad.</p>
 
       <h2 className={h}>Dos formas de empezar</h2>
       <ul className="list-disc space-y-1 pl-5">
-        <li><b>Tengo un producto:</b> escribe su nombre o código y verás a qué países de la UE interesa más.</li>
-        <li><b>Quiero descubrir sectores:</b> elige un sector (alimentación, bebidas, automoción…) y compara sus productos y mercados. Los rankings solo comparan entre los productos del sector. Puedes combinar sectores escribiendo, por ejemplo, <code>sector:bebidas, sector:automocion</code>.</li>
+        <li><b>Tengo un producto:</b> escribe su nombre o código y verás sus mercados de destino ordenados por una métrica que tú eliges.</li>
+        <li><b>Quiero explorar un sector:</b> elige un sector (alimentación, bebidas, automoción…). Verás sus productos y, para cada uno, sus mercados. Los productos no se ordenan entre sí: sus importes no son comparables.</li>
       </ul>
 
-      <h2 className={h}>Importadores y compradores</h2>
-      <p>Desde cada ficha (o en <Link className="underline" href="/compradores">/compradores</Link>) puedes buscar empresas que importan o distribuyen un producto en un país. Cada una trae sus pruebas enlazadas y un nivel de evidencia; ninguna es un comprador asegurado, y solo se muestran contactos públicos con su fuente. Por ahora hay datos curados para vino embotellado en Japón.</p>
-
       <h2 className={h}>Mercados fuera de la UE</h2>
-      <p>Si el administrador activa UN Comtrade, aparece un selector «Fuera de la UE». Ese ranking usa otra fuente y otra moneda (dólares), así que <b>nunca se mezcla</b> con el de la UE (Eurostat, euros) y sus índices no son comparables. Cada país publica con distinto retraso: si le falta el año final, sale como incompleto. Fuera de la UE sí hay aranceles y reglas de origen: compruébalos en la ficha antes de decidir.</p>
+      <p>Si el administrador activa UN Comtrade, aparece un selector «Fuera de la UE». Esa vista usa otra fuente y otra moneda (dólares), así que <b>nunca se mezcla</b> con la de la UE (Eurostat, euros). Cada país publica con distinto retraso: si le falta el año final, sale como incompleto. Fuera de la UE sí hay aranceles y reglas de origen: compruébalos en la ficha antes de decidir.</p>
 
       <h2 className={h}>1. Cómo buscar</h2>
       <ol className="list-decimal space-y-1 pl-5">
         <li>Escribe en <b>Producto</b> el nombre de un producto o un código HS. Puedes combinar varios separados por comas: <Link className={a} href="/?q=vino,aceite de oliva">vino, aceite de oliva</Link>.</li>
         <li>Opcional: elige un <b>mercado</b>, el año final, el tamaño mínimo (en millones de €) o el crecimiento mínimo.</li>
-        <li>Pulsa <b>Buscar oportunidades</b>. Verás el ranking, la interpretación de tu búsqueda y los avisos de calidad.</li>
-        <li>Abre <b>Detalle</b> para ver la serie histórica, los competidores, la posición en los dos rankings y los enlaces oficiales.</li>
+        <li>Pulsa <b>Ver mercados</b>. Verás los mercados del producto ordenados por la métrica elegida: valor importado, crecimiento anual pasado, volumen (peso neto) o importaciones con socio España.</li>
+        <li>Pulsa el nombre de un <b>mercado</b> para abrir su diagnóstico: lectura del mercado, tamaño, evolución, presencia española, países proveedores, contexto, acceso al mercado y comprobaciones pendientes.</li>
         <li><b>Comparar:</b> marca de 2 a 5 resultados de la página y pulsa «Comparar seleccionados» para verlos lado a lado (también se puede imprimir). La selección vale solo para la página actual y no se guarda.</li>
         <li><b>Exportar CSV</b> descarga los resultados filtrados.</li>
       </ol>
@@ -39,7 +35,7 @@ export default function Guide() {
         <li><b>Por nombre:</b> <code>cerámica</code>, <code>coches eléctricos</code>, <code>jamón</code>. Se busca en el catálogo de esta página (selección orientativa, no la nomenclatura completa).</li>
         <li><b>Por código HS6:</b> <code>220421</code>. Es la forma exacta y admite cualquier código vigente, aunque no esté en el catálogo.</li>
         <li><b>Por capítulo o partida (2-5 dígitos):</b> <code>2204</code> devuelve los códigos del catálogo que empiezan así.</li>
-        <li>Máximo 20 códigos por búsqueda. Cuantos más productos compares (idealmente 10 o más), más informativos son los percentiles.</li>
+        <li>Hasta 20 productos por búsqueda (por nombre o sector) y 80 caracteres en el buscador, unos 11 códigos escritos. Cada producto se analiza por separado.</li>
       </ul>
 
       <h2 className={h}>3. Dónde encontrar el código HS de un producto</h2>
@@ -51,10 +47,13 @@ export default function Guide() {
       </ul>
       <p>Los 6 primeros dígitos del código son comunes a todos los países; a partir de ahí cada territorio añade su propio detalle.</p>
 
-      <h2 className={h}>Qué significan las etiquetas</h2>
-      <p>Cada fila resume sus indicadores con etiquetas y una frase. Son reglas fijas, no una recomendación. Las que dicen «de esta búsqueda» comparan con los demás resultados cargados.</p>
+      <h2 className={h}>Qué significan los avisos</h2>
       <ul className="list-disc space-y-1 pl-5">
-        {TAG_LEGEND.map((t) => <li key={t.key}><b>{t.label}:</b> {t.hint}</li>)}
+        <li><b>España = país de expedición (mercados de la UE):</b> Eurostat atribuye cada importación dentro de la UE al país desde el que se expide, no necesariamente al de origen. La participación de España mide expediciones, no producto español.</li>
+        <li><b>Crecimiento excepcional:</b> crecimiento anual de al menos el 30 %; suele deberse a efectos puntuales. Revisa la serie año a año.</li>
+        <li><b>Posible efecto precio:</b> el valor crece al menos 15 puntos al año más que el peso.</li>
+        <li><b>Puerto de entrada a la UE (Países Bajos, Bélgica):</b> parte de lo que importan se reexpide a otros países.</li>
+        <li><b>Serie incompleta:</b> faltan años o la clasificación cambió; la ficha explica qué falta.</li>
       </ul>
 
       <h2 className={h}>4. Datos reales y datos de demostración</h2>
@@ -70,10 +69,10 @@ export default function Guide() {
 
       <h2 className={h}>6. Cómo interpretar los resultados</h2>
       <ul className="list-disc space-y-1 pl-5">
-        <li>Un índice alto en «Mercados grandes» o en «Potencial de cuota» significa <b>prioridad estadística para investigar</b>, no rentabilidad.</li>
+        <li>Un mercado grande o que ha crecido es un <b>dato del pasado</b>, no una garantía de ventas ni una previsión.</li>
         <li>«Sin datos para…» suele indicar que el código no existe en la nomenclatura vigente en esos años o que la fuente no publica ese periodo. Prueba con el código actualizado.</li>
         <li>Ausencia de datos no implica ausencia de comercio.</li>
-        <li>Antes de decidir, verifica requisitos de importación, aranceles, transporte, compradores y competencia. Más detalle en <Link className={a} href="/metodologia">Metodología y fuentes</Link>.</li>
+        <li>Antes de decidir, verifica requisitos de importación, aranceles, transporte, canales de venta y competencia. Más detalle en <Link className={a} href="/metodologia">Metodología y fuentes</Link>.</li>
       </ul>
 
       <h2 className={h}>Catálogo de nombres ({HS_CATALOG.length} productos)</h2>
@@ -96,7 +95,7 @@ export default function Guide() {
       <p>Códigos de 8 dígitos de la Nomenclatura Combinada europea (NC8). Solo Eurostat los publica, así que sirven para los mercados de la UE; fuera de la UE se usa la partida general de 6 dígitos y se avisa. Puedes buscarlas por nombre (p. ej. «Rioja», «naranjas navel», «coches eléctricos usados») o por código.</p>
       <ul className="list-disc space-y-1 pl-5">
         <li>No existen en ninguna estadística oficial y por eso no se ofrecen: denominaciones como Ribera del Duero, Rueda o Priorat por separado (van juntas en «otras DOP») ni los coches por carrocería (SUV): la nomenclatura los clasifica por motor.</li>
-        <li>En las denominaciones que solo produce España (Rioja, Navarra, Penedés, Valdepeñas, Valencia, Cava), la cuota española es casi el 100 % por definición: el ranking «Potencial de cuota» no informa ahí.</li>
+        <li>En las denominaciones que solo produce España (Rioja, Navarra, Penedés, Valdepeñas, Valencia, Cava), la participación española es casi el 100 % por definición: no mide competencia.</li>
       </ul>
       <div className="overflow-x-auto">
         <table className="w-full text-left text-xs">

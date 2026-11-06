@@ -35,7 +35,7 @@ export function damageIncident(o: { variant: string; what: string; damagedPct: n
   const loss = (ctx: DecisionCtx) => round2(revenueOf(ctx) * o.damagedPct / 100);
   const whoBears = (ctx: DecisionCtx) => sellerRisk(ctx)
     ? `En ${incotermCode(ctx)} el riesgo del viaje era tuyo${sellerInsured(ctx) ? " y lo tenías asegurado" : " y NO lo aseguraste"}.`
-    : `En ${incotermCode(ctx)} el riesgo ya era del comprador cuando se produjo el daño: le corresponde reclamar a él${["CIP", "CIF"].includes(incotermCode(ctx)) ? ", con la póliza que contrataste a su favor" : ""}.`;
+    : `En ${incotermCode(ctx)} el riesgo ya era del comprador cuando se produjo el daño: le corresponde reclamar a él${incotermCode(ctx) === "CIP" ? ", con la póliza de cobertura amplia (cláusulas A) que contrataste a su favor" : incotermCode(ctx) === "CIF" ? ". La póliza mínima de CIF (cláusulas C) solo cubre riesgos mayores (incendio, naufragio, colisión…), no roturas por manipulación: salvo que se pactara más cobertura, el daño lo asume el comprador" : ""}.`;
   return {
     id: `incidencia_${o.variant.toLowerCase()}`, variant: o.variant, stage: "entrega", kind: "single", incident: true, title: "Incidencia: mercancía dañada en el viaje",
     prompt: (ctx) => `Al descargar en destino aparecen dañados el ${o.damagedPct} % de ${o.what} (valor ≈ ${eur(loss(ctx))}). El transportista pide firmar la recepción. ¿Qué indicas que se haga?`,

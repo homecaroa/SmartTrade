@@ -1,5 +1,8 @@
-import { LensSwitch } from "@/components/lens-switch";
-import type { RankingLens } from "@/lib/scoring/score";
+import { MetricSwitch } from "@/components/metric-switch";
+import { PartnerBasisNote } from "@/components/partner-basis-note";
+import { ProductPicker } from "@/components/product-picker";
+import { codeLabel, productLabel } from "@/lib/config/hs-catalog";
+import type { RankMetric } from "@/lib/trade/ranking";
 import Link from "next/link";
 import { DataSourceLabel } from "@/components/data-source-label";
 import { EmptyState } from "@/components/empty-state";
@@ -12,7 +15,7 @@ import { getConfig } from "@/lib/config";
 import { sectorFromQuery } from "@/lib/config/sectors";
 import { parseQuery } from "@/lib/schemas/query";
 import { getFilters, getRanking } from "@/lib/service";
-import { SourceError } from "@/lib/sources/types";
+import { isQueryError, SourceError } from "@/lib/sources/types";
 
 type SP = Record<string, string | string[] | undefined>;
 
@@ -36,7 +39,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
   const outside = cfg.mode === "comtrade";
   const fuente = outside ? ("fuera" as const) : undefined;
   const filters = getFilters(cfg);
-  const base = { fuente, q: q.q, market: q.market, year: q.year, minSize: q.minSize, minGrowth: q.minGrowth, sort: q.sort, order: q.order, pageSize: q.pageSize === 20 ? undefined : q.pageSize };
+  const base = { fuente, q: q.q, producto: q.producto, market: q.market, year: q.year, minSize: q.minSize, minGrowth: q.minGrowth, sort: q.sort === "valor" ? undefined : q.sort, order: q.order === "desc" ? undefined : q.order, pageSize: q.pageSize === 20 ? undefined : q.pageSize };
 
   const form = (
     <SearchForm
@@ -62,16 +65,19 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
   try {
     data = await getRanking(q, cfg);
   } catch (e) {
-    const msg = e instanceof SourceError ? e.message : "Error inesperado al calcular el ranking.";
-    return <>{form}<ErrorState message={msg} hint={e instanceof SourceError && e.kind !== "config" ? "Inténtalo de nuevo más tarde. No se muestran datos inventados." : undefined} /></>;
+    // Tres casos distintos para el usuario: consulta no válida o código no reconocido, fallo del proveedor y error interno.
+    if (e instanceof SourceError && isQueryError(e.kind)) return <>{form}<ErrorState title="Revisa el producto buscado" message={e.message} /></>;
+    if (e instanceof SourceError) return <>{form}<ErrorState title="La fuente de datos no respondió correctamente" message={e.message} hint="Es un problema temporal del proveedor, no de tu búsqueda: inténtalo de nuevo más tarde. No se muestran datos inventados." /></>;
+    return <>{form}<ErrorState title="Error interno de SmarTrade" message="Algo ha fallado en la aplicación al preparar los datos." hint="No es un problema de tu búsqueda ni significa que no haya datos." /></>;
   }
 
-  const pages = Math.max(1, Math.ceil(data.total / data.pageSize));
-  const sortHref = (s: RankingLens | "growth") => href(base, { sort: s, order: q.sort === s && q.order === "desc" ? "asc" : "desc", page: undefined });
+  const sortHref = (m: RankMetric) => href(base, { sort: m === "valor" ? undefined : m, order: undefined, page: undefined });
   const detailQuery = cfg.mode === "demo" ? "" : `?q=${encodeURIComponent(q.q ?? "")}${outside ? "&fuente=fuera" : ""}`;
-  const exportHref = "/api/opportunities/export?" + href(base).split("?")[1];
-
+  const exportHref = "/api/opportunities/export?" + (href({ ...base, producto: data.product?.code }).split("?")[1] ?? "");
   const sector = sectorFromQuery(q.q);
+  const p = data.product;
+  const basis = outside ? ("origen" as const) : ("expedicion" as const);
+  const pageLink = (n: number) => href({ ...base, producto: p?.code }, { page: n === 1 ? undefined : n });
 
   return (
     <>
@@ -80,44 +86,68 @@ export default async function Home({ searchParams }: { searchParams: Promise<SP>
       {!q.q && <EntryPaths fuente={fuente} />}
       {form}
       {sector && <SectorBanner current={sector} onlyOne fuente={fuente} />}
-      <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-sm">
-            <b>{data.validCount}</b> oportunidades válidas · ventana {data.years[0]}–{data.endYear} · {data.incompleteCount} incompletas excluidas del ranking
-          </p>
-          {data.validCount > 0 && <a href={exportHref} className="rounded border px-3 py-1 text-sm hover:bg-slate-50">Exportar CSV</a>}
-        </div>
-        <DataSourceLabel info={data.info} />
-        {data.info.warnings.length > 0 && (
-          <ul className="list-disc pl-5 text-xs text-slate-500">{data.info.warnings.map((w) => <li key={w}>{w}</li>)}</ul>
-        )}
-        <p className="text-xs text-slate-500">Los percentiles se calculan sobre {data.universeSize} oportunidades completas de esta carga de datos (antes de aplicar los filtros).</p>
-        <LensSwitch current={q.sort} hrefFor={(s) => href(base, { sort: s, order: "desc", page: undefined })} />
-      </section>
+      {data.products.length > 1 && p && <ProductPicker products={data.products} current={p.code} hrefFor={(code) => href({ ...base, sort: base.sort }, { producto: code, page: undefined })} />}
 
-      {data.rows.length === 0 ? (
-        <EmptyState title="No hay oportunidades que cumplan los criterios" hint="Prueba a ampliar el periodo, bajar el tamaño o crecimiento mínimos o quitar el mercado." />
+      {!p ? (
+        <EmptyState title="Sin datos para esta búsqueda" hint="La fuente no devolvió importaciones para estos productos en el periodo elegido. Ausencia de datos no implica ausencia de comercio." />
       ) : (
         <>
-          <OpportunityTable rows={data.rows} offset={data.offset} sortHref={sortHref} detailQuery={detailQuery} q={q.q} fuente={fuente} />
-          <nav className="flex items-center justify-between text-sm" aria-label="Paginación">
-            {data.page > 1 ? <Link className="underline" href={href(base, { page: data.page - 1 })}>← Anterior</Link> : <span />}
-            <span>Página {data.page} de {pages}</span>
-            {data.page < pages ? <Link className="underline" href={href(base, { page: data.page + 1 })}>Siguiente →</Link> : <span />}
-          </nav>
-        </>
-      )}
+          <section className="space-y-3 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="titulo-resultados">
+            <div className="flex flex-wrap items-start justify-between gap-2">
+              <div>
+                {/* Un solo h1 por página: sin búsqueda, el h1 es el de la presentación (EntryPaths) y esto es un h2. */}
+                <ResultsHeading as={q.q ? "h1" : "h2"}>{productLabel(p.code, p.name).title}: mercados de destino</ResultsHeading>
+                <p className="text-sm text-slate-600">{codeLabel(p.code)} · periodo {data.years[0]}–{data.endYear} · {data.total} mercados con dato para esta métrica{data.withoutMetric.length ? `, ${data.withoutMetric.length} sin dato` : ""}</p>
+              </div>
+              {data.total > 0 && <a href={exportHref} className="rounded border px-3 py-1 text-sm hover:bg-slate-50">Exportar CSV</a>}
+            </div>
+            <DataSourceLabel info={data.info} />
+            <MetricSwitch current={data.sort} hrefFor={sortHref} currency={outside ? "USD" : cfg.mode === "demo" ? "EUR (sintéticos)" : "EUR"} />
+            <PartnerBasisNote basis={basis} />
+            {data.info.warnings.length > 0 && (
+              <details className="text-xs text-slate-600">
+                <summary className="cursor-pointer">Avisos de la consulta ({data.info.warnings.length})</summary>
+                <ul className="mt-1 list-disc pl-5">{data.info.warnings.map((w) => <li key={w}>{w}</li>)}</ul>
+              </details>
+            )}
+          </section>
 
-      {data.incomplete.length > 0 && (
-        <details className="rounded-lg bg-white p-4 shadow-sm">
-          <summary className="cursor-pointer text-sm font-medium">Oportunidades incompletas excluidas del ranking ({data.incompleteCount})</summary>
-          <ul className="mt-2 space-y-1 text-xs text-slate-600">
-            {data.incomplete.map((o) => (
-              <li key={o.id}><b>{o.productName}</b> ({o.productCode}) → {o.marketName}: {o.missing.join("; ")}</li>
-            ))}
-          </ul>
-        </details>
+          {data.pageOutOfRange ? (
+            <section className="rounded-lg border border-amber-300 bg-amber-50 p-4 text-sm" role="status">
+              <p className="font-medium">La página {data.page} no existe: hay {data.total} mercados en {data.pages} página{data.pages > 1 ? "s" : ""}.</p>
+              <Link className="underline" href={pageLink(data.pages)}>Ir a la última página</Link>
+            </section>
+          ) : data.rows.length === 0 ? (
+            <EmptyState title="Ningún mercado cumple los filtros con dato para esta métrica" hint="Prueba a quitar el mercado, bajar el tamaño o el crecimiento mínimos, o elige otra métrica." />
+          ) : (
+            <>
+              <OpportunityTable rows={data.rows} offset={data.offset} sort={data.sort} sortHref={sortHref} detailQuery={detailQuery} q={q.q} fuente={fuente} years={data.years} partnerBasis={basis} />
+              {data.pages > 1 && (
+                <nav className="flex items-center justify-between text-sm" aria-label="Paginación">
+                  {data.page > 1 ? <Link className="underline" href={pageLink(data.page - 1)}>← Anterior</Link> : <span />}
+                  <span>Página {data.page} de {data.pages}</span>
+                  {data.page < data.pages ? <Link className="underline" href={pageLink(data.page + 1)}>Siguiente →</Link> : <span />}
+                </nav>
+              )}
+            </>
+          )}
+
+          {data.withoutMetric.length > 0 && (
+            <details className="rounded-lg bg-white p-4 shadow-sm">
+              <summary className="cursor-pointer text-sm font-medium">Mercados sin dato para esta métrica ({data.withoutMetric.length})</summary>
+              <ul className="mt-2 space-y-1 text-xs text-slate-700">
+                {data.withoutMetric.map((o) => (
+                  <li key={o.id}><Link className="underline" href={`/oportunidad/${o.id}${detailQuery}`}>{o.marketName}</Link>: {o.missing.join("; ") || "sin dato para esta métrica"}</li>
+                ))}
+              </ul>
+            </details>
+          )}
+        </>
       )}
     </>
   );
+}
+
+function ResultsHeading({ as: Tag, children }: { as: "h1" | "h2"; children: React.ReactNode }) {
+  return <Tag id="titulo-resultados" className="text-lg font-bold">{children}</Tag>;
 }

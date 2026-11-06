@@ -154,7 +154,7 @@ export const ACEITE_ALEMANIA: ExportScenario = {
       prompt: (ctx) => `En ${ctx.settings.incoterm} el riesgo del viaje es tuyo hasta Múnich y la regla no te obliga a asegurar. ¿Contratas seguro?`,
       appliesIf: (ctx) => !!ctx.settings.incoterm && sellerBearsTransitRisk(incotermOf(ctx.settings.incoterm)) && !sellerMustInsure(incotermOf(ctx.settings.incoterm)),
       options: [
-        opt("si", "Sí, al 110 % del valor de la mercancía", "correcta", "Por una prima de en torno al 0,25 % del valor (estimación) cubres un riesgo de unos 50.000 €."),
+        opt("si", "Sí, por el 110 % del precio del contrato", "correcta", "Por una prima de en torno al 0,25 % del valor (estimación) cubres un riesgo de unos 50.000 €."),
         opt("no", "No, para ahorrar el coste", "razonable", "Te ahorras la prima, pero si el camión sufre un accidente pierdes la mercancía y la venta."),
       ],
       best: "si", whyBest: "Quien soporta el riesgo del transporte es quien debe valorar asegurarlo.",

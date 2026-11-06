@@ -16,7 +16,7 @@ import { fetchCountryContext, type CountryContext } from "@/lib/sources/country-
 import type { TariffLookup } from "@/lib/market-access";
 import { buildOpportunities, type Opportunity } from "@/lib/trade/opportunities";
 import { dedupeObservations, missingProductCodes, validateSourceObservations } from "@/lib/trade/normalize";
-import { filterIncomplete, lensRanks, rankOpportunities, type LensRanks } from "@/lib/trade/ranking";
+import { positionsFor, rankMarkets, type Position, type RankMetric } from "@/lib/trade/ranking";
 import { MAX_CODES, resolveProductQuery } from "@/lib/trade/product-search";
 import { hs6Of, nc8Entry } from "@/lib/config/hs-catalog";
 
@@ -34,43 +34,37 @@ export interface DataInfo {
   snapshot: { generatedAt: string; ageDays: number; stale: boolean; liveCodes: string[] } | null;
 }
 
+export interface ProductSummary { code: string; name: string; marketsWithData: number; completeSeries: number }
+
+/**
+ * Clasificación descriptiva de los mercados de UN producto (lib/trade/ranking.ts). Si la búsqueda incluye varios
+ * productos, se elige uno (`producto`) y los demás se ofrecen para cambiar: nunca se ordenan productos entre sí.
+ */
 export interface RankingResponse {
   info: DataInfo;
   endYear: number;
   years: number[];
-  universeSize: number;
-  validCount: number;
-  incompleteCount: number;
-  pairsWithoutData: number;
+  products: ProductSummary[];
+  product: ProductSummary | null;
+  sort: RankMetric;
+  order: "asc" | "desc";
+  /** Mercados del producto con la métrica disponible, tras los filtros. */
   total: number;
   page: number;
   pageSize: number;
+  pages: number;
+  /** true si se pidió una página que no existe: rows vacío, pero sí hay resultados en otras páginas. */
+  pageOutOfRange: boolean;
   rows: Opportunity[]; // página actual (posición = offset + índice + 1)
   offset: number;
-  incomplete: Opportunity[];
+  /** Mercados del producto (tras los filtros) sin dato para la métrica elegida, con el motivo en `missing`. */
+  withoutMetric: Opportunity[];
+  pairsWithoutData: number;
 }
 
-export const MIN_UNIVERSE = 10;
-
-/** Avisos sobre el universo de percentiles: con pocas oportunidades completas la puntuación es poco informativa. */
-export function universeWarnings(completeCount: number): string[] {
-  return completeCount < MIN_UNIVERSE
-    ? [`Universo pequeño: los percentiles se calculan sobre solo ${completeCount} oportunidades completas (mínimo recomendado ${MIN_UNIVERSE}); la puntuación es poco informativa. Añade más códigos HS para ampliarlo.`]
-    : [];
-}
-
-export const MIN_PRODUCTS = 10;
-
-/** La posición exportadora se normaliza por percentiles entre PRODUCTOS: con pocos productos solo toma unos pocos valores. */
-export function productUniverseWarnings(productCount: number): string[] {
-  return productCount > 0 && productCount < MIN_PRODUCTS
-    ? [`La posición exportadora (dato informativo que además limita el «Potencial de cuota» cuando es baja) se normaliza sobre solo ${productCount} producto(s) (mínimo recomendado ${MIN_PRODUCTS}): toma pocos valores distintos. Añade más códigos HS para compararla con sentido.`]
-    : [];
-}
-
-/** Denominaciones que solo produce España: su cuota española es casi el 100 % por definición (ver NC8_CATALOG). */
+/** Denominaciones que solo produce España: su participación española es casi el 100 % por definición (ver NC8_CATALOG). */
 export function spanishOriginWarning(names: string[]): string {
-  return `${names.join(", ")}: solo se produce${names.length > 1 ? "n" : ""} en España, así que la cuota española es casi el 100 % por definición y el ranking «Potencial de cuota» no informa. Sirve para ver dónde se vende y cómo evoluciona.`;
+  return `${names.join(", ")}: solo se produce${names.length > 1 ? "n" : ""} en España, así que la participación española es casi el 100 % por definición y no mide competencia. Sirve para ver dónde se vende y cómo evoluciona.`;
 }
 
 export function parseHsCodes(q?: string, opts: { nc8: boolean } = { nc8: true }): string[] {
@@ -114,9 +108,6 @@ async function loadUniverse(query: Pick<OpportunityQuery, "q" | "year">, cfg: Ap
   const ownDo = (codes ?? []).map(nc8Entry).filter((e) => e?.spanishOrigin).map((e) => e!.name);
   if (ownDo.length) info.warnings.push(spanishOriginWarning(ownDo));
   if (resolution?.unmatched.length) info.warnings.push(`No se ha podido interpretar: ${resolution.unmatched.join(", ")} (se han ignorado).`);
-  const completeOpps = built.opportunities.filter((o) => o.complete);
-  info.warnings.push(...universeWarnings(completeOpps.length));
-  info.warnings.push(...productUniverseWarnings(new Set(completeOpps.map((o) => o.productCode)).size));
   if (loaded.stale) info.warnings.push("La fuente no respondió: se muestran datos en caché que pueden no estar actualizados.");
   const noData = missingProductCodes(codes, loaded.value.observations);
   if (noData.length) {
@@ -169,35 +160,57 @@ async function loadSourceData(cfg: AppConfig, years: number[], codes: string[] |
   };
 }
 
-const toFilters = (q: OpportunityQuery, demo: boolean) => ({
-  q: demo ? q.q : undefined, // en modo real el universo ya se limita a los códigos resueltos
-  market: q.market, minSizeM: q.minSize, minGrowth: q.minGrowth, sort: q.sort, order: q.order,
-});
+function summarize(opps: Opportunity[]): ProductSummary[] {
+  const by = new Map<string, ProductSummary>();
+  for (const o of opps) {
+    const p = by.get(o.productCode) ?? { code: o.productCode, name: o.productName, marketsWithData: 0, completeSeries: 0 };
+    p.marketsWithData++;
+    if (o.complete) p.completeSeries++;
+    by.set(o.productCode, p);
+  }
+  return [...by.values()];
+}
+
+/** En demo no hay consulta por códigos: la búsqueda filtra los productos sintéticos por código o nombre del catálogo. */
+function demoProducts(opps: Opportunity[], q?: string): Opportunity[] {
+  if (!q) return opps;
+  const codes = new Set(resolveProductQuery(q).codes);
+  const fold = (t: string) => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+  return opps.filter((o) => codes.has(o.productCode) || fold(o.productName).includes(fold(q)) || o.productCode.startsWith(q.trim()));
+}
 
 export async function getFullRanking(query: OpportunityQuery, cfg = getConfig()) {
   const u = await loadUniverse(query, cfg);
-  const ranked = rankOpportunities(u.built.opportunities, toFilters(query, cfg.mode === "demo"));
-  return { ...u, ranked, incomplete: filterIncomplete(u.built.opportunities, { q: cfg.mode === "demo" ? query.q : undefined, market: query.market }) };
+  const opps = cfg.mode === "demo" ? demoProducts(u.built.opportunities, query.q) : u.built.opportunities;
+  const products = summarize(opps);
+  const product = products.find((p) => p.code === query.producto) ?? products[0] ?? null;
+  const { rows, withoutMetric } = product
+    ? rankMarkets(opps, product.code, { market: query.market, minSizeM: query.minSize, minGrowth: query.minGrowth, sort: query.sort, order: query.order })
+    : { rows: [], withoutMetric: [] };
+  return { ...u, opps, products, product, ranked: rows, withoutMetric };
 }
 
 export async function getRanking(query: OpportunityQuery, cfg = getConfig()): Promise<RankingResponse> {
   const u = await getFullRanking(query, cfg);
+  const pages = Math.max(1, Math.ceil(u.ranked.length / query.pageSize));
   const offset = (query.page - 1) * query.pageSize;
-  const all = u.built.opportunities;
   return {
     info: u.info,
     endYear: u.year,
     years: u.years,
-    universeSize: all.filter((o) => o.complete).length,
-    validCount: u.ranked.length,
-    incompleteCount: u.incomplete.length,
-    pairsWithoutData: u.built.pairsWithoutData,
+    products: u.products,
+    product: u.product,
+    sort: query.sort,
+    order: query.order,
     total: u.ranked.length,
     page: query.page,
     pageSize: query.pageSize,
+    pages,
+    pageOutOfRange: u.ranked.length > 0 && query.page > pages,
     offset,
     rows: u.ranked.slice(offset, offset + query.pageSize),
-    incomplete: u.incomplete.slice(0, 50),
+    withoutMetric: u.withoutMetric.slice(0, 50),
+    pairsWithoutData: u.built.pairsWithoutData,
   };
 }
 
@@ -211,8 +224,8 @@ export interface Supplier {
 export interface DetailResponse {
   info: DataInfo;
   opportunity: Opportunity;
-  /** Posición en cada uno de los dos rankings (null si la oportunidad está incompleta). */
-  rank: LensRanks;
+  /** Puesto entre los mercados del mismo producto en cada métrica descriptiva (null si no tiene esa métrica). */
+  positions: Record<RankMetric, Position | null>;
   suppliers: Supplier[];
   top3Concentration: number | null;
   supplierWarning?: string;
@@ -223,7 +236,7 @@ export interface DetailResponse {
   /** España frente a sus competidores en el mercado (cuota, variación y valor unitario): lib/trade/competitors.ts. */
   competitors: CompetitorAnalysis | null;
   unitValue: number | null;
-  sameProduct: Opportunity[]; // mismo producto en otros mercados (completos)
+  sameProduct: Opportunity[]; // mismo producto: los 10 mayores mercados con dato de importaciones
 }
 
 const TARIFF_TTL_MS = 24 * 3600 * 1000;
@@ -260,10 +273,14 @@ export async function lookupTariff(opp: Opportunity, cfg: AppConfig): Promise<Ta
 export async function getOpportunityDetail(id: string, q: string | undefined, cfg = getConfig()): Promise<DetailResponse | null> {
   const year = Number(id.slice(-4));
   const [productCode, marketCode] = id.split("-");
-  const u = await loadUniverse({ q: cfg.mode === "demo" ? undefined : q ?? productCode, year }, cfg);
+  // Solo los datos de ESTE producto, sea cual sea la búsqueda de la que se venga (`q` solo sirve para el enlace de
+  // vuelta): así la ficha muestra siempre las mismas cifras y puestos para el mismo id. Antes el universo de percentiles
+  // dependía de la búsqueda y un enlace sin `q` daba otro índice (segunda auditoría, 05/11/2026).
+  void q;
+  const u = await loadUniverse({ q: cfg.mode === "demo" ? undefined : productCode, year }, cfg);
   const opp = u.built.opportunities.find((o) => o.id === id);
   if (!opp) return null;
-  const rank = lensRanks(u.built.opportunities, id);
+  const positions = positionsFor(u.built.opportunities, id);
 
   // Aranceles (solo fuera de la UE, con datos reales y clave): en paralelo a los proveedores, y nunca rompe la ficha.
   const tariffPromise = lookupTariff(opp, cfg);
@@ -294,7 +311,7 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
   return {
     info: u.info,
     opportunity: opp,
-    rank,
+    positions,
     suppliers,
     top3Concentration: topSuppliersShare(suppliers, opp.marketSize, 3),
     supplierWarning,
@@ -302,30 +319,30 @@ export async function getOpportunityDetail(id: string, q: string | undefined, cf
     tariff: await tariffPromise,
     context: await contextPromise,
     unitValue: unitValuePerKg(opp.marketSize, opp.netWeightEndYear),
-    sameProduct: u.built.opportunities.filter((o) => o.productCode === productCode && o.complete).sort((a, b) => b.marketSize! - a.marketSize!).slice(0, 10),
+    sameProduct: u.built.opportunities.filter((o) => o.productCode === productCode && o.marketSize !== null).sort((a, b) => b.marketSize! - a.marketSize! || a.marketCode.localeCompare(b.marketCode)).slice(0, 10),
   };
 }
 
 export interface ComparisonResponse {
   info: DataInfo;
-  universeSize: number;
-  items: { opp: Opportunity; rank: LensRanks }[];
+  items: { opp: Opportunity; positions: Record<RankMetric, Position | null> }[];
   missing: string[];
 }
 
-/** Carga los resultados seleccionados para compararlos, con el mismo universo de percentiles que el ranking. */
+/** Carga los resultados seleccionados para compararlos (solo los datos de sus productos). */
 export async function getComparison(ids: string[], q: string | undefined, cfg = getConfig()): Promise<ComparisonResponse> {
   const year = Number(ids[0].slice(-4));
   const codes = [...new Set(ids.map((i) => i.split("-")[0]))];
-  const u = await loadUniverse({ q: cfg.mode === "demo" ? undefined : q ?? codes.join(","), year }, cfg);
+  void q; // como en la ficha: solo los productos comparados, para que las cifras no dependan de la búsqueda
+  const u = await loadUniverse({ q: cfg.mode === "demo" ? undefined : codes.join(","), year }, cfg);
   const items: ComparisonResponse["items"] = [];
   const missing: string[] = [];
   for (const id of ids) {
     const opp = u.built.opportunities.find((o) => o.id === id);
     if (!opp) { missing.push(id); continue; }
-    items.push({ opp, rank: lensRanks(u.built.opportunities, id) });
+    items.push({ opp, positions: positionsFor(u.built.opportunities, id) });
   }
-  return { info: u.info, universeSize: u.built.opportunities.filter((o) => o.complete).length, items, missing };
+  return { info: u.info, items, missing };
 }
 
 export function getFilters(cfg = getConfig()) {

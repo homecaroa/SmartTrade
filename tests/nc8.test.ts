@@ -97,10 +97,12 @@ describe("datos y esquemas", () => {
     });
     expect(asked).toEqual({ comext: ["220421", "22042176"], comtrade: ["220421"] });
   });
-  it("acceso al mercado y compradores usan la partida HS6", () => {
+  // El enlace a compradores con la partida HS6 desapareció al retirar la búsqueda de compradores (06/11/2026): ahora
+  // se comprueba lo contrario, que la ficha no enlaza a /compradores.
+  it("el acceso al mercado usa la partida HS6 y la ficha ya no enlaza a compradores", () => {
     expect(buildMarketAccess({ marketCode: "DE", marketName: "Alemania", productCode: "22042176", synthetic: false }).hs6).toBe("220421");
     const page = sinComentarios(readFileSync("app/oportunidad/[id]/page.tsx", "utf8"));
-    expect(page).toMatch(/compradores\?hs=\$\{hs6Of\(o\.productCode\)\}/);
+    expect(page).not.toMatch(/\/compradores/);
     expect(page).toMatch(/nc8Entry\(o\.productCode\)\?\.spanishOrigin && <p[^>]*>\{spanishOriginWarning\(/); // la ficha también lo avisa
   });
 });
@@ -133,7 +135,7 @@ describe("punto de llamada: el ranking", () => {
     const r = await getFullRanking(querySchema.parse({ q: "rioja", year: "2024" }), getConfig({ SMARTRADE_DATA_MODE: "comext" }, undefined));
     expect(urls.length).toBeGreaterThan(0);
     expect(urls.every((u) => u.includes("product=22042176") && u.includes("product=22042136") && !u.includes("product=220421&"))).toBe(true);
-    expect(r.info.warnings.join(" ")).toMatch(/solo se producen en España.*«Potencial de cuota» no informa/);
+    expect(r.info.warnings.join(" ")).toMatch(/solo se producen en España.*no mide competencia/);
   });
   it("fuera de la UE: la misma búsqueda pide la partida HS6 a UN Comtrade", async () => {
     const urls: string[] = [];

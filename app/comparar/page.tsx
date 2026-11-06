@@ -19,8 +19,8 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
   if (!parsed.ok) {
     return (
       <div className="space-y-3">
-        <ErrorState message={parsed.error} />
-        <Link href={back} className="text-sm underline">← Volver al ranking</Link>
+        <ErrorState title="Selección no válida" message={parsed.error} />
+        <Link href={back} className="text-sm underline">← Volver a los mercados</Link>
       </div>
     );
   }
@@ -34,8 +34,8 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
   if (data.items.length < 2) {
     return (
       <div className="space-y-3">
-        <ErrorState message="No se han encontrado al menos 2 de los resultados seleccionados con los datos actuales. Vuelve al ranking y selecciónalos de nuevo." />
-        <Link href={back} className="text-sm underline">← Volver al ranking</Link>
+        <ErrorState title="Selección no disponible" message="No se han encontrado al menos 2 de los resultados seleccionados con los datos actuales. Vuelve a la lista de mercados y selecciónalos de nuevo." />
+        <Link href={back} className="text-sm underline">← Volver a los mercados</Link>
       </div>
     );
   }
@@ -44,12 +44,12 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between print:hidden">
-        <Link href={back} className="text-sm underline">← Volver al ranking</Link>
+        <Link href={back} className="text-sm underline">← Volver a los mercados</Link>
         <PrintButton />
       </div>
       <div className="hidden print:block text-xs text-slate-600">
         SmarTrade · Comparación de mercados · Generada el {new Date().toLocaleDateString("es-ES")} ·{" "}
-        {data.info.synthetic ? "DATOS DE DEMOSTRACIÓN SINTÉTICOS: no usar para decisiones comerciales" : "Fuente: Eurostat Comext u otra fuente oficial indicada abajo"}. Indicador estadístico, no garantía de rentabilidad.
+        {data.info.synthetic ? "DATOS DE DEMOSTRACIÓN SINTÉTICOS: no usar para decisiones comerciales" : "Fuente: Eurostat Comext u otra fuente oficial indicada abajo"}. Descripción estadística, no recomendación.
       </div>
       <h1 className="text-xl font-bold">Comparación de mercados</h1>
       <DataSourceLabel info={data.info} />
@@ -79,9 +79,9 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
         </table>
       </div>
       <ul className="list-disc space-y-1 pl-5 text-xs text-slate-600">
-        <li>Los percentiles se calculan sobre {data.universeSize} oportunidades completas de esta búsqueda: no son comparables con los de otra búsqueda.</li>
-        <li>Los dos rankings son señales estadísticas para decidir qué investigar, no previsiones de rentabilidad ni de éxito.</li>
-        <li>«n.d.» significa dato no disponible, no cero. Comparar productos distintos exige cautela: sus mercados y unidades pueden no ser equivalentes.</li>
+        <li>Son datos descriptivos de cada mercado: no hay puntuación ni previsión. Los puestos se cuentan entre los mercados de cada producto.</li>
+        <li>En los mercados de la UE, «España» es el país de expedición, no necesariamente el de origen de la mercancía.</li>
+        <li>«n.d.» significa dato no disponible, no cero. Si comparas productos distintos, sus importes no son equivalentes.</li>
         <li>Aranceles, requisitos, impuestos y costes logísticos no están verificados: abre la ficha de cada mercado para ver qué falta comprobar.</li>
       </ul>
     </div>

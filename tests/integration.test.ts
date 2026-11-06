@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, vi } from "vitest";
 import { clearCache } from "@/lib/cache/ttl-cache";
 import { getConfig } from "@/lib/config";
 import { parseQuery } from "@/lib/schemas/query";
-import { getFullRanking, getOpportunityDetail, getRanking, parseHsCodes, productUniverseWarnings, universeWarnings } from "@/lib/service";
+import { getFullRanking, getOpportunityDetail, getRanking, parseHsCodes } from "@/lib/service";
 import { opportunitiesToCsv } from "@/lib/trade/csv";
 import { SourceError } from "@/lib/sources/types";
 
@@ -11,50 +11,56 @@ const demoCfg = () => getConfig({ SMARTRADE_DATA_MODE: "demo" });
 const q = (raw: Record<string, string>) => { const p = parseQuery(raw); if (!p.success) throw new Error("query"); return p.data; };
 
 describe("flujo de búsqueda (demo, respuestas controladas)", () => {
-  it("busca sin elegir sector, puntúa y explica la puntuación", async () => {
+  // Desde el 06/11/2026 no hay puntuación: cada fila es un mercado de UN producto con indicadores descriptivos.
+  it("busca sin elegir sector y devuelve indicadores descriptivos de un producto, etiquetados como demo", async () => {
     const r = await getRanking(q({}), demoCfg());
     expect(r.info.synthetic).toBe(true);
     expect(r.info.mode).toBe("demo");
-    expect(r.validCount).toBeGreaterThan(10);
-    expect(r.incompleteCount).toBeGreaterThan(0); // portátiles sin exportaciones; MX coches con valor inicial 0
+    expect(r.total).toBeGreaterThan(5);
     for (const o of r.rows) {
-      expect(o.score!.components).toHaveLength(4);
-      expect(o.score!.volumen).toBeGreaterThanOrEqual(0);
-      expect(o.score!.potencial).toBeGreaterThanOrEqual(0);
+      expect(o).not.toHaveProperty("score");
+      expect(o.productCode).toBe(r.product!.code);
       expect(o.source).toContain("DEMO");
     }
     expect(r.rows.length).toBeLessThanOrEqual(20);
   });
 
-  it("excluye incompletas del ranking y explica el motivo", async () => {
-    const r = await getRanking(q({ pageSize: "50" }), demoCfg());
-    expect(r.rows.some((o) => o.productCode === "847130")).toBe(false);
-    const inc = r.incomplete.find((o) => o.productCode === "847130")!;
-    expect(inc.missing.join(" ")).toMatch(/exportaciones españolas/);
-    const mx = r.incomplete.find((o) => o.productCode === "870323" && o.marketCode === "MX");
-    expect(mx?.cagr).toBeNull();
+  it("un mercado sin la métrica no entra en la clasificación, pero se lista con su motivo", async () => {
+    const r = await getRanking(q({ producto: "870323", sort: "crecimiento", pageSize: "50" }), demoCfg());
+    expect(r.rows.some((o) => o.marketCode === "MX")).toBe(false); // valor inicial 0: CAGR no calculable
+    const mx = r.withoutMetric.find((o) => o.marketCode === "MX")!;
+    expect(mx.cagr).toBeNull();
+    expect(mx.missing.join(" ")).toMatch(/Crecimiento no calculable/);
+    const lap = await getRanking(q({ producto: "847130" }), demoCfg());
+    expect(lap.rows.length).toBeGreaterThan(0); // sin exportaciones españolas ya no se excluye: es un dato informativo
+    expect(lap.rows[0].spainExportsWorld).toBeNull();
   });
 
   it("filtros, orden y paginación", async () => {
     const byMarket = await getRanking(q({ market: "DE" }), demoCfg());
     expect(byMarket.rows.every((o) => o.marketCode === "DE")).toBe(true);
-    const sorted = await getRanking(q({ sort: "growth", order: "desc", pageSize: "50" }), demoCfg());
+    const sorted = await getRanking(q({ sort: "crecimiento", order: "desc", pageSize: "50" }), demoCfg());
     const g = sorted.rows.map((o) => o.cagr!);
     expect(g).toEqual([...g].sort((a, b) => b - a));
     const p1 = await getRanking(q({ pageSize: "5", page: "1" }), demoCfg());
+    expect(p1.pages).toBeGreaterThan(1);
     const p2 = await getRanking(q({ pageSize: "5", page: "2" }), demoCfg());
     expect(p1.rows[0].id).not.toBe(p2.rows[0].id);
     expect(p2.offset).toBe(5);
     const none = await getRanking(q({ q: "producto-inexistente" }), demoCfg());
     expect(none.rows).toHaveLength(0);
+    expect(none.product).toBeNull();
   });
 
-  it("los índices no cambian al filtrar (universo estable) y son reproducibles", async () => {
+  it("las cifras y puestos de un mercado no cambian al filtrar ni al llegar por otro camino (lista, ficha con o sin búsqueda)", async () => {
     const all = await getRanking(q({ pageSize: "50" }), demoCfg());
     const de = await getRanking(q({ market: "DE" }), demoCfg());
     const id = de.rows[0].id;
-    const inAll = all.rows.find((o) => o.id === id);
-    if (inAll) expect(inAll.score!.potencial).toBeCloseTo(de.rows[0].score!.potencial);
+    expect(all.rows.find((o) => o.id === id)!.marketSize).toBe(de.rows[0].marketSize);
+    const a = await getOpportunityDetail(id, undefined, demoCfg());
+    const b = await getOpportunityDetail(id, "vino", demoCfg());
+    expect(a!.positions).toEqual(b!.positions);
+    expect(a!.opportunity).toEqual(b!.opportunity);
     const again = await getRanking(q({ market: "DE" }), demoCfg());
     expect(again.rows.map((o) => o.id)).toEqual(de.rows.map((o) => o.id));
   });
@@ -75,8 +81,8 @@ describe("flujo de búsqueda (demo, respuestas controladas)", () => {
     expect(d!.top3Concentration).not.toBeNull();
     expect(d!.sameProduct.length).toBeGreaterThan(1);
     expect(d!.tariff).toBeUndefined(); // modo demo: nunca se consulta WITS
-    expect(d!.rank.volumen).toBe(1); // la primera fila del ranking por defecto («Mercados grandes»)
-    expect(d!.rank.potencial).toBeGreaterThanOrEqual(1);
+    expect(d!.positions.valor).toEqual({ position: 1, of: r.total }); // la primera fila por valor, entre los mercados del producto
+    expect(d!.sameProduct.every((o) => o.productCode === r.rows[0].productCode)).toBe(true);
   });
 });
 
@@ -104,35 +110,10 @@ describe("modos reales: errores sin inventar datos", () => {
   });
 });
 
-describe("aviso de universo pequeño", () => {
-  it("avisa con menos de 10 oportunidades completas y no con 10 o más", () => {
-    expect(universeWarnings(3)[0]).toMatch(/Universo pequeño/);
-    expect(universeWarnings(0)).toHaveLength(1);
-    expect(universeWarnings(10)).toEqual([]);
-  });
-  it("la demo (universo amplio) no genera el aviso", async () => {
-    const r = await getRanking(q({}), demoCfg());
-    expect(r.info.warnings.some((w) => w.includes("Universo pequeño"))).toBe(false);
-  });
-});
-
 describe("periodos incompletos", () => {
   it("rechaza años posteriores al último año completo (datos provisionales)", async () => {
     const future = new Date().getFullYear();
     await expect(getRanking({ ...q({}), year: future }, demoCfg())).rejects.toMatchObject({ kind: "config" });
     await expect(getRanking({ ...q({}), year: future }, demoCfg())).rejects.toThrow(/incompletos o provisionales/);
-  });
-});
-
-describe("aviso de pocos productos (posición exportadora)", () => {
-  it("avisa con menos de 10 productos y no con 10 o más", () => {
-    expect(productUniverseWarnings(2)[0]).toMatch(/solo 2 producto/);
-    expect(productUniverseWarnings(9)).toHaveLength(1);
-    expect(productUniverseWarnings(10)).toEqual([]);
-    expect(productUniverseWarnings(0)).toEqual([]);
-  });
-  it("la demo (8 productos) lo muestra, porque es un universo pequeño", async () => {
-    const r = await getRanking(q({}), demoCfg());
-    expect(r.info.warnings.some((w) => w.includes("posición exportadora"))).toBe(true);
   });
 });

@@ -1,85 +1,69 @@
 # Metodología
 
-Unidad de análisis: producto HS6 × mercado de destino × ventana de 3 años (año final seleccionable). Origen: España (único soportado).
+Unidad de análisis: producto (HS6 o NC8) × mercado de destino × ventana de 3 años (año final seleccionable). Origen: España (único soportado).
 
-## Indicadores
-- **Tamaño:** importaciones anuales del mercado (partner mundo) en el año final, moneda de la fuente.
-- **Crecimiento (CAGR):** `((final/inicial)^(1/2) − 1) × 100` con 3 años y 2 intervalos. Si inicial o final ≤ 0 o falta → no disponible (no se fuerza). Se muestran las variaciones anuales.
-- **Cuota española:** `importaciones desde España / importaciones totales × 100` (mismo producto, periodo, clasificación y moneda). No disponible si España > total.
-- **Posición exportadora:** exportaciones españolas del producto al mundo, año final. No prueba capacidad productiva ni competitividad.
-- **Concentración:** top-3 proveedores / importaciones totales (ficha de detalle, si hay datos bilaterales).
-- **Valor unitario:** valor / peso neto (kg). Valor estadístico, no precio de venta.
+Desde el 06/11/2026 SmarTrade hace un **diagnóstico descriptivo**: indicadores independientes, en su unidad y con su periodo. **No hay puntuación, índices, percentiles ni previsiones.** El historial de la puntuación y por qué se retiró está al final.
 
-## Inclusión en el ranking
-Solo con: importaciones de los 3 años, CAGR calculable, cuota calculable, exportaciones españolas, clasificación y moneda homogéneas. Si falta algo → **incompleta**, fuera de los dos rankings y con el motivo. No se imputan datos (criterio que se mantuvo al pasar a dos rankings, aunque cada uno use un solo componente: así las dos listas tienen el mismo conjunto de oportunidades). Combinaciones sin ninguna observación se cuentan como "sin datos" (no implican ausencia de comercio).
+## Indicadores (`lib/trade/opportunities.ts`)
+Cada indicador se calcula solo con los datos de ese producto en ese mercado: no depende de qué más se haya buscado.
+- **Importaciones:** valor importado por el mercado desde el mundo, cada año de la ventana, en la moneda de la fuente (EUR en Comext, USD en Comtrade; nunca se mezclan ni se convierten).
+- **Variación interanual:** `(último / anterior − 1) × 100`.
+- **Crecimiento anual compuesto (CAGR):** `((final / inicial)^(1/2) − 1) × 100`. **Solo con la serie completa y comparable** y valores positivos (corregido el 06/11/2026: antes se calculaba entre los extremos aunque faltara el año intermedio). Es evolución pasada, no previsión.
+- **Volumen:** peso neto importado (kg) y su CAGR, solo si los tres pesos existen. Si la fuente estima algún peso, se avisa.
+- **Presencia española:** importaciones del mercado con socio España, su participación en el total y la variación de esa participación en la ventana (puntos). Si España > total (definiciones inconsistentes), la participación queda sin calcular y se explica.
+- **Exportaciones españolas al mundo:** declaración de España; informativa, no se compara con la del mercado. Si la fuente la da en otra moneda, no se muestra.
+- **Países proveedores** (ficha): valor, participación, variación y valor unitario (valor / peso; indicio, no precio).
 
-## Dos rankings (índices 0–100)
-Desde el 03/11/2026 (ver «Validación histórica» abajo) no hay puntuación única. Hay dos rankings, cada uno con un solo componente normalizado a 0–100 por **percentil de rango medio**:
-- **«Mercados grandes»** (`volumen`): percentil del tamaño del mercado. Ranking por defecto (decisión documentada, no estimada: responde a «dónde puedo vender más en euros»).
-- **«Potencial de cuota»** (`potencial`): percentil de la expansión de cuota (brecha de penetración, abajo), con sus límites por baja exportación española.
+Ausente ≠ cero: un indicador no calculable es `null` («n.d.») con su motivo en `missing`. `complete` significa «serie de importaciones de los 3 años, misma clasificación y moneda». Calidad: `alta` (completa, todo observado), `media` (completa con alguna observación estimada), `baja` (incompleta).
 
-Crecimiento y posición exportadora se siguen calculando y mostrando como datos informativos; no ordenan. Ordenar por crecimiento pasado sigue disponible en la interfaz, con un aviso. Antes la puntuación era `0,35·tamaño + 0,30·crecimiento + 0,20·expansión + 0,15·exportadora` (pesos en `DEFAULT_WEIGHTS`, ya eliminado).
+## España como país de expedición
+En Comext, las importaciones intra-UE se atribuyen al Estado miembro de **expedición** y las extra-UE al país de **origen** (metadatos ESMS de Eurostat, «International trade in goods»). En un mercado de la UE, «España» significa «expedido desde España»: el producto español reexpedido por otro país cuenta como de ese país, y lo que se expide desde España sin ser español cuenta como español. UN Comtrade usa el país de origen. `partnerBasis` lo indica en cada resultado y la interfaz y el CSV (`socio_espana_es`) lo dicen. No se corrige con estimaciones.
 
-**Universo:** todas las oportunidades completas de la carga de datos (año y, en modos reales, los códigos consultados), calculado **antes** de los filtros de mercado/tamaño/crecimiento/texto. Así filtrar no cambia los índices. Cambiar año o códigos cambia el universo y, por tanto, los índices: no son comparables entre cargas distintas. En modo demo el universo son los 8 productos × 11 mercados.
+## Ordenar mercados (`lib/trade/ranking.ts`)
+- Siempre **dentro de un producto** y por **una sola métrica**: `valor` (importaciones), `crecimiento` (CAGR, exige serie completa), `peso` o `espana` (importaciones con socio España).
+- Solo entran los mercados con dato para esa métrica; los demás se listan aparte («sin dato»).
+- Empates: por código de mercado (determinista).
+- Los productos no se ordenan entre sí. El puesto se muestra como «N de M mercados del producto».
 
-- **Crecimiento:** CAGR winsorizado en los percentiles 5–95 del universo y luego percentil. Crecimiento ≤ 0 → componente limitado a 25.
-- **Expansión de cuota (brecha de penetración):** compara la cuota española del mercado con la cuota española de referencia del mismo producto (suma de todos los mercados de la búsqueda), de forma independiente del tamaño. `cuota contraída = (imp. desde España + m·cuota_ref) / (imp. totales + m)`; `brecha = 1 − cuota contraída / cuota_ref`; `m = 0,1 × mediana del tamaño de los mercados del producto`. Se normaliza por percentil. Brecha > 0: cuota inferior a la de referencia. Si España no vende el producto en ningún mercado analizado → 0. Si España no exporta el producto (valor 0) → 0. Si su percentil exportador < 25 → limitado a 25. Con un solo mercado por producto no hay referencia: brecha neutra.
-- **Posición exportadora:** percentil del valor exportado, con un valor por producto (no se pondera por número de mercados).
+## Lectura del mercado (`lib/trade/diagnosis.ts`)
+Frases generadas con plantillas fijas a partir de los indicadores (sin IA). Avisos:
+- «Crecimiento excepcional»: CAGR ≥ 30 % anual.
+- «Posible efecto precio»: el CAGR en valor supera al del peso en 15 puntos o más.
+- «Puerto de entrada a la UE»: Países Bajos y Bélgica (efecto Róterdam), solo con socio por expedición.
+- Producto DOP producido solo en España: la participación española es casi 100 % por definición.
+- Datos estimados o serie incompleta.
+- Umbrales de estabilidad: |CAGR| < 1 % = «prácticamente estable».
 
-La interfaz muestra, para cada oportunidad, su índice y su puesto en los dos rankings, y los percentiles informativos de crecimiento y exportación. Los enlaces antiguos con `sort=score` o `sort=size` llevan a «Mercados grandes». El CSV ya no tiene columna `puntuacion`: los índices son `percentil_tamano` y `percentil_expansion`.
+Los umbrales (1 %, 30 %, 15 puntos) son **decisiones documentadas, no estimadas**. El de 30 % nació de un caso real (vino en Luxemburgo, CAGR 46 %).
 
-## Calidad
-`alta`: completa y todo observado · `media`: completa con alguna observación estimada · `baja`: incompleta.
+## Ventanas que cruzan HS2017 → HS2022 (`lib/trade/hs-revisions.ts`)
+Hasta el 06/11/2026 ninguna ventana con años finales 2022 o 2023 se combinaba (mezclan ediciones) y salían vacías. Ahora se unen **solo** los códigos HS6 del catálogo que no cambiaron entre HS2017 y HS2022 según la tabla de correlación de la Organización Mundial de Aduanas (Table II). Quedan fuera, con explicación: 150920 y 150930 (nuevos, salen de 1509.10), 851713, 854143 (nuevos) y 180690, 841810, 870829 (alcance modificado). Los NC8 no se unen (su continuidad no está comprobada). 080521/080522 ya existían en HS2017 (comprobado en Comext).
 
-## Limitaciones del método
-Percentiles dependen del universo y con universos pequeños son poco informativos. Los rankings ordenan señales estadísticas; no es probabilidad de éxito, rentabilidad ni evaluación de costes, aranceles o barreras.
+## Errores de la fuente
+- Código no reconocido por Eurostat: responde `EXTRACTION_TOO_BIG` (413) porque descarta el filtro de producto. Se trata como error de la consulta («revisa el producto», HTTP 404), no como fallo del proveedor.
+- Fallo temporal del proveedor, respuesta asíncrona pendiente y error interno se muestran con mensajes distintos.
+- Página fuera de rango: se avisa de cuántas páginas hay y se enlaza a la última.
 
-## Etiquetas en lenguaje llano
-Cada oportunidad muestra hasta 3 etiquetas y una frase («Sube en el ranking por…»). Son un resumen con reglas fijas de los indicadores y percentiles ya calculados (`lib/scoring/labels.ts`); no cambian la puntuación ni aportan datos nuevos.
-- Percentil alto = ≥ 75 dentro de las oportunidades de la búsqueda (tamaño, crecimiento, expansión de cuota, exportación). Por eso las etiquetas «de esta búsqueda» son relativas y no comparan con el mercado mundial.
-- «Crece rápido» exige estar en el percentil ≥ 75 de crecimiento **y** un CAGR de al menos 5 % anual (corregido el 26/10/2026: en un universo en retroceso, un +0,2 % quedaba entre el 25 % mejor y se etiquetaba «rápido»); «En retroceso» se aplica a CAGR negativo; «Crecimiento irregular» a CAGR positivo con alguna variación anual negativa.
-- «España ya vende aquí»: cuota española ≥ 10 %. «Poca exportación española»: percentil de exportación ≤ 25.
-- «Datos con reservas»: calidad media o baja. Las etiquetas no son recomendaciones ni predicen rentabilidad.
+## Limitaciones
+Indicadores descriptivos de estadística oficial: no miden rentabilidad, barreras, competencia real ni probabilidad de éxito. El crecimiento pasado no anticipa el futuro (ver el historial). Las cifras de la UE y de fuera de la UE no son comparables entre sí (moneda, valoración, declarante).
 
-## Corrección: redundancia entre tamaño y expansión de cuota (2026-10)
-**Problema.** La versión inicial calculaba la expansión como el percentil de las importaciones no españolas (`tamaño × (1 − cuota)`). Con cuotas bajas, eso es casi igual al tamaño: ambos componentes (55 % del peso) medían prácticamente lo mismo. Sobre el universo demo (76 oportunidades, **datos sintéticos**) la correlación de rangos entre ambos percentiles era 0,998 (0,993 en la primera medición). Con datos reales, la ficha 690721 → Rumanía (50 oportunidades, 2 productos) mostraba percentil de tamaño 89 y de expansión 91 con una cuota española del 11,4 %.
+## Historial: la puntuación y su retirada
 
-**Corrección.** La expansión pasa a medir la brecha de penetración respecto a la cuota de referencia del producto (fórmula arriba). No se han cambiado los pesos (35/30/20/15) ni el resto de componentes. La contracción (`m`) evita que mercados muy pequeños, con cuotas inestables, obtengan brechas extremas; su valor (0,1 × mediana) es una decisión documentada, no estimada.
+**Hasta el 03/11/2026:** puntuación `0,35·tamaño + 0,30·crecimiento + 0,20·expansión de cuota + 0,15·posición exportadora`, cada componente como percentil dentro del universo de la búsqueda. En octubre se corrigió la redundancia entre tamaño y expansión (correlación de rangos 0,998 en la demo) con una «brecha de penetración».
 
-**Resultado medido (demo, datos sintéticos):** correlación tamaño–expansión 0,998 → 0,402; correlación de la puntuación total antes/después 0,954; 9 de las 10 primeras posiciones se mantienen. Las pruebas `tests/expansion.test.ts` comprueban independencia del tamaño, referencia por producto, contracción y que, en un universo sintético con cuotas independientes del tamaño, la correlación es menor de 0,3.
+**03/11/2026:** un backtest (Eurostat, orígenes 2019–2021, ~46 productos, Spearman dentro del producto; `docs/backtest-ranking.md`) mostró que el crecimiento pasado no anticipaba nada y que la mezcla rendía peor que el tamaño solo. Se sustituyó por dos rankings: «Mercados grandes» (percentil del tamaño) y «Potencial de cuota» (percentil de la brecha).
 
-**Limitaciones.** La cuota de referencia depende de los mercados incluidos en la búsqueda (en datos reales, los de la UE como declarantes), no del mercado mundial. Un mercado con cuota baja puede reflejar barreras o falta de competitividad, no una oportunidad. Con datos reales aún no se ha repetido la medición completa: conviene hacerlo con un sector de 10 o más productos.
+**06/11/2026 — retirada (segunda auditoría independiente, decisión del dueño):**
+- **Problema.** Los dos rankings no superaban a reglas triviales en su propia validación (ρ media dentro del producto; medido con un script de la auditoría fuera del repositorio sobre la misma descarga 2017–2025):
 
-## Crecimiento en volumen y efecto precio (ronda 08)
-Además del CAGR en valor, la ficha muestra el CAGR del **peso neto** importado (`cagrVolume`), que aproxima el volumen. Es `null` si faltan pesos o no son positivos (nunca cero). No entra en la puntuación. Dos etiquetas de precaución lo usan:
-- «Crecimiento excepcional»: CAGR en valor ≥ 30 % anual. Suele deberse a efectos puntuales (precios, cambios de clasificación, reexportaciones o de quién declara).
-- «Posible efecto precio»: el CAGR en valor supera al del peso en 15 puntos por año o más. El peso es una aproximación: un cambio en la composición del producto (por ejemplo, vehículos más pesados) también separa ambas cifras.
-Los umbrales (30 % y 15 puntos) son decisiones documentadas, no estimadas. Motivo: en datos reales, un mercado (vino en Luxemburgo, CAGR 46 %) llegó al primer puesto de su sector con un crecimiento difícil de explicar solo con demanda; las etiquetas avisan, no corrigen el dato.
+  | Resultado | Predictor | 2019 | 2020 | 2021 |
+  |---|---|---|---|---|
+  | CAGR de las ventas españolas | «Potencial de cuota» | 0,21 | 0,17 | 0,18 |
+  | | Cuota española baja (regla trivial) | 0,29 | 0,25 | 0,27 |
+  | Aumento en € de las ventas españolas | «Mercados grandes» | 0,35 | 0,40 | 0,35 |
+  | | Ventas españolas actuales (regla trivial) | 0,37 | 0,45 | 0,33 |
 
-## Mercados fuera de la UE
-Se calculan con la misma fórmula, pero sobre un universo propio (UN Comtrade, USD, solo los mercados verificados): sus percentiles y puntuaciones no son comparables con los del ranking de la UE (Eurostat, EUR), por moneda, criterio de valoración y conjunto de mercados distintos. Aranceles, reglas de origen e impuestos, que fuera de la UE sí existen, siguen sin verificarse en la ficha.
-
-La frase «Sube en el ranking por…» usa expresiones neutras («el tamaño de su mercado», «la evolución de sus importaciones»), porque nombrar a un componente como «gran mercado» o «crecimiento» cuando su percentil o su valor no lo justifican contradecía las etiquetas.
-
-## Validación histórica del ranking (backtest, 2026-11)
-**Problema.** Los pesos (35/30/20/15) son una decisión documentada, no una medición: no sabíamos si el orden de mercados anticipa algo.
-
-**Medición.** `scripts/backtest-ranking.ts` (método en `lib/backtest/ranking.ts`, pruebas en `tests/backtest.test.ts`) calcula el ranking con el mismo algoritmo como si fuera 2019, 2020 y 2021 (Eurostat, 50 códigos del catálogo, 26 mercados de la UE, unas 1.140 oportunidades por año) y lo compara con lo ocurrido en los 3 años siguientes. Métrica principal: correlación de Spearman **dentro de cada producto** (el orden que ve quien busca su producto), en 45–46 productos. No se pueden usar 2022 ni 2023 como origen: sus ventanas mezclan HS2017 y HS2022 y la app las marca como incompatibles. Resultados completos: `docs/backtest-ranking.md`.
-
-**Resultado medido (ρ media dentro del producto, orígenes 2019 / 2020 / 2021):**
-| Resultado posterior | Puntuación | Solo tamaño | Solo crecimiento pasado | Solo potencial de cuota |
-|---|---|---|---|---|
-| Crecimiento del mercado (CAGR) | −0,13 / −0,30 / −0,28 | −0,18 / −0,30 / −0,30 | 0,00 / −0,15 / −0,11 | −0,03 / −0,11 / −0,05 |
-| Crecimiento de las ventas españolas (CAGR) | 0,06 / −0,03 / −0,02 | −0,10 / −0,16 / −0,10 | 0,06 / −0,01 / −0,01 | 0,21 / 0,17 / 0,18 |
-| Aumento de las ventas españolas (€) | 0,21 / 0,15 / 0,08 | 0,35 / 0,40 / 0,35 | −0,01 / −0,03 / −0,06 | −0,12 / −0,22 / −0,18 |
-
-Lectura:
-- **El crecimiento pasado no anticipa el crecimiento futuro** (ρ ≈ 0) y pondera un 30 %.
-- La puntuación **no anticipa** el crecimiento del mercado (correlación negativa: los mercados grandes crecieron menos en porcentaje) ni el crecimiento porcentual de las ventas españolas (≈ 0).
-- Para el **aumento en euros** de las ventas españolas, ordenar **solo por tamaño** acierta más que la puntuación en los tres años (0,35–0,40 frente a 0,08–0,21). Parte es mecánica: en un mercado grande cualquier variación mueve más euros.
-- El **potencial de cuota** anticipa el **crecimiento porcentual** de las ventas españolas (ρ ≈ 0,17–0,21, positivo en ~80 % de los productos). Parte puede ser regresión a la media (cuotas españolas bajas parten de bases pequeñas y volátiles).
-- En resumen: la mezcla actual combina dos señales que funcionan para objetivos distintos (tamaño → euros; potencial de cuota → crecimiento relativo) con una que no aporta (crecimiento pasado), y el resultado queda por debajo de usar el tamaño solo.
-
-**Corrección (03/11/2026, decisión del dueño).** La puntuación única se sustituye por dos rankings, uno por cada señal que funcionó: «Mercados grandes» (tamaño) y «Potencial de cuota» (expansión). El crecimiento pasado deja de ordenar. No se buscaron pesos nuevos a propósito: ajustar una mezcla a un único periodo arriesgaba sobreajustar. Cada ranking es exactamente el predictor medido, así que `docs/backtest-ranking.md` (regenerado ese día con los dos rankings) es su validación directa. Coste: el ranking «Mercados grandes» es, en la práctica, ordenar por tamaño; y «Potencial de cuota» favorece mercados donde España vende poco, que pueden ser pequeños o tener barreras (la ficha muestra el tamaño y los competidores al lado).
-
-**Limitaciones.** Un solo periodo (2017–2024) con la COVID y la inflación de 2022 dentro; solo mercados de la UE; parejas no independientes (sin p-valores); los códigos que cambiaron en HS2022 quedan fuera del resultado posterior; el catálogo es una selección orientativa, no una muestra aleatoria.
+  Además, «Potencial de cuota» y «cuota española baja» tenían una correlación de rangos media de 0,87–0,89: era casi la cuota invertida. Y los percentiles cambiaban según qué otros productos se buscaran.
+- **Corrección.** Se retiran la puntuación, los percentiles y las etiquetas relativas. Quedan los indicadores en su unidad y la ordenación por una métrica dentro del producto. Se borraron `lib/scoring/score.ts`, `labels.ts`, `lib/backtest/ranking.ts`, `scripts/backtest-ranking.ts` y sus pruebas.
+- **Resultado.** Las cifras de un mercado ya no dependen de la búsqueda (la ficha y la comparación cargan solo los productos implicados). Coste: se pierde un «orden recomendado»; a cambio no se presenta como señal algo que no lo es.
+- **Limitaciones del análisis.** Un solo periodo con COVID e inflación de 2022; solo mercados de la UE; parejas no independientes (sin p-valores). Las diferencias son de dirección consistente, no de significación formal.
