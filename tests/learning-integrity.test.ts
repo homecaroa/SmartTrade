@@ -61,7 +61,14 @@ describe("separación y ausencia de servicios externos", () => {
   // comprueba que no importa nada del análisis (solo la portada del modo).
   it("el análisis de mercados no importa nada del Modo Aprendizaje", () => {
     const home = path.join("app", "page.tsx");
-    for (const f of [...files("lib").filter((p) => !p.startsWith(path.join("lib", "learning"))), ...files("app").filter((p) => !p.startsWith(path.join("app", "aprendizaje")) && !p.endsWith("layout.tsx") && p !== home)]) {
+    // lib/sim (Business Simulator, 09/11/2026) tampoco es análisis de mercados: reutiliza a propósito utilidades del modo
+    // (docs/simulador.md §16). Queda fuera de esta lista y se comprueba aparte que no importa ningún motor de casos.
+    const simLib = path.join("lib", "sim");
+    for (const f of files(simLib)) {
+      const imports = [...sinComentarios(readFileSync(f, "utf8")).matchAll(/from "([^"]+)"/g)].map((m) => m[1]).filter((x) => x.includes("learning"));
+      expect(imports.every((x) => /learning\/(money|order)$/.test(x)), f).toBe(true);
+    }
+    for (const f of [...files("lib").filter((p) => !p.startsWith(path.join("lib", "learning")) && !p.startsWith(simLib)), ...files("app").filter((p) => !p.startsWith(path.join("app", "aprendizaje")) && !p.endsWith("layout.tsx") && p !== home)]) {
       expect(sinComentarios(readFileSync(f, "utf8")), f).not.toMatch(/learning/);
     }
     const imports = [...sinComentarios(readFileSync(home, "utf8")).matchAll(/from "([^"]+)"/g)].map((m) => m[1]).sort();

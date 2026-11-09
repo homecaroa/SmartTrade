@@ -25,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Link>
             <nav className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
               <Link href="/" className="rounded bg-emerald-700 px-2 py-1 font-semibold text-white hover:bg-emerald-800">Casos prácticos</Link>
+              <Link href="/simulador" className="rounded border border-emerald-700 px-2 py-1 font-semibold text-emerald-800 hover:bg-emerald-50">Business Simulator</Link>
               <Link href="/logistica" className="underline">Transporte e Incoterms</Link>
               <Link href="/mercados" className="underline">Análisis de mercados</Link>
               <ModeBadge mode={mode} />
