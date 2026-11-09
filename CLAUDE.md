@@ -12,7 +12,7 @@ Alcance: esta sesión trabaja **solo** sobre el repo `homecaroa/SmartTrade`. Otr
 - **Cambios de metodología** se documentan en `docs/methodology.md` (problema, corrección, resultado medido). Los umbrales salen de una medición o se declaran «decisión documentada, no estimada».
 - **Sin promesas** en textos de la app: los indicadores y avisos no son recomendaciones ni previsiones.
 - **Gemini siempre SIN la herramienta de búsqueda de Google** y nunca se publican sus resultados de búsqueda: los términos lo restringen (ver `docs/buyers.md`). Las listas de IA llevan siempre origen, modelo, fecha y «sin verificar» si no se comprobó.
-- **Modo Aprendizaje** (portada `/` desde el 09/11/2026; casos en `/aprendizaje/…`; `lib/learning`): separado del análisis (que está en `/mercados`), sin red y sin azar no reproducible (azar solo con semilla: misma semilla y mismas decisiones → mismo resultado; decisión del dueño, 09/11/2026), todo dato inventado etiquetado como simulado. El Business Simulator (`/simulador`, `lib/sim`, en diseño) sigue las reglas de `docs/simulador.md`. Ver `docs/aprendizaje.md` y, para el currículo oficial que cubre, `docs/curriculo.md`.
+- **Modo Aprendizaje** (portada `/` desde el 09/11/2026; casos en `/aprendizaje/…`; `lib/learning`): separado del análisis (que está en `/mercados`), sin red y sin azar no reproducible (azar solo con semilla: misma semilla y mismas decisiones → mismo resultado; decisión del dueño, 09/11/2026), todo dato inventado etiquetado como simulado. El Business Simulator (`/simulador`, `lib/sim`; fase 1 jugable) sigue las reglas de `docs/simulador.md`. Ver `docs/aprendizaje.md` y, para el currículo oficial que cubre, `docs/curriculo.md`.
 - **Datos guardados** (`data/snapshots`): los genera `npm run datos:actualizar` (cada dos meses vía GitHub Actions → PR). No se editan a mano. Ver `docs/data-sources.md`.
 - **No instalar dependencias** sin justificación técnica clara.
 - Español en UI, código comentado y docs.
@@ -23,7 +23,7 @@ Alcance: esta sesión trabaja **solo** sobre el repo `homecaroa/SmartTrade`. Otr
 npm test && npm run typecheck && npm run build
 ```
 
-Estado confirmado el 09/11/2026: 475 pruebas correctas (43 archivos), `tsc` y `build` sin errores. Antes de usar datos reales: `npm run verify:comext` / `verify:comtrade` (salida 0 coherente, 1 fallo, 2 no concluyente).
+Estado confirmado el 09/11/2026: 500 pruebas correctas (44 archivos), `tsc` y `build` sin errores. Antes de usar datos reales: `npm run verify:comext` / `verify:comtrade` (salida 0 coherente, 1 fallo, 2 no concluyente).
 
 ## Ritmo
 

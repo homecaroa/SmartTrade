@@ -286,6 +286,21 @@ app/simulador/     rutas
 - El dueño juega las 6 semanas y decide si el bucle merece completarse.
 - Las pruebas pasan y la caja cuadra siempre.
 
+## 17 bis. Fase 1: estado (09/11/2026)
+
+Construida en `lib/sim` (motor), `components/sim` y `/simulador`. Pruebas en `tests/sim.test.ts`.
+
+**Ajustes de equilibrio, medidos con las estrategias automáticas** (resultados de 500 semillas):
+
+| Ajuste | Por qué | Efecto medido |
+|---|---|---|
+| Almacenaje a **2,40–3,40 €/palé/semana con manipulación incluida** (en lugar de 1,50 €) | Sin cobrar movimientos ni preparación (fase 2), la empresa perdía unos 870 €/semana aun llena: no había forma de jugar bien | El resultado semanal de la estrategia prudente mejora de −1.604 € (semana 1) a −497 € (semana 6) |
+| **Un contrato incumplido sin avisar se cancela** desde la semana siguiente | Aceptar por encima de la capacidad no costaba nada más que no facturar: la estrategia de aceptarlo todo ganaba (−5.035 € frente a −6.326 €) con un 42 % de servicio | — |
+| **Reputación** (adelantada de la fase 2, §11): por debajo del 90 % de servicio, una oferta menos y tarifas un 5 % más bajas; por debajo del 75 %, dos ofertas menos y un 10 % más bajas | Lo anterior no bastaba: aceptarlo todo seguía ganando (−5.517 € frente a −5.972 €) | La prudente gana a la de aceptarlo todo en 461 de 500 partidas (−5.972 € frente a −7.660 € de media); la otra se queda en un 64 % de servicio |
+| Plazos mostrados como **30 y 60 días** (4 y 8 semanas) | «28 días» contradecía la mora a los 30 días que enseña la incidencia | — |
+
+**Resultado de la fase 1:** en 6 semanas ninguna estrategia llega a beneficios (la mejor partida prudente termina en −2.476 €). Es coherente con una empresa que empieza: la tendencia es lo que se valora. El cuadre contable dio 0 de diferencia en todas las partidas simuladas.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.
