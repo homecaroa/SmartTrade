@@ -301,6 +301,39 @@ Construida en `lib/sim` (motor), `components/sim` y `/simulador`. Pruebas en `te
 
 **Resultado de la fase 1:** en 6 semanas ninguna estrategia llega a beneficios (la mejor partida prudente termina en −2.476 €). Es coherente con una empresa que empieza: la tendencia es lo que se valora. El cuadre contable dio 0 de diferencia en todas las partidas simuladas.
 
+## 17 ter. Temporada completa, calculadora y reputación (09/11/2026, tras jugar el dueño la fase 1)
+
+**Lo que pidió el dueño:**
+- seguir jugando después de la semana 6;
+- una calculadora;
+- saber si sirven las referencias de los clientes y si la empresa tiene puntuación de confianza.
+
+**Cambios:**
+- **26 semanas.** Estacionalidad: una oferta más en las semanas 10–14 y una menos en las 20–22. Una avería por tramo: semanas 2–5, 10–13 y 18–21.
+- **Las semanas 1–6 no cambian:** la primera avería usa el mismo sorteo e identificador, y el resto de efectos empieza en la semana 7. Las partidas de la fase 1 continúan en la semana 7; está comprobado con partidas generadas por el motor anterior.
+- **Desde la semana 7:**
+  - el mercado conoce a la empresa y llega una oferta más por semana;
+  - con un servicio del 95 % o más, los clientes pagan una **prima de fiabilidad del 20 %**;
+  - por debajo del 90 % o del 75 % se mantienen las penalizaciones de §17 bis.
+  - La reputación (nivel de servicio de las últimas 8 semanas) se explica en pantalla junto a las ofertas.
+- **Objetivos (revisión de §12):** se gana con beneficio en las últimas 8 semanas y, además, servicio ≥ 95 % u ocupación ≥ 70 %. El objetivo anterior, «caja positiva», se cumplía solo con el capital inicial: la estrategia prudente «ganaba» 499 de 500 temporadas perdiendo unos 20.000 €.
+- **Derrota por servicio:** por debajo del 80 % cuatro semanas seguidas.
+- **Referencias de los clientes:**
+  - la de terceros es fija por cliente durante toda la partida (antes podía cambiar de una oferta a otra);
+  - cuando ya hay facturas vencidas o cobradas, la oferta muestra tu propio historial de cobros.
+- **Calculadora básica** (`lib/sim/calc.ts`, sin `eval`) con tus costes de referencia.
+
+**Por qué la prima de fiabilidad.** Medido con 200 semillas: con 3–5 ofertas por semana y las tarifas iniciales, ni eligiendo siempre las mejores ofertas era rentable una sola temporada (1 de 200). La causa es de escala: un solo camión con gerente y gestoría apenas cubre gastos aun al 100 %. Crecer (segundo camión, renting, personal) llega en fases posteriores. El 20 % es una **decisión de diseño**, no una medición del mercado.
+
+**Resultado (500 semillas):**
+
+| Estrategia | Victorias | Quiebras |
+|---|---|---|
+| Selectiva (elige por margen) | 230 | 0 |
+| Prudente | 169 | 0 |
+| Aceptarlo todo | 0 | 500 (servicio) |
+| No hacer nada | 0 | 500 (caja) |
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.

@@ -3,7 +3,20 @@
  * no tarifas de mercado. Las únicas cifras normativas son los plazos de pago, con su fuente.
  */
 export const ENGINE_VERSION = 1;
-export const PHASE1_WEEKS = 6;
+/**
+ * Temporada completa: 26 semanas (decisión del dueño, 09/11/2026). Hasta ese día la partida terminaba en la semana 6
+ * (fase 1); se amplió sin cambiar ninguna regla de las semanas 1-6, así que las partidas guardadas continúan.
+ */
+export const SEASON_WEEKS = 26;
+/** Estacionalidad (docs/simulador.md §11): más ofertas en campaña y menos en la semana valle. Decisión de diseño. */
+export const SEASON_PEAK = { from: 10, to: 14 };
+export const SEASON_LOW = { from: 20, to: 22 };
+/** Una avería por tramo de 8 semanas: la primera entre las semanas 2 y 5 (igual que en la fase 1), luego 10-13 y 18-21. */
+export const BREAKDOWN_WINDOWS = [{ from: 2, to: 5 }, { from: 10, to: 13 }, { from: 18, to: 21 }];
+/** Objetivos de temporada (docs/simulador.md §12): se gana cumpliendo 2 de 3. */
+export const OBJECTIVES = { minWarehouseOccupancyPct: 70, minServicePct: 95 };
+/** Derrota por servicio: por debajo del 80 % cuatro semanas seguidas, los clientes clave se van. */
+export const SERVICE_FLOOR = { pct: 80, weeks: 4 };
 /** Mes de juego = 4 semanas (simplificación declarada: alquiler, nóminas e informe cada 4 semanas). */
 export const WEEKS_PER_MONTH = 4;
 
@@ -40,3 +53,15 @@ export const TRUCK_KM_WEEK = P.kmPerDay * P.workDays;
  * «60 días», que es como se pacta en la realidad (y como lo cuentan la Ley 15/2009 y la Ley 3/2004).
  */
 export const payTermLabel = (weeks: number) => (weeks % WEEKS_PER_MONTH === 0 ? `${(weeks / WEEKS_PER_MONTH) * 30} días` : `${weeks * 7} días`);
+
+/**
+ * Tras el arranque (desde la semana 7) el mercado ya conoce a la empresa: llega una oferta más por semana y, si su nivel
+ * de servicio es del 95 % o más, los clientes pagan una prima por un proveedor fiable (+20 % en las tarifas).
+ * Medido con estrategias automáticas (200 semillas, 09/11/2026): sin estos dos efectos, ni eligiendo siempre las mejores
+ * ofertas la empresa salía rentable en ninguna temporada (1 de 200); con ellos, la estrategia selectiva es rentable en
+ * las 8 últimas semanas en 90 de 200 y la prudente en 67 de 200. El +20 % es una decisión de diseño, no una medición
+ * del mercado real.
+ */
+export const MARKET_GROWTH_FROM = 7;
+export const EXTRA_OFFERS = 1;
+export const RELIABILITY_PREMIUM = { minServicePct: 95, factor: 1.2 };

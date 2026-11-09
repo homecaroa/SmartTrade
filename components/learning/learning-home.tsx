@@ -20,8 +20,8 @@ export function LearningHome() {
       </section>
 
       <section className="space-y-2 rounded-lg border border-emerald-300 bg-emerald-50 p-4" aria-labelledby="mod-sim">
-        <h2 id="mod-sim" className="text-lg font-semibold">Nuevo: Business Simulator (fase 1, en construcción)</h2>
-        <p className="text-sm">Dirige un pequeño operador logístico de Valencia semana a semana: acepta trabajos según tu capacidad, cobra, paga y mantén la caja a flote. Esta primera fase dura 6 semanas.</p>
+        <h2 id="mod-sim" className="text-lg font-semibold">Nuevo: Business Simulator</h2>
+        <p className="text-sm">Dirige un pequeño operador logístico de Valencia semana a semana: acepta trabajos según tu capacidad, cobra, paga y mantén la caja a flote durante una temporada de 26 semanas.</p>
         <Link href="/simulador" className="inline-block rounded bg-indigo-600 px-3 py-1 text-sm font-semibold text-white hover:bg-indigo-700">Jugar</Link>
       </section>
 

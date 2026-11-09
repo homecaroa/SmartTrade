@@ -1,13 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { describeOffer, INCIDENT_OPTIONS, kmCommitted, MONTH_QUESTION, n2, palletsCommitted } from "@/lib/sim/engine";
-import { clientOf, kmOf, weeklyRevenue } from "@/lib/sim/market";
+import { clientHistory, describeOffer, INCIDENT_OPTIONS, kmCommitted, MONTH_QUESTION, n2, palletsCommitted, seasonOutcome, serviceLevelToDate } from "@/lib/sim/engine";
+import { clientOf, kmOf, reputationEffect, weeklyRevenue } from "@/lib/sim/market";
 import type { Action, Offer, SimState } from "@/lib/sim/model";
-import { P, payTermLabel, PHASE1_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
+import { P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
+import { Calculator } from "./calculator";
 
 const KIND = { distribucion: "Distribución regional", puntual: "Viaje puntual", almacenaje: "Almacenaje" } as const;
 
@@ -26,7 +27,7 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
   const done = s.status === "fin" || s.status === "quiebra";
   const closed = lastWeek !== null ? s.weeks.find((w) => w.week === lastWeek) : null;
   const decisions = closed ? s.learning.filter((l) => l.week === closed.week) : [];
-  const horizon = Array.from({ length: 4 }, (_, i) => s.week + i).filter((w) => w <= PHASE1_WEEKS);
+  const horizon = Array.from({ length: 4 }, (_, i) => s.week + i).filter((w) => w <= SEASON_WEEKS);
   return (
     <div className="space-y-4">
       {closed && (
@@ -43,8 +44,11 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
       {s.weeks.length >= 4 && !s.answers[MONTH_QUESTION.id] && (
         <p className="rounded-lg border border-indigo-200 bg-indigo-50 p-3 text-sm">Ya tienes el <b>informe del primer mes</b> con una pregunta sobre tus números. <button type="button" className="underline" onClick={onShowReport}>Ir al informe</button></p>
       )}
-      {s.status === "quiebra" && <p className="rounded-lg border border-rose-300 bg-rose-50 p-4 text-sm"><b>Quiebra:</b> la caja ha estado en negativo dos semanas seguidas. Mira el resumen final para entender por qué.</p>}
-      {s.status === "fin" && <p className="rounded-lg border border-emerald-300 bg-emerald-50 p-4 text-sm"><b>Fin de la fase 1.</b> Has completado las {PHASE1_WEEKS} semanas. <button type="button" className="underline" onClick={onShowReport}>Ver el resumen final</button>.</p>}
+      {s.status === "quiebra" && <p className="rounded-lg border border-rose-300 bg-rose-50 p-4 text-sm"><b>Fin de la partida en la semana {s.weeks.length}:</b> {s.endReason ?? "la empresa no puede seguir."} <button type="button" className="underline" onClick={onShowReport}>Ver el resumen final</button>.</p>}
+      {s.status === "fin" && (() => {
+        const out = seasonOutcome(s);
+        return <p className={`rounded-lg border p-4 text-sm ${out.victory ? "border-emerald-300 bg-emerald-50" : "border-amber-300 bg-amber-50"}`}><b>{out.victory ? "¡Temporada ganada!" : "Temporada terminada sin cumplir los objetivos."}</b> Has completado las {SEASON_WEEKS} semanas. <button type="button" className="underline" onClick={onShowReport}>Ver el resumen final</button>.</p>;
+      })()}
 
       {s.status === "incidencia" && s.pending && <IncidentCard s={s} onAction={onAction} />}
 
@@ -60,14 +64,18 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
             ))}
           </section>
 
+          <div className="grid gap-4 lg:grid-cols-[1fr_20rem]">
           <section className="space-y-2" aria-labelledby="ofertas">
             <h2 id="ofertas" className="text-base font-semibold">Ofertas de esta semana</h2>
+            <p className="rounded bg-slate-50 p-2 text-xs text-slate-700"><b>Tu reputación</b> (nivel de servicio de las últimas 8 semanas: {serviceLevelToDate(s).toLocaleString("es-ES")} %): {reputationEffect(serviceLevelToDate(s), s.week).label}</p>
             {s.offers.length === 0 && <p className="text-sm text-slate-600">No quedan ofertas esta semana.</p>}
             <div className="grid gap-3 lg:grid-cols-2">
-              {displayOrder(s.offers, `${s.seed}:${s.week}`).map((o) => <OfferCard key={o.id} o={o} onAccept={() => onAction({ t: "aceptar", oferta: o.id })} />)}
+              {displayOrder(s.offers, `${s.seed}:${s.week}`).map((o) => <OfferCard key={o.id} o={o} s={s} onAccept={() => onAction({ t: "aceptar", oferta: o.id })} />)}
             </div>
             <p className="text-xs text-slate-600">Las ofertas que no aceptes desaparecen al cerrar la semana. Antes de aceptar, comprueba que tienes capacidad y calcula si la tarifa cubre tus costes.</p>
           </section>
+          <Calculator />
+          </div>
 
           <ActiveContracts s={s} />
 
@@ -81,15 +89,16 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
   );
 }
 
-function OfferCard({ o, onAccept }: { o: Offer; onAccept: () => void }) {
+function OfferCard({ o, s, onAccept }: { o: Offer; s: SimState; onAccept: () => void }) {
   const c = clientOf(o.clientId);
+  const h = clientHistory(s, o.clientId);
   return (
     <article className="space-y-1 rounded-lg border border-slate-200 bg-white p-3 text-sm shadow-sm">
       <p className="flex flex-wrap items-center gap-2"><span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-semibold">{KIND[o.kind]}</span><b>{c.name}</b><span className="text-xs text-slate-600">({c.sector})</span></p>
       {o.kind === "distribucion" && <p>{o.kmWeek} km por semana (retornos incluidos) a <b>{n2(o.ratePerKm!)} €/km</b> durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
       {o.kind === "puntual" && <p>Un viaje de {o.kmOneWay} km de ida; <b>vuelves en vacío</b> ({kmOf(o)} km recorridos) por <b>{fmtEur(o.price!)}</b>.</p>}
       {o.kind === "almacenaje" && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (manipulación incluida) durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
-      <p className="text-xs text-slate-600">Pago a {payTermLabel(o.payWeeks)} · {o.clientHint}</p>
+      <p className="text-xs text-slate-600">Pago a {payTermLabel(o.payWeeks)} · {h.paid || h.overdue ? <><b>Tu experiencia:</b> {historyText(h)}</> : h.invoices ? <><b>Ya trabajas con este cliente:</b> aún no ha vencido ninguna factura. Referencias: {o.clientHint}</> : o.clientHint}</p>
       <button type="button" onClick={onAccept} className="rounded border border-indigo-600 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-50">Aceptar</button>
     </article>
   );
@@ -128,3 +137,11 @@ function IncidentCard({ s, onAction }: { s: SimState; onAction: (a: Action) => v
 }
 
 
+
+/** Lo que ya sabes de un cliente por haber trabajado con él: sustituye a las referencias de terceros. */
+function historyText(h: ReturnType<typeof clientHistory>): string {
+  const parts: string[] = [];
+  if (h.paid) parts.push(h.paidLate ? `de ${h.paid} ${h.paid === 1 ? "factura cobrada" : "facturas cobradas"}, ${h.paidLate} con retraso (hasta ${h.maxDelayWeeks} ${h.maxDelayWeeks === 1 ? "semana" : "semanas"})` : `te ha pagado a tiempo ${h.paid === 1 ? "la factura cobrada" : `las ${h.paid} facturas cobradas`}`);
+  if (h.overdue) parts.push(`${h.overdue} ${h.overdue === 1 ? "factura vencida sin pagar" : "facturas vencidas sin pagar"}`);
+  return parts.join("; ") + ".";
+}

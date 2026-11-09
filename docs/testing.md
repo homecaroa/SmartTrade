@@ -92,3 +92,19 @@ Ejecutado aquí: `npm test` → **42 archivos, 453 pruebas correctas**; `tsc --n
 
 ## Business Simulator, fase 1 (09/11/2026)
 `npm test` → **44 archivos, 500 pruebas correctas**; `tsc` y `next build` sin errores. Nuevo `tests/sim.test.ts` (25): semilla reproducible y secuencias independientes por sistema; reproducir las acciones da el mismo estado; balance cuadrado tras cada acción en 600 partidas; fijos pagados cada 4 semanas; capacidad del camión; equilibrio con 3 estrategias en 200 semillas; plazos de 30 y 60 días; calificación de ofertas; avería (subcontratar o callar); cliente moroso; reputación; pregunta del mes; guardado, importación y descarte de acciones inválidas; el motor sin `Math.random`, red ni hora; la interfaz sin reglas propias. `learning-integrity.test.ts` permite que `lib/sim` use solo las utilidades `money` y `order` del modo (comprobado con un import prohibido, que se pone en rojo). Mutaciones en rojo: sin cancelación por incumplimiento, cobro sin plazo, fijos pagados cada semana, fianza sin activo, viaje puntual servido a medias. Navegador (`next start`, escritorio y 390 px): partida 48213 completa desde la portada, con las dos incidencias, pregunta del mes respondida, balance cuadrado en pantalla, sin errores ni peticiones externas, y se recupera al recargar. Al mirar las capturas se corrigieron: «Pago a 28 días» (ahora 30), tarifas con un decimal y la pregunta del mes, que no se veía.
+
+## Simulador: temporada de 26 semanas (09/11/2026)
+`npm test` → **44 archivos, 507 pruebas correctas**; `tsc` y `next build` sin errores. `tests/sim.test.ts` pasa a 32 pruebas:
+- **Equilibrio de temporada:** no hacer nada quiebra por caja; aceptarlo todo nunca gana y quiebra por servicio; la selectiva gana entre el 30 y el 70 % y más que la prudente; la victoria exige beneficio.
+- **Compatibilidad con la fase 1:** las semanas 1–6 no cambian (ofertas base y primera avería) y hay una avería por tramo.
+- **Reputación y prima de fiabilidad.**
+- **Clientes:** referencia de terceros fija por cliente e historial propio.
+- **Calculadora:** prioridad de operadores, paréntesis, coma decimal y rechazo de lo que no es una operación.
+
+Las pruebas de la fase 1 que dependían del final en la semana 6 se adaptaron explicándolo en el propio archivo.
+
+**Mutaciones en rojo:** prima desde la semana 1, victoria sin exigir beneficio, cambio del identificador de la primera avería, calculadora sin prioridad y sin derrota por servicio.
+
+**Compatibilidad real:** 10 partidas generadas con el motor publicado (`main`) y cargadas con el nuevo. Las 7 jugadas con cuidado conservan las semanas 1–6 idénticas y continúan en la semana 7. Las 3 de «aceptarlo todo» terminan ahora por la nueva derrota por servicio.
+
+**Navegador:** temporada completa en escritorio y a 390 px, con calculadora, historial y prima visibles, sin errores ni peticiones externas.
