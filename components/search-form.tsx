@@ -13,7 +13,7 @@ export function SearchForm({
   productHint: string;
 }) {
   return (
-    <form method="get" action="/" className="grid gap-3 rounded-lg bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
+    <form method="get" action="/mercados" className="grid gap-3 rounded-lg bg-white p-4 shadow-sm sm:grid-cols-2 lg:grid-cols-4">
       {defaults.fuente === "fuera" && <input type="hidden" name="fuente" value="fuera" />}
       <p className="text-xs font-medium">País exportador<span className="block py-1.5 text-sm font-normal text-slate-700">España (único disponible)</span></p>
       <label className="text-xs font-medium">Mercado de destino

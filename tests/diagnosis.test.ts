@@ -75,7 +75,7 @@ describe("punto de llamada: la interfaz", () => {
     expect(cautions).not.toMatch(/title=\{/);
   });
   it("no queda rastro visible del score retirado en páginas ni componentes del análisis", () => {
-    for (const f of ["app/page.tsx", "app/oportunidad/[id]/page.tsx", "app/comparar/page.tsx", "app/guia/page.tsx", "components/opportunity-table.tsx", "components/search-form.tsx", "components/entry-paths.tsx", "lib/compare.ts", "lib/trade/csv.ts"]) {
+    for (const f of ["app/mercados/page.tsx", "app/oportunidad/[id]/page.tsx", "app/comparar/page.tsx", "app/guia/page.tsx", "components/opportunity-table.tsx", "components/search-form.tsx", "components/entry-paths.tsx", "lib/compare.ts", "lib/trade/csv.ts"]) {
       const src = sinComentarios(readFileSync(f, "utf8"));
       expect(src, f).not.toMatch(/Potencial de cuota|Mercados grandes|percentil|ScoreBadge|LensSwitch|\.score\b|Buscar oportunidades/);
     }

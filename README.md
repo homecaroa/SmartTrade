@@ -1,5 +1,7 @@
 # SmarTrade (MVP)
 
+**Desde el 09/11/2026 la portada (`/`) es el Modo Aprendizaje**, un simulador educativo para el Grado Superior de Comercio Internacional. El análisis de mercados está en `/mercados`; las URLs antiguas de búsqueda (`/?q=…`) redirigen allí con la consulta intacta.
+
 Diagnóstico descriptivo de mercados de exportación para empresas españolas, a partir de estadísticas oficiales de comercio exterior: por producto, cuánto importa cada mercado, cómo ha evolucionado, qué parte llega desde España y quién más lo abastece. Indicadores en su unidad, sin puntuación ni previsiones (la puntuación se retiró el 06/11/2026: ver `docs/methodology.md`). Ficha por mercado, comparación, gráficos con tabla, trazabilidad de datos y exportación CSV.
 
 **Estado honesto:** funciona de extremo a extremo con datos de **demostración sintéticos** (`demo`) y con **datos reales de Eurostat Comext** (`comext`, verificado el 18/10/2026 con `220421, 150920`: 49 oportunidades en 26 mercados UE). UN Comtrade está implementado pero **sin probar** (requiere clave). Ver `docs/data-sources.md` y `docs/limitations.md`. Es una app Next.js con servidor: **no se ejecuta en GitHub Pages**; hay que ejecutarla en local o desplegarla (p. ej. Vercel).
@@ -49,4 +51,4 @@ En modos reales, la web usa primero los datos guardados en `data/snapshots/` y s
 Parámetros: `q, producto, market, year, minSize (millones), minGrowth (%), sort (valor|crecimiento|peso|espana), order, page, pageSize`. Los enlaces antiguos con `sort=score|size|volumen|potencial` se leen como `valor`, y `growth` como `crecimiento`.
 
 ## Documentación
-`docs/architecture.md`, `docs/data-sources.md`, `docs/methodology.md`, `docs/testing.md`, `docs/limitations.md`, `docs/aprendizaje.md` (Modo Aprendizaje: simulador educativo con datos simulados, en `/aprendizaje`).
+`docs/architecture.md`, `docs/data-sources.md`, `docs/methodology.md`, `docs/testing.md`, `docs/limitations.md`, `docs/aprendizaje.md` (Modo Aprendizaje: simulador educativo con datos simulados, portada de la web desde el 09/11/2026), `docs/curriculo.md` (currículo oficial del ciclo y qué cubre el simulador).

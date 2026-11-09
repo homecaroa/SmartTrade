@@ -18,7 +18,8 @@ Página / API  →  lib/service.ts
 
 ## Sectores y puntos de entrada
 - `lib/config/sectors.ts` agrupa códigos del catálogo en sectores (`sector:<id>` en la consulta). Para añadir un sector basta con un objeto nuevo; las pruebas exigen que sus códigos existan en el catálogo, no se repitan y no superen el máximo por búsqueda.
-- La portada ofrece dos caminos: «Tengo un producto» (búsqueda por nombre o código) y «Quiero descubrir sectores». En un sector se elige un producto y se ven sus mercados; los productos no se ordenan entre sí.
+- Rutas: `/` es el Modo Aprendizaje (desde el 09/11/2026) y el análisis está en `/mercados`. `next.config.mjs` redirige con 308 las búsquedas antiguas `/?<parámetro del análisis>` a `/mercados` y `/aprendizaje` a `/`; otros parámetros en la portada (p. ej. `utm_source`) no redirigen.
+- La entrada del análisis (`/mercados`) ofrece dos caminos: «Tengo un producto» (búsqueda por nombre o código) y «Quiero descubrir sectores». En un sector se elige un producto y se ven sus mercados; los productos no se ordenan entre sí.
 
 ## Comparador de mercados
 - `/comparar?id=<id>&id=<id>[&q=<búsqueda>]`: la tabla del ranking es un formulario GET con casillas (sin JavaScript ni almacenamiento); la comparación carga solo los productos comparados, así que sus cifras y puestos no dependen de la búsqueda (`getComparison` en `lib/service.ts`). La lógica de validación y filas está en `lib/compare.ts` (2–5 resultados, mismo año final, datos ausentes como «n.d.»).

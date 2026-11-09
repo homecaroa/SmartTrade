@@ -224,8 +224,9 @@ describe("integración: un solo tipo de ejercicio", () => {
   it("el laboratorio independiente ya no existe y sus enlaces redirigen a la portada", () => {
     expect(existsSync("app/aprendizaje/logistica")).toBe(false);
     expect(existsSync("components/learning/logistics-lab.tsx")).toBe(false);
-    expect(sinComentarios(readFileSync("next.config.mjs", "utf8"))).toMatch(/source: "\/aprendizaje\/logistica\/:caso", destination: "\/aprendizaje"/);
-    expect(sinComentarios(readFileSync("app/aprendizaje/page.tsx", "utf8"))).not.toMatch(/logistica/);
+    // Destino «/» desde el 09/11/2026: la portada del Modo Aprendizaje pasó de /aprendizaje a la raíz.
+    expect(sinComentarios(readFileSync("next.config.mjs", "utf8"))).toMatch(/source: "\/aprendizaje\/logistica\/:caso", destination: "\/"/);
+    expect(sinComentarios(readFileSync("components/learning/learning-home.tsx", "utf8"))).not.toMatch(/logistica/);
   });
   // Desde el 04/11/2026 hay dos casos más, de mercancía peligrosa (perfumes a Dubái y baterías a México, propuesta 4).
   it("cubre los destinos pedidos: Alemania, Marruecos, EE. UU., Japón, Emiratos y México, con dificultad progresiva", () => {

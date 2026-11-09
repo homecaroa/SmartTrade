@@ -15,7 +15,7 @@ export default async function Compare({ searchParams }: { searchParams: Promise<
   const parsed = parseCompareIds(sp.id);
   const q = sp.q?.slice(0, 80);
   const fx = sp.fuente === "fuera" ? "fuente=fuera" : "";
-  const back = q ? `/?q=${encodeURIComponent(q)}${fx ? `&${fx}` : ""}` : fx ? `/?${fx}` : "/";
+  const back = q ? `/mercados?q=${encodeURIComponent(q)}${fx ? `&${fx}` : ""}` : fx ? `/mercados?${fx}` : "/mercados";
   if (!parsed.ok) {
     return (
       <div className="space-y-3">

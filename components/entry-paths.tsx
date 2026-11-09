@@ -18,13 +18,13 @@ export function EntryPaths({ fuente }: { fuente?: "fuera" }) {
         <div className={card}>
           <h2 className="font-semibold">Tengo un producto</h2>
           <p className="text-sm text-slate-600">Escribe qué quieres exportar y verás cuánto lo importa cada país, cómo ha evolucionado y qué parte llega desde España.</p>
-          <form method="get" action="/" className="flex gap-2">
+          <form method="get" action="/mercados" className="flex gap-2">
             {fuente && <input type="hidden" name="fuente" value="fuera" />}
             <input name="q" required maxLength={80} aria-label="Producto o código HS" placeholder="Ej.: vino, cerámica, 220421" className="w-full rounded border border-slate-300 px-2 py-1.5 text-sm" />
             <button className="whitespace-nowrap rounded bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700">Ver mercados</button>
           </form>
           <p className="text-xs text-slate-500">
-            Prueba: <Link className="underline" href={`/?q=vino${sfx}`}>vino</Link> · <Link className="underline" href={`/?q=aceite de oliva${sfx}`}>aceite de oliva</Link> · <Link className="underline" href={`/?q=cerámica${sfx}`}>cerámica</Link>. ¿No sabes el código?{" "}
+            Prueba: <Link className="underline" href={`/mercados?q=vino${sfx}`}>vino</Link> · <Link className="underline" href={`/mercados?q=aceite de oliva${sfx}`}>aceite de oliva</Link> · <Link className="underline" href={`/mercados?q=cerámica${sfx}`}>cerámica</Link>. ¿No sabes el código?{" "}
             <Link className="underline" href="/guia">Guía de uso</Link>
           </p>
         </div>
@@ -34,7 +34,7 @@ export function EntryPaths({ fuente }: { fuente?: "fuera" }) {
           <ul className="grid gap-2 sm:grid-cols-2">
             {SECTORS.map((s) => (
               <li key={s.id}>
-                <Link href={`/?q=${encodeURIComponent(`sector:${s.id}`)}${sfx}`} className="block rounded border border-slate-200 p-2 hover:border-indigo-400 hover:bg-indigo-50">
+                <Link href={`/mercados?q=${encodeURIComponent(`sector:${s.id}`)}${sfx}`} className="block rounded border border-slate-200 p-2 hover:border-indigo-400 hover:bg-indigo-50">
                   <span className="block text-sm font-medium">{s.name}</span>
                   <span className="block text-xs text-slate-500">{s.description}</span>
                   <span className="block text-xs text-slate-400">{s.codes.length} productos</span>
@@ -57,7 +57,7 @@ export function SectorBanner({ current, onlyOne, fuente }: { current: { id: stri
       {onlyOne && (
         <p className="text-xs text-slate-700">
           Explorar otro sector:{" "}
-          {others.map((s) => <Link key={s.id} className="mr-2 underline" href={`/?q=${encodeURIComponent(`sector:${s.id}`)}${sfx}`}>{s.name}</Link>)}
+          {others.map((s) => <Link key={s.id} className="mr-2 underline" href={`/mercados?q=${encodeURIComponent(`sector:${s.id}`)}${sfx}`}>{s.name}</Link>)}
         </p>
       )}
     </section>
