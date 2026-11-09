@@ -2,6 +2,7 @@ import Link from "next/link";
 import { CaseProgress } from "@/components/learning/case-progress";
 import { SimulatedNotice } from "@/components/learning/simulated-notice";
 import { EXPORT_SCENARIOS } from "@/lib/learning/export/scenarios";
+import { IMPORT_SCENARIOS } from "@/lib/learning/import/scenarios";
 import { NEGOTIATION_SCENARIOS } from "@/lib/learning/negotiation/scenarios";
 
 const DIFF_STYLE = { básica: "bg-emerald-100 text-emerald-900", media: "bg-amber-100 text-amber-900", avanzada: "bg-rose-100 text-rose-900" } as const;
@@ -13,7 +14,7 @@ export function LearningHome() {
     <div className="space-y-4">
       <section className="space-y-2 rounded-lg bg-white p-6 shadow-sm">
         <h1 className="text-xl font-bold">Modo Aprendizaje</h1>
-        <p className="text-sm">Practica dos situaciones reales del comercio internacional, pensadas para el Grado Superior de Comercio Internacional: <b>gestionar una exportación</b> de principio a fin (incluida la planificación del transporte internacional) y <b>negociar con un comprador extranjero</b>. Cada decisión tiene consecuencias y al final recibes una nota de conocimientos y, por separado, el resultado económico.</p>
+        <p className="text-sm">Practica situaciones reales del comercio internacional, pensadas para el Grado Superior de Comercio Internacional: <b>gestionar una exportación</b> de principio a fin (incluida la planificación del transporte internacional), <b>gestionar una importación</b> (aranceles, antidumping, valor en aduana, IVA y despacho) y <b>negociar con un comprador extranjero</b>. Cada decisión tiene consecuencias y al final recibes una nota de conocimientos y, por separado, el resultado económico.</p>
         <p className="text-sm">Todo es simulado y no se consulta ninguna API externa. El progreso se guarda solo en este navegador. Si quieres consultar estadísticas reales de comercio exterior, está el <Link className="underline" href="/mercados">análisis de mercados</Link>.</p>
         <SimulatedNotice />
       </section>
@@ -44,6 +45,21 @@ export function LearningHome() {
           ))}
         </section>
       </div>
+
+      <section className="space-y-3" aria-labelledby="mod-import">
+        <h2 id="mod-import" className="text-lg font-semibold">Operación de importación</h2>
+        <p className="text-sm text-slate-700">Eres el comprador español: eliges proveedor por el coste puesto en almacén, clasificas la mercancía, calculas el valor en aduana y el IVA, y despachas.</p>
+        <div className="grid gap-4 lg:grid-cols-2">
+          {IMPORT_SCENARIOS.map((sc) => (
+            <article key={sc.id} className={card}>
+              <div className="flex flex-wrap items-center gap-2"><h3 className="font-semibold">{sc.title}</h3><span className={`rounded px-2 py-0.5 text-xs ${DIFF_STYLE[sc.difficulty]}`}>Dificultad {sc.difficulty}</span></div>
+              <p className="text-sm">{sc.summary}</p>
+              <p className="text-xs text-slate-600"><b>Aprenderás a:</b> {sc.learningGoal}</p>
+              <CaseProgress module="importacion" caseId={sc.id} href={`/aprendizaje/importacion/${sc.id}`} />
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }

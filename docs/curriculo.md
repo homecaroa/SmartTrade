@@ -39,14 +39,14 @@ Valoración propia a partir del código de los casos (`lib/learning`), no de un 
 | 6 | Fases e incidencias | Sí (variantes de daño, retraso y retirada tardía) |
 | 7 | Seguro de la mercancía | Sí (CIP/CIF, cláusulas A/C, 110 %) |
 
-### 0627 Gestión administrativa del comercio internacional (190 h) — cobertura parcial, solo exportación
+### 0627 Gestión administrativa del comercio internacional (190 h) — cobertura media (caso de importación desde el 09/11/2026)
 | RA | Contenido | Cobertura |
 |---|---|---|
 | 1 | Organismos e instituciones del comercio internacional | No |
 | 2 | Sistema de información para la compraventa internacional | No |
-| 3 | Barreras al comercio | Parcial (aranceles, requisitos de la FDA; sin barreras no arancelarias ni defensa comercial) |
-| 4 | Procedimientos de importación/exportación e introducción/expedición | Parcial: exportación y expedición sí (DUA, VIES, IVA exento); **importación e introducción, no** |
-| 5 | Documentación de importación/exportación | Parcial (DUA, EUR.1, factura; sin DUA de importación, TARIC ni Intrastat) |
+| 3 | Barreras al comercio | Sí: aranceles, defensa comercial (antidumping y su elusión), requisitos de producto (RD 339/2014, FDA) |
+| 4 | Procedimientos de importación/exportación e introducción/expedición | Parcial: exportación, expedición e importación sí (clasificación, origen, valor en aduana, representación, IVA diferido, canal rojo); **introducción intracomunitaria, no** |
+| 5 | Documentación de importación/exportación | Parcial (DUA, EORI, EUR.1, factura, B/L, certificado de origen; sin Intrastat ni rellenar el DUA) |
 
 ### 0826 Medios de pago internacionales (140 h) — cobertura parcial
 | RA | Contenido | Cobertura |
@@ -71,7 +71,7 @@ Valoración propia a partir del código de los casos (`lib/learning`), no de un 
 ### 0824 Negociación internacional (130 h) — cobertura media
 | RA | Contenido | Cobertura |
 |---|---|---|
-| 1 | Selección de clientes y proveedores | No |
+| 1 | Selección de clientes y proveedores | Parcial (proveedor por coste puesto en almacén en el caso de importación) |
 | 2 | Comunicación según protocolos y costumbres del país | No |
 | 3 | Diseño del proceso de negociación | Sí (punto de retirada, concesiones con contrapartida) |
 | 4 | Normativa y usos de la contratación internacional | Parcial (Incoterms; sin Convención de Viena ni ley aplicable) |
@@ -99,7 +99,7 @@ Proyecto del alumno que integra los módulos. Un simulador no lo sustituye; una 
 ## Huecos ordenados (propuesta)
 Criterio: horas del módulo × lo que falta × lo bien que se presta a una simulación con decisiones y consecuencias.
 
-1. **Importación** (0627 RA1, RA3–RA5, 190 h): todos los casos son de exportación. Un caso de importación (clasificación arancelaria con TARIC, valor en aduana, DUA de importación, IVA a la importación, defensa comercial o requisitos técnicos, introducción intracomunitaria e Intrastat) cubre la mitad del módulo más largo del ciclo.
+1. ~~**Importación**~~ — hecho el 09/11/2026 (caso de las bicicletas). Queda: introducción intracomunitaria e Intrastat, organismos (RA1). Texto original: (0627 RA1, RA3–RA5, 190 h): todos los casos eran de exportación. Un caso de importación (clasificación arancelaria con TARIC, valor en aduana, DUA de importación, IVA a la importación, defensa comercial o requisitos técnicos, introducción intracomunitaria e Intrastat) cubre la mitad del módulo más largo del ciclo.
 2. **Marketing internacional y sistema de información de mercados** (0823 + 0822, 330 h, sin cobertura): selección de mercado con los datos reales de la herramienta de mercados, forma de entrada y canal, precio de exportación (escandallo) y un plan de marketing breve.
 3. **Medios de pago a fondo** (0826 RA3–RA5): crédito documentario con discrepancias en los documentos, garantías y avales (garantía a primer requerimiento, stand-by), impago y sus costes.
 4. **Financiación** (0825 RA4–RA7): prefinanciación, factoring, forfaiting, seguro de crédito, apoyo oficial (CESCE, FIEM, CARI) y una licitación internacional.

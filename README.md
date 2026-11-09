@@ -1,6 +1,6 @@
 # SmarTrade (MVP)
 
-**Desde el 09/11/2026 la portada (`/`) es el Modo Aprendizaje**, un simulador educativo para el Grado Superior de Comercio Internacional. El análisis de mercados está en `/mercados`; las URLs antiguas de búsqueda (`/?q=…`) redirigen allí con la consulta intacta.
+**Desde el 09/11/2026 la portada (`/`) es el Modo Aprendizaje**, un simulador educativo para el Grado Superior de Comercio Internacional (exportación, importación y negociación). El análisis de mercados está en `/mercados`; las URLs antiguas de búsqueda (`/?q=…`) redirigen allí con la consulta intacta.
 
 Diagnóstico descriptivo de mercados de exportación para empresas españolas, a partir de estadísticas oficiales de comercio exterior: por producto, cuánto importa cada mercado, cómo ha evolucionado, qué parte llega desde España y quién más lo abastece. Indicadores en su unidad, sin puntuación ni previsiones (la puntuación se retiró el 06/11/2026: ver `docs/methodology.md`). Ficha por mercado, comparación, gráficos con tabla, trazabilidad de datos y exportación CSV.
 
