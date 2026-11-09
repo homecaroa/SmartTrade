@@ -68,14 +68,14 @@ describe("separación y ausencia de servicios externos", () => {
     expect(imports).toEqual(["@/components/learning/learning-home"]);
   });
   it("las pantallas muestran las opciones con el orden mezclado, no en el orden de los datos", () => {
-    for (const f of ["components/learning/export-decision.tsx", "components/learning/negotiation-simulator.tsx"]) {
+    for (const f of ["components/learning/export-decision.tsx", "components/learning/negotiation-simulator.tsx", "components/learning/import-decision.tsx"]) {
       const src = sinComentarios(readFileSync(f, "utf8"));
       expect(src, f).toMatch(/displayOrder\(/);
       expect(src, f).not.toMatch(/\b(d|q)\.options\.map\(|resolve\(d\.docs, ctx\)\.map\(/);
     }
   });
   it("el aviso de datos simulados aparece en la portada, en cada simulador y en cada resumen", () => {
-    for (const f of ["components/learning/learning-home.tsx", "components/learning/export-simulator.tsx", "components/learning/negotiation-simulator.tsx", "components/learning/export-summary.tsx", "components/learning/negotiation-summary.tsx"]) {
+    for (const f of ["components/learning/learning-home.tsx", "components/learning/export-simulator.tsx", "components/learning/negotiation-simulator.tsx", "components/learning/export-summary.tsx", "components/learning/negotiation-summary.tsx", "components/learning/import-simulator.tsx", "components/learning/import-summary.tsx"]) {
       expect(sinComentarios(readFileSync(f, "utf8")), f).toMatch(/<SimulatedNotice/);
     }
     expect(SIMULATED_NOTICE).toBe("Datos simulados con fines educativos");

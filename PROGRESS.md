@@ -11,6 +11,7 @@
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.
 - **Currículo oficial leído** (RD 1574/2011, RD 500/2024, Orden EFD/659/2024) y cruzado con los casos: `docs/curriculo.md`. Cobertura alta en Transporte internacional; parcial en Gestión administrativa (solo exportación), Medios de pago, Financiación y Negociación; nula en Marketing, Sistema de información de mercados, Almacenamiento y Comercio digital. Propuesta de huecos ordenada, pendiente de decisión.
 - Se borró `components/buyer-card.tsx` (sin uso).
+- **Caso de importación** (módulo nuevo `lib/learning/import`, `/aprendizaje/importacion/bicicletas-valencia`): coste puesto en almacén, antidumping, valor en aduana, IVA a la importación, despacho. Normativa leída en BOE y en el texto oficial de los reglamentos de la UE; lo no verificable (tipo antidumping vigente, arancel convencional) se marca «verificar».
 
 ## Transformación: diagnóstico descriptivo (06/11/2026, fusionado en #22)
 Tras la segunda auditoría independiente. Detalle y porqués en `docs/methodology.md`.

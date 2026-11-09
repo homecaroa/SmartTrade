@@ -51,7 +51,8 @@ export function stagesFor(sc: ExportScenario, answers: Answers) {
 
 export interface GradedAnswer { grade: Grade; feedback: string[]; best: string; why: string }
 
-export function gradeDoc(docs: DocOption[], selected: string[]): GradedAnswer {
+/** `allRight`: frase cuando la selección es exacta (por defecto habla de documentos; la importación la usa también para el valor en aduana). */
+export function gradeDoc(docs: DocOption[], selected: string[], allRight = "Has seleccionado exactamente la documentación que necesita esta operación."): GradedAnswer {
   const sel = new Set(selected);
   const feedback: string[] = [];
   let grade: Grade = "correcta";
@@ -63,7 +64,7 @@ export function gradeDoc(docs: DocOption[], selected: string[]): GradedAnswer {
     if (d.need === "recomendado" && !on) { worse("razonable"); feedback.push(`Convendría incluir «${d.label}»: ${d.explain}`); }
     if (d.need === "innecesario" && on) { worse("razonable"); feedback.push(`«${d.label}» sobra: ${d.explain}`); }
   }
-  if (!feedback.length) feedback.push("Has seleccionado exactamente la documentación que necesita esta operación.");
+  if (!feedback.length) feedback.push(allRight);
   const best = docs.filter((d) => d.need === "obligatorio" || d.need === "recomendado").map((d) => d.label).join(", ");
   return { grade, feedback, best, why: docs.filter((d) => d.need === "obligatorio").map((d) => `${d.label}: ${d.explain}`).join(" ") };
 }
