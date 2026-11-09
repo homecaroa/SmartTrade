@@ -1,6 +1,6 @@
 import { round2 } from "../learning/money";
 import type { Client, Offer, OfferKind } from "./model";
-import { EXTRA_OFFERS, MARKET_GROWTH_FROM, RELIABILITY_PREMIUM, SEASON_LOW, SEASON_PEAK } from "./params";
+import { ENGINE_VERSION, EXTRA_OFFERS, MARKET_GROWTH_FROM, PUNTUAL_V2, RELIABILITY_PREMIUM, SEASON_LOW, SEASON_PEAK } from "./params";
 import { intIn, pick, stream, type Rng } from "./rng";
 
 /**
@@ -34,13 +34,18 @@ function hint(r: Rng, c: Client, seed: number): string {
   return pick(stream(seed, 0, `referencia-${c.id}`), HINTS[c.profile]);
 }
 
-function makeOffer(r: Rng, seed: number, week: number, n: number, kind: OfferKind): Offer {
+function makeOffer(r: Rng, seed: number, week: number, n: number, kind: OfferKind, version: number): Offer {
   const c = pick(r, CLIENTS);
   const base = { id: `s${week}-${n}`, week, kind, clientId: c.id, clientHint: hint(r, c, seed), payWeeks: 4 };
   if (kind === "distribucion") return { ...base, kmWeek: intIn(r, 150, 600, 10), ratePerKm: round2(1.05 + r() * 0.5), weeks: intIn(r, 4, 8) };
   if (kind === "puntual") {
     const km = intIn(r, 150, 450, 10);
-    return { ...base, kmOneWay: km, price: Math.round(km * (0.7 + r() * 2.0)), weeks: 1 };
+    if (version < 2) return { ...base, kmOneWay: km, price: Math.round(km * (0.7 + r() * 2.0)), weeks: 1 };
+    // v2: mismo número de sorteos de la secuencia de ofertas; la carga de retorno sale de su propia secuencia.
+    const price = Math.round(km * (PUNTUAL_V2.minPerKmOneWay + r() * (PUNTUAL_V2.maxPerKmOneWay - PUNTUAL_V2.minPerKmOneWay)));
+    const rb = stream(seed, week, `retorno-${base.id}`);
+    const backhaul = rb() < PUNTUAL_V2.backhaulChance ? { pallets: intIn(rb, 4, 18), price: Math.round(km * (PUNTUAL_V2.backhaulPerKm.min + rb() * (PUNTUAL_V2.backhaulPerKm.max - PUNTUAL_V2.backhaulPerKm.min))) } : undefined;
+    return { ...base, kmOneWay: km, price, weeks: 1, ...(backhaul ? { backhaul } : {}) };
   }
   // Fase 1: la tarifa de almacenaje incluye la manipulación (entradas, salidas, preparación), que se separará en la
   // fase 2. Con solo 1,50 €/palé/semana, sin cobrar la manipulación, la empresa perdería dinero aun llena (ver params.ts).
@@ -51,14 +56,14 @@ function makeOffer(r: Rng, seed: number, week: number, n: number, kind: OfferKin
  * Ofertas de una semana: entre 3 y 5. La semana 1 trae siempre una de cada tipo, para que se pueda empezar a trabajar.
  * Mismas semilla y semana → mismas ofertas, decida lo que decida el jugador antes.
  */
-export function offersFor(seed: number, week: number, serviceLevel = 100): Offer[] {
+export function offersFor(seed: number, week: number, serviceLevel = 100, version: number = ENGINE_VERSION): Offer[] {
   const r = stream(seed, week, "ofertas");
   // Estacionalidad: se ajusta DESPUÉS del sorteo base, así las semanas fuera de campaña dan las mismas ofertas que antes.
   // Desde la semana 7 el mercado ya conoce a la empresa: llega una oferta más por semana (MARKET_GROWTH_FROM).
   const n = intIn(r, 3, 5) + (week >= MARKET_GROWTH_FROM ? EXTRA_OFFERS : 0) + (week >= SEASON_PEAK.from && week <= SEASON_PEAK.to ? 1 : week >= SEASON_LOW.from && week <= SEASON_LOW.to ? -1 : 0);
   const kinds: OfferKind[] = week === 1 ? ["distribucion", "almacenaje", "puntual"] : [];
   while (kinds.length < n) kinds.push(pick(r, ["distribucion", "distribucion", "puntual", "puntual", "almacenaje"] as const));
-  const all = kinds.map((k, i) => makeOffer(r, seed, week, i + 1, k));
+  const all = kinds.map((k, i) => makeOffer(r, seed, week, i + 1, k, version));
   return withReputation(all, serviceLevel, week);
 }
 

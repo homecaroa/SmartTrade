@@ -2,7 +2,20 @@
  * Parámetros del Business Simulator (docs/simulador.md §9.3). SIMULADOS: hipótesis de diseño para equilibrar el juego,
  * no tarifas de mercado. Las únicas cifras normativas son los plazos de pago, con su fuente.
  */
-export const ENGINE_VERSION = 1;
+/**
+ * Versión de las reglas. Una partida guardada se reproduce SIEMPRE con la versión con la que empezó:
+ * - v1: reglas hasta el 09/11/2026 (viajes puntuales casi siempre por debajo del coste completo: «ruido», según el dueño).
+ * - v2 (09/11/2026): viajes puntuales con precios realistas y, en algunos, carga de retorno (ver PUNTUAL_V2).
+ */
+export const ENGINE_VERSION = 2;
+export const SUPPORTED_VERSIONS = [1, 2] as const;
+/**
+ * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
+ * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
+ * cliente ofrece una carga de retorno que paga 0,50-1,00 € por km de vuelta. Decisiones de diseño, medidas con las
+ * estrategias automáticas (docs/simulador.md §17 quinquies).
+ */
+export const PUNTUAL_V2 = { minPerKmOneWay: 1.6, maxPerKmOneWay: 3.2, backhaulChance: 0.4, backhaulPerKm: { min: 0.5, max: 1.0 } };
 /**
  * Temporada completa: 26 semanas (decisión del dueño, 09/11/2026). Hasta ese día la partida terminaba en la semana 6
  * (fase 1); se amplió sin cambiar ninguna regla de las semanas 1-6, así que las partidas guardadas continúan.

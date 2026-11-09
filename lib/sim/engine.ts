@@ -17,11 +17,12 @@ const clone = <T>(x: T): T => structuredClone(x);
 /** Importe unitario con dos decimales (tarifas y costes por km o palé). */
 export const n2 = (v: number) => v.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-export function newGame(seed: number): SimState {
+/** Partida nueva. `version`: reglas con las que se juega (las guardadas se reproducen con la suya; ver params.ts). */
+export function newGame(seed: number, version: number = ENGINE_VERSION): SimState {
   return {
-    version: ENGINE_VERSION, seed: seed >>> 0, week: 1, status: "jugando",
+    version, seed: seed >>> 0, week: 1, status: "jugando",
     cash: P.initialCash, deposit: 0, truckValue: P.truckBookValue, equity0: P.initialCash + P.truckBookValue, result: 0, accruedFixed: 0,
-    receivables: [], payables: [], contracts: [], offers: offersFor(seed >>> 0, 1), weeks: [], ledger: [], pending: null, answers: {}, negativeWeeks: 0, learning: [],
+    receivables: [], payables: [], contracts: [], offers: offersFor(seed >>> 0, 1, 100, version), weeks: [], ledger: [], pending: null, answers: {}, negativeWeeks: 0, learning: [],
   };
 }
 
@@ -35,17 +36,21 @@ export const TRUCK_FULL_COST_PER_KM = round2(P.variablePerKm + (P.fixedMonthly.c
 export const WAREHOUSE_FULL_COST_PER_PALLET = round2((P.fixedMonthly.alquiler + P.fixedMonthly.mozo) / WEEKS_PER_MONTH / P.warehousePallets);
 
 /** Calificación de aceptar una oferta (docs/simulador.md §6): capacidad, margen sobre el coste variable y sobre el coste completo. */
-export function gradeOffer(s: Pick<SimState, "contracts">, o: Offer): { grade: Grade; feedback: string } {
+export function gradeOffer(s: Pick<SimState, "contracts">, o: Offer, withBackhaul = false): { grade: Grade; feedback: string } {
   const weeks = Array.from({ length: o.weeks }, (_, i) => o.week + i);
   if (o.kind !== "almacenaje" && weeks.some((w) => kmCommitted(s, w) + kmOf(o) > TRUCK_KM_WEEK))
     return { grade: "grave", feedback: `No tenías capacidad: con esta oferta el camión supera sus ${TRUCK_KM_WEEK} km semanales. Lo que no puedas hacer no se factura y baja tu nivel de servicio.` };
   if (o.kind === "almacenaje" && weeks.some((w) => palletsCommitted(s, w) + o.pallets! > P.warehousePallets))
     return { grade: "grave", feedback: `No tenías sitio: el almacén supera sus ${P.warehousePallets} palés. Los palés que no caben no se facturan y baja tu nivel de servicio.` };
   if (o.kind === "puntual") {
-    const perKm = round2(o.price! / (2 * o.kmOneWay!));
-    if (perKm < P.variablePerKm) return { grade: "grave", feedback: `Pierdes dinero: contando el retorno en vacío cobras ${n2(perKm)} €/km recorrido y solo el gasóleo, el mantenimiento y los peajes cuestan ${n2(P.variablePerKm)} €/km.` };
-    if (perKm < TRUCK_FULL_COST_PER_KM) return { grade: "razonable", feedback: `Cubre el coste variable (${n2(perKm)} frente a ${n2(P.variablePerKm)} €/km recorrido, retorno incluido), pero no el coste completo del camión (${n2(TRUCK_FULL_COST_PER_KM)} €/km). Útil para llenar huecos, no como base del negocio.` };
-    return { grade: "correcta", feedback: `Cubre el coste completo del camión aun con el retorno en vacío (${n2(perKm)} €/km recorrido).` };
+    const back = withBackhaul && o.backhaul ? o.backhaul.price : 0;
+    const perKm = round2((o.price! + back) / (2 * o.kmOneWay!));
+    // Sin carga de retorno en la oferta, los textos son exactamente los de la v1 (las partidas guardadas no cambian).
+    const ret = !o.backhaul ? null : back ? "con la carga de retorno" : "con el retorno en vacío";
+    const missed = !withBackhaul && o.backhaul ? ` Además dejaste pasar la carga de retorno (+${o.backhaul.price} €): la vuelta iba a hacerse igual.` : "";
+    if (perKm < P.variablePerKm) return { grade: "grave", feedback: `Pierdes dinero: ${ret ?? "contando el retorno en vacío"} cobras ${n2(perKm)} €/km recorrido y solo el gasóleo, el mantenimiento y los peajes cuestan ${n2(P.variablePerKm)} €/km.${missed}` };
+    if (perKm < TRUCK_FULL_COST_PER_KM) return { grade: "razonable", feedback: `Cubre el coste variable (${n2(perKm)} frente a ${n2(P.variablePerKm)} €/km recorrido, ${ret ?? "retorno incluido"}), pero no el coste completo del camión (${n2(TRUCK_FULL_COST_PER_KM)} €/km). Útil para llenar huecos, no como base del negocio.${missed}` };
+    return { grade: missed ? "razonable" : "correcta", feedback: `Cubre el coste completo del camión ${ret ?? "aun con el retorno en vacío"} (${n2(perKm)} €/km recorrido).${missed}` };
   }
   if (o.kind === "distribucion") {
     if (o.ratePerKm! < TRUCK_FULL_COST_PER_KM) return { grade: "razonable", feedback: `La tarifa (${n2(o.ratePerKm!)} €/km) cubre el gasóleo, pero no el coste completo del camión (${n2(TRUCK_FULL_COST_PER_KM)} €/km con conductor, seguro y amortización).` };
@@ -130,8 +135,9 @@ export function apply(prev: SimState, a: Action): SimState {
     if (s.status !== "jugando") throw new Error(s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.");
     const o = s.offers.find((x) => x.id === a.oferta);
     if (!o) throw new Error("Oferta no disponible.");
-    const g = gradeOffer(s, o);
-    const contract: Contract = { ...o, startWeek: o.week, endWeek: o.week + o.weeks - 1 };
+    if (a.retorno && !o.backhaul) throw new Error("Esta oferta no tiene carga de retorno.");
+    const g = gradeOffer(s, o, !!a.retorno);
+    const contract: Contract = { ...o, startWeek: o.week, endWeek: o.week + o.weeks - 1, ...(a.retorno ? { withBackhaul: true } : {}) };
     learn(s, { week: s.week, what: `Aceptar: ${describeOffer(o)}`, answer: "Aceptada", grade: g.grade, feedback: g.feedback, competences: o.kind === "almacenaje" ? ["0625-RA3", "0623-RA7"] : ["0622-RA2", "0622-RA3", "0623-RA7"] });
     // Documentación: solo si la acción la trae (las aceptaciones guardadas antes del 09/11/2026 no la tenían).
     if (a.docs) {
@@ -243,7 +249,7 @@ function resolveWeek(s: SimState) {
     unservedWeight += missing * (broke && decision === "avisar" ? 0.5 : 1);
     // Un contrato recurrente que se incumple sin avisar se pierde: el cliente lo cancela desde la semana siguiente.
     if (missing > 0 && c.kind === "distribucion" && !(broke && decision === "avisar")) breached.push(c);
-    const amount = c.kind === "distribucion" ? round2((need - missing) * c.ratePerKm!) : missing === 0 ? c.price! : 0;
+    const amount = c.kind === "distribucion" ? round2((need - missing) * c.ratePerKm!) : missing === 0 ? c.price! + (c.withBackhaul && c.backhaul ? c.backhaul.price : 0) : 0;
     revenueTransport += amount;
     if (amount > 0) invoices.push({ c, amount });
   }
@@ -325,7 +331,7 @@ function resolveWeek(s: SimState) {
   if (s.lowServiceWeeks >= SERVICE_FLOOR.weeks) { s.status = "quiebra"; s.endReason = `Tu nivel de servicio ha estado por debajo del ${SERVICE_FLOOR.pct} % ${SERVICE_FLOOR.weeks} semanas seguidas: tus clientes clave se van y la empresa no puede seguir.`; return; }
   if (w >= SEASON_WEEKS) { s.status = "fin"; return; }
   s.week = w + 1;
-  s.offers = offersFor(s.seed, s.week, serviceLevelToDate(s));
+  s.offers = offersFor(s.seed, s.week, serviceLevelToDate(s), s.version);
 }
 
 // ── Lecturas para la interfaz y las pruebas ───────────────────────────────────────────────────────────────────────

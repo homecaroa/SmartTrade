@@ -368,6 +368,27 @@ distinguen:
 - La Orden TRM/282/2026 modificó en marzo de 2026 la Orden FOM/2861/2012. Solo se ha leído su efecto sobre el art. 7, y una fuente secundaria habla de documento de control electrónico.
 - El importe real de las sanciones.
 
+## 17 quinquies. Viajes puntuales con carga de retorno y versiones de reglas (09/11/2026)
+
+**Problema (observado por el dueño jugando):** los viajes puntuales eran «ruido». Medido en 300 partidas, con las reglas v1 solo el 23 % cubría el coste completo del camión, y eso contando la prima de reputación desde la semana 7. Sin esa prima era cerca del 5 %. Casi nunca eran una decisión real.
+
+**Corrección (reglas v2, solo para partidas nuevas):**
+- Precio por km de ida entre 1,60 y 3,20 €, es decir, 0,80–1,60 €/km recorrido contando la vuelta.
+- En un 40 % de los viajes, el cliente ofrece una **carga de retorno** que paga 0,50–1,00 € por km de vuelta. Al aceptar decides si la traes. Si la dejas pasar, la corrección lo señala: la vuelta se hace igual.
+
+**Resultado medido (300 partidas):**
+- El 60 % de los viajes cubre el coste completo (74 % contando la carga de retorno) y ninguno queda por debajo del variable.
+- Victorias: prudente 123, selectiva 154 y negociadora 182 (con v1: 105, 139 y 160). Aceptarlo todo y no hacer nada siguen sin ganar nunca.
+
+**Versiones de reglas:**
+- `ENGINE_VERSION` = 2. Una partida guardada guarda su versión y se reproduce siempre con ella: tu partida v1 sigue con las reglas v1.
+- La v1 genera exactamente las mismas ofertas que antes. Comprobado con 28 partidas generadas por el motor publicado, idénticas incluso en los textos de corrección.
+
+**Fallo corregido en producción:**
+- **Qué pasaba:** el guardado no reconocía la acción de negociar, así que una partida en la que se había negociado no se podía cargar y aparecía la pantalla de inicio.
+- **Datos:** la partida seguía en el navegador mientras no se empezara otra.
+- **Corrección y prueba:** el guardado reconoce ahora la acción y valida sus campos. Una prueba guarda y recupera partidas completas con negociación, documentación y carga de retorno.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.
