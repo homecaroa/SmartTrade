@@ -57,10 +57,15 @@ describe("separación y ausencia de servicios externos", () => {
       expect(src, f).not.toMatch(/\bfetch\s*\(|XMLHttpRequest|generativelanguage|gemini|tavily|Math\.random/i);
     }
   });
+  // Desde el 09/11/2026 la portada (app/page.tsx) ES el Modo Aprendizaje: queda fuera de esta lista, y a cambio se
+  // comprueba que no importa nada del análisis (solo la portada del modo).
   it("el análisis de mercados no importa nada del Modo Aprendizaje", () => {
-    for (const f of [...files("lib").filter((p) => !p.startsWith(path.join("lib", "learning"))), ...files("app").filter((p) => !p.startsWith(path.join("app", "aprendizaje")) && !p.endsWith("layout.tsx"))]) {
+    const home = path.join("app", "page.tsx");
+    for (const f of [...files("lib").filter((p) => !p.startsWith(path.join("lib", "learning"))), ...files("app").filter((p) => !p.startsWith(path.join("app", "aprendizaje")) && !p.endsWith("layout.tsx") && p !== home)]) {
       expect(sinComentarios(readFileSync(f, "utf8")), f).not.toMatch(/learning/);
     }
+    const imports = [...sinComentarios(readFileSync(home, "utf8")).matchAll(/from "([^"]+)"/g)].map((m) => m[1]).sort();
+    expect(imports).toEqual(["@/components/learning/learning-home"]);
   });
   it("las pantallas muestran las opciones con el orden mezclado, no en el orden de los datos", () => {
     for (const f of ["components/learning/export-decision.tsx", "components/learning/negotiation-simulator.tsx"]) {
@@ -70,7 +75,7 @@ describe("separación y ausencia de servicios externos", () => {
     }
   });
   it("el aviso de datos simulados aparece en la portada, en cada simulador y en cada resumen", () => {
-    for (const f of ["app/aprendizaje/page.tsx", "components/learning/export-simulator.tsx", "components/learning/negotiation-simulator.tsx", "components/learning/export-summary.tsx", "components/learning/negotiation-summary.tsx"]) {
+    for (const f of ["components/learning/learning-home.tsx", "components/learning/export-simulator.tsx", "components/learning/negotiation-simulator.tsx", "components/learning/export-summary.tsx", "components/learning/negotiation-summary.tsx"]) {
       expect(sinComentarios(readFileSync(f, "utf8")), f).toMatch(/<SimulatedNotice/);
     }
     expect(SIMULATED_NOTICE).toBe("Datos simulados con fines educativos");

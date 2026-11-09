@@ -45,12 +45,12 @@ describe("paginación", () => {
     expect(out.total).toBe(first.total);
   });
   it("la portada explica la página fuera de rango", () => {
-    expect(sinComentarios(readFileSync("app/page.tsx", "utf8"))).toMatch(/pageOutOfRange/);
+    expect(sinComentarios(readFileSync("app/mercados/page.tsx", "utf8"))).toMatch(/pageOutOfRange/);
   });
 });
 
 describe("interfaz sin puntuación ni compradores", () => {
-  const files = ["app/page.tsx", "app/oportunidad/[id]/page.tsx", "app/comparar/page.tsx", "app/guia/page.tsx", "components/opportunity-table.tsx", "components/search-form.tsx", "components/entry-paths.tsx", "components/research-checklist.tsx"];
+  const files = ["app/mercados/page.tsx", "app/oportunidad/[id]/page.tsx", "app/comparar/page.tsx", "app/guia/page.tsx", "components/opportunity-table.tsx", "components/search-form.tsx", "components/entry-paths.tsx", "components/research-checklist.tsx"];
   it.each(files)("%s no habla de puntuación, percentiles ni enlaza a compradores", (f) => {
     // Se permite decir que NO hay puntuación («no hay puntuación», «Sin puntuaciones»): es el aviso, no la métrica.
     const src = sinComentarios(readFileSync(f, "utf8")).replace(/(no hay|sin) puntuaci(ón|ones)/gi, "");
@@ -61,5 +61,27 @@ describe("interfaz sin puntuación ni compradores", () => {
     const src = sinComentarios(readFileSync("app/compradores/page.tsx", "utf8"));
     expect(src).not.toMatch(/fetch|tavily|lib\/buyers|async function/i);
     expect(src).toMatch(/retirada/);
+  });
+});
+
+// Portada (09/11/2026): `/` es el Modo Aprendizaje; las URLs antiguas del análisis se llevan intactas a /mercados.
+describe("portada y URLs antiguas", () => {
+  it("next.config redirige a /mercados con todos los parámetros de búsqueda", async () => {
+    const { querySchema } = await import("@/lib/schemas/query");
+    type Rule = { source: string; destination: string; permanent: boolean; has?: unknown[] };
+    // @ts-expect-error next.config.mjs es JavaScript sin tipos; aquí solo se leen dos exportaciones.
+    const cfg = (await import("../next.config.mjs")) as { ANALYSIS_PARAMS: string[]; default: { redirects: () => Promise<Rule[]> } };
+    expect([...cfg.ANALYSIS_PARAMS].sort()).toEqual(Object.keys(querySchema.shape).sort());
+    const rules = await cfg.default.redirects();
+    expect(rules.filter((r) => r.source === "/" && r.destination === "/mercados")).toHaveLength(cfg.ANALYSIS_PARAMS.length);
+    expect(rules).toContainEqual({ source: "/aprendizaje", destination: "/", permanent: true });
+    // Solo con parámetros del análisis: un `?utm_source=…` en la portada no debe llevar a /mercados.
+    expect(rules.some((r) => r.source === "/" && !("has" in r))).toBe(false);
+  });
+  it("ningún formulario ni enlace del análisis apunta ya a la portada con una búsqueda", () => {
+    for (const f of ["app/mercados/page.tsx", "app/comparar/page.tsx", "app/oportunidad/[id]/page.tsx", "app/guia/page.tsx", "components/search-form.tsx", "components/entry-paths.tsx", "components/source-switch.tsx"]) {
+      const src = sinComentarios(readFileSync(f, "utf8"));
+      expect(src, f).not.toMatch(/[`"']\/\?|action="\/"/);
+    }
   });
 });

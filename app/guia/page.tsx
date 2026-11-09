@@ -22,7 +22,7 @@ export default function Guide() {
 
       <h2 className={h}>1. Cómo buscar</h2>
       <ol className="list-decimal space-y-1 pl-5">
-        <li>Escribe en <b>Producto</b> el nombre de un producto o un código HS. Puedes combinar varios separados por comas: <Link className={a} href="/?q=vino,aceite de oliva">vino, aceite de oliva</Link>.</li>
+        <li>Escribe en <b>Producto</b> el nombre de un producto o un código HS. Puedes combinar varios separados por comas: <Link className={a} href="/mercados?q=vino,aceite de oliva">vino, aceite de oliva</Link>.</li>
         <li>Opcional: elige un <b>mercado</b>, el año final, el tamaño mínimo (en millones de €) o el crecimiento mínimo.</li>
         <li>Pulsa <b>Ver mercados</b>. Verás los mercados del producto ordenados por la métrica elegida: valor importado, crecimiento anual pasado, volumen (peso neto) o importaciones con socio España.</li>
         <li>Pulsa el nombre de un <b>mercado</b> para abrir su diagnóstico: lectura del mercado, tamaño, evolución, presencia española, países proveedores, contexto, acceso al mercado y comprobaciones pendientes.</li>
@@ -83,7 +83,7 @@ export default function Guide() {
           <tbody>
             {HS_CATALOG.map((e) => (
               <tr key={e.code} className="border-b border-slate-100">
-                <td className="py-1 pr-3 font-mono"><Link className={a} href={`/?q=${e.code}`}>{e.code}</Link></td>
+                <td className="py-1 pr-3 font-mono"><Link className={a} href={`/mercados?q=${e.code}`}>{e.code}</Link></td>
                 <td className="py-1">{e.name}</td>
               </tr>
             ))}
@@ -103,7 +103,7 @@ export default function Guide() {
           <tbody>
             {NC8_CATALOG.map((e) => (
               <tr key={e.code} className="border-b border-slate-100">
-                <td className="py-1 pr-3 font-mono"><Link className={a} href={`/?q=${e.code}`}>{e.code}</Link></td>
+                <td className="py-1 pr-3 font-mono"><Link className={a} href={`/mercados?q=${e.code}`}>{e.code}</Link></td>
                 <td className="py-1">{e.name}</td>
               </tr>
             ))}

@@ -50,7 +50,7 @@ export default async function Detail({ params, searchParams }: { params: Promise
   const reading = readMarket(o);
   const pl = productLabel(o.productCode, o.productName);
   const card = "rounded-lg bg-white p-4 shadow-sm space-y-3";
-  const back = fuente === "fuera" ? `/?${q ? `q=${encodeURIComponent(q.slice(0, 80))}&` : ""}fuente=fuera` : q ? `/?q=${encodeURIComponent(q.slice(0, 80))}` : "/";
+  const back = fuente === "fuera" ? `/mercados?${q ? `q=${encodeURIComponent(q.slice(0, 80))}&` : ""}fuente=fuera` : q ? `/mercados?q=${encodeURIComponent(q.slice(0, 80))}` : "/mercados";
   const pos = (m: keyof typeof d.positions) => (d.positions[m] ? `${d.positions[m]!.position}.º de ${d.positions[m]!.of}` : "sin dato");
   const links = [
     ["ICEX · estadísticas", "https://www.icex.es/es/estadisticas"],

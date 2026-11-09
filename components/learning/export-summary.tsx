@@ -61,7 +61,7 @@ export function ExportSummary({ sc, ev, onRestart }: { sc: ExportScenario; ev: E
       </div>
       <div className="flex flex-wrap gap-2 print:hidden">
         <button type="button" onClick={onRestart} className="rounded bg-indigo-600 px-3 py-1.5 text-sm font-semibold text-white hover:bg-indigo-700">Repetir el caso</button>
-        <a href="/aprendizaje" className="rounded border border-slate-300 bg-white px-3 py-1.5 text-sm hover:bg-slate-100">Volver al Modo Aprendizaje</a>
+        <a href="/" className="rounded border border-slate-300 bg-white px-3 py-1.5 text-sm hover:bg-slate-100">Volver a los casos</a>
       </div>
     </section>
   );

@@ -6,8 +6,9 @@ const MODE_LABEL = { demo: "DEMO · datos sintéticos", comext: "Eurostat Comext
 export function ModeBadge({ mode }: { mode: keyof typeof MODE_LABEL }) {
   const demo = mode === "demo";
   return (
+    // «Datos de mercados:» porque desde el 09/11/2026 la cabecera la comparte el Modo Aprendizaje, que es todo simulado.
     <span className={`rounded-full px-3 py-1 text-xs font-semibold ${demo ? "bg-amber-100 text-amber-900 ring-1 ring-amber-400" : "bg-emerald-100 text-emerald-900"}`}>
-      {MODE_LABEL[mode]}
+      Datos de mercados: {MODE_LABEL[mode]}
     </span>
   );
 }

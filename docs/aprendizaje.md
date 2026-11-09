@@ -1,6 +1,6 @@
 # Modo Aprendizaje
 
-Simulador educativo para el Grado Superior de Comercio Internacional, en `/aprendizaje`. Es **independiente** del análisis de mercados: rutas, componentes y lógica propios (`app/aprendizaje`, `components/learning`, `lib/learning`). No toca la API, el modelo estadístico ni los rankings, y **no hace ninguna llamada de red** (ni Gemini ni ninguna otra API): todo son escenarios locales y reglas deterministas.
+Simulador educativo para el Grado Superior de Comercio Internacional. **Desde el 09/11/2026 es la portada de la web (`/`)**; `/aprendizaje` redirige a ella y los casos siguen en `/aprendizaje/exportacion/<caso>` y `/aprendizaje/negociacion/<caso>`. Qué resultados de aprendizaje del currículo oficial cubre cada caso: `docs/curriculo.md`. Es **independiente** del análisis de mercados: rutas, componentes y lógica propios (`app/aprendizaje`, `components/learning`, `lib/learning`). No toca la API, el modelo estadístico ni los rankings, y **no hace ninguna llamada de red** (ni Gemini ni ninguna otra API): todo son escenarios locales y reglas deterministas.
 
 ## Módulos y casos
 | Módulo | Caso | Dificultad | Qué se practica |

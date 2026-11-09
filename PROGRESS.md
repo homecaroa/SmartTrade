@@ -7,7 +7,12 @@
 | Eurostat Comext | **Verificado de principio a fin con datos reales** (18/10/2026): `verify:comext` y la app en modo `comext` con `220421, 150920` → 49 oportunidades válidas, 1 incompleta. Los códigos HS6 siguen la nomenclatura de cada año (150910 no existe desde HS2022). Pendiente: más productos, indicadores de estado. Grecia corregida el 30/10/2026 (Comext usa `GR`). |
 | UN Comtrade | Opcional, sin clave ni llamadas reales. |
 
-## Transformación: diagnóstico descriptivo (06/11/2026, sin commit: pendiente de revisión del dueño)
+## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
+- **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.
+- **Currículo oficial leído** (RD 1574/2011, RD 500/2024, Orden EFD/659/2024) y cruzado con los casos: `docs/curriculo.md`. Cobertura alta en Transporte internacional; parcial en Gestión administrativa (solo exportación), Medios de pago, Financiación y Negociación; nula en Marketing, Sistema de información de mercados, Almacenamiento y Comercio digital. Propuesta de huecos ordenada, pendiente de decisión.
+- Se borró `components/buyer-card.tsx` (sin uso).
+
+## Transformación: diagnóstico descriptivo (06/11/2026, fusionado en #22)
 Tras la segunda auditoría independiente. Detalle y porqués en `docs/methodology.md`.
 - **Sin puntuación:** se retiran los dos rankings por percentiles (no superaban a reglas triviales en su validación). Indicadores en su unidad, calculados solo con el producto y mercado de cada fila; los mercados se ordenan dentro de un producto por una métrica (valor, crecimiento, volumen, socio España). Ficha nueva por bloques (lectura con plantillas fijas, tamaño, evolución, presencia española, proveedores, el producto en otros mercados), comparación y CSV descriptivos.
 - **España = país de expedición** en los mercados de la UE: se avisa en listado, ficha, comparación y CSV.

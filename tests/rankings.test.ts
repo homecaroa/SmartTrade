@@ -45,7 +45,7 @@ describe("búsqueda con varios productos (modo demo, datos sintéticos)", () => 
     expect(r.pageOutOfRange).toBe(true);
     expect(r.rows).toHaveLength(0);
     expect(r.total).toBeGreaterThan(0);
-    const page = sinComentarios(readFileSync("app/page.tsx", "utf8"));
+    const page = sinComentarios(readFileSync("app/mercados/page.tsx", "utf8"));
     expect(page).toMatch(/data\.pageOutOfRange \?/);
     expect(page).toMatch(/no existe: hay/);
   });
