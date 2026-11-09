@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { clientHistory, describeOffer, INCIDENT_OPTIONS, kmCommitted, MONTH_QUESTION, n2, palletsCommitted, seasonOutcome, serviceLevelToDate } from "@/lib/sim/engine";
+import { cashStart, clientHistory, describeOffer, INCIDENT_OPTIONS, kmCommitted, MONTH_QUESTION, n2, palletsCommitted, seasonOutcome, serviceLevelToDate } from "@/lib/sim/engine";
+import { docsFor, MAX_ROUNDS, originalTerms, rateOf, validateProposal } from "@/lib/sim/deal";
 import { clientOf, kmOf, reputationEffect, weeklyRevenue } from "@/lib/sim/market";
 import type { Action, Offer, SimState } from "@/lib/sim/model";
 import { P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
@@ -32,8 +33,20 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
     <div className="space-y-4">
       {closed && (
         <section className="space-y-2 rounded-lg border border-indigo-200 bg-white p-4 shadow-sm" aria-label={`Semana ${closed.week} cerrada`}>
-          <h2 className="text-base font-semibold">Semana {closed.week} cerrada: resultado {fmtEur(closed.result)} · caja {fmtEur(closed.cashEnd)}</h2>
-          <p className="text-sm">Facturado {fmtEur(closed.revenueTransport + closed.revenueWarehouse)} (aún sin cobrar) · cobrado {fmtEur(closed.collections)} · {closed.kmOwn} km propios{closed.kmSubcontracted ? ` y ${closed.kmSubcontracted} subcontratados` : ""} · {closed.palletsStored} palés · servicio {closed.serviceLevel.toLocaleString("es-ES")} %</p>
+          <h2 className="text-base font-semibold">Semana {closed.week} cerrada</h2>
+          <div className="grid gap-2 text-sm sm:grid-cols-2">
+            <div className="rounded border border-slate-200 p-2">
+              <h3 className="text-xs font-semibold uppercase text-slate-600">Beneficio de la semana (lo ganado)</h3>
+              <p>Facturado {fmtEur(closed.revenueTransport + closed.revenueWarehouse)} − gastos {fmtEur(closed.revenueTransport + closed.revenueWarehouse - closed.result)} = <b className={closed.result < 0 ? "text-rose-700" : "text-emerald-700"}>{fmtEur(closed.result)}</b></p>
+              <p className="text-xs text-slate-600">Se cuenta aunque aún no se haya cobrado ni pagado.</p>
+            </div>
+            <div className="rounded border border-slate-200 p-2">
+              <h3 className="text-xs font-semibold uppercase text-slate-600">Tesorería de la semana (lo cobrado y pagado)</h3>
+              <p>{fmtEur(cashStart(s, closed.week))} + cobros {fmtEur(closed.collections)} − pagos {fmtEur(cashStart(s, closed.week) + closed.collections - closed.cashEnd)} = <b className={closed.cashEnd < 0 ? "text-rose-700" : ""}>{fmtEur(closed.cashEnd)}</b></p>
+              <p className="text-xs text-slate-600">Solo el dinero que ha entrado o salido de verdad.</p>
+            </div>
+          </div>
+          <p className="text-sm">{closed.kmOwn} km propios{closed.kmSubcontracted ? ` y ${closed.kmSubcontracted} subcontratados` : ""} · {closed.palletsStored} palés · servicio {closed.serviceLevel.toLocaleString("es-ES")} %</p>
           {closed.notes.length > 0 && <ul className="list-disc pl-5 text-sm text-amber-900">{closed.notes.map((n) => <li key={n}>{n}</li>)}</ul>}
           {decisions.length > 0 && (
             <ul className="space-y-1 text-sm">{decisions.map((d, i) => <li key={i} className="rounded bg-slate-50 p-2"><span className="flex flex-wrap items-center gap-2"><b>{d.what}</b><GradeBadge grade={d.grade} /></span>{d.feedback}</li>)}</ul>
@@ -70,7 +83,7 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
             <p className="rounded bg-slate-50 p-2 text-xs text-slate-700"><b>Tu reputación</b> (nivel de servicio de las últimas 8 semanas: {serviceLevelToDate(s).toLocaleString("es-ES")} %): {reputationEffect(serviceLevelToDate(s), s.week).label}</p>
             {s.offers.length === 0 && <p className="text-sm text-slate-600">No quedan ofertas esta semana.</p>}
             <div className="grid gap-3 lg:grid-cols-2">
-              {displayOrder(s.offers, `${s.seed}:${s.week}`).map((o) => <OfferCard key={o.id} o={o} s={s} onAccept={() => onAction({ t: "aceptar", oferta: o.id })} />)}
+              {displayOrder(s.offers, `${s.seed}:${s.week}`).map((o) => <OfferCard key={o.id} o={o} s={s} onAction={onAction} />)}
             </div>
             <p className="text-xs text-slate-600">Las ofertas que no aceptes desaparecen al cerrar la semana. Antes de aceptar, comprueba que tienes capacidad y calcula si la tarifa cubre tus costes.</p>
           </section>
@@ -89,17 +102,74 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
   );
 }
 
-function OfferCard({ o, s, onAccept }: { o: Offer; s: SimState; onAccept: () => void }) {
+const UNIT = { distribucion: "€/km", puntual: "€ el viaje", almacenaje: "€/palé/semana" } as const;
+
+/**
+ * Una oferta: aceptarla tal cual, negociarla (tarifa, duración y, en almacenaje, plazo de pago) y, al aceptar, preparar
+ * la documentación. La respuesta del cliente la decide el motor (lib/sim/deal.ts), no la interfaz.
+ */
+function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Action) => void }) {
   const c = clientOf(o.clientId);
   const h = clientHistory(s, o.clientId);
+  const [mode, setMode] = useState<"ver" | "negociar" | "documentar">("ver");
+  const base = originalTerms(o);
+  const [rate, setRate] = useState(String(rateOf(o)).replace(".", ","));
+  const [weeks, setWeeks] = useState(String(o.weeks));
+  const [pay, setPay] = useState(o.payWeeks);
+  const [docs, setDocs] = useState<string[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const rounds = o.round ?? 0;
+  const propose = () => {
+    const v = Number(rate.replace(",", "."));
+    const w = o.kind === "puntual" ? 1 : Number(weeks);
+    const invalid = Number.isFinite(v) && Number.isInteger(w) ? validateProposal(o, { rate: v, weeks: w, payWeeks: pay }) : "Escribe números válidos.";
+    if (invalid) { setError(invalid); return; }
+    setError(null); setMode("ver");
+    onAction({ t: "proponer", oferta: o.id, tarifa: v, semanas: w, plazo: pay });
+  };
+  const box = "flex cursor-pointer items-start gap-2 rounded border border-slate-200 bg-white p-1.5 text-xs hover:border-indigo-300";
   return (
-    <article className="space-y-1 rounded-lg border border-slate-200 bg-white p-3 text-sm shadow-sm">
+    <article className={`space-y-1 rounded-lg border bg-white p-3 text-sm shadow-sm ${o.agreed ? "border-emerald-400" : "border-slate-200"}`}>
       <p className="flex flex-wrap items-center gap-2"><span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-semibold">{KIND[o.kind]}</span><b>{c.name}</b><span className="text-xs text-slate-600">({c.sector})</span></p>
       {o.kind === "distribucion" && <p>{o.kmWeek} km por semana (retornos incluidos) a <b>{n2(o.ratePerKm!)} €/km</b> durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
       {o.kind === "puntual" && <p>Un viaje de {o.kmOneWay} km de ida; <b>vuelves en vacío</b> ({kmOf(o)} km recorridos) por <b>{fmtEur(o.price!)}</b>.</p>}
       {o.kind === "almacenaje" && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (manipulación incluida) durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
       <p className="text-xs text-slate-600">Pago a {payTermLabel(o.payWeeks)} · {h.paid || h.overdue ? <><b>Tu experiencia:</b> {historyText(h)}</> : h.invoices ? <><b>Ya trabajas con este cliente:</b> aún no ha vencido ninguna factura. Referencias: {o.clientHint}</> : o.clientHint}</p>
-      <button type="button" onClick={onAccept} className="rounded border border-indigo-600 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-50">Aceptar</button>
+      {o.note && <p className={`rounded p-1.5 text-xs ${o.agreed ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900"}`}><b>{c.name.replace(" (ficticia)", "")}:</b> {o.note} {o.agreed ? "Confirma la operación preparando la documentación." : `Su oferta inicial era ${n2(base.rate)} ${UNIT[o.kind]}.`}</p>}
+
+      {mode === "ver" && (
+        <div className="flex flex-wrap gap-2 pt-1">
+          <button type="button" onClick={() => setMode("documentar")} className="rounded border border-indigo-600 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-50">{o.agreed ? "Confirmar el acuerdo" : o.round ? "Aceptar su contraoferta" : "Aceptar tal cual"}</button>
+          {!o.agreed && rounds < MAX_ROUNDS + 1 && <button type="button" onClick={() => setMode("negociar")} className="rounded border border-slate-300 px-3 py-1 text-xs hover:bg-slate-100">Negociar{rounds ? ` (ronda ${rounds + 1})` : ""}</button>}
+        </div>
+      )}
+
+      {mode === "negociar" && (
+        <form className="space-y-2 rounded border border-slate-200 p-2" onSubmit={(e) => { e.preventDefault(); propose(); }}>
+          <p className="text-xs text-slate-600">Propón tus condiciones. El cliente tiene un límite que no conoces: si pides un poco más de lo que puede pagar te hará una contraoferta; si pides mucho más, se irá con otro transportista. Como mucho {MAX_ROUNDS} rondas.</p>
+          <div className="flex flex-wrap items-end gap-2 text-xs">
+            <label>Tarifa ({UNIT[o.kind]})<input value={rate} onChange={(e) => setRate(e.target.value)} inputMode="decimal" className="mt-0.5 block w-24 rounded border border-slate-300 px-1 py-0.5" /></label>
+            {o.kind !== "puntual" && <label>Duración (semanas)<input value={weeks} onChange={(e) => setWeeks(e.target.value)} inputMode="numeric" className="mt-0.5 block w-16 rounded border border-slate-300 px-1 py-0.5" /></label>}
+            {o.kind === "almacenaje"
+              ? <label>Plazo de pago<select value={pay} onChange={(e) => setPay(Number(e.target.value))} className="mt-0.5 block rounded border border-slate-300 px-1 py-0.5"><option value={4}>30 días</option><option value={8}>60 días</option></select></label>
+              : <span className="text-slate-600">Pago a 30 días: en el transporte no se negocia (mora a los 30 días, Ley 15/2009, art. 41).</span>}
+          </div>
+          {error && <p role="alert" className="text-xs text-rose-700">{error}</p>}
+          <div className="flex gap-2"><button type="submit" className="rounded bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">Proponer</button><button type="button" onClick={() => setMode("ver")} className="text-xs underline">Cancelar</button></div>
+        </form>
+      )}
+
+      {mode === "documentar" && (
+        <form className="space-y-1 rounded border border-slate-200 p-2" onSubmit={(e) => { e.preventDefault(); onAction({ t: "aceptar", oferta: o.id, docs }); }}>
+          <fieldset className="space-y-1">
+            <legend className="text-xs font-semibold">¿Qué documentación preparas para esta operación?</legend>
+            {displayOrder(docsFor(o.kind), `${s.seed}:${o.id}:docs`).map((d) => (
+              <label key={d.id} className={box}><input type="checkbox" checked={docs.includes(d.id)} onChange={(e) => setDocs((x) => (e.target.checked ? [...x, d.id] : x.filter((y) => y !== d.id)))} className="mt-0.5" /><span>{d.label}</span></label>
+            ))}
+          </fieldset>
+          <div className="flex gap-2"><button type="submit" className="rounded bg-indigo-600 px-3 py-1 text-xs font-semibold text-white">Aceptar la operación</button><button type="button" onClick={() => setMode("ver")} className="text-xs underline">Cancelar</button></div>
+        </form>
+      )}
     </article>
   );
 }

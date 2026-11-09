@@ -26,9 +26,24 @@ export interface Offer {
   weeks: number;
   /** Plazo de pago pactado, en semanas. */
   payWeeks: number;
+  /** Negociación (09/11/2026): condiciones con las que llegó la oferta, rondas hechas y último mensaje del cliente. */
+  original?: { rate: number; weeks: number; payWeeks: number };
+  round?: number;
+  note?: string;
+  /** El cliente aceptó tus condiciones: falta que confirmes (con la documentación). */
+  agreed?: boolean;
 }
 
-export interface Contract extends Offer { startWeek: number; endWeek: number; cancelledWeek?: number }
+export interface Contract extends Offer {
+  startWeek: number;
+  endWeek: number;
+  cancelledWeek?: number;
+  /** Documentación preparada al aceptar (ausente en partidas anteriores al 09/11/2026: no se califica ni penaliza). */
+  docs?: string[];
+  docIssues?: ("sin_control" | "sin_albaran")[];
+  /** La consecuencia de la documentación que faltaba ya ocurrió (solo una vez por contrato). */
+  docPenalized?: boolean;
+}
 
 export interface Invoice { id: string; contractId: string; clientId: string; amount: number; week: number; dueWeek: number; payWeek: number; paidWeek?: number }
 export interface Payable { id: string; label: string; amount: number; week: number; dueWeek: number; paidWeek?: number }
@@ -49,6 +64,8 @@ export interface WeekRecord {
   costSubcontract: number;
   costRepair: number;
   costFixed: number;
+  /** Sanciones y reclamaciones por documentación (09/11/2026). */
+  costPenalties: number;
   amortization: number;
   result: number;
   collections: number;
@@ -95,7 +112,8 @@ export interface SimState {
 }
 
 export type Action =
-  | { t: "aceptar"; oferta: string }
+  | { t: "aceptar"; oferta: string; docs?: string[] }
+  | { t: "proponer"; oferta: string; tarifa: number; semanas: number; plazo: number }
   | { t: "responder"; incidencia: string; opcion: string }
   | { t: "pregunta"; pregunta: string; opcion: string }
   | { t: "cerrar" };

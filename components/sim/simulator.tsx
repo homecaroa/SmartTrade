@@ -1,11 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { apply, newGame, serviceLevelToDate } from "@/lib/sim/engine";
+import { apply, newGame, pendingPayables, pendingReceivables, serviceLevelToDate } from "@/lib/sim/engine";
 import type { Action, SimState } from "@/lib/sim/model";
 import { SEASON_WEEKS } from "@/lib/sim/params";
 import { parseSave, restore, SAVE_KEY, toSave } from "@/lib/sim/save";
-import { fmtEur } from "@/lib/learning/money";
+import { fmtEur, sum } from "@/lib/learning/money";
 import { SimulatedNotice } from "../learning/simulated-notice";
 import { FinanceView } from "./finance-view";
 import { ReportView } from "./report-view";
@@ -71,6 +71,7 @@ export function Simulator() {
   if (!game) return <StartScreen onStart={start} onImport={importFile} message={message} />;
 
   const s = game.state;
+  const last = s.weeks[s.weeks.length - 1];
   const tabBtn = (t: Tab, label: string) => (
     <button type="button" role="tab" aria-selected={tab === t} onClick={() => setTab(t)}
       className={`rounded-t border-b-2 px-3 py-1.5 text-sm font-semibold ${tab === t ? "border-indigo-600 text-indigo-700" : "border-transparent text-slate-600 hover:text-slate-900"}`}>{label}</button>
@@ -81,12 +82,27 @@ export function Simulator() {
         <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Business Simulator · temporada de {SEASON_WEEKS} semanas · partida {game.seed}</p>
         <h1 ref={headingRef} tabIndex={-1} className="text-xl font-bold">Transportes y Almacenes del Turia (ficticia)</h1>
         <SimulatedNotice compact />
-        <dl className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
-          <div><dt className="text-slate-600">Semana</dt><dd className="text-lg font-bold">{s.status === "fin" || s.status === "quiebra" ? "Terminada" : `${s.week} de ${SEASON_WEEKS}`}</dd></div>
-          <div><dt className="text-slate-600">Caja</dt><dd className={`text-lg font-bold ${s.cash < 0 ? "text-rose-700" : ""}`}>{fmtEur(s.cash)}</dd></div>
-          <div><dt className="text-slate-600">Resultado acumulado</dt><dd className={`text-lg font-bold ${s.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(s.result)}</dd></div>
-          <div><dt className="text-slate-600">Nivel de servicio (reputación)</dt><dd className="text-lg font-bold">{serviceLevelToDate(s).toLocaleString("es-ES")} %</dd></div>
-        </dl>
+        <div className="grid gap-2 text-sm md:grid-cols-[auto_1fr_1fr]">
+          <dl className="grid grid-cols-2 gap-2 rounded border border-slate-200 p-2 md:grid-cols-1">
+            <div><dt className="text-slate-600">Semana</dt><dd className="text-lg font-bold">{s.status === "fin" || s.status === "quiebra" ? "Terminada" : `${s.week} de ${SEASON_WEEKS}`}</dd></div>
+            <div><dt className="text-slate-600">Nivel de servicio (reputación)</dt><dd className="text-lg font-bold">{serviceLevelToDate(s).toLocaleString("es-ES")} %</dd></div>
+          </dl>
+          <div className="rounded border border-slate-200 p-2" aria-label="Beneficio">
+            <p className="text-xs font-semibold uppercase text-slate-600">Beneficio · cuenta de resultados</p>
+            <dl className="mt-1 grid grid-cols-2 gap-2">
+              <div><dt className="text-slate-600">Última semana</dt><dd className={`text-lg font-bold ${(last?.result ?? 0) < 0 ? "text-rose-700" : "text-emerald-700"}`}>{last ? fmtEur(last.result) : "—"}</dd></div>
+              <div><dt className="text-slate-600">Acumulado</dt><dd className={`text-lg font-bold ${s.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(s.result)}</dd></div>
+            </dl>
+          </div>
+          <div className="rounded border border-slate-200 p-2" aria-label="Tesorería">
+            <p className="text-xs font-semibold uppercase text-slate-600">Tesorería · caja</p>
+            <dl className="mt-1 grid grid-cols-3 gap-2">
+              <div><dt className="text-slate-600">Caja</dt><dd className={`text-lg font-bold ${s.cash < 0 ? "text-rose-700" : ""}`}>{fmtEur(s.cash)}</dd></div>
+              <div><dt className="text-slate-600">Por cobrar</dt><dd className="font-semibold">{fmtEur(sum(pendingReceivables(s).map((i) => i.amount)))}</dd></div>
+              <div><dt className="text-slate-600">Por pagar</dt><dd className="font-semibold">{fmtEur(sum(pendingPayables(s).map((p) => p.amount)) + s.accruedFixed)}</dd></div>
+            </dl>
+          </div>
+        </div>
         {message && <p role="status" className="rounded bg-amber-50 p-2 text-sm text-amber-900">{message}</p>}
       </header>
 

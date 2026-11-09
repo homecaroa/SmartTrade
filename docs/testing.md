@@ -108,3 +108,19 @@ Las pruebas de la fase 1 que dependían del final en la semana 6 se adaptaron ex
 **Compatibilidad real:** 10 partidas generadas con el motor publicado (`main`) y cargadas con el nuevo. Las 7 jugadas con cuidado conservan las semanas 1–6 idénticas y continúan en la semana 7. Las 3 de «aceptarlo todo» terminan ahora por la nueva derrota por servicio.
 
 **Navegador:** temporada completa en escritorio y a 390 px, con calculadora, historial y prima visibles, sin errores ni peticiones externas.
+
+## Simulador: negociación, documentación y tesorería (09/11/2026)
+`npm test` → **44 archivos, 521 pruebas correctas**; `tsc` y `next build` sin errores. `tests/sim.test.ts` pasa a 46 pruebas:
+- **Negociación:** aceptar, contraofertar o irse según el límite oculto; el límite es reproducible; cobrar a 30 días cuesta; el plazo no se negocia en transporte ni pasa de 60 días; dos rondas; el contrato recoge lo pactado; negociar gana más que no hacerlo, pero no siempre.
+- **Documentación:**
+  - calificación en transporte y almacén;
+  - la carta de porte sustituye al documento de control;
+  - las sanciones cuadran en caja y resultados;
+  - las aceptaciones antiguas no se penalizan y no se aceptan documentos inexistentes.
+- **Tesorería:** sus conceptos explican la variación de caja de cada semana; beneficio y caja difieren.
+
+**Mutaciones en rojo:** el cliente nunca se va, cobrar antes no cuesta, la carta de porte no sustituye al documento de control, sanción que no sale de caja y partidas antiguas penalizadas.
+
+**Compatibilidad:** 21 partidas generadas con el motor publicado se reproducen idénticas.
+
+**Navegador** (`next start`, escritorio y 390 px): negociación aceptada por el cliente, documentación al confirmar, cierre de semana con beneficio y tesorería separados, tablas de finanzas, sin errores ni desbordamiento.
