@@ -32,6 +32,8 @@ export interface Offer {
   note?: string;
   /** El cliente aceptó tus condiciones: falta que confirmes (con la documentación). */
   agreed?: boolean;
+  /** Viaje puntual (v2): carga que el mismo cliente te ofrece para la vuelta, si la hay. */
+  backhaul?: { pallets: number; price: number };
 }
 
 export interface Contract extends Offer {
@@ -43,6 +45,8 @@ export interface Contract extends Offer {
   docIssues?: ("sin_control" | "sin_albaran")[];
   /** La consecuencia de la documentación que faltaba ya ocurrió (solo una vez por contrato). */
   docPenalized?: boolean;
+  /** Viaje puntual: aceptaste también la carga de retorno. */
+  withBackhaul?: boolean;
 }
 
 export interface Invoice { id: string; contractId: string; clientId: string; amount: number; week: number; dueWeek: number; payWeek: number; paidWeek?: number }
@@ -112,7 +116,7 @@ export interface SimState {
 }
 
 export type Action =
-  | { t: "aceptar"; oferta: string; docs?: string[] }
+  | { t: "aceptar"; oferta: string; docs?: string[]; retorno?: boolean }
   | { t: "proponer"; oferta: string; tarifa: number; semanas: number; plazo: number }
   | { t: "responder"; incidencia: string; opcion: string }
   | { t: "pregunta"; pregunta: string; opcion: string }

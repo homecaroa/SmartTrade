@@ -24,20 +24,20 @@ const incidentChoice: Record<Strategy, Record<string, string>> = {
 };
 
 /** Margen por unidad de capacidad: €/km recorrido sobre el coste variable, o €/palé/semana. */
-const unitMargin = (o: Offer) => (o.kind === "distribucion" ? o.ratePerKm! - P.variablePerKm : o.kind === "puntual" ? o.price! / (2 * o.kmOneWay!) - P.variablePerKm : o.palletRate!);
+const unitMargin = (o: Offer) => (o.kind === "distribucion" ? o.ratePerKm! - P.variablePerKm : o.kind === "puntual" ? (o.price! + (o.backhaul?.price ?? 0)) / (2 * o.kmOneWay!) - P.variablePerKm : o.palletRate!);
 
-export function play(seed: number, strategy: Strategy): { state: SimState; actions: Action[]; maxGap: number } {
-  let s = newGame(seed);
+export function play(seed: number, strategy: Strategy, version?: number): { state: SimState; actions: Action[]; maxGap: number } {
+  let s = newGame(seed, version);
   const actions: Action[] = [];
   let maxGap = 0;
   const run = (a: Action) => { actions.push(a); s = apply(s, a); maxGap = Math.max(maxGap, Math.abs(balanceGap(s))); };
   for (let guard = 0; guard < 400 && (s.status === "jugando" || s.status === "incidencia"); guard++) {
     if (s.status === "incidencia" && s.pending) { run({ t: "responder", incidencia: s.pending.id, opcion: incidentChoice[strategy][s.pending.kind] }); continue; }
-    const accept = (o: Offer) => run({ t: "aceptar", oferta: o.id, docs: strategy === "codiciosa" ? [] : bestDocs(o.kind) });
+    const accept = (o: Offer) => run({ t: "aceptar", oferta: o.id, docs: strategy === "codiciosa" ? [] : bestDocs(o.kind), ...(o.backhaul ? { retorno: true } : {}) });
     if (strategy === "selectiva" || strategy === "negociadora") {
       const byMargin = () => [...s.offers].sort((a, b) => unitMargin(b) - unitMargin(a));
       for (const want of ["correcta", "razonable"] as const) for (const o0 of byMargin()) {
-        if (gradeOffer(s, o0).grade !== want) continue;
+        if (gradeOffer(s, o0, !!o0.backhaul).grade !== want) continue;
         let o: Offer | undefined = o0;
         if (strategy === "negociadora") {
           const t = termsOf(o0);

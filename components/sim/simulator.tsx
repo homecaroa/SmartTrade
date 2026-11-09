@@ -35,7 +35,7 @@ export function Simulator() {
     } catch { /* sin almacenamiento: se juega sin guardar */ }
     setLoaded(true);
   }, []);
-  useEffect(() => { if (game) try { window.localStorage.setItem(SAVE_KEY, JSON.stringify(toSave(game.seed, game.actions))); } catch { /* sin guardar */ } }, [game]);
+  useEffect(() => { if (game) try { window.localStorage.setItem(SAVE_KEY, JSON.stringify(toSave(game.seed, game.actions, game.state.version))); } catch { /* sin guardar */ } }, [game]);
 
   const start = (seed: number) => { setGame({ seed, actions: [], state: newGame(seed) }); setTab("semana"); setLastWeek(null); setMessage(null); };
   const act = (a: Action) => {
@@ -50,7 +50,7 @@ export function Simulator() {
   };
   const exportFile = () => {
     if (!game) return;
-    const blob = new Blob([JSON.stringify(toSave(game.seed, game.actions), null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(toSave(game.seed, game.actions, game.state.version), null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
     a.download = `smartrade-partida-${game.seed}-semana-${game.state.week}.json`;

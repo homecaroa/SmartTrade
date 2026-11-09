@@ -117,6 +117,7 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
   const [weeks, setWeeks] = useState(String(o.weeks));
   const [pay, setPay] = useState(o.payWeeks);
   const [docs, setDocs] = useState<string[]>([]);
+  const [backhaul, setBackhaul] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const rounds = o.round ?? 0;
   const propose = () => {
@@ -132,7 +133,7 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
     <article className={`space-y-1 rounded-lg border bg-white p-3 text-sm shadow-sm ${o.agreed ? "border-emerald-400" : "border-slate-200"}`}>
       <p className="flex flex-wrap items-center gap-2"><span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-semibold">{KIND[o.kind]}</span><b>{c.name}</b><span className="text-xs text-slate-600">({c.sector})</span></p>
       {o.kind === "distribucion" && <p>{o.kmWeek} km por semana (retornos incluidos) a <b>{n2(o.ratePerKm!)} €/km</b> durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
-      {o.kind === "puntual" && <p>Un viaje de {o.kmOneWay} km de ida; <b>vuelves en vacío</b> ({kmOf(o)} km recorridos) por <b>{fmtEur(o.price!)}</b>.</p>}
+      {o.kind === "puntual" && <p>Un viaje de {o.kmOneWay} km de ida ({kmOf(o)} km recorridos con la vuelta) por <b>{fmtEur(o.price!)}</b>. {o.backhaul ? <>El cliente ofrece una <b>carga de retorno</b>: {o.backhaul.pallets} palés por <b>{fmtEur(o.backhaul.price)}</b> más.</> : <>La vuelta es <b>en vacío</b>.</>}</p>}
       {o.kind === "almacenaje" && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (manipulación incluida) durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
       <p className="text-xs text-slate-600">Pago a {payTermLabel(o.payWeeks)} · {h.paid || h.overdue ? <><b>Tu experiencia:</b> {historyText(h)}</> : h.invoices ? <><b>Ya trabajas con este cliente:</b> aún no ha vencido ninguna factura. Referencias: {o.clientHint}</> : o.clientHint}</p>
       {o.note && <p className={`rounded p-1.5 text-xs ${o.agreed ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900"}`}><b>{c.name.replace(" (ficticia)", "")}:</b> {o.note} {o.agreed ? "Confirma la operación preparando la documentación." : `Su oferta inicial era ${n2(base.rate)} ${UNIT[o.kind]}.`}</p>}
@@ -160,7 +161,8 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
       )}
 
       {mode === "documentar" && (
-        <form className="space-y-1 rounded border border-slate-200 p-2" onSubmit={(e) => { e.preventDefault(); onAction({ t: "aceptar", oferta: o.id, docs }); }}>
+        <form className="space-y-1 rounded border border-slate-200 p-2" onSubmit={(e) => { e.preventDefault(); onAction({ t: "aceptar", oferta: o.id, docs, ...(backhaul ? { retorno: true } : {}) }); }}>
+          {o.backhaul && <label className={box}><input type="checkbox" checked={backhaul} onChange={(e) => setBackhaul(e.target.checked)} className="mt-0.5" /><span>Traer también la carga de retorno ({o.backhaul.pallets} palés, +{fmtEur(o.backhaul.price)})</span></label>}
           <fieldset className="space-y-1">
             <legend className="text-xs font-semibold">¿Qué documentación preparas para esta operación?</legend>
             {displayOrder(docsFor(o.kind), `${s.seed}:${o.id}:docs`).map((d) => (

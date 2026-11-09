@@ -258,7 +258,7 @@ describe("guardado", () => {
     expect(parseSave({ hola: 1 }).ok).toBe(false);
     expect(parseSave({ app: "smartrade-simulador", seed: 1, actions: [{ t: "borrar" }] }).ok).toBe(false);
     const old = parseSave({ app: "smartrade-simulador", version: 0, seed: 1, actions: [] });
-    expect(old.ok && old.warning).toMatch(/versión 0/);
+    expect(old.ok && old.warning).toMatch(/versión 0/); // versión desconocida: se reproduce con la actual y avisa
     const bad: Action[] = [{ t: "cerrar" }, { t: "aceptar", oferta: "no-existe" }, { t: "cerrar" }];
     expect(restore(toSave(1, bad))).toMatchObject({ dropped: 2 });
   });
@@ -405,5 +405,74 @@ describe("beneficio frente a tesorería", () => {
     const { state } = play(48213, "nada");
     expect(cashByConcept(state, 1)["Fianza del almacén"]).toBe(-P.deposit);
     expect(state.weeks[0].result).not.toBe(state.weeks[0].cashEnd - P.initialCash);
+  });
+});
+
+// Viajes puntuales v2 y versiones de reglas (09/11/2026). Una partida guardada se reproduce con SU versión.
+describe("viajes puntuales (v2) y versiones de reglas", () => {
+  const puntuales = (v: number) => SEEDS.slice(0, 100).flatMap((sd) => Array.from({ length: 26 }, (_, w) => offersFor(sd, w + 1, 100, v))).flat().filter((o) => o.kind === "puntual");
+  const perKm = (o: Offer, back = false) => (o.price! + (back ? o.backhaul?.price ?? 0 : 0)) / (2 * o.kmOneWay!);
+  it("en la v2 hay viajes buenos y malos, ninguno por debajo del gasóleo, y en torno al 40 % con carga de retorno", () => {
+    const ps = puntuales(2);
+    const good = ps.filter((o) => perKm(o) >= TRUCK_FULL_COST_PER_KM).length / ps.length;
+    expect(good).toBeGreaterThan(0.3);
+    expect(good).toBeLessThan(0.8);
+    expect(ps.every((o) => perKm(o) >= P.variablePerKm)).toBe(true);
+    const withBack = ps.filter((o) => o.backhaul).length / ps.length;
+    expect(withBack).toBeGreaterThan(0.3);
+    expect(withBack).toBeLessThan(0.5);
+  });
+  it("la v1 sigue generando exactamente las mismas ofertas que antes (sin carga de retorno)", () => {
+    expect(puntuales(1).some((o) => o.backhaul)).toBe(false);
+    for (const sd of SEEDS.slice(0, 20)) for (let w = 1; w <= 26; w++) {
+      const v1 = offersFor(sd, w, 100, 1), v2 = offersFor(sd, w, 100, 2);
+      expect(v1.map((o) => [o.id, o.kind, o.clientId])).toEqual(v2.map((o) => [o.id, o.kind, o.clientId])); // solo cambian los precios de los puntuales
+      v1.forEach((o, i) => { if (o.kind !== "puntual") expect(o).toEqual(v2[i]); });
+    }
+  });
+  it("traer la carga de retorno suma su precio a la factura; sin ella, se avisa de lo que se deja pasar", () => {
+    const seed = SEEDS.find((sd) => newGame(sd).offers.some((o) => o.backhaul))!;
+    const g = newGame(seed);
+    const o = g.offers.find((x) => x.backhaul)!;
+    const run = (retorno: boolean) => apply(apply(g, { t: "aceptar", oferta: o.id, docs: bestDocs("puntual"), ...(retorno ? { retorno } : {}) }), { t: "cerrar" });
+    const withB = run(true), without = run(false);
+    const inv = (s: SimState) => s.receivables.filter((i) => i.contractId === o.id).reduce((a, i) => a + i.amount, 0);
+    expect(inv(withB) - inv(without)).toBeCloseTo(o.backhaul!.price, 2);
+    expect(without.learning.find((l) => l.what.startsWith("Aceptar"))!.feedback).toMatch(/carga de retorno/);
+    expect(() => apply(g, { t: "aceptar", oferta: g.offers.find((x) => !x.backhaul)!.id, retorno: true })).toThrow();
+  });
+  it("una partida guardada en v1 se reproduce con las reglas v1, sin aviso; una versión desconocida avisa", () => {
+    const { actions, state } = play(77, "selectiva", 1);
+    const p = parseSave(JSON.parse(JSON.stringify(toSave(77, actions, 1))));
+    expect(p.ok && p.warning).toBeNull();
+    if (!p.ok) return;
+    const r = restore(p.save);
+    expect(r.state.version).toBe(1);
+    expect(JSON.stringify(r.state)).toBe(JSON.stringify(state));
+    const future = parseSave({ app: "smartrade-simulador", version: 99, seed: 1, actions: [] });
+    expect(future.ok && future.warning).toMatch(/versión 99/);
+  });
+  it("las partidas nuevas empiezan con la versión actual", () => {
+    expect(newGame(1).version).toBe(2);
+  });
+});
+
+describe("guardado de todas las acciones", () => {
+  it("una partida con negociación, documentación y carga de retorno se guarda y se recupera entera", () => {
+    // Fallo en producción hasta el 09/11/2026: «proponer» no se reconocía y la partida no se podía cargar.
+    for (const sd of SEEDS.slice(0, 10)) {
+      const { actions, state } = play(sd, "negociadora");
+      expect(actions.some((a) => a.t === "proponer")).toBe(true);
+      const p = parseSave(JSON.parse(JSON.stringify(toSave(sd, actions, state.version))));
+      expect(p.ok).toBe(true);
+      if (!p.ok) return;
+      const r = restore(p.save);
+      expect(r.dropped).toBe(0);
+      expect(JSON.stringify(r.state)).toBe(JSON.stringify(state));
+    }
+  }, 60_000);
+  it("rechaza acciones con campos de tipo incorrecto", () => {
+    expect(parseSave({ app: "smartrade-simulador", version: 2, seed: 1, actions: [{ t: "proponer", oferta: "s1-1", tarifa: "mucho", semanas: 4, plazo: 4 }] }).ok).toBe(false);
+    expect(parseSave({ app: "smartrade-simulador", version: 2, seed: 1, actions: [{ t: "aceptar", oferta: "s1-1", docs: "porte" }] }).ok).toBe(false);
   });
 });

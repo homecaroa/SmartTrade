@@ -124,3 +124,17 @@ Las pruebas de la fase 1 que dependían del final en la semana 6 se adaptaron ex
 **Compatibilidad:** 21 partidas generadas con el motor publicado se reproducen idénticas.
 
 **Navegador** (`next start`, escritorio y 390 px): negociación aceptada por el cliente, documentación al confirmar, cierre de semana con beneficio y tesorería separados, tablas de finanzas, sin errores ni desbordamiento.
+
+## Simulador: viajes puntuales v2 y guardado (09/11/2026)
+`npm test` → **44 archivos, 528 pruebas correctas**; `tsc` y `next build` sin errores. Nuevas en `tests/sim.test.ts`:
+- **Viajes puntuales v2:** reparto de precios y porcentaje con carga de retorno.
+- **Compatibilidad:** la v1 genera las mismas ofertas que antes.
+- **Carga de retorno:** suma su precio a la factura, y aceptar un retorno inexistente se rechaza.
+- **Versiones:** una partida v1 se reproduce con v1 sin aviso; una versión desconocida avisa.
+- **Guardado:** una partida con negociación, documentación y retorno se guarda y se recupera entera, y se rechazan campos de tipo incorrecto.
+
+**Mutación en rojo:** quitar el reconocimiento de «proponer» en el guardado, que era el fallo de producción.
+
+**Compatibilidad real:** 28 partidas generadas con el motor publicado se reproducen idénticas, textos incluidos.
+
+**Navegador:** partida nueva con carga de retorno; negociación, documentación y retorno; la partida se recupera al recargar.
