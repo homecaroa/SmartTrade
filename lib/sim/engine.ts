@@ -1,4 +1,5 @@
 import { round2, sum } from "../learning/money";
+import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validateProposal, withTerms, type Terms } from "./deal";
 import { clientOf, kmOf, offersFor } from "./market";
 import type { Action, Contract, Grade, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
 import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, OBJECTIVES, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
@@ -130,9 +131,42 @@ export function apply(prev: SimState, a: Action): SimState {
     const o = s.offers.find((x) => x.id === a.oferta);
     if (!o) throw new Error("Oferta no disponible.");
     const g = gradeOffer(s, o);
-    s.contracts.push({ ...o, startWeek: o.week, endWeek: o.week + o.weeks - 1 });
-    s.offers = s.offers.filter((x) => x.id !== o.id);
+    const contract: Contract = { ...o, startWeek: o.week, endWeek: o.week + o.weeks - 1 };
     learn(s, { week: s.week, what: `Aceptar: ${describeOffer(o)}`, answer: "Aceptada", grade: g.grade, feedback: g.feedback, competences: o.kind === "almacenaje" ? ["0625-RA3", "0623-RA7"] : ["0622-RA2", "0622-RA3", "0623-RA7"] });
+    // Documentación: solo si la acción la trae (las aceptaciones guardadas antes del 09/11/2026 no la tenían).
+    if (a.docs) {
+      const valid = new Set(docsFor(o.kind).map((d) => d.id));
+      if (a.docs.some((d) => !valid.has(d))) throw new Error("Documento no válido para esta operación.");
+      const d = gradeDocs(o.kind, a.docs);
+      contract.docs = [...a.docs];
+      contract.docIssues = d.issues;
+      learn(s, { week: s.week, what: `Documentación: ${clientOf(o.clientId).name}`, answer: a.docs.map((id) => docsFor(o.kind).find((x) => x.id === id)!.label).join(", ") || "Ninguna", grade: d.grade, feedback: d.feedback.join(" "), competences: o.kind === "almacenaje" ? ["0625-RA1", "0625-RA2"] : ["0622-RA5"] });
+    }
+    s.contracts.push(contract);
+    s.offers = s.offers.filter((x) => x.id !== o.id);
+    return s;
+  }
+  if (a.t === "proponer") {
+    if (s.status !== "jugando") throw new Error(s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.");
+    const o = s.offers.find((x) => x.id === a.oferta);
+    if (!o) throw new Error("Oferta no disponible.");
+    const p: Terms = { rate: a.tarifa, weeks: o.kind === "puntual" ? 1 : a.semanas, payWeeks: a.plazo };
+    const invalid = validateProposal(o, p);
+    if (invalid) throw new Error(invalid);
+    const reply = respond(s.seed, o, p);
+    const base = originalTerms(o);
+    const name = clientOf(o.clientId).name;
+    if (reply.kind === "rechaza") {
+      s.offers = s.offers.filter((x) => x.id !== o.id);
+      learn(s, { week: s.week, what: `Negociación con ${name}`, answer: `Propusiste ${n2(p.rate)}`, grade: "razonable", feedback: `${reply.message} Pedir más es legítimo, pero hay que conocer el margen del cliente: has perdido la operación.`, competences: ["0824-RA3"] });
+      return s;
+    }
+    const updated: Offer = { ...withTerms(o, reply.terms), original: base, round: (o.round ?? 0) + 1, note: reply.message, agreed: reply.kind === "acepta" };
+    s.offers = s.offers.map((x) => (x.id === o.id ? updated : x));
+    if (reply.kind === "acepta") {
+      const gain = round2((reply.terms.rate / base.rate - 1) * 100);
+      learn(s, { week: s.week, what: `Negociación con ${name}`, answer: `Propusiste ${n2(p.rate)}`, grade: gain >= 0 ? "correcta" : "razonable", feedback: gain > 0 ? `Acuerdo un ${n2(gain)} % por encima de su tarifa inicial.` : gain === 0 ? "Acuerdo con la tarifa inicial y tus condiciones." : `Acuerdo, pero ${n2(-gain)} % por debajo de su tarifa inicial: has cedido precio sin necesidad.`, competences: ["0824-RA3"] });
+    }
     return s;
   }
   if (a.t === "pregunta") {
@@ -233,6 +267,17 @@ function resolveWeek(s: SimState) {
   if (rejected > 0) notes.push(`${rejected} palés no caben en el almacén: no se facturan.`);
   for (const c of breached) if (c.cancelledWeek === undefined && c.endWeek > w) { c.cancelledWeek = w + 1; notes.push(`${clientOf(c.clientId).name} cancela su contrato porque no se cumplió lo pactado.`); }
 
+  // Documentación que falta: una vez por contrato puede aparecer la consecuencia (inspección o reclamación), según la semilla.
+  let costPenalties = 0;
+  for (const c of s.contracts.filter((x) => activeIn(x, w) && x.docIssues?.length && !x.docPenalized)) {
+    const issue = c.docIssues![0];
+    if (stream(s.seed, w, `documentos-${c.id}`)() < DOC_RISK[issue].chance) {
+      c.docPenalized = true;
+      costPenalties += DOC_RISK[issue].cost;
+      notes.push(`${clientOf(c.clientId).name}: ${DOC_RISK[issue].text}`);
+    }
+  }
+
   // Facturas: vencen según el plazo pactado; un cliente tardío paga 1-3 semanas después (según la semilla).
   for (const { c, amount } of invoices) {
     const due = w + c.payWeeks;
@@ -247,12 +292,13 @@ function resolveWeek(s: SimState) {
   const costSubcontract = round2(kmSub * P.subcontractPerKm);
   if (kmSub > 0) s.payables.push({ id: `p${w}-sub`, label: `Subcontratista (${kmSub} km)`, amount: costSubcontract, week: w, dueWeek: w + P.transportPayWeeks });
   move("Gasóleo, mantenimiento y peajes", -costVariable);
+  if (costPenalties) move("Sanciones y reclamaciones por documentación", -costPenalties);
   if (repair) move("Reparación del camión", -repair);
   s.accruedFixed = round2(s.accruedFixed + FIXED_PER_WEEK);
   s.truckValue = round2(s.truckValue - P.amortizationWeek);
   revenueTransport = round2(revenueTransport);
   revenueWarehouse = round2(revenueWarehouse);
-  const result = round2(revenueTransport + revenueWarehouse - costVariable - costSubcontract - repair - FIXED_PER_WEEK - P.amortizationWeek);
+  const result = round2(revenueTransport + revenueWarehouse - costVariable - costSubcontract - repair - costPenalties - FIXED_PER_WEEK - P.amortizationWeek);
   s.result = round2(s.result + result);
 
   // Caja: cobros y pagos que vencen esta semana; fijos cada 4 semanas.
@@ -268,7 +314,7 @@ function resolveWeek(s: SimState) {
 
   const rec: WeekRecord = {
     week: w, kmCapacity: capacity, kmCommitted: kmCommitted(s, w), kmOwn, kmSubcontracted: kmSub, kmUnserved, palletsCommitted: palletsCommitted(s, w), palletsStored: stored,
-    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: FIXED_PER_WEEK, amortization: P.amortizationWeek, result,
+    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: FIXED_PER_WEEK, costPenalties, amortization: P.amortizationWeek, result,
     collections: round2(collections), payments: round2(payments), cashEnd: s.cash, serviceLevel, notes,
   };
   s.weeks.push(rec);
@@ -283,6 +329,8 @@ function resolveWeek(s: SimState) {
 }
 
 // ── Lecturas para la interfaz y las pruebas ───────────────────────────────────────────────────────────────────────
+
+export { bestDocs };
 
 export function describeOffer(o: Offer): string {
   const c = clientOf(o.clientId).name;
@@ -340,4 +388,17 @@ export function clientHistory(s: SimState, clientId: string) {
   const late = paid.filter((i) => i.paidWeek! > i.dueWeek);
   const overdue = inv.filter((i) => i.paidWeek === undefined && i.dueWeek < s.week);
   return { invoices: inv.length, paid: paid.length, paidLate: late.length, maxDelayWeeks: Math.max(0, ...late.map((i) => i.paidWeek! - i.dueWeek)), overdue: overdue.length };
+}
+
+/** Caja al empezar una semana: la del cierre anterior (o la inicial). */
+export const cashStart = (s: SimState, week: number) => (week <= 1 ? P.initialCash : s.weeks.find((w) => w.week === week - 1)?.cashEnd ?? P.initialCash);
+
+/** Movimientos de caja de una semana agrupados por concepto (tesorería, separada de la cuenta de resultados). */
+export function cashByConcept(s: SimState, week: number) {
+  const groups: Record<string, number> = {};
+  for (const m of s.ledger.filter((x) => x.week === week)) {
+    const k = m.amount > 0 ? "Cobros de clientes" : /^Pago: Subcontratista/.test(m.label) ? "Pagos a subcontratistas" : m.label;
+    groups[k] = round2((groups[k] ?? 0) + m.amount);
+  }
+  return groups;
 }

@@ -334,6 +334,40 @@ Construida en `lib/sim` (motor), `components/sim` y `/simulador`. Pruebas en `te
 | Aceptarlo todo | 0 | 500 (servicio) |
 | No hacer nada | 0 | 500 (caja) |
 
+## 17 quater. Negociación, documentación y beneficio frente a tesorería (09/11/2026, petición del dueño)
+
+**Beneficio y tesorería, separados en todas las vistas.** La cabecera, el resumen de la semana y la pestaña de finanzas
+distinguen:
+- **lo ganado** (devengo: facturado − gastos);
+- **lo cobrado y pagado** (caja al empezar + cobros − pagos = caja al cerrar), con su tabla de tesorería por conceptos.
+
+**Negociación** (`lib/sim/deal.ts`):
+- Cada oferta se puede aceptar tal cual o negociar: tarifa, duración y, en almacenaje, plazo de pago (30 o 60 días).
+- En el transporte el plazo no se negocia: mora a los 30 días, Ley 15/2009, art. 41.
+- **El cliente tiene un límite oculto** por oferta, fijado por la semilla: paga hasta un 0–18 % más y acepta como mucho 0–4 semanas más de duración.
+- Si pides dentro del límite, acepta. Si pides hasta un 4 % por encima, hace una contraoferta (dos rondas como máximo). Si pides más, se va con otro transportista.
+- Cobrar a 30 días en vez de 60 le cuesta al cliente: lo compensa pagando un 4 % menos.
+- Todos los porcentajes son **decisiones de diseño**. Primero se probó con un margen de rechazo del 12 %, pero entonces pedir siempre un 12 % más no tenía riesgo (la estrategia negociadora ganaba 357 de 500 temporadas). Con el 4 %, la negociadora gana 268 de 500 frente a 230 de la selectiva: negociar compensa, pero tiene riesgo.
+
+**Documentación de cada operación** (al aceptarla):
+- **Transporte:**
+  - documento de control del envío, obligatorio a bordo (Orden FOM/2861/2012, arts. 1, 3, 8 y 9), o una carta de porte que lo incluya (art. 2.2; Ley 15/2009, art. 10);
+  - recibo de entrega (Ley 15/2009, art. 12);
+  - el CMR (internacional) y el DUA no corresponden.
+- **Almacenaje:** albarán de entrada con recuento y estado, condiciones por escrito y registro de existencias. Son **buena práctica**: no se ha verificado una obligación legal concreta.
+- **Consecuencias de lo que falta**, una vez por contrato y según la semilla (12 % semanal):
+  - inspección en carretera con sanción de 400 € (importe **simulado**: la sanción real depende del régimen sancionador del transporte, no verificado);
+  - reclamación de palés de 300 € (simulado).
+
+**Compatibilidad:**
+- Las aceptaciones guardadas sin documentación (partidas anteriores) no se califican ni se penalizan.
+- La negociación usa sorteos propios.
+- Comprobado: 21 partidas generadas por el motor publicado se reproducen idénticas.
+
+**Pendiente de verificar:**
+- La Orden TRM/282/2026 modificó en marzo de 2026 la Orden FOM/2861/2012. Solo se ha leído su efecto sobre el art. 7, y una fuente secundaria habla de documento de control electrónico.
+- El importe real de las sanciones.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.

@@ -1,4 +1,4 @@
-import { balanceGap, pendingPayables, pendingReceivables } from "@/lib/sim/engine";
+import { balanceGap, cashByConcept, cashStart, pendingPayables, pendingReceivables } from "@/lib/sim/engine";
 import { clientOf } from "@/lib/sim/market";
 import type { SimState } from "@/lib/sim/model";
 import { fmtEur, sum } from "@/lib/learning/money";
@@ -13,23 +13,42 @@ export function FinanceView({ s }: { s: SimState }) {
   return (
     <div className="space-y-4">
       <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="pyg">
-        <h2 id="pyg" className="text-base font-semibold">Cuenta de resultados por semana</h2>
+        <h2 id="pyg" className="text-base font-semibold">Beneficio: cuenta de resultados por semana</h2>
         {s.weeks.length === 0 ? <p className="text-sm text-slate-600">Aún no has cerrado ninguna semana.</p> : (
           <div className="overflow-x-auto">
             <table className="mt-2 min-w-[40rem] text-sm">
               <caption className="text-left text-xs text-slate-600">Devengo: lo que se gana y se gasta cada semana, se cobre o se pague cuando sea.</caption>
               <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{s.weeks.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}</tr></thead>
               <tbody>
-                {([["Ingresos de transporte", "revenueTransport", 1], ["Ingresos de almacén", "revenueWarehouse", 1], ["Gasóleo, mantenimiento y peajes", "costVariable", -1], ["Subcontratación", "costSubcontract", -1], ["Reparaciones", "costRepair", -1], ["Costes fijos (alquiler, nóminas…)", "costFixed", -1], ["Amortización del camión", "amortization", -1]] as const).map(([label, k, sign]) => (
+                {([["Ingresos de transporte", "revenueTransport", 1], ["Ingresos de almacén", "revenueWarehouse", 1], ["Gasóleo, mantenimiento y peajes", "costVariable", -1], ["Subcontratación", "costSubcontract", -1], ["Reparaciones", "costRepair", -1], ["Sanciones y reclamaciones", "costPenalties", -1], ["Costes fijos (alquiler, nóminas…)", "costFixed", -1], ["Amortización del camión", "amortization", -1]] as const).map(([label, k, sign]) => (
                   <tr key={k} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{label}</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(sign * w[k])}</td>)}</tr>
                 ))}
                 <tr className="font-semibold"><th scope="row" className="py-1 pr-3 text-left">Resultado</th>{s.weeks.map((w) => <td key={w.week} className={`${td} ${w.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(w.result)}</td>)}</tr>
-                <tr><th scope="row" className="py-1 pr-3 text-left font-normal">Caja al cerrar</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(w.cashEnd)}</td>)}</tr>
               </tbody>
             </table>
           </div>
         )}
       </section>
+
+      {s.weeks.length > 0 && (() => {
+        const concepts = [...new Set(s.weeks.flatMap((w) => Object.keys(cashByConcept(s, w.week))))].sort((a, b) => (a === "Cobros de clientes" ? -1 : b === "Cobros de clientes" ? 1 : a.localeCompare(b)));
+        return (
+          <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="tesoreria">
+            <h2 id="tesoreria" className="text-base font-semibold">Tesorería: caja por semana</h2>
+            <div className="overflow-x-auto">
+              <table className="mt-2 min-w-[40rem] text-sm">
+                <caption className="text-left text-xs text-slate-600">Caja: solo el dinero que entra o sale de verdad. No coincide con el beneficio: se cobra y se paga en otras fechas, la fianza sale de caja sin ser gasto y la amortización es gasto sin salir de caja.</caption>
+                <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{s.weeks.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}</tr></thead>
+                <tbody>
+                  <tr className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">Caja al empezar</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(cashStart(s, w.week))}</td>)}</tr>
+                  {concepts.map((k) => <tr key={k} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{k}</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(cashByConcept(s, w.week)[k] ?? 0)}</td>)}</tr>)}
+                  <tr className="font-semibold"><th scope="row" className="py-1 pr-3 text-left">Caja al cerrar</th>{s.weeks.map((w) => <td key={w.week} className={`${td} ${w.cashEnd < 0 ? "text-rose-700" : ""}`}>{fmtEur(w.cashEnd)}</td>)}</tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        );
+      })()}
 
       <div className="grid gap-4 lg:grid-cols-2">
         <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="cobros">

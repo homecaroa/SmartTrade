@@ -1,7 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { apply, balanceGap, breakdownOf, breakdownsOf, clientHistory, gradeOffer, kmCommitted, newGame, replay, seasonOutcome, TRUCK_FULL_COST_PER_KM } from "@/lib/sim/engine";
+import { apply, balanceGap, breakdownOf, breakdownsOf, cashByConcept, cashStart, clientHistory, gradeOffer, kmCommitted, newGame, replay, seasonOutcome, TRUCK_FULL_COST_PER_KM } from "@/lib/sim/engine";
+import { bestDocs, clientLimits, gradeDocs, respond, roundRate, termsOf, validateProposal } from "@/lib/sim/deal";
 import { evaluate } from "@/lib/sim/calc";
 import { kmOf, offersFor, reputationEffect, withReputation } from "@/lib/sim/market";
 import type { Action, Offer, SimState } from "@/lib/sim/model";
@@ -41,8 +42,8 @@ describe("azar con semilla", () => {
 
 describe("contabilidad", () => {
   it("el balance cuadra después de cada acción en todas las partidas simuladas", () => {
-    for (const seed of SEEDS) for (const st of ["nada", "codiciosa", "prudente"] as const) expect(play(seed, st).maxGap).toBe(0);
-  });
+    for (const seed of SEEDS) for (const st of ["nada", "codiciosa", "prudente", "negociadora"] as const) expect(play(seed, st).maxGap).toBe(0);
+  }, 60_000);
   it("los fijos se devengan cada semana y se pagan juntos cada 4 semanas", () => {
     const s = play(11, "nada").state;
     const fixedPay = s.ledger.filter((m) => m.label.startsWith("Alquiler, nóminas"));
@@ -288,5 +289,121 @@ describe("integridad", () => {
   });
   it("cada km de un viaje puntual cuenta la ida y el retorno en vacío", () => {
     expect(kmOf({ id: "x", week: 1, kind: "puntual", clientId: "albufera", clientHint: "", weeks: 1, payWeeks: 4, kmOneWay: 200, price: 400 })).toBe(400);
+  });
+});
+
+// Negociación y documentación (09/11/2026, petición del dueño). Reglas en lib/sim/deal.ts.
+describe("negociación", () => {
+  const firstOf = (seed: number, kind: Offer["kind"]) => { for (let w = 1; w <= 6; w++) { const o = offersFor(seed, w).find((x) => x.kind === kind); if (o) return o; } throw new Error("sin oferta"); };
+  it("dentro del límite acepta; un poco por encima, contraoferta; muy por encima, se va", () => {
+    for (const seed of SEEDS.slice(0, 40)) {
+      const o = firstOf(seed, "distribucion");
+      const lim = clientLimits(seed, o);
+      const t = termsOf(o);
+      expect(respond(seed, o, { ...t, rate: t.rate * lim.maxFactor * 0.999 }).kind).toBe("acepta");
+      const over = respond(seed, o, { ...t, rate: t.rate * lim.maxFactor * 1.02 });
+      expect(over.kind).toBe("contraoferta");
+      expect(over.terms.rate).toBeLessThanOrEqual(roundRate(o.kind, t.rate * lim.maxFactor) + 0.01);
+      expect(respond(seed, o, { ...t, rate: t.rate * 1.25 }).kind).toBe("rechaza"); // por encima del 18 % + 4 % siempre se va
+    }
+  });
+  it("el límite del cliente es el mismo con la misma semilla y oferta", () => {
+    const o = firstOf(5, "almacenaje");
+    expect(clientLimits(5, o)).toEqual(clientLimits(5, o));
+  });
+  it("en almacenaje, cobrar a 30 días en vez de 60 baja lo que el cliente está dispuesto a pagar", () => {
+    const seed = SEEDS.find((sd) => firstOf(sd, "almacenaje").payWeeks === 8)!;
+    const o = firstOf(seed, "almacenaje");
+    const t = termsOf(o);
+    const lim = clientLimits(seed, o);
+    const p = t.rate * lim.maxFactor * 0.99;
+    expect(respond(seed, o, { ...t, rate: p }).kind).toBe("acepta");
+    expect(respond(seed, o, { ...t, rate: p, payWeeks: 4 }).kind).not.toBe("acepta");
+  });
+  it("en el transporte no se puede negociar el plazo de pago ni pasar de 60 días en almacenaje", () => {
+    const o = firstOf(3, "distribucion");
+    expect(validateProposal(o, { ...termsOf(o), payWeeks: 8 })).toMatch(/Ley 15\/2009/);
+    const a = firstOf(3, "almacenaje");
+    expect(validateProposal(a, { ...termsOf(a), payWeeks: 12 })).toMatch(/60 días/);
+  });
+  it("tras dos rondas sin acuerdo, el cliente se va; rechazar quita la oferta y queda registrado", () => {
+    const seed = 21;
+    let s = newGame(seed);
+    const o = s.offers.find((x) => x.kind === "distribucion")!;
+    const lim = clientLimits(seed, o);
+    const ask = (k: number) => { s = apply(s, { t: "proponer", oferta: o.id, tarifa: roundRate(o.kind, o.ratePerKm! * lim.maxFactor * k), semanas: o.weeks, plazo: o.payWeeks }); };
+    ask(1.02); expect(s.offers.find((x) => x.id === o.id)?.round).toBe(1);
+    ask(1.02); expect(s.offers.find((x) => x.id === o.id)?.round).toBe(2);
+    ask(1.02);
+    expect(s.offers.some((x) => x.id === o.id)).toBe(false);
+    expect(s.learning[s.learning.length - 1].what).toMatch(/Negociación/);
+  });
+  it("aceptar tras un acuerdo crea el contrato con las condiciones pactadas", () => {
+    const seed = 33;
+    let s = newGame(seed);
+    const o = s.offers.find((x) => x.kind === "distribucion")!;
+    const want = roundRate(o.kind, o.ratePerKm! * clientLimits(seed, o).maxFactor * 0.99);
+    s = apply(s, { t: "proponer", oferta: o.id, tarifa: want, semanas: o.weeks, plazo: o.payWeeks });
+    expect(s.offers.find((x) => x.id === o.id)!.agreed).toBe(true);
+    s = apply(s, { t: "aceptar", oferta: o.id, docs: bestDocs(o.kind) });
+    expect(s.contracts.find((c) => c.id === o.id)!.ratePerKm).toBe(want);
+  });
+  it("negociar con cabeza compensa, pero no gana siempre", () => {
+    const neg = SEEDS.slice(0, 100).map((sd) => play(sd, "negociadora").state).filter((x) => seasonOutcome(x).victory).length;
+    const sel = SEEDS.slice(0, 100).map((sd) => play(sd, "selectiva").state).filter((x) => seasonOutcome(x).victory).length;
+    expect(neg).toBeGreaterThan(sel);
+    expect(neg).toBeLessThan(100);
+  }, 60_000);
+});
+
+describe("documentación de cada operación", () => {
+  it("transporte: sin documento de control ni carta de porte es error grave; la carta de porte con sus datos basta", () => {
+    expect(gradeDocs("distribucion", []).grade).toBe("grave");
+    expect(gradeDocs("distribucion", ["recibo"]).issues).toEqual(["sin_control"]);
+    expect(gradeDocs("puntual", ["porte", "recibo"])).toMatchObject({ grade: "correcta", issues: [] });
+    expect(gradeDocs("puntual", ["control", "recibo"]).grade).toBe("correcta");
+    expect(gradeDocs("puntual", ["porte", "recibo", "cmr"]).grade).toBe("razonable"); // el CMR es internacional
+  });
+  it("almacenaje: sin albarán de entrada queda el riesgo de reclamación; el documento de control no corresponde", () => {
+    expect(gradeDocs("almacenaje", bestDocs("almacenaje"))).toMatchObject({ grade: "correcta", issues: [] });
+    expect(gradeDocs("almacenaje", ["condiciones", "registro"]).issues).toEqual(["sin_albaran"]);
+    expect(gradeDocs("almacenaje", [...bestDocs("almacenaje"), "control"]).grade).toBe("razonable");
+  });
+  it("la documentación que falta acaba costando dinero (una vez por contrato) y cuadra en caja y en resultados", () => {
+    let hits = 0;
+    for (const seed of SEEDS.slice(0, 60)) {
+      const { state } = play(seed, "codiciosa");
+      const pen = state.weeks.reduce((a, w) => a + w.costPenalties, 0);
+      const cash = state.ledger.filter((m) => m.label.startsWith("Sanciones")).reduce((a, m) => a - m.amount, 0);
+      expect(pen).toBe(cash);
+      expect(state.contracts.filter((c) => c.docPenalized).length * 1).toBeGreaterThanOrEqual(pen > 0 ? 1 : 0);
+      if (pen > 0) hits++;
+      expect(balanceGap(state)).toBe(0);
+    }
+    expect(hits).toBeGreaterThan(0);
+  }, 60_000);
+  it("una aceptación sin documentación (partidas guardadas antes del 09/11/2026) no se califica ni se penaliza", () => {
+    const s = apply(newGame(9), { t: "aceptar", oferta: "s1-1" });
+    expect(s.contracts[0].docs).toBeUndefined();
+    expect(s.contracts[0].docIssues).toBeUndefined();
+    expect(s.learning.some((l) => l.what.startsWith("Documentación"))).toBe(false);
+  });
+  it("no se aceptan documentos que no existen para esa operación", () => {
+    expect(() => apply(newGame(9), { t: "aceptar", oferta: "s1-1", docs: ["inventado"] })).toThrow();
+  });
+});
+
+describe("beneficio frente a tesorería", () => {
+  it("la tesorería por conceptos explica exactamente la variación de caja de cada semana", () => {
+    const { state } = play(48213, "negociadora");
+    for (const w of state.weeks) {
+      const moves = Object.values(cashByConcept(state, w.week)).reduce((a, b) => a + b, 0);
+      expect(Math.round((cashStart(state, w.week) + moves) * 100) / 100).toBe(w.cashEnd);
+    }
+  });
+  it("beneficio y caja difieren: la fianza sale de caja sin ser gasto y la amortización es gasto sin salir de caja", () => {
+    const { state } = play(48213, "nada");
+    expect(cashByConcept(state, 1)["Fianza del almacén"]).toBe(-P.deposit);
+    expect(state.weeks[0].result).not.toBe(state.weeks[0].cashEnd - P.initialCash);
   });
 });
