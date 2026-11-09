@@ -7,6 +7,9 @@
 | Eurostat Comext | **Verificado de principio a fin con datos reales** (18/10/2026): `verify:comext` y la app en modo `comext` con `220421, 150920` → 49 oportunidades válidas, 1 incompleta. Los códigos HS6 siguen la nomenclatura de cada año (150910 no existe desde HS2022). Pendiente: más productos, indicadores de estado. Grecia corregida el 30/10/2026 (Comext usa `GR`). |
 | UN Comtrade | Opcional, sin clave ni llamadas reales. |
 
+## Business Simulator: Fase 0 aprobada (09/11/2026)
+Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valencia, 26 semanas por turnos, azar con semilla, módulo independiente (`lib/sim`). Público: el dueño, alumno de 1.º de Comercio Internacional (módulos 0622, 0623, 0625 y 0627). Normativa leída en el BOE: plazo de mora de 30 días en el transporte (Ley 15/2009, art. 41), máximo de 60 días por pacto (Ley 3/2004, art. 4), responsabilidad y reservas del transportista (Ley 15/2009, arts. 47, 57 y 60); tiempos de conducción del Reglamento (CE) 561/2006 a 31/01/2020 (consolidado pendiente). Siguiente paso: Fase 1, porción jugable de 6 semanas.
+
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.
 - **Currículo oficial leído** (RD 1574/2011, RD 500/2024, Orden EFD/659/2024) y cruzado con los casos: `docs/curriculo.md`. Cobertura alta en Transporte internacional; parcial en Gestión administrativa (solo exportación), Medios de pago, Financiación y Negociación; nula en Marketing, Sistema de información de mercados, Almacenamiento y Comercio digital. Propuesta de huecos ordenada, pendiente de decisión.
