@@ -1,26 +1,41 @@
 import { apply, balanceGap, gradeOffer, newGame, serviceLevelToDate } from "./engine";
-import type { Action, SimState } from "./model";
+import type { Action, Offer, SimState } from "./model";
+import { P } from "./params";
 
 /**
  * Estrategias automáticas para las pruebas de equilibrio (docs/simulador.md §15). Juegan partidas completas con una
  * regla fija y devuelven las acciones, para que el resultado se pueda reproducir.
+ * - nada: no acepta nada.
+ * - codiciosa: acepta todo lo que llega.
+ * - prudente: acepta lo que no es un error grave, en el orden en que llega.
+ * - selectiva: primero las ofertas de mejor margen que cubren el coste completo; las demás, solo si sobra capacidad.
  */
-export type Strategy = "nada" | "codiciosa" | "prudente";
+export type Strategy = "nada" | "codiciosa" | "prudente" | "selectiva";
 
 const incidentChoice: Record<Strategy, Record<string, string>> = {
   nada: { averia: "callar", mora: "esperar" },
   codiciosa: { averia: "callar", mora: "esperar" },
   prudente: { averia: "subcontratar", mora: "reclamar" },
+  selectiva: { averia: "subcontratar", mora: "reclamar" },
 };
+
+/** Margen por unidad de capacidad: €/km recorrido sobre el coste variable, o €/palé/semana. */
+const unitMargin = (o: Offer) => (o.kind === "distribucion" ? o.ratePerKm! - P.variablePerKm : o.kind === "puntual" ? o.price! / (2 * o.kmOneWay!) - P.variablePerKm : o.palletRate!);
 
 export function play(seed: number, strategy: Strategy): { state: SimState; actions: Action[]; maxGap: number } {
   let s = newGame(seed);
   const actions: Action[] = [];
   let maxGap = 0;
   const run = (a: Action) => { actions.push(a); s = apply(s, a); maxGap = Math.max(maxGap, Math.abs(balanceGap(s))); };
-  for (let guard = 0; guard < 100 && (s.status === "jugando" || s.status === "incidencia"); guard++) {
+  for (let guard = 0; guard < 400 && (s.status === "jugando" || s.status === "incidencia"); guard++) {
     if (s.status === "incidencia" && s.pending) { run({ t: "responder", incidencia: s.pending.id, opcion: incidentChoice[strategy][s.pending.kind] }); continue; }
-    if (strategy !== "nada") for (const o of [...s.offers]) if (strategy === "codiciosa" || gradeOffer(s, o).grade !== "grave") run({ t: "aceptar", oferta: o.id });
+    if (strategy === "selectiva") {
+      const byMargin = () => [...s.offers].sort((a, b) => unitMargin(b) - unitMargin(a));
+      for (const o of byMargin()) if (gradeOffer(s, o).grade === "correcta") run({ t: "aceptar", oferta: o.id });
+      for (const o of byMargin()) if (gradeOffer(s, o).grade === "razonable") run({ t: "aceptar", oferta: o.id });
+    } else if (strategy !== "nada") {
+      for (const o of [...s.offers]) if (strategy === "codiciosa" || gradeOffer(s, o).grade !== "grave") run({ t: "aceptar", oferta: o.id });
+    }
     run({ t: "cerrar" });
   }
   return { state: s, actions, maxGap };

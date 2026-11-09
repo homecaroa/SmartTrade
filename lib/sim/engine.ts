@@ -1,7 +1,7 @@
 import { round2, sum } from "../learning/money";
 import { clientOf, kmOf, offersFor } from "./market";
 import type { Action, Contract, Grade, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
-import { ENGINE_VERSION, FIXED_PER_WEEK, P, PHASE1_WEEKS, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
+import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, OBJECTIVES, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
 import { intIn, stream } from "./rng";
 
 /**
@@ -56,11 +56,18 @@ export function gradeOffer(s: Pick<SimState, "contracts">, o: Offer): { grade: G
 
 // ── Incidencias (docs/simulador.md §10) ─────────────────────────────────────────────────────────────────────────────
 
-/** La avería ocurre una vez, entre las semanas 2 y 5, según la semilla. */
-export function breakdownOf(seed: number) {
-  const r = stream(seed, 0, "averia");
-  return { week: intIn(r, 2, 5), days: intIn(r, P.breakdownDays.min, P.breakdownDays.max), repair: intIn(r, P.repair.min, P.repair.max, 50) };
+/**
+ * Averías: una por tramo (BREAKDOWN_WINDOWS), según la semilla. La primera usa exactamente el mismo sorteo e
+ * identificador que en la fase 1 («averia»), para que las partidas guardadas entonces se reproduzcan igual.
+ */
+export function breakdownsOf(seed: number) {
+  return BREAKDOWN_WINDOWS.map((win, k) => {
+    const r = stream(seed, k, "averia");
+    return { id: k === 0 ? "averia" : `averia-${k + 1}`, week: intIn(r, win.from, win.to), days: intIn(r, P.breakdownDays.min, P.breakdownDays.max), repair: intIn(r, P.repair.min, P.repair.max, 50) };
+  });
 }
+export const breakdownOf = (seed: number) => breakdownsOf(seed)[0];
+export const breakdownAt = (seed: number, week: number) => breakdownsOf(seed).find((b) => b.week === week) ?? null;
 
 export const INCIDENT_OPTIONS: Record<"averia" | "mora", IncidentOption[]> = {
   averia: [
@@ -83,11 +90,11 @@ function shortfall(s: SimState, w: number, capacity: number) {
 export function dueIncidents(s: SimState): Incident[] {
   const w = s.week;
   const out: Incident[] = [];
-  const b = breakdownOf(s.seed);
-  if (b.week === w && !s.answers.averia) {
+  const b = breakdownAt(s.seed, w);
+  if (b && !s.answers[b.id]) {
     const cap = TRUCK_KM_WEEK - b.days * P.kmPerDay;
     const short = shortfall(s, w, cap);
-    if (short > 0) out.push({ id: "averia", kind: "averia", week: w, title: "Avería del camión", concept: "Un plan de contingencia (subcontratar, reprogramar, avisar) evita que una avería se convierta en un incumplimiento con el cliente.",
+    if (short > 0) out.push({ id: b.id, kind: "averia", week: w, title: "Avería del camión", concept: "Un plan de contingencia (subcontratar, reprogramar, avisar) evita que una avería se convierta en un incumplimiento con el cliente.",
       prompt: `El camión entra en el taller ${b.days} ${b.days === 1 ? "día" : "días"} (reparación: ${b.repair} €). Esta semana podrás hacer ${cap} km y tienes comprometidos ${kmCommitted(s, w)}: te faltan ${short} km.`, data: { days: b.days, repair: b.repair, short } });
   }
   for (const inv of s.receivables) {
@@ -178,12 +185,12 @@ function resolveWeek(s: SimState) {
   if (w === 1) { move("Fianza del almacén", -P.deposit); s.deposit = P.deposit; }
 
   // Capacidad del camión (avería) y reparto de kilómetros: primero los contratos más antiguos.
-  const b = breakdownOf(s.seed);
-  const broke = b.week === w;
-  const capacity = TRUCK_KM_WEEK - (broke ? b.days * P.kmPerDay : 0);
-  const repair = broke ? b.repair : 0;
-  if (broke) notes.push(`Avería: ${b.days} ${b.days === 1 ? "día" : "días"} en el taller y ${b.repair} € de reparación.`);
-  const decision = s.answers.averia;
+  const b = breakdownAt(s.seed, w);
+  const broke = b !== null;
+  const capacity = TRUCK_KM_WEEK - (b ? b.days * P.kmPerDay : 0);
+  const repair = b ? b.repair : 0;
+  if (b) notes.push(`Avería: ${b.days} ${b.days === 1 ? "día" : "días"} en el taller y ${b.repair} € de reparación.`);
+  const decision = b ? s.answers[b.id] : undefined;
   const transport = s.contracts.filter((c) => activeIn(c, w) && c.kind !== "almacenaje").sort((a, c) => a.startWeek - c.startWeek || (a.kind === c.kind ? a.id.localeCompare(c.id) : a.kind === "distribucion" ? -1 : 1));
   let left = capacity;
   let kmOwn = 0, kmSub = 0, kmUnserved = 0, unservedWeight = 0;
@@ -267,8 +274,10 @@ function resolveWeek(s: SimState) {
   s.weeks.push(rec);
 
   s.negativeWeeks = s.cash < 0 ? s.negativeWeeks + 1 : 0;
-  if (s.negativeWeeks >= 2) { s.status = "quiebra"; return; }
-  if (w >= PHASE1_WEEKS) { s.status = "fin"; return; }
+  s.lowServiceWeeks = serviceLevel < SERVICE_FLOOR.pct ? (s.lowServiceWeeks ?? 0) + 1 : 0;
+  if (s.negativeWeeks >= 2) { s.status = "quiebra"; s.endReason = "La caja ha estado en negativo dos semanas seguidas: no puedes pagar a tus proveedores ni las nóminas."; return; }
+  if (s.lowServiceWeeks >= SERVICE_FLOOR.weeks) { s.status = "quiebra"; s.endReason = `Tu nivel de servicio ha estado por debajo del ${SERVICE_FLOOR.pct} % ${SERVICE_FLOOR.weeks} semanas seguidas: tus clientes clave se van y la empresa no puede seguir.`; return; }
+  if (w >= SEASON_WEEKS) { s.status = "fin"; return; }
   s.week = w + 1;
   s.offers = offersFor(s.seed, s.week, serviceLevelToDate(s));
 }
@@ -292,8 +301,9 @@ export function balanceGap(s: SimState): number {
   return round2(assets - sources);
 }
 
-export function serviceLevelToDate(s: SimState): number {
-  const recent = s.weeks.slice(-8);
+/** Nivel de servicio de las últimas `weeks` semanas (8 por defecto: es la reputación que ven los clientes). */
+export function serviceLevelToDate(s: SimState, weeks = 8): number {
+  const recent = s.weeks.slice(-weeks);
   const committed = recent.reduce((a, r) => a + r.kmCommitted + r.palletsCommitted, 0);
   if (!committed) return 100;
   return round2(recent.reduce((a, r) => a + (r.kmCommitted + r.palletsCommitted) * r.serviceLevel / 100, 0) / committed * 100);
@@ -306,3 +316,28 @@ export function knowledge(s: SimState) {
   return { points: pts, max, pct: max ? round2(pts / max * 100) : 0 };
 }
 
+
+/** Objetivos de temporada (docs/simulador.md §12, revisado el 09/11/2026): beneficio al final y 1 de los otros 2. */
+export function seasonOutcome(s: SimState) {
+  const stored = s.weeks.reduce((a, w) => a + w.palletsStored, 0);
+  const occupancy = s.weeks.length ? round2(stored / (s.weeks.length * P.warehousePallets) * 100) : 0;
+  const service = serviceLevelToDate(s, s.weeks.length);
+  const last8 = round2(s.weeks.slice(-8).reduce((a, w) => a + w.result, 0));
+  const objectives = [
+    { id: "beneficio", label: "Beneficio en las últimas 8 semanas (la empresa ya es viable)", value: last8, ok: last8 > 0, shown: `${n2(last8)} €` },
+    { id: "ocupacion", label: `Ocupación media del almacén de al menos el ${OBJECTIVES.minWarehouseOccupancyPct} %`, value: occupancy, ok: occupancy >= OBJECTIVES.minWarehouseOccupancyPct, shown: `${occupancy.toLocaleString("es-ES")} %` },
+    { id: "servicio", label: `Nivel de servicio de la temporada de al menos el ${OBJECTIVES.minServicePct} %`, value: service, ok: service >= OBJECTIVES.minServicePct, shown: `${service.toLocaleString("es-ES")} %` },
+  ];
+  const met = objectives.filter((o) => o.ok).length;
+  // Se gana con beneficio al final y al menos uno de los otros dos: sin beneficio, la empresa no es viable aunque cumpla.
+  return { objectives, met, victory: s.status === "fin" && objectives[0].ok && met >= 2 };
+}
+
+/** Tu historial con un cliente: lo que ya sabes por experiencia propia (más fiable que las referencias de terceros). */
+export function clientHistory(s: SimState, clientId: string) {
+  const inv = s.receivables.filter((i) => i.clientId === clientId);
+  const paid = inv.filter((i) => i.paidWeek !== undefined);
+  const late = paid.filter((i) => i.paidWeek! > i.dueWeek);
+  const overdue = inv.filter((i) => i.paidWeek === undefined && i.dueWeek < s.week);
+  return { invoices: inv.length, paid: paid.length, paidLate: late.length, maxDelayWeeks: Math.max(0, ...late.map((i) => i.paidWeek! - i.dueWeek)), overdue: overdue.length };
+}

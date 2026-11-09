@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { apply, newGame, serviceLevelToDate } from "@/lib/sim/engine";
 import type { Action, SimState } from "@/lib/sim/model";
-import { PHASE1_WEEKS } from "@/lib/sim/params";
+import { SEASON_WEEKS } from "@/lib/sim/params";
 import { parseSave, restore, SAVE_KEY, toSave } from "@/lib/sim/save";
 import { fmtEur } from "@/lib/learning/money";
 import { SimulatedNotice } from "../learning/simulated-notice";
@@ -78,14 +78,14 @@ export function Simulator() {
   return (
     <div className="space-y-4">
       <header className="space-y-2 rounded-lg bg-white p-4 shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Business Simulator · fase 1 (semanas 1–{PHASE1_WEEKS}) · partida {game.seed}</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Business Simulator · temporada de {SEASON_WEEKS} semanas · partida {game.seed}</p>
         <h1 ref={headingRef} tabIndex={-1} className="text-xl font-bold">Transportes y Almacenes del Turia (ficticia)</h1>
         <SimulatedNotice compact />
         <dl className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
-          <div><dt className="text-slate-600">Semana</dt><dd className="text-lg font-bold">{s.status === "fin" || s.status === "quiebra" ? "Terminada" : `${s.week} de ${PHASE1_WEEKS}`}</dd></div>
+          <div><dt className="text-slate-600">Semana</dt><dd className="text-lg font-bold">{s.status === "fin" || s.status === "quiebra" ? "Terminada" : `${s.week} de ${SEASON_WEEKS}`}</dd></div>
           <div><dt className="text-slate-600">Caja</dt><dd className={`text-lg font-bold ${s.cash < 0 ? "text-rose-700" : ""}`}>{fmtEur(s.cash)}</dd></div>
           <div><dt className="text-slate-600">Resultado acumulado</dt><dd className={`text-lg font-bold ${s.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(s.result)}</dd></div>
-          <div><dt className="text-slate-600">Nivel de servicio</dt><dd className="text-lg font-bold">{serviceLevelToDate(s).toLocaleString("es-ES")} %</dd></div>
+          <div><dt className="text-slate-600">Nivel de servicio (reputación)</dt><dd className="text-lg font-bold">{serviceLevelToDate(s).toLocaleString("es-ES")} %</dd></div>
         </dl>
         {message && <p role="status" className="rounded bg-amber-50 p-2 text-sm text-amber-900">{message}</p>}
       </header>
@@ -114,10 +114,12 @@ function StartScreen({ onStart, onImport, message }: { onStart: (seed: number) =
   return (
     <section className="space-y-4 rounded-lg bg-white p-6 shadow-sm" aria-labelledby="titulo-simulador">
       <h1 id="titulo-simulador" className="text-xl font-bold">Business Simulator</h1>
-      <p className="text-sm">Diriges <b>Transportes y Almacenes del Turia</b> (ficticia), un operador logístico de Valencia: un camión, un almacén de 600 palés, un conductor y un mozo, y 40.000 € en caja. Cada semana eliges qué trabajos aceptas, cobras y pagas. Esta primera fase dura <b>6 semanas</b>.</p>
+      <p className="text-sm">Diriges <b>Transportes y Almacenes del Turia</b> (ficticia), un operador logístico de Valencia: un camión, un almacén de 600 palés, un conductor y un mozo, y 40.000 € en caja. Cada semana eliges qué trabajos aceptas, cobras y pagas. La temporada dura <b>{SEASON_WEEKS} semanas</b>.</p>
       <ul className="list-disc space-y-1 pl-5 text-sm">
         <li>Facturar no es cobrar: el transporte se cobra a 30 días y el alquiler y las nóminas se pagan cada 4 semanas.</li>
         <li>El camión hace unos 1.050 km por semana y el almacén guarda 600 palés: lo que aceptes por encima no se puede servir.</li>
+        <li><b>Para ganar</b>, al final de la temporada la empresa debe dar beneficio (últimas 8 semanas) y cumplir uno de estos dos: nivel de servicio de al menos el 95 % u ocupación media del almacén de al menos el 70 %. Pierdes si te quedas sin caja dos semanas o si tu servicio cae por debajo del 80 % cuatro semanas seguidas.</li>
+        <li>Tu <b>nivel de servicio es tu reputación</b>: si cumples, a partir de la semana 7 los clientes pagan más; si fallas, te llegan menos ofertas y peores.</li>
         <li>Lo que no depende de ti (ofertas, averías, pagos) lo decide la <b>semilla</b> de la partida: con la misma semilla puedes rejugar y comparar estrategias.</li>
       </ul>
       <SimulatedNotice compact />

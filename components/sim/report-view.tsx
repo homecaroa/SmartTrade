@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { knowledge, MONTH_QUESTION, serviceLevelToDate } from "@/lib/sim/engine";
+import { knowledge, MONTH_QUESTION, seasonOutcome, serviceLevelToDate } from "@/lib/sim/engine";
 import type { Action, SimState } from "@/lib/sim/model";
 import { WEEKS_PER_MONTH } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
@@ -25,6 +25,13 @@ export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action)
   const k = knowledge(s);
   const byCompetence = new Map<string, { n: number; pts: number }>();
   for (const e of s.learning) for (const c of e.competences) { const x = byCompetence.get(c) ?? { n: 0, pts: 0 }; x.n++; x.pts += e.grade === "correcta" ? 10 : e.grade === "razonable" ? 6 : 0; byCompetence.set(c, x); }
+  const months = Array.from({ length: Math.ceil(s.weeks.length / WEEKS_PER_MONTH) }, (_, i) => {
+    const ws = s.weeks.slice(i * WEEKS_PER_MONTH, (i + 1) * WEEKS_PER_MONTH);
+    const committed = ws.reduce((a, w) => a + w.kmCommitted + w.palletsCommitted, 0);
+    const service = committed ? Math.round(ws.reduce((a, w) => a + (w.kmCommitted + w.palletsCommitted) * w.serviceLevel, 0) / committed * 10) / 10 : 100;
+    return { n: i + 1, from: ws[0].week, to: ws[ws.length - 1].week, result: ws.reduce((a, w) => a + w.result, 0), collections: ws.reduce((a, w) => a + w.collections, 0), cash: ws[ws.length - 1].cashEnd, service };
+  });
+  const outcome = seasonOutcome(s);
   const own = s.weeks.reduce((a, w) => a + w.kmOwn, 0);
   const capacity = s.weeks.reduce((a, w) => a + w.kmCapacity, 0);
   return (
@@ -40,15 +47,35 @@ export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action)
         </section>
       ) : <p className="rounded-lg bg-white p-4 text-sm text-slate-600 shadow-sm">El informe del mes aparece al cerrar la semana 4.</p>}
 
+      {months.length > 0 && (
+        <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="meses">
+          <h2 id="meses" className="text-base font-semibold">Mes a mes</h2>
+          <div className="overflow-x-auto">
+            <table className="mt-2 min-w-[32rem] text-sm">
+              <caption className="text-left text-xs text-slate-600">Un mes de juego son 4 semanas. Resultado (devengo) frente a caja (cobros y pagos).</caption>
+              <thead><tr className="border-b text-left"><th scope="col" className="py-1 pr-3">Mes</th><th scope="col" className="py-1 pr-3 text-right">Resultado</th><th scope="col" className="py-1 pr-3 text-right">Cobrado</th><th scope="col" className="py-1 pr-3 text-right">Caja al final</th><th scope="col" className="py-1 pr-3 text-right">Servicio</th></tr></thead>
+              <tbody>{months.map((m) => (
+                <tr key={m.n} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{m.n} (sem. {m.from}–{m.to})</th><td className={`py-1 pr-3 text-right tabular-nums ${m.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(m.result)}</td><td className="py-1 pr-3 text-right tabular-nums">{fmtEur(m.collections)}</td><td className="py-1 pr-3 text-right tabular-nums">{fmtEur(m.cash)}</td><td className="py-1 pr-3 text-right tabular-nums">{m.service.toLocaleString("es-ES")} %</td></tr>
+              ))}</tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
       {done && (
         <section className="space-y-3 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="resumen">
-          <h2 id="resumen" className="text-lg font-bold">Resumen final de la fase 1</h2>
+          <h2 id="resumen" className="text-lg font-bold">Resumen final de la temporada</h2>
+          <div className={`rounded border p-3 ${outcome.victory ? "border-emerald-300 bg-emerald-50" : "border-amber-300 bg-amber-50"}`}>
+            <p className="font-semibold">{s.status === "quiebra" ? `Partida terminada en la semana ${s.weeks.length}: ${s.endReason ?? ""}` : outcome.victory ? "¡Temporada ganada!" : "Temporada terminada sin cumplir los objetivos."}</p>
+            <ul className="mt-1 space-y-0.5 text-sm">{outcome.objectives.map((o) => <li key={o.id}>{o.ok ? "✔" : "✘"} {o.label}: <b>{o.shown}</b></li>)}</ul>
+            <p className="mt-1 text-xs text-slate-600">Para ganar hace falta el beneficio de las últimas 8 semanas y al menos uno de los otros dos objetivos.</p>
+          </div>
           <div className="grid gap-3 md:grid-cols-3">
             <div className="rounded border border-slate-200 p-3"><h3 className="text-sm font-semibold">Nota de decisiones</h3><p className="text-2xl font-bold text-indigo-700">{k.pct.toLocaleString("es-ES")} %</p><p className="text-xs text-slate-600">{k.points} de {k.max} puntos (adecuada 10, razonable 6, error importante 0).</p></div>
             <div className="rounded border border-slate-200 p-3"><h3 className="text-sm font-semibold">Resultado empresarial</h3><p className={`text-2xl font-bold ${s.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(s.result)}</p><p className="text-xs text-slate-600">Caja final {fmtEur(s.cash)} · servicio {serviceLevelToDate(s).toLocaleString("es-ES")} % · uso del camión {capacity ? Math.round(own / capacity * 100) : 0} %.</p></div>
             <div className="rounded border border-slate-200 p-3"><h3 className="text-sm font-semibold">Competencias practicadas</h3><ul className="text-xs">{[...byCompetence.entries()].map(([c, x]) => <li key={c}>{COMPETENCE[c] ?? c} ({c}): {Math.round(x.pts / (x.n * 10) * 100)} % en {x.n} {x.n === 1 ? "decisión" : "decisiones"}</li>)}</ul></div>
           </div>
-          <p className="rounded bg-slate-50 p-2 text-xs text-slate-700">Nota y resultado se valoran por separado: una empresa que empieza suele perder dinero las primeras semanas; lo importante es la tendencia y por qué. Es la fase 1: falta personal, subcontratación libre, financiación y el resto de la temporada.</p>
+          <p className="rounded bg-slate-50 p-2 text-xs text-slate-700">Nota y resultado se valoran por separado: una empresa que empieza suele perder dinero las primeras semanas; lo importante es la tendencia y por qué. Aún faltan mecánicas de próximas fases: personal, subcontratación libre y financiación.</p>
         </section>
       )}
 

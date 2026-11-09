@@ -87,6 +87,10 @@ export interface SimState {
   pending: Incident | null;
   answers: Record<string, string>;
   negativeWeeks: number;
+  /** Semanas seguidas con servicio por debajo del mínimo (derrota a las 4). Opcional por compatibilidad. */
+  lowServiceWeeks?: number;
+  /** Motivo del final si la partida acaba antes de tiempo. */
+  endReason?: string;
   learning: LearningEntry[];
 }
 

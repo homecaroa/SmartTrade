@@ -1,10 +1,11 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { apply, balanceGap, breakdownOf, gradeOffer, kmCommitted, newGame, replay, TRUCK_FULL_COST_PER_KM } from "@/lib/sim/engine";
-import { kmOf, offersFor, withReputation } from "@/lib/sim/market";
+import { apply, balanceGap, breakdownOf, breakdownsOf, clientHistory, gradeOffer, kmCommitted, newGame, replay, seasonOutcome, TRUCK_FULL_COST_PER_KM } from "@/lib/sim/engine";
+import { evaluate } from "@/lib/sim/calc";
+import { kmOf, offersFor, reputationEffect, withReputation } from "@/lib/sim/market";
 import type { Action, Offer, SimState } from "@/lib/sim/model";
-import { FIXED_PER_MONTH, P, payTermLabel, PHASE1_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
+import { FIXED_PER_MONTH, P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
 import { mulberry32, stream } from "@/lib/sim/rng";
 import { parseSave, restore, toSave } from "@/lib/sim/save";
 import { play } from "@/lib/sim/strategies";
@@ -45,7 +46,8 @@ describe("contabilidad", () => {
   it("los fijos se devengan cada semana y se pagan juntos cada 4 semanas", () => {
     const s = play(11, "nada").state;
     const fixedPay = s.ledger.filter((m) => m.label.startsWith("Alquiler, nóminas"));
-    expect(fixedPay).toEqual([{ week: 4, label: expect.any(String), amount: -FIXED_PER_MONTH }]);
+    expect(fixedPay.length).toBeGreaterThan(1);
+    expect(fixedPay.every((m) => m.week % 4 === 0 && m.amount === -FIXED_PER_MONTH)).toBe(true);
     expect(s.weeks.every((w) => w.costFixed === FIXED_PER_MONTH / 4)).toBe(true);
   });
   it("la caja nunca cuenta la amortización y la fianza no es un gasto", () => {
@@ -60,32 +62,100 @@ describe("contabilidad", () => {
   });
 });
 
-describe("equilibrio (estrategias automáticas, 200 semillas)", () => {
-  const results = (st: "nada" | "codiciosa" | "prudente") => SEEDS.map((seed) => play(seed, st).state);
-  const nada = results("nada"), codiciosa = results("codiciosa"), prudente = results("prudente");
-  const mean = (xs: SimState[], f: (s: SimState) => number) => xs.reduce((a, s) => a + f(s), 0) / xs.length;
-  it("no hacer nada es siempre lo peor", () => {
-    SEEDS.forEach((_, i) => expect(nada[i].result).toBeLessThan(prudente[i].result));
+// Temporada de 26 semanas (09/11/2026). Hasta ese día la partida acababa en la semana 6 y se comparaba el resultado
+// acumulado; ahora quien lo acepta todo quiebra antes (y por eso pierde menos dinero total), así que se compara por
+// victorias. Umbrales medidos con 500 semillas: selectiva 230 victorias, prudente 169, aceptarlo todo 0, nada 0.
+describe("equilibrio de la temporada (estrategias automáticas, 200 semillas)", () => {
+  const results = (st: "nada" | "codiciosa" | "prudente" | "selectiva") => SEEDS.map((seed) => play(seed, st).state);
+  const nada = results("nada"), codiciosa = results("codiciosa"), prudente = results("prudente"), selectiva = results("selectiva");
+  const wins = (xs: SimState[]) => xs.filter((s) => seasonOutcome(s).victory).length;
+  it("no hacer nada lleva siempre a la quiebra por falta de caja", () => {
+    expect(nada.every((s) => s.status === "quiebra" && /caja/.test(s.endReason ?? ""))).toBe(true);
   });
-  it("la estrategia prudente gana a la de aceptarlo todo en la mayoría de partidas, pero no en todas", () => {
-    const wins = SEEDS.filter((_, i) => prudente[i].result > codiciosa[i].result).length;
-    expect(wins / SEEDS.length).toBeGreaterThan(0.8);
-    expect(wins).toBeLessThan(SEEDS.length);
+  it("aceptarlo todo hunde el servicio: los clientes se van y nunca se gana", () => {
+    expect(wins(codiciosa)).toBe(0);
+    expect(codiciosa.filter((s) => s.status === "quiebra" && /servicio/.test(s.endReason ?? "")).length / SEEDS.length).toBeGreaterThan(0.9);
   });
-  it("aceptarlo todo hunde el nivel de servicio; la prudente lo mantiene", () => {
-    expect(mean(codiciosa, (s) => s.weeks.reduce((a, w) => a + w.serviceLevel, 0) / s.weeks.length)).toBeLessThan(80);
-    expect(mean(prudente, (s) => s.weeks.reduce((a, w) => a + w.serviceLevel, 0) / s.weeks.length)).toBeGreaterThan(95);
+  it("se puede ganar, pero no siempre: elegir por margen gana más que aceptar en orden", () => {
+    expect(wins(selectiva) / SEEDS.length).toBeGreaterThan(0.3);
+    expect(wins(selectiva) / SEEDS.length).toBeLessThan(0.7);
+    expect(wins(selectiva)).toBeGreaterThan(wins(prudente));
+    expect(wins(prudente)).toBeGreaterThan(0);
   });
-  it("la empresa que empieza pierde dinero, pero bien gestionada va hacia el equilibrio", () => {
-    const first = mean(prudente, (s) => s.weeks[0].result), last = mean(prudente, (s) => s.weeks[PHASE1_WEEKS - 1].result);
-    expect(last).toBeGreaterThan(first);
-    expect(prudente.every((s) => s.status === "fin")).toBe(true);
+  it("bien gestionada, la empresa pasa de perder a ganar dinero", () => {
+    const mean = (xs: SimState[], f: (s: SimState) => number) => xs.reduce((a, s) => a + f(s), 0) / xs.length;
+    const first = mean(selectiva, (s) => s.weeks[0].result), lastWeeks = mean(selectiva, (s) => s.weeks.slice(-8).reduce((a, w) => a + w.result, 0) / 8);
+    expect(lastWeeks).toBeGreaterThan(first);
+    expect(selectiva.every((s) => s.status === "fin")).toBe(true);
+  });
+  it("ganar exige beneficio al final: servicio y ocupación solos no bastan", () => {
+    for (const s of [...prudente, ...selectiva]) {
+      const o = seasonOutcome(s);
+      if (!o.objectives[0].ok) expect(o.victory).toBe(false);
+    }
+  });
+});
+
+describe("compatibilidad con las partidas de la fase 1", () => {
+  it("las semanas 1-6 no cambian: mismas ofertas base (3-5, sin prima) y la primera avería con el mismo sorteo", () => {
+    for (const seed of SEEDS.slice(0, 50)) {
+      for (let w = 1; w <= 6; w++) { const n = offersFor(seed, w, 100).length; expect(n).toBeGreaterThanOrEqual(3); expect(n).toBeLessThanOrEqual(5); }
+      expect(breakdownOf(seed).id).toBe("averia");
+      expect(breakdownOf(seed).week).toBe(2 + Math.floor(stream(seed, 0, "averia")() * 4));
+    }
+  });
+  it("una avería por tramo de 8 semanas", () => {
+    for (const seed of SEEDS.slice(0, 50)) {
+      const bs = breakdownsOf(seed);
+      expect(bs.map((b) => b.week >= 2 && b.week <= 5 || b.week >= 10 && b.week <= 13 || b.week >= 18 && b.week <= 21)).toEqual([true, true, true]);
+    }
+  });
+});
+
+describe("reputación, historial y calculadora", () => {
+  it("la reputación premia la fiabilidad desde la semana 7 y castiga los fallos", () => {
+    expect(reputationEffect(100, 6).factor).toBe(1);
+    expect(reputationEffect(100, 7).factor).toBe(1.2);
+    expect(reputationEffect(94, 7).factor).toBe(1);
+    expect(reputationEffect(85, 3)).toMatchObject({ drop: 1, factor: 0.95 });
+    expect(reputationEffect(70, 10)).toMatchObject({ drop: 2, factor: 0.9 });
+    const base = offersFor(3, 8, 100);
+    expect(base.every((o) => o.kind !== "distribucion" || o.ratePerKm! > 1.05 * 1.2 - 0.01)).toBe(true);
+  });
+  it("la referencia de terceros de un cliente es la misma en toda la partida", () => {
+    for (const seed of SEEDS.slice(0, 30)) {
+      const seen = new Map<string, string>();
+      for (let w = 1; w <= 26; w++) for (const o of offersFor(seed, w, 100)) {
+        if (seen.has(o.clientId)) expect(o.clientHint).toBe(seen.get(o.clientId));
+        seen.set(o.clientId, o.clientHint);
+      }
+    }
+  });
+  it("el historial propio de un cliente refleja sus pagos reales", () => {
+    const seed = SEEDS.find((sd) => play(sd, "prudente").state.receivables.some((i) => i.paidWeek !== undefined && i.paidWeek > i.dueWeek))!;
+    const s = play(seed, "prudente").state;
+    const late = s.receivables.find((i) => i.paidWeek !== undefined && i.paidWeek > i.dueWeek)!;
+    const h = clientHistory(s, late.clientId);
+    expect(h.paidLate).toBeGreaterThan(0);
+    expect(h.maxDelayWeeks).toBeGreaterThan(0);
+    const punctual = s.receivables.find((i) => i.paidWeek !== undefined && clientHistory(s, i.clientId).paidLate === 0);
+    if (punctual) expect(clientHistory(s, punctual.clientId).paid).toBeGreaterThan(0);
+  });
+  it("la calculadora opera sin eval, con coma decimal, prioridad y paréntesis, y rechaza lo que no es una operación", () => {
+    expect(evaluate("680 × 0,42")).toEqual({ ok: true, value: 285.6 });
+    expect(evaluate("(1,25 − 0,42) × 400")).toEqual({ ok: true, value: 332 });
+    expect(evaluate("2 + 3 * 4")).toEqual({ ok: true, value: 14 });
+    expect(evaluate("-5 + 10 ÷ 4")).toEqual({ ok: true, value: -2.5 });
+    expect(evaluate("1/0").ok).toBe(false);
+    expect(evaluate("alert(1)").ok).toBe(false);
+    expect(evaluate("(2+3").ok).toBe(false);
+    expect(evaluate("").ok).toBe(false);
   });
 });
 
 describe("normativa y reglas de pago", () => {
   it("el transporte se factura a 30 días (mora a los 30 días, Ley 15/2009, art. 41) y nada a más de 60 (Ley 3/2004, art. 4)", () => {
-    for (const seed of SEEDS.slice(0, 50)) for (let w = 1; w <= PHASE1_WEEKS; w++) for (const o of offersFor(seed, w)) {
+    for (const seed of SEEDS.slice(0, 50)) for (let w = 1; w <= SEASON_WEEKS; w++) for (const o of offersFor(seed, w)) {
       if (o.kind !== "almacenaje") expect(o.payWeeks).toBe(P.transportPayWeeks);
       expect(["30 días", "60 días"]).toContain(payTermLabel(o.payWeeks));
     }
@@ -162,7 +232,7 @@ describe("decisiones e incidencias", () => {
     const s = newGame(1);
     expect(() => apply(s, { t: "pregunta", pregunta: "mes1", opcion: "fijos" })).toThrow();
     const after = play(1, "nada").state;
-    expect(after.status).toBe("fin");
+    expect(["fin", "quiebra"]).toContain(after.status);
     expect(() => apply(after, { t: "cerrar" })).toThrow();
     // Terminada la partida, la pregunta pendiente aún se puede responder, una sola vez.
     const answered = apply(after, { t: "pregunta", pregunta: "mes1", opcion: "fijos" });
