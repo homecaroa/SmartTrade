@@ -4,7 +4,7 @@ import { useState } from "react";
 import { evaluate } from "@/lib/sim/calc";
 import { subcontractPerKm, TRUCK_FULL_COST_PER_KM, WAREHOUSE_FULL_COST_PER_PALLET, n2 } from "@/lib/sim/engine";
 import { fixedShare } from "@/lib/sim/international";
-import { ENGINE_VERSION, FIXED_PER_MONTH, GROWTH, INTERNATIONAL, P, TRUCK_KM_WEEK } from "@/lib/sim/params";
+import { ENGINE_VERSION, FIXED_PER_MONTH, GROWTH, INTERNATIONAL, P, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 
 /** Calculadora básica y tus costes de referencia. La calculadora no conoce el juego: los cálculos los planteas tú. */
@@ -46,6 +46,7 @@ export function Calculator({ version = ENGINE_VERSION }: { version?: number }) {
         <ul className="mt-1 list-disc space-y-0.5 pl-4">
           <li>Coste variable del camión: <b>{n2(P.variablePerKm)} €/km</b> (gasóleo, mantenimiento y peajes).</li>
           <li>Coste completo del camión a plena capacidad: <b>{n2(TRUCK_FULL_COST_PER_KM)} €/km</b> (variable + conductor, seguro y amortización repartidos en {TRUCK_KM_WEEK} km/semana).</li>
+          {version >= WAREHOUSE_V6.fromVersion && <li>Almacén: un mozo hace unos {WAREHOUSE_V6.movesPerWorker} movimientos o {WAREHOUSE_V6.linesPerWorker.toLocaleString("es-ES")} líneas por semana y cuesta {fmtEur(P.fixedMonthly.mozo / 4)} a la semana: {n2(P.fixedMonthly.mozo / 4 / WAREHOUSE_V6.movesPerWorker)} € por movimiento y {n2(P.fixedMonthly.mozo / 4 / WAREHOUSE_V6.linesPerWorker)} € por línea. El sitio cuesta {n2(P.fixedMonthly.alquiler / 4 / P.warehousePallets)} €/palé/semana de alquiler.</li>}
           <li>Coste del almacén lleno: <b>{n2(WAREHOUSE_FULL_COST_PER_PALLET)} €/palé/semana</b> (alquiler y mozo entre {P.warehousePallets} palés).</li>
           <li>Subcontratar a otro transportista: <b>{n2(GROWTH.subcontract.perKm)} €/km</b>{subcontractPerKm(version) !== GROWTH.subcontract.perKm ? <> ({n2(subcontractPerKm(version))} €/km si es para cubrir una avería)</> : null}.</li>
           <li>Fijos totales: <b>{fmtEur(FIXED_PER_MONTH)}</b> cada 4 semanas (alquiler, nóminas, seguro, gestoría), sin contar el segundo camión ni la nave ampliada.</li>

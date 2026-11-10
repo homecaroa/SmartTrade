@@ -1,7 +1,7 @@
 import { round2 } from "../learning/money";
 import type { Client, Offer, OfferKind } from "./model";
 import { internationalOffer } from "./international";
-import { ENGINE_VERSION, EXTRA_OFFERS, MARKET_GROWTH_FROM, P, PUNTUAL_V2, RELIABILITY_PREMIUM, SEASON_LOW, SEASON_PEAK } from "./params";
+import { ENGINE_VERSION, EXTRA_OFFERS, MARKET_GROWTH_FROM, P, PUNTUAL_V2, WAREHOUSE_V6, RELIABILITY_PREMIUM, SEASON_LOW, SEASON_PEAK } from "./params";
 import { intIn, pick, stream, type Rng } from "./rng";
 
 /**
@@ -64,13 +64,28 @@ export function offersFor(seed: number, week: number, serviceLevel = 100, versio
   const n = intIn(r, 3, 5) + (week >= MARKET_GROWTH_FROM ? EXTRA_OFFERS : 0) + (week >= SEASON_PEAK.from && week <= SEASON_PEAK.to ? 1 : week >= SEASON_LOW.from && week <= SEASON_LOW.to ? -1 : 0);
   const kinds: OfferKind[] = week === 1 ? ["distribucion", "almacenaje", "puntual"] : [];
   while (kinds.length < n) kinds.push(pick(r, ["distribucion", "distribucion", "puntual", "puntual", "almacenaje"] as const));
-  const all = kinds.map((k, i) => makeOffer(r, seed, week, i + 1, k, version));
+  const base = kinds.map((k, i) => makeOffer(r, seed, week, i + 1, k, version));
+  // v6: el almacenaje cobra la manipulación aparte; sus cifras salen de otra secuencia (el resto de la oferta no cambia).
+  const all = version >= WAREHOUSE_V6.fromVersion ? base.map((o) => (o.kind === "almacenaje" ? withHandling(o, seed) : o)) : base;
   // v5: como mucho un viaje internacional, de su propia secuencia (las demás ofertas no cambian).
   const ri = stream(seed, week, "internacional-cliente");
   const c = pick(ri, CLIENTS);
   const intl = version >= 5 ? internationalOffer(seed, week, version, c.id, hint(ri, c, seed)) : null;
   return withReputation(intl ? [...all, intl] : all, serviceLevel, week);
 }
+
+/** Oferta de almacenaje con la manipulación cobrada aparte (v6, ver WAREHOUSE_V6 y lib/sim/warehouse.ts). */
+export function withHandling(o: Offer, seed: number): Offer {
+  const W = WAREHOUSE_V6;
+  const r = stream(seed, o.week, `almacen-${o.id}`);
+  const moves = Math.max(1, Math.round(o.pallets! * (W.rotation.min + r() * (W.rotation.max - W.rotation.min))));
+  const lines = Math.round(moves * (W.linesPerMove.min + r() * (W.linesPerMove.max - W.linesPerMove.min)));
+  return { ...o, palletRate: round2(W.storageRate.min + r() * (W.storageRate.max - W.storageRate.min)), movesWeek: moves, linesWeek: lines, moveRate: round2(W.moveRate.min + r() * (W.moveRate.max - W.moveRate.min)), lineRate: round2(W.lineRate.min + r() * (W.lineRate.max - W.lineRate.min)) };
+}
+/** Trabajo de una operación de almacenaje, en semanas de mozo (v6). */
+export const workOf = (o: Pick<Offer, "movesWeek" | "linesWeek">) => (o.movesWeek ?? 0) / WAREHOUSE_V6.movesPerWorker + (o.linesWeek ?? 0) / WAREHOUSE_V6.linesPerWorker;
+/** Lo que se factura por semana por la manipulación (v6). */
+export const handlingRevenue = (o: Pick<Offer, "movesWeek" | "linesWeek" | "moveRate" | "lineRate">) => round2((o.movesWeek ?? 0) * (o.moveRate ?? 0) + (o.linesWeek ?? 0) * (o.lineRate ?? 0));
 
 /**
  * Reputación (docs/simulador.md §11): es tu nivel de servicio de las últimas 8 semanas. Se aplica DESPUÉS del sorteo,
@@ -101,4 +116,4 @@ export const scaleRates = (offers: Offer[], k: number): Offer[] => (k === 1 ? of
 export const kmOf = (o: Offer) => (o.kind === "distribucion" ? o.kmWeek! : o.kind === "puntual" ? 2 * o.kmOneWay! : o.kind === "internacional" ? o.days! * P.kmPerDay : 0);
 
 /** Importe que se factura por semana si se presta entero el servicio. */
-export const weeklyRevenue = (o: Offer) => (o.kind === "distribucion" ? round2(o.kmWeek! * o.ratePerKm!) : o.kind === "puntual" || o.kind === "internacional" ? o.price! : round2(o.pallets! * o.palletRate!));
+export const weeklyRevenue = (o: Offer) => (o.kind === "distribucion" ? round2(o.kmWeek! * o.ratePerKm!) : o.kind === "puntual" || o.kind === "internacional" ? o.price! : round2(o.pallets! * o.palletRate! + handlingRevenue(o)));

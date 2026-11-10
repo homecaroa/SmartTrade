@@ -23,6 +23,11 @@ export interface Offer {
   /** Almacenaje: palés y €/palé/semana. */
   pallets?: number;
   palletRate?: number;
+  /** Almacenaje (v6): movimientos y líneas de pedido por semana, y su precio (la manipulación se cobra aparte). */
+  movesWeek?: number;
+  linesWeek?: number;
+  moveRate?: number;
+  lineRate?: number;
   weeks: number;
   /** Plazo de pago pactado, en semanas. */
   payWeeks: number;
@@ -76,6 +81,11 @@ export interface WeekRecord {
   costFixed: number;
   /** Sanciones y reclamaciones por documentación (09/11/2026). */
   costPenalties: number;
+  /** Almacén (v6): trabajo comprometido y capacidad, en semanas de mozo; lo que no se hizo; horas extra y temporales. */
+  workLoad?: number;
+  workCapacity?: number;
+  workUnserved?: number;
+  costStaff?: number;
   /** Intereses y comisiones de la póliza de crédito (10/11/2026; ausente en semanas anteriores). */
   costFinancial?: number;
   /** Palés que cabían esa semana (10/11/2026; ausente = P.warehousePallets). */
@@ -89,7 +99,7 @@ export interface WeekRecord {
   notes: string[];
 }
 
-export type IncidentKind = "averia" | "mora" | "dano" | "retraso" | "plazo";
+export type IncidentKind = "averia" | "mora" | "dano" | "retraso" | "plazo" | "stock" | "devoluciones";
 export interface Incident { id: string; kind: IncidentKind; week: number; title: string; prompt: string; concept: string; data: Record<string, number | string> }
 export interface IncidentOption { id: string; label: string; grade: Grade; feedback: string }
 
@@ -127,6 +137,8 @@ export interface SimState {
   growth?: Growth;
   /** Indemnizaciones y costas decididas en una incidencia, que se cargan al cerrar la semana (reglas v4). */
   claims?: { label: string; amount: number; note: string }[];
+  /** Organización del almacén (v6): reorganización ABC y mozos temporales (semana de la decisión). */
+  staff?: { abcWeek?: number; temps?: number[] };
 }
 
 export const GROWTH_OPTIONS = ["renting", "compra", "almacen", "poliza"] as const;
@@ -136,6 +148,7 @@ export interface Growth { camion?: { modo: "renting" | "compra"; week: number };
 export type Action =
   | { t: "aceptar"; oferta: string; docs?: string[]; retorno?: boolean; subcontratar?: boolean }
   | { t: "crecer"; opcion: GrowthOption }
+  | { t: "organizar"; opcion: "abc" | "temporal" }
   | { t: "proponer"; oferta: string; tarifa: number; semanas: number; plazo: number }
   | { t: "responder"; incidencia: string; opcion: string }
   | { t: "pregunta"; pregunta: string; opcion: string }

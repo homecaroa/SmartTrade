@@ -11,9 +11,11 @@
  * - v4 (10/11/2026): reclamaciones con base legal: avería de la mercancía, retraso y un cliente que pide pagar a 90 días
  *   (ver CLAIMS y lib/sim/claims.ts).
  * - v5 (10/11/2026): viajes internacionales por carretera (ver INTERNATIONAL y lib/sim/international.ts).
+ * - v6 (10/11/2026): almacén a fondo: movimientos y preparación de pedidos cobrados aparte, capacidad del mozo, personal
+ *   temporal, reorganización ABC, punto de pedido y devoluciones (ver WAREHOUSE_V6 y lib/sim/warehouse.ts).
  */
-export const ENGINE_VERSION = 5;
-export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5] as const;
+export const ENGINE_VERSION = 6;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -156,4 +158,33 @@ export const INTERNATIONAL = {
     { id: "lyon", city: "Lyon", country: "Francia", km: 900, tolls: 330 },
     { id: "oporto", city: "Oporto", country: "Portugal", km: 940, tolls: 150 },
   ],
+} as const;
+
+/**
+ * Almacén a fondo (reglas v6, 10/11/2026; docs/simulador.md §17 nonies). Todas las cifras son SIMULADAS:
+ * - El almacenaje se cobra en tres partes: €/palé/semana (solo el sitio), €/movimiento (entrada o salida de un palé) y
+ *   €/línea de pedido preparada. Hasta la v5 la manipulación iba incluida en el precio del palé.
+ * - Productividad de un mozo: 400 movimientos o 1.000 líneas por semana. §8 decía 250 y 400; se revisaron porque con
+ *   ellas un mozo no atendía ni la mitad del almacén con una rotación normal (decisión de diseño, no medición).
+ * - Por encima de su capacidad, hasta un 20 % más con horas extra pagadas un 40 % más; lo demás no se hace.
+ * - Mozo temporal (empresa de trabajo temporal): 4 semanas, desde la semana siguiente, a 650 € por semana.
+ * - Reorganizar el almacén por rotación (ABC): 900 € una vez; el mozo rinde un 15 % más desde la semana siguiente.
+ * - Tarifa del sitio 1,45-2,15 €/palé/semana: con la manipulación, el almacén factura lo mismo que en la v5. Medido con
+ *   1,10-1,80, facturaba unos 170 € menos por semana y la estrategia selectiva pasaba de 166 a 31 victorias en 300
+ *   partidas; con 1,30-2,00, 70 € menos y 95 victorias.
+ */
+export const WAREHOUSE_V6 = {
+  fromVersion: 6,
+  storageRate: { min: 1.45, max: 2.15 },
+  rotation: { min: 0.15, max: 0.6 },
+  linesPerMove: { min: 0.5, max: 3 },
+  moveRate: { min: 1.6, max: 2.4 },
+  lineRate: { min: 0.5, max: 0.9 },
+  movesPerWorker: 400,
+  linesPerWorker: 1_000,
+  overtime: { maxShare: 0.2, costFactor: 1.4 },
+  temp: { weeklyCost: 650, weeks: 4 },
+  abc: { cost: 900, productivity: 0.15 },
+  stock: { window: { from: 7, to: 18 }, penaltyShort: 400, penaltyExcess: 300 },
+  returns: { window: { from: 10, to: 22 }, pallets: { min: 10, max: 40 }, sortRate: 8, gestorPerPallet: 3, dumpFine: 1_500, holdWeeks: 4 },
 } as const;

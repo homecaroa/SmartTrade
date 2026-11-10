@@ -17,6 +17,7 @@ const isAction = (a: unknown): a is Action => {
   if (x.t === "cerrar") return true;
   // «docs», «retorno» y «subcontratar» son opcionales (no existían en partidas anteriores); si vienen, con su tipo.
   if (x.t === "aceptar") return typeof x.oferta === "string" && (x.docs === undefined || (Array.isArray(x.docs) && x.docs.every((d) => typeof d === "string"))) && [x.retorno, x.subcontratar].every((v) => v === undefined || typeof v === "boolean");
+  if (x.t === "organizar") return x.opcion === "abc" || x.opcion === "temporal";
   if (x.t === "crecer") return typeof x.opcion === "string" && (GROWTH_OPTIONS as readonly string[]).includes(x.opcion);
   // Hasta el 09/11/2026 faltaba esta línea: una partida en la que se había negociado no se podía cargar.
   if (x.t === "proponer") return typeof x.oferta === "string" && [x.tarifa, x.semanas, x.plazo].every((n) => typeof n === "number" && Number.isFinite(n));

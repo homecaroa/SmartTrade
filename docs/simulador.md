@@ -483,6 +483,41 @@ distinguen:
 - Las estrategias que eligen por margen hacen entre 0,5 y 0,8 viajes internacionales por temporada. Compiten con el reparto: no siempre compensa.
 - Ninguna quiebra y el balance cuadra en cada paso.
 
+## 17 nonies. Almacén a fondo (10/11/2026, reglas v6; módulo 0625)
+
+**Problema:** el almacén era solo sitio: palés por semana, con la manipulación incluida en el precio. No había personal que gestionar, ni stocks, ni devoluciones. El módulo 0625 (130 h) estaba casi sin cubrir.
+
+**Qué se añade (`lib/sim/warehouse.ts`, cifras [S] en `WAREHOUSE_V6`).**
+- **Movimientos y preparación de pedidos (RA2-RA3).**
+  - Cada almacenaje se cobra en tres partes: el sitio (€/palé/semana), los movimientos (€ por entrada o salida de un palé) y las líneas de pedido preparadas (€/línea).
+  - El trabajo consume personal: un mozo hace 400 movimientos o 1.000 líneas por semana.
+  - Lo que pasa de su capacidad se cubre con horas extra, un 40 % más caras y como mucho un 20 % más. El resto se queda sin hacer: no se cobra y baja el servicio.
+  - §8 decía 250 movimientos y 400 líneas. Con esas cifras un mozo no atendía ni la mitad del almacén, así que se revisaron como decisión de diseño.
+- **Organizar el almacén (RA2).**
+  - Mozo temporal de ETT: 4 semanas a 650 €/semana. Cuesta más que uno de plantilla, pero solo mientras lo necesitas. Es «correcto» cuando ni con horas extra llegarías.
+  - Reorganización por rotación (ABC): 900 € una vez, y el personal rinde un 15 % más.
+- **Punto de pedido (RA4).** Un cliente te encarga la reposición de un producto. Hay que calcular punto de pedido = demanda diaria × plazo + stock de seguridad.
+  - Olvidar el stock de seguridad trae una rotura de stock (400 €).
+  - Confundir días con semanas trae sobrestock (300 €).
+- **Devoluciones (RA5)** [N]. Las devoluciones son del cliente. Lo correcto es recibirlas en una zona separada, clasificarlas como servicio cobrado (8 €/palé) y entregar lo roto a un gestor autorizado (3 €/palé).
+  - Ley 7/2022, art. 20.1: tratamiento por gestor autorizado, acreditado documentalmente. Art. 21.a: zona habilitada e identificada. Art. 8: jerarquía de residuos. Comprobado en el BOE el 10/11/2026.
+  - Guardarlas sin más ocupa sitio 4 semanas sin cobrar.
+  - Tirar lo roto al contenedor es «grave»: multa simulada de 1.500 €.
+
+**Equilibrio.** Tarifa del sitio: 1,45–2,15 €/palé/semana. Con ella, el almacén factura lo mismo que en la v5 (1.488 € por semana frente a 1.481 €, estrategia selectiva, 100 partidas). Las dos primeras pruebas, medidas, se quedaron cortas:
+
+| Tarifa del sitio | Almacén frente a la v5 | Victorias de la selectiva (300 partidas) |
+|---|---|---|
+| 1,10–1,80 € | 170 €/semana menos | 31 |
+| 1,30–2,00 € | 70 €/semana menos | 95 |
+
+**Resultado medido (300 partidas, v6):**
+- Victorias: prudente 92 (v5: 119), selectiva 140 (166), negociadora 155 (187) y crecedora 218 (240). Ninguna quiebra; el balance cuadra en cada paso.
+- El resultado semanal casi no cambia (−365 € frente a −352 € en la selectiva). Las victorias bajan más porque ganar exige beneficio en las últimas 8 semanas, que amplifica diferencias pequeñas, y porque las horas extra y los temporales cuestan.
+- Se acepta como mayor dificultad del almacén, no como un error.
+
+**Versiones:** reglas v6 solo para partidas nuevas. 240 partidas v1–v5 generadas por el motor publicado se reproducen idénticas.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.

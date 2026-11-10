@@ -2,9 +2,10 @@ import { round2, sum } from "../learning/money";
 import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validateProposal, withTerms, type Terms } from "./deal";
 import { applyClaimDecision, claimIncidents, claimOptions, isClaim } from "./claims";
 import { directCost, fixedShare } from "./international";
-import { clientOf, kmOf, offersFor } from "./market";
+import { applyWarehouseDecision, gradeOrganize, gradeStorage, isWarehouseIncident, organizeBlocked, warehouseIncidents, warehouseOptions, WORKER_WEEK, workCapacityAt, workCommitted } from "./warehouse";
+import { clientOf, handlingRevenue, kmOf, offersFor, workOf } from "./market";
 import type { Action, Contract, Grade, Growth, GrowthOption, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
-import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
+import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, WAREHOUSE_V6, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
 import { intIn, stream } from "./rng";
 
 /**
@@ -39,7 +40,7 @@ export const kmOwnCommitted = (s: Pick<SimState, "contracts">, w: number) => sum
 export const palletsCommitted = (s: Pick<SimState, "contracts">, w: number) => sum(s.contracts.filter((c) => activeIn(c, w) && c.kind === "almacenaje").map((c) => c.pallets!));
 
 // ── Capacidad y costes fijos según las herramientas para crecer (docs/simulador.md §17 sexies) ──────────────────────
-type WithGrowth = { growth?: Growth };
+type WithGrowth = { growth?: Growth; staff?: SimState["staff"] };
 /** El segundo camión y la nave ampliada funcionan desde la semana SIGUIENTE a la decisión; la póliza, desde la misma. */
 const from = (x: { week: number } | undefined, w: number) => !!x && w > x.week;
 export const truckKmAt = (s: WithGrowth, w: number) => TRUCK_KM_WEEK * (from(s.growth?.camion, w) ? 2 : 1);
@@ -76,6 +77,7 @@ export function gradeOffer(s: Pick<SimState, "contracts"> & WithGrowth, o: Offer
   if (o.kind === "almacenaje" && full !== undefined)
     return { grade: "grave", feedback: `No tenías sitio: el almacén supera sus ${palletCapacityAt(s, full)} palés. Los palés que no caben no se facturan y baja tu nivel de servicio.` };
   if (o.kind === "internacional") return gradeInternational(o, withBackhaul);
+  if (o.kind === "almacenaje" && o.movesWeek !== undefined) return gradeStorage(s, o);
   if (o.kind === "puntual") {
     const back = withBackhaul && o.backhaul ? o.backhaul.price : 0;
     const perKm = round2((o.price! + back) / (2 * o.kmOneWay!));
@@ -194,6 +196,7 @@ export const subcontractPerKm = (version: number) => (version >= 3 ? GROWTH.subc
 /** Opciones ante una incidencia: con los precios de la versión de la partida y, en las reclamaciones, según su caso. */
 export function incidentOptions(inc: Pick<Incident, "kind" | "data">, version: number): IncidentOption[] {
   if (isClaim(inc.kind)) return claimOptions(inc as Incident);
+  if (isWarehouseIncident(inc.kind)) return warehouseOptions(inc as Incident);
   const kind = inc.kind as "averia" | "mora";
   return kind === "averia" && version >= 3 ? INCIDENT_OPTIONS.averia.map((o) => (o.id === "subcontratar" ? { ...o, feedback: o.feedback.replace(n2(P.subcontractPerKm), n2(subcontractPerKm(version))) } : o)) : INCIDENT_OPTIONS[kind];
 }
@@ -233,7 +236,7 @@ export function dueIncidents(s: SimState): Incident[] {
     out.push({ id: `mora-${c.id}`, kind: "mora", week: w, title: "Un cliente no paga a su vencimiento", concept: "Facturar no es cobrar. En el transporte por carretera, quien paga incurre en mora a los 30 días (Ley 15/2009, art. 41); el resto de servicios nunca puede pactarse a más de 60 días (Ley 3/2004, art. 4).",
       prompt: `${c.name} no ha pagado la factura de ${inv.amount.toLocaleString("es-ES", { minimumFractionDigits: 2 })} € que vencía esta semana.`, data: { client: c.id, amount: inv.amount } });
   }
-  out.push(...claimIncidents(s));
+  out.push(...claimIncidents(s), ...warehouseIncidents(s));
   return out;
 }
 
@@ -311,6 +314,14 @@ export function apply(prev: SimState, a: Action): SimState {
     learn(s, { week: s.week, what: GROWTH_LABELS[a.opcion], answer: "Contratada", grade: g.grade, feedback: g.feedback, competences: a.opcion === "almacen" ? ["0625-RA3", "0623-RA4"] : a.opcion === "poliza" ? ["0623-RA3", "0623-RA7"] : ["0623-RA3", "0623-RA4"] });
     return s;
   }
+  if (a.t === "organizar") {
+    const blocked = organizeBlocked(s, a.opcion);
+    if (blocked) throw new Error(blocked);
+    const g = gradeOrganize(s, a.opcion);
+    s.staff = a.opcion === "abc" ? { ...s.staff, abcWeek: s.week } : { ...s.staff, temps: [...(s.staff?.temps ?? []), s.week] };
+    learn(s, { week: s.week, what: a.opcion === "abc" ? "Reorganizar el almacén por rotación (ABC)" : "Contratar un mozo temporal", answer: "Hecho", grade: g.grade, feedback: g.feedback, competences: a.opcion === "abc" ? ["0625-RA2", "0625-RA3"] : ["0625-RA2", "0625-RA6"] });
+    return s;
+  }
   if (a.t === "pregunta") {
     if (a.pregunta !== MONTH_QUESTION.id || s.weeks.length < WEEKS_PER_MONTH || s.answers[a.pregunta]) throw new Error("Pregunta no disponible.");
     const opt = MONTH_QUESTION.options.find((x) => x.id === a.opcion);
@@ -327,6 +338,7 @@ export function apply(prev: SimState, a: Action): SimState {
     learn(s, { week: s.week, what: s.pending.title, answer: opt.label, grade: opt.grade, feedback: opt.feedback, competences: COMPETENCES[s.pending.kind] });
     if (s.pending.kind === "mora") applyMoraDecision(s, String(s.pending.data.client), a.opcion);
     if (isClaim(s.pending.kind)) applyClaimDecision(s, s.pending, a.opcion);
+    if (isWarehouseIncident(s.pending.kind)) applyWarehouseDecision(s, s.pending, a.opcion);
     s.pending = null;
     s.status = "jugando";
     return close(s);
@@ -336,7 +348,7 @@ export function apply(prev: SimState, a: Action): SimState {
 }
 
 /** Competencias de cada incidencia (docs/curriculo.md). */
-const COMPETENCES: Record<Incident["kind"], string[]> = { averia: ["0622-RA6"], mora: ["0623-RA5"], dano: ["0622-RA6", "0622-RA3"], retraso: ["0622-RA6", "0622-RA3"], plazo: ["0623-RA5", "0824-RA3"] };
+const COMPETENCES: Record<Incident["kind"], string[]> = { averia: ["0622-RA6"], mora: ["0623-RA5"], dano: ["0622-RA6", "0622-RA3"], retraso: ["0622-RA6", "0622-RA3"], plazo: ["0623-RA5", "0824-RA3"], stock: ["0625-RA4"], devoluciones: ["0625-RA5", "0625-RA1"] };
 
 export const replay = (seed: number, actions: Action[]): SimState => actions.reduce(apply, newGame(seed));
 
@@ -433,13 +445,29 @@ function resolveWeek(s: SimState) {
   const palletCapacity = palletCapacityAt(s, w);
   let room = palletCapacity;
   let stored = 0, rejected = 0, revenueWarehouse = 0;
-  for (const c of s.contracts.filter((x) => activeIn(x, w) && x.kind === "almacenaje").sort((a, c) => a.startWeek - c.startWeek || a.id.localeCompare(c.id))) {
-    const put = Math.min(c.pallets!, room);
-    room -= put; stored += put; rejected += c.pallets! - put;
+  const storage = s.contracts.filter((x) => activeIn(x, w) && x.kind === "almacenaje").sort((a, c) => a.startWeek - c.startWeek || a.id.localeCompare(c.id));
+  // v6: trabajo de mozo (movimientos y líneas) de los palés que caben; por encima de la capacidad, horas extra hasta un
+  // tope y lo demás sin hacer (no se cobra y baja el servicio). Ver lib/sim/warehouse.ts.
+  const v6 = s.version >= WAREHOUSE_V6.fromVersion;
+  const puts = new Map<string, number>();
+  for (const c of storage) { const put = Math.min(c.pallets!, room); room -= put; puts.set(c.id, put); }
+  const workLoad = v6 ? round2(sum(storage.map((c) => workOf(c) * puts.get(c.id)! / c.pallets!))) : 0;
+  const workCapacity = v6 ? workCapacityAt(s, w) : 0;
+  const overtime = v6 ? round2(Math.min(Math.max(0, workLoad - workCapacity), workCapacity * WAREHOUSE_V6.overtime.maxShare)) : 0;
+  const workUnserved = v6 ? round2(Math.max(0, workLoad - workCapacity - overtime)) : 0;
+  const undone = workLoad ? workUnserved / workLoad : 0;
+  const temps = v6 ? (s.staff?.temps ?? []).filter((d) => w > d && w <= d + WAREHOUSE_V6.temp.weeks).length : 0;
+  const costStaff = v6 ? round2(overtime * WORKER_WEEK * WAREHOUSE_V6.overtime.costFactor + temps * WAREHOUSE_V6.temp.weeklyCost + (s.staff?.abcWeek === w ? WAREHOUSE_V6.abc.cost : 0)) : 0;
+  if (overtime > 0) notes.push(`Tu personal no llegaba: ${Math.round(overtime / workCapacity * 100)} % de trabajo en horas extra.`);
+  if (workUnserved > 0) notes.push(`Un ${Math.round(undone * 100)} % del trabajo del almacén (entradas, salidas y pedidos) se quedó sin hacer: no se cobra y baja tu servicio.`);
+  for (const c of storage) {
+    const put = puts.get(c.id)!;
+    stored += put; rejected += c.pallets! - put;
     if (put < c.pallets!) breached.push(c);
-    const amount = round2(put * c.palletRate!);
+    const amount = round2(put * c.palletRate! + handlingRevenue(c) * (put / c.pallets!) * (1 - undone));
     revenueWarehouse += amount;
     if (amount > 0) invoices.push({ c, amount });
+    unservedWeight += put * undone;
   }
   if (rejected > 0) notes.push(`${rejected} palés no caben en el almacén: no se facturan.`);
   for (const c of breached) if (c.cancelledWeek === undefined && c.endWeek > w) { c.cancelledWeek = w + 1; notes.push(`${clientOf(c.clientId).name} cancela su contrato porque no se cumplió lo pactado.`); }
@@ -489,7 +517,9 @@ function resolveWeek(s: SimState) {
   revenueTransport = round2(revenueTransport);
   revenueWarehouse = round2(revenueWarehouse);
   costFinancial = round2(costFinancial);
-  const result = round2(revenueTransport + revenueWarehouse - costVariable - costSubcontract - repair - costPenalties - costFinancial - fixed - amortization);
+  // Horas extra, temporales y la reorganización ABC: se pagan con las nóminas del mes.
+  s.accruedFixed = round2(s.accruedFixed + costStaff);
+  const result = round2(revenueTransport + revenueWarehouse - costVariable - costSubcontract - repair - costPenalties - costFinancial - costStaff - fixed - amortization);
   s.result = round2(s.result + result);
 
   // Caja: cobros y pagos que vencen esta semana; fijos cada 4 semanas.
@@ -505,7 +535,7 @@ function resolveWeek(s: SimState) {
 
   const rec: WeekRecord = {
     week: w, kmCapacity: capacity, kmCommitted: kmCommitted(s, w), kmOwn, kmSubcontracted: kmSub, kmUnserved, palletsCommitted: palletsCommitted(s, w), palletsStored: stored,
-    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: fixed, costPenalties, costFinancial, palletCapacity, amortization, result,
+    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: fixed, costPenalties, costFinancial, palletCapacity, ...(v6 ? { workLoad, workCapacity, workUnserved, costStaff } : {}), amortization, result,
     collections: round2(collections), payments: round2(payments), cashEnd: s.cash, serviceLevel, notes,
   };
   s.weeks.push(rec);
@@ -530,6 +560,7 @@ export function describeOffer(o: Offer): string {
   if (o.kind === "distribucion") return `${c}: distribución regional, ${o.kmWeek} km/semana a ${n2(o.ratePerKm!)} €/km durante ${o.weeks} semanas`;
   if (o.kind === "puntual") return `${c}: viaje puntual de ${o.kmOneWay} km (retorno en vacío) por ${o.price} €`;
   if (o.kind === "internacional") return `${c}: viaje internacional a ${o.destination!.city} (${o.destination!.country}), ${o.kmOneWay} km de ida, ${o.days} días de camión, por ${o.price} €`;
+  if (o.movesWeek !== undefined) return `${c}: almacenaje de ${o.pallets} palés a ${n2(o.palletRate!)} €/palé/semana, con ${o.movesWeek} movimientos y ${o.linesWeek} líneas de pedido por semana, durante ${o.weeks} semanas`;
   return `${c}: almacenaje de ${o.pallets} palés a ${n2(o.palletRate!)} €/palé/semana durante ${o.weeks} semanas`;
 }
 

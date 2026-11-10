@@ -16,6 +16,13 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 
 **Viajes internacionales** (10/11/2026, reglas v5, §17 octies): camión completo a Francia y Portugal. Ocupa días de camión y paga peajes extranjeros y dietas. La documentación es el CMR con los datos del documento de control y la copia certificada de la licencia comunitaria (Convenio CMR, arts. 1, 4 y 5; Orden FOM/2861/2012, art. 2.2; Reglamento 1072/2009, art. 4, leído en legislation.gov.uk). Las partidas v1–v4 guardadas se reproducen idénticas: comprobado con 240. Marruecos queda fuera, sin verificar.
 
+**Almacén a fondo** (10/11/2026, reglas v6, §17 nonies):
+- Movimientos y líneas de pedido cobrados aparte, con la capacidad del mozo, horas extra, temporales y reorganización ABC.
+- Una decisión de punto de pedido.
+- Devoluciones con la Ley 7/2022, arts. 8, 20 y 21, comprobada en el BOE.
+- Las partidas v1–v5 guardadas se reproducen idénticas: comprobado con 240.
+- Victorias algo más bajas que en la v5, documentado.
+
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.
 - **Currículo oficial leído** (RD 1574/2011, RD 500/2024, Orden EFD/659/2024) y cruzado con los casos: `docs/curriculo.md`. Cobertura alta en Transporte internacional; parcial en Gestión administrativa (solo exportación), Medios de pago, Financiación y Negociación; nula en Marketing, Sistema de información de mercados, Almacenamiento y Comercio digital. Propuesta de huecos ordenada, pendiente de decisión.

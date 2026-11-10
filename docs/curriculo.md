@@ -84,8 +84,18 @@ RA1 oportunidad de entrada de un producto · RA2 políticas de precios en un mer
 ### 0822 Sistema de información de mercados (140 h) — sin cobertura en el simulador
 RA1 variables del mercado y entorno · RA2 sistema de información de marketing · RA3 planes de obtención de información · RA4 muestreo · RA5 tratamiento de datos e informe. La herramienta de mercados de SmarTrade (datos reales de Eurostat) encaja con RA1 y RA5, pero hoy no está conectada al Modo Aprendizaje.
 
-### 0625 Logística de almacenamiento (130 h) — sin cobertura
+### 0625 Logística de almacenamiento (130 h) — cobertura parcial en el Business Simulator (desde el 10/11/2026)
 RA1 normativa del almacenaje · RA2 organización del almacén · RA3 presupuesto del almacén · RA4 gestión de stocks · RA5 logística inversa · RA6 supervisión y calidad.
+
+Qué cubre el simulador:
+- RA1: en parte (documentación del almacenaje; residuos según la Ley 7/2022).
+- RA2: capacidad de personal, temporales y reorganización ABC.
+- RA3: coste del sitio y del trabajo frente a la tarifa.
+- RA4: punto de pedido y stock de seguridad (una decisión).
+- RA5: devoluciones.
+- RA6: no.
+
+Los casos prácticos (`lib/learning`) no lo cubren.
 En el Business Simulator (10/11/2026): RA3 en parte. Ampliar el almacén obliga a comparar su coste, alquiler, mozo y fianza, con la ocupación prevista (`docs/simulador.md` §17 sexies).
 
 ### 0623 Gestión económica y financiera de la empresa (160 h) — casi sin cobertura
