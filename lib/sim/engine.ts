@@ -1,5 +1,6 @@
 import { round2, sum } from "../learning/money";
 import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validateProposal, withTerms, type Terms } from "./deal";
+import { applyClaimDecision, claimIncidents, claimOptions, isClaim } from "./claims";
 import { clientOf, kmOf, offersFor } from "./market";
 import type { Action, Contract, Grade, Growth, GrowthOption, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
 import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
@@ -168,9 +169,12 @@ export const breakdownAt = (seed: number, week: number) => breakdownsOf(seed).fi
 /** Precio del subcontratista en una avería: 1,05 €/km hasta la v2 (partidas guardadas); desde la v3, el de mercado. */
 export const subcontractPerKm = (version: number) => (version >= 3 ? GROWTH.subcontract.perKm : P.subcontractPerKm);
 
-/** Opciones ante una incidencia con los precios de la versión de la partida. */
-export const incidentOptions = (kind: "averia" | "mora", version: number): IncidentOption[] =>
-  kind === "averia" && version >= 3 ? INCIDENT_OPTIONS.averia.map((o) => (o.id === "subcontratar" ? { ...o, feedback: o.feedback.replace(n2(P.subcontractPerKm), n2(subcontractPerKm(version))) } : o)) : INCIDENT_OPTIONS[kind];
+/** Opciones ante una incidencia: con los precios de la versión de la partida y, en las reclamaciones, según su caso. */
+export function incidentOptions(inc: Pick<Incident, "kind" | "data">, version: number): IncidentOption[] {
+  if (isClaim(inc.kind)) return claimOptions(inc as Incident);
+  const kind = inc.kind as "averia" | "mora";
+  return kind === "averia" && version >= 3 ? INCIDENT_OPTIONS.averia.map((o) => (o.id === "subcontratar" ? { ...o, feedback: o.feedback.replace(n2(P.subcontractPerKm), n2(subcontractPerKm(version))) } : o)) : INCIDENT_OPTIONS[kind];
+}
 
 export const INCIDENT_OPTIONS: Record<"averia" | "mora", IncidentOption[]> = {
   averia: [
@@ -207,6 +211,7 @@ export function dueIncidents(s: SimState): Incident[] {
     out.push({ id: `mora-${c.id}`, kind: "mora", week: w, title: "Un cliente no paga a su vencimiento", concept: "Facturar no es cobrar. En el transporte por carretera, quien paga incurre en mora a los 30 días (Ley 15/2009, art. 41); el resto de servicios nunca puede pactarse a más de 60 días (Ley 3/2004, art. 4).",
       prompt: `${c.name} no ha pagado la factura de ${inv.amount.toLocaleString("es-ES", { minimumFractionDigits: 2 })} € que vencía esta semana.`, data: { client: c.id, amount: inv.amount } });
   }
+  out.push(...claimIncidents(s));
   return out;
 }
 
@@ -293,11 +298,12 @@ export function apply(prev: SimState, a: Action): SimState {
   }
   if (a.t === "responder") {
     if (!s.pending || s.pending.id !== a.incidencia) throw new Error("No hay esa incidencia pendiente.");
-    const opt = incidentOptions(s.pending.kind, s.version).find((x) => x.id === a.opcion);
+    const opt = incidentOptions(s.pending, s.version).find((x) => x.id === a.opcion);
     if (!opt) throw new Error("Opción no válida.");
     s.answers[a.incidencia] = a.opcion;
-    learn(s, { week: s.week, what: s.pending.title, answer: opt.label, grade: opt.grade, feedback: opt.feedback, competences: s.pending.kind === "averia" ? ["0622-RA6"] : ["0623-RA5"] });
+    learn(s, { week: s.week, what: s.pending.title, answer: opt.label, grade: opt.grade, feedback: opt.feedback, competences: COMPETENCES[s.pending.kind] });
     if (s.pending.kind === "mora") applyMoraDecision(s, String(s.pending.data.client), a.opcion);
+    if (isClaim(s.pending.kind)) applyClaimDecision(s, s.pending, a.opcion);
     s.pending = null;
     s.status = "jugando";
     return close(s);
@@ -305,6 +311,9 @@ export function apply(prev: SimState, a: Action): SimState {
   if (s.status !== "jugando") throw new Error("Primero resuelve la incidencia.");
   return close(s);
 }
+
+/** Competencias de cada incidencia (docs/curriculo.md). */
+const COMPETENCES: Record<Incident["kind"], string[]> = { averia: ["0622-RA6"], mora: ["0623-RA5"], dano: ["0622-RA6", "0622-RA3"], retraso: ["0622-RA6", "0622-RA3"], plazo: ["0623-RA5", "0824-RA3"] };
 
 export const replay = (seed: number, actions: Action[]): SimState => actions.reduce(apply, newGame(seed));
 
@@ -416,6 +425,13 @@ function resolveWeek(s: SimState) {
     }
   }
 
+  // Indemnizaciones y costas decididas en las reclamaciones de esta semana (reglas v4).
+  const claimMoves: { label: string; amount: number }[] = [];
+  if (s.claims) {
+    for (const c of s.claims) { notes.push(c.note); if (c.amount) { costPenalties += c.amount; claimMoves.push(c); } }
+    delete s.claims;
+  }
+
   // Facturas: vencen según el plazo pactado; un cliente tardío paga 1-3 semanas después (según la semilla).
   for (const { c, amount } of invoices) {
     const due = w + c.payWeeks;
@@ -430,7 +446,10 @@ function resolveWeek(s: SimState) {
   const costSubcontract = round2((kmSub - kmPlanned) * subcontractPerKm(s.version) + kmPlanned * GROWTH.subcontract.perKm);
   if (kmSub > 0) s.payables.push({ id: `p${w}-sub`, label: `Subcontratista (${kmSub} km)`, amount: costSubcontract, week: w, dueWeek: w + GROWTH.subcontract.payWeeks });
   move("Gasóleo, mantenimiento y peajes", -costVariable);
-  if (costPenalties) move("Sanciones y reclamaciones por documentación", -costPenalties);
+  const docPenalties = round2(costPenalties - claimMoves.reduce((x, c) => x + c.amount, 0));
+  if (docPenalties) move("Sanciones y reclamaciones por documentación", -docPenalties);
+  for (const c of claimMoves) move(c.label, -c.amount);
+  costPenalties = round2(costPenalties);
   if (repair) move("Reparación del camión", -repair);
   const fixed = fixedPerWeekAt(s, w);
   const amortization = amortizationAt(s, w);

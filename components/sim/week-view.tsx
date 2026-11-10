@@ -234,7 +234,7 @@ function GrowthPanel({ s, onAction }: { s: SimState; onAction: (a: Action) => vo
 function IncidentCard({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
   const inc = s.pending!;
   const [pick, setPick] = useState("");
-  const opts = displayOrder(incidentOptions(inc.kind, s.version), `${s.seed}:${inc.id}`);
+  const opts = displayOrder(incidentOptions(inc, s.version), `${s.seed}:${inc.id}`);
   return (
     <form className="space-y-3 rounded-lg border-2 border-rose-300 bg-rose-50 p-4 shadow-sm" onSubmit={(e) => { e.preventDefault(); if (pick) onAction({ t: "responder", incidencia: inc.id, opcion: pick }); }}>
       <fieldset className="space-y-2">

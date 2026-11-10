@@ -1,4 +1,4 @@
-import { apply, balanceGap, gradeGrowth, gradeOffer, growthBlocked, newGame, serviceLevelToDate, subcontractRoom } from "./engine";
+import { apply, balanceGap, gradeGrowth, incidentOptions, gradeOffer, growthBlocked, newGame, serviceLevelToDate, subcontractRoom } from "./engine";
 import { kmOf } from "./market";
 import type { Action, Offer, SimState } from "./model";
 import { bestDocs, roundRate, termsOf } from "./deal";
@@ -27,6 +27,18 @@ const incidentChoice: Record<Strategy, Record<string, string>> = {
   crecedora: { averia: "subcontratar", mora: "reclamar" },
 };
 
+/**
+ * Respuesta a una incidencia. Avería y mora: la regla fija de siempre. Reclamaciones (v4): las estrategias que documentan
+ * bien eligen la respuesta correcta; «nada» y «codiciosa», pagar lo que les pidan o aceptar los 90 días.
+ */
+function choose(strategy: Strategy, s: SimState): string {
+  const inc = s.pending!;
+  if (inc.kind === "averia" || inc.kind === "mora") return incidentChoice[strategy][inc.kind];
+  const opts = incidentOptions(inc, s.version);
+  if (strategy === "nada" || strategy === "codiciosa") return inc.kind === "plazo" ? "aceptar" : "todo";
+  return opts.find((o) => o.grade === "correcta")!.id;
+}
+
 /** Margen por unidad de capacidad: €/km recorrido sobre el coste variable, o €/palé/semana. */
 const unitMargin = (o: Offer) => (o.kind === "distribucion" ? o.ratePerKm! - P.variablePerKm : o.kind === "puntual" ? (o.price! + (o.backhaul?.price ?? 0)) / (2 * o.kmOneWay!) - P.variablePerKm : o.palletRate!);
 
@@ -36,7 +48,7 @@ export function play(seed: number, strategy: Strategy, version?: number): { stat
   let maxGap = 0;
   const run = (a: Action) => { actions.push(a); s = apply(s, a); maxGap = Math.max(maxGap, Math.abs(balanceGap(s))); };
   for (let guard = 0; guard < 400 && (s.status === "jugando" || s.status === "incidencia"); guard++) {
-    if (s.status === "incidencia" && s.pending) { run({ t: "responder", incidencia: s.pending.id, opcion: incidentChoice[strategy][s.pending.kind] }); continue; }
+    if (s.status === "incidencia" && s.pending) { run({ t: "responder", incidencia: s.pending.id, opcion: choose(strategy, s) }); continue; }
     const accept = (o: Offer, sub = false) => run({ t: "aceptar", oferta: o.id, docs: strategy === "codiciosa" ? [] : bestDocs(o.kind), ...(o.backhaul ? { retorno: true } : {}), ...(sub ? { subcontratar: true } : {}) });
     const grow = strategy === "crecedora";
     if (grow) for (const g of ["poliza", "renting", "almacen"] as const) if (!growthBlocked(s, g) && s.week <= 18 && gradeGrowth(s, g).grade === "correcta") run({ t: "crecer", opcion: g });

@@ -8,9 +8,11 @@
  * - v2 (09/11/2026): viajes puntuales con precios realistas y, en algunos, carga de retorno (ver PUNTUAL_V2).
  * - v3 (10/11/2026): el subcontratista cobra GROWTH.subcontract.perKm también en las averías (antes 1,05 €/km, por
  *   debajo del coste completo de un camión propio: subcontratar salía más barato que tener camión).
+ * - v4 (10/11/2026): reclamaciones con base legal: avería de la mercancía, retraso y un cliente que pide pagar a 90 días
+ *   (ver CLAIMS y lib/sim/claims.ts).
  */
-export const ENGINE_VERSION = 3;
-export const SUPPORTED_VERSIONS = [1, 2, 3] as const;
+export const ENGINE_VERSION = 4;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -108,4 +110,21 @@ export const GROWTH = {
   },
   warehouse: { pallets: 400, rentMonthly: 1_200, workerMonthly: 2_150, depositMonths: 2 },
   credit: { limit: 20_000, openingFee: 0.005, annualRate: 0.07 },
+} as const;
+
+/**
+ * Reclamaciones (reglas v4, 10/11/2026; docs/simulador.md §17 septies). Cada una aparece como mucho una vez por
+ * temporada, en una semana de su ventana elegida por la semilla (o la primera siguiente en que haya un contrato al que
+ * pueda afectar). Normativa comprobada en el BOE el 10/11/2026 (Ley 15/2009, arts. 47, 48, 56, 57 y 60; Ley 3/2004,
+ * art. 4.3). Lo demás es SIMULADO:
+ * - `ipremMonthly`: 600 € al mes es lo que dan fuentes secundarias para 2026 (prorrogado); NO comprobado en el BOE. El
+ *   límite legal por avería es un tercio del IPREM/día por kg de peso bruto (art. 57.1); con 600 €/mes, 6,67 €/kg.
+ * - Kilos, valor de la mercancía, perjuicio reclamado, costas y probabilidades: decisiones de diseño.
+ */
+export const CLAIMS = {
+  fromVersion: 4,
+  ipremMonthly: 600,
+  dano: { window: { from: 6, to: 17 }, kg: { min: 200, max: 1_500 }, valuePerKg: { min: 15, max: 40 }, lateDays: 12, lateChance: 0.5, costs: 600, lostCaseCosts: 300 },
+  retraso: { window: { from: 12, to: 21 }, claimFactor: { min: 1.2, max: 2.0 }, ownFaultChance: 0.6, costs: 300 },
+  plazo: { window: { from: 8, to: 22 }, extensionWeeks: 4, askedWeeks: 12, legalMaxWeeks: 8, acceptsLegalChance: 0.7 },
 } as const;

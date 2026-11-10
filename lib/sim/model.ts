@@ -85,7 +85,7 @@ export interface WeekRecord {
   notes: string[];
 }
 
-export type IncidentKind = "averia" | "mora";
+export type IncidentKind = "averia" | "mora" | "dano" | "retraso" | "plazo";
 export interface Incident { id: string; kind: IncidentKind; week: number; title: string; prompt: string; concept: string; data: Record<string, number | string> }
 export interface IncidentOption { id: string; label: string; grade: Grade; feedback: string }
 
@@ -121,6 +121,8 @@ export interface SimState {
   learning: LearningEntry[];
   /** Herramientas para crecer contratadas y semana de la decisión (surten efecto la semana siguiente; 10/11/2026). */
   growth?: Growth;
+  /** Indemnizaciones y costas decididas en una incidencia, que se cargan al cerrar la semana (reglas v4). */
+  claims?: { label: string; amount: number; note: string }[];
 }
 
 export const GROWTH_OPTIONS = ["renting", "compra", "almacen", "poliza"] as const;
