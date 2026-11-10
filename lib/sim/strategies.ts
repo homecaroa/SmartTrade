@@ -1,6 +1,7 @@
 import { apply, balanceGap, gradeGrowth, incidentOptions, gradeOffer, growthBlocked, newGame, serviceLevelToDate, subcontractRoom } from "./engine";
 import { directCost } from "./international";
 import { kmOf } from "./market";
+import { organizeBlocked, workCapacityAt, workCommitted } from "./warehouse";
 import type { Action, Offer, SimState } from "./model";
 import { bestDocs, roundRate, termsOf } from "./deal";
 import { P } from "./params";
@@ -36,7 +37,7 @@ function choose(strategy: Strategy, s: SimState): string {
   const inc = s.pending!;
   if (inc.kind === "averia" || inc.kind === "mora") return incidentChoice[strategy][inc.kind];
   const opts = incidentOptions(inc, s.version);
-  if (strategy === "nada" || strategy === "codiciosa") return inc.kind === "plazo" ? "aceptar" : "todo";
+  if (strategy === "nada" || strategy === "codiciosa") return inc.kind === "plazo" ? "aceptar" : inc.kind === "dano" || inc.kind === "retraso" ? "todo" : opts.find((o) => o.grade === "grave")!.id;
   return opts.find((o) => o.grade === "correcta")!.id;
 }
 
@@ -52,6 +53,13 @@ export function play(seed: number, strategy: Strategy, version?: number): { stat
     if (s.status === "incidencia" && s.pending) { run({ t: "responder", incidencia: s.pending.id, opcion: choose(strategy, s) }); continue; }
     const accept = (o: Offer, sub = false) => run({ t: "aceptar", oferta: o.id, docs: strategy === "codiciosa" ? [] : bestDocs(o.kind), ...(o.backhaul ? { retorno: true } : {}), ...(sub ? { subcontratar: true } : {}) });
     const grow = strategy === "crecedora";
+    // Almacén (v6): las estrategias que eligen bien contratan un temporal si el trabajo de la semana que viene supera la
+    // capacidad del personal; la crecedora además reorganiza por rotación (ABC) cuando el personal va justo.
+    if (strategy === "selectiva" || strategy === "negociadora" || grow) {
+      const next = s.week + 1;
+      if (grow && !organizeBlocked(s, "abc") && workCommitted(s, next) > 0.9 * workCapacityAt(s, next)) run({ t: "organizar", opcion: "abc" });
+      if (!organizeBlocked(s, "temporal") && workCommitted(s, next) > 1.2 * workCapacityAt(s, next)) run({ t: "organizar", opcion: "temporal" });
+    }
     if (grow) for (const g of ["poliza", "renting", "almacen"] as const) if (!growthBlocked(s, g) && s.week <= 18 && gradeGrowth(s, g).grade === "correcta") run({ t: "crecer", opcion: g });
     if (strategy === "selectiva" || strategy === "negociadora" || grow) {
       const byMargin = () => [...s.offers].sort((a, b) => unitMargin(b) - unitMargin(a));

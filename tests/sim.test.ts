@@ -5,7 +5,8 @@ import { apply, balanceGap, breakdownOf, breakdownsOf, cashByConcept, cashStart,
 import { bestDocs, clientLimits, gradeDocs, respond, roundRate, termsOf, validateProposal } from "@/lib/sim/deal";
 import { evaluate } from "@/lib/sim/calc";
 import { directCost, fixedShare } from "@/lib/sim/international";
-import { kmOf, offersFor, reputationEffect, withReputation } from "@/lib/sim/market";
+import { WORKER_WEEK, workCapacityAt } from "@/lib/sim/warehouse";
+import { kmOf, offersFor, reputationEffect, weeklyRevenue, withReputation } from "@/lib/sim/market";
 import type { Action, Offer, SimState } from "@/lib/sim/model";
 import { ENGINE_VERSION, FIXED_PER_MONTH, FIXED_PER_WEEK, GROWTH, P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
 import { mulberry32, stream } from "@/lib/sim/rng";
@@ -382,8 +383,9 @@ describe("documentación de cada operación", () => {
     for (const seed of SEEDS.slice(0, 60)) {
       const { state } = play(seed, "codiciosa");
       const pen = state.weeks.reduce((a, w) => a + w.costPenalties, 0);
-      // Desde las reglas v4 esta partida también incluye indemnizaciones y costas de las reclamaciones.
-      const cash = state.ledger.filter((m) => /^(Sanciones|Indemnización|Laudo)/.test(m.label)).reduce((a, m) => a - m.amount, 0);
+      // Desde las reglas v4 esta partida también incluye indemnizaciones y costas de las reclamaciones, y desde la v6 las
+      // penalizaciones del almacén (rotura de stock, sobrestock, residuos).
+      const cash = state.ledger.filter((m) => /^(Sanciones|Indemnización|Laudo|Rotura|Sobrestock|Multa|Gestor)/.test(m.label)).reduce((a, m) => a - m.amount, 0);
       expect(pen).toBeCloseTo(cash, 2);
       expect(state.contracts.filter((c) => c.docPenalized).length * 1).toBeGreaterThanOrEqual(pen > 0 ? 1 : 0);
       if (pen > 0) hits++;
@@ -463,7 +465,7 @@ describe("viajes puntuales (v2) y versiones de reglas", () => {
   });
   it("las partidas nuevas empiezan con la versión actual", () => {
     expect(newGame(1).version).toBe(ENGINE_VERSION);
-    expect(ENGINE_VERSION).toBe(5);
+    expect(ENGINE_VERSION).toBe(6);
   });
 });
 
@@ -610,8 +612,14 @@ describe("reclamaciones con base legal (reglas v4, docs/simulador.md §17 septie
     }
     return null;
   }
-  const answer = (s: SimState, opcion: string) => apply(s, { t: "responder", incidencia: s.pending!.id, opcion });
+  /** Responde y, si esa semana queda otra incidencia (desde la v6 puede haber del almacén), la resuelve bien. */
+  const answer = (s: SimState, opcion: string) => {
+    let x = apply(s, { t: "responder", incidencia: s.pending!.id, opcion });
+    while (x.status === "incidencia") x = apply(x, { t: "responder", incidencia: x.pending!.id, opcion: incidentOptions(x.pending!, x.version).find((o) => o.grade === "correcta")!.id });
+    return x;
+  };
   const week = (s: SimState, w: number) => s.weeks.find((x) => x.week === w)!;
+  const lastClaim = (x: SimState) => x.learning.filter((l) => /Reclamación|90 días/.test(l.what)).at(-1)!;
 
   it("solo en partidas v4: las guardadas con reglas anteriores no las ven", () => {
     expect(SEEDS.slice(0, 20).every((sd) => play(sd, "prudente", 3).state.learning.every((l) => !/Reclamación|90 días/.test(l.what)))).toBe(true);
@@ -623,24 +631,24 @@ describe("reclamaciones con base legal (reglas v4, docs/simulador.md §17 septie
     expect(limit).toBeCloseTo(kg * 600 / 30 / 3, 1);
     expect(claim).toBeGreaterThan(limit);
     const ok = answer(s, "limite");
-    expect(ok.learning.at(-1)!.grade).toBe("correcta");
+    expect(lastClaim(ok).grade).toBe("correcta");
     expect(week(ok, s.week).costPenalties).toBeGreaterThanOrEqual(limit);
     expect(ok.ledger.some((m) => m.week === s.week && m.label.startsWith("Indemnización por avería") && m.amount === -limit)).toBe(true);
     const no = answer(s, "rechazar");
-    expect(no.learning.at(-1)!.grade).toBe("grave");
+    expect(lastClaim(no).grade).toBe("grave");
     expect(no.contracts.filter((c) => c.clientId === client && c.endWeek > s.week).every((c) => c.cancelledWeek === s.week + 1)).toBe(true);
     expect(balanceGap(ok)).toBe(0); expect(balanceGap(no)).toBe(0);
   }, 60_000);
   it("avería reclamada tarde y sin reservas: con recibo firmado se rechaza; sin recibo, rechazarla sale caro", () => {
     const withR = until("dano", (x) => x.pending!.data.variant === "tardia_con_recibo")!;
     const r = answer(withR, "rechazar");
-    expect(r.learning.at(-1)!.grade).toBe("correcta");
+    expect(lastClaim(r).grade).toBe("correcta");
     expect(r.ledger.some((m) => m.week === withR.week && /avería/.test(m.label))).toBe(false);
     // Sin recibo: mismo caso pero con un contrato aceptado sin documentación (como hace la estrategia codiciosa).
     const noR = (() => { for (const sd of SEEDS) { const { actions } = play(sd, "codiciosa"); let s = newGame(sd); for (const a of actions) { if (s.pending?.kind === "dano" && s.pending.data.variant === "tardia_sin_recibo") return s; if (s.status === "quiebra") break; s = apply(s, a); } } return null; })()!;
     expect(noR).not.toBeNull();
     const lost = answer(noR, "rechazar");
-    expect(lost.learning.at(-1)!.grade).toBe("razonable");
+    expect(lastClaim(lost).grade).toBe("razonable");
     expect(lost.ledger.some((m) => m.week === noR.week && m.label.startsWith("Laudo y costas") && m.amount === -(Number(noR.pending!.data.limit) + 300))).toBe(true);
   }, 120_000);
   it("retraso: como mucho el precio del transporte; si la causa no se podía evitar, no se responde", () => {
@@ -648,25 +656,25 @@ describe("reclamaciones con base legal (reglas v4, docs/simulador.md §17 septie
     const price = Number(own.pending!.data.price);
     expect(Number(own.pending!.data.claim)).toBeGreaterThan(price);
     const a = answer(own, "limite");
-    expect(a.learning.at(-1)!.grade).toBe("correcta");
+    expect(lastClaim(a).grade).toBe("correcta");
     expect(a.ledger.some((m) => m.week === own.week && m.label.startsWith("Indemnización por retraso") && m.amount === -price)).toBe(true);
-    expect(answer(own, "exonerar").learning.at(-1)!.grade).toBe("grave");
+    expect(lastClaim(answer(own, "exonerar")).grade).toBe("grave");
     const other = until("retraso", (x) => x.pending!.data.variant === "ajena")!;
     const b = answer(other, "exonerar");
-    expect(b.learning.at(-1)!.grade).toBe("correcta");
+    expect(lastClaim(b).grade).toBe("correcta");
     expect(b.ledger.some((m) => m.week === other.week && /retraso/.test(m.label))).toBe(false);
   }, 60_000);
   it("plazo: aceptar 90 días es un error grave y prorroga cobrando a 90; proponer 60 es lo correcto", () => {
     const s = until("plazo")!;
     const id = String(s.pending!.data.contract);
     const yes = answer(s, "aceptar");
-    expect(yes.learning.at(-1)!.grade).toBe("grave");
+    expect(lastClaim(yes).grade).toBe("grave");
     const ext = yes.contracts.find((c) => c.id === `${id}-prorroga`)!;
     expect(ext.startWeek).toBe(s.week + 1);
     expect(ext.payWeeks).toBe(12);
     expect(payTermLabel(ext.payWeeks)).toBe("90 días");
     const legal = answer(s, "legal");
-    expect(legal.learning.at(-1)!.grade).toBe("correcta");
+    expect(lastClaim(legal).grade).toBe("correcta");
     const ext60 = legal.contracts.find((c) => c.id === `${id}-prorroga`);
     if (ext60) expect(ext60.payWeeks).toBe(8);
     expect(answer(s, "rechazar").contracts.some((c) => c.id === `${id}-prorroga`)).toBe(false);
@@ -747,5 +755,106 @@ describe("viajes internacionales por carretera (reglas v5, docs/simulador.md §1
       expect(JSON.stringify(restore(p.save).state)).toBe(JSON.stringify(state));
     }
     expect(seen).toBeGreaterThan(0);
+  }, 60_000);
+});
+
+describe("almacén a fondo (reglas v6, docs/simulador.md §17 nonies)", () => {
+  const storageAt = (sd: number, version = 6) => { for (let w = 1; w <= SEASON_WEEKS; w++) { const o = offersFor(sd, w, 100, version).find((x) => x.kind === "almacenaje"); if (o) return o; } return null; };
+  it("solo en partidas v6: el almacenaje cobra aparte movimientos y líneas, y el resto de las ofertas no cambia", () => {
+    for (const sd of SEEDS.slice(0, 20)) for (let w = 1; w <= SEASON_WEEKS; w++) {
+      const v5 = offersFor(sd, w, 100, 5), v6 = offersFor(sd, w, 100, 6);
+      expect(v5.every((o) => o.movesWeek === undefined)).toBe(true);
+      expect(v6.filter((o) => o.kind !== "almacenaje")).toEqual(v5.filter((o) => o.kind !== "almacenaje"));
+      for (const o of v6.filter((x) => x.kind === "almacenaje")) {
+        const old = v5.find((x) => x.id === o.id)!;
+        expect({ ...o, palletRate: 0, movesWeek: 0, linesWeek: 0, moveRate: 0, lineRate: 0 }).toEqual({ ...old, palletRate: 0, movesWeek: 0, linesWeek: 0, moveRate: 0, lineRate: 0 });
+        expect(weeklyRevenue(o)).toBeCloseTo(o.pallets! * o.palletRate! + o.movesWeek! * o.moveRate! + o.linesWeek! * o.lineRate!, 2);
+      }
+    }
+  });
+  it("el trabajo que pasa de la capacidad va a horas extra (hasta un 20 %) y lo demás no se hace ni se cobra", () => {
+    const o = storageAt(SEEDS[0])!;
+    const heavy = { ...o, week: 1, pallets: 500, movesWeek: 700, linesWeek: 1000, moveRate: 2, lineRate: 0.7 }; // 1,75 + 1 = 2,75 mozos
+    let s = newGame(1, 6);
+    s = apply({ ...s, offers: [heavy] }, { t: "aceptar", oferta: heavy.id, docs: bestDocs("almacenaje") });
+    expect(s.learning[0].feedback).toMatch(/capacidad/);
+    s = apply(s, { t: "cerrar" });
+    const r = s.weeks[0];
+    expect(r.workLoad).toBeCloseTo(2.75, 2);
+    expect(r.workCapacity).toBe(1);
+    expect(r.workUnserved).toBeCloseTo(2.75 - 1.2, 2);
+    expect(r.costStaff).toBeCloseTo(0.2 * WORKER_WEEK * 1.4, 2);
+    const undone = (2.75 - 1.2) / 2.75;
+    expect(r.revenueWarehouse).toBeCloseTo(500 * heavy.palletRate! + (700 * 2 + 1000 * 0.7) * (1 - undone), 1);
+    expect(r.serviceLevel).toBeLessThan(100);
+    expect(balanceGap(s)).toBe(0);
+  });
+  it("un mozo temporal y la reorganización ABC suben la capacidad desde la semana siguiente", () => {
+    let s = newGame(1, 6);
+    expect(workCapacityAt(s, 2)).toBe(1);
+    s = apply(apply(s, { t: "organizar", opcion: "temporal" }), { t: "organizar", opcion: "abc" });
+    expect(() => apply(s, { t: "organizar", opcion: "abc" })).toThrow(/reorganizaste/);
+    expect(() => apply(s, { t: "organizar", opcion: "temporal" })).toThrow(/temporal/);
+    expect(workCapacityAt(s, 1)).toBe(1);
+    expect(workCapacityAt(s, 2)).toBeCloseTo(2 * 1.15, 2);
+    expect(workCapacityAt(s, 6)).toBeCloseTo(1.15, 2);
+    s = apply(s, { t: "cerrar" });
+    s = apply(s, { t: "cerrar" });
+    expect(s.weeks[0].costStaff).toBe(900);
+    expect(s.weeks[1].costStaff).toBe(650);
+    expect(balanceGap(s)).toBe(0);
+    expect(() => apply(newGame(1, 5), { t: "organizar", opcion: "abc" })).toThrow();
+  });
+  /** Juega con la estrategia selectiva hasta que aparece la incidencia pedida. */
+  function until(kind: "stock" | "devoluciones"): SimState | null {
+    for (const sd of SEEDS) { const { actions } = play(sd, "selectiva"); let s = newGame(sd); for (const a of actions) { if (s.status === "incidencia" && s.pending?.kind === kind) return s; s = apply(s, a); } }
+    return null;
+  }
+  const settle = (x: SimState) => { while (x.status === "incidencia") x = apply(x, { t: "responder", incidencia: x.pending!.id, opcion: incidentOptions(x.pending!, x.version).find((o) => o.grade === "correcta")!.id }); return x; };
+  const pick = (s: SimState, opcion: string) => settle(apply(s, { t: "responder", incidencia: s.pending!.id, opcion }));
+  const graded = (x: SimState, what: string) => x.learning.filter((l) => l.what === what).at(-1)!.grade;
+  it("punto de pedido = demanda diaria × plazo + stock de seguridad; olvidarlo o confundir días y semanas cuesta", () => {
+    const s = until("stock")!;
+    const d = s.pending!.data as Record<string, number>;
+    expect(d.right).toBe(d.daily * d.lead + d.safety);
+    const ok = pick(s, "pp");
+    expect(graded(ok, "Calcular el punto de pedido")).toBe("correcta");
+    const short = pick(s, "sin_ss");
+    expect(graded(short, "Calcular el punto de pedido")).toBe("razonable");
+    expect(short.ledger.some((m) => m.week === s.week && m.label.startsWith("Rotura de stock") && m.amount === -400)).toBe(true);
+    expect(graded(pick(s, "semanas"), "Calcular el punto de pedido")).toBe("grave");
+  }, 60_000);
+  it("devoluciones: clasificarlas es un servicio que se cobra; tirarlas al contenedor es ilegal; guardarlas ocupa sitio", () => {
+    const s = until("devoluciones")!;
+    const p = Number(s.pending!.data.pallets), id = `${s.pending!.data.contract}-devoluciones`;
+    const ok = pick(s, "clasificar");
+    expect(graded(ok, "Llegan devoluciones de un cliente")).toBe("correcta");
+    // Se factura lo que cabe en el almacén esa semana (si está lleno, no puedes recibirlas todas).
+    const inv = ok.receivables.find((i) => i.contractId === id)!;
+    expect(inv.amount).toBeGreaterThan(0);
+    expect(inv.amount).toBeLessThanOrEqual(p * 8);
+    expect(inv.amount % 8).toBe(0);
+    expect(ok.ledger.some((m) => m.week === s.week && m.label.startsWith("Gestor de residuos") && m.amount === -p * 3)).toBe(true);
+    const dump = pick(s, "contenedor");
+    expect(graded(dump, "Llegan devoluciones de un cliente")).toBe("grave");
+    expect(dump.ledger.some((m) => m.label.startsWith("Multa por residuos") && m.amount === -1500)).toBe(true);
+    const hold = pick(s, "guardar");
+    const c = hold.contracts.find((x) => x.id === id)!;
+    expect(c.palletRate).toBe(0);
+    expect(c.endWeek - c.startWeek + 1).toBe(4);
+    for (const x of [ok, dump, hold]) expect(balanceGap(x)).toBe(0);
+  }, 60_000);
+  it("las partidas v6 cuadran en cada paso y se guardan y recuperan enteras, también con «organizar»", () => {
+    let organized = 0;
+    for (const sd of SEEDS.slice(0, 15)) {
+      const { actions, state, maxGap } = play(sd, "crecedora");
+      expect(maxGap).toBe(0);
+      if (actions.some((a) => a.t === "organizar")) organized++;
+      const p = parseSave(JSON.parse(JSON.stringify(toSave(sd, actions, state.version))));
+      if (!p.ok) throw new Error("guardado");
+      expect(JSON.stringify(restore(p.save).state)).toBe(JSON.stringify(state));
+    }
+    expect(organized).toBeGreaterThan(0);
+    expect(parseSave({ app: "smartrade-simulador", version: 6, seed: 1, actions: [{ t: "organizar", opcion: "despedir" }] }).ok).toBe(false);
   }, 60_000);
 });

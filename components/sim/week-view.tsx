@@ -4,9 +4,10 @@ import { useState } from "react";
 import { cashStart, clientHistory, creditLimitAt, describeOffer, fixedPerWeekAt, growthBlocked, GROWTH_LABELS, incidentOptions, kmOwnCommitted, kmSubCommitted, MONTH_QUESTION, n2, palletCapacityAt, palletsCommitted, seasonOutcome, serviceLevelToDate, subcontractRoom, truckKmAt } from "@/lib/sim/engine";
 import { docsFor, MAX_ROUNDS, originalTerms, rateOf, validateProposal } from "@/lib/sim/deal";
 import { directCost } from "@/lib/sim/international";
-import { clientOf, kmOf, reputationEffect, weeklyRevenue } from "@/lib/sim/market";
+import { organizeBlocked, WORKER_WEEK, workCapacityAt, workCommitted, workersAt } from "@/lib/sim/warehouse";
+import { clientOf, kmOf, reputationEffect, weeklyRevenue, workOf } from "@/lib/sim/market";
 import type { Action, GrowthOption, Offer, SimState } from "@/lib/sim/model";
-import { GROWTH, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
+import { GROWTH, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
@@ -74,6 +75,7 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
               <div key={w} className="grid gap-2 sm:grid-cols-2">
                 <Bar label={`Semana ${w} · ${truckKmAt(s, w) > TRUCK_KM_WEEK ? "tus dos camiones" : "camión"} (km)`} value={kmOwnCommitted(s, w)} max={truckKmAt(s, w)} />
                 <Bar label={`Semana ${w} · almacén (palés)`} value={palletsCommitted(s, w)} max={palletCapacityAt(s, w)} />
+                {s.version >= WAREHOUSE_V6.fromVersion && <Bar label={`Semana ${w} · personal del almacén (% de un mozo)`} value={Math.round(workCommitted(s, w) * 100)} max={Math.round(workCapacityAt(s, w) * 100)} />}
                 {kmSubCommitted(s, w) > 0 && <Bar label={`Semana ${w} · subcontratado (km)`} value={kmSubCommitted(s, w)} max={GROWTH.subcontract.maxKmWeek} />}
               </div>
             ))}
@@ -93,6 +95,8 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
           </div>
 
           <ActiveContracts s={s} />
+
+          {s.version >= WAREHOUSE_V6.fromVersion && <OrganizePanel s={s} onAction={onAction} />}
 
           <GrowthPanel s={s} onAction={onAction} />
 
@@ -144,7 +148,8 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
         const d = directCost(o);
         return <p>Camión completo de Valencia a <b>{o.destination!.city} ({o.destination!.country})</b>: {o.kmOneWay!.toLocaleString("es-ES")} km de ida, <b>{o.days} días de camión</b> con la vuelta y la carga, por <b>{fmtEur(o.price!)}</b>. Peajes extranjeros {fmtEur(o.tolls!)} y dietas del conductor {fmtEur(d.extras - o.tolls!)}. {o.backhaul ? <>El cliente ofrece una <b>carga de retorno</b>: {o.backhaul.pallets} palés por <b>{fmtEur(o.backhaul.price)}</b> más.</> : <>La vuelta es <b>en vacío</b>.</>} Contrato internacional: se rige por el Convenio CMR.</p>;
       })()}
-      {o.kind === "almacenaje" && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (manipulación incluida) durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
+      {o.kind === "almacenaje" && o.movesWeek !== undefined && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (solo el sitio), más {o.movesWeek} movimientos a <b>{n2(o.moveRate!)} €</b> y {o.linesWeek} líneas de pedido a <b>{n2(o.lineRate!)} €</b> por semana, durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana. Trabajo: un {Math.round(workOf(o) * 100)} % de un mozo.</p>}
+      {o.kind === "almacenaje" && o.movesWeek === undefined && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (manipulación incluida) durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
       <p className="text-xs text-slate-600">Pago a {payTermLabel(o.payWeeks)} · {h.paid || h.overdue ? <><b>Tu experiencia:</b> {historyText(h)}</> : h.invoices ? <><b>Ya trabajas con este cliente:</b> aún no ha vencido ninguna factura. Referencias: {o.clientHint}</> : o.clientHint}</p>
       {o.note && <p className={`rounded p-1.5 text-xs ${o.agreed ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900"}`}><b>{c.name.replace(" (ficticia)", "")}:</b> {o.note} {o.agreed ? "Confirma la operación preparando la documentación." : `Su oferta inicial era ${n2(base.rate)} ${UNIT[o.kind]}.`}</p>}
 
@@ -208,6 +213,35 @@ function growthText(o: GrowthOption): string {
   if (o === "compra") return `Otro camión y otro conductor desde la semana que viene: el doble de km. Pagas ${fmtEur(t.compra.price)} esta semana; luego, ${fmtEur(t.driverMonthly)} de nómina y ${fmtEur(t.compra.insuranceMonthly)} de seguro al mes, y se amortiza a ${fmtEur(t.compra.amortizationWeek)} por semana.`;
   if (o === "almacen") return `La nave contigua: ${w.pallets} palés más desde la semana que viene. Alquiler de ${fmtEur(w.rentMonthly)} al mes, un mozo más (${fmtEur(w.workerMonthly)}) y ${fmtEur(w.rentMonthly * w.depositMonths)} de fianza esta semana (dos mensualidades: art. 36.1 de la Ley de Arrendamientos Urbanos).`;
   return `Tu caja puede bajar hasta −${fmtEur(c.limit)} sin quebrar. Comisión de apertura del ${n2(c.openingFee * 100)} % (${fmtEur(c.limit * c.openingFee)}) y un ${n2(c.annualRate * 100)} % anual de intereses solo por lo que uses.`;
+}
+
+/** Organización del almacén (v6): reorganizar por rotación (ABC) y contratar un mozo temporal. */
+function OrganizePanel({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
+  const W = WAREHOUSE_V6;
+  const items = [
+    { id: "abc" as const, title: "Reorganizar por rotación (ABC)", text: `Lo que más se mueve, junto a la zona de expedición; lo que casi no rota, al fondo. ${fmtEur(W.abc.cost)} una vez; tu personal rinde un ${W.abc.productivity * 100} % más desde la semana que viene.`, done: s.staff?.abcWeek !== undefined ? `Hecho en la semana ${s.staff.abcWeek}.` : null },
+    { id: "temporal" as const, title: "Contratar un mozo temporal", text: `Por una empresa de trabajo temporal: ${W.temp.weeks} semanas desde la semana que viene, a ${fmtEur(W.temp.weeklyCost)} por semana (uno de plantilla cuesta ${fmtEur(WORKER_WEEK)}). Sin él, una punta de trabajo se cubre con horas extra un ${Math.round((W.overtime.costFactor - 1) * 100)} % más caras, como mucho un ${W.overtime.maxShare * 100} % más; lo demás se queda sin hacer.`, done: null },
+  ];
+  return (
+    <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="organizar">
+      <h2 id="organizar" className="text-base font-semibold">Organizar el almacén</h2>
+      <p className="text-xs text-slate-600">Tu personal esta semana: {workersAt(s, s.week)} {workersAt(s, s.week) === 1 ? "mozo" : "mozos"}, con trabajo comprometido del {Math.round(workCommitted(s, s.week) / workCapacityAt(s, s.week) * 100)} % de su capacidad. Cifras simuladas.</p>
+      <div className="grid gap-2 md:grid-cols-2">
+        {items.map((it) => {
+          const blocked = organizeBlocked(s, it.id);
+          return (
+            <div key={it.id} className="space-y-1 rounded border border-slate-200 p-2 text-sm">
+              <p className="font-semibold">{it.title}</p>
+              <p className="text-xs">{it.text}</p>
+              {it.done ? <p className="text-xs font-semibold text-emerald-800">{it.done}</p>
+                : blocked ? <p className="text-xs text-slate-600">{blocked}</p>
+                : <button type="button" onClick={() => { if (window.confirm(`¿${it.title}?`)) onAction({ t: "organizar", opcion: it.id }); }} className="rounded border border-indigo-600 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-50">Hacerlo</button>}
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
 }
 
 function GrowthPanel({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
