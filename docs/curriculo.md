@@ -90,7 +90,7 @@ En el Business Simulator (10/11/2026): RA3 en parte. Ampliar el almacén obliga 
 
 ### 0623 Gestión económica y financiera de la empresa (160 h) — casi sin cobertura
 RA1 iniciativas emprendedoras · RA2 forma jurídica · RA3 financiación de inversiones · RA4 compraventa o alquiler de activos · RA5 facturas y documentos de cobro y pago (parcial) · RA6 contabilidad y fiscalidad · RA7 rentabilidad y solvencia. Es el módulo menos específico del comercio internacional.
-En el Business Simulator (10/11/2026): RA3, RA4 y RA7 en parte.
+En el Business Simulator (10/11/2026): RA3, RA4, RA5 y RA7 en parte (RA5: plazos legales de pago ante un cliente que pide 90 días, §17 septies).
 - RA3: póliza de crédito, con comisión, interés sobre lo dispuesto y límite.
 - RA4: segundo camión en renting o comprado, con amortización y caja.
 - RA7: resultado frente a tesorería y rentabilidad de cada operación.

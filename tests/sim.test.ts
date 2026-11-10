@@ -75,7 +75,10 @@ describe("equilibrio de la temporada (estrategias automáticas, 200 semillas)", 
   });
   it("aceptarlo todo hunde el servicio: los clientes se van y nunca se gana", () => {
     expect(wins(codiciosa)).toBe(0);
-    expect(codiciosa.filter((s) => s.status === "quiebra" && /servicio/.test(s.endReason ?? "")).length / SEEDS.length).toBeGreaterThan(0.9);
+    // Desde las reglas v4 la codiciosa también paga todo lo que le reclaman, y una parte quiebra antes por caja que por
+    // servicio (medido el 10/11/2026: 79,5 % por servicio, el resto por caja). Antes se exigía más del 90 % por servicio.
+    expect(codiciosa.every((s) => s.status === "quiebra")).toBe(true);
+    expect(codiciosa.filter((s) => s.status === "quiebra" && /servicio/.test(s.endReason ?? "")).length / SEEDS.length).toBeGreaterThan(0.7);
   });
   it("se puede ganar, pero no siempre: elegir por margen gana más que aceptar en orden", () => {
     expect(wins(selectiva) / SEEDS.length).toBeGreaterThan(0.3);
@@ -377,8 +380,9 @@ describe("documentación de cada operación", () => {
     for (const seed of SEEDS.slice(0, 60)) {
       const { state } = play(seed, "codiciosa");
       const pen = state.weeks.reduce((a, w) => a + w.costPenalties, 0);
-      const cash = state.ledger.filter((m) => m.label.startsWith("Sanciones")).reduce((a, m) => a - m.amount, 0);
-      expect(pen).toBe(cash);
+      // Desde las reglas v4 esta partida también incluye indemnizaciones y costas de las reclamaciones.
+      const cash = state.ledger.filter((m) => /^(Sanciones|Indemnización|Laudo)/.test(m.label)).reduce((a, m) => a - m.amount, 0);
+      expect(pen).toBeCloseTo(cash, 2);
       expect(state.contracts.filter((c) => c.docPenalized).length * 1).toBeGreaterThanOrEqual(pen > 0 ? 1 : 0);
       if (pen > 0) hits++;
       expect(balanceGap(state)).toBe(0);
@@ -457,7 +461,7 @@ describe("viajes puntuales (v2) y versiones de reglas", () => {
   });
   it("las partidas nuevas empiezan con la versión actual", () => {
     expect(newGame(1).version).toBe(ENGINE_VERSION);
-    expect(ENGINE_VERSION).toBe(3);
+    expect(ENGINE_VERSION).toBe(4);
   });
 });
 
@@ -589,4 +593,92 @@ describe("herramientas para crecer (docs/simulador.md §17 sexies)", () => {
     expect(grow).toBeGreaterThan(base);
     expect(grow).toBeLessThan(60);
   }, 120_000);
+});
+
+describe("reclamaciones con base legal (reglas v4, docs/simulador.md §17 septies)", () => {
+  /** Juega con la estrategia prudente hasta que aparece la reclamación pedida y devuelve el estado con ella pendiente. */
+  function until(kind: "dano" | "retraso" | "plazo", pred: (s: SimState) => boolean = () => true): SimState | null {
+    for (const sd of SEEDS) {
+      const { actions } = play(sd, "prudente");
+      let s = newGame(sd);
+      for (const a of actions) {
+        if (s.status === "incidencia" && s.pending?.kind === kind && pred(s)) return s;
+        s = apply(s, a);
+      }
+    }
+    return null;
+  }
+  const answer = (s: SimState, opcion: string) => apply(s, { t: "responder", incidencia: s.pending!.id, opcion });
+  const week = (s: SimState, w: number) => s.weeks.find((x) => x.week === w)!;
+
+  it("solo en partidas v4: las guardadas con reglas anteriores no las ven", () => {
+    expect(SEEDS.slice(0, 20).every((sd) => play(sd, "prudente", 3).state.learning.every((l) => !/Reclamación|90 días/.test(l.what)))).toBe(true);
+    expect(SEEDS.slice(0, 20).some((sd) => play(sd, "prudente").state.learning.some((l) => /Reclamación/.test(l.what)))).toBe(true);
+  }, 60_000);
+  it("avería con reservas: respondes hasta el límite legal por kilo; rechazarla acaba en laudo y pierdes al cliente", () => {
+    const s = until("dano", (x) => x.pending!.data.variant === "reservas")!;
+    const { limit, claim, kg, client } = s.pending!.data as { limit: number; claim: number; kg: number; client: string };
+    expect(limit).toBeCloseTo(kg * 600 / 30 / 3, 1);
+    expect(claim).toBeGreaterThan(limit);
+    const ok = answer(s, "limite");
+    expect(ok.learning.at(-1)!.grade).toBe("correcta");
+    expect(week(ok, s.week).costPenalties).toBeGreaterThanOrEqual(limit);
+    expect(ok.ledger.some((m) => m.week === s.week && m.label.startsWith("Indemnización por avería") && m.amount === -limit)).toBe(true);
+    const no = answer(s, "rechazar");
+    expect(no.learning.at(-1)!.grade).toBe("grave");
+    expect(no.contracts.filter((c) => c.clientId === client && c.endWeek > s.week).every((c) => c.cancelledWeek === s.week + 1)).toBe(true);
+    expect(balanceGap(ok)).toBe(0); expect(balanceGap(no)).toBe(0);
+  }, 60_000);
+  it("avería reclamada tarde y sin reservas: con recibo firmado se rechaza; sin recibo, rechazarla sale caro", () => {
+    const withR = until("dano", (x) => x.pending!.data.variant === "tardia_con_recibo")!;
+    const r = answer(withR, "rechazar");
+    expect(r.learning.at(-1)!.grade).toBe("correcta");
+    expect(r.ledger.some((m) => m.week === withR.week && /avería/.test(m.label))).toBe(false);
+    // Sin recibo: mismo caso pero con un contrato aceptado sin documentación (como hace la estrategia codiciosa).
+    const noR = (() => { for (const sd of SEEDS) { const { actions } = play(sd, "codiciosa"); let s = newGame(sd); for (const a of actions) { if (s.pending?.kind === "dano" && s.pending.data.variant === "tardia_sin_recibo") return s; if (s.status === "quiebra") break; s = apply(s, a); } } return null; })()!;
+    expect(noR).not.toBeNull();
+    const lost = answer(noR, "rechazar");
+    expect(lost.learning.at(-1)!.grade).toBe("razonable");
+    expect(lost.ledger.some((m) => m.week === noR.week && m.label.startsWith("Laudo y costas") && m.amount === -(Number(noR.pending!.data.limit) + 300))).toBe(true);
+  }, 120_000);
+  it("retraso: como mucho el precio del transporte; si la causa no se podía evitar, no se responde", () => {
+    const own = until("retraso", (x) => x.pending!.data.variant === "propia")!;
+    const price = Number(own.pending!.data.price);
+    expect(Number(own.pending!.data.claim)).toBeGreaterThan(price);
+    const a = answer(own, "limite");
+    expect(a.learning.at(-1)!.grade).toBe("correcta");
+    expect(a.ledger.some((m) => m.week === own.week && m.label.startsWith("Indemnización por retraso") && m.amount === -price)).toBe(true);
+    expect(answer(own, "exonerar").learning.at(-1)!.grade).toBe("grave");
+    const other = until("retraso", (x) => x.pending!.data.variant === "ajena")!;
+    const b = answer(other, "exonerar");
+    expect(b.learning.at(-1)!.grade).toBe("correcta");
+    expect(b.ledger.some((m) => m.week === other.week && /retraso/.test(m.label))).toBe(false);
+  }, 60_000);
+  it("plazo: aceptar 90 días es un error grave y prorroga cobrando a 90; proponer 60 es lo correcto", () => {
+    const s = until("plazo")!;
+    const id = String(s.pending!.data.contract);
+    const yes = answer(s, "aceptar");
+    expect(yes.learning.at(-1)!.grade).toBe("grave");
+    const ext = yes.contracts.find((c) => c.id === `${id}-prorroga`)!;
+    expect(ext.startWeek).toBe(s.week + 1);
+    expect(ext.payWeeks).toBe(12);
+    expect(payTermLabel(ext.payWeeks)).toBe("90 días");
+    const legal = answer(s, "legal");
+    expect(legal.learning.at(-1)!.grade).toBe("correcta");
+    const ext60 = legal.contracts.find((c) => c.id === `${id}-prorroga`);
+    if (ext60) expect(ext60.payWeeks).toBe(8);
+    expect(answer(s, "rechazar").contracts.some((c) => c.id === `${id}-prorroga`)).toBe(false);
+  }, 60_000);
+  it("cada reclamación aparece como mucho una vez por temporada y la partida se guarda y recupera entera", () => {
+    for (const sd of SEEDS.slice(0, 10)) {
+      const { actions, state, maxGap } = play(sd, "negociadora");
+      expect(maxGap).toBe(0);
+      for (const k of ["dano", "retraso", "plazo"]) expect(actions.filter((a) => a.t === "responder" && a.incidencia === k).length).toBeLessThanOrEqual(1);
+      const p = parseSave(JSON.parse(JSON.stringify(toSave(sd, actions, state.version))));
+      if (!p.ok) throw new Error("guardado");
+      const r = restore(p.save);
+      expect(r.dropped).toBe(0);
+      expect(JSON.stringify(r.state)).toBe(JSON.stringify(state));
+    }
+  }, 60_000);
 });

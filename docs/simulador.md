@@ -421,6 +421,34 @@ distinguen:
 - Por herramientas, la crecedora gana 196 sin subcontratar y 231 solo subcontratando. Subcontratar es lo que más aporta. Cuando el segundo camión se pone, mejora el resultado frente a la negociadora en 7.500 € de media (44 de 44 partidas). La nave queda casi neutra: hay que llenarla.
 - Ninguna quiebra y el balance cuadra en cada paso.
 
+## 17 septies. Reclamaciones con base legal (10/11/2026, reglas v4)
+
+**Problema:** las incidencias eran solo la avería del camión y el cliente moroso, y la documentación tenía una sola consecuencia, una sanción al azar. El recibo de entrega no servía para nada en el juego.
+
+**Qué se añade.** Tres reclamaciones, como mucho una de cada por temporada (`lib/sim/claims.ts`). La semilla elige la semana dentro de su ventana; si ese día no hay un contrato al que afecte, la reclamación espera a la primera semana en que lo haya. Normativa leída en el BOE el 10/11/2026 [N]:
+- **Mercancía dañada** (semanas 6–17): Ley 15/2009, arts. 47, 57.1, 60.1 y 61.
+  - Con reservas escritas al entregar, respondes hasta el límite legal de un tercio del IPREM/día por kilo.
+  - Si la reclamación llega pasados 7 días sin reservas, se presume que entregaste bien. Rechazarla es lo correcto si tienes el **recibo de entrega firmado** (art. 12); sin él, pierdes en la Junta Arbitral.
+  - Pagar todo lo que pide el cliente nunca es lo correcto: por encima del límite solo se responde si se declaró el valor (art. 61).
+- **Retraso** (semanas 12–21): arts. 48.1, 56, 57.2 y 60.3.
+  - Se paga el perjuicio, como mucho el precio del transporte.
+  - Si la causa era evitable (no planificaste el descanso del conductor), negarse acaba en laudo y pierdes al cliente.
+  - Si no lo era (un corte de carretera por el accidente de otro), no respondes.
+- **Cliente que quiere pagar a 90 días** al prorrogar un almacenaje (semanas 8–22): Ley 3/2004, art. 4.3, que fija un máximo de 60 días por pacto.
+  - Aceptar 90 días es «grave».
+  - Proponer 60 es lo correcto. El cliente lo acepta en un 70 % de los casos [S].
+
+**Lo no comprobado:**
+- El IPREM de 2026 (600 €/mes) solo lo dan fuentes secundarias, por la prórroga de los Presupuestos; está marcado así en el juego.
+- Kilos, valores, costas y probabilidades son [S].
+
+**Versiones:** reglas v4 solo para partidas nuevas. 216 partidas v1, v2 y v3 generadas por el motor publicado se reproducen idénticas.
+
+**Resultado medido (300 partidas, v4):**
+- Victorias: prudente 119, selectiva 158, negociadora 185 y crecedora 236. Con la v3 eran 120, 160, 186 y 234: responder bien apenas cuesta, porque lo correcto suele ser pagar dentro del límite.
+- La avería y el retraso aparecen en todas las temporadas; el plazo de 90 días, en un 91–93 %.
+- La codiciosa, que paga todo lo que le reclaman y no documenta, sigue sin ganar nunca.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.
