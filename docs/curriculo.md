@@ -46,7 +46,7 @@ Valoración propia a partir del código de los casos (`lib/learning`), no de un 
 | 2 | Sistema de información para la compraventa internacional | No |
 | 3 | Barreras al comercio | Sí: aranceles, defensa comercial (antidumping y su elusión), requisitos de producto (RD 339/2014, FDA) |
 | 4 | Procedimientos de importación/exportación e introducción/expedición | Parcial: exportación, expedición e importación sí (clasificación, origen, valor en aduana, representación, IVA diferido, canal rojo); **introducción intracomunitaria, no** |
-| 5 | Documentación de importación/exportación | Parcial (DUA, EORI, EUR.1, factura, B/L, certificado de origen; sin Intrastat ni rellenar el DUA) |
+| 5 | Documentación de importación/exportación | Parcial (DUA, EORI, EUR.1, factura, B/L, certificado de origen; sin Intrastat ni rellenar el DUA). En el simulador (v5), CMR y licencia comunitaria en un transporte dentro de la UE, sin DUA |
 
 ### 0826 Medios de pago internacionales (140 h) — cobertura parcial
 | RA | Contenido | Cobertura |

@@ -449,6 +449,40 @@ distinguen:
 - La avería y el retraso aparecen en todas las temporadas; el plazo de 90 días, en un 91–93 %.
 - La codiciosa, que paga todo lo que le reclaman y no documenta, sigue sin ganar nunca.
 
+## 17 octies. Viajes internacionales por carretera (10/11/2026, reglas v5)
+
+**Problema:** el simulador era solo nacional, en un ciclo de Comercio Internacional. Los casos prácticos ya enseñan CMR, aduanas e Incoterms, pero no desde el lado del transportista.
+
+**Qué se añade (`lib/sim/international.ts`).**
+- **Las ofertas.** Desde la semana 5, la mitad de las semanas llega como mucho una oferta de camión completo desde Valencia a Toulouse, Marsella, Lyon (Francia) u Oporto (Portugal). Sale de su propia secuencia de azar, así que las demás ofertas no cambian.
+- **Capacidad.** El viaje ocupa días enteros de camión: ida y vuelta a unos 600 km al día, más un día de carga y descarga. Son 4 o 5 días, es decir, casi toda la semana del camión, en competencia con el reparto regional.
+- **Coste real del viaje.**
+  - Gasóleo y mantenimiento por km.
+  - Peajes extranjeros (150–330 € por viaje) [S].
+  - Dietas del conductor de 90 € por día [S].
+  - La calificación compara el precio con ese coste directo y con el coste completo, que añade 185 € por día de conductor, seguro y amortización.
+- **Carga de retorno** en la mitad de los viajes.
+- **No se puede subcontratar:** tus colaboradores son nacionales.
+- **Negociación:** como un viaje puntual, solo el precio.
+- **Reclamaciones de la v4:** no le afectan, porque se rigen por la Ley 15/2009 y este contrato por el CMR.
+- **Documentación** [N]. Comprobado el 10/11/2026:
+  - Convenio CMR (BOE-A-1974-753): art. 1, se aplica si la carga y la entrega están en dos países; art. 4, la carta de porte prueba el contrato; art. 5, tres originales.
+  - Orden FOM/2861/2012, art. 2.2: la carta de porte internacional sirve como documento de control si lleva sus datos.
+  - Reglamento (CE) 1072/2009, art. 4: copia certificada de la licencia comunitaria en cada vehículo. Leído en el texto que conserva legislation.gov.uk, porque EUR-Lex no se dejó descargar; hay que confirmarlo en EUR-Lex.
+  - El DUA sobra: Francia y Portugal están en la UE.
+  - Sin licencia es «grave»: en un 30 % de los viajes hay control con inmovilización y multa de 1.500 € [S].
+
+**Decisiones:**
+- **Marruecos fuera:** su régimen de autorizaciones (bilaterales) no está verificado.
+- **Reputación:** si es floja, la oferta internacional es la primera que deja de llegar. Es consecuencia de cómo se recortan las ofertas, pero tiene sentido: el cliente internacional exige fiabilidad.
+
+**Versiones:** reglas v5 solo para partidas nuevas. 240 partidas v1–v4 generadas por el motor publicado se reproducen idénticas.
+
+**Resultado medido (300 partidas):**
+- Victorias: selectiva 166 (antes 158), negociadora 187 (185) y crecedora 240 (236). Prudente, 119, sin cambios: nunca tiene el camión libre para un viaje así.
+- Las estrategias que eligen por margen hacen entre 0,5 y 0,8 viajes internacionales por temporada. Compiten con el reparto: no siempre compensa.
+- Ninguna quiebra y el balance cuadra en cada paso.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.

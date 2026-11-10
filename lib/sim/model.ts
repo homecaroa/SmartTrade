@@ -5,7 +5,7 @@ export type PayProfile = "puntual" | "tardio";
 
 export interface Client { id: string; name: string; sector: string; profile: PayProfile }
 
-export type OfferKind = "distribucion" | "puntual" | "almacenaje";
+export type OfferKind = "distribucion" | "puntual" | "almacenaje" | "internacional";
 
 export interface Offer {
   id: string;
@@ -32,8 +32,12 @@ export interface Offer {
   note?: string;
   /** El cliente aceptó tus condiciones: falta que confirmes (con la documentación). */
   agreed?: boolean;
-  /** Viaje puntual (v2): carga que el mismo cliente te ofrece para la vuelta, si la hay. */
+  /** Viaje puntual (v2) o internacional (v5): carga que el mismo cliente te ofrece para la vuelta, si la hay. */
   backhaul?: { pallets: number; price: number };
+  /** Viaje internacional (v5): destino, días de camión que ocupa (ida, vuelta, carga y descarga) y peajes extranjeros. */
+  destination?: { city: string; country: string };
+  days?: number;
+  tolls?: number;
 }
 
 export interface Contract extends Offer {
@@ -42,7 +46,7 @@ export interface Contract extends Offer {
   cancelledWeek?: number;
   /** Documentación preparada al aceptar (ausente en partidas anteriores al 09/11/2026: no se califica ni penaliza). */
   docs?: string[];
-  docIssues?: ("sin_control" | "sin_albaran")[];
+  docIssues?: ("sin_control" | "sin_albaran" | "sin_licencia")[];
   /** La consecuencia de la documentación que faltaba ya ocurrió (solo una vez por contrato). */
   docPenalized?: boolean;
   /** Viaje puntual: aceptaste también la carga de retorno. */

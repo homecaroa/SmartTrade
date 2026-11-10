@@ -135,6 +135,7 @@ function StartScreen({ onStart, onImport, message }: { onStart: (seed: number) =
         <li>Facturar no es cobrar: el transporte se cobra a 30 días y el alquiler y las nóminas se pagan cada 4 semanas.</li>
         <li>El camión hace unos 1.050 km por semana y el almacén guarda 600 palés: lo que aceptes por encima no se puede servir.</li>
         <li><b>Para ganar</b>, al final de la temporada la empresa debe dar beneficio (últimas 8 semanas) y cumplir uno de estos dos: nivel de servicio de al menos el 95 % u ocupación media del almacén de al menos el 70 %. Pierdes si te quedas sin caja dos semanas o si tu servicio cae por debajo del 80 % cuatro semanas seguidas.</li>
+        <li>Desde la semana 5 llegan algunos <b>viajes internacionales</b> a Francia y Portugal: ocupan casi toda la semana del camión y llevan su propia documentación.</li>
         <li>Habrá <b>reclamaciones</b>: mercancía dañada, retrasos o clientes que quieren pagar tarde. La ley marca hasta dónde respondes y lo que hayas documentado cuenta.</li>
         <li>Para <b>crecer</b> puedes subcontratar trabajos, poner un segundo camión (en renting o comprado), ampliar el almacén y pedir una póliza de crédito. Todo cuesta desde el primer día.</li>
         <li>Tu <b>nivel de servicio es tu reputación</b>: si cumples, a partir de la semana 7 los clientes pagan más; si fallas, te llegan menos ofertas y peores.</li>

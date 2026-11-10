@@ -1,9 +1,10 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { apply, balanceGap, breakdownOf, breakdownsOf, cashByConcept, cashStart, clientHistory, gradeGrowth, gradeOffer, kmCommitted, kmOwnCommitted, newGame, palletCapacityAt, replay, seasonOutcome, subcontractPerKm, TRUCK_FULL_COST_PER_KM, truckKmAt } from "@/lib/sim/engine";
+import { apply, balanceGap, breakdownOf, breakdownsOf, cashByConcept, cashStart, clientHistory, gradeGrowth, gradeOffer, incidentOptions, kmCommitted, kmOwnCommitted, newGame, palletCapacityAt, replay, seasonOutcome, subcontractPerKm, TRUCK_FULL_COST_PER_KM, truckKmAt } from "@/lib/sim/engine";
 import { bestDocs, clientLimits, gradeDocs, respond, roundRate, termsOf, validateProposal } from "@/lib/sim/deal";
 import { evaluate } from "@/lib/sim/calc";
+import { directCost, fixedShare } from "@/lib/sim/international";
 import { kmOf, offersFor, reputationEffect, withReputation } from "@/lib/sim/market";
 import type { Action, Offer, SimState } from "@/lib/sim/model";
 import { ENGINE_VERSION, FIXED_PER_MONTH, FIXED_PER_WEEK, GROWTH, P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
@@ -103,7 +104,8 @@ describe("equilibrio de la temporada (estrategias automáticas, 200 semillas)", 
 describe("compatibilidad con las partidas de la fase 1", () => {
   it("las semanas 1-6 no cambian: mismas ofertas base (3-5, sin prima) y la primera avería con el mismo sorteo", () => {
     for (const seed of SEEDS.slice(0, 50)) {
-      for (let w = 1; w <= 6; w++) { const n = offersFor(seed, w, 100).length; expect(n).toBeGreaterThanOrEqual(3); expect(n).toBeLessThanOrEqual(5); }
+      // Ofertas base: el viaje internacional de las reglas v5 (desde la semana 5) va aparte y no cambia las demás.
+      for (let w = 1; w <= 6; w++) { const n = offersFor(seed, w, 100).filter((o) => o.kind !== "internacional").length; expect(n).toBeGreaterThanOrEqual(3); expect(n).toBeLessThanOrEqual(5); }
       expect(breakdownOf(seed).id).toBe("averia");
       expect(breakdownOf(seed).week).toBe(2 + Math.floor(stream(seed, 0, "averia")() * 4));
     }
@@ -461,7 +463,7 @@ describe("viajes puntuales (v2) y versiones de reglas", () => {
   });
   it("las partidas nuevas empiezan con la versión actual", () => {
     expect(newGame(1).version).toBe(ENGINE_VERSION);
-    expect(ENGINE_VERSION).toBe(4);
+    expect(ENGINE_VERSION).toBe(5);
   });
 });
 
@@ -680,5 +682,70 @@ describe("reclamaciones con base legal (reglas v4, docs/simulador.md §17 septie
       expect(r.dropped).toBe(0);
       expect(JSON.stringify(r.state)).toBe(JSON.stringify(state));
     }
+  }, 60_000);
+});
+
+describe("viajes internacionales por carretera (reglas v5, docs/simulador.md §17 octies)", () => {
+  const intlAt = (sd: number, version = 5) => { for (let w = 1; w <= SEASON_WEEKS; w++) { const o = offersFor(sd, w, 100, version).find((x) => x.kind === "internacional"); if (o) return o; } return null; };
+  it("solo en partidas v5, desde la semana 5, y sin cambiar las demás ofertas", () => {
+    for (const sd of SEEDS.slice(0, 30)) for (let w = 1; w <= SEASON_WEEKS; w++) {
+      const v4 = offersFor(sd, w, 100, 4), v5 = offersFor(sd, w, 100, 5);
+      expect(v4.some((o) => o.kind === "internacional")).toBe(false);
+      expect(v5.filter((o) => o.kind !== "internacional")).toEqual(v4);
+      if (w < 5) expect(v5.length).toBe(v4.length);
+    }
+    expect(SEEDS.slice(0, 30).filter((sd) => intlAt(sd)).length).toBeGreaterThan(25);
+  });
+  it("ocupa días enteros de camión y se califica contra su coste real (gasóleo, peajes extranjeros, dietas)", () => {
+    const o = intlAt(SEEDS[0])!;
+    expect(o.days).toBe(Math.ceil(2 * o.kmOneWay! / 600) + 1);
+    expect(kmOf(o)).toBe(o.days! * P.kmPerDay);
+    const d = directCost(o);
+    expect(d.total).toBeCloseTo(2 * o.kmOneWay! * P.variablePerKm + o.tolls! + o.days! * 90, 2);
+    const s = newGame(1, 5);
+    const at = (price: number) => gradeOffer(s, { ...o, week: 1, price, backhaul: undefined }).grade;
+    expect(at(Math.floor(d.total) - 1)).toBe("grave");
+    expect(at(Math.ceil(d.total) + 1)).toBe("razonable");
+    expect(at(Math.ceil(d.total + fixedShare(o.days!)) + 1)).toBe("correcta");
+  });
+  it("documentación: CMR y licencia comunitaria; sin licencia es grave, y el DUA sobra dentro de la UE", () => {
+    expect(gradeDocs("internacional", bestDocs("internacional")).grade).toBe("correcta");
+    const noLic = gradeDocs("internacional", ["cmr"]);
+    expect(noLic.grade).toBe("grave");
+    expect(noLic.issues).toContain("sin_licencia");
+    expect(gradeDocs("internacional", ["cmr", "licencia", "dua"]).grade).toBe("razonable");
+    expect(gradeDocs("internacional", ["control", "licencia"]).grade).toBe("razonable");
+    expect(gradeDocs("internacional", ["licencia"]).issues).toContain("sin_control");
+  });
+  it("hecho con tu camión: se factura el precio y se paga el coste real del viaje; no se puede subcontratar", () => {
+    const sd = SEEDS.find((x) => { const o = intlAt(x); return o && o.week >= 5; })!;
+    const o = intlAt(sd)!;
+    let s = newGame(sd, 5);
+    while (s.week < o.week) { s = apply(s, { t: "cerrar" }); while (s.status === "incidencia") s = apply(s, { t: "responder", incidencia: s.pending!.id, opcion: incidentOptions(s.pending!, s.version)[0].id }); }
+    const offer = s.offers.find((x) => x.kind === "internacional")!;
+    expect(() => apply(s, { t: "aceptar", oferta: offer.id, subcontratar: true })).toThrow(/nacional/);
+    s = apply(s, { t: "aceptar", oferta: offer.id, docs: bestDocs("internacional") });
+    s = apply(s, { t: "cerrar" });
+    while (s.status === "incidencia") s = apply(s, { t: "responder", incidencia: s.pending!.id, opcion: incidentOptions(s.pending!, s.version)[0].id });
+    const rec = s.weeks.find((w) => w.week === offer.week)!;
+    const d = directCost(offer);
+    if (rec.kmUnserved === 0) {
+      expect(rec.revenueTransport).toBeCloseTo(offer.price!, 2);
+      expect(rec.costVariable).toBeCloseTo(d.total, 2);
+      expect(s.ledger.some((m) => m.week === offer.week && m.label === "Peajes extranjeros y dietas del conductor" && m.amount === -d.extras)).toBe(true);
+    }
+    expect(balanceGap(s)).toBe(0);
+  });
+  it("una temporada con viajes internacionales cuadra en cada paso y se guarda y recupera entera", () => {
+    let seen = 0;
+    for (const sd of SEEDS.slice(0, 20)) {
+      const { actions, state, maxGap } = play(sd, "crecedora");
+      expect(maxGap).toBe(0);
+      if (state.contracts.some((c) => c.kind === "internacional")) seen++;
+      const p = parseSave(JSON.parse(JSON.stringify(toSave(sd, actions, state.version))));
+      if (!p.ok) throw new Error("guardado");
+      expect(JSON.stringify(restore(p.save).state)).toBe(JSON.stringify(state));
+    }
+    expect(seen).toBeGreaterThan(0);
   }, 60_000);
 });
