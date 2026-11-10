@@ -14,6 +14,8 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 
 **Reclamaciones con base legal** (10/11/2026, reglas v4, §17 septies): mercancía dañada, en la que el recibo de entrega firmado decide (Ley 15/2009, arts. 47, 57, 60 y 61); retraso, que cuesta como mucho el precio del transporte salvo causa inevitable (arts. 48, 56 y 57.2); y un cliente que pide pagar a 90 días (Ley 3/2004, art. 4.3: máximo 60). Las partidas v1, v2 y v3 guardadas se reproducen idénticas: comprobado con 216. El IPREM de 2026 no está comprobado en el BOE.
 
+**Viajes internacionales** (10/11/2026, reglas v5, §17 octies): camión completo a Francia y Portugal. Ocupa días de camión y paga peajes extranjeros y dietas. La documentación es el CMR con los datos del documento de control y la copia certificada de la licencia comunitaria (Convenio CMR, arts. 1, 4 y 5; Orden FOM/2861/2012, art. 2.2; Reglamento 1072/2009, art. 4, leído en legislation.gov.uk). Las partidas v1–v4 guardadas se reproducen idénticas: comprobado con 240. Marruecos queda fuera, sin verificar.
+
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.
 - **Currículo oficial leído** (RD 1574/2011, RD 500/2024, Orden EFD/659/2024) y cruzado con los casos: `docs/curriculo.md`. Cobertura alta en Transporte internacional; parcial en Gestión administrativa (solo exportación), Medios de pago, Financiación y Negociación; nula en Marketing, Sistema de información de mercados, Almacenamiento y Comercio digital. Propuesta de huecos ordenada, pendiente de decisión.

@@ -1,6 +1,7 @@
 import { round2, sum } from "../learning/money";
 import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validateProposal, withTerms, type Terms } from "./deal";
 import { applyClaimDecision, claimIncidents, claimOptions, isClaim } from "./claims";
+import { directCost, fixedShare } from "./international";
 import { clientOf, kmOf, offersFor } from "./market";
 import type { Action, Contract, Grade, Growth, GrowthOption, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
 import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
@@ -62,14 +63,19 @@ export const WAREHOUSE_FULL_COST_PER_PALLET = round2((P.fixedMonthly.alquiler + 
 /** Calificación de aceptar una oferta (docs/simulador.md §6): capacidad, margen sobre el coste variable y sobre el coste completo. */
 export function gradeOffer(s: Pick<SimState, "contracts"> & WithGrowth, o: Offer, withBackhaul = false, subcontract = false): { grade: Grade; feedback: string } {
   const weeks = Array.from({ length: o.weeks }, (_, i) => o.week + i);
-  if (subcontract && o.kind !== "almacenaje") return gradeSubcontract(s, o, weeks, withBackhaul);
+  if (subcontract && (o.kind === "distribucion" || o.kind === "puntual")) return gradeSubcontract(s, o, weeks, withBackhaul);
   // Con un solo camión y la nave de siempre, los textos son exactamente los de antes (las partidas guardadas no cambian).
   const over = weeks.find((w) => kmOwnCommitted(s, w) + kmOf(o) > truckKmAt(s, w));
+  if (o.kind === "internacional" && over !== undefined) {
+    const free = Math.max(0, Math.floor((truckKmAt(s, over) - kmOwnCommitted(s, over)) / P.kmPerDay));
+    return { grade: "grave", feedback: `No tenías capacidad: el viaje necesita ${o.days} días de camión y esa semana solo te quedaban ${free} libres. Lo que no puedas hacer no se factura y baja tu nivel de servicio.` };
+  }
   if (o.kind !== "almacenaje" && over !== undefined)
     return { grade: "grave", feedback: `No tenías capacidad: con esta oferta ${truckKmAt(s, over) > TRUCK_KM_WEEK ? "tus dos camiones superan sus" : "el camión supera sus"} ${truckKmAt(s, over)} km semanales. Lo que no puedas hacer no se factura y baja tu nivel de servicio.` };
   const full = weeks.find((w) => palletsCommitted(s, w) + o.pallets! > palletCapacityAt(s, w));
   if (o.kind === "almacenaje" && full !== undefined)
     return { grade: "grave", feedback: `No tenías sitio: el almacén supera sus ${palletCapacityAt(s, full)} palés. Los palés que no caben no se facturan y baja tu nivel de servicio.` };
+  if (o.kind === "internacional") return gradeInternational(o, withBackhaul);
   if (o.kind === "puntual") {
     const back = withBackhaul && o.backhaul ? o.backhaul.price : 0;
     const perKm = round2((o.price! + back) / (2 * o.kmOneWay!));
@@ -86,6 +92,22 @@ export function gradeOffer(s: Pick<SimState, "contracts"> & WithGrowth, o: Offer
   }
   if (o.palletRate! < WAREHOUSE_FULL_COST_PER_PALLET) return { grade: "razonable", feedback: `La tarifa (${n2(o.palletRate!)} €/palé/semana) no cubre el coste del almacén lleno (${n2(WAREHOUSE_FULL_COST_PER_PALLET)} €).` };
   return { grade: "correcta", feedback: `La tarifa (${n2(o.palletRate!)} €/palé/semana) cubre el coste del almacén lleno (${n2(WAREHOUSE_FULL_COST_PER_PALLET)} €).` };
+}
+
+/**
+ * Viaje internacional (v5): el precio frente al coste directo del viaje (gasóleo, peajes extranjeros, dietas) y frente
+ * al coste completo (más la parte del conductor, el seguro y la amortización de los días que el camión está fuera).
+ */
+function gradeInternational(o: Offer, withBackhaul: boolean): { grade: Grade; feedback: string } {
+  const back = withBackhaul && o.backhaul ? o.backhaul.price : 0;
+  const income = o.price! + back;
+  const d = directCost(o);
+  const full = round2(d.total + fixedShare(o.days!));
+  const missed = !withBackhaul && o.backhaul ? ` Además dejaste pasar la carga de retorno (+${o.backhaul.price} €): la vuelta se hacía igual.` : "";
+  const parts = `gasóleo y mantenimiento ${n2(d.fuel)} € y peajes extranjeros y dietas ${n2(d.extras)} €`;
+  if (income < d.total) return { grade: "grave", feedback: `Pierdes dinero: cobras ${n2(income)} € y el viaje cuesta ${n2(d.total)} € solo en ${parts}.${missed}` };
+  if (income < full) return { grade: "razonable", feedback: `Cubre el coste directo (${parts}: ${n2(d.total)} €), pero no el completo de ${o.days} días de camión fuera (${n2(full)} € con conductor, seguro y amortización).${missed}` };
+  return { grade: missed ? "razonable" : "correcta", feedback: `Cubre el coste completo de ${o.days} días de camión fuera (${n2(full)} €: ${parts}, más conductor, seguro y amortización).${missed}` };
 }
 
 /** Precio por km recorrido de una oferta de transporte (el puntual cuenta ida y vuelta, con la carga de retorno si se acepta). */
@@ -239,10 +261,11 @@ export function apply(prev: SimState, a: Action): SimState {
     if (!o) throw new Error("Oferta no disponible.");
     if (a.retorno && !o.backhaul) throw new Error("Esta oferta no tiene carga de retorno.");
     if (a.subcontratar && o.kind === "almacenaje") throw new Error("El almacenaje no se puede subcontratar.");
+    if (a.subcontratar && o.kind === "internacional") throw new Error("Tus subcontratistas solo hacen transporte nacional.");
     if (a.subcontratar && subcontractRoom(s, o) < kmOf(o)) throw new Error(`Tus subcontratistas no tienen más camiones libres: como mucho ${GROWTH.subcontract.maxKmWeek} km por semana.`);
     const g = gradeOffer(s, o, !!a.retorno, !!a.subcontratar);
     const contract: Contract = { ...o, startWeek: o.week, endWeek: o.week + o.weeks - 1, ...(a.retorno ? { withBackhaul: true } : {}), ...(a.subcontratar ? { subcontracted: true } : {}) };
-    learn(s, { week: s.week, what: `Aceptar: ${describeOffer(o)}`, answer: a.subcontratar ? "Aceptada y subcontratada" : "Aceptada", grade: g.grade, feedback: g.feedback, competences: o.kind === "almacenaje" ? ["0625-RA3", "0623-RA7"] : ["0622-RA2", "0622-RA3", "0623-RA7"] });
+    learn(s, { week: s.week, what: `Aceptar: ${describeOffer(o)}`, answer: a.subcontratar ? "Aceptada y subcontratada" : "Aceptada", grade: g.grade, feedback: g.feedback, competences: o.kind === "almacenaje" ? ["0625-RA3", "0623-RA7"] : o.kind === "internacional" ? ["0622-RA1", "0622-RA2", "0622-RA3", "0623-RA7"] : ["0622-RA2", "0622-RA3", "0623-RA7"] });
     // Documentación: solo si la acción la trae (las aceptaciones guardadas antes del 09/11/2026 no la tenían).
     if (a.docs) {
       const valid = new Set(docsFor(o.kind).map((d) => d.id));
@@ -250,7 +273,7 @@ export function apply(prev: SimState, a: Action): SimState {
       const d = gradeDocs(o.kind, a.docs);
       contract.docs = [...a.docs];
       contract.docIssues = d.issues;
-      learn(s, { week: s.week, what: `Documentación: ${clientOf(o.clientId).name}`, answer: a.docs.map((id) => docsFor(o.kind).find((x) => x.id === id)!.label).join(", ") || "Ninguna", grade: d.grade, feedback: d.feedback.join(" "), competences: o.kind === "almacenaje" ? ["0625-RA1", "0625-RA2"] : ["0622-RA5"] });
+      learn(s, { week: s.week, what: `Documentación: ${clientOf(o.clientId).name}`, answer: a.docs.map((id) => docsFor(o.kind).find((x) => x.id === id)!.label).join(", ") || "Ninguna", grade: d.grade, feedback: d.feedback.join(" "), competences: o.kind === "almacenaje" ? ["0625-RA1", "0625-RA2"] : o.kind === "internacional" ? ["0622-RA5", "0627-RA4"] : ["0622-RA5"] });
     }
     s.contracts.push(contract);
     s.offers = s.offers.filter((x) => x.id !== o.id);
@@ -334,6 +357,9 @@ function close(s: SimState): SimState {
   return s;
 }
 
+/** Orden en que el camión atiende los transportes de una misma semana de inicio (el de antes: distribución, luego puntual). */
+const KIND_ORDER: Record<Offer["kind"], number> = { distribucion: 0, puntual: 1, internacional: 2, almacenaje: 3 };
+
 function resolveWeek(s: SimState) {
   const w = s.week;
   const notes: string[] = [];
@@ -357,8 +383,10 @@ function resolveWeek(s: SimState) {
   const repair = b ? b.repair : 0;
   if (b) notes.push(`Avería: ${b.days} ${b.days === 1 ? "día" : "días"} en el taller y ${b.repair} € de reparación.`);
   const decision = b ? s.answers[b.id] : undefined;
-  const transport = s.contracts.filter((c) => activeIn(c, w) && c.kind !== "almacenaje" && !c.subcontracted).sort((a, c) => a.startWeek - c.startWeek || (a.kind === c.kind ? a.id.localeCompare(c.id) : a.kind === "distribucion" ? -1 : 1));
+  const transport = s.contracts.filter((c) => activeIn(c, w) && c.kind !== "almacenaje" && !c.subcontracted).sort((a, c) => a.startWeek - c.startWeek || (a.kind === c.kind ? a.id.localeCompare(c.id) : KIND_ORDER[a.kind] - KIND_ORDER[c.kind]));
   let left = capacity;
+  // Viajes internacionales hechos: su coste real (km de verdad, peajes extranjeros y dietas), no el de los km de reparto.
+  let intlUnits = 0, intlFuel = 0, intlExtras = 0;
   let kmOwn = 0, kmSub = 0, kmPlanned = 0, kmUnserved = 0, unservedWeight = 0;
   let revenueTransport = 0;
   const breached: Contract[] = [];
@@ -366,11 +394,13 @@ function resolveWeek(s: SimState) {
   for (const c of transport) {
     const need = kmOf(c);
     let served = Math.min(need, left);
-    if (c.kind === "puntual" && served < need) served = 0;
+    if ((c.kind === "puntual" || c.kind === "internacional") && served < need) served = 0;
+    if (c.kind === "internacional" && served === need) { const d = directCost(c); intlUnits += need; intlFuel += d.fuel; intlExtras += d.extras; }
     left -= served;
     kmOwn += served;
     let missing = need - served;
-    if (missing > 0 && broke && decision === "subcontratar") { kmSub += missing; missing = 0; }
+    // Un viaje internacional no se puede subcontratar a tus colaboradores (solo hacen nacional).
+    if (missing > 0 && broke && decision === "subcontratar" && c.kind !== "internacional") { kmSub += missing; missing = 0; }
     kmUnserved += missing;
     unservedWeight += missing * (broke && decision === "avisar" ? 0.5 : 1);
     // Un contrato recurrente que se incumple sin avisar se pierde: el cliente lo cancela desde la semana siguiente.
@@ -442,10 +472,11 @@ function resolveWeek(s: SimState) {
   }
 
   // Costes del devengo.
-  const costVariable = round2(kmOwn * P.variablePerKm);
+  const costVariable = round2((kmOwn - intlUnits) * P.variablePerKm + intlFuel + intlExtras);
   const costSubcontract = round2((kmSub - kmPlanned) * subcontractPerKm(s.version) + kmPlanned * GROWTH.subcontract.perKm);
   if (kmSub > 0) s.payables.push({ id: `p${w}-sub`, label: `Subcontratista (${kmSub} km)`, amount: costSubcontract, week: w, dueWeek: w + GROWTH.subcontract.payWeeks });
-  move("Gasóleo, mantenimiento y peajes", -costVariable);
+  move("Gasóleo, mantenimiento y peajes", -round2(costVariable - intlExtras));
+  if (intlExtras) move("Peajes extranjeros y dietas del conductor", -round2(intlExtras));
   const docPenalties = round2(costPenalties - claimMoves.reduce((x, c) => x + c.amount, 0));
   if (docPenalties) move("Sanciones y reclamaciones por documentación", -docPenalties);
   for (const c of claimMoves) move(c.label, -c.amount);
@@ -498,6 +529,7 @@ export function describeOffer(o: Offer): string {
   const c = clientOf(o.clientId).name;
   if (o.kind === "distribucion") return `${c}: distribución regional, ${o.kmWeek} km/semana a ${n2(o.ratePerKm!)} €/km durante ${o.weeks} semanas`;
   if (o.kind === "puntual") return `${c}: viaje puntual de ${o.kmOneWay} km (retorno en vacío) por ${o.price} €`;
+  if (o.kind === "internacional") return `${c}: viaje internacional a ${o.destination!.city} (${o.destination!.country}), ${o.kmOneWay} km de ida, ${o.days} días de camión, por ${o.price} €`;
   return `${c}: almacenaje de ${o.pallets} palés a ${n2(o.palletRate!)} €/palé/semana durante ${o.weeks} semanas`;
 }
 

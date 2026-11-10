@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { cashStart, clientHistory, creditLimitAt, describeOffer, fixedPerWeekAt, growthBlocked, GROWTH_LABELS, incidentOptions, kmOwnCommitted, kmSubCommitted, MONTH_QUESTION, n2, palletCapacityAt, palletsCommitted, seasonOutcome, serviceLevelToDate, subcontractRoom, truckKmAt } from "@/lib/sim/engine";
 import { docsFor, MAX_ROUNDS, originalTerms, rateOf, validateProposal } from "@/lib/sim/deal";
+import { directCost } from "@/lib/sim/international";
 import { clientOf, kmOf, reputationEffect, weeklyRevenue } from "@/lib/sim/market";
 import type { Action, GrowthOption, Offer, SimState } from "@/lib/sim/model";
 import { GROWTH, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
@@ -11,7 +12,7 @@ import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
 import { Calculator } from "./calculator";
 
-const KIND = { distribucion: "Distribución regional", puntual: "Viaje puntual", almacenaje: "Almacenaje" } as const;
+const KIND = { distribucion: "Distribución regional", puntual: "Viaje puntual", almacenaje: "Almacenaje", internacional: "Transporte internacional" } as const;
 
 function Bar({ value, max, label }: { value: number; max: number; label: string }) {
   const pct = Math.min(100, Math.round(value / max * 100));
@@ -105,7 +106,7 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
   );
 }
 
-const UNIT = { distribucion: "€/km", puntual: "€ el viaje", almacenaje: "€/palé/semana" } as const;
+const UNIT = { distribucion: "€/km", puntual: "€ el viaje", almacenaje: "€/palé/semana", internacional: "€ el viaje" } as const;
 
 /**
  * Una oferta: aceptarla tal cual, negociarla (tarifa, duración y, en almacenaje, plazo de pago) y, al aceptar, preparar
@@ -127,7 +128,7 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
   const rounds = o.round ?? 0;
   const propose = () => {
     const v = Number(rate.replace(",", "."));
-    const w = o.kind === "puntual" ? 1 : Number(weeks);
+    const w = o.kind === "puntual" || o.kind === "internacional" ? 1 : Number(weeks);
     const invalid = Number.isFinite(v) && Number.isInteger(w) ? validateProposal(o, { rate: v, weeks: w, payWeeks: pay }) : "Escribe números válidos.";
     if (invalid) { setError(invalid); return; }
     setError(null); setMode("ver");
@@ -139,6 +140,10 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
       <p className="flex flex-wrap items-center gap-2"><span className="rounded bg-slate-100 px-2 py-0.5 text-xs font-semibold">{KIND[o.kind]}</span><b>{c.name}</b><span className="text-xs text-slate-600">({c.sector})</span></p>
       {o.kind === "distribucion" && <p>{o.kmWeek} km por semana (retornos incluidos) a <b>{n2(o.ratePerKm!)} €/km</b> durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
       {o.kind === "puntual" && <p>Un viaje de {o.kmOneWay} km de ida ({kmOf(o)} km recorridos con la vuelta) por <b>{fmtEur(o.price!)}</b>. {o.backhaul ? <>El cliente ofrece una <b>carga de retorno</b>: {o.backhaul.pallets} palés por <b>{fmtEur(o.backhaul.price)}</b> más.</> : <>La vuelta es <b>en vacío</b>.</>}</p>}
+      {o.kind === "internacional" && (() => {
+        const d = directCost(o);
+        return <p>Camión completo de Valencia a <b>{o.destination!.city} ({o.destination!.country})</b>: {o.kmOneWay!.toLocaleString("es-ES")} km de ida, <b>{o.days} días de camión</b> con la vuelta y la carga, por <b>{fmtEur(o.price!)}</b>. Peajes extranjeros {fmtEur(o.tolls!)} y dietas del conductor {fmtEur(d.extras - o.tolls!)}. {o.backhaul ? <>El cliente ofrece una <b>carga de retorno</b>: {o.backhaul.pallets} palés por <b>{fmtEur(o.backhaul.price)}</b> más.</> : <>La vuelta es <b>en vacío</b>.</>} Contrato internacional: se rige por el Convenio CMR.</p>;
+      })()}
       {o.kind === "almacenaje" && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (manipulación incluida) durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
       <p className="text-xs text-slate-600">Pago a {payTermLabel(o.payWeeks)} · {h.paid || h.overdue ? <><b>Tu experiencia:</b> {historyText(h)}</> : h.invoices ? <><b>Ya trabajas con este cliente:</b> aún no ha vencido ninguna factura. Referencias: {o.clientHint}</> : o.clientHint}</p>
       {o.note && <p className={`rounded p-1.5 text-xs ${o.agreed ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900"}`}><b>{c.name.replace(" (ficticia)", "")}:</b> {o.note} {o.agreed ? "Confirma la operación preparando la documentación." : `Su oferta inicial era ${n2(base.rate)} ${UNIT[o.kind]}.`}</p>}
@@ -155,7 +160,7 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
           <p className="text-xs text-slate-600">Propón tus condiciones. El cliente tiene un límite que no conoces: si pides un poco más de lo que puede pagar te hará una contraoferta; si pides mucho más, se irá con otro transportista. Como mucho {MAX_ROUNDS} rondas.</p>
           <div className="flex flex-wrap items-end gap-2 text-xs">
             <label>Tarifa ({UNIT[o.kind]})<input value={rate} onChange={(e) => setRate(e.target.value)} inputMode="decimal" className="mt-0.5 block w-24 rounded border border-slate-300 px-1 py-0.5" /></label>
-            {o.kind !== "puntual" && <label>Duración (semanas)<input value={weeks} onChange={(e) => setWeeks(e.target.value)} inputMode="numeric" className="mt-0.5 block w-16 rounded border border-slate-300 px-1 py-0.5" /></label>}
+            {o.kind !== "puntual" && o.kind !== "internacional" && <label>Duración (semanas)<input value={weeks} onChange={(e) => setWeeks(e.target.value)} inputMode="numeric" className="mt-0.5 block w-16 rounded border border-slate-300 px-1 py-0.5" /></label>}
             {o.kind === "almacenaje"
               ? <label>Plazo de pago<select value={pay} onChange={(e) => setPay(Number(e.target.value))} className="mt-0.5 block rounded border border-slate-300 px-1 py-0.5"><option value={4}>30 días</option><option value={8}>60 días</option></select></label>
               : <span className="text-slate-600">Pago a 30 días: en el transporte no se negocia (mora a los 30 días, Ley 15/2009, art. 41).</span>}
@@ -168,7 +173,8 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
       {mode === "documentar" && (
         <form className="space-y-1 rounded border border-slate-200 p-2" onSubmit={(e) => { e.preventDefault(); onAction({ t: "aceptar", oferta: o.id, docs, ...(backhaul ? { retorno: true } : {}), ...(sub ? { subcontratar: true } : {}) }); }}>
           {o.backhaul && <label className={box}><input type="checkbox" checked={backhaul} onChange={(e) => setBackhaul(e.target.checked)} className="mt-0.5" /><span>Traer también la carga de retorno ({o.backhaul.pallets} palés, +{fmtEur(o.backhaul.price)})</span></label>}
-          {o.kind !== "almacenaje" && (room >= kmOf(o)
+          {o.kind === "internacional" && <p className="text-xs text-slate-600">Tus subcontratistas solo hacen transporte nacional: este viaje lo haces con tu camión.</p>}
+          {o.kind !== "almacenaje" && o.kind !== "internacional" && (room >= kmOf(o)
             ? <label className={box}><input type="checkbox" checked={sub} onChange={(e) => setSub(e.target.checked)} className="mt-0.5" /><span>Encargarla a un subcontratista: no ocupa tu camión, te cobra {n2(GROWTH.subcontract.perKm)} €/km ({fmtEur(Math.round(kmOf(o) * GROWTH.subcontract.perKm * 100) / 100)} {o.kind === "puntual" ? "el viaje" : "por semana"}) a 30 días y respondes tú ante el cliente. Le quedan {room.toLocaleString("es-ES")} km libres por semana.</span></label>
             : <p className="text-xs text-slate-600">Tus subcontratistas no tienen {kmOf(o).toLocaleString("es-ES")} km libres esas semanas (como mucho {GROWTH.subcontract.maxKmWeek.toLocaleString("es-ES")} km por semana).</p>)}
           <fieldset className="space-y-1">

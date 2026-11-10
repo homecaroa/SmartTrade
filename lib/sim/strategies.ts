@@ -1,4 +1,5 @@
 import { apply, balanceGap, gradeGrowth, incidentOptions, gradeOffer, growthBlocked, newGame, serviceLevelToDate, subcontractRoom } from "./engine";
+import { directCost } from "./international";
 import { kmOf } from "./market";
 import type { Action, Offer, SimState } from "./model";
 import { bestDocs, roundRate, termsOf } from "./deal";
@@ -40,7 +41,7 @@ function choose(strategy: Strategy, s: SimState): string {
 }
 
 /** Margen por unidad de capacidad: €/km recorrido sobre el coste variable, o €/palé/semana. */
-const unitMargin = (o: Offer) => (o.kind === "distribucion" ? o.ratePerKm! - P.variablePerKm : o.kind === "puntual" ? (o.price! + (o.backhaul?.price ?? 0)) / (2 * o.kmOneWay!) - P.variablePerKm : o.palletRate!);
+const unitMargin = (o: Offer) => (o.kind === "internacional" ? (o.price! + (o.backhaul?.price ?? 0) - directCost(o).total) / kmOf(o) : o.kind === "distribucion" ? o.ratePerKm! - P.variablePerKm : o.kind === "puntual" ? (o.price! + (o.backhaul?.price ?? 0)) / (2 * o.kmOneWay!) - P.variablePerKm : o.palletRate!);
 
 export function play(seed: number, strategy: Strategy, version?: number): { state: SimState; actions: Action[]; maxGap: number } {
   let s = newGame(seed, version);
@@ -66,7 +67,7 @@ export function play(seed: number, strategy: Strategy, version?: number): { stat
         accept(o);
       }
       // Lo que no cabe en el camión, subcontratado si el margen es correcto.
-      if (grow) for (const o of [...s.offers]) if (o.kind !== "almacenaje" && subcontractRoom(s, o) >= kmOf(o) && gradeOffer(s, o, !!o.backhaul, true).grade === "correcta") accept(o, true);
+      if (grow) for (const o of [...s.offers]) if (o.kind !== "almacenaje" && o.kind !== "internacional" && subcontractRoom(s, o) >= kmOf(o) && gradeOffer(s, o, !!o.backhaul, true).grade === "correcta") accept(o, true);
     } else if (strategy !== "nada") {
       for (const o of [...s.offers]) if (strategy === "codiciosa" || gradeOffer(s, o).grade !== "grave") accept(o);
     }

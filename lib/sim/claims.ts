@@ -15,6 +15,7 @@ import { intIn, stream } from "./rng";
  * - «plazo»: un cliente de almacenaje quiere prorrogar su contrato si le dejas pagar a 90 días. Por pacto, nunca más de
  *   60 días (Ley 3/2004, art. 4.3).
  * Cifras SIMULADAS en CLAIMS (params.ts). Solo en partidas con reglas v4 o posteriores: las guardadas no cambian.
+ * Solo afectan a transportes nacionales: un viaje internacional se rige por el Convenio CMR, no por la Ley 15/2009.
  */
 const CLAIM_KINDS = ["dano", "retraso", "plazo"] as const;
 export type ClaimKind = (typeof CLAIM_KINDS)[number];
@@ -48,7 +49,7 @@ export function claimIncidents(s: SimState): Incident[] {
   const due = (kind: ClaimKind) => { const d = draw(s.seed, kind); return !s.answers[kind] && w >= d.week && w <= CLAIMS[kind].window.to ? d : null; };
 
   const dano = due("dano");
-  const cd = dano && pickContract(s, "dano", (c) => c.kind !== "almacenaje");
+  const cd = dano && pickContract(s, "dano", (c) => c.kind === "distribucion" || c.kind === "puntual");
   if (dano && cd) {
     const r = dano.r;
     const late = r() < CLAIMS.dano.lateChance;
@@ -66,7 +67,7 @@ export function claimIncidents(s: SimState): Incident[] {
   }
 
   const retraso = due("retraso");
-  const cr = retraso && pickContract(s, "retraso", (c) => c.kind !== "almacenaje");
+  const cr = retraso && pickContract(s, "retraso", (c) => c.kind === "distribucion" || c.kind === "puntual");
   if (retraso && cr) {
     const r = retraso.r;
     const own = r() < CLAIMS.retraso.ownFaultChance;

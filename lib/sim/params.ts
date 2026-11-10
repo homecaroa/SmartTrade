@@ -10,9 +10,10 @@
  *   debajo del coste completo de un camión propio: subcontratar salía más barato que tener camión).
  * - v4 (10/11/2026): reclamaciones con base legal: avería de la mercancía, retraso y un cliente que pide pagar a 90 días
  *   (ver CLAIMS y lib/sim/claims.ts).
+ * - v5 (10/11/2026): viajes internacionales por carretera (ver INTERNATIONAL y lib/sim/international.ts).
  */
-export const ENGINE_VERSION = 4;
-export const SUPPORTED_VERSIONS = [1, 2, 3, 4] as const;
+export const ENGINE_VERSION = 5;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -127,4 +128,32 @@ export const CLAIMS = {
   dano: { window: { from: 6, to: 17 }, kg: { min: 200, max: 1_500 }, valuePerKg: { min: 15, max: 40 }, lateDays: 12, lateChance: 0.5, costs: 600, lostCaseCosts: 300 },
   retraso: { window: { from: 12, to: 21 }, claimFactor: { min: 1.2, max: 2.0 }, ownFaultChance: 0.6, costs: 300 },
   plazo: { window: { from: 8, to: 22 }, extensionWeeks: 4, askedWeeks: 12, legalMaxWeeks: 8, acceptsLegalChance: 0.7 },
+} as const;
+
+/**
+ * Viajes internacionales por carretera (reglas v5, 10/11/2026; docs/simulador.md §17 octies). Destinos de la UE
+ * (Francia y Portugal): sin aduana. Kilómetros por carretera desde Valencia, redondeados [S]. Todo lo demás es SIMULADO:
+ * - `kmPerDayLong`: en larga distancia el camión rueda unos 600 km al día (unas 9 h de conducción, el límite diario
+ *   general del Reglamento (CE) 561/2006, art. 6.1; texto consolidado vigente pendiente de verificar), frente a los 210
+ *   del reparto regional con paradas. El viaje ocupa días enteros de camión: ida y vuelta más un día de carga y descarga.
+ * - Peajes extranjeros por viaje (ida y vuelta) y dietas del conductor por día fuera: órdenes de magnitud, no tarifas.
+ * - Precio por km de ida, probabilidad de oferta y de carga de retorno: decisiones de diseño.
+ * Marruecos y otros destinos fuera de la UE no se incluyen: su régimen de autorizaciones no está verificado.
+ */
+export const INTERNATIONAL = {
+  fromVersion: 5,
+  fromWeek: 5,
+  chance: 0.5,
+  kmPerDayLong: 600,
+  loadDays: 1,
+  dietPerDay: 90,
+  pricePerKmOneWay: { min: 1.8, max: 3.2 },
+  backhaulChance: 0.5,
+  backhaulPerKm: { min: 0.6, max: 1.2 },
+  destinations: [
+    { id: "toulouse", city: "Toulouse", country: "Francia", km: 720, tolls: 260 },
+    { id: "marsella", city: "Marsella", country: "Francia", km: 820, tolls: 300 },
+    { id: "lyon", city: "Lyon", country: "Francia", km: 900, tolls: 330 },
+    { id: "oporto", city: "Oporto", country: "Portugal", km: 940, tolls: 150 },
+  ],
 } as const;

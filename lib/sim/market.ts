@@ -1,6 +1,7 @@
 import { round2 } from "../learning/money";
 import type { Client, Offer, OfferKind } from "./model";
-import { ENGINE_VERSION, EXTRA_OFFERS, MARKET_GROWTH_FROM, PUNTUAL_V2, RELIABILITY_PREMIUM, SEASON_LOW, SEASON_PEAK } from "./params";
+import { internationalOffer } from "./international";
+import { ENGINE_VERSION, EXTRA_OFFERS, MARKET_GROWTH_FROM, P, PUNTUAL_V2, RELIABILITY_PREMIUM, SEASON_LOW, SEASON_PEAK } from "./params";
 import { intIn, pick, stream, type Rng } from "./rng";
 
 /**
@@ -64,7 +65,11 @@ export function offersFor(seed: number, week: number, serviceLevel = 100, versio
   const kinds: OfferKind[] = week === 1 ? ["distribucion", "almacenaje", "puntual"] : [];
   while (kinds.length < n) kinds.push(pick(r, ["distribucion", "distribucion", "puntual", "puntual", "almacenaje"] as const));
   const all = kinds.map((k, i) => makeOffer(r, seed, week, i + 1, k, version));
-  return withReputation(all, serviceLevel, week);
+  // v5: como mucho un viaje internacional, de su propia secuencia (las demás ofertas no cambian).
+  const ri = stream(seed, week, "internacional-cliente");
+  const c = pick(ri, CLIENTS);
+  const intl = version >= 5 ? internationalOffer(seed, week, version, c.id, hint(ri, c, seed)) : null;
+  return withReputation(intl ? [...all, intl] : all, serviceLevel, week);
 }
 
 /**
@@ -89,8 +94,11 @@ export function withReputation(offers: Offer[], serviceLevel: number, week = 1):
 /** Multiplica las tarifas de unas ofertas (reputación y crecimiento del mercado). */
 export const scaleRates = (offers: Offer[], k: number): Offer[] => (k === 1 ? offers : offers.map((o) => ({ ...o, ratePerKm: o.ratePerKm && round2(o.ratePerKm * k), price: o.price && Math.round(o.price * k), palletRate: o.palletRate && round2(o.palletRate * k) })));
 
-/** Km que ocupa una oferta en cada semana de su duración (el servicio puntual cuenta la ida y el retorno en vacío). */
-export const kmOf = (o: Offer) => (o.kind === "distribucion" ? o.kmWeek! : o.kind === "puntual" ? 2 * o.kmOneWay! : 0);
+/**
+ * Km que ocupa una oferta en cada semana de su duración (el servicio puntual cuenta la ida y el retorno en vacío). Un
+ * viaje internacional ocupa días enteros de camión: cuenta como los km de reparto que se harían en esos días.
+ */
+export const kmOf = (o: Offer) => (o.kind === "distribucion" ? o.kmWeek! : o.kind === "puntual" ? 2 * o.kmOneWay! : o.kind === "internacional" ? o.days! * P.kmPerDay : 0);
 
 /** Importe que se factura por semana si se presta entero el servicio. */
-export const weeklyRevenue = (o: Offer) => (o.kind === "distribucion" ? round2(o.kmWeek! * o.ratePerKm!) : o.kind === "puntual" ? o.price! : round2(o.pallets! * o.palletRate!));
+export const weeklyRevenue = (o: Offer) => (o.kind === "distribucion" ? round2(o.kmWeek! * o.ratePerKm!) : o.kind === "puntual" || o.kind === "internacional" ? o.price! : round2(o.pallets! * o.palletRate!));
