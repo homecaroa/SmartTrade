@@ -6,9 +6,11 @@
  * Versión de las reglas. Una partida guardada se reproduce SIEMPRE con la versión con la que empezó:
  * - v1: reglas hasta el 09/11/2026 (viajes puntuales casi siempre por debajo del coste completo: «ruido», según el dueño).
  * - v2 (09/11/2026): viajes puntuales con precios realistas y, en algunos, carga de retorno (ver PUNTUAL_V2).
+ * - v3 (10/11/2026): el subcontratista cobra GROWTH.subcontract.perKm también en las averías (antes 1,05 €/km, por
+ *   debajo del coste completo de un camión propio: subcontratar salía más barato que tener camión).
  */
-export const ENGINE_VERSION = 2;
-export const SUPPORTED_VERSIONS = [1, 2] as const;
+export const ENGINE_VERSION = 3;
+export const SUPPORTED_VERSIONS = [1, 2, 3] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -78,3 +80,32 @@ export const payTermLabel = (weeks: number) => (weeks % WEEKS_PER_MONTH === 0 ? 
 export const MARKET_GROWTH_FROM = 7;
 export const EXTRA_OFFERS = 1;
 export const RELIABILITY_PREMIUM = { minServicePct: 95, factor: 1.2 };
+
+/**
+ * Herramientas para crecer (10/11/2026, docs/simulador.md §17 sexies). Todas las cifras son SIMULADAS: hipótesis de
+ * diseño del orden de magnitud de una pyme logística, no precios de mercado comprobados. Una partida que no las usa se
+ * juega exactamente igual que antes (no cambian ni la versión de las reglas ni las partidas guardadas).
+ * - Subcontratar al aceptar: el subcontratista cobra `perKm` (cubre su coste completo, del orden del de tu camión, 1,30
+ *   €/km, y su margen; con 1,05 €/km subcontratar salía más barato que tener camión y era la única forma de crecer), se
+ *   le paga a 30 días y falla alguna semana
+ *   (`failChance`): tú respondes ante el cliente de su trabajo (Ley 15/2009, art. 6: el transportista contractual
+ *   responde de la ejecución aunque la encargue a otro). Tus colaboradores tienen como mucho un camión libre para ti
+ *   (`maxKmWeek`): sin ese límite, subcontratar sin fin con la prima de fiabilidad ganaba 299 de 300 temporadas.
+ * - Segundo camión, desde la semana siguiente: dobla los km semanales. En renting, una cuota mensual que incluye seguro y
+ *   mantenimiento; comprado, sale de la caja de golpe, se amortiza y paga su seguro. Los dos necesitan otro conductor.
+ * - Ampliar el almacén (nave contigua), desde la semana siguiente: más palés, más alquiler, un mozo más y dos meses de
+ *   fianza (art. 36.1 LAU: en arrendamiento para uso distinto de vivienda, la fianza legal es de dos mensualidades).
+ * - Póliza de crédito: permite que la caja baje de cero hasta el límite pagando intereses solo por lo dispuesto, más
+ *   una comisión de apertura. Sin póliza, dos semanas con caja negativa son quiebra; con ella, dos semanas por debajo del
+ *   límite.
+ */
+export const GROWTH = {
+  subcontract: { perKm: 1.4, failChance: 0.03, payWeeks: 4, maxKmWeek: 1_050 },
+  truck: {
+    renting: { monthly: 1_500 },
+    compra: { price: 48_000, amortizationWeek: 200, insuranceMonthly: 300 },
+    driverMonthly: 2_600,
+  },
+  warehouse: { pallets: 400, rentMonthly: 1_200, workerMonthly: 2_150, depositMonths: 2 },
+  credit: { limit: 20_000, openingFee: 0.005, annualRate: 0.07 },
+} as const;

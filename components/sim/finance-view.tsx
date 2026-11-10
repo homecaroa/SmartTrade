@@ -20,8 +20,8 @@ export function FinanceView({ s }: { s: SimState }) {
               <caption className="text-left text-xs text-slate-600">Devengo: lo que se gana y se gasta cada semana, se cobre o se pague cuando sea.</caption>
               <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{s.weeks.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}</tr></thead>
               <tbody>
-                {([["Ingresos de transporte", "revenueTransport", 1], ["Ingresos de almacén", "revenueWarehouse", 1], ["Gasóleo, mantenimiento y peajes", "costVariable", -1], ["Subcontratación", "costSubcontract", -1], ["Reparaciones", "costRepair", -1], ["Sanciones y reclamaciones", "costPenalties", -1], ["Costes fijos (alquiler, nóminas…)", "costFixed", -1], ["Amortización del camión", "amortization", -1]] as const).map(([label, k, sign]) => (
-                  <tr key={k} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{label}</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(sign * w[k])}</td>)}</tr>
+                {([["Ingresos de transporte", "revenueTransport", 1], ["Ingresos de almacén", "revenueWarehouse", 1], ["Gasóleo, mantenimiento y peajes", "costVariable", -1], ["Subcontratación", "costSubcontract", -1], ["Reparaciones", "costRepair", -1], ["Sanciones y reclamaciones", "costPenalties", -1], ["Intereses y comisiones de la póliza", "costFinancial", -1], ["Costes fijos (alquiler, nóminas…)", "costFixed", -1], ["Amortización del camión", "amortization", -1]] as const).filter(([, k]) => k !== "costFinancial" || s.weeks.some((w) => w.costFinancial)).map(([label, k, sign]) => (
+                  <tr key={k} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{label}</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(sign * (w[k] ?? 0))}</td>)}</tr>
                 ))}
                 <tr className="font-semibold"><th scope="row" className="py-1 pr-3 text-left">Resultado</th>{s.weeks.map((w) => <td key={w.week} className={`${td} ${w.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(w.result)}</td>)}</tr>
               </tbody>
@@ -70,7 +70,7 @@ export function FinanceView({ s }: { s: SimState }) {
       <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="balance">
         <h2 id="balance" className="text-base font-semibold">Balance</h2>
         <dl className="mt-1 grid gap-2 text-sm sm:grid-cols-2">
-          <div><dt className="font-semibold">Activo</dt><dd>Caja {fmtEur(s.cash)} · Clientes {fmtEur(sum(rec.map((i) => i.amount)))} · Fianza {fmtEur(s.deposit)} · Camión {fmtEur(s.truckValue)}</dd></div>
+          <div><dt className="font-semibold">Activo</dt><dd>Caja {fmtEur(s.cash)} · Clientes {fmtEur(sum(rec.map((i) => i.amount)))} · Fianzas {fmtEur(s.deposit)} · {s.growth?.camion?.modo === "compra" ? "Camiones" : "Camión"} {fmtEur(s.truckValue)}</dd></div>
           <div><dt className="font-semibold">Patrimonio neto y pasivo</dt><dd>Capital inicial {fmtEur(s.equity0)} · Resultado {fmtEur(s.result)} · Proveedores {fmtEur(sum(pay.map((p) => p.amount)))} · Fijos devengados sin pagar {fmtEur(s.accruedFixed)}</dd></div>
         </dl>
         <p className={`mt-2 text-xs ${gap === 0 ? "text-emerald-800" : "text-rose-700"}`}>{gap === 0 ? "El balance cuadra: activo = patrimonio neto + pasivo." : `Descuadre de ${fmtEur(gap)}: es un error del simulador.`}</p>

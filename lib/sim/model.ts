@@ -47,6 +47,8 @@ export interface Contract extends Offer {
   docPenalized?: boolean;
   /** Viaje puntual: aceptaste también la carga de retorno. */
   withBackhaul?: boolean;
+  /** Transporte encargado a otro transportista (10/11/2026): no ocupa tu camión y cuesta P.subcontractPerKm. */
+  subcontracted?: boolean;
 }
 
 export interface Invoice { id: string; contractId: string; clientId: string; amount: number; week: number; dueWeek: number; payWeek: number; paidWeek?: number }
@@ -70,6 +72,10 @@ export interface WeekRecord {
   costFixed: number;
   /** Sanciones y reclamaciones por documentación (09/11/2026). */
   costPenalties: number;
+  /** Intereses y comisiones de la póliza de crédito (10/11/2026; ausente en semanas anteriores). */
+  costFinancial?: number;
+  /** Palés que cabían esa semana (10/11/2026; ausente = P.warehousePallets). */
+  palletCapacity?: number;
   amortization: number;
   result: number;
   collections: number;
@@ -113,10 +119,17 @@ export interface SimState {
   /** Motivo del final si la partida acaba antes de tiempo. */
   endReason?: string;
   learning: LearningEntry[];
+  /** Herramientas para crecer contratadas y semana de la decisión (surten efecto la semana siguiente; 10/11/2026). */
+  growth?: Growth;
 }
 
+export const GROWTH_OPTIONS = ["renting", "compra", "almacen", "poliza"] as const;
+export type GrowthOption = (typeof GROWTH_OPTIONS)[number];
+export interface Growth { camion?: { modo: "renting" | "compra"; week: number }; almacen?: { week: number }; poliza?: { week: number } }
+
 export type Action =
-  | { t: "aceptar"; oferta: string; docs?: string[]; retorno?: boolean }
+  | { t: "aceptar"; oferta: string; docs?: string[]; retorno?: boolean; subcontratar?: boolean }
+  | { t: "crecer"; opcion: GrowthOption }
   | { t: "proponer"; oferta: string; tarifa: number; semanas: number; plazo: number }
   | { t: "responder"; incidencia: string; opcion: string }
   | { t: "pregunta"; pregunta: string; opcion: string }

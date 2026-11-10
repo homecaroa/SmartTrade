@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 import { evaluate } from "@/lib/sim/calc";
-import { TRUCK_FULL_COST_PER_KM, WAREHOUSE_FULL_COST_PER_PALLET, n2 } from "@/lib/sim/engine";
-import { FIXED_PER_MONTH, P, TRUCK_KM_WEEK } from "@/lib/sim/params";
+import { subcontractPerKm, TRUCK_FULL_COST_PER_KM, WAREHOUSE_FULL_COST_PER_PALLET, n2 } from "@/lib/sim/engine";
+import { ENGINE_VERSION, FIXED_PER_MONTH, GROWTH, P, TRUCK_KM_WEEK } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 
 /** Calculadora básica y tus costes de referencia. La calculadora no conoce el juego: los cálculos los planteas tú. */
-export function Calculator() {
+export function Calculator({ version = ENGINE_VERSION }: { version?: number }) {
   const [expr, setExpr] = useState("");
   const [history, setHistory] = useState<{ expr: string; value: number }[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -46,8 +46,8 @@ export function Calculator() {
           <li>Coste variable del camión: <b>{n2(P.variablePerKm)} €/km</b> (gasóleo, mantenimiento y peajes).</li>
           <li>Coste completo del camión a plena capacidad: <b>{n2(TRUCK_FULL_COST_PER_KM)} €/km</b> (variable + conductor, seguro y amortización repartidos en {TRUCK_KM_WEEK} km/semana).</li>
           <li>Coste del almacén lleno: <b>{n2(WAREHOUSE_FULL_COST_PER_PALLET)} €/palé/semana</b> (alquiler y mozo entre {P.warehousePallets} palés).</li>
-          <li>Subcontratar a otro transportista: <b>{n2(P.subcontractPerKm)} €/km</b>.</li>
-          <li>Fijos totales: <b>{fmtEur(FIXED_PER_MONTH)}</b> cada 4 semanas (alquiler, nóminas, seguro, gestoría).</li>
+          <li>Subcontratar a otro transportista: <b>{n2(GROWTH.subcontract.perKm)} €/km</b>{subcontractPerKm(version) !== GROWTH.subcontract.perKm ? <> ({n2(subcontractPerKm(version))} €/km si es para cubrir una avería)</> : null}.</li>
+          <li>Fijos totales: <b>{fmtEur(FIXED_PER_MONTH)}</b> cada 4 semanas (alquiler, nóminas, seguro, gestoría), sin contar el segundo camión ni la nave ampliada.</li>
           <li>En un viaje puntual vuelves en vacío: los km recorridos son el doble de los de ida.</li>
         </ul>
         <p className="mt-1 text-slate-600">Cifras simuladas de tu empresa ficticia.</p>

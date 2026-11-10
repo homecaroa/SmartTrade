@@ -389,6 +389,38 @@ distinguen:
 - **Datos:** la partida seguía en el navegador mientras no se empezara otra.
 - **Corrección y prueba:** el guardado reconoce ahora la acción y valida sus campos. Una prueba guarda y recupera partidas completas con negociación, documentación y carga de retorno.
 
+## 17 sexies. Herramientas para crecer (10/11/2026, petición del dueño)
+
+**Problema:** con un camión y 600 palés la empresa no podía crecer. Lo que no cabía se rechazaba y la única palanca era elegir y negociar bien.
+
+**Qué se añade.** Cuatro decisiones, cada una una sola vez por partida; las cifras son [S] (`GROWTH` en `lib/sim/params.ts`):
+- **Subcontratar al aceptar** un transporte. No ocupa tu camión. El subcontratista cobra 1,40 €/km a 30 días y falla un 3 % de las semanas: ese servicio no se hace y respondes tú ante el cliente [N]. La Ley 15/2009, art. 6.1, dice: «El porteador que contrate con el cargador responderá frente a éste de la realización íntegra del transporte […] aún cuando no la lleve a cabo por sí mismo». Comprobado en el BOE el 10/11/2026. Tus colaboradores tienen como mucho un camión libre: 1.050 km por semana.
+- **Segundo camión** desde la semana siguiente: el doble de km.
+  - En renting: 1.500 € al mes con seguro y mantenimiento.
+  - Comprado: 48.000 € de golpe, que van al activo y se amortizan a 200 € por semana, más 300 € de seguro al mes.
+  - Los dos llevan otro conductor (2.600 € al mes).
+- **Ampliar el almacén** (nave contigua) desde la semana siguiente: 400 palés más, 1.200 € de alquiler y un mozo más (2.150 €) al mes, y dos mensualidades de fianza [N]. Lo fija la LAU, art. 36.1: «de dos en el arrendamiento para uso distinto del de vivienda». Comprobado en el BOE el 10/11/2026. La ocupación del objetivo se mide sobre los palés que tengas cada semana.
+- **Póliza de crédito.** Límite de 20.000 €, comisión de apertura del 0,5 % e interés del 7 % anual sobre lo dispuesto. Con póliza, la quiebra llega cuando la caja pasa del límite dos semanas seguidas, no al bajar de cero.
+
+**Cómo se califican.** Al decidir, con los números de ese momento:
+- Segundo camión y nave: «correcta» si lo comprometido en las 4 semanas siguientes llega al 85 % de la capacidad; si no, «razonable» (creces antes de necesitarlo). Comprar el camión dejando menos de 5.000 € de colchón (caja más póliza) es «grave».
+- Póliza: «correcta» con menos de 15.000 € en caja o tras invertir; si no, «razonable».
+- Subcontratar:
+  - Con margen negativo, «grave».
+  - Si tenías camión libre, «razonable»: hacerlo tú costaba 0,42 €/km.
+  - Con un margen de menos de 0,10 €/km, «razonable».
+- Competencias: 0623-RA3 (financiación de inversiones) y RA4 (compra o alquiler de activos), 0623-RA7 y 0625-RA3 (presupuesto del almacén).
+
+**Decisión de equilibrio: reglas v3 (solo partidas nuevas).** Medido con una estrategia automática nueva, «crecedora», en 300 partidas:
+- **Con el precio de avería de siempre (1,05 €/km) y sin límite:** subcontratar ganaba 299 de 300 temporadas. Ese precio está por debajo del coste completo de un camión propio (1,30 €/km), así que subcontratar salía más barato que tener camión.
+- **Corrección:** el subcontratista cobra 1,40 €/km (su coste completo más su margen), también en las averías desde la v3, y tiene el tope de un camión.
+- Las partidas v1 y v2 guardadas conservan los 1,05 €/km en las averías: comprobado con 120 partidas generadas por el motor publicado, idénticas en semanas, contratos, movimientos de caja y correcciones.
+
+**Resultado medido (300 partidas, reglas v3):**
+- Victorias: prudente 120, selectiva 160, negociadora 186 y crecedora 234. Con el motor publicado (v2), las tres primeras ganan hoy 125, 166 y 191; la diferencia es el precio de la subcontratación en las averías.
+- Por herramientas, la crecedora gana 196 sin subcontratar y 231 solo subcontratando. Subcontratar es lo que más aporta. Cuando el segundo camión se pone, mejora el resultado frente a la negociadora en 7.500 € de media (44 de 44 partidas). La nave queda casi neutra: hay que llenarla.
+- Ninguna quiebra y el balance cuadra en cada paso.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.
@@ -403,7 +435,7 @@ Ilustra la economía completa: incluye movimientos de almacén y subcontratació
 - **Nada se ha cobrado todavía:** las facturas de la semana 1 vencen en la semana 5.
 - **La caja todavía parece cómoda** porque el alquiler y las nóminas se pagan al final de la semana 4: 9.750 € de golpe.
   Si en la semana 5 un cliente se retrasa, el margen es estrecho.
-- **La avería cuesta dos veces:** la reparación y el margen perdido al subcontratar (1,05 frente a 0,42 €/km propios).
+- **La avería cuesta dos veces:** la reparación y el margen perdido al subcontratar (1,05 frente a 0,42 €/km propios; 1,40 €/km desde las reglas v3, §17 sexies).
 
 ## 19. Pendiente de verificar antes de usarlo
 

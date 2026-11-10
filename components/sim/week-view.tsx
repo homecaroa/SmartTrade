@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { cashStart, clientHistory, describeOffer, INCIDENT_OPTIONS, kmCommitted, MONTH_QUESTION, n2, palletsCommitted, seasonOutcome, serviceLevelToDate } from "@/lib/sim/engine";
+import { cashStart, clientHistory, creditLimitAt, describeOffer, fixedPerWeekAt, growthBlocked, GROWTH_LABELS, incidentOptions, kmOwnCommitted, kmSubCommitted, MONTH_QUESTION, n2, palletCapacityAt, palletsCommitted, seasonOutcome, serviceLevelToDate, subcontractRoom, truckKmAt } from "@/lib/sim/engine";
 import { docsFor, MAX_ROUNDS, originalTerms, rateOf, validateProposal } from "@/lib/sim/deal";
 import { clientOf, kmOf, reputationEffect, weeklyRevenue } from "@/lib/sim/market";
-import type { Action, Offer, SimState } from "@/lib/sim/model";
-import { P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
+import type { Action, GrowthOption, Offer, SimState } from "@/lib/sim/model";
+import { GROWTH, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
@@ -71,8 +71,9 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
             <h2 id="capacidad" className="text-base font-semibold">Capacidad comprometida</h2>
             {horizon.map((w) => (
               <div key={w} className="grid gap-2 sm:grid-cols-2">
-                <Bar label={`Semana ${w} · camión (km)`} value={kmCommitted(s, w)} max={TRUCK_KM_WEEK} />
-                <Bar label={`Semana ${w} · almacén (palés)`} value={palletsCommitted(s, w)} max={P.warehousePallets} />
+                <Bar label={`Semana ${w} · ${truckKmAt(s, w) > TRUCK_KM_WEEK ? "tus dos camiones" : "camión"} (km)`} value={kmOwnCommitted(s, w)} max={truckKmAt(s, w)} />
+                <Bar label={`Semana ${w} · almacén (palés)`} value={palletsCommitted(s, w)} max={palletCapacityAt(s, w)} />
+                {kmSubCommitted(s, w) > 0 && <Bar label={`Semana ${w} · subcontratado (km)`} value={kmSubCommitted(s, w)} max={GROWTH.subcontract.maxKmWeek} />}
               </div>
             ))}
           </section>
@@ -87,10 +88,12 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
             </div>
             <p className="text-xs text-slate-600">Las ofertas que no aceptes desaparecen al cerrar la semana. Antes de aceptar, comprueba que tienes capacidad y calcula si la tarifa cubre tus costes.</p>
           </section>
-          <Calculator />
+          <Calculator version={s.version} />
           </div>
 
           <ActiveContracts s={s} />
+
+          <GrowthPanel s={s} onAction={onAction} />
 
           <div className="rounded-lg bg-white p-4 shadow-sm">
             <button type="button" onClick={() => onAction({ t: "cerrar" })} className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Cerrar la semana {s.week}</button>
@@ -118,6 +121,8 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
   const [pay, setPay] = useState(o.payWeeks);
   const [docs, setDocs] = useState<string[]>([]);
   const [backhaul, setBackhaul] = useState(false);
+  const [sub, setSub] = useState(false);
+  const room = o.kind === "almacenaje" ? 0 : subcontractRoom(s, o);
   const [error, setError] = useState<string | null>(null);
   const rounds = o.round ?? 0;
   const propose = () => {
@@ -161,8 +166,11 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
       )}
 
       {mode === "documentar" && (
-        <form className="space-y-1 rounded border border-slate-200 p-2" onSubmit={(e) => { e.preventDefault(); onAction({ t: "aceptar", oferta: o.id, docs, ...(backhaul ? { retorno: true } : {}) }); }}>
+        <form className="space-y-1 rounded border border-slate-200 p-2" onSubmit={(e) => { e.preventDefault(); onAction({ t: "aceptar", oferta: o.id, docs, ...(backhaul ? { retorno: true } : {}), ...(sub ? { subcontratar: true } : {}) }); }}>
           {o.backhaul && <label className={box}><input type="checkbox" checked={backhaul} onChange={(e) => setBackhaul(e.target.checked)} className="mt-0.5" /><span>Traer también la carga de retorno ({o.backhaul.pallets} palés, +{fmtEur(o.backhaul.price)})</span></label>}
+          {o.kind !== "almacenaje" && (room >= kmOf(o)
+            ? <label className={box}><input type="checkbox" checked={sub} onChange={(e) => setSub(e.target.checked)} className="mt-0.5" /><span>Encargarla a un subcontratista: no ocupa tu camión, te cobra {n2(GROWTH.subcontract.perKm)} €/km ({fmtEur(Math.round(kmOf(o) * GROWTH.subcontract.perKm * 100) / 100)} {o.kind === "puntual" ? "el viaje" : "por semana"}) a 30 días y respondes tú ante el cliente. Le quedan {room.toLocaleString("es-ES")} km libres por semana.</span></label>
+            : <p className="text-xs text-slate-600">Tus subcontratistas no tienen {kmOf(o).toLocaleString("es-ES")} km libres esas semanas (como mucho {GROWTH.subcontract.maxKmWeek.toLocaleString("es-ES")} km por semana).</p>)}
           <fieldset className="space-y-1">
             <legend className="text-xs font-semibold">¿Qué documentación preparas para esta operación?</legend>
             {displayOrder(docsFor(o.kind), `${s.seed}:${o.id}:docs`).map((d) => (
@@ -182,7 +190,43 @@ function ActiveContracts({ s }: { s: SimState }) {
   return (
     <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="contratos">
       <h2 id="contratos" className="text-base font-semibold">Tus contratos en curso</h2>
-      <ul className="mt-1 space-y-1 text-sm">{active.map((c) => <li key={c.id}>{describeOffer(c)} <span className="text-xs text-slate-600">(semanas {c.startWeek}–{c.endWeek})</span></li>)}</ul>
+      <ul className="mt-1 space-y-1 text-sm">{active.map((c) => <li key={c.id}>{describeOffer(c)} <span className="text-xs text-slate-600">(semanas {c.startWeek}–{c.endWeek}{c.subcontracted ? " · subcontratado" : ""})</span></li>)}</ul>
+    </section>
+  );
+}
+
+/** Lo que hace y cuesta cada herramienta. La calificación llega al cerrar la semana, como en las demás decisiones. */
+function growthText(o: GrowthOption): string {
+  const t = GROWTH.truck, w = GROWTH.warehouse, c = GROWTH.credit;
+  if (o === "renting") return `Otro camión y otro conductor desde la semana que viene: el doble de km. Cuota de ${fmtEur(t.renting.monthly)} al mes (seguro y mantenimiento incluidos) y ${fmtEur(t.driverMonthly)} de nómina. No sale dinero de golpe.`;
+  if (o === "compra") return `Otro camión y otro conductor desde la semana que viene: el doble de km. Pagas ${fmtEur(t.compra.price)} esta semana; luego, ${fmtEur(t.driverMonthly)} de nómina y ${fmtEur(t.compra.insuranceMonthly)} de seguro al mes, y se amortiza a ${fmtEur(t.compra.amortizationWeek)} por semana.`;
+  if (o === "almacen") return `La nave contigua: ${w.pallets} palés más desde la semana que viene. Alquiler de ${fmtEur(w.rentMonthly)} al mes, un mozo más (${fmtEur(w.workerMonthly)}) y ${fmtEur(w.rentMonthly * w.depositMonths)} de fianza esta semana (dos mensualidades: art. 36.1 de la Ley de Arrendamientos Urbanos).`;
+  return `Tu caja puede bajar hasta −${fmtEur(c.limit)} sin quebrar. Comisión de apertura del ${n2(c.openingFee * 100)} % (${fmtEur(c.limit * c.openingFee)}) y un ${n2(c.annualRate * 100)} % anual de intereses solo por lo que uses.`;
+}
+
+function GrowthPanel({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
+  const g = s.growth;
+  const options: GrowthOption[] = ["renting", "compra", "almacen", "poliza"];
+  const since = (o: GrowthOption) => (o === "renting" || o === "compra" ? (g?.camion?.modo === o ? g.camion.week : undefined) : g?.[o]?.week);
+  return (
+    <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="crecer">
+      <h2 id="crecer" className="text-base font-semibold">Crecer y financiarse</h2>
+      <p className="text-xs text-slate-600">Cada herramienta se contrata una sola vez y cuesta desde ya, tengas trabajo para ella o no. Costes fijos de esta semana: {fmtEur(fixedPerWeekAt(s, s.week))}{creditLimitAt(s, s.week) ? ` · póliza: la caja puede bajar hasta −${fmtEur(creditLimitAt(s, s.week))}` : ""}. Cifras simuladas.</p>
+      <div className="grid gap-2 md:grid-cols-2">
+        {options.map((o) => {
+          const week = since(o);
+          const blocked = growthBlocked(s, o);
+          return (
+            <div key={o} className="space-y-1 rounded border border-slate-200 p-2 text-sm">
+              <p className="font-semibold">{GROWTH_LABELS[o]}</p>
+              <p className="text-xs">{growthText(o)}</p>
+              {week !== undefined ? <p className="text-xs font-semibold text-emerald-800">Contratado en la semana {week}.</p>
+                : blocked ? <p className="text-xs text-slate-600">{blocked}</p>
+                : <button type="button" onClick={() => { if (window.confirm(`¿${GROWTH_LABELS[o]}? No se puede deshacer.`)) onAction({ t: "crecer", opcion: o }); }} className="rounded border border-indigo-600 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-50">Contratar</button>}
+            </div>
+          );
+        })}
+      </div>
     </section>
   );
 }
@@ -190,7 +234,7 @@ function ActiveContracts({ s }: { s: SimState }) {
 function IncidentCard({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
   const inc = s.pending!;
   const [pick, setPick] = useState("");
-  const opts = displayOrder(INCIDENT_OPTIONS[inc.kind], `${s.seed}:${inc.id}`);
+  const opts = displayOrder(incidentOptions(inc.kind, s.version), `${s.seed}:${inc.id}`);
   return (
     <form className="space-y-3 rounded-lg border-2 border-rose-300 bg-rose-50 p-4 shadow-sm" onSubmit={(e) => { e.preventDefault(); if (pick) onAction({ t: "responder", incidencia: inc.id, opcion: pick }); }}>
       <fieldset className="space-y-2">
