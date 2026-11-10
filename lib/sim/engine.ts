@@ -1,8 +1,8 @@
 import { round2, sum } from "../learning/money";
 import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validateProposal, withTerms, type Terms } from "./deal";
 import { clientOf, kmOf, offersFor } from "./market";
-import type { Action, Contract, Grade, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
-import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, OBJECTIVES, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
+import type { Action, Contract, Grade, Growth, GrowthOption, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
+import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
 import { intIn, stream } from "./rng";
 
 /**
@@ -28,7 +28,30 @@ export function newGame(seed: number, version: number = ENGINE_VERSION): SimStat
 
 const activeIn = (c: Contract, w: number) => c.startWeek <= w && w <= c.endWeek && !(c.cancelledWeek !== undefined && w >= c.cancelledWeek);
 export const kmCommitted = (s: Pick<SimState, "contracts">, w: number) => sum(s.contracts.filter((c) => activeIn(c, w)).map(kmOf));
+/** Km encargados a subcontratistas al aceptar (tienen un límite semanal: GROWTH.subcontract.maxKmWeek). */
+export const kmSubCommitted = (s: Pick<SimState, "contracts">, w: number) => sum(s.contracts.filter((c) => activeIn(c, w) && c.subcontracted).map(kmOf));
+/** Km que aún puedes subcontratar en todas las semanas de una oferta. */
+export const subcontractRoom = (s: Pick<SimState, "contracts">, o: Offer) => Math.min(...Array.from({ length: o.weeks }, (_, i) => GROWTH.subcontract.maxKmWeek - kmSubCommitted(s, o.week + i)));
+/** Km que tiene que hacer tu propio camión (lo subcontratado no lo ocupa). */
+export const kmOwnCommitted = (s: Pick<SimState, "contracts">, w: number) => sum(s.contracts.filter((c) => activeIn(c, w) && !c.subcontracted).map(kmOf));
 export const palletsCommitted = (s: Pick<SimState, "contracts">, w: number) => sum(s.contracts.filter((c) => activeIn(c, w) && c.kind === "almacenaje").map((c) => c.pallets!));
+
+// ── Capacidad y costes fijos según las herramientas para crecer (docs/simulador.md §17 sexies) ──────────────────────
+type WithGrowth = { growth?: Growth };
+/** El segundo camión y la nave ampliada funcionan desde la semana SIGUIENTE a la decisión; la póliza, desde la misma. */
+const from = (x: { week: number } | undefined, w: number) => !!x && w > x.week;
+export const truckKmAt = (s: WithGrowth, w: number) => TRUCK_KM_WEEK * (from(s.growth?.camion, w) ? 2 : 1);
+export const palletCapacityAt = (s: WithGrowth, w: number) => P.warehousePallets + (from(s.growth?.almacen, w) ? GROWTH.warehouse.pallets : 0);
+export const creditLimitAt = (s: WithGrowth, w: number) => (s.growth?.poliza && w >= s.growth.poliza.week ? GROWTH.credit.limit : 0);
+/** Costes fijos por semana: los de siempre más el segundo camión (cuota o seguro, y conductor) y la nave (alquiler y mozo). */
+export function fixedPerWeekAt(s: WithGrowth, w: number): number {
+  const g = s.growth;
+  let monthly = 0;
+  if (from(g?.camion, w)) monthly += GROWTH.truck.driverMonthly + (g!.camion!.modo === "renting" ? GROWTH.truck.renting.monthly : GROWTH.truck.compra.insuranceMonthly);
+  if (from(g?.almacen, w)) monthly += GROWTH.warehouse.rentMonthly + GROWTH.warehouse.workerMonthly;
+  return round2(FIXED_PER_WEEK + monthly / WEEKS_PER_MONTH);
+}
+export const amortizationAt = (s: WithGrowth, w: number) => P.amortizationWeek + (from(s.growth?.camion, w) && s.growth!.camion!.modo === "compra" ? GROWTH.truck.compra.amortizationWeek : 0);
 
 /** Coste completo del camión por km a plena capacidad: variable + (conductor + seguro + amortización) / km semanales. */
 export const TRUCK_FULL_COST_PER_KM = round2(P.variablePerKm + (P.fixedMonthly.conductor / WEEKS_PER_MONTH + P.fixedMonthly.seguro / WEEKS_PER_MONTH + P.amortizationWeek) / TRUCK_KM_WEEK);
@@ -36,12 +59,16 @@ export const TRUCK_FULL_COST_PER_KM = round2(P.variablePerKm + (P.fixedMonthly.c
 export const WAREHOUSE_FULL_COST_PER_PALLET = round2((P.fixedMonthly.alquiler + P.fixedMonthly.mozo) / WEEKS_PER_MONTH / P.warehousePallets);
 
 /** Calificación de aceptar una oferta (docs/simulador.md §6): capacidad, margen sobre el coste variable y sobre el coste completo. */
-export function gradeOffer(s: Pick<SimState, "contracts">, o: Offer, withBackhaul = false): { grade: Grade; feedback: string } {
+export function gradeOffer(s: Pick<SimState, "contracts"> & WithGrowth, o: Offer, withBackhaul = false, subcontract = false): { grade: Grade; feedback: string } {
   const weeks = Array.from({ length: o.weeks }, (_, i) => o.week + i);
-  if (o.kind !== "almacenaje" && weeks.some((w) => kmCommitted(s, w) + kmOf(o) > TRUCK_KM_WEEK))
-    return { grade: "grave", feedback: `No tenías capacidad: con esta oferta el camión supera sus ${TRUCK_KM_WEEK} km semanales. Lo que no puedas hacer no se factura y baja tu nivel de servicio.` };
-  if (o.kind === "almacenaje" && weeks.some((w) => palletsCommitted(s, w) + o.pallets! > P.warehousePallets))
-    return { grade: "grave", feedback: `No tenías sitio: el almacén supera sus ${P.warehousePallets} palés. Los palés que no caben no se facturan y baja tu nivel de servicio.` };
+  if (subcontract && o.kind !== "almacenaje") return gradeSubcontract(s, o, weeks, withBackhaul);
+  // Con un solo camión y la nave de siempre, los textos son exactamente los de antes (las partidas guardadas no cambian).
+  const over = weeks.find((w) => kmOwnCommitted(s, w) + kmOf(o) > truckKmAt(s, w));
+  if (o.kind !== "almacenaje" && over !== undefined)
+    return { grade: "grave", feedback: `No tenías capacidad: con esta oferta ${truckKmAt(s, over) > TRUCK_KM_WEEK ? "tus dos camiones superan sus" : "el camión supera sus"} ${truckKmAt(s, over)} km semanales. Lo que no puedas hacer no se factura y baja tu nivel de servicio.` };
+  const full = weeks.find((w) => palletsCommitted(s, w) + o.pallets! > palletCapacityAt(s, w));
+  if (o.kind === "almacenaje" && full !== undefined)
+    return { grade: "grave", feedback: `No tenías sitio: el almacén supera sus ${palletCapacityAt(s, full)} palés. Los palés que no caben no se facturan y baja tu nivel de servicio.` };
   if (o.kind === "puntual") {
     const back = withBackhaul && o.backhaul ? o.backhaul.price : 0;
     const perKm = round2((o.price! + back) / (2 * o.kmOneWay!));
@@ -60,6 +87,69 @@ export function gradeOffer(s: Pick<SimState, "contracts">, o: Offer, withBackhau
   return { grade: "correcta", feedback: `La tarifa (${n2(o.palletRate!)} €/palé/semana) cubre el coste del almacén lleno (${n2(WAREHOUSE_FULL_COST_PER_PALLET)} €).` };
 }
 
+/** Precio por km recorrido de una oferta de transporte (el puntual cuenta ida y vuelta, con la carga de retorno si se acepta). */
+const ratePerKmRun = (o: Offer, withBackhaul: boolean) => (o.kind === "distribucion" ? o.ratePerKm! : round2((o.price! + (withBackhaul && o.backhaul ? o.backhaul.price : 0)) / (2 * o.kmOneWay!)));
+
+/** Subcontratar al aceptar: el margen es la tarifa menos lo que cobra el subcontratista; tu camión no se ocupa. */
+function gradeSubcontract(s: Pick<SimState, "contracts"> & WithGrowth, o: Offer, weeks: number[], withBackhaul: boolean): { grade: Grade; feedback: string } {
+  const rate = ratePerKmRun(o, withBackhaul);
+  const margin = round2(rate - GROWTH.subcontract.perKm);
+  const missed = o.kind === "puntual" && !withBackhaul && o.backhaul ? ` Además dejaste pasar la carga de retorno (+${o.backhaul.price} €).` : "";
+  const liable = "Y respondes ante el cliente si el subcontratista falla (Ley 15/2009, art. 6.1).";
+  if (margin < 0) return { grade: "grave", feedback: `Pierdes dinero: cobras ${n2(rate)} €/km y el subcontratista te cobra ${n2(GROWTH.subcontract.perKm)} €/km.${missed}` };
+  if (weeks.every((w) => kmOwnCommitted(s, w) + kmOf(o) <= truckKmAt(s, w)))
+    return { grade: "razonable", feedback: `Tenías camión libre: hacerlo tú costaba ${n2(P.variablePerKm)} €/km de gasóleo, mantenimiento y peajes (el conductor ya lo pagas); subcontratando pagas ${n2(GROWTH.subcontract.perKm)} €/km.${missed}` };
+  if (margin < 0.1) return { grade: "razonable", feedback: `Margen muy corto: ganas ${n2(margin)} €/km (${n2(rate)} − ${n2(GROWTH.subcontract.perKm)}) sin usar tu camión. ${liable}${missed}` };
+  return { grade: missed ? "razonable" : "correcta", feedback: `Ganas ${n2(margin)} €/km (${n2(rate)} − ${n2(GROWTH.subcontract.perKm)}) con un trabajo que tu camión no podía hacer. ${liable}${missed}` };
+}
+
+// ── Herramientas para crecer (docs/simulador.md §17 sexies) ─────────────────────────────────────────────────────────
+
+export const GROWTH_LABELS: Record<GrowthOption, string> = { renting: "Segundo camión en renting", compra: "Comprar un segundo camión", almacen: "Ampliar el almacén", poliza: "Póliza de crédito" };
+
+/** Media de lo comprometido las 4 semanas siguientes sobre la capacidad actual (en %). */
+function nextUse(s: SimState, used: (w: number) => number, cap: number): number {
+  const ws = [1, 2, 3, 4].map((k) => s.week + k);
+  return Math.round(sum(ws.map(used)) / ws.length / cap * 100);
+}
+
+/** Por qué una herramienta está disponible o no ahora mismo (null = disponible). */
+export function growthBlocked(s: SimState, opcion: GrowthOption): string | null {
+  if (s.status !== "jugando") return s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.";
+  if ((opcion === "renting" || opcion === "compra") && s.growth?.camion) return "Ya tienes el segundo camión.";
+  if (opcion === "almacen" && s.growth?.almacen) return "Ya has ampliado el almacén.";
+  if (opcion === "poliza" && s.growth?.poliza) return "Ya tienes la póliza de crédito.";
+  if (s.week >= SEASON_WEEKS) return "Es la última semana de la temporada.";
+  return null;
+}
+
+/** Calificación de una herramienta para crecer, con los números de la empresa en ese momento. */
+export function gradeGrowth(s: SimState, opcion: GrowthOption): { grade: Grade; feedback: string } {
+  const cushion = s.cash + creditLimitAt(s, s.week);
+  if (opcion === "renting" || opcion === "compra") {
+    const use = nextUse(s, (w) => kmOwnCommitted(s, w), TRUCK_KM_WEEK);
+    const weekly = opcion === "renting" ? (GROWTH.truck.driverMonthly + GROWTH.truck.renting.monthly) / WEEKS_PER_MONTH : (GROWTH.truck.driverMonthly + GROWTH.truck.compra.insuranceMonthly) / WEEKS_PER_MONTH + GROWTH.truck.compra.amortizationWeek;
+    const cost = `El segundo camión cuesta ${n2(weekly)} € a la semana (${opcion === "renting" ? "cuota de renting y conductor" : "conductor, seguro y amortización"}) desde la semana que viene, tengas trabajo para él o no.`;
+    if (opcion === "compra" && cushion - GROWTH.truck.compra.price < 5_000)
+      return { grade: "grave", feedback: `Pagar ${GROWTH.truck.compra.price.toLocaleString("es-ES")} € al contado te deja con ${n2(round2(s.cash - GROWTH.truck.compra.price))} € en caja${creditLimitAt(s, s.week) ? " (contando la póliza, casi sin margen)" : ""}: una inversión que se come la tesorería puede hundir una empresa rentable. El renting no inmoviliza caja.` };
+    if (use < 85) return { grade: "razonable", feedback: `Tu camión tiene comprometido de media un ${use} % de sus km en las 4 próximas semanas: aún le cabe trabajo. ${cost} Se crece cuando la capacidad se queda corta, no antes.` };
+    const vs = opcion === "renting" ? " El renting no inmoviliza caja y se devuelve; comprar sale algo más barato por semana, pero saca 48.000 € de la tesorería." : " Comprar sale algo más barato por semana que el renting, pero inmoviliza 48.000 € que ya no tienes para pagar a tiempo.";
+    return { grade: "correcta", feedback: `Tu camión va al ${use} % de sus km las 4 próximas semanas: necesitas capacidad. ${cost}${vs}` };
+  }
+  if (opcion === "almacen") {
+    const use = nextUse(s, (w) => palletsCommitted(s, w), P.warehousePallets);
+    const weekly = (GROWTH.warehouse.rentMonthly + GROWTH.warehouse.workerMonthly) / WEEKS_PER_MONTH;
+    const deposit = GROWTH.warehouse.rentMonthly * GROWTH.warehouse.depositMonths;
+    const cost = `La nave contigua (${GROWTH.warehouse.pallets} palés) cuesta ${n2(weekly)} € a la semana (alquiler y un mozo más) y ${deposit.toLocaleString("es-ES")} € de fianza, que recuperas al irte.`;
+    if (use < 85) return { grade: "razonable", feedback: `Tu almacén tiene comprometido de media un ${use} % de sus palés en las 4 próximas semanas: aún hay sitio. ${cost} Además, la ocupación media del objetivo se calcula sobre los palés que tengas: un almacén más grande y medio vacío la baja.` };
+    return { grade: "correcta", feedback: `Tu almacén va al ${use} % las 4 próximas semanas: necesitas sitio. ${cost}` };
+  }
+  const fee = round2(GROWTH.credit.limit * GROWTH.credit.openingFee);
+  const terms = `Límite de ${GROWTH.credit.limit.toLocaleString("es-ES")} €, ${n2(fee)} € de comisión de apertura y un ${n2(GROWTH.credit.annualRate * 100)} % anual solo sobre lo dispuesto.`;
+  if (s.cash < 15_000 || s.growth?.camion || s.growth?.almacen) return { grade: "correcta", feedback: `${terms} Una póliza cubre desfases de caja (pagas antes de cobrar), no pérdidas: si la empresa pierde dinero, solo retrasa el problema.` };
+  return { grade: "razonable", feedback: `${terms} Con ${n2(s.cash)} € en caja y sin inversiones, quizá no la uses; tenerla antes de necesitarla es prudente, pero la comisión se paga igual.` };
+}
+
 // ── Incidencias (docs/simulador.md §10) ─────────────────────────────────────────────────────────────────────────────
 
 /**
@@ -75,6 +165,13 @@ export function breakdownsOf(seed: number) {
 export const breakdownOf = (seed: number) => breakdownsOf(seed)[0];
 export const breakdownAt = (seed: number, week: number) => breakdownsOf(seed).find((b) => b.week === week) ?? null;
 
+/** Precio del subcontratista en una avería: 1,05 €/km hasta la v2 (partidas guardadas); desde la v3, el de mercado. */
+export const subcontractPerKm = (version: number) => (version >= 3 ? GROWTH.subcontract.perKm : P.subcontractPerKm);
+
+/** Opciones ante una incidencia con los precios de la versión de la partida. */
+export const incidentOptions = (kind: "averia" | "mora", version: number): IncidentOption[] =>
+  kind === "averia" && version >= 3 ? INCIDENT_OPTIONS.averia.map((o) => (o.id === "subcontratar" ? { ...o, feedback: o.feedback.replace(n2(P.subcontractPerKm), n2(subcontractPerKm(version))) } : o)) : INCIDENT_OPTIONS[kind];
+
 export const INCIDENT_OPTIONS: Record<"averia" | "mora", IncidentOption[]> = {
   averia: [
     { id: "subcontratar", label: "Subcontratar a otro transportista los kilómetros que no puedes hacer", grade: "correcta", feedback: "Cumples con tus clientes a costa de margen: el subcontratista cobra 1,05 €/km y tú respondes ante el cliente de su trabajo." },
@@ -89,7 +186,7 @@ export const INCIDENT_OPTIONS: Record<"averia" | "mora", IncidentOption[]> = {
 };
 
 function shortfall(s: SimState, w: number, capacity: number) {
-  return Math.max(0, kmCommitted(s, w) - capacity);
+  return Math.max(0, kmOwnCommitted(s, w) - capacity);
 }
 
 /** Incidencias que exigen decisión en la semana actual, en orden, aún sin responder. */
@@ -98,10 +195,10 @@ export function dueIncidents(s: SimState): Incident[] {
   const out: Incident[] = [];
   const b = breakdownAt(s.seed, w);
   if (b && !s.answers[b.id]) {
-    const cap = TRUCK_KM_WEEK - b.days * P.kmPerDay;
+    const cap = truckKmAt(s, w) - b.days * P.kmPerDay;
     const short = shortfall(s, w, cap);
     if (short > 0) out.push({ id: b.id, kind: "averia", week: w, title: "Avería del camión", concept: "Un plan de contingencia (subcontratar, reprogramar, avisar) evita que una avería se convierta en un incumplimiento con el cliente.",
-      prompt: `El camión entra en el taller ${b.days} ${b.days === 1 ? "día" : "días"} (reparación: ${b.repair} €). Esta semana podrás hacer ${cap} km y tienes comprometidos ${kmCommitted(s, w)}: te faltan ${short} km.`, data: { days: b.days, repair: b.repair, short } });
+      prompt: `${truckKmAt(s, w) > TRUCK_KM_WEEK ? "Uno de tus camiones" : "El camión"} entra en el taller ${b.days} ${b.days === 1 ? "día" : "días"} (reparación: ${b.repair} €). Esta semana podrás hacer ${cap} km y tienes comprometidos ${kmOwnCommitted(s, w)}: te faltan ${short} km.`, data: { days: b.days, repair: b.repair, short } });
   }
   for (const inv of s.receivables) {
     const c = clientOf(inv.clientId);
@@ -136,9 +233,11 @@ export function apply(prev: SimState, a: Action): SimState {
     const o = s.offers.find((x) => x.id === a.oferta);
     if (!o) throw new Error("Oferta no disponible.");
     if (a.retorno && !o.backhaul) throw new Error("Esta oferta no tiene carga de retorno.");
-    const g = gradeOffer(s, o, !!a.retorno);
-    const contract: Contract = { ...o, startWeek: o.week, endWeek: o.week + o.weeks - 1, ...(a.retorno ? { withBackhaul: true } : {}) };
-    learn(s, { week: s.week, what: `Aceptar: ${describeOffer(o)}`, answer: "Aceptada", grade: g.grade, feedback: g.feedback, competences: o.kind === "almacenaje" ? ["0625-RA3", "0623-RA7"] : ["0622-RA2", "0622-RA3", "0623-RA7"] });
+    if (a.subcontratar && o.kind === "almacenaje") throw new Error("El almacenaje no se puede subcontratar.");
+    if (a.subcontratar && subcontractRoom(s, o) < kmOf(o)) throw new Error(`Tus subcontratistas no tienen más camiones libres: como mucho ${GROWTH.subcontract.maxKmWeek} km por semana.`);
+    const g = gradeOffer(s, o, !!a.retorno, !!a.subcontratar);
+    const contract: Contract = { ...o, startWeek: o.week, endWeek: o.week + o.weeks - 1, ...(a.retorno ? { withBackhaul: true } : {}), ...(a.subcontratar ? { subcontracted: true } : {}) };
+    learn(s, { week: s.week, what: `Aceptar: ${describeOffer(o)}`, answer: a.subcontratar ? "Aceptada y subcontratada" : "Aceptada", grade: g.grade, feedback: g.feedback, competences: o.kind === "almacenaje" ? ["0625-RA3", "0623-RA7"] : ["0622-RA2", "0622-RA3", "0623-RA7"] });
     // Documentación: solo si la acción la trae (las aceptaciones guardadas antes del 09/11/2026 no la tenían).
     if (a.docs) {
       const valid = new Set(docsFor(o.kind).map((d) => d.id));
@@ -175,6 +274,15 @@ export function apply(prev: SimState, a: Action): SimState {
     }
     return s;
   }
+  if (a.t === "crecer") {
+    const blocked = growthBlocked(s, a.opcion);
+    if (blocked) throw new Error(blocked);
+    const g = gradeGrowth(s, a.opcion);
+    const key = a.opcion === "renting" || a.opcion === "compra" ? "camion" : a.opcion;
+    s.growth = { ...s.growth, [key]: key === "camion" ? { modo: a.opcion, week: s.week } : { week: s.week } };
+    learn(s, { week: s.week, what: GROWTH_LABELS[a.opcion], answer: "Contratada", grade: g.grade, feedback: g.feedback, competences: a.opcion === "almacen" ? ["0625-RA3", "0623-RA4"] : a.opcion === "poliza" ? ["0623-RA3", "0623-RA7"] : ["0623-RA3", "0623-RA4"] });
+    return s;
+  }
   if (a.t === "pregunta") {
     if (a.pregunta !== MONTH_QUESTION.id || s.weeks.length < WEEKS_PER_MONTH || s.answers[a.pregunta]) throw new Error("Pregunta no disponible.");
     const opt = MONTH_QUESTION.options.find((x) => x.id === a.opcion);
@@ -185,7 +293,7 @@ export function apply(prev: SimState, a: Action): SimState {
   }
   if (a.t === "responder") {
     if (!s.pending || s.pending.id !== a.incidencia) throw new Error("No hay esa incidencia pendiente.");
-    const opt = INCIDENT_OPTIONS[s.pending.kind].find((x) => x.id === a.opcion);
+    const opt = incidentOptions(s.pending.kind, s.version).find((x) => x.id === a.opcion);
     if (!opt) throw new Error("Opción no válida.");
     s.answers[a.incidencia] = a.opcion;
     learn(s, { week: s.week, what: s.pending.title, answer: opt.label, grade: opt.grade, feedback: opt.feedback, competences: s.pending.kind === "averia" ? ["0622-RA6"] : ["0623-RA5"] });
@@ -223,17 +331,26 @@ function resolveWeek(s: SimState) {
   const move = (label: string, amount: number) => { if (amount === 0) return; s.cash = round2(s.cash + amount); s.ledger.push({ week: w, label, amount: round2(amount) }); };
 
   if (w === 1) { move("Fianza del almacén", -P.deposit); s.deposit = P.deposit; }
+  // Pagos de las herramientas para crecer, la semana de la decisión.
+  const g = s.growth;
+  let costFinancial = 0;
+  if (g?.camion?.week === w && g.camion.modo === "compra") { move("Compra del segundo camión", -GROWTH.truck.compra.price); s.truckValue = round2(s.truckValue + GROWTH.truck.compra.price); }
+  if (g?.almacen?.week === w) { const d = GROWTH.warehouse.rentMonthly * GROWTH.warehouse.depositMonths; move("Fianza de la nave ampliada", -d); s.deposit = round2(s.deposit + d); }
+  if (g?.poliza?.week === w) { const fee = round2(GROWTH.credit.limit * GROWTH.credit.openingFee); costFinancial += fee; move("Comisión de apertura de la póliza", -fee); }
+  // Intereses: solo por lo dispuesto (la caja negativa con la que empezó la semana).
+  const start = cashStart(s, w);
+  if (g?.poliza && w > g.poliza.week && start < 0) { const i = round2(-start * GROWTH.credit.annualRate / 52); costFinancial += i; move("Intereses de la póliza", -i); }
 
   // Capacidad del camión (avería) y reparto de kilómetros: primero los contratos más antiguos.
   const b = breakdownAt(s.seed, w);
   const broke = b !== null;
-  const capacity = TRUCK_KM_WEEK - (b ? b.days * P.kmPerDay : 0);
+  const capacity = truckKmAt(s, w) - (b ? b.days * P.kmPerDay : 0);
   const repair = b ? b.repair : 0;
   if (b) notes.push(`Avería: ${b.days} ${b.days === 1 ? "día" : "días"} en el taller y ${b.repair} € de reparación.`);
   const decision = b ? s.answers[b.id] : undefined;
-  const transport = s.contracts.filter((c) => activeIn(c, w) && c.kind !== "almacenaje").sort((a, c) => a.startWeek - c.startWeek || (a.kind === c.kind ? a.id.localeCompare(c.id) : a.kind === "distribucion" ? -1 : 1));
+  const transport = s.contracts.filter((c) => activeIn(c, w) && c.kind !== "almacenaje" && !c.subcontracted).sort((a, c) => a.startWeek - c.startWeek || (a.kind === c.kind ? a.id.localeCompare(c.id) : a.kind === "distribucion" ? -1 : 1));
   let left = capacity;
-  let kmOwn = 0, kmSub = 0, kmUnserved = 0, unservedWeight = 0;
+  let kmOwn = 0, kmSub = 0, kmPlanned = 0, kmUnserved = 0, unservedWeight = 0;
   let revenueTransport = 0;
   const breached: Contract[] = [];
   const invoices: { c: Contract; amount: number }[] = [];
@@ -253,6 +370,20 @@ function resolveWeek(s: SimState) {
     revenueTransport += amount;
     if (amount > 0) invoices.push({ c, amount });
   }
+  // Lo subcontratado al aceptar: lo hace otro transportista, que alguna semana falla (y respondes tú ante el cliente).
+  for (const c of s.contracts.filter((x) => activeIn(x, w) && x.kind !== "almacenaje" && x.subcontracted).sort((a, c) => a.id.localeCompare(c.id))) {
+    const need = kmOf(c);
+    if (stream(s.seed, w, `subcontrata-${c.id}`)() < GROWTH.subcontract.failChance) {
+      kmUnserved += need; unservedWeight += need;
+      if (c.kind === "distribucion") breached.push(c);
+      notes.push(`El subcontratista no hizo el servicio de ${clientOf(c.clientId).name}: no se factura y respondes tú ante el cliente.`);
+      continue;
+    }
+    kmSub += need; kmPlanned += need;
+    const amount = c.kind === "distribucion" ? round2(need * c.ratePerKm!) : c.price! + (c.withBackhaul && c.backhaul ? c.backhaul.price : 0);
+    revenueTransport += amount;
+    invoices.push({ c, amount });
+  }
   if (kmUnserved > 0) notes.push(`${kmUnserved} km comprometidos sin hacer: no se facturan.`);
   if (broke && decision === "callar") {
     const biggest = transport.filter((c) => c.kind === "distribucion").sort((a, c) => kmOf(c) - kmOf(a))[0];
@@ -260,7 +391,8 @@ function resolveWeek(s: SimState) {
   }
 
   // Almacén: palés por orden de llegada hasta la capacidad.
-  let room = P.warehousePallets;
+  const palletCapacity = palletCapacityAt(s, w);
+  let room = palletCapacity;
   let stored = 0, rejected = 0, revenueWarehouse = 0;
   for (const c of s.contracts.filter((x) => activeIn(x, w) && x.kind === "almacenaje").sort((a, c) => a.startWeek - c.startWeek || a.id.localeCompare(c.id))) {
     const put = Math.min(c.pallets!, room);
@@ -295,16 +427,19 @@ function resolveWeek(s: SimState) {
 
   // Costes del devengo.
   const costVariable = round2(kmOwn * P.variablePerKm);
-  const costSubcontract = round2(kmSub * P.subcontractPerKm);
-  if (kmSub > 0) s.payables.push({ id: `p${w}-sub`, label: `Subcontratista (${kmSub} km)`, amount: costSubcontract, week: w, dueWeek: w + P.transportPayWeeks });
+  const costSubcontract = round2((kmSub - kmPlanned) * subcontractPerKm(s.version) + kmPlanned * GROWTH.subcontract.perKm);
+  if (kmSub > 0) s.payables.push({ id: `p${w}-sub`, label: `Subcontratista (${kmSub} km)`, amount: costSubcontract, week: w, dueWeek: w + GROWTH.subcontract.payWeeks });
   move("Gasóleo, mantenimiento y peajes", -costVariable);
   if (costPenalties) move("Sanciones y reclamaciones por documentación", -costPenalties);
   if (repair) move("Reparación del camión", -repair);
-  s.accruedFixed = round2(s.accruedFixed + FIXED_PER_WEEK);
-  s.truckValue = round2(s.truckValue - P.amortizationWeek);
+  const fixed = fixedPerWeekAt(s, w);
+  const amortization = amortizationAt(s, w);
+  s.accruedFixed = round2(s.accruedFixed + fixed);
+  s.truckValue = round2(s.truckValue - amortization);
   revenueTransport = round2(revenueTransport);
   revenueWarehouse = round2(revenueWarehouse);
-  const result = round2(revenueTransport + revenueWarehouse - costVariable - costSubcontract - repair - costPenalties - FIXED_PER_WEEK - P.amortizationWeek);
+  costFinancial = round2(costFinancial);
+  const result = round2(revenueTransport + revenueWarehouse - costVariable - costSubcontract - repair - costPenalties - costFinancial - fixed - amortization);
   s.result = round2(s.result + result);
 
   // Caja: cobros y pagos que vencen esta semana; fijos cada 4 semanas.
@@ -312,7 +447,7 @@ function resolveWeek(s: SimState) {
   for (const inv of s.receivables) if (inv.paidWeek === undefined && inv.payWeek === w) { inv.paidWeek = w; collections += inv.amount; move(`Cobro de ${clientOf(inv.clientId).name}`, inv.amount); }
   let payments = 0;
   for (const p of s.payables) if (p.paidWeek === undefined && p.dueWeek === w) { p.paidWeek = w; payments += p.amount; move(`Pago: ${p.label}`, -p.amount); }
-  if (w % WEEKS_PER_MONTH === 0) { move("Alquiler, nóminas, seguro y gestoría del mes", -s.accruedFixed); s.accruedFixed = 0; }
+  if (w % WEEKS_PER_MONTH === 0) { move(g?.camion?.modo === "renting" && fixed > FIXED_PER_WEEK ? "Alquiler, nóminas, seguro, gestoría y renting del mes" : "Alquiler, nóminas, seguro y gestoría del mes", -s.accruedFixed); s.accruedFixed = 0; }
 
   // Nivel de servicio: lo servido sobre lo comprometido (km y palés); lo avisado cuenta la mitad.
   const committedUnits = kmCommitted(s, w) + palletsCommitted(s, w);
@@ -320,14 +455,16 @@ function resolveWeek(s: SimState) {
 
   const rec: WeekRecord = {
     week: w, kmCapacity: capacity, kmCommitted: kmCommitted(s, w), kmOwn, kmSubcontracted: kmSub, kmUnserved, palletsCommitted: palletsCommitted(s, w), palletsStored: stored,
-    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: FIXED_PER_WEEK, costPenalties, amortization: P.amortizationWeek, result,
+    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: fixed, costPenalties, costFinancial, palletCapacity, amortization, result,
     collections: round2(collections), payments: round2(payments), cashEnd: s.cash, serviceLevel, notes,
   };
   s.weeks.push(rec);
 
-  s.negativeWeeks = s.cash < 0 ? s.negativeWeeks + 1 : 0;
+  // Con póliza, la caja puede bajar de cero hasta el límite; la quiebra llega al pasarlo dos semanas seguidas.
+  const limit = creditLimitAt(s, w);
+  s.negativeWeeks = s.cash < -limit ? s.negativeWeeks + 1 : 0;
   s.lowServiceWeeks = serviceLevel < SERVICE_FLOOR.pct ? (s.lowServiceWeeks ?? 0) + 1 : 0;
-  if (s.negativeWeeks >= 2) { s.status = "quiebra"; s.endReason = "La caja ha estado en negativo dos semanas seguidas: no puedes pagar a tus proveedores ni las nóminas."; return; }
+  if (s.negativeWeeks >= 2) { s.status = "quiebra"; s.endReason = limit ? "La caja ha superado el límite de la póliza de crédito dos semanas seguidas: el banco no te da más y no puedes pagar a tus proveedores ni las nóminas." : "La caja ha estado en negativo dos semanas seguidas: no puedes pagar a tus proveedores ni las nóminas."; return; }
   if (s.lowServiceWeeks >= SERVICE_FLOOR.weeks) { s.status = "quiebra"; s.endReason = `Tu nivel de servicio ha estado por debajo del ${SERVICE_FLOOR.pct} % ${SERVICE_FLOOR.weeks} semanas seguidas: tus clientes clave se van y la empresa no puede seguir.`; return; }
   if (w >= SEASON_WEEKS) { s.status = "fin"; return; }
   s.week = w + 1;
@@ -352,7 +489,7 @@ export const pendingPayables = (s: SimState) => s.payables.filter((p) => p.paidW
 export function balanceGap(s: SimState): number {
   const assets = s.cash + sum(pendingReceivables(s).map((i) => i.amount)) + s.deposit + s.truckValue;
   const sources = s.equity0 + s.result + sum(pendingPayables(s).map((p) => p.amount)) + s.accruedFixed;
-  return round2(assets - sources);
+  return round2(assets - sources) || 0; // sin «-0»
 }
 
 /** Nivel de servicio de las últimas `weeks` semanas (8 por defecto: es la reputación que ven los clientes). */
@@ -374,7 +511,8 @@ export function knowledge(s: SimState) {
 /** Objetivos de temporada (docs/simulador.md §12, revisado el 09/11/2026): beneficio al final y 1 de los otros 2. */
 export function seasonOutcome(s: SimState) {
   const stored = s.weeks.reduce((a, w) => a + w.palletsStored, 0);
-  const occupancy = s.weeks.length ? round2(stored / (s.weeks.length * P.warehousePallets) * 100) : 0;
+  const capacity = s.weeks.reduce((a, w) => a + (w.palletCapacity ?? P.warehousePallets), 0);
+  const occupancy = capacity ? round2(stored / capacity * 100) : 0;
   const service = serviceLevelToDate(s, s.weeks.length);
   const last8 = round2(s.weeks.slice(-8).reduce((a, w) => a + w.result, 0));
   const objectives = [

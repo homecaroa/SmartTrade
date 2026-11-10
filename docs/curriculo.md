@@ -86,9 +86,16 @@ RA1 variables del mercado y entorno · RA2 sistema de información de marketing 
 
 ### 0625 Logística de almacenamiento (130 h) — sin cobertura
 RA1 normativa del almacenaje · RA2 organización del almacén · RA3 presupuesto del almacén · RA4 gestión de stocks · RA5 logística inversa · RA6 supervisión y calidad.
+En el Business Simulator (10/11/2026): RA3 en parte. Ampliar el almacén obliga a comparar su coste, alquiler, mozo y fianza, con la ocupación prevista (`docs/simulador.md` §17 sexies).
 
 ### 0623 Gestión económica y financiera de la empresa (160 h) — casi sin cobertura
 RA1 iniciativas emprendedoras · RA2 forma jurídica · RA3 financiación de inversiones · RA4 compraventa o alquiler de activos · RA5 facturas y documentos de cobro y pago (parcial) · RA6 contabilidad y fiscalidad · RA7 rentabilidad y solvencia. Es el módulo menos específico del comercio internacional.
+En el Business Simulator (10/11/2026): RA3, RA4 y RA7 en parte.
+- RA3: póliza de crédito, con comisión, interés sobre lo dispuesto y límite.
+- RA4: segundo camión en renting o comprado, con amortización y caja.
+- RA7: resultado frente a tesorería y rentabilidad de cada operación.
+
+Detalle en `docs/simulador.md` §17 sexies.
 
 ### 0827 Comercio digital internacional (100 h) — sin cobertura
 RA1 plan de marketing digital internacional · RA2 Internet como canal de promoción · RA3 servicios y protocolos de Internet · RA4 política de comercio electrónico (ventas internacionales en línea) · RA5 facturación electrónica y trámites telemáticos.

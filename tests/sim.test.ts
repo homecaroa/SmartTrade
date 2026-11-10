@@ -1,12 +1,12 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { apply, balanceGap, breakdownOf, breakdownsOf, cashByConcept, cashStart, clientHistory, gradeOffer, kmCommitted, newGame, replay, seasonOutcome, TRUCK_FULL_COST_PER_KM } from "@/lib/sim/engine";
+import { apply, balanceGap, breakdownOf, breakdownsOf, cashByConcept, cashStart, clientHistory, gradeGrowth, gradeOffer, kmCommitted, kmOwnCommitted, newGame, palletCapacityAt, replay, seasonOutcome, subcontractPerKm, TRUCK_FULL_COST_PER_KM, truckKmAt } from "@/lib/sim/engine";
 import { bestDocs, clientLimits, gradeDocs, respond, roundRate, termsOf, validateProposal } from "@/lib/sim/deal";
 import { evaluate } from "@/lib/sim/calc";
 import { kmOf, offersFor, reputationEffect, withReputation } from "@/lib/sim/market";
 import type { Action, Offer, SimState } from "@/lib/sim/model";
-import { FIXED_PER_MONTH, P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
+import { ENGINE_VERSION, FIXED_PER_MONTH, FIXED_PER_WEEK, GROWTH, P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK } from "@/lib/sim/params";
 import { mulberry32, stream } from "@/lib/sim/rng";
 import { parseSave, restore, toSave } from "@/lib/sim/save";
 import { play } from "@/lib/sim/strategies";
@@ -203,7 +203,10 @@ describe("decisiones e incidencias", () => {
     const sub = apply(before, { t: "responder", incidencia: "averia", opcion: "subcontratar" });
     const rec = sub.weeks[sub.weeks.length - 1];
     expect(rec.kmUnserved).toBe(0);
-    expect(rec.costSubcontract).toBeCloseTo(rec.kmSubcontracted * P.subcontractPerKm, 2);
+    // Desde la v3 el subcontratista cobra el precio de mercado también en una avería; en la v1 y la v2, 1,05 €/km.
+    expect(rec.costSubcontract).toBeCloseTo(rec.kmSubcontracted * subcontractPerKm(sub.version), 2);
+    expect(sub.learning[sub.learning.length - 1].feedback).toContain("1,40 €/km");
+    expect(subcontractPerKm(2)).toBe(P.subcontractPerKm);
     expect(sub.payables.some((p) => p.label.startsWith("Subcontratista") && p.dueWeek === rec.week + 4)).toBe(true);
     const shut = apply(before, { t: "responder", incidencia: "averia", opcion: "callar" });
     expect(shut.contracts.some((c) => c.cancelledWeek === before.week + 1)).toBe(true);
@@ -453,7 +456,8 @@ describe("viajes puntuales (v2) y versiones de reglas", () => {
     expect(future.ok && future.warning).toMatch(/versión 99/);
   });
   it("las partidas nuevas empiezan con la versión actual", () => {
-    expect(newGame(1).version).toBe(2);
+    expect(newGame(1).version).toBe(ENGINE_VERSION);
+    expect(ENGINE_VERSION).toBe(3);
   });
 });
 
@@ -475,4 +479,114 @@ describe("guardado de todas las acciones", () => {
     expect(parseSave({ app: "smartrade-simulador", version: 2, seed: 1, actions: [{ t: "proponer", oferta: "s1-1", tarifa: "mucho", semanas: 4, plazo: 4 }] }).ok).toBe(false);
     expect(parseSave({ app: "smartrade-simulador", version: 2, seed: 1, actions: [{ t: "aceptar", oferta: "s1-1", docs: "porte" }] }).ok).toBe(false);
   });
+});
+
+describe("herramientas para crecer (docs/simulador.md §17 sexies)", () => {
+  const close = (s: SimState) => { let x = apply(s, { t: "cerrar" }); while (x.status === "incidencia") x = apply(x, { t: "responder", incidencia: x.pending!.id, opcion: x.pending!.kind === "mora" ? "reclamar" : "subcontratar" }); return x; };
+  it("subcontratar al aceptar: no ocupa tu camión, cuesta el precio de mercado a 30 días y se factura igual", () => {
+    let s = newGame(3);
+    const o = s.offers.find((x) => x.kind === "distribucion")!;
+    // Con el camión libre, subcontratar es un error de criterio: hacerlo tú cuesta solo el variable.
+    expect(gradeOffer(s, o, false, true).grade).toBe(o.ratePerKm! < GROWTH.subcontract.perKm ? "grave" : "razonable");
+    s = apply(s, { t: "aceptar", oferta: o.id, subcontratar: true });
+    expect(s.contracts[0].subcontracted).toBe(true);
+    expect(kmOwnCommitted(s, 1)).toBe(0);
+    expect(kmCommitted(s, 1)).toBe(o.kmWeek);
+    s = close(s);
+    const rec = s.weeks[0];
+    const failed = rec.notes.some((n) => n.startsWith("El subcontratista no hizo"));
+    expect(rec.kmOwn).toBe(0);
+    expect(rec.kmSubcontracted).toBe(failed ? 0 : o.kmWeek);
+    expect(rec.costSubcontract).toBeCloseTo(failed ? 0 : o.kmWeek! * GROWTH.subcontract.perKm, 2);
+    if (!failed) expect(s.payables.some((p) => p.label.startsWith("Subcontratista") && p.dueWeek === 1 + GROWTH.subcontract.payWeeks)).toBe(true);
+    expect(balanceGap(s)).toBe(0);
+  });
+  it("subcontratar tiene límites: el almacenaje no y no más de un camión de tus colaboradores", () => {
+    const s = newGame(3);
+    expect(() => apply(s, { t: "aceptar", oferta: s.offers.find((x) => x.kind === "almacenaje")!.id, subcontratar: true })).toThrow(/almacenaje/);
+    const big = { ...s.offers.find((x) => x.kind === "distribucion")!, kmWeek: GROWTH.subcontract.maxKmWeek + 10 };
+    expect(() => apply({ ...s, offers: [big] }, { t: "aceptar", oferta: big.id, subcontratar: true })).toThrow(/subcontratistas/);
+  });
+  it("el subcontratista falla alguna semana y el que responde ante el cliente eres tú", () => {
+    const notes = SEEDS.slice(0, 40).flatMap((sd) => play(sd, "crecedora").state.weeks.flatMap((w) => w.notes));
+    expect(notes.some((n) => n.startsWith("El subcontratista no hizo"))).toBe(true);
+  }, 60_000);
+  it("segundo camión en renting: dobla la capacidad desde la semana siguiente y suma cuota y conductor a los fijos", () => {
+    let s = apply(newGame(5), { t: "crecer", opcion: "renting" });
+    expect(gradeGrowth(newGame(5), "renting").grade).toBe("razonable"); // sin trabajo comprometido, es pronto
+    expect(truckKmAt(s, 1)).toBe(TRUCK_KM_WEEK);
+    expect(truckKmAt(s, 2)).toBe(2 * TRUCK_KM_WEEK);
+    expect(() => apply(s, { t: "crecer", opcion: "compra" })).toThrow(/segundo camión/);
+    s = close(close(s));
+    expect(s.weeks[0].costFixed).toBe(FIXED_PER_WEEK);
+    expect(s.weeks[1].costFixed).toBeCloseTo(FIXED_PER_WEEK + (GROWTH.truck.renting.monthly + GROWTH.truck.driverMonthly) / 4, 2);
+    expect(balanceGap(s)).toBe(0);
+  });
+  it("comprar el camión sale de la caja de golpe, va al activo y se amortiza; sin colchón es un error grave", () => {
+    const g = newGame(5);
+    expect(gradeGrowth(g, "compra").grade).toBe("grave");
+    let s = close(apply(g, { t: "crecer", opcion: "compra" }));
+    expect(s.ledger.some((m) => m.label === "Compra del segundo camión" && m.amount === -GROWTH.truck.compra.price)).toBe(true);
+    expect(s.truckValue).toBe(P.truckBookValue + GROWTH.truck.compra.price - P.amortizationWeek);
+    s = close(s);
+    expect(s.weeks[1].amortization).toBe(P.amortizationWeek + GROWTH.truck.compra.amortizationWeek);
+    expect(balanceGap(s)).toBe(0);
+    // Sin póliza, la caja negativa dos semanas seguidas es quiebra.
+    expect(s.status).toBe("quiebra");
+  });
+  it("ampliar el almacén: más palés desde la semana siguiente, fianza de dos meses y la ocupación se mide sobre lo que tienes", () => {
+    const g0 = newGame(9);
+    let s = apply(apply(g0, { t: "aceptar", oferta: g0.offers.find((x) => x.kind === "almacenaje")!.id }), { t: "crecer", opcion: "almacen" });
+    expect(palletCapacityAt(s, 2)).toBe(P.warehousePallets + GROWTH.warehouse.pallets);
+    s = close(close(s));
+    expect(s.deposit).toBe(P.deposit + GROWTH.warehouse.rentMonthly * GROWTH.warehouse.depositMonths);
+    expect(s.weeks.map((w) => w.palletCapacity)).toEqual([P.warehousePallets, P.warehousePallets + GROWTH.warehouse.pallets]);
+    expect(balanceGap(s)).toBe(0);
+    // La ocupación se mide sobre los palés que había cada semana (600 y luego 1.000), no siempre sobre 600.
+    const stored = s.weeks[0].palletsStored + s.weeks[1].palletsStored;
+    expect(stored).toBeGreaterThan(0);
+    expect(seasonOutcome(s).objectives.find((o) => o.id === "ocupacion")!.value).toBeCloseTo(stored / (2 * P.warehousePallets + GROWTH.warehouse.pallets) * 100, 2);
+  });
+  it("póliza: comisión de apertura, intereses solo por lo dispuesto y quiebra al pasar el límite", () => {
+    let s = apply(apply(newGame(5), { t: "crecer", opcion: "poliza" }), { t: "crecer", opcion: "compra" });
+    s = close(s);
+    expect(s.weeks[0].costFinancial).toBe(GROWTH.credit.limit * GROWTH.credit.openingFee);
+    expect(s.cash).toBeLessThan(0);
+    expect(s.status).toBe("jugando");
+    const start = s.cash;
+    s = close(s);
+    expect(s.weeks[1].costFinancial).toBeCloseTo(-start * GROWTH.credit.annualRate / 52, 2);
+    expect(balanceGap(s)).toBe(0);
+    while (s.status === "jugando") s = close(s);
+    expect(s.status).toBe("quiebra");
+    expect(s.endReason).toMatch(/límite de la póliza/);
+    expect(s.weeks.at(-1)!.cashEnd).toBeLessThan(-GROWTH.credit.limit);
+  });
+  it("cada herramienta una sola vez, nunca con una incidencia pendiente ni en la última semana", () => {
+    const s = apply(newGame(1), { t: "crecer", opcion: "poliza" });
+    expect(() => apply(s, { t: "crecer", opcion: "poliza" })).toThrow(/póliza/);
+    expect(() => apply({ ...s, status: "incidencia" }, { t: "crecer", opcion: "almacen" })).toThrow(/incidencia/);
+    expect(() => apply({ ...s, week: SEASON_WEEKS }, { t: "crecer", opcion: "almacen" })).toThrow(/última semana/);
+  });
+  it("una temporada que crece cuadra en cada paso y se guarda y se recupera entera", () => {
+    for (const sd of SEEDS.slice(0, 15)) {
+      const { actions, state, maxGap } = play(sd, "crecedora");
+      expect(maxGap).toBe(0);
+      const p = parseSave(JSON.parse(JSON.stringify(toSave(sd, actions, state.version))));
+      expect(p.ok).toBe(true);
+      if (!p.ok) return;
+      const r = restore(p.save);
+      expect(r.dropped).toBe(0);
+      expect(JSON.stringify(r.state)).toBe(JSON.stringify(state));
+    }
+    expect(SEEDS.slice(0, 15).some((sd) => play(sd, "crecedora").actions.some((a) => a.t === "crecer"))).toBe(true);
+    expect(parseSave({ app: "smartrade-simulador", version: 3, seed: 1, actions: [{ t: "crecer", opcion: "avion" }] }).ok).toBe(false);
+    expect(parseSave({ app: "smartrade-simulador", version: 3, seed: 1, actions: [{ t: "aceptar", oferta: "s1-1", subcontratar: "si" }] }).ok).toBe(false);
+  }, 60_000);
+  it("crecer bien da más victorias que no crecer, pero no las regala (300 semillas medidas, docs/simulador.md §17 sexies)", () => {
+    const wins = (st: "negociadora" | "crecedora") => SEEDS.slice(0, 60).filter((sd) => seasonOutcome(play(sd, st).state).victory).length;
+    const grow = wins("crecedora"), base = wins("negociadora");
+    expect(grow).toBeGreaterThan(base);
+    expect(grow).toBeLessThan(60);
+  }, 120_000);
 });
