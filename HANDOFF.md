@@ -1,15 +1,66 @@
 # Traspaso de SmarTrade
 
-Fecha de redacción: 29/10/2026. Repositorio: `homecaroa/SmartTrade` (único commit en `main`: `fb05840 «Add files via upload»`, así que **no hay historial** del que sacar el porqué de las decisiones).
+Actualizado el 11/11/2026, tras la auditoría completa de ese día. Sustituye a la versión del 29/10/2026, que describía un
+repositorio con un único commit, 223 pruebas y pendientes ya resueltos. Repositorio: `homecaroa/SmartTrade`; despliegue en
+Vercel (smart-trade-self.vercel.app) con cada fusión a `main`.
 
-**Cómo está hecho este documento.** Todo sale de leer el repo (`README.md`, `PROGRESS.md`, `docs/*.md`, código de `lib/` y `app/`) y de ejecutar `npm test` y `tsc --noEmit` en esta sesión. No he hablado con quien desarrolló el proyecto ni he visto la app desplegada. Cada afirmación lleva una etiqueta:
+Etiquetas: **confirmado** (lo comprobé ese día), **documentado** (lo dicen los docs; no lo reproduje), **no verificado**.
 
-- **Confirmado**: lo comprobé yo en esta sesión.
-- **Documentado**: lo dicen los docs del repo; no lo he reproducido.
-- **Inferido**: deducción mía a partir del código o los docs.
-- **No verificado**: no lo sé o no he podido comprobarlo.
+---
 
-**Supuesto:** «este proyecto» = SmartTrade, el repo que se añadió a la sesión. No he tocado TripPlan ni Farmastock.
+## 0. El proyecto en una página (11/11/2026)
+
+- **Tres partes:**
+  - **Modo Aprendizaje** (portada `/`; `lib/learning`): casos prácticos de exportación, importación y negociación para el CFGS de Comercio Internacional.
+  - **Business Simulator** (`/simulador`; `lib/sim`): temporada de 26 semanas dirigiendo un operador logístico ficticio de Valencia.
+  - **Análisis de mercados** (`/mercados`): diagnóstico descriptivo con datos de Eurostat y Comtrade. Está en mantenimiento por decisión del dueño (09/11/2026).
+- **Público:** el propio dueño, alumno de 1.º del CFGS de Comercio Internacional (familia Comercio y Marketing). No hay profesor ni modo de clase.
+- **Estado confirmado el 11/11/2026:**
+  - `npm test`: 44 archivos, todas las pruebas correctas. La cifra exacta está en `CLAUDE.md`.
+  - `tsc` y `next build` sin errores.
+  - Navegador: 80 páginas recorridas con Playwright, sin errores ni desbordamiento a 390 px.
+  - Producción sirve la última versión; `/api/filters` responde en modo `comext`.
+- **Reglas de trabajo:** están en `CLAUDE.md`, que ahora sí existe y manda. Las más importantes:
+  - commit, push, PR y fusión al terminar cada encargo, sin preguntar;
+  - verificar con pruebas, mutaciones y abriendo la app;
+  - nada escrito como «verificado» sin haberlo ejecutado.
+
+### Business Simulator: lo esencial para continuarlo
+
+- **Motor puro y determinista.** El estado sale de reproducir las acciones sobre `newGame(semilla, versión)`. Nada de `Math.random`, hora ni red (hay una prueba que lo vigila).
+- **Guardado.** Se guardan la semilla, la versión de reglas y las acciones. Cada partida se reproduce siempre con su propia versión.
+- **Versiones de reglas.** Todo cambio que altere una partida va en una versión nueva (`ENGINE_VERSION`, `lib/sim/params.ts`):
+
+  | Versión | Qué añade |
+  |---|---|
+  | v1 | Base |
+  | v2 | Viajes puntuales con carga de retorno |
+  | v3 | Precio de subcontratación de mercado |
+  | v4 | Reclamaciones con base legal |
+  | v5 | Viajes internacionales |
+  | v6 | Almacén a fondo |
+  | v7 | La reputación escala todo el precio y la negociación del almacén arrastra la manipulación |
+
+  Detalle y mediciones en `docs/simulador.md` §17 bis–decies.
+- **Comprobaciones antes de fusionar un cambio del motor:**
+  1. **Compatibilidad:** generar partidas con el motor publicado (un `git worktree` de `origin/main`), reproducirlas con el nuevo y comparar semanas, contratos, movimientos de caja y correcciones.
+  2. **Equilibrio:** estrategias automáticas en 300 semillas (`lib/sim/strategies.ts`: nada, codiciosa, prudente, selectiva, negociadora, crecedora). Ninguna debe ganar siempre, y aceptarlo todo no debe ganar nunca.
+  3. **Invariantes:** el balance cuadra en cada paso (`balanceGap`). La auditoría añadió pruebas aleatorias: 840 partidas con decisiones al azar en las 7 versiones, sin ningún fallo.
+- **Todas las cifras de juego son [S] (simuladas).** La normativa está marcada [N] y comprobada en el BOE (lista en `docs/simulador.md` §19).
+
+### Pendientes conocidos (11/11/2026)
+
+- **Sin comprobar en la fuente oficial:**
+  - IPREM 2026 (solo en fuentes secundarias);
+  - Reglamento 1072/2009, art. 4, en EUR-Lex (leído en legislation.gov.uk);
+  - texto vigente del Reglamento 561/2006;
+  - importes de sanciones (simulados);
+  - autorizaciones para Marruecos.
+- **Defectos menores aceptados** (auditoría del 11/11/2026):
+  - las rutas inexistentes devuelven 200 con la página de «no encontrada» y `noindex`, por el `loading.tsx` raíz;
+  - las devoluciones «guardadas» cuentan para la ocupación del almacén.
+- **Alerta de GitGuardian del 19/10/2026:** sigue sin revisar en el panel de GitGuardian (**no verificado**). Una búsqueda de patrones de claves en todo el repo el 11/11/2026 no encontró nada.
+- **Análisis de mercados:** los pendientes de las secciones 1 y 4 siguen como estaban. No se han trabajado desde el 09/11/2026.
 
 ---
 
@@ -23,7 +74,7 @@ Módulos añadidos después del MVP (documentado):
 - Acceso al mercado: informativo, solo enlaces (`lib/market-access.ts`).
 - Guía de transporte e Incoterms 2020 (`/logistica`).
 - Mercados fuera de la UE vía UN Comtrade (`?fuente=fuera`).
-- Importadores y compradores (`/compradores`, `lib/buyers/`): piloto.
+- Importadores y compradores (`/compradores`, `lib/buyers/`): piloto, retirado de la interfaz el 06/11/2026 (`/compradores` es un aviso; `lib/buyers` se conserva).
 - Ficha imprimible y lista «qué falta por comprobar».
 
 **Stack (confirmado en `package.json`).** Next.js ^16.4.2 (App Router), React ^19.3.1, TypeScript ^7.0.2 estricto, Tailwind 4, Recharts, Zod 4, Vitest 5. Node 20+ pedido por el README; he usado Node 22.22.0.
@@ -66,53 +117,26 @@ Los «porqués» son los que dan los docs. Quién decidió cada cosa y cuándo: 
 
 ## 3. Convenciones y reglas a mantener
 
-**No hay `CLAUDE.md`** en el repo. Lo siguiente lo he extraído de los docs y del código (documentado salvo indicación):
+Las reglas vigentes están en `CLAUDE.md` (cargado en cada sesión). Además:
 
-- **Honestidad sobre el estado de verificación.** Cada doc distingue «verificado con datos reales», «simulado» y «sin probar». Mantenerlo: no escribir «verificado» sin haberlo ejecutado.
-- **Nada de datos sintéticos sin etiquetar.** Marca `SI_DEMO_SINTETICO` en el CSV, etiqueta DEMO en la UI.
-- **Los fixtures de tests son simulados** (`tests/helpers/mock-comext.ts`, fixtures de Comtrade y Tavily). Prueban nuestro código, no que la API real use esos ids.
-- **Las claves nunca llegan al navegador ni a los mensajes de error.** Hay tests que lo comprueban (`comtrade-adapter.test.ts`).
-- **Ningún texto debe prometer resultados.** Las etiquetas «no son recomendaciones»; la puntuación «no es probabilidad de éxito». Hay tests contra «promesas» (`labels.test.ts`) y contra tarifas/plazos en la guía de Incoterms (`logistics.test.ts`).
-- **Cada vez que se cambia la metodología, se documenta en `docs/methodology.md`** con el problema, la corrección y el resultado medido (patrón visto en la sección «Corrección: redundancia…»).
-- **Umbrales:** o salen de una medición, o se declaran «decisión documentada, no estimada».
-- **Idioma:** UI, código comentado y docs en español. **Inferido.**
-- **Nombres:** la app se llama «SmarTrade» (sin la «t» central de «Smart»), el paquete `smartrade`, el repo `SmartTrade`. Variables `SMARTRADE_*`.
-- **Variables de entorno** (README): `SMARTRADE_DATA_MODE`, `CACHE_TTL_SECONDS` (3600 por defecto), `DEFAULT_END_YEAR` (2024; acotado a 2018–2025), `COMEXT_BASE_URL`, `COMEXT_DATASET`, `COMEXT_WORLD_CODE`, `COMTRADE_API_KEY`, `COMTRADE_KEY_IN_QUERY`, y además `TAVILY_API_KEY` (solo en `docs/buyers.md`). `.env`/`.env.local` están en `.gitignore`.
-- **Antes de usar datos reales:** `npm run verify:comext` / `verify:comtrade`. Códigos de salida 0 = coherente, 1 = fallo, 2 = no concluyente (respuesta asíncrona).
-- **Comprobación mínima antes de entregar:** `npm test`, `npm run typecheck`, `npm run build` (patrón de los docs de pruebas).
+- **Nombres:**
+  - la app se llama «SmarTrade», el paquete `smartrade` y el repo `SmartTrade`;
+  - las variables de entorno empiezan por `SMARTRADE_*`.
+- **Variables de entorno** (README):
+  - `SMARTRADE_DATA_MODE`
+  - `CACHE_TTL_SECONDS` (3600 por defecto)
+  - `DEFAULT_END_YEAR` (2024)
+  - `COMEXT_BASE_URL`, `COMEXT_DATASET`, `COMEXT_WORLD_CODE`
+  - `COMTRADE_API_KEY`, `COMTRADE_KEY_IN_QUERY`
+  - `TAVILY_API_KEY`
+
+  `.env` y `.env.local` están en `.gitignore`. `.env.example` y `.devcontainer/` se borraron a propósito.
+- **Antes de usar datos reales:** `npm run verify:comext` / `verify:comtrade`. Códigos de salida: 0 coherente, 1 fallo, 2 no concluyente.
 
 ---
 
-## 4. Estado actual
+## 4. Riesgos conocidos del análisis de mercados
 
-### Terminado (con lo que he podido comprobar)
-
-- **Confirmado hoy:** `npm test` → 25 archivos, **223 pruebas, todas correctas**. `tsc --noEmit` → sin errores (salida 0). Node 22.22.0.
-- **Documentado:** MVP completo en demo; Comext real de extremo a extremo (18/10/2026); Comtrade probado a mano con clave real (25–26/10/2026: autenticación, campos, límites, cobertura de 9 mercados, peso neto); sectores; comparador; logística/Incoterms; corrección de la expansión de cuota; crecimiento en volumen y avisos; piloto de compradores (HS 220421, Japón: 9 empresas, 2 importadores confirmados con contacto verificable).
-- **Comprobación manual en navegador:** `docs/limitations.md` §11 dice «No probado en navegador». Los docs de pruebas hablan de «HTML servido y API». **No verificado** que alguien haya mirado la UI en un navegador real.
-
-### No verificado en esta sesión
-
-- `npm run build` (no lo ejecuté).
-- Cualquier llamada real a Eurostat/Comtrade/Tavily (no tengo claves y no probé la red).
-- Si existe un despliegue en Vercel o Codespaces funcionando. Los docs lo sugieren como opción; ninguno afirma que esté desplegado.
-
-### A medias
-
-- **Comtrade dentro de la app con clave real:** no probado (ronda 10).
-- **Tavily con clave real:** no probado.
-- **Posición exportadora poco informativa:** con 2 productos el percentil solo toma los valores 25 y 75 (15 % de la puntuación). Se avisa con menos de 10 productos. La prueba real solo ha usado 2 productos.
-- **Medición de la expansión de cuota con datos reales** (sector de 10+ productos): pendiente.
-- **Comparación cuantitativa Comext vs Comtrade:** pendiente (hay diferencia sin explicar en exportaciones de España de HS 220421: 1.879,2 M€ en Eurostat 2024 frente a 1.914 M$ en Comtrade; monedas distintas, sin conversión).
-- **Cobertura Comtrade:** Emiratos sin 2024; Arabia Saudí sin datos (no se ofrece).
-- **Indicadores de estado** (`c`, `e`) de JSON-stat: sin confirmar. (Grecia resuelta el 30/10/2026: Comext usa `GR`.)
-- **Peso neto en Comtrade:** no lo publican todos los países (p. ej. Japón 220421, Reino Unido 220421/220429: `n.d.`). Pendiente de cartografiar qué países lo publican.
-- **Compradores:** datos curados solo para HS 220421 en Japón; consultas en vivo solo en inglés; faltan ferias (p. ej. Foodex) y asociaciones.
-- **Calculadora de coste puesto en destino:** no existe, y solo tendría sentido con datos que aporte el usuario.
-
-### Bugs y riesgos conocidos
-
-- **Alerta de GitGuardian del 19/10/2026** sobre `homecaroa/SmartTrade` (en `PROGRESS.md`): pendiente de revisar. Hice una búsqueda rápida de patrones de claves en `.ts/.mjs/.md` y no encontré nada, pero mi expresión era estrecha: **no la doy por descartada**. Revisar en el panel de GitGuardian qué archivo marca. Por el nombre, «probable falso positivo en claves ficticias de pruebas» es la hipótesis del propio `PROGRESS.md`, no un hecho.
 - **Caché en memoria:** se pierde al reiniciar y no se comparte entre instancias serverless; en Vercel puede significar más llamadas y más consumo del cupo de Comtrade. No hay `maxDuration` ni región configurados en Vercel y no se han verificado los límites del plan.
 - **Cupo de Comtrade compartido** entre todos los visitantes de una web pública; si se agota, la app muestra error de límite.
 - **Efecto Róterdam:** importaciones de Países Bajos/Bélgica incluyen tránsito y sobrevaloran la demanda final.
@@ -123,14 +147,6 @@ Los «porqués» son los que dan los docs. Quién decidió cada cosa y cuándo: 
 - **El buscador no pide confirmar la interpretación** del texto del usuario antes de analizar.
 - **Servicios de nombres:** proveedores fuera del catálogo llegan en inglés.
 
-### Inconsistencias que he encontrado en el propio repo (a corregir)
-
-1. **`PROGRESS.md` está desfasado:** dice «94/94 pruebas, 9 archivos»; hoy son 223 en 25. Su «Siguiente tarea» y «Bloqueos» no reflejan el trabajo de las rondas 9–14. Además tiene dos puntos numerados «2.» en «Bloqueos».
-2. **`README.md` desfasado:** dice que Comtrade está «sin probar» y que Comext tiene «API sin ejecutar con datos reales», cuando `docs/data-sources.md` y `PROGRESS.md` dicen que ambos se probaron. Tampoco menciona los módulos nuevos ni `TAVILY_API_KEY`.
-3. **`docs/data-sources.md` se contradice:** la tabla de arriba dice «verificado de principio a fin», y el párrafo siguiente dice «falta comprobar la app completa en modo `comext`».
-4. **`docs/limitations.md` §1** dice que Comtrade «no se ha probado» y no recoge la verificación del 25/10.
-5. **El repo nombra archivos que ya no existen:** `.env.example` y `.devcontainer/` (README) y `scripts/verify-comtrade-peso.mjs` y `verify-comtrade-detalle.mjs` (`limitations.md`, `testing.md`). **Según el dueño (29/10/2026) eran de una prueba o duplicados y ya se borraron a propósito**, así que no hay nada que recuperar. Lo que queda por hacer es quitar esas referencias de README y docs (y el aviso del `.env.example`), porque hoy apuntan a archivos inexistentes. Solo existen `verify-comext.mjs` y `verify-comtrade.mjs`.
-6. **`docs/testing.md`** mezcla en cabecera «94 pruebas» con secciones posteriores hasta 223.
 
 ---
 
@@ -159,21 +175,17 @@ Solo las que aparecen como descartadas o no adoptadas en el repo. Las razones so
 
 ---
 
-## 6. Próximos pasos por prioridad
+## 6. Próximos pasos posibles (propuesta, no decisión)
 
-Orden mío, **inferido** de los pendientes de `PROGRESS.md`, los docs y los riesgos de arriba. La prioridad es una propuesta, no una decisión del proyecto.
-
-1. **Cerrar la alerta de GitGuardian** (seguridad, barato). Ver qué archivo marca; si es una clave real, rotarla; si es de prueba, marcarla falso positivo. Esto ya figuraba como primera tarea en `PROGRESS.md`.
-2. **Quitar las referencias a archivos borrados a propósito** (`.env.example`, `.devcontainer/`, `verify-comtrade-peso/detalle.mjs`) en README y docs. Si se quiere Codespaces, habría que crear `.devcontainer` de nuevo; no está decidido.
-3. **Actualizar `PROGRESS.md`, `README.md` y las incoherencias de `docs/data-sources.md` y `limitations.md`.** Es poco trabajo y quien herede el proyecto se guiará por ellos.
-4. **Ejecutar `npm run build` y arrancar la app** para confirmar el estado real; hoy solo está confirmada la parte de tests y tipos. Mirar la UI en un navegador (limitación nº 11).
-5. **Desplegar o confirmar el despliegue** en Vercel con `SMARTRADE_DATA_MODE=comext`. Decidir antes qué hacer con la caché en memoria (en serverless se reinicia) y con el cupo compartido de Comtrade.
-6. **Ampliar la prueba real de Comext a 10+ productos / un sector** (el siguiente paso que ya marcaba `PROGRESS.md`). Hasta entonces la «posición exportadora» y los percentiles son poco informativos. Aprovechar para repetir la medición de la expansión de cuota con datos reales.
-7. **Probar Comtrade dentro de la app con clave real** y comparar cuantitativamente con Eurostat (resolver la diferencia en exportaciones de HS 220421).
-8. **Probar Tavily con clave real en 3 combinaciones producto–país**, añadir términos en el idioma del país y fuentes de ferias/asociaciones; revisión humana antes de ampliar los datos curados.
-9. **Confirmar los indicadores de estado** de Comext (`c`, `e`) para poder señalar datos provisionales.
-10. **Más mercados/productos fuera de la UE** (cobertura verificada solo para HS 220421 y 9 mercados) y cartografiar qué países publican peso neto.
-11. **Pruebas de interfaz** (hoy no hay). Puede esperar si el uso es interno.
+1. **Simulador, módulo 0625:**
+   - RA6, supervisión y calidad (inventarios, exactitud del stock);
+   - o el destino Marruecos con aduana, después de verificar sus autorizaciones.
+2. **Normativa pendiente** (sección 0).
+3. **Revisar la alerta de GitGuardian** en su panel.
+4. **Actualizar dependencias de parche** (next 16.4.6, vitest 5.1.0), con la verificación completa.
+5. **Análisis de mercados** (en mantenimiento):
+   - Comtrade dentro de la app con clave real;
+   - prueba de Comext con un sector de más de 10 productos.
 
 ---
 
@@ -181,10 +193,7 @@ Orden mío, **inferido** de los pendientes de `PROGRESS.md`, los docs y los ries
 
 ```bash
 npm ci
-# .env.example ya no existe (borrado a propósito): sin .env.local arranca en modo demo
-npm run dev                  # http://localhost:3000
+npm run dev                  # http://localhost:3000 (sin .env.local arranca en modo demo)
 npm test && npm run typecheck && npm run build
 SMARTRADE_DATA_MODE=comext npm run dev   # buscar: 220421, 150920
 ```
-
-Nota: en esta sesión el primer `npm ci` falló sin un error visible y el segundo funcionó. Causa **no verificada** (probablemente un fallo de red puntual).

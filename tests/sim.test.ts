@@ -2,8 +2,9 @@ import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { apply, balanceGap, breakdownOf, breakdownsOf, cashByConcept, cashStart, clientHistory, gradeGrowth, gradeOffer, incidentOptions, kmCommitted, kmOwnCommitted, newGame, palletCapacityAt, replay, seasonOutcome, subcontractPerKm, TRUCK_FULL_COST_PER_KM, truckKmAt } from "@/lib/sim/engine";
-import { bestDocs, clientLimits, gradeDocs, respond, roundRate, termsOf, validateProposal } from "@/lib/sim/deal";
+import { bestDocs, clientLimits, gradeDocs, respond, roundRate, termsOf, validateProposal, withTerms } from "@/lib/sim/deal";
 import { evaluate } from "@/lib/sim/calc";
+import { round2 } from "@/lib/learning/money";
 import { directCost, fixedShare } from "@/lib/sim/international";
 import { WORKER_WEEK, workCapacityAt } from "@/lib/sim/warehouse";
 import { kmOf, offersFor, reputationEffect, weeklyRevenue, withReputation } from "@/lib/sim/market";
@@ -12,6 +13,7 @@ import { ENGINE_VERSION, FIXED_PER_MONTH, FIXED_PER_WEEK, GROWTH, P, payTermLabe
 import { mulberry32, stream } from "@/lib/sim/rng";
 import { parseSave, restore, toSave } from "@/lib/sim/save";
 import { play } from "@/lib/sim/strategies";
+import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 
 /**
  * Business Simulator, fase 1 (docs/simulador.md). Comprueba lo que el diseño exige al motor: reproducibilidad con semilla,
@@ -465,7 +467,7 @@ describe("viajes puntuales (v2) y versiones de reglas", () => {
   });
   it("las partidas nuevas empiezan con la versión actual", () => {
     expect(newGame(1).version).toBe(ENGINE_VERSION);
-    expect(ENGINE_VERSION).toBe(6);
+    expect(ENGINE_VERSION).toBe(7);
   });
 });
 
@@ -857,4 +859,49 @@ describe("almacén a fondo (reglas v6, docs/simulador.md §17 nonies)", () => {
     expect(organized).toBeGreaterThan(0);
     expect(parseSave({ app: "smartrade-simulador", version: 6, seed: 1, actions: [{ t: "organizar", opcion: "despedir" }] }).ok).toBe(false);
   }, 60_000);
+});
+
+describe("competencias del informe final", () => {
+  it("todo código de competencia que usa el simulador tiene su nombre (auditoría del 11/11/2026)", () => {
+    const used = new Set(readdirSync("lib/sim").filter((f) => f.endsWith(".ts")).flatMap((f) => readFileSync(path.join("lib/sim", f), "utf8").match(/"0\d{3}-RA\d"/g) ?? []).map((x) => x.slice(1, -1)));
+    expect(used.size).toBeGreaterThan(10);
+    for (const c of used) expect(COMPETENCE_LABELS[c], c).toBeDefined();
+  });
+});
+
+describe("reputación sobre todo el precio (reglas v7, auditoría del 11/11/2026)", () => {
+  it("desde la v7 la prima sube también la carga de retorno y la manipulación; antes solo el precio principal", () => {
+    let checkedBack = 0, checkedHandling = 0;
+    for (const sd of SEEDS.slice(0, 40)) for (let w = 7; w <= SEASON_WEEKS; w++) {
+      for (const v of [6, 7]) {
+        const plain = offersFor(sd, w, 92, v), prem = offersFor(sd, w, 100, v); // 92 %: sin prima ni rebaja; 100 %: prima
+        for (const o of prem) {
+          const b = plain.find((x) => x.id === o.id)!;
+          const k = v >= 7 ? 1.2 : 1;
+          if (o.backhaul) { expect(o.backhaul.price).toBe(Math.round(b.backhaul!.price * k)); if (v === 7) checkedBack++; }
+          if (o.moveRate !== undefined) { expect(o.moveRate).toBe(Math.round(b.moveRate! * k * 100) / 100); expect(o.lineRate).toBe(Math.round(b.lineRate! * k * 100) / 100); if (v === 7) checkedHandling++; }
+        }
+      }
+    }
+    expect(checkedBack).toBeGreaterThan(10);
+    expect(checkedHandling).toBeGreaterThan(10);
+  });
+  it("cada versión usa su tarifa del sitio: v6 1,45-2,15 €/palé; v7 1,30-2,00 (sin prima ni rebaja)", () => {
+    for (const [v, lo, hi] of [[6, 1.45, 2.15], [7, 1.3, 2.0]] as const) {
+      const rates = SEEDS.slice(0, 40).flatMap((sd) => Array.from({ length: SEASON_WEEKS }, (_, i) => offersFor(sd, i + 1, 92, v)).flat()).filter((o) => o.kind === "almacenaje").map((o) => o.palletRate!);
+      expect(rates.length).toBeGreaterThan(50);
+      expect(Math.min(...rates)).toBeGreaterThanOrEqual(lo);
+      expect(Math.max(...rates)).toBeLessThanOrEqual(hi);
+      expect(Math.max(...rates)).toBeGreaterThan(hi - 0.1);
+    }
+  });
+  it("desde la v7, negociar la tarifa del almacén arrastra en la misma proporción movimientos y líneas", () => {
+    const o = offersFor(SEEDS[0], 1, 100, 7).find((x) => x.kind === "almacenaje")!;
+    expect(o.moveRate).toBeDefined();
+    const t = { rate: round2(o.palletRate! * 1.1), weeks: o.weeks, payWeeks: o.payWeeks };
+    const v7 = withTerms(o, t, true), v6 = withTerms(o, t, false);
+    expect(v7.moveRate).toBeCloseTo(o.moveRate! * t.rate / o.palletRate!, 2);
+    expect(v7.lineRate).toBeCloseTo(o.lineRate! * t.rate / o.palletRate!, 2);
+    expect(v6.moveRate).toBe(o.moveRate);
+  });
 });

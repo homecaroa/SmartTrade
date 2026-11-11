@@ -66,21 +66,22 @@ export function offersFor(seed: number, week: number, serviceLevel = 100, versio
   while (kinds.length < n) kinds.push(pick(r, ["distribucion", "distribucion", "puntual", "puntual", "almacenaje"] as const));
   const base = kinds.map((k, i) => makeOffer(r, seed, week, i + 1, k, version));
   // v6: el almacenaje cobra la manipulación aparte; sus cifras salen de otra secuencia (el resto de la oferta no cambia).
-  const all = version >= WAREHOUSE_V6.fromVersion ? base.map((o) => (o.kind === "almacenaje" ? withHandling(o, seed) : o)) : base;
+  const all = version >= WAREHOUSE_V6.fromVersion ? base.map((o) => (o.kind === "almacenaje" ? withHandling(o, seed, version) : o)) : base;
   // v5: como mucho un viaje internacional, de su propia secuencia (las demás ofertas no cambian).
   const ri = stream(seed, week, "internacional-cliente");
   const c = pick(ri, CLIENTS);
   const intl = version >= 5 ? internationalOffer(seed, week, version, c.id, hint(ri, c, seed)) : null;
-  return withReputation(intl ? [...all, intl] : all, serviceLevel, week);
+  return withReputation(intl ? [...all, intl] : all, serviceLevel, week, version);
 }
 
 /** Oferta de almacenaje con la manipulación cobrada aparte (v6, ver WAREHOUSE_V6 y lib/sim/warehouse.ts). */
-export function withHandling(o: Offer, seed: number): Offer {
+export function withHandling(o: Offer, seed: number, version: number = WAREHOUSE_V6.fromVersion): Offer {
   const W = WAREHOUSE_V6;
+  const sr = version >= REPUTATION_ALL_PRICES_FROM ? W.storageRateV7 : W.storageRate;
   const r = stream(seed, o.week, `almacen-${o.id}`);
   const moves = Math.max(1, Math.round(o.pallets! * (W.rotation.min + r() * (W.rotation.max - W.rotation.min))));
   const lines = Math.round(moves * (W.linesPerMove.min + r() * (W.linesPerMove.max - W.linesPerMove.min)));
-  return { ...o, palletRate: round2(W.storageRate.min + r() * (W.storageRate.max - W.storageRate.min)), movesWeek: moves, linesWeek: lines, moveRate: round2(W.moveRate.min + r() * (W.moveRate.max - W.moveRate.min)), lineRate: round2(W.lineRate.min + r() * (W.lineRate.max - W.lineRate.min)) };
+  return { ...o, palletRate: round2(sr.min + r() * (sr.max - sr.min)), movesWeek: moves, linesWeek: lines, moveRate: round2(W.moveRate.min + r() * (W.moveRate.max - W.moveRate.min)), lineRate: round2(W.lineRate.min + r() * (W.lineRate.max - W.lineRate.min)) };
 }
 /** Trabajo de una operación de almacenaje, en semanas de mozo (v6). */
 export const workOf = (o: Pick<Offer, "movesWeek" | "linesWeek">) => (o.movesWeek ?? 0) / WAREHOUSE_V6.movesPerWorker + (o.linesWeek ?? 0) / WAREHOUSE_V6.linesPerWorker;
@@ -101,13 +102,26 @@ export function reputationEffect(serviceLevel: number, week: number): { drop: nu
   return { drop: 0, factor: 1, label: `Correcta: con un ${RELIABILITY_PREMIUM.minServicePct} % o más, los clientes pagarían un ${Math.round((RELIABILITY_PREMIUM.factor - 1) * 100)} % más.` };
 }
 
-export function withReputation(offers: Offer[], serviceLevel: number, week = 1): Offer[] {
+export function withReputation(offers: Offer[], serviceLevel: number, week = 1, version = 1): Offer[] {
   const e = reputationEffect(serviceLevel, week);
-  return scaleRates(offers.slice(0, Math.max(1, offers.length - e.drop)), e.factor);
+  return scaleRates(offers.slice(0, Math.max(1, offers.length - e.drop)), e.factor, version);
 }
 
-/** Multiplica las tarifas de unas ofertas (reputación y crecimiento del mercado). */
-export const scaleRates = (offers: Offer[], k: number): Offer[] => (k === 1 ? offers : offers.map((o) => ({ ...o, ratePerKm: o.ratePerKm && round2(o.ratePerKm * k), price: o.price && Math.round(o.price * k), palletRate: o.palletRate && round2(o.palletRate * k) })));
+/**
+ * Multiplica las tarifas de unas ofertas (reputación y crecimiento del mercado). Hasta la v6 se quedaban fuera la carga
+ * de retorno y la manipulación del almacén: la prima del 20 % subía el viaje pero no su retorno (auditoría del
+ * 11/11/2026). Desde la v7 se escala todo el precio; las partidas anteriores conservan sus reglas.
+ */
+export const scaleRates = (offers: Offer[], k: number, version = 1): Offer[] => (k === 1 ? offers : offers.map((o) => ({
+  ...o, ratePerKm: o.ratePerKm && round2(o.ratePerKm * k), price: o.price && Math.round(o.price * k), palletRate: o.palletRate && round2(o.palletRate * k),
+  ...(version >= REPUTATION_ALL_PRICES_FROM ? {
+    ...(o.moveRate !== undefined ? { moveRate: round2(o.moveRate * k) } : {}),
+    ...(o.lineRate !== undefined ? { lineRate: round2(o.lineRate * k) } : {}),
+    ...(o.backhaul ? { backhaul: { ...o.backhaul, price: Math.round(o.backhaul.price * k) } } : {}),
+  } : {}),
+})));
+/** Versión desde la que la reputación escala todo el precio (retorno y manipulación incluidos). */
+export const REPUTATION_ALL_PRICES_FROM = 7;
 
 /**
  * Km que ocupa una oferta en cada semana de su duración (el servicio puntual cuenta la ida y el retorno en vacío). Un

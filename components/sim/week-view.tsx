@@ -5,7 +5,7 @@ import { cashStart, clientHistory, creditLimitAt, describeOffer, fixedPerWeekAt,
 import { docsFor, MAX_ROUNDS, originalTerms, rateOf, validateProposal } from "@/lib/sim/deal";
 import { directCost } from "@/lib/sim/international";
 import { organizeBlocked, WORKER_WEEK, workCapacityAt, workCommitted, workersAt } from "@/lib/sim/warehouse";
-import { clientOf, kmOf, reputationEffect, weeklyRevenue, workOf } from "@/lib/sim/market";
+import { clientOf, kmOf, REPUTATION_ALL_PRICES_FROM, reputationEffect, weeklyRevenue, workOf } from "@/lib/sim/market";
 import type { Action, GrowthOption, Offer, SimState } from "@/lib/sim/model";
 import { GROWTH, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
@@ -162,7 +162,7 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
 
       {mode === "negociar" && (
         <form className="space-y-2 rounded border border-slate-200 p-2" onSubmit={(e) => { e.preventDefault(); propose(); }}>
-          <p className="text-xs text-slate-600">Propón tus condiciones. El cliente tiene un límite que no conoces: si pides un poco más de lo que puede pagar te hará una contraoferta; si pides mucho más, se irá con otro transportista. Como mucho {MAX_ROUNDS} rondas.</p>
+          <p className="text-xs text-slate-600">Propón tus condiciones. El cliente tiene un límite que no conoces: si pides un poco más de lo que puede pagar te hará una contraoferta; si pides mucho más, se irá con otro transportista. Como mucho {MAX_ROUNDS} rondas.{o.kind === "almacenaje" && o.moveRate !== undefined && s.version >= REPUTATION_ALL_PRICES_FROM ? " La tarifa del palé arrastra en la misma proporción el precio de movimientos y líneas." : ""}</p>
           <div className="flex flex-wrap items-end gap-2 text-xs">
             <label>Tarifa ({UNIT[o.kind]})<input value={rate} onChange={(e) => setRate(e.target.value)} inputMode="decimal" className="mt-0.5 block w-24 rounded border border-slate-300 px-1 py-0.5" /></label>
             {o.kind !== "puntual" && o.kind !== "internacional" && <label>Duración (semanas)<input value={weeks} onChange={(e) => setWeeks(e.target.value)} inputMode="numeric" className="mt-0.5 block w-16 rounded border border-slate-300 px-1 py-0.5" /></label>}

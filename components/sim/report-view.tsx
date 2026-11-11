@@ -2,21 +2,14 @@
 
 import { useState } from "react";
 import { knowledge, MONTH_QUESTION, seasonOutcome, serviceLevelToDate } from "@/lib/sim/engine";
+import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 import type { Action, SimState } from "@/lib/sim/model";
 import { WEEKS_PER_MONTH } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
 
-const COMPETENCE: Record<string, string> = {
-  "0622-RA2": "Transporte: elegir medios y capacidad",
-  "0622-RA3": "Transporte: costes y tarifas",
-  "0622-RA6": "Transporte: incidencias",
-  "0623-RA5": "Gestión económica: cobros y pagos",
-  "0623-RA6": "Gestión económica: contabilidad",
-  "0623-RA7": "Gestión económica: rentabilidad",
-  "0625-RA3": "Almacén: presupuesto y costes",
-};
+const COMPETENCE = COMPETENCE_LABELS;
 
 /** Informe del mes (con su pregunta) y resumen final: nota de decisiones, resultado empresarial y competencias, por separado. */
 export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {

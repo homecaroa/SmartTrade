@@ -1,10 +1,10 @@
 # SmarTrade (MVP)
 
-**Desde el 09/11/2026 la portada (`/`) es el Modo Aprendizaje**, un simulador educativo para el Grado Superior de Comercio Internacional (exportación, importación y negociación). El análisis de mercados está en `/mercados`; las URLs antiguas de búsqueda (`/?q=…`) redirigen allí con la consulta intacta.
+**Desde el 09/11/2026 la portada (`/`) es el Modo Aprendizaje**, un simulador educativo para el Grado Superior de Comercio Internacional (exportación, importación y negociación). El análisis de mercados está en `/mercados`; las URLs antiguas de búsqueda (`/?q=…`) redirigen allí con la consulta intacta. El **Business Simulator** (`/simulador`) es una temporada de 26 semanas dirigiendo un operador logístico ficticio; sus reglas están en `docs/simulador.md`.
 
 Diagnóstico descriptivo de mercados de exportación para empresas españolas, a partir de estadísticas oficiales de comercio exterior: por producto, cuánto importa cada mercado, cómo ha evolucionado, qué parte llega desde España y quién más lo abastece. Indicadores en su unidad, sin puntuación ni previsiones (la puntuación se retiró el 06/11/2026: ver `docs/methodology.md`). Ficha por mercado, comparación, gráficos con tabla, trazabilidad de datos y exportación CSV.
 
-**Estado honesto:** funciona de extremo a extremo con datos de **demostración sintéticos** (`demo`) y con **datos reales de Eurostat Comext** (`comext`, verificado el 18/10/2026 con `220421, 150920`: 49 oportunidades en 26 mercados UE). UN Comtrade está implementado pero **sin probar** (requiere clave). Ver `docs/data-sources.md` y `docs/limitations.md`. Es una app Next.js con servidor: **no se ejecuta en GitHub Pages**; hay que ejecutarla en local o desplegarla (p. ej. Vercel).
+**Estado honesto:** funciona de extremo a extremo con datos de **demostración sintéticos** (`demo`) y con **datos reales de Eurostat Comext** (`comext`, verificado el 18/10/2026 con `220421, 150920`: 49 oportunidades en 26 mercados UE). UN Comtrade se probó a mano con una clave real el 25–26/10/2026, pero **no dentro de la aplicación** (requiere clave). Ver `docs/data-sources.md` y `docs/limitations.md`. Es una app Next.js con servidor: **no se ejecuta en GitHub Pages**; hay que ejecutarla en local o desplegarla (p. ej. Vercel).
 
 ## Requisitos
 Node.js 20+ y npm.
@@ -24,8 +24,8 @@ Necesita servidor (no sirve GitHub Pages): en local con `npm run dev` o desplega
 | Modo | Fuente | Notas |
 |---|---|---|
 | `demo` (defecto) | Datos sintéticos deterministas | Siempre etiquetados como DEMO. No son estadísticas. |
-| `comext` | Eurostat Comext | Sin clave. Solo mercados UE como declarantes. Introduce códigos HS6 en el buscador. **Documentación contrastada, API sin ejecutar con datos reales: verificar antes de usar.** |
-| `comtrade` | UN Comtrade | **Opcional.** Requiere `COMTRADE_API_KEY` (solo servidor). Valores en USD. No verificado. Sin clave, los demás modos no se ven afectados. |
+| `comext` | Eurostat Comext | Sin clave. Solo mercados UE como declarantes. Introduce códigos HS6 en el buscador. **Verificado con datos reales el 18/10/2026** (`220421, 150920`); verificar de nuevo antes de usar (`npm run verify:comext`). |
+| `comtrade` | UN Comtrade | **Opcional.** Requiere `COMTRADE_API_KEY` (solo servidor). Valores en USD. Probado a mano con clave real (25–26/10/2026); no dentro de la app. Sin clave, los demás modos no se ven afectados. |
 
 ### Verificar las fuentes (necesita internet) — PASO IMPRESCINDIBLE ANTES DE USAR DATOS REALES
 ```bash

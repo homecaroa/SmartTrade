@@ -23,6 +23,12 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 - Las partidas v1–v5 guardadas se reproducen idénticas: comprobado con 240.
 - Victorias algo más bajas que en la v5, documentado.
 
+**Auditoría completa** (11/11/2026, `docs/simulador.md` §17 decies):
+- Sin fallos de cálculo ni de guardado en 840 partidas aleatorias.
+- Corregido en reglas v7: la reputación no escalaba la carga de retorno ni la manipulación del almacén, y negociar el almacén solo subía el sitio.
+- Corregido: el informe final dejaba 11 competencias sin nombre.
+- `HANDOFF.md` reescrito con el estado real; README y `docs/testing.md` puestos al día.
+
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.
 - **Currículo oficial leído** (RD 1574/2011, RD 500/2024, Orden EFD/659/2024) y cruzado con los casos: `docs/curriculo.md`. Cobertura alta en Transporte internacional; parcial en Gestión administrativa (solo exportación), Medios de pago, Financiación y Negociación; nula en Marketing, Sistema de información de mercados, Almacenamiento y Comercio digital. Propuesta de huecos ordenada, pendiente de decisión.
@@ -87,5 +93,5 @@ El «Laboratorio de logística» publicado ese día (#5) se integró en la expor
 
 ## Siguiente tarea
 1. Revisar la alerta de GitGuardian (archivo marcado; si es un valor de prueba, marcarlo como falso positivo).
-2. Ver la web: Codespaces (configuración `.devcontainer` incluida, sin probar en GitHub), en local (`npm run dev`) o desplegar en Vercel con `SMARTRADE_DATA_MODE=comext`.
+2. Ver la web: en local (`npm run dev`) o en Vercel (desplegada en smart-trade-self.vercel.app; `/api/filters` respondía en modo `comext` el 11/11/2026).
 3. Ampliar la prueba real a 10+ productos para que la posición exportadora sea informativa; añadir un catálogo de productos o categorías HS2/HS4.

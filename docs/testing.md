@@ -56,7 +56,7 @@ Umbrales (75 sí, 74 no), crecimiento negativo/irregular, precauciones, ausencia
 Ampliación de `tests/labels.test.ts` (umbrales de crecimiento excepcional y efecto precio), `tests/opportunities.test.ts` (CAGR del peso, null sin pesos) y `tests/research-checklist.test.ts` (nueva columna del CSV). Total: 158 pruebas en 17 archivos; typecheck y build correctos. Comprobación manual en modo demo: la ficha muestra el crecimiento en volumen y el CSV la nueva columna.
 
 ## Comtrade: comportamiento observado en la API real (ronda 09)
-`tests/comtrade-adapter.test.ts` incluye fixtures sintéticos con la forma observada: restricciones de totales, identificación por código numérico, descarte de desgloses, reintento tras 429, separación entre llamadas y proveedores fuera del catálogo. Total: 165 pruebas en 17 archivos; typecheck y build correctos. La verificación contra la API real se hizo a mano con `verify-comtrade-detalle.mjs` (resultados en docs/data-sources.md).
+`tests/comtrade-adapter.test.ts` incluye fixtures sintéticos con la forma observada: restricciones de totales, identificación por código numérico, descarte de desgloses, reintento tras 429, separación entre llamadas y proveedores fuera del catálogo. Total: 165 pruebas en 17 archivos; typecheck y build correctos. La verificación contra la API real se hizo a mano con un script de comprobación que después se retiró (resultados en docs/data-sources.md).
 
 ## Fuera de la UE (ronda 10)
 `tests/outside-eu.test.ts`: concesión del modo solo con clave y comext, mercados verificados, parámetro `fuente` y un ranking completo con respuestas sintéticas de Comtrade (solo se llama a comtradeapi.un.org, USD, sin datos demo). Total: 170 pruebas en 18 archivos; typecheck y build correctos. Comprobación manual en modo demo: sin permiso, `?fuente=fuera` muestra un aviso y el selector no aparece. **No se ha probado el modo con la clave real dentro de la aplicación.**
@@ -138,3 +138,39 @@ Las pruebas de la fase 1 que dependían del final en la semana 6 se adaptaron ex
 **Compatibilidad real:** 28 partidas generadas con el motor publicado se reproducen idénticas, textos incluidos.
 
 **Navegador:** partida nueva con carga de retorno; negociación, documentación y retorno; la partida se recupera al recargar.
+
+## Simulador: v3 a v6 (10/11/2026)
+
+Cada versión añadió su bloque a `tests/sim.test.ts`, todo con mutaciones en rojo y comprobación de compatibilidad contra el motor publicado. Detalle en `docs/simulador.md` §17 sexies–nonies.
+
+| Versión | Qué se añadió | Pruebas nuevas | Partidas anteriores idénticas |
+|---|---|---|---|
+| v3 | Herramientas para crecer | Subcontratar con tope y fallos, segundo camión, nave, póliza (comisión, intereses, límite) | 120 v1–v2 |
+| v4 | Reclamaciones | Avería con y sin reservas, recibo firmado, retraso con causa evitable o no, pago a 90 días | 216 v1–v3 |
+| v5 | Viajes internacionales | Ofertas solo en v5 sin cambiar las demás, días de camión, coste real, CMR y licencia, no subcontratable | 240 v1–v4 |
+| v6 | Almacén a fondo | Manipulación cobrada aparte, horas extra y trabajo sin hacer, temporal y ABC, punto de pedido, devoluciones | 240 v1–v5 |
+
+## Auditoría completa y reglas v7 (11/11/2026)
+
+`npm test` → **44 archivos, todas correctas** (cifra en `CLAUDE.md`); `tsc` y `next build` sin errores.
+
+**Pruebas aleatorias (fuera de la batería):** 840 partidas con decisiones al azar en las versiones 1–7, unas 52.000 acciones. Comprobado en cada paso:
+- el cuadre (`balanceGap`);
+- caja = caja inicial + movimientos;
+- resultado = suma de semanas;
+- ningún NaN;
+- determinismo al repetir;
+- guardar y recuperar igual.
+
+Cero fallos. El script es desechable; si se quiere conservar, convertirlo en prueba con menos partidas.
+
+**Nuevas en `tests/sim.test.ts`:**
+- todo código de competencia de `lib/sim` tiene nombre;
+- en v7 la reputación escala retorno y manipulación (y en v6 no);
+- negociar el almacén en v7 arrastra la manipulación.
+
+**Mutaciones:** escalar en todas las versiones, no escalar nunca, negociar sin arrastrar, quitar una etiqueta de competencia.
+
+**Navegador:** 80 páginas recorridas con Playwright (escritorio y 390 px). Todas responden 200, sin errores de consola ni desbordamiento. Las rutas inexistentes muestran «no encontrada» con un 200 (`loading.tsx` raíz).
+
+**Compatibilidad:** 252 partidas v1–v6 del motor publicado son idénticas. La única diferencia es la etiqueta de competencia del mozo temporal en v6, cambiada a propósito.

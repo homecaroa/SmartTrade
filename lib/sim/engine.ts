@@ -3,7 +3,7 @@ import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validat
 import { applyClaimDecision, claimIncidents, claimOptions, isClaim } from "./claims";
 import { directCost, fixedShare } from "./international";
 import { applyWarehouseDecision, gradeOrganize, gradeStorage, isWarehouseIncident, organizeBlocked, warehouseIncidents, warehouseOptions, WORKER_WEEK, workCapacityAt, workCommitted } from "./warehouse";
-import { clientOf, handlingRevenue, kmOf, offersFor, workOf } from "./market";
+import { clientOf, handlingRevenue, kmOf, offersFor, REPUTATION_ALL_PRICES_FROM, workOf } from "./market";
 import type { Action, Contract, Grade, Growth, GrowthOption, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
 import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, WAREHOUSE_V6, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
 import { intIn, stream } from "./rng";
@@ -297,7 +297,7 @@ export function apply(prev: SimState, a: Action): SimState {
       learn(s, { week: s.week, what: `Negociación con ${name}`, answer: `Propusiste ${n2(p.rate)}`, grade: "razonable", feedback: `${reply.message} Pedir más es legítimo, pero hay que conocer el margen del cliente: has perdido la operación.`, competences: ["0824-RA3"] });
       return s;
     }
-    const updated: Offer = { ...withTerms(o, reply.terms), original: base, round: (o.round ?? 0) + 1, note: reply.message, agreed: reply.kind === "acepta" };
+    const updated: Offer = { ...withTerms(o, reply.terms, s.version >= REPUTATION_ALL_PRICES_FROM), original: base, round: (o.round ?? 0) + 1, note: reply.message, agreed: reply.kind === "acepta" };
     s.offers = s.offers.map((x) => (x.id === o.id ? updated : x));
     if (reply.kind === "acepta") {
       const gain = round2((reply.terms.rate / base.rate - 1) * 100);
@@ -319,7 +319,7 @@ export function apply(prev: SimState, a: Action): SimState {
     if (blocked) throw new Error(blocked);
     const g = gradeOrganize(s, a.opcion);
     s.staff = a.opcion === "abc" ? { ...s.staff, abcWeek: s.week } : { ...s.staff, temps: [...(s.staff?.temps ?? []), s.week] };
-    learn(s, { week: s.week, what: a.opcion === "abc" ? "Reorganizar el almacén por rotación (ABC)" : "Contratar un mozo temporal", answer: "Hecho", grade: g.grade, feedback: g.feedback, competences: a.opcion === "abc" ? ["0625-RA2", "0625-RA3"] : ["0625-RA2", "0625-RA6"] });
+    learn(s, { week: s.week, what: a.opcion === "abc" ? "Reorganizar el almacén por rotación (ABC)" : "Contratar un mozo temporal", answer: "Hecho", grade: g.grade, feedback: g.feedback, competences: ["0625-RA2", "0625-RA3"] });
     return s;
   }
   if (a.t === "pregunta") {

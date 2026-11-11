@@ -28,9 +28,16 @@ export const termsOf = (o: Offer): Terms => ({ rate: rateOf(o), weeks: o.weeks, 
 export const originalTerms = (o: Offer): Terms => o.original ?? termsOf(o);
 export const roundRate = (kind: OfferKind, v: number) => (trip(kind) ? Math.round(v) : round2(v));
 
-export function withTerms(o: Offer, t: Terms): Offer {
+/**
+ * Aplica unas condiciones a una oferta. `wholePrice` (reglas v7): en un almacenaje con manipulación cobrada aparte (v6),
+ * la tarifa negociada sube o baja también movimientos y líneas en la misma proporción. Hasta la v6 solo cambiaba el
+ * sitio, y negociar el almacén valía casi la mitad que antes (auditoría del 11/11/2026).
+ */
+export function withTerms(o: Offer, t: Terms, wholePrice = false): Offer {
   const rate = roundRate(o.kind, t.rate);
-  return { ...o, ratePerKm: o.kind === "distribucion" ? rate : o.ratePerKm, price: trip(o.kind) ? rate : o.price, palletRate: o.kind === "almacenaje" ? rate : o.palletRate, weeks: trip(o.kind) ? 1 : t.weeks, payWeeks: t.payWeeks };
+  const k = o.kind === "almacenaje" && o.palletRate ? rate / o.palletRate : 1;
+  const handling = wholePrice && o.moveRate !== undefined && k !== 1 ? { moveRate: round2(o.moveRate * k), lineRate: round2(o.lineRate! * k) } : {};
+  return { ...o, ...handling, ratePerKm: o.kind === "distribucion" ? rate : o.ratePerKm, price: trip(o.kind) ? rate : o.price, palletRate: o.kind === "almacenaje" ? rate : o.palletRate, weeks: trip(o.kind) ? 1 : t.weeks, payWeeks: t.payWeeks };
 }
 
 /** Límite oculto del cliente para esta oferta: misma semilla y oferta → mismo límite. */
