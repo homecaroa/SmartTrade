@@ -577,6 +577,13 @@ Ninguna quiebra. Negociar vuelve a compensar frente a solo elegir bien.
 - **Previsión de tesorería** (`lib/sim/forecast.ts`, pestaña Finanzas). Usa solo lo que el jugador sabe: facturas por su vencimiento, pagos pendientes, fijos y nóminas, temporales y pagos ya decididos. No incluye el gasóleo, las facturas nuevas ni los imprevistos.
   - Una prueba comprueba que, sin contratos, la previsión coincide al céntimo con lo que pasa, salvo la reparación de las averías: es un imprevisto y no la puede prever.
 
+**Resultado por línea de negocio y capacidad ociosa** (`lib/sim/lines.ts`; mismo día, segunda tanda). El cierre de cada semana y la pestaña Finanzas reparten el resultado en tres partes:
+- **Transporte:** ingresos − gasóleo, subcontratación, reparaciones, conductores, seguro, renting y amortización.
+- **Almacén:** ingresos − alquileres, mozos, horas extra, temporales y reorganización.
+- **Estructura:** gerente, gestoría, sanciones, indemnizaciones e intereses.
+
+Cada línea muestra el uso de su capacidad y lo que costó la parte sin usar: la fracción de sus costes fijos que pagaste por camión o almacén vacío. Las tres partes suman exactamente el resultado: comprobado en 9.608 semanas de partidas automáticas (v1, v3, v6 y v8) y en una prueba de la batería.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.

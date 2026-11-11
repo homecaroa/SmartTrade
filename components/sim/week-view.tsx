@@ -6,7 +6,8 @@ import { docsFor, MAX_ROUNDS, originalTerms, rateOf, validateProposal } from "@/
 import { directCost } from "@/lib/sim/international";
 import { organizeBlocked, WORKER_WEEK, workCapacityAt, workCommitted, workersAt } from "@/lib/sim/warehouse";
 import { clientOf, kmOf, REPUTATION_ALL_PRICES_FROM, reputationEffect, weeklyRevenue, workOf } from "@/lib/sim/market";
-import type { Action, GrowthOption, Offer, SimState } from "@/lib/sim/model";
+import type { Action, GrowthOption, Offer, SimState, WeekRecord } from "@/lib/sim/model";
+import { weekLines, type LineMargin } from "@/lib/sim/lines";
 import { GROWTH, P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
@@ -57,6 +58,7 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
             </div>
           </div>
           <p className="text-sm">{closed.kmOwn} km propios{closed.kmSubcontracted ? ` y ${closed.kmSubcontracted} subcontratados` : ""} · {closed.palletsStored} palés · servicio {closed.serviceLevel.toLocaleString("es-ES")} %</p>
+          <LinesPanel s={s} r={closed} />
           {closed.notes.length > 0 && <ul className="list-disc pl-5 text-sm text-amber-900">{closed.notes.map((n) => <li key={n}>{n}</li>)}</ul>}
           {decisions.length > 0 && (
             <ul className="space-y-1 text-sm">{decisions.map((d, i) => <li key={i} className="rounded bg-slate-50 p-2"><span className="flex flex-wrap items-center gap-2"><b>{d.what}</b><GradeBadge grade={d.grade} /></span>{d.feedback}</li>)}</ul>
@@ -178,6 +180,32 @@ function offerImpact(s: SimState, o: Offer): { text: string; over: boolean }[] {
   }
   const after = used + kmOf(o);
   return [{ text: `Camión: ${after.toLocaleString("es-ES")} / ${cap.toLocaleString("es-ES")} km${after > cap ? ` en la semana ${w}: no llegas (puedes subcontratar)` : weeks.length > 1 ? " en la semana más cargada" : ""}`, over: after > cap }];
+}
+
+/**
+ * De dónde sale el resultado de la semana (11/11/2026, petición del dueño): margen de cada línea de negocio, uso de su
+ * capacidad y lo que costó la que quedó sin usar (lib/sim/lines.ts). Las tres partes suman el resultado.
+ */
+function LinesPanel({ s, r }: { s: SimState; r: WeekRecord }) {
+  const l = weekLines(s, r);
+  const line = (title: string, x: LineMargin, use: string) => (
+    <div className="rounded border border-slate-200 p-2">
+      <h3 className="text-xs font-semibold uppercase text-slate-600">{title}</h3>
+      <p>{fmtEur(x.revenue)} − {fmtEur(x.costs)} = <b className={x.margin < 0 ? "text-rose-700" : "text-emerald-700"}>{fmtEur(x.margin)}</b></p>
+      <p className="text-xs text-slate-600">{use}: {x.use} %{x.idleCost >= 1 ? <> · la capacidad sin usar te costó <b className={x.use < 50 ? "text-rose-700" : ""}>{fmtEur(x.idleCost)}</b></> : null}</p>
+    </div>
+  );
+  return (
+    <div className="grid gap-2 text-sm sm:grid-cols-3" aria-label="Resultado por línea de negocio">
+      {line("Transporte (ingresos − costes)", l.transporte, "Uso del camión")}
+      {line("Almacén (ingresos − costes)", l.almacen, "Ocupación")}
+      <div className="rounded border border-slate-200 p-2">
+        <h3 className="text-xs font-semibold uppercase text-slate-600">Estructura</h3>
+        <p><b className="text-rose-700">{fmtEur(-l.estructura.costs)}</b></p>
+        <p className="text-xs text-slate-600">Gerente, gestoría, sanciones, indemnizaciones e intereses.</p>
+      </div>
+    </div>
+  );
 }
 
 const UNIT = { distribucion: "€/km", puntual: "€ el viaje", almacenaje: "€/palé/semana", internacional: "€ el viaje" } as const;

@@ -35,7 +35,8 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 - Barras en azul, verde y violeta, y en rojo si se pasan del límite.
 - Efecto de cada oferta en tu capacidad.
 - Aviso de tesorería y previsión a 4 semanas.
-- Pendiente, en este orden: coste de la capacidad ociosa, margen por línea de negocio y bandeja de correos sin IA (la IA, más adelante).
+- Resultado por línea de negocio (transporte, almacén, estructura) con el coste de la capacidad sin usar, en el cierre de semana y en Finanzas.
+- Pendiente: bandeja de correos sin IA (la IA, más adelante).
 
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.

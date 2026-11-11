@@ -1,5 +1,6 @@
 import { balanceGap, cashByConcept, cashStart, pendingPayables, pendingReceivables } from "@/lib/sim/engine";
 import { cashForecast } from "@/lib/sim/forecast";
+import { weekLines } from "@/lib/sim/lines";
 import { clientOf } from "@/lib/sim/market";
 import type { SimState } from "@/lib/sim/model";
 import { fmtEur, sum } from "@/lib/learning/money";
@@ -30,6 +31,35 @@ export function FinanceView({ s }: { s: SimState }) {
           </div>
         )}
       </section>
+
+      {s.weeks.length > 0 && (() => {
+        const ls = s.weeks.map((w) => ({ w, l: weekLines(s, w) }));
+        const total = (f: (x: (typeof ls)[number]) => number) => ls.reduce((a, x) => a + f(x), 0);
+        const rows: [string, (x: (typeof ls)[number]) => number, boolean][] = [
+          ["Margen del transporte", (x) => x.l.transporte.margin, true],
+          ["Margen del almacén", (x) => x.l.almacen.margin, true],
+          ["Estructura (gerente, gestoría, sanciones, intereses)", (x) => -x.l.estructura.costs, true],
+          ["Capacidad sin usar: transporte", (x) => -x.l.transporte.idleCost, false],
+          ["Capacidad sin usar: almacén", (x) => -x.l.almacen.idleCost, false],
+        ];
+        return (
+          <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="lineas">
+            <h2 id="lineas" className="text-base font-semibold">Resultado por línea de negocio</h2>
+            <div className="overflow-x-auto">
+              <table className="mt-2 min-w-[40rem] text-sm">
+                <caption className="text-left text-xs text-slate-600">Las tres primeras filas suman el resultado de cada semana. «Capacidad sin usar» es la parte de los costes fijos de esa línea que pagaste por camión o almacén vacío: ya está dentro de su margen.</caption>
+                <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{s.weeks.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}<th scope="col" className={th}>Total</th></tr></thead>
+                <tbody>
+                  {rows.map(([label, f, strong]) => (
+                    <tr key={label} className={`border-b border-slate-100 ${strong ? "" : "text-slate-500"}`}><th scope="row" className="py-1 pr-3 text-left font-normal">{label}</th>{ls.map((x) => <td key={x.w.week} className={`${td} ${strong && f(x) < 0 ? "text-rose-700" : ""}`}>{fmtEur(f(x))}</td>)}<td className={`${td} font-semibold`}>{fmtEur(total(f))}</td></tr>
+                  ))}
+                  <tr className="border-b border-slate-100 text-slate-500"><th scope="row" className="py-1 pr-3 text-left font-normal">Uso del camión / ocupación del almacén</th>{ls.map((x) => <td key={x.w.week} className={td}>{x.l.transporte.use} % / {x.l.almacen.use} %</td>)}<td className={td} /></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        );
+      })()}
 
       {s.weeks.length > 0 && (() => {
         const concepts = [...new Set(s.weeks.flatMap((w) => Object.keys(cashByConcept(s, w.week))))].sort((a, b) => (a === "Cobros de clientes" ? -1 : b === "Cobros de clientes" ? 1 : a.localeCompare(b)));

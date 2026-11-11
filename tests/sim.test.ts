@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { apply, balanceGap, breakdownOf, breakdownsOf, cashByConcept, cashStart, clientHistory, gradeGrowth, gradeOffer, incidentOptions, kmCommitted, kmOwnCommitted, newGame, palletCapacityAt, replay, seasonOutcome, subcontractPerKm, TRUCK_FULL_COST_PER_KM, truckKmAt } from "@/lib/sim/engine";
+import { apply, balanceGap, fixedPerWeekAt, breakdownOf, breakdownsOf, cashByConcept, cashStart, clientHistory, gradeGrowth, gradeOffer, incidentOptions, kmCommitted, kmOwnCommitted, newGame, palletCapacityAt, replay, seasonOutcome, subcontractPerKm, TRUCK_FULL_COST_PER_KM, truckKmAt } from "@/lib/sim/engine";
 import { bestDocs, clientLimits, gradeDocs, respond, roundRate, termsOf, validateProposal, withTerms } from "@/lib/sim/deal";
 import { evaluate } from "@/lib/sim/calc";
 import { round2 } from "@/lib/learning/money";
@@ -15,6 +15,7 @@ import { parseSave, restore, toSave } from "@/lib/sim/save";
 import { play } from "@/lib/sim/strategies";
 import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 import { cashForecast } from "@/lib/sim/forecast";
+import { fixedSplitAt, weekLines } from "@/lib/sim/lines";
 
 /**
  * Business Simulator, fase 1 (docs/simulador.md). Comprueba lo que el diseño exige al motor: reproducibilidad con semilla,
@@ -967,5 +968,30 @@ describe("previsión de tesorería (11/11/2026)", () => {
     expect(f.overdue).toBeCloseTo(s.receivables.filter((i) => i.paidWeek === undefined && i.dueWeek < s.week).reduce((a, i) => a + i.amount, 0), 2);
     const broke = cashForecast({ ...s, cash: -50_000 });
     expect(broke.firstBreach).toBe(s.week);
+  });
+});
+
+describe("resultado por línea de negocio (11/11/2026)", () => {
+  it("transporte + almacén − estructura suman exactamente el resultado de cada semana, en todas las versiones", () => {
+    let weeks = 0;
+    for (const v of [1, 3, 5, 6, 8]) for (const st of ["prudente", "crecedora"] as const) for (const sd of SEEDS.slice(0, 6)) {
+      const s = play(sd, st, v).state;
+      for (const r of s.weeks) {
+        const l = weekLines(s, r);
+        expect(l.transporte.margin + l.almacen.margin - l.estructura.costs).toBeCloseTo(r.result, 2);
+        expect(l.transporte.use).toBeGreaterThanOrEqual(0); expect(l.transporte.use).toBeLessThanOrEqual(100);
+        weeks++;
+      }
+    }
+    expect(weeks).toBeGreaterThan(1000);
+  }, 120_000);
+  it("los fijos de cada línea suman los fijos de la semana, también con segundo camión y nave", () => {
+    let s = apply(apply(newGame(3), { t: "crecer", opcion: "renting" }), { t: "crecer", opcion: "almacen" });
+    for (const w of [1, 2]) { const f = fixedSplitAt(s, w); expect(f.transporte + f.almacen + f.estructura).toBeCloseTo(fixedPerWeekAt(s, w), 2); }
+    s = apply(s, { t: "cerrar" });
+    const idle = weekLines(s, s.weeks[0]);
+    // Sin contratos, todo el coste fijo del camión es capacidad sin usar.
+    expect(idle.transporte.use).toBe(0);
+    expect(idle.transporte.idleCost).toBeCloseTo(fixedSplitAt(s, 1).transporte + P.amortizationWeek, 2);
   });
 });
