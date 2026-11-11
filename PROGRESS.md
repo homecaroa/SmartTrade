@@ -30,6 +30,13 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 - `HANDOFF.md` reescrito con el estado real; README y `docs/testing.md` puestos al día.
 - Después: reglas v8 (las devoluciones guardadas no cuentan como ocupación) y 404 de verdad en casos inexistentes y fichas mal formadas, al quitar el `app/loading.tsx` general.
 
+**Interfaz del simulador** (11/11/2026, petición del dueño; `docs/simulador.md` §17 undecies):
+- Resumen fijo de capacidad y botón para volver a ella.
+- Barras en azul, verde y violeta, y en rojo si se pasan del límite.
+- Efecto de cada oferta en tu capacidad.
+- Aviso de tesorería y previsión a 4 semanas.
+- Pendiente, en este orden: coste de la capacidad ociosa, margen por línea de negocio y bandeja de correos sin IA (la IA, más adelante).
+
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.
 - **Currículo oficial leído** (RD 1574/2011, RD 500/2024, Orden EFD/659/2024) y cruzado con los casos: `docs/curriculo.md`. Cobertura alta en Transporte internacional; parcial en Gestión administrativa (solo exportación), Medios de pago, Financiación y Negociación; nula en Marketing, Sistema de información de mercados, Almacenamiento y Comercio digital. Propuesta de huecos ordenada, pendiente de decisión.

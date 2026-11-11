@@ -1,4 +1,5 @@
 import { balanceGap, cashByConcept, cashStart, pendingPayables, pendingReceivables } from "@/lib/sim/engine";
+import { cashForecast } from "@/lib/sim/forecast";
 import { clientOf } from "@/lib/sim/market";
 import type { SimState } from "@/lib/sim/model";
 import { fmtEur, sum } from "@/lib/learning/money";
@@ -46,6 +47,30 @@ export function FinanceView({ s }: { s: SimState }) {
                 </tbody>
               </table>
             </div>
+          </section>
+        );
+      })()}
+
+      {s.status !== "fin" && s.status !== "quiebra" && (() => {
+        const f = cashForecast(s);
+        return (
+          <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="prevision">
+            <h2 id="prevision" className="text-base font-semibold">Previsión de tesorería (próximas {f.rows.length} semanas)</h2>
+            <div className="overflow-x-auto">
+              <table className="mt-2 min-w-[32rem] text-sm">
+                <caption className="text-left text-xs text-slate-600">Solo con lo que ya sabes: facturas por su vencimiento, pagos pendientes, alquiler y nóminas, temporales y pagos ya decididos. No incluye el gasóleo ni las facturas de las semanas que vienen, y un cliente puede pagar tarde.</caption>
+                <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{f.rows.map((r) => <th key={r.week} scope="col" className={th}>Sem. {r.week}</th>)}</tr></thead>
+                <tbody>
+                  <tr className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">Caja al empezar</th>{f.rows.map((r) => <td key={r.week} className={td}>{fmtEur(r.start)}</td>)}</tr>
+                  <tr className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">Facturas que vencen</th>{f.rows.map((r) => <td key={r.week} className={td}>{fmtEur(r.collections)}</td>)}</tr>
+                  <tr className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">Pagos a proveedores</th>{f.rows.map((r) => <td key={r.week} className={td}>{fmtEur(-r.payments)}</td>)}</tr>
+                  <tr className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">Alquiler, nóminas y fijos del mes</th>{f.rows.map((r) => <td key={r.week} className={td}>{fmtEur(-r.fixed)}</td>)}</tr>
+                  {f.rows.some((r) => r.oneOff) && <tr className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">Fianzas, compras y comisiones</th>{f.rows.map((r) => <td key={r.week} className={td}>{fmtEur(-r.oneOff)}</td>)}</tr>}
+                  <tr className="font-semibold"><th scope="row" className="py-1 pr-3 text-left">Caja prevista al cerrar</th>{f.rows.map((r) => <td key={r.week} className={`${td} ${r.end < -r.limit ? "text-rose-700" : ""}`}>{fmtEur(r.end)}</td>)}</tr>
+                </tbody>
+              </table>
+            </div>
+            {f.overdue > 0 && <p className="mt-1 text-xs text-amber-900">Además tienes {fmtEur(f.overdue)} en facturas vencidas sin cobrar: no se cuentan porque no sabes cuándo pagarán.</p>}
           </section>
         );
       })()}

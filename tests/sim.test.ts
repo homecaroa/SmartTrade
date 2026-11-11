@@ -14,6 +14,7 @@ import { mulberry32, stream } from "@/lib/sim/rng";
 import { parseSave, restore, toSave } from "@/lib/sim/save";
 import { play } from "@/lib/sim/strategies";
 import { COMPETENCE_LABELS } from "@/lib/sim/competences";
+import { cashForecast } from "@/lib/sim/forecast";
 
 /**
  * Business Simulator, fase 1 (docs/simulador.md). Comprueba lo que el diseño exige al motor: reproducibilidad con semilla,
@@ -938,4 +939,33 @@ describe("devoluciones guardadas sin cobrar (reglas v8, auditoría del 11/11/202
     expect(c8.cancelledWeek).toBeUndefined();
     expect(balanceGap(v8)).toBe(0);
   }, 120_000);
+});
+
+describe("previsión de tesorería (11/11/2026)", () => {
+  it("sin contratos, la previsión de 4 semanas coincide al céntimo con lo que pasa al cerrarlas", () => {
+    for (const sd of SEEDS.slice(0, 5)) {
+      let s = newGame(sd);
+      s = apply(s, { t: "crecer", opcion: "poliza" });
+      const f = cashForecast(s);
+      expect(f.rows.map((r) => r.week)).toEqual([1, 2, 3, 4]);
+      expect(f.rows[0].oneOff).toBe(P.deposit + 100);
+      expect(f.rows[3].fixed).toBeCloseTo(4 * FIXED_PER_WEEK, 2);
+      // Lo único que no puede prever son los imprevistos: la reparación de una avería (se paga aunque no haya contratos).
+      let repairs = 0;
+      for (const r of f.rows) { s = apply(s, { t: "cerrar" }); repairs += s.weeks.at(-1)!.costRepair; expect(s.weeks.at(-1)!.cashEnd).toBeCloseTo(r.end - repairs, 2); }
+    }
+  });
+  it("cuenta las facturas por su vencimiento, aparta las vencidas sin cobrar y avisa de cuándo se pasaría del límite", () => {
+    const { state } = play(SEEDS[3], "selectiva");
+    // Una partida a mitad: reconstruida hasta la semana 12.
+    let s = newGame(SEEDS[3]);
+    for (const a of play(SEEDS[3], "selectiva").actions) { if (s.week >= 12 && s.status === "jugando") break; s = apply(s, a); }
+    expect(state.weeks.length).toBeGreaterThan(11);
+    const f = cashForecast(s);
+    const due = s.receivables.filter((i) => i.paidWeek === undefined && i.dueWeek === s.week).reduce((a, i) => a + i.amount, 0);
+    expect(f.rows[0].collections).toBeCloseTo(due, 2);
+    expect(f.overdue).toBeCloseTo(s.receivables.filter((i) => i.paidWeek === undefined && i.dueWeek < s.week).reduce((a, i) => a + i.amount, 0), 2);
+    const broke = cashForecast({ ...s, cash: -50_000 });
+    expect(broke.firstBreach).toBe(s.week);
+  });
 });

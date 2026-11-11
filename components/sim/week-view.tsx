@@ -7,7 +7,7 @@ import { directCost } from "@/lib/sim/international";
 import { organizeBlocked, WORKER_WEEK, workCapacityAt, workCommitted, workersAt } from "@/lib/sim/warehouse";
 import { clientOf, kmOf, REPUTATION_ALL_PRICES_FROM, reputationEffect, weeklyRevenue, workOf } from "@/lib/sim/market";
 import type { Action, GrowthOption, Offer, SimState } from "@/lib/sim/model";
-import { GROWTH, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
+import { GROWTH, P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
@@ -15,13 +15,21 @@ import { Calculator } from "./calculator";
 
 const KIND = { distribucion: "Distribución regional", puntual: "Viaje puntual", almacenaje: "Almacenaje", internacional: "Transporte internacional" } as const;
 
-function Bar({ value, max, label }: { value: number; max: number; label: string }) {
+/**
+ * Colores de las barras (petición del dueño, 11/11/2026): camión azul, almacén verde, personal violeta y subcontratado azul
+ * claro; rojo cuando se supera el límite. El violeta en lugar del naranja que pidió en un principio: el naranja se confunde
+ * con el rojo de «por encima», también con daltonismo. El texto «¡por encima…!» acompaña siempre al rojo.
+ */
+const BAR_COLOR = { camion: "bg-blue-500", almacen: "bg-emerald-500", personal: "bg-violet-500", sub: "bg-sky-300" } as const;
+type BarKind = keyof typeof BAR_COLOR;
+
+function Bar({ value, max, label, kind, unit = "" }: { value: number; max: number; label: string; kind: BarKind; unit?: string }) {
   const pct = Math.min(100, Math.round(value / max * 100));
   const over = value > max;
   return (
     <div className="text-xs">
-      <div className="flex justify-between"><span>{label}</span><span className={over ? "font-semibold text-rose-700" : ""}>{value.toLocaleString("es-ES")} / {max.toLocaleString("es-ES")}{over ? " · ¡por encima de la capacidad!" : ""}</span></div>
-      <div className="mt-0.5 h-2 rounded bg-slate-200" role="img" aria-label={`${label}: ${value} de ${max}`}><div className={`h-2 rounded ${over ? "bg-rose-500" : "bg-indigo-500"}`} style={{ width: `${pct}%` }} /></div>
+      <div className="flex justify-between"><span>{label}</span><span className={over ? "font-semibold text-rose-700" : ""}>{value.toLocaleString("es-ES")}{unit} / {max.toLocaleString("es-ES")}{unit}{over ? " · ¡por encima de la capacidad!" : ""}</span></div>
+      <div className="mt-0.5 h-2 rounded bg-slate-200" role="img" aria-label={`${label}: ${value} de ${max}`}><div className={`h-2 rounded ${over ? "bg-rose-500" : BAR_COLOR[kind]}`} style={{ width: `${pct}%` }} /></div>
     </div>
   );
 }
@@ -69,14 +77,15 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
 
       {!done && s.status === "jugando" && (
         <>
+          <CapacityStrip s={s} />
           <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="capacidad">
             <h2 id="capacidad" className="text-base font-semibold">Capacidad comprometida</h2>
             {horizon.map((w) => (
               <div key={w} className="grid gap-2 sm:grid-cols-2">
-                <Bar label={`Semana ${w} · ${truckKmAt(s, w) > TRUCK_KM_WEEK ? "tus dos camiones" : "camión"} (km)`} value={kmOwnCommitted(s, w)} max={truckKmAt(s, w)} />
-                <Bar label={`Semana ${w} · almacén (palés)`} value={palletsCommitted(s, w)} max={palletCapacityAt(s, w)} />
-                {s.version >= WAREHOUSE_V6.fromVersion && <Bar label={`Semana ${w} · personal del almacén (% de un mozo)`} value={Math.round(workCommitted(s, w) * 100)} max={Math.round(workCapacityAt(s, w) * 100)} />}
-                {kmSubCommitted(s, w) > 0 && <Bar label={`Semana ${w} · subcontratado (km)`} value={kmSubCommitted(s, w)} max={GROWTH.subcontract.maxKmWeek} />}
+                <Bar kind="camion" label={`Semana ${w} · ${truckKmAt(s, w) > TRUCK_KM_WEEK ? "tus dos camiones" : "camión"} (km)`} value={kmOwnCommitted(s, w)} max={truckKmAt(s, w)} />
+                <Bar kind="almacen" label={`Semana ${w} · almacén (palés)`} value={palletsCommitted(s, w)} max={palletCapacityAt(s, w)} />
+                {s.version >= WAREHOUSE_V6.fromVersion && <Bar kind="personal" label={`Semana ${w} · personal del almacén (${workersAt(s, w)} ${workersAt(s, w) === 1 ? "mozo" : "mozos"})`} value={staffPct(s, w)} max={100} unit=" %" />}
+                {kmSubCommitted(s, w) > 0 && <Bar kind="sub" label={`Semana ${w} · subcontratado (km)`} value={kmSubCommitted(s, w)} max={GROWTH.subcontract.maxKmWeek} />}
               </div>
             ))}
           </section>
@@ -101,13 +110,74 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
           <GrowthPanel s={s} onAction={onAction} />
 
           <div className="rounded-lg bg-white p-4 shadow-sm">
-            <button type="button" onClick={() => onAction({ t: "cerrar" })} className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Cerrar la semana {s.week}</button>
+            <div className="flex flex-wrap items-center gap-3">
+              <button type="button" onClick={() => onAction({ t: "cerrar" })} className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Cerrar la semana {s.week}</button>
+              <button type="button" onClick={() => document.getElementById("capacidad")?.scrollIntoView({ behavior: "smooth", block: "start" })} className="rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-100">↑ Ver la capacidad comprometida</button>
+            </div>
             <p className="mt-1 text-xs text-slate-600">Se hacen los trabajos, se facturan, se cobran y pagan los vencimientos y llegan las ofertas de la semana siguiente.</p>
           </div>
         </>
       )}
     </div>
   );
+}
+
+/** Trabajo comprometido del personal del almacén, en % de su capacidad (antes se mostraba en «% de un mozo», confuso). */
+const staffPct = (s: SimState, w: number) => Math.round(workCommitted(s, w) / workCapacityAt(s, w) * 100);
+
+/**
+ * Resumen de la capacidad de esta semana, fijo arriba al bajar por la página (petición del dueño, 11/11/2026: «es incómodo
+ * tener que subir cada vez»). Pulsarlo lleva al detalle de las próximas semanas.
+ */
+function CapacityStrip({ s }: { s: SimState }) {
+  const w = s.week;
+  const items: { kind: BarKind; label: string; value: number; max: number; unit?: string }[] = [
+    { kind: "camion", label: truckKmAt(s, w) > TRUCK_KM_WEEK ? "Camiones" : "Camión", value: kmOwnCommitted(s, w), max: truckKmAt(s, w), unit: " km" },
+    { kind: "almacen", label: "Almacén", value: palletsCommitted(s, w), max: palletCapacityAt(s, w), unit: " palés" },
+    ...(s.version >= WAREHOUSE_V6.fromVersion ? [{ kind: "personal" as const, label: "Personal", value: staffPct(s, w), max: 100, unit: " %" }] : []),
+  ];
+  return (
+    <button type="button" onClick={() => document.getElementById("capacidad")?.scrollIntoView({ behavior: "smooth", block: "start" })}
+      className="sticky top-0 z-20 grid w-full gap-x-4 gap-y-1 rounded-lg border border-slate-200 bg-white/95 p-2 text-left shadow-sm backdrop-blur sm:grid-cols-3 print:hidden" aria-label={`Capacidad de la semana ${w}: ver el detalle`}>
+      {items.map((it) => {
+        const over = it.value > it.max;
+        return (
+          <span key={it.kind} className="text-xs">
+            <span className="flex justify-between"><span className="font-semibold">{it.label} · sem. {w}</span><span className={over ? "font-semibold text-rose-700" : ""}>{it.value.toLocaleString("es-ES")}{it.unit} / {it.max.toLocaleString("es-ES")}{it.unit}</span></span>
+            <span className="mt-0.5 block h-1.5 rounded bg-slate-200"><span className={`block h-1.5 rounded ${over ? "bg-rose-500" : BAR_COLOR[it.kind]}`} style={{ width: `${Math.min(100, Math.round(it.value / it.max * 100))}%` }} /></span>
+          </span>
+        );
+      })}
+    </button>
+  );
+}
+
+/**
+ * Lo que una oferta haría con tu capacidad, en la peor de sus semanas (petición del dueño, 11/11/2026): antes había que
+ * subir a las barras para comprobarlo, y en su partida aceptó un almacenaje sin sitio.
+ */
+function offerImpact(s: SimState, o: Offer): { text: string; over: boolean }[] {
+  const weeks = Array.from({ length: o.weeks }, (_, i) => o.week + i);
+  const worst = (f: (w: number) => number) => weeks.reduce((best, w) => (f(w) > f(best) ? w : best), weeks[0]);
+  if (o.kind === "almacenaje") {
+    const w = worst((x) => palletsCommitted(s, x) + o.pallets! - palletCapacityAt(s, x));
+    const after = palletsCommitted(s, w) + o.pallets!, cap = palletCapacityAt(s, w);
+    const out = [{ text: `Almacén: ${after.toLocaleString("es-ES")} / ${cap.toLocaleString("es-ES")} palés${after > cap ? ` en la semana ${w}: no cabe` : weeks.length > 1 ? " en la semana más llena" : ""}`, over: after > cap }];
+    if (o.movesWeek !== undefined && s.version >= WAREHOUSE_V6.fromVersion) {
+      const v = worst((x) => (workCommitted(s, x) + workOf(o)) / workCapacityAt(s, x));
+      const pct = Math.round((workCommitted(s, v) + workOf(o)) / workCapacityAt(s, v) * 100);
+      out.push({ text: `Personal: ${pct} % de su capacidad${pct > 100 ? ` en la semana ${v}: horas extra (hasta el ${Math.round((1 + WAREHOUSE_V6.overtime.maxShare) * 100)} %) o un temporal` : ""}`, over: pct > 100 });
+    }
+    return out;
+  }
+  const w = worst((x) => kmOwnCommitted(s, x) + kmOf(o) - truckKmAt(s, x));
+  const used = kmOwnCommitted(s, w), cap = truckKmAt(s, w);
+  if (o.kind === "internacional") {
+    const free = Math.max(0, Math.floor((cap - used) / P.kmPerDay));
+    return [{ text: `Camión: necesita ${o.days} días y te quedan ${free} libres esa semana`, over: o.days! > free }];
+  }
+  const after = used + kmOf(o);
+  return [{ text: `Camión: ${after.toLocaleString("es-ES")} / ${cap.toLocaleString("es-ES")} km${after > cap ? ` en la semana ${w}: no llegas (puedes subcontratar)` : weeks.length > 1 ? " en la semana más cargada" : ""}`, over: after > cap }];
 }
 
 const UNIT = { distribucion: "€/km", puntual: "€ el viaje", almacenaje: "€/palé/semana", internacional: "€ el viaje" } as const;
@@ -151,6 +221,7 @@ function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
       {o.kind === "almacenaje" && o.movesWeek !== undefined && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (solo el sitio), más {o.movesWeek} movimientos a <b>{n2(o.moveRate!)} €</b> y {o.linesWeek} líneas de pedido a <b>{n2(o.lineRate!)} €</b> por semana, durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana. Trabajo: un {Math.round(workOf(o) * 100)} % de un mozo.</p>}
       {o.kind === "almacenaje" && o.movesWeek === undefined && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (manipulación incluida) durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
       <p className="text-xs text-slate-600">Pago a {payTermLabel(o.payWeeks)} · {h.paid || h.overdue ? <><b>Tu experiencia:</b> {historyText(h)}</> : h.invoices ? <><b>Ya trabajas con este cliente:</b> aún no ha vencido ninguna factura. Referencias: {o.clientHint}</> : o.clientHint}</p>
+      <ul className="space-y-0.5 text-xs" aria-label="Efecto en tu capacidad">{offerImpact(s, o).map((x) => <li key={x.text} className={`rounded px-1.5 py-0.5 ${x.over ? "bg-rose-50 font-semibold text-rose-800" : "bg-slate-50 text-slate-700"}`}>{x.over ? "⚠ " : "✓ "}{x.text}</li>)}</ul>
       {o.note && <p className={`rounded p-1.5 text-xs ${o.agreed ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900"}`}><b>{c.name.replace(" (ficticia)", "")}:</b> {o.note} {o.agreed ? "Confirma la operación preparando la documentación." : `Su oferta inicial era ${n2(base.rate)} ${UNIT[o.kind]}.`}</p>}
 
       {mode === "ver" && (
