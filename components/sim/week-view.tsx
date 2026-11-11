@@ -214,7 +214,7 @@ const UNIT = { distribucion: "€/km", puntual: "€ el viaje", almacenaje: "€
  * Una oferta: aceptarla tal cual, negociarla (tarifa, duración y, en almacenaje, plazo de pago) y, al aceptar, preparar
  * la documentación. La respuesta del cliente la decide el motor (lib/sim/deal.ts), no la interfaz.
  */
-function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Action) => void }) {
+export function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Action) => void }) {
   const c = clientOf(o.clientId);
   const h = clientHistory(s, o.clientId);
   const [mode, setMode] = useState<"ver" | "negociar" | "documentar">("ver");
@@ -370,7 +370,7 @@ function GrowthPanel({ s, onAction }: { s: SimState; onAction: (a: Action) => vo
   );
 }
 
-function IncidentCard({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
+export function IncidentCard({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
   const inc = s.pending!;
   const [pick, setPick] = useState("");
   const opts = displayOrder(incidentOptions(inc, s.version), `${s.seed}:${inc.id}`);
