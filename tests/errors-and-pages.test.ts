@@ -85,3 +85,24 @@ describe("portada y URLs antiguas", () => {
     }
   });
 });
+
+describe("404 de verdad (auditoría del 11/11/2026)", () => {
+  // Con un app/loading.tsx general, toda página empezaba a responder (200) antes de saber si existía: las direcciones
+  // inexistentes mostraban «no encontrada» con un 200. Comprobado a mano con `next start` el 11/11/2026: 404 en los casos
+  // y en las fichas mal formadas.
+  it("no hay esqueleto de carga general; solo en las páginas que consultan datos", async () => {
+    const { existsSync } = await import("node:fs");
+    expect(existsSync("app/loading.tsx")).toBe(false);
+    for (const p of ["app/mercados/loading.tsx", "app/comparar/loading.tsx"]) expect(existsSync(p)).toBe(true);
+  });
+  it("los casos solo existen si están en su catálogo, y la ficha valida el identificador antes de cargar", () => {
+    for (const k of ["exportacion", "importacion", "negociacion"]) {
+      const src = readFileSync(`app/aprendizaje/${k}/[caso]/page.tsx`, "utf8");
+      expect(src).toMatch(/export const dynamicParams = false;/);
+      expect(src).toMatch(/export const generateStaticParams/);
+    }
+    const detail = readFileSync("app/oportunidad/[id]/page.tsx", "utf8");
+    expect(detail.indexOf("idSchema.safeParse(id)")).toBeGreaterThan(-1);
+    expect(detail.indexOf("idSchema.safeParse(id)")).toBeLessThan(detail.indexOf("<Suspense"));
+  });
+});

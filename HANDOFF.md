@@ -40,12 +40,13 @@ Etiquetas: **confirmado** (lo comprobé ese día), **documentado** (lo dicen los
   | v5 | Viajes internacionales |
   | v6 | Almacén a fondo |
   | v7 | La reputación escala todo el precio y la negociación del almacén arrastra la manipulación |
+  | v8 | Las devoluciones guardadas sin cobrar no cuentan como ocupación |
 
   Detalle y mediciones en `docs/simulador.md` §17 bis–decies.
 - **Comprobaciones antes de fusionar un cambio del motor:**
   1. **Compatibilidad:** generar partidas con el motor publicado (un `git worktree` de `origin/main`), reproducirlas con el nuevo y comparar semanas, contratos, movimientos de caja y correcciones.
   2. **Equilibrio:** estrategias automáticas en 300 semillas (`lib/sim/strategies.ts`: nada, codiciosa, prudente, selectiva, negociadora, crecedora). Ninguna debe ganar siempre, y aceptarlo todo no debe ganar nunca.
-  3. **Invariantes:** el balance cuadra en cada paso (`balanceGap`). La auditoría añadió pruebas aleatorias: 840 partidas con decisiones al azar en las 7 versiones, sin ningún fallo.
+  3. **Invariantes:** el balance cuadra en cada paso (`balanceGap`). La auditoría añadió pruebas aleatorias: 840 partidas con decisiones al azar en las versiones v1–v7, y 640 más con la v8, sin ningún fallo.
 - **Todas las cifras de juego son [S] (simuladas).** La normativa está marcada [N] y comprobada en el BOE (lista en `docs/simulador.md` §19).
 
 ### Pendientes conocidos (11/11/2026)
@@ -56,9 +57,7 @@ Etiquetas: **confirmado** (lo comprobé ese día), **documentado** (lo dicen los
   - texto vigente del Reglamento 561/2006;
   - importes de sanciones (simulados);
   - autorizaciones para Marruecos.
-- **Defectos menores aceptados** (auditoría del 11/11/2026):
-  - las rutas inexistentes devuelven 200 con la página de «no encontrada» y `noindex`, por el `loading.tsx` raíz;
-  - las devoluciones «guardadas» cuentan para la ocupación del almacén.
+- **Defecto menor que queda** (auditoría del 11/11/2026): una ficha de oportunidad con formato válido pero sin datos muestra «no encontrada» con 200 y `noindex`. Lo demás de la auditoría está corregido (reglas v7 y v8; 404 de verdad en casos y fichas mal formadas).
 - **Alerta de GitGuardian del 19/10/2026:** sigue sin revisar en el panel de GitGuardian (**no verificado**). Una búsqueda de patrones de claves en todo el repo el 11/11/2026 no encontró nada.
 - **Análisis de mercados:** los pendientes de las secciones 1 y 4 siguen como estaban. No se han trabajado desde el 09/11/2026.
 

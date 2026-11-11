@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { Suspense } from "react";
+import { PageLoading } from "@/components/page-loading";
 import { notFound } from "next/navigation";
 import { DataSourceLabel } from "@/components/data-source-label";
 import { CompetitorsTable } from "@/components/competitors-table";
@@ -33,7 +35,18 @@ const signed = (v: number | null, unit = "%") => (v === null ? "n.d." : `${v > 0
 export default async function Detail({ params, searchParams }: { params: Promise<{ id: string }>; searchParams: Promise<{ q?: string; fuente?: string }> }) {
   const { id } = await params;
   const { q, fuente } = await searchParams;
+  // El identificador se valida ANTES de mostrar el esqueleto de carga: así una dirección mal formada da un 404 de verdad.
+  // Un identificador bien formado que no existe se descubre al cargar los datos y sigue mostrando «no encontrada» con 200
+  // (11/11/2026; ver components/page-loading.tsx).
   if (!idSchema.safeParse(id).success) notFound();
+  return (
+    <Suspense fallback={<PageLoading />}>
+      <DetailBody id={id} q={q} fuente={fuente} />
+    </Suspense>
+  );
+}
+
+async function DetailBody({ id, q, fuente }: { id: string; q?: string; fuente?: string }) {
 
   let d;
   try {

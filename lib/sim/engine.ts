@@ -444,7 +444,7 @@ function resolveWeek(s: SimState) {
   // Almacén: palés por orden de llegada hasta la capacidad.
   const palletCapacity = palletCapacityAt(s, w);
   let room = palletCapacity;
-  let stored = 0, rejected = 0, revenueWarehouse = 0;
+  let stored = 0, rejected = 0, revenueWarehouse = 0, held = 0;
   const storage = s.contracts.filter((x) => activeIn(x, w) && x.kind === "almacenaje").sort((a, c) => a.startWeek - c.startWeek || a.id.localeCompare(c.id));
   // v6: trabajo de mozo (movimientos y líneas) de los palés que caben; por encima de la capacidad, horas extra hasta un
   // tope y lo demás sin hacer (no se cobra y baja el servicio). Ver lib/sim/warehouse.ts.
@@ -462,8 +462,11 @@ function resolveWeek(s: SimState) {
   if (workUnserved > 0) notes.push(`Un ${Math.round(undone * 100)} % del trabajo del almacén (entradas, salidas y pedidos) se quedó sin hacer: no se cobra y baja tu servicio.`);
   for (const c of storage) {
     const put = puts.get(c.id)!;
-    stored += put; rejected += c.pallets! - put;
-    if (put < c.pallets!) breached.push(c);
+    stored += put;
+    // Las devoluciones guardadas (v8) que no caben no son un servicio fallado al cliente: no cuentan como rechazadas.
+    if (!c.held) rejected += c.pallets! - put;
+    if (c.held) held += put;
+    if (put < c.pallets!) { if (c.held) notes.push(`${c.pallets! - put} palés de devoluciones de ${clientOf(c.clientId).name} no caben: se quedan en el muelle.`); else breached.push(c); }
     const amount = round2(put * c.palletRate! + handlingRevenue(c) * (put / c.pallets!) * (1 - undone));
     revenueWarehouse += amount;
     if (amount > 0) invoices.push({ c, amount });
@@ -535,7 +538,7 @@ function resolveWeek(s: SimState) {
 
   const rec: WeekRecord = {
     week: w, kmCapacity: capacity, kmCommitted: kmCommitted(s, w), kmOwn, kmSubcontracted: kmSub, kmUnserved, palletsCommitted: palletsCommitted(s, w), palletsStored: stored,
-    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: fixed, costPenalties, costFinancial, palletCapacity, ...(v6 ? { workLoad, workCapacity, workUnserved, costStaff } : {}), amortization, result,
+    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: fixed, costPenalties, costFinancial, palletCapacity, ...(v6 ? { workLoad, workCapacity, workUnserved, costStaff } : {}), ...(held ? { palletsHeld: held } : {}), amortization, result,
     collections: round2(collections), payments: round2(payments), cashEnd: s.cash, serviceLevel, notes,
   };
   s.weeks.push(rec);
@@ -592,7 +595,8 @@ export function knowledge(s: SimState) {
 
 /** Objetivos de temporada (docs/simulador.md §12, revisado el 09/11/2026): beneficio al final y 1 de los otros 2. */
 export function seasonOutcome(s: SimState) {
-  const stored = s.weeks.reduce((a, w) => a + w.palletsStored, 0);
+  // Lo guardado sin cobrar (devoluciones, reglas v8) ocupa sitio pero no es ocupación comercial.
+  const stored = s.weeks.reduce((a, w) => a + w.palletsStored - (w.palletsHeld ?? 0), 0);
   const capacity = s.weeks.reduce((a, w) => a + (w.palletCapacity ?? P.warehousePallets), 0);
   const occupancy = capacity ? round2(stored / capacity * 100) : 0;
   const service = serviceLevelToDate(s, s.weeks.length);

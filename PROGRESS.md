@@ -28,6 +28,7 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 - Corregido en reglas v7: la reputación no escalaba la carga de retorno ni la manipulación del almacén, y negociar el almacén solo subía el sitio.
 - Corregido: el informe final dejaba 11 competencias sin nombre.
 - `HANDOFF.md` reescrito con el estado real; README y `docs/testing.md` puestos al día.
+- Después: reglas v8 (las devoluciones guardadas no cuentan como ocupación) y 404 de verdad en casos inexistentes y fichas mal formadas, al quitar el `app/loading.tsx` general.
 
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.

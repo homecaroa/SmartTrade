@@ -174,3 +174,20 @@ Cero fallos. El script es desechable; si se quiere conservar, convertirlo en pru
 **Navegador:** 80 páginas recorridas con Playwright (escritorio y 390 px). Todas responden 200, sin errores de consola ni desbordamiento. Las rutas inexistentes muestran «no encontrada» con un 200 (`loading.tsx` raíz).
 
 **Compatibilidad:** 252 partidas v1–v6 del motor publicado son idénticas. La única diferencia es la etiqueta de competencia del mozo temporal en v6, cambiada a propósito.
+
+## 404 de verdad y reglas v8 (11/11/2026)
+
+**404:**
+- `tests/errors-and-pages.test.ts` comprueba que no hay `app/loading.tsx` general.
+- Los casos llevan `dynamicParams = false` y `generateStaticParams`.
+- La ficha valida el identificador antes del `<Suspense>`.
+- Con `next start`, a mano:
+  - responden 404 los casos inexistentes (exportación, importación, negociación), `/oportunidad/xxx` y `/no-existe`;
+  - responden 200 los casos reales, `/mercados`, `/comparar` y `/simulador`;
+  - las 80 páginas del recorrido siguen dando 200 sin errores.
+
+**v8:** las devoluciones guardadas ocupan sitio, pero no cuentan para el objetivo de ocupación y su contrato no se cancela. Además:
+- 252 partidas v1–v7 del motor publicado se reproducen idénticas;
+- 640 partidas aleatorias con v1–v8 sin fallos.
+
+**Mutaciones (4, todas en rojo):** no descontar las devoluciones en la ocupación, no marcarlas, quitar `dynamicParams` y validar el identificador después de cargar.

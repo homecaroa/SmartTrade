@@ -549,9 +549,14 @@ Ninguna quiebra. Negociar vuelve a compensar frente a solo elegir bien.
 - El informe final ponía nombre a 7 de las 18 competencias que se registran; ahora a todas (`lib/sim/competences.ts`), y una prueba lo vigila.
 - El mozo temporal ya no cuenta como 0625-RA6, que `docs/curriculo.md` da por no cubierto; cuenta como RA2-RA3. Es el único cambio en partidas v6 guardadas: 252 partidas v1–v6 del motor publicado son idénticas salvo esa etiqueta.
 
-**Aceptado sin corregir:**
-- Las rutas inexistentes responden 200 con la página de «no encontrada» y `noindex`: el `loading.tsx` raíz hace streaming.
-- Las devoluciones «guardadas» cuentan para la ocupación media del almacén.
+**Corregido después, el mismo día:**
+- **Devoluciones guardadas (reglas v8).** Las que se guardan sin cobrar se marcan `held`: siguen ocupando sitio y pueden desplazar palés que pagan, pero no cuentan para el objetivo de ocupación. Si no caben, no fallan el servicio ni producen el aviso «el cliente cancela».
+  - El equilibrio no cambia: ninguna estrategia automática las guarda.
+  - 252 partidas v1–v7 del motor publicado se reproducen idénticas.
+- **404 de verdad.** Se quitó el `app/loading.tsx` general: el esqueleto de carga queda solo en `/mercados`, `/comparar` y la ficha de oportunidad.
+  - Los casos prácticos se generan al construir (`dynamicParams = false`): un caso inexistente da 404.
+  - La ficha valida el identificador antes de cargar.
+  - Queda un resto: una ficha con formato válido pero sin datos (`150920-ZZ-2024`) sigue mostrando «no encontrada» con 200 y `noindex`, porque solo se sabe al consultar.
 
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
