@@ -56,6 +56,8 @@ export interface Contract extends Offer {
   docPenalized?: boolean;
   /** Viaje puntual: aceptaste también la carga de retorno. */
   withBackhaul?: boolean;
+  /** Mercancía del cliente que guardas sin cobrar (devoluciones, reglas v8): ocupa sitio, no cuenta como ocupación. */
+  held?: boolean;
   /** Transporte encargado a otro transportista (10/11/2026): no ocupa tu camión y cuesta P.subcontractPerKm. */
   subcontracted?: boolean;
 }
@@ -88,6 +90,8 @@ export interface WeekRecord {
   costStaff?: number;
   /** Intereses y comisiones de la póliza de crédito (10/11/2026; ausente en semanas anteriores). */
   costFinancial?: number;
+  /** Palés guardados sin cobrar esa semana (devoluciones, reglas v8): no cuentan para el objetivo de ocupación. */
+  palletsHeld?: number;
   /** Palés que cabían esa semana (10/11/2026; ausente = P.warehousePallets). */
   palletCapacity?: number;
   amortization: number;

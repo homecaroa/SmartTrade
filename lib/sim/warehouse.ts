@@ -18,6 +18,13 @@ const W = WAREHOUSE_V6;
 const activeIn = (c: Contract, w: number) => c.startWeek <= w && w <= c.endWeek && !(c.cancelledWeek !== undefined && w >= c.cancelledWeek);
 const eur = (v: number) => `${v.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} €`;
 
+/**
+ * Desde la v8, las devoluciones guardadas sin cobrar se marcan `held`: ocupan sitio y pueden desplazar palés que pagan,
+ * pero no cuentan para el objetivo de ocupación y, si no caben, no producen el aviso «el cliente cancela su contrato».
+ * Hasta la v7 contaban como ocupación (guardarlas ayudaba al objetivo sin cobrar nada; auditoría del 11/11/2026).
+ */
+export const HELD_RETURNS_FROM = 8;
+
 /** Coste semanal de un mozo de plantilla. */
 export const WORKER_WEEK = P.fixedMonthly.mozo / WEEKS_PER_MONTH;
 
@@ -140,7 +147,8 @@ export function applyWarehouseDecision(s: SimState, inc: Incident, option: strin
   const name = clientOf(c.clientId).name;
   const charge = (label: string, amount: number, note: string) => (s.claims ??= []).push({ label, amount: round2(amount), note });
   const service = (id: string, pallets: number, rate: number, weeks: number) => {
-    s.contracts.push({ id: `${c.id}-${id}`, week: w, kind: "almacenaje", clientId: c.clientId, clientHint: c.clientHint, pallets, palletRate: rate, weeks, payWeeks: c.payWeeks, startWeek: w, endWeek: w + weeks - 1, docPenalized: true });
+    const held = rate === 0 && s.version >= HELD_RETURNS_FROM;
+    s.contracts.push({ id: `${c.id}-${id}`, week: w, kind: "almacenaje", clientId: c.clientId, clientHint: c.clientHint, pallets, palletRate: rate, weeks, payWeeks: c.payWeeks, startWeek: w, endWeek: w + weeks - 1, docPenalized: true, ...(held ? { held: true } : {}) });
   };
   if (inc.kind === "stock") {
     if (option === "sin_ss") charge(`Rotura de stock de ${name}`, W.stock.penaltyShort, `${name} se quedó sin producto: te repercute ${eur(W.stock.penaltyShort)}.`);

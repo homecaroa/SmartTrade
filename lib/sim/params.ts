@@ -15,9 +15,11 @@
  *   temporal, reorganización ABC, punto de pedido y devoluciones (ver WAREHOUSE_V6 y lib/sim/warehouse.ts).
  * - v7 (11/11/2026): la prima y las rebajas por reputación se aplican también a la carga de retorno y a la manipulación
  *   del almacén (antes solo al precio principal; ver scaleRates en market.ts).
+ * - v8 (11/11/2026): las devoluciones guardadas sin cobrar ocupan sitio, pero no cuentan para el objetivo de ocupación
+ *   ni, si no caben, generan el aviso de que el cliente cancela (ver HELD_RETURNS_FROM en lib/sim/warehouse.ts).
  */
-export const ENGINE_VERSION = 7;
-export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7] as const;
+export const ENGINE_VERSION = 8;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el

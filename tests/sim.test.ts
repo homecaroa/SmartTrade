@@ -467,7 +467,7 @@ describe("viajes puntuales (v2) y versiones de reglas", () => {
   });
   it("las partidas nuevas empiezan con la versión actual", () => {
     expect(newGame(1).version).toBe(ENGINE_VERSION);
-    expect(ENGINE_VERSION).toBe(7);
+    expect(ENGINE_VERSION).toBe(8);
   });
 });
 
@@ -904,4 +904,38 @@ describe("reputación sobre todo el precio (reglas v7, auditoría del 11/11/2026
     expect(v7.lineRate).toBeCloseTo(o.lineRate! * t.rate / o.palletRate!, 2);
     expect(v6.moveRate).toBe(o.moveRate);
   });
+});
+
+describe("devoluciones guardadas sin cobrar (reglas v8, auditoría del 11/11/2026)", () => {
+  function heldGame(version: number): SimState | null {
+    for (const sd of SEEDS) {
+      const { actions } = play(sd, "selectiva", version);
+      let s = newGame(sd, version);
+      for (const a of actions) {
+        if (s.status === "incidencia" && s.pending?.kind === "devoluciones") {
+          let x = apply(s, { t: "responder", incidencia: s.pending.id, opcion: "guardar" });
+          while (x.status === "incidencia") x = apply(x, { t: "responder", incidencia: x.pending!.id, opcion: incidentOptions(x.pending!, x.version).find((o) => o.grade === "correcta")!.id });
+          return x;
+        }
+        s = apply(s, a);
+      }
+    }
+    return null;
+  }
+  it("desde la v8 ocupan sitio pero no cuentan para la ocupación; en la v7 sí contaban", () => {
+    const v8 = heldGame(8)!, v7 = heldGame(7)!;
+    const c8 = v8.contracts.find((c) => c.id.endsWith("-devoluciones"))!;
+    expect(c8.held).toBe(true);
+    expect(v7.contracts.find((c) => c.id.endsWith("-devoluciones"))!.held).toBeUndefined();
+    const w = v8.weeks.at(-1)!;
+    expect(w.palletsHeld).toBeGreaterThan(0);
+    expect(w.palletsHeld).toBeLessThanOrEqual(c8.pallets!);
+    const occ = seasonOutcome(v8).objectives.find((o) => o.id === "ocupacion")!.value;
+    const stored = v8.weeks.reduce((a, x) => a + x.palletsStored - (x.palletsHeld ?? 0), 0);
+    const cap = v8.weeks.reduce((a, x) => a + (x.palletCapacity ?? P.warehousePallets), 0);
+    expect(occ).toBeCloseTo(stored / cap * 100, 1);
+    // El contrato de las devoluciones nunca se cancela: no es un compromiso con el cliente.
+    expect(c8.cancelledWeek).toBeUndefined();
+    expect(balanceGap(v8)).toBe(0);
+  }, 120_000);
 });

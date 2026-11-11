@@ -12,7 +12,7 @@ export default {
   //
   // Portada (09/11/2026): `/` es el Modo Aprendizaje y el análisis está en `/mercados`. Las URLs antiguas de búsqueda
   // (`/?q=…`, con cualquiera de los parámetros de lib/schemas/query.ts) se redirigen aquí, con la consulta intacta, y no
-  // solo desde la página: con el loading.tsx global la redirección de una página viaja en el streaming con un 200 y
+  // solo desde la página: con el loading.tsx global que había entonces la redirección viajaba en el streaming con un 200 y
   // necesita JavaScript. `/aprendizaje` era la portada del modo hasta ese día.
   async redirects() {
     const legacy = ANALYSIS_PARAMS.map((key) => ({ source: "/", has: [{ type: "query", key }], destination: "/mercados", permanent: true }));
