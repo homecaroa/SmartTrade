@@ -109,8 +109,9 @@ sale mal.
   - Capacidad normal: **1.050 km/semana**. Se pueden hacer días largos, dentro de los límites anteriores, que cuestan
     horas extra (+40 %).
   - Pasar de los límites legales no es una opción del juego: se presenta como incidencia con su consecuencia (§10).
-- **Almacén** [S]: 600 palés. Un mozo hace **250 movimientos o 400 líneas por semana**. Por encima de la capacidad, el
-  trabajo se retrasa y baja el nivel de servicio.
+- **Almacén** [S]: 600 palés. Un mozo hace **400 movimientos o 1.000 líneas por semana** desde las reglas v6. El diseño
+  inicial decía 250 y 400, pero con esas cifras un mozo no atendía ni la mitad del almacén (§17 nonies). Por encima de la
+  capacidad, horas extra hasta un 20 % más; lo demás no se hace y baja el nivel de servicio.
 
 ## 9. Economía
 
@@ -518,6 +519,40 @@ distinguen:
 
 **Versiones:** reglas v6 solo para partidas nuevas. 240 partidas v1–v5 generadas por el motor publicado se reproducen idénticas.
 
+## 17 decies. Auditoría del 11/11/2026 y reglas v7
+
+**Cómo se auditó:**
+- batería completa;
+- 840 partidas con decisiones al azar en las 7 versiones (unas 52.000 acciones), comprobando en cada paso el cuadre, la caja, el resultado, que no haya NaN, el determinismo y el guardado: **sin ningún fallo**;
+- 80 páginas recorridas en el navegador;
+- revisión del código y de la documentación.
+
+**Fallo corregido en las reglas v7 (solo partidas nuevas).** La prima y las rebajas por reputación escalaban el precio principal, pero no la carga de retorno (desde la v2) ni la manipulación del almacén (v6). Por ejemplo, un viaje pasaba de 430 € a 516 € con la prima, y su retorno se quedaba en 157 €. Además, desde la v6 negociar el almacén solo subía el sitio, casi la mitad de su precio.
+
+En la v7:
+- la reputación escala todo el precio;
+- negociar la tarifa del palé arrastra en la misma proporción movimientos y líneas;
+- el sitio vuelve a 1,30–2,00 €/palé para que el almacén siga facturando como en la v5 (1.480,80 € frente a 1.481 € por semana, selectiva, 100 partidas). Con 1,45–2,15 facturaba 76 € más.
+
+**Resultado medido (300 partidas, v7):**
+
+| Estrategia | v5 | v6 | v7 |
+|---|---|---|---|
+| Prudente | 119 | 92 | 109 |
+| Selectiva | 166 | 140 | 152 |
+| Negociadora | 187 | 155 | 178 |
+| Crecedora | 240 | 218 | 234 |
+
+Ninguna quiebra. Negociar vuelve a compensar frente a solo elegir bien.
+
+**Otras correcciones:**
+- El informe final ponía nombre a 7 de las 18 competencias que se registran; ahora a todas (`lib/sim/competences.ts`), y una prueba lo vigila.
+- El mozo temporal ya no cuenta como 0625-RA6, que `docs/curriculo.md` da por no cubierto; cuenta como RA2-RA3. Es el único cambio en partidas v6 guardadas: 252 partidas v1–v6 del motor publicado son idénticas salvo esa etiqueta.
+
+**Aceptado sin corregir:**
+- Las rutas inexistentes responden 200 con la página de «no encontrada» y `noindex`: el `loading.tsx` raíz hace streaming.
+- Las devoluciones «guardadas» cuentan para la ocupación media del almacén.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.
@@ -536,8 +571,12 @@ Ilustra la economía completa: incluye movimientos de almacén y subcontratació
 
 ## 19. Pendiente de verificar antes de usarlo
 
+Actualizado el 11/11/2026. Ya comprobado en el BOE (no se repite aquí): Ley 15/2009 (arts. 2, 5, 6, 10-12, 15, 41, 47, 48, 56-62), Ley 3/2004 (art. 4), Orden FOM/2861/2012, Convenio CMR, LAU (art. 36), Ley 7/2022 (arts. 8, 20, 21).
+
 - **Tiempos de conducción:** texto consolidado vigente del Reglamento (CE) 561/2006 tras el Reglamento (UE) 2020/1054.
-- **IPREM diario** para el límite de indemnización de la Ley 15/2009, art. 57.1.
+- **IPREM 2026** (600 €/mes en fuentes secundarias, por la prórroga de los Presupuestos) para el límite de la Ley 15/2009, art. 57.1.
+- **Reglamento (CE) 1072/2009, art. 4** (copia certificada de la licencia comunitaria): leído en legislation.gov.uk; falta EUR-Lex.
+- **Autorizaciones de transporte con Marruecos**, antes de añadirlo como destino.
+- **Importes de las sanciones** (documento de control, licencia, residuos): son simulados.
 - **Interés de demora** de la Ley 3/2004 (cálculo y tipo vigente).
-- **Artículos de la Ley 15/2009 sobre la carta de porte.**
 - **Cláusula legal de revisión del precio por el combustible** en el transporte por carretera.

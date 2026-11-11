@@ -13,9 +13,11 @@
  * - v5 (10/11/2026): viajes internacionales por carretera (ver INTERNATIONAL y lib/sim/international.ts).
  * - v6 (10/11/2026): almacén a fondo: movimientos y preparación de pedidos cobrados aparte, capacidad del mozo, personal
  *   temporal, reorganización ABC, punto de pedido y devoluciones (ver WAREHOUSE_V6 y lib/sim/warehouse.ts).
+ * - v7 (11/11/2026): la prima y las rebajas por reputación se aplican también a la carga de retorno y a la manipulación
+ *   del almacén (antes solo al precio principal; ver scaleRates en market.ts).
  */
-export const ENGINE_VERSION = 6;
-export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6] as const;
+export const ENGINE_VERSION = 7;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -172,10 +174,14 @@ export const INTERNATIONAL = {
  * - Tarifa del sitio 1,45-2,15 €/palé/semana: con la manipulación, el almacén factura lo mismo que en la v5. Medido con
  *   1,10-1,80, facturaba unos 170 € menos por semana y la estrategia selectiva pasaba de 166 a 31 victorias en 300
  *   partidas; con 1,30-2,00, 70 € menos y 95 victorias.
+ * - v7: la prima de reputación ya sube también la manipulación. Con 1,45-2,15 el almacén facturaba 76 € por semana más
+ *   que en la v5 (1.557 € frente a 1.481 €, selectiva, 100 partidas); se vuelve a 1,30-2,00 para mantener la paridad.
  */
 export const WAREHOUSE_V6 = {
   fromVersion: 6,
   storageRate: { min: 1.45, max: 2.15 },
+  /** Desde la v7, con la prima de reputación también sobre la manipulación, el sitio vuelve a 1,30-2,00 (ver abajo). */
+  storageRateV7: { min: 1.3, max: 2.0 },
   rotation: { min: 0.15, max: 0.6 },
   linesPerMove: { min: 0.5, max: 3 },
   moveRate: { min: 1.6, max: 2.4 },
