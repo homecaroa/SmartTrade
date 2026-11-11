@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { apply, newGame, pendingPayables, pendingReceivables, serviceLevelToDate } from "@/lib/sim/engine";
+import { apply, creditLimitAt, newGame, pendingPayables, pendingReceivables, serviceLevelToDate } from "@/lib/sim/engine";
+import { cashForecast } from "@/lib/sim/forecast";
 import type { Action, SimState } from "@/lib/sim/model";
 import { SEASON_WEEKS } from "@/lib/sim/params";
 import { parseSave, restore, SAVE_KEY, toSave } from "@/lib/sim/save";
@@ -103,6 +104,7 @@ export function Simulator() {
             </dl>
           </div>
         </div>
+        <CashAlert s={s} onShowFinance={() => setTab("finanzas")} />
         {message && <p role="status" className="rounded bg-amber-50 p-2 text-sm text-amber-900">{message}</p>}
       </header>
 
@@ -122,6 +124,32 @@ export function Simulator() {
       </div>
     </div>
   );
+}
+
+/**
+ * Aviso de tesorería (11/11/2026: el dueño llegó a −1.619 € de caja, sin póliza y a una semana de la quiebra, sin que el
+ * juego lo dijera). Rojo si la caja ya está por debajo del límite: una semana más así es quiebra. Ámbar si la previsión
+ * con lo ya conocido baja del límite en las próximas 4 semanas.
+ */
+function CashAlert({ s, onShowFinance }: { s: SimState; onShowFinance: () => void }) {
+  if (s.status === "fin" || s.status === "quiebra") return null;
+  const limit = creditLimitAt(s, s.week);
+  const f = cashForecast(s);
+  const now = f.rows[0];
+  const more = <button type="button" className="underline" onClick={onShowFinance}>Ver la previsión de tesorería</button>;
+  if (s.cash < -limit) return (
+    <p role="alert" className="rounded border border-rose-300 bg-rose-50 p-2 text-sm text-rose-900">
+      <b>Peligro de quiebra:</b> tu caja cerró la semana en {fmtEur(s.cash)}{limit ? `, por debajo del límite de tu póliza (−${fmtEur(limit)})` : " y no tienes póliza de crédito"}. Si la semana {s.week} también termina así, la empresa quiebra.
+      {now && <> Con lo ya facturado y comprometido terminarías esta semana en unos <b>{fmtEur(now.end)}</b> (sin contar gasóleo ni imprevistos).</>}
+      {!limit && " Una póliza de crédito te daría margen."} {more}
+    </p>
+  );
+  if (f.firstBreach !== null) return (
+    <p role="status" className="rounded border border-amber-300 bg-amber-50 p-2 text-sm text-amber-900">
+      <b>Atención a la caja:</b> con lo ya facturado y comprometido, la caja bajaría {limit ? "del límite de tu póliza" : "de cero"} en la semana {f.firstBreach}. {more}
+    </p>
+  );
+  return null;
 }
 
 function StartScreen({ onStart, onImport, message }: { onStart: (seed: number) => void; onImport: (f: File) => void; message: string | null }) {

@@ -558,6 +558,25 @@ Ninguna quiebra. Negociar vuelve a compensar frente a solo elegir bien.
   - La ficha valida el identificador antes de cargar.
   - Queda un resto: una ficha con formato válido pero sin datos (`150920-ZZ-2024`) sigue mostrando «no encontrada» con 200 y `noindex`, porque solo se sabe al consultar.
 
+## 17 undecies. Interfaz: capacidad siempre visible y aviso de tesorería (11/11/2026, petición del dueño)
+
+**Problema (observado por el dueño en su partida, semana 9):**
+- Para comprobar la capacidad había que subir a las barras cada vez que se bajaba a las ofertas.
+- Las barras eran todas del mismo color.
+- La caja estaba en −1.619 € sin póliza, a una semana de la quiebra, y el juego no lo decía.
+
+**Qué se añade (solo interfaz; las reglas no cambian):**
+- **Resumen fijo de capacidad.** Camión, almacén y personal de la semana en curso, siempre arriba al bajar por la página. Al pulsarlo, lleva al detalle.
+- **Botón «↑ Ver la capacidad comprometida»** junto a «Cerrar la semana».
+- **Colores de las barras.** Camión azul, almacén verde, personal violeta, subcontratado azul claro, y rojo con texto cuando se supera el límite. El dueño pidió naranja para el personal; se usa violeta porque el naranja se confunde con el rojo, también con daltonismo.
+- **Personal en % de su capacidad**, con el número de mozos. Antes salía «134 / 345 (% de un mozo)».
+- **Efecto de cada oferta en la tarjeta.** Camión, almacén y personal en la peor semana que dura; en rojo si no cabe.
+- **Aviso de tesorería en la cabecera.**
+  - Rojo si la caja está por debajo del límite: una semana más así es quiebra.
+  - Ámbar si la previsión baja del límite en 4 semanas.
+- **Previsión de tesorería** (`lib/sim/forecast.ts`, pestaña Finanzas). Usa solo lo que el jugador sabe: facturas por su vencimiento, pagos pendientes, fijos y nóminas, temporales y pagos ya decididos. No incluye el gasóleo, las facturas nuevas ni los imprevistos.
+  - Una prueba comprueba que, sin contratos, la previsión coincide al céntimo con lo que pasa, salvo la reparación de las averías: es un imprevisto y no la puede prever.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.
