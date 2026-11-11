@@ -15,6 +15,7 @@ import { parseSave, restore, toSave } from "@/lib/sim/save";
 import { play } from "@/lib/sim/strategies";
 import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 import { cashForecast } from "@/lib/sim/forecast";
+import { inboxFor } from "@/lib/sim/inbox";
 import { fixedSplitAt, weekLines } from "@/lib/sim/lines";
 
 /**
@@ -993,5 +994,44 @@ describe("resultado por línea de negocio (11/11/2026)", () => {
     // Sin contratos, todo el coste fijo del camión es capacidad sin usar.
     expect(idle.transporte.use).toBe(0);
     expect(idle.transporte.idleCost).toBeCloseTo(fixedSplitAt(s, 1).transporte + P.amortizationWeek, 2);
+  });
+});
+
+describe("bandeja de correos sin IA (11/11/2026)", () => {
+  /** Cifras de un texto, normalizadas (1.234,56 € · €1,234.56 · 30 días → 1234.56, 1234.56, 30). */
+  const numbers = (txt: string, lang: "es" | "en") => (txt.match(/\d[\d.,]*/g) ?? []).map((x) => x.replace(/[.,]$/, "")).map((x) => Number(lang === "es" ? x.replace(/\./g, "").replace(",", ".") : x.replace(/,/g, "")));
+  const factNumbers = (facts: Record<string, string | number>) => Object.values(facts).flatMap((v) => (typeof v === "number" ? [v] : numbers(String(v), "es")));
+  it("cada oferta e incidencia de la semana tiene su correo, siempre el mismo", () => {
+    for (const sd of SEEDS.slice(0, 10)) {
+      const { actions } = play(sd, "selectiva");
+      let s = newGame(sd);
+      for (const a of actions.slice(0, 60)) {
+        const mails = inboxFor(s);
+        for (const o of s.offers) expect(mails.filter((m) => m.ref.kind === "oferta" && m.ref.offerId === o.id)).toHaveLength(1);
+        if (s.pending) expect(mails[0].ref).toEqual({ kind: "incidencia", incidentId: s.pending.id });
+        expect(JSON.stringify(inboxFor(s))).toBe(JSON.stringify(mails));
+        s = apply(s, a);
+      }
+    }
+  }, 60_000);
+  it("contrato para la IA futura: toda cifra del texto de un correo de oferta está en su ficha de datos", () => {
+    let checked = 0, english = 0;
+    for (const sd of SEEDS.slice(0, 30)) for (let w = 1; w <= SEASON_WEEKS; w += 3) {
+      const s = { ...newGame(sd), week: w, offers: offersFor(sd, w, 100) };
+      for (const m of inboxFor(s).filter((x) => x.ref.kind === "oferta")) {
+        const allowed = factNumbers(m.facts);
+        for (const n of numbers(m.body.join(" "), m.lang)) expect(allowed.some((a) => Math.abs(a - n) < 0.005), `${n} en «${m.body.join(" ")}»`).toBe(true);
+        if (m.lang === "en") { english++; expect(m.facts.tipo).toBe("internacional"); }
+        checked++;
+      }
+    }
+    expect(checked).toBeGreaterThan(200);
+    expect(english).toBeGreaterThan(5);
+  });
+  it("un cliente que cancela lo comunica por correo la semana siguiente", () => {
+    const s = newGame(5);
+    const c = { ...s.offers.find((o) => o.kind === "distribucion")!, startWeek: 1, endWeek: 6, cancelledWeek: 2 };
+    const mails = inboxFor({ ...s, week: 2, offers: [], contracts: [c] });
+    expect(mails.some((m) => m.subject === "Cancelación del servicio" && m.ref.kind === "aviso")).toBe(true);
   });
 });

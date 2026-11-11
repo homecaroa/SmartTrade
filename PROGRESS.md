@@ -36,7 +36,7 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 - Efecto de cada oferta en tu capacidad.
 - Aviso de tesorería y previsión a 4 semanas.
 - Resultado por línea de negocio (transporte, almacén, estructura) con el coste de la capacidad sin usar, en el cierre de semana y en Finanzas.
-- Pendiente: bandeja de correos sin IA (la IA, más adelante).
+- Bandeja de correos sin IA (§17 duodecies). Clientes con persona propia; los internacionales escriben en inglés. Cada correo tiene una ficha de datos preparada para la IA futura.
 
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)
 - **Portada:** `/` es el Modo Aprendizaje; el análisis de mercados pasa a `/mercados`. Las búsquedas antiguas `/?q=…` redirigen (308) con la consulta intacta; `/aprendizaje` → `/`.

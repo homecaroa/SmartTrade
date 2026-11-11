@@ -9,11 +9,13 @@ import { parseSave, restore, SAVE_KEY, toSave } from "@/lib/sim/save";
 import { fmtEur, sum } from "@/lib/learning/money";
 import { SimulatedNotice } from "../learning/simulated-notice";
 import { FinanceView } from "./finance-view";
+import { InboxView } from "./inbox-view";
+import { inboxFor } from "@/lib/sim/inbox";
 import { ReportView } from "./report-view";
 import { WeekView } from "./week-view";
 
 interface Game { seed: number; actions: Action[]; state: SimState }
-type Tab = "semana" | "finanzas" | "informe";
+type Tab = "semana" | "correo" | "finanzas" | "informe";
 
 /** Semilla nueva: fuera del motor (el motor no usa azar propio). */
 const randomSeed = () => { try { return crypto.getRandomValues(new Uint32Array(1))[0] % 1_000_000; } catch { return Date.now() % 1_000_000; } };
@@ -109,10 +111,11 @@ export function Simulator() {
       </header>
 
       <div role="tablist" aria-label="Vistas de la empresa" className="flex gap-1 border-b border-slate-200">
-        {tabBtn("semana", "Semana")}{tabBtn("finanzas", "Finanzas")}{tabBtn("informe", s.status === "fin" || s.status === "quiebra" ? "Resumen final" : "Informe")}
+        {tabBtn("semana", "Semana")}{tabBtn("correo", `Correo (${inboxFor(s).length})`)}{tabBtn("finanzas", "Finanzas")}{tabBtn("informe", s.status === "fin" || s.status === "quiebra" ? "Resumen final" : "Informe")}
       </div>
       <div role="tabpanel">
         {tab === "semana" && <WeekView s={s} lastWeek={lastWeek} onAction={act} onShowReport={() => setTab("informe")} />}
+        {tab === "correo" && <InboxView s={s} onAction={act} />}
         {tab === "finanzas" && <FinanceView s={s} />}
         {tab === "informe" && <ReportView s={s} onAction={act} />}
       </div>

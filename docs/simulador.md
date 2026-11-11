@@ -584,6 +584,22 @@ Ninguna quiebra. Negociar vuelve a compensar frente a solo elegir bien.
 
 Cada línea muestra el uso de su capacidad y lo que costó la parte sin usar: la fracción de sus costes fijos que pagaste por camión o almacén vacío. Las tres partes suman exactamente el resultado: comprobado en 9.608 semanas de partidas automáticas (v1, v3, v6 y v8) y en una prueba de la batería.
 
+## 17 duodecies. Bandeja de correos sin IA (11/11/2026, petición del dueño)
+
+**Qué es.** Una pestaña «Correo» donde las ofertas, incidencias y cancelaciones de la semana llegan como correos (`lib/sim/inbox.ts`).
+- Cada cliente tiene una persona ficticia con cargo y tono: cercano, formal o directo.
+- Los viajes internacionales llegan en inglés.
+- Debajo de cada correo están las mismas acciones de la pestaña Semana. Responder es aceptar, negociar o decidir, y el correo respondido se queda en la lista con lo que hiciste.
+
+**Preparado para la IA (decisión del dueño: la IA llegará más adelante, centrada en los datos del juego).**
+- Cada correo lleva su **ficha de datos** (`facts`: precios, €/km, km, palés, plazos). Hoy el texto lo redactan plantillas a partir de ella; mañana la ficha será lo único que reciba la IA.
+- Una prueba exige que **toda cifra del texto de un correo de oferta esté en su ficha**. Una mutación que inventa un plazo la pone en rojo.
+- Los correos de incidencia reutilizan el texto de la incidencia. Antes de pasarlos a la IA habrá que llevar todas sus cifras a la ficha.
+- Responder siempre es una acción del juego, nunca texto libre interpretado. Así la partida sigue siendo reproducible.
+- **Cuando llegue la IA:** los términos vigentes de la API de Gemini (23/03/2026) solo permiten servicios de pago para aplicaciones con usuarios en el EEE, aunque el único usuario sea el dueño. Exigen 18 años o más.
+
+**Sin cambios en las reglas ni en el guardado.** Los correos leídos se recuerdan solo en el navegador.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.
