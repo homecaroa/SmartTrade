@@ -15,7 +15,7 @@ import { parseSave, restore, toSave } from "@/lib/sim/save";
 import { play } from "@/lib/sim/strategies";
 import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 import { cashForecast } from "@/lib/sim/forecast";
-import { inboxFor } from "@/lib/sim/inbox";
+import { inboxFor, replyExercise } from "@/lib/sim/inbox";
 import { fixedSplitAt, weekLines } from "@/lib/sim/lines";
 
 /**
@@ -1033,5 +1033,68 @@ describe("bandeja de correos sin IA (11/11/2026)", () => {
     const c = { ...s.offers.find((o) => o.kind === "distribucion")!, startWeek: 1, endWeek: 6, cancelledWeek: 2 };
     const mails = inboxFor({ ...s, week: 2, offers: [], contracts: [c] });
     expect(mails.some((m) => m.subject === "Cancelación del servicio" && m.ref.kind === "aviso")).toBe(true);
+  });
+});
+
+describe("responder en inglés (14/11/2026)", () => {
+  /** Partida en la semana de su primer viaje internacional. */
+  function withIntl(): SimState {
+    for (const sd of SEEDS) {
+      let s = newGame(sd);
+      for (const a of play(sd, "prudente").actions) { if (s.status === "jugando" && s.offers.some((o) => o.kind === "internacional")) return s; s = apply(s, a); }
+    }
+    throw new Error("sin viaje internacional");
+  }
+  it("cada correo en inglés trae tres borradores: uno correcto con los datos de su ficha, uno informal y uno con un error", () => {
+    let n = 0;
+    for (const sd of SEEDS.slice(0, 40)) for (let w = 5; w <= SEASON_WEEKS; w++) {
+      for (const m of inboxFor({ ...newGame(sd), week: w, offers: offersFor(sd, w, 100) })) {
+        const ex = replyExercise(m);
+        if (m.lang !== "en") { expect(ex).toBeNull(); continue; }
+        expect(ex!.options.map((o) => o.grade).sort()).toEqual(["correcta", "grave", "razonable"]);
+        const ok = ex!.options.find((o) => o.grade === "correcta")!.text.join(" ");
+        expect(ok).toContain(String(m.facts.destination));
+        expect(ok).toContain(`€${Number(m.facts.precio).toLocaleString("en-GB", { minimumFractionDigits: 2 })}`);
+        expect(ok).toMatch(/CMR consignment note/);
+        n++;
+      }
+    }
+    expect(n).toBeGreaterThan(20);
+  });
+  it("responder queda en el informe, una sola vez, y no cambia la economía ni la oferta", () => {
+    const s = withIntl();
+    const m = inboxFor(s).find((x) => x.lang === "en")!;
+    const r = apply(s, { t: "correo", correo: m.id, opcion: "formal" });
+    expect(r.learning.at(-1)).toMatchObject({ what: `Respuesta en inglés: ${m.subject}`, grade: "correcta", competences: ["0824-RA2"] });
+    expect(r.offers).toEqual(s.offers);
+    expect(r.cash).toBe(s.cash);
+    expect(() => apply(r, { t: "correo", correo: m.id, opcion: "error" })).toThrow(/Ya respondiste/);
+    expect(() => apply(s, { t: "correo", correo: "m-no-existe", opcion: "formal" })).toThrow();
+    expect(() => apply(s, { t: "correo", correo: inboxFor(s).find((x) => x.lang === "es")!.id, opcion: "formal" })).toThrow(/no tiene respuesta/);
+    // También después de aceptar el viaje (el correo sigue existiendo esa semana).
+    const o = s.offers.find((x) => x.kind === "internacional")!;
+    const acc = apply(s, { t: "aceptar", oferta: o.id, docs: bestDocs("internacional") });
+    expect(apply(acc, { t: "correo", correo: m.id, opcion: "informal" }).learning.at(-1)!.grade).toBe("razonable");
+  });
+  it("una partida con respuestas en inglés se guarda y se recupera entera", () => {
+    const s = withIntl();
+    const m = inboxFor(s).find((x) => x.lang === "en")!;
+    const actions: Action[] = [{ t: "correo", correo: m.id, opcion: "error" }, { t: "cerrar" }];
+    const end = actions.reduce(apply, s);
+    expect(end.learning.some((l) => l.what.startsWith("Respuesta en inglés") && l.grade === "grave")).toBe(true);
+    expect(parseSave({ app: "smartrade-simulador", version: 8, seed: 1, actions: [{ t: "correo", correo: 5, opcion: "formal" }] }).ok).toBe(false);
+    expect(parseSave({ app: "smartrade-simulador", version: 8, seed: 1, actions: [{ t: "correo", correo: "m-s5-int", opcion: "formal" }] }).ok).toBe(true);
+  });
+});
+
+describe("responder en inglés: el error no se delata por la forma", () => {
+  it("el borrador con error tiene las mismas frases que el correcto salvo una", () => {
+    for (const sd of SEEDS.slice(0, 40)) for (let w = 5; w <= SEASON_WEEKS; w++) for (const m of inboxFor({ ...newGame(sd), week: w, offers: offersFor(sd, w, 100) })) {
+      const ex = replyExercise(m);
+      if (!ex) continue;
+      const ok = ex.options.find((o) => o.id === "formal")!.text, bad = ex.options.find((o) => o.id === "error")!.text;
+      expect(bad).toHaveLength(ok.length);
+      expect(bad.filter((x, i) => x !== ok[i])).toHaveLength(1);
+    }
   });
 });

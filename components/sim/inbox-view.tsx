@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { inboxFor, type Mail } from "@/lib/sim/inbox";
+import { ENGLISH_GLOSSARY, inboxFor, replyExercise, type Mail } from "@/lib/sim/inbox";
+import { displayOrder } from "@/lib/learning/order";
+import { GradeBadge } from "../learning/grade-badge";
 import type { Action, SimState } from "@/lib/sim/model";
 import { IncidentCard, OfferCard } from "./week-view";
 
@@ -72,6 +74,7 @@ function MailReader({ m, s, onAction }: { m: Mail; s: SimState; onAction: (a: Ac
       </header>
       <div className="space-y-2 text-sm">{m.body.map((p, i) => <p key={i}>{p}</p>)}</div>
       {m.lang === "en" && <p className="text-xs text-slate-600">Correo en inglés: los clientes internacionales escriben así. Las condiciones son las mismas que en la oferta de abajo.</p>}
+      <EnglishReply m={m} s={s} onAction={onAction} />
       <details className="text-xs text-slate-600">
         <summary className="cursor-pointer">Ficha de datos del correo</summary>
         <p className="mt-1">El correo solo usa estos datos del juego (cuando haya IA, será lo único que reciba).</p>
@@ -87,5 +90,40 @@ function MailReader({ m, s, onAction }: { m: Mail; s: SimState; onAction: (a: Ac
           : <p className="text-sm text-slate-600">Ya respondiste a este correo.</p>}
       </section>
     </article>
+  );
+}
+
+/** Practicar la respuesta en inglés: elegir entre tres borradores; la corrección queda en el informe (0824 RA2). */
+function EnglishReply({ m, s, onAction }: { m: Mail; s: SimState; onAction: (a: Action) => void }) {
+  const ex = replyExercise(m);
+  const [pick, setPick] = useState("");
+  if (!ex) return null;
+  const chosen = s.answers[`correo-${m.id}`];
+  const opts = displayOrder(ex.options, `${s.seed}:${m.id}:reply`);
+  if (chosen) {
+    const o = ex.options.find((x) => x.id === chosen)!;
+    return (
+      <section className="space-y-1 rounded border border-indigo-200 bg-indigo-50 p-2 text-sm" aria-label="Tu respuesta en inglés">
+        <p className="flex flex-wrap items-center gap-2 font-semibold">Tu respuesta: {o.label} <GradeBadge grade={o.grade} /></p>
+        <div className="space-y-1 rounded bg-white p-2" lang="en">{o.text.map((x, i) => <p key={i}>{x}</p>)}</div>
+        <p>{o.feedback}</p>
+        {o.grade !== "correcta" && <details><summary className="cursor-pointer text-xs">Ver la respuesta correcta</summary><div className="mt-1 space-y-1 rounded bg-white p-2" lang="en">{ex.options.find((x) => x.grade === "correcta")!.text.map((x, i) => <p key={i}>{x}</p>)}</div></details>}
+      </section>
+    );
+  }
+  return (
+    <form className="space-y-2 rounded border border-indigo-200 bg-indigo-50 p-2 text-sm" onSubmit={(e) => { e.preventDefault(); if (pick) onAction({ t: "correo", correo: m.id, opcion: pick }); }}>
+      <fieldset className="space-y-2">
+        <legend className="font-semibold">Practica tu inglés: {ex.prompt}</legend>
+        {opts.map((o) => (
+          <label key={o.id} className="flex cursor-pointer items-start gap-2 rounded border border-slate-200 bg-white p-2 hover:border-indigo-300">
+            <input type="radio" name={`reply-${m.id}`} value={o.id} checked={pick === o.id} onChange={() => setPick(o.id)} className="mt-1" />
+            <span className="space-y-1" lang="en">{o.text.map((x, i) => <span key={i} className="block">{x}</span>)}</span>
+          </label>
+        ))}
+      </fieldset>
+      <details className="text-xs"><summary className="cursor-pointer">Vocabulario</summary><dl className="mt-1 grid grid-cols-2 gap-x-3">{ENGLISH_GLOSSARY.map(([en, es]) => <div key={en}><dt className="font-semibold" lang="en">{en}</dt><dd>{es}</dd></div>)}</dl></details>
+      <button type="submit" disabled={!pick || s.status !== "jugando"} className="rounded bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white disabled:opacity-50">Enviar esta respuesta</button>
+    </form>
   );
 }

@@ -1,6 +1,6 @@
 import { fnv1a } from "../learning/order";
 import { clientOf, kmOf, weeklyRevenue } from "./market";
-import type { Incident, Offer, SimState } from "./model";
+import type { Grade, Incident, Offer, SimState } from "./model";
 import { payTermLabel } from "./params";
 
 /**
@@ -65,7 +65,8 @@ function offerFacts(o: Offer): Record<string, string | number> {
   return f;
 }
 
-function offerMail(o: Offer): Mail {
+/** Correo de una oferta (exportado para el ejercicio de respuesta: la oferta aceptada sigue teniendo su correo). */
+export function offerMail(o: Offer): Mail {
   const c = clientOf(o.clientId), p = PERSONAS[o.clientId];
   const facts = offerFacts(o);
   const company = c.name;
@@ -116,4 +117,54 @@ function cancellationMails(s: SimState): Mail[] {
 export function inboxFor(s: SimState): Mail[] {
   if (s.status === "fin" || s.status === "quiebra") return [];
   return [...(s.pending ? [incidentMail(s, s.pending)] : []), ...cancellationMails(s), ...s.offers.map(offerMail)];
+}
+
+// ── Responder en inglés (14/11/2026, petición del dueño) ─────────────────────────────────────────────────────────
+
+/**
+ * Ejercicio de respuesta de los correos en inglés: tres borradores, uno correcto (formal, con los datos exactos de la
+ * ficha y los términos del transporte internacional por carretera), uno demasiado informal y uno con un error técnico.
+ * Solo es aprendizaje: elegir respuesta no acepta ni rechaza la oferta y no cambia la economía de la partida. Sin IA: los
+ * borradores salen de la ficha del correo; cuando llegue la IA podrá redactar más variantes con los mismos datos.
+ */
+export interface ReplyOption { id: "formal" | "informal" | "error"; label: string; text: string[]; grade: Grade; feedback: string }
+export const ENGLISH_GLOSSARY: [string, string][] = [["full truckload (FTL)", "camión completo"], ["enquiry", "consulta, petición"], ["CMR consignment note", "carta de porte CMR"], ["Community licence", "licencia comunitaria"], ["consignee", "destinatario"], ["loading address", "dirección de carga"]];
+
+export function replyExercise(m: Mail): { prompt: string; options: ReplyOption[] } | null {
+  if (m.lang !== "en" || m.facts.tipo !== "internacional") return null;
+  const f = m.facts;
+  const dest = `${f.destination} (${f.country})`;
+  const price = eurEn(Number(f.precio));
+  const days = Number(String(f.plazo_pago).match(/\d+/)?.[0] ?? 30);
+  const back = f.retorno_pales !== undefined ? `, and we are happy to bring back the ${f.retorno_pales} pallets for ${eurEn(Number(f.retorno_precio))}` : "";
+  const open = `Dear ${m.from.name},`;
+  const thanksWith = (terms: string) => `Thank you for your enquiry. We can take the full truckload to ${dest} for ${terms}${back}.`;
+  const thanks = thanksWith(`${price}, with payment at ${days} days`);
+  const docsWith = (doc: string, extra = "") => `We will issue the ${doc} with the control document details${extra}, and the truck will carry a certified copy of our Community licence.`;
+  const docs = docsWith("CMR consignment note");
+  const ask = "Could you please send us the loading address and the consignee's opening hours?";
+  // El error va dentro de una frase que también tiene el borrador correcto: hay que leer, no basta con ver la forma.
+  const errors = [
+    { thanks, docs: docsWith("CMR consignment note", ` and prepare the export customs declaration for ${f.country}`), why: `Error técnico: ${f.pais} está en la UE, así que no hay aduana ni declaración de exportación. Un cliente que sabe de comercio exterior desconfiará.` },
+    { thanks: thanksWith(`${price} FOB Valencia, with payment at ${days} days`), docs, why: "Error técnico: FOB es una regla Incoterms® solo para transporte marítimo, y además es un término de la compraventa entre vendedor y comprador, no del contrato de transporte." },
+    { thanks, docs: docsWith("bill of lading (B/L)"), why: "Error técnico: el conocimiento de embarque (B/L) es del transporte marítimo. Por carretera, el documento es la carta de porte CMR." },
+    { thanks: thanksWith(`${price}, with payment at 90 days`), docs, why: `Error de condiciones: el cliente ofrece pagar a ${days} días y tú respondes otra cosa. Confirmar las condiciones exactas evita discusiones al facturar.` },
+  ];
+  const e = errors[fnv1a(`${m.id}:error`) % errors.length];
+  return {
+    prompt: "Si aceptas este viaje, ¿qué respuesta le enviarías? (Elegir respuesta es práctica de inglés: no acepta ni rechaza la oferta.)",
+    options: [
+      { id: "formal", label: "Borrador formal y completo", text: [open, thanks, docs, ask, "Kind regards,"], grade: "correcta", feedback: "Correcto: registro formal para un primer contacto, confirma destino, precio y plazo tal como los pidió el cliente, y usa los términos exactos: full truckload, CMR consignment note, Community licence. Además pide lo que necesitas para cargar." },
+      { id: "informal", label: "Borrador informal", text: [`Hi ${m.from.name.split(" ")[0]}!`, "Sure, no worries, we'll do it. Send me the stuff and we'll sort out the papers later.", "Cheers!"], grade: "razonable", feedback: "Demasiado informal para un cliente (y más en un primer contacto): «no worries», «the stuff», «cheers». Además no confirma precio, plazo ni documentos: «the papers» no dice nada." },
+      { id: "error", label: "Borrador formal con un error", text: [open, e.thanks, e.docs, ask, "Kind regards,"], grade: "grave", feedback: e.why },
+    ],
+  };
+}
+
+/** Correo de esta semana por su id, también si su oferta ya se aceptó (para poder practicar la respuesta después). */
+export function mailById(s: SimState, id: string): Mail | null {
+  const live = inboxFor(s).find((m) => m.id === id);
+  if (live) return live;
+  const c = s.contracts.find((x) => `m-${x.id}` === id && x.week === s.week);
+  return c ? offerMail(c) : null;
 }

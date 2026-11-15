@@ -153,6 +153,7 @@ export type Action =
   | { t: "aceptar"; oferta: string; docs?: string[]; retorno?: boolean; subcontratar?: boolean }
   | { t: "crecer"; opcion: GrowthOption }
   | { t: "organizar"; opcion: "abc" | "temporal" }
+  | { t: "correo"; correo: string; opcion: string }
   | { t: "proponer"; oferta: string; tarifa: number; semanas: number; plazo: number }
   | { t: "responder"; incidencia: string; opcion: string }
   | { t: "pregunta"; pregunta: string; opcion: string }
