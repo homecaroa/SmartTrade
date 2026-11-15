@@ -600,6 +600,19 @@ Cada línea muestra el uso de su capacidad y lo que costó la parte sin usar: la
 
 **Sin cambios en las reglas ni en el guardado.** Los correos leídos se recuerdan solo en el navegador.
 
+**Responder en inglés (14/11/2026, petición del dueño).** Cada correo en inglés (viaje internacional) trae un ejercicio: «¿qué respuesta enviarías?». Se elige entre tres borradores generados con los datos de su ficha:
+- **Correcto:** formal, confirma destino, precio y plazo, usa *full truckload*, *CMR consignment note* y *Community licence*, y pide la dirección de carga.
+- **Demasiado informal:** «razonable».
+- **Formal con un error en una sola frase:** «grave». El error puede ser:
+  - aduana dentro de la UE;
+  - FOB, que es marítimo y de compraventa;
+  - B/L, que es marítimo;
+  - un plazo distinto del pedido.
+
+  El borrador con error tiene las mismas frases que el correcto salvo una, así que hay que leerlo para distinguirlo (lo comprueba una prueba).
+
+La respuesta queda en el informe como 0824-RA2 (comunicación con clientes de otros países). Es una acción nueva del guardado (`correo`). Solo es aprendizaje: no acepta ni rechaza la oferta ni cambia la economía, y las partidas guardadas no cambian.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.

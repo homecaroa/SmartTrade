@@ -1,6 +1,7 @@
 import { round2, sum } from "../learning/money";
 import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validateProposal, withTerms, type Terms } from "./deal";
 import { applyClaimDecision, claimIncidents, claimOptions, isClaim } from "./claims";
+import { mailById, replyExercise } from "./inbox";
 import { directCost, fixedShare } from "./international";
 import { applyWarehouseDecision, gradeOrganize, gradeStorage, isWarehouseIncident, organizeBlocked, warehouseIncidents, warehouseOptions, WORKER_WEEK, workCapacityAt, workCommitted } from "./warehouse";
 import { clientOf, handlingRevenue, kmOf, offersFor, REPUTATION_ALL_PRICES_FROM, workOf } from "./market";
@@ -312,6 +313,19 @@ export function apply(prev: SimState, a: Action): SimState {
     const key = a.opcion === "renting" || a.opcion === "compra" ? "camion" : a.opcion;
     s.growth = { ...s.growth, [key]: key === "camion" ? { modo: a.opcion, week: s.week } : { week: s.week } };
     learn(s, { week: s.week, what: GROWTH_LABELS[a.opcion], answer: "Contratada", grade: g.grade, feedback: g.feedback, competences: a.opcion === "almacen" ? ["0625-RA3", "0623-RA4"] : a.opcion === "poliza" ? ["0623-RA3", "0623-RA7"] : ["0623-RA3", "0623-RA4"] });
+    return s;
+  }
+  if (a.t === "correo") {
+    if (s.status !== "jugando") throw new Error(s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.");
+    const m = mailById(s, a.correo);
+    const ex = m && replyExercise(m);
+    if (!m || !ex) throw new Error("Este correo no tiene respuesta que practicar.");
+    const key = `correo-${a.correo}`;
+    if (s.answers[key]) throw new Error("Ya respondiste a este correo.");
+    const opt = ex.options.find((o) => o.id === a.opcion);
+    if (!opt) throw new Error("Opción no válida.");
+    s.answers[key] = a.opcion;
+    learn(s, { week: s.week, what: `Respuesta en inglés: ${m.subject}`, answer: opt.label, grade: opt.grade, feedback: opt.feedback, competences: ["0824-RA2"] });
     return s;
   }
   if (a.t === "organizar") {

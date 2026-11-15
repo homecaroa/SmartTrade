@@ -20,5 +20,6 @@ export const COMPETENCE_LABELS: Record<string, string> = {
   "0625-RA4": "Almacén: gestión de stocks",
   "0625-RA5": "Almacén: logística inversa",
   "0627-RA4": "Gestión administrativa: expedición e introducción en la UE",
+  "0824-RA2": "Negociación: comunicación con clientes de otros países",
   "0824-RA3": "Negociación: preparar y conducir la negociación",
 };
