@@ -37,6 +37,7 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 - Aviso de tesorería y previsión a 4 semanas.
 - Resultado por línea de negocio (transporte, almacén, estructura) con el coste de la capacidad sin usar, en el cierre de semana y en Finanzas.
 - Bandeja de correos sin IA (§17 duodecies). Clientes con persona propia; los internacionales escriben en inglés. Cada correo tiene una ficha de datos preparada para la IA futura.
+- Finanzas simplificada (16/11/2026): resumen con cuatro cifras, gráfico de caja frente a beneficio, tablas de 4 semanas y detalle contable plegado.
 - Responder en inglés (14/11/2026): tres borradores, uno correcto, uno informal y uno con un error técnico. Se califican y quedan en el informe (0824-RA2).
 
 ## Foco en el Modo Aprendizaje (09/11/2026, decisión del dueño)

@@ -613,6 +613,14 @@ Cada línea muestra el uso de su capacidad y lo que costó la parte sin usar: la
 
 La respuesta queda en el informe como 0824-RA2 (comunicación con clientes de otros países). Es una acción nueva del guardado (`correo`). Solo es aprendizaje: no acepta ni rechaza la oferta ni cambia la economía, y las partidas guardadas no cambian.
 
+**Finanzas simplificada (16/11/2026, petición del dueño: «poco intuitiva, muchos números, muchas semanas»).** Antes eran siete bloques seguidos, tres de ellos con una columna por semana (hasta 26). Ahora el orden es:
+1. **Cómo vas:** cuatro cifras con una frase cada una (caja hoy y prevista, beneficio acumulado y de las últimas 4 semanas, lo pendiente de cobrar y pagar, qué línea gana dinero).
+2. **Un gráfico** de caja (real y prevista) frente a beneficio acumulado, para ver por qué no van juntos. Azul y naranja validados para daltonismo y contraste, una sola escala en euros, sin animación.
+3. **«¿Qué parte del negocio gana dinero?»** y la **previsión de tesorería**.
+4. **El detalle contable, plegado:** cuentas por concepto, pendientes, balance y movimientos.
+
+Las tablas muestran las últimas 4 semanas, o toda la temporada con un botón. Solo cambia la interfaz.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.
