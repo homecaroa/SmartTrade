@@ -1,12 +1,22 @@
+"use client";
+
+import { useState } from "react";
 import { balanceGap, cashByConcept, cashStart, pendingPayables, pendingReceivables } from "@/lib/sim/engine";
 import { cashForecast } from "@/lib/sim/forecast";
 import { weekLines } from "@/lib/sim/lines";
 import { clientOf } from "@/lib/sim/market";
 import type { SimState } from "@/lib/sim/model";
 import { fmtEur, sum } from "@/lib/learning/money";
+import { FinanceSummary } from "./finance-summary";
 
-/** Finanzas: cuenta de resultados por semana (devengo), tesorería (caja) y balance. Se muestran juntas para comparar. */
+/**
+ * Finanzas (simplificada el 16/11/2026, petición del dueño: «poco intuitiva, muchos números, muchas semanas»).
+ * Arriba lo esencial (cómo vas, gráfico de caja frente a beneficio); después qué línea gana dinero y la previsión de
+ * caja; el detalle contable queda plegado. Las tablas muestran las últimas 4 semanas, o toda la temporada si se pide.
+ */
 export function FinanceView({ s }: { s: SimState }) {
+  const [period, setPeriod] = useState<"4" | "todo">("4");
+  const shown = period === "4" ? s.weeks.slice(-4) : s.weeks;
   const th = "py-1 pr-3 text-right font-semibold";
   const td = "py-1 pr-3 text-right tabular-nums";
   const rec = pendingReceivables(s);
@@ -14,66 +24,34 @@ export function FinanceView({ s }: { s: SimState }) {
   const gap = balanceGap(s);
   return (
     <div className="space-y-4">
-      <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="pyg">
-        <h2 id="pyg" className="text-base font-semibold">Beneficio: cuenta de resultados por semana</h2>
-        {s.weeks.length === 0 ? <p className="text-sm text-slate-600">Aún no has cerrado ninguna semana.</p> : (
-          <div className="overflow-x-auto">
-            <table className="mt-2 min-w-[40rem] text-sm">
-              <caption className="text-left text-xs text-slate-600">Devengo: lo que se gana y se gasta cada semana, se cobre o se pague cuando sea.</caption>
-              <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{s.weeks.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}</tr></thead>
-              <tbody>
-                {([["Ingresos de transporte", "revenueTransport", 1], ["Ingresos de almacén", "revenueWarehouse", 1], ["Gasóleo, mantenimiento y peajes", "costVariable", -1], ["Subcontratación", "costSubcontract", -1], ["Reparaciones", "costRepair", -1], ["Sanciones, indemnizaciones y costas", "costPenalties", -1], ["Intereses y comisiones de la póliza", "costFinancial", -1], ["Horas extra, temporales y reorganización", "costStaff", -1], ["Costes fijos (alquiler, nóminas…)", "costFixed", -1], ["Amortización del camión", "amortization", -1]] as const).filter(([, k]) => (k !== "costFinancial" && k !== "costStaff") || s.weeks.some((w) => w[k])).map(([label, k, sign]) => (
-                  <tr key={k} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{label}</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(sign * (w[k] ?? 0))}</td>)}</tr>
-                ))}
-                <tr className="font-semibold"><th scope="row" className="py-1 pr-3 text-left">Resultado</th>{s.weeks.map((w) => <td key={w.week} className={`${td} ${w.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(w.result)}</td>)}</tr>
-              </tbody>
-            </table>
-          </div>
-        )}
-      </section>
-
+      <FinanceSummary s={s} />
+      {s.weeks.length > 4 && (
+        <div className="flex items-center gap-2 text-sm" role="group" aria-label="Semanas que se muestran en las tablas">
+          <span className="text-slate-600">Tablas:</span>
+          {(["4", "todo"] as const).map((p) => <button key={p} type="button" aria-pressed={period === p} onClick={() => setPeriod(p)} className={`rounded border px-2 py-0.5 ${period === p ? "border-indigo-600 bg-indigo-50 font-semibold text-indigo-800" : "border-slate-300"}`}>{p === "4" ? "Últimas 4 semanas" : "Toda la temporada"}</button>)}
+        </div>
+      )}
       {s.weeks.length > 0 && (() => {
-        const ls = s.weeks.map((w) => ({ w, l: weekLines(s, w) }));
+        const ls = shown.map((w) => ({ w, l: weekLines(s, w) }));
         const total = (f: (x: (typeof ls)[number]) => number) => ls.reduce((a, x) => a + f(x), 0);
         const rows: [string, (x: (typeof ls)[number]) => number, boolean][] = [
           ["Margen del transporte", (x) => x.l.transporte.margin, true],
           ["Margen del almacén", (x) => x.l.almacen.margin, true],
           ["Estructura (gerente, gestoría, sanciones, intereses)", (x) => -x.l.estructura.costs, true],
-          ["Capacidad sin usar: transporte", (x) => -x.l.transporte.idleCost, false],
-          ["Capacidad sin usar: almacén", (x) => -x.l.almacen.idleCost, false],
         ];
         return (
           <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="lineas">
-            <h2 id="lineas" className="text-base font-semibold">Resultado por línea de negocio</h2>
+            <h2 id="lineas" className="text-base font-semibold">¿Qué parte del negocio gana dinero?</h2>
             <div className="overflow-x-auto">
-              <table className="mt-2 min-w-[40rem] text-sm">
-                <caption className="text-left text-xs text-slate-600">Las tres primeras filas suman el resultado de cada semana. «Capacidad sin usar» es la parte de los costes fijos de esa línea que pagaste por camión o almacén vacío: ya está dentro de su margen.</caption>
-                <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{s.weeks.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}<th scope="col" className={th}>Total</th></tr></thead>
+              <table className="mt-2 min-w-[28rem] text-sm">
+                <caption className="text-left text-xs text-slate-600">Margen de cada línea: sus ingresos menos sus costes (los fijos de esa línea incluidos). Las tres suman el beneficio.</caption>
+                <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{shown.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}<th scope="col" className={th}>{period === "4" ? "Total 4 sem." : "Total"}</th></tr></thead>
                 <tbody>
                   {rows.map(([label, f, strong]) => (
                     <tr key={label} className={`border-b border-slate-100 ${strong ? "" : "text-slate-500"}`}><th scope="row" className="py-1 pr-3 text-left font-normal">{label}</th>{ls.map((x) => <td key={x.w.week} className={`${td} ${strong && f(x) < 0 ? "text-rose-700" : ""}`}>{fmtEur(f(x))}</td>)}<td className={`${td} font-semibold`}>{fmtEur(total(f))}</td></tr>
                   ))}
+                  <tr className="border-b border-slate-100 font-semibold"><th scope="row" className="py-1 pr-3 text-left">Beneficio</th>{ls.map((x) => <td key={x.w.week} className={`${td} ${x.w.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(x.w.result)}</td>)}<td className={`${td} ${total((x) => x.w.result) < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(total((x) => x.w.result))}</td></tr>
                   <tr className="border-b border-slate-100 text-slate-500"><th scope="row" className="py-1 pr-3 text-left font-normal">Uso del camión / ocupación del almacén</th>{ls.map((x) => <td key={x.w.week} className={td}>{x.l.transporte.use} % / {x.l.almacen.use} %</td>)}<td className={td} /></tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-        );
-      })()}
-
-      {s.weeks.length > 0 && (() => {
-        const concepts = [...new Set(s.weeks.flatMap((w) => Object.keys(cashByConcept(s, w.week))))].sort((a, b) => (a === "Cobros de clientes" ? -1 : b === "Cobros de clientes" ? 1 : a.localeCompare(b)));
-        return (
-          <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="tesoreria">
-            <h2 id="tesoreria" className="text-base font-semibold">Tesorería: caja por semana</h2>
-            <div className="overflow-x-auto">
-              <table className="mt-2 min-w-[40rem] text-sm">
-                <caption className="text-left text-xs text-slate-600">Caja: solo el dinero que entra o sale de verdad. No coincide con el beneficio: se cobra y se paga en otras fechas, la fianza sale de caja sin ser gasto y la amortización es gasto sin salir de caja.</caption>
-                <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{s.weeks.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}</tr></thead>
-                <tbody>
-                  <tr className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">Caja al empezar</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(cashStart(s, w.week))}</td>)}</tr>
-                  {concepts.map((k) => <tr key={k} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{k}</th>{s.weeks.map((w) => <td key={w.week} className={td}>{fmtEur(cashByConcept(s, w.week)[k] ?? 0)}</td>)}</tr>)}
-                  <tr className="font-semibold"><th scope="row" className="py-1 pr-3 text-left">Caja al cerrar</th>{s.weeks.map((w) => <td key={w.week} className={`${td} ${w.cashEnd < 0 ? "text-rose-700" : ""}`}>{fmtEur(w.cashEnd)}</td>)}</tr>
                 </tbody>
               </table>
             </div>
@@ -105,16 +83,58 @@ export function FinanceView({ s }: { s: SimState }) {
         );
       })()}
 
+      <details className="rounded-lg bg-white p-4 shadow-sm">
+        <summary className="cursor-pointer text-base font-semibold">Ver el detalle contable</summary>
+        <p className="mt-1 text-xs text-slate-600">Cuenta de resultados y caja por concepto, facturas y pagos pendientes, balance y movimientos de caja.</p>
+        <div className="mt-3 space-y-4">
+      <section className="" aria-labelledby="pyg">
+        <h3 id="pyg" className="text-sm font-semibold">Cuenta de resultados por concepto</h3>
+        {s.weeks.length === 0 ? <p className="text-sm text-slate-600">Aún no has cerrado ninguna semana.</p> : (
+          <div className="overflow-x-auto">
+            <table className="mt-2 min-w-[40rem] text-sm">
+              <caption className="text-left text-xs text-slate-600">Devengo: lo que se gana y se gasta cada semana, se cobre o se pague cuando sea.</caption>
+              <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{shown.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}</tr></thead>
+              <tbody>
+                {([["Ingresos de transporte", "revenueTransport", 1], ["Ingresos de almacén", "revenueWarehouse", 1], ["Gasóleo, mantenimiento y peajes", "costVariable", -1], ["Subcontratación", "costSubcontract", -1], ["Reparaciones", "costRepair", -1], ["Sanciones, indemnizaciones y costas", "costPenalties", -1], ["Intereses y comisiones de la póliza", "costFinancial", -1], ["Horas extra, temporales y reorganización", "costStaff", -1], ["Costes fijos (alquiler, nóminas…)", "costFixed", -1], ["Amortización del camión", "amortization", -1]] as const).filter(([, k]) => (k !== "costFinancial" && k !== "costStaff") || shown.some((w) => w[k])).map(([label, k, sign]) => (
+                  <tr key={k} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{label}</th>{shown.map((w) => <td key={w.week} className={td}>{fmtEur(sign * (w[k] ?? 0))}</td>)}</tr>
+                ))}
+                <tr className="font-semibold"><th scope="row" className="py-1 pr-3 text-left">Resultado</th>{shown.map((w) => <td key={w.week} className={`${td} ${w.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(w.result)}</td>)}</tr>
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+      {s.weeks.length > 0 && (() => {
+        const concepts = [...new Set(shown.flatMap((w) => Object.keys(cashByConcept(s, w.week))))].sort((a, b) => (a === "Cobros de clientes" ? -1 : b === "Cobros de clientes" ? 1 : a.localeCompare(b)));
+        return (
+          <section className="" aria-labelledby="tesoreria">
+            <h3 id="tesoreria" className="text-sm font-semibold">Caja por concepto</h3>
+            <div className="overflow-x-auto">
+              <table className="mt-2 min-w-[40rem] text-sm">
+                <caption className="text-left text-xs text-slate-600">Caja: solo el dinero que entra o sale de verdad. No coincide con el beneficio: se cobra y se paga en otras fechas, la fianza sale de caja sin ser gasto y la amortización es gasto sin salir de caja.</caption>
+                <thead><tr className="border-b"><th scope="col" className="py-1 pr-3 text-left">Concepto</th>{shown.map((w) => <th key={w.week} scope="col" className={th}>Sem. {w.week}</th>)}</tr></thead>
+                <tbody>
+                  <tr className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">Caja al empezar</th>{shown.map((w) => <td key={w.week} className={td}>{fmtEur(cashStart(s, w.week))}</td>)}</tr>
+                  {concepts.map((k) => <tr key={k} className="border-b border-slate-100"><th scope="row" className="py-1 pr-3 text-left font-normal">{k}</th>{shown.map((w) => <td key={w.week} className={td}>{fmtEur(cashByConcept(s, w.week)[k] ?? 0)}</td>)}</tr>)}
+                  <tr className="font-semibold"><th scope="row" className="py-1 pr-3 text-left">Caja al cerrar</th>{shown.map((w) => <td key={w.week} className={`${td} ${w.cashEnd < 0 ? "text-rose-700" : ""}`}>{fmtEur(w.cashEnd)}</td>)}</tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        );
+      })()}
+
       <div className="grid gap-4 lg:grid-cols-2">
-        <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="cobros">
-          <h2 id="cobros" className="text-base font-semibold">Facturas pendientes de cobro ({fmtEur(sum(rec.map((i) => i.amount)))})</h2>
+        <section className="rounded border border-slate-200 p-3" aria-labelledby="cobros">
+          <h3 id="cobros" className="text-sm font-semibold">Facturas pendientes de cobro ({fmtEur(sum(rec.map((i) => i.amount)))})</h3>
           {rec.length === 0 ? <p className="text-sm text-slate-600">Ninguna.</p> : (
             <ul className="mt-1 space-y-1 text-sm">{rec.map((i) => <li key={i.id}>{clientOf(i.clientId).name}: {fmtEur(i.amount)} · emitida sem. {i.week} · vence sem. {i.dueWeek}{i.dueWeek < s.week ? <span className="font-semibold text-rose-700"> · en mora</span> : null}</li>)}</ul>
           )}
           <p className="mt-2 text-xs text-slate-600">El transporte se cobra a 30 días (4 semanas): quien paga entra en mora a los 30 días (Ley 15/2009, art. 41). El resto de servicios nunca puede pactarse a más de 60 días (Ley 3/2004, art. 4).</p>
         </section>
-        <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="pagos">
-          <h2 id="pagos" className="text-base font-semibold">Pagos pendientes</h2>
+        <section className="rounded border border-slate-200 p-3" aria-labelledby="pagos">
+          <h3 id="pagos" className="text-sm font-semibold">Pagos pendientes</h3>
           <ul className="mt-1 space-y-1 text-sm">
             <li>Alquiler, nóminas, seguro y gestoría devengados: {fmtEur(s.accruedFixed)} (se pagan cada 4 semanas)</li>
             {pay.map((p) => <li key={p.id}>{p.label}: {fmtEur(p.amount)} · vence sem. {p.dueWeek}</li>)}
@@ -122,8 +142,8 @@ export function FinanceView({ s }: { s: SimState }) {
         </section>
       </div>
 
-      <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="balance">
-        <h2 id="balance" className="text-base font-semibold">Balance</h2>
+      <section className="rounded border border-slate-200 p-3" aria-labelledby="balance">
+        <h3 id="balance" className="text-sm font-semibold">Balance</h3>
         <dl className="mt-1 grid gap-2 text-sm sm:grid-cols-2">
           <div><dt className="font-semibold">Activo</dt><dd>Caja {fmtEur(s.cash)} · Clientes {fmtEur(sum(rec.map((i) => i.amount)))} · Fianzas {fmtEur(s.deposit)} · {s.growth?.camion?.modo === "compra" ? "Camiones" : "Camión"} {fmtEur(s.truckValue)}</dd></div>
           <div><dt className="font-semibold">Patrimonio neto y pasivo</dt><dd>Capital inicial {fmtEur(s.equity0)} · Resultado {fmtEur(s.result)} · Proveedores {fmtEur(sum(pay.map((p) => p.amount)))} · Fijos devengados sin pagar {fmtEur(s.accruedFixed)}</dd></div>
@@ -131,12 +151,14 @@ export function FinanceView({ s }: { s: SimState }) {
         <p className={`mt-2 text-xs ${gap === 0 ? "text-emerald-800" : "text-rose-700"}`}>{gap === 0 ? "El balance cuadra: activo = patrimonio neto + pasivo." : `Descuadre de ${fmtEur(gap)}: es un error del simulador.`}</p>
       </section>
 
-      <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="caja">
-        <h2 id="caja" className="text-base font-semibold">Movimientos de caja</h2>
+      <section className="rounded border border-slate-200 p-3" aria-labelledby="caja">
+        <h3 id="caja" className="text-sm font-semibold">Movimientos de caja</h3>
         {s.ledger.length === 0 ? <p className="text-sm text-slate-600">Aún no hay movimientos.</p> : (
           <ul className="mt-1 max-h-72 space-y-0.5 overflow-y-auto text-sm">{[...s.ledger].reverse().map((m, i) => <li key={i} className="flex justify-between gap-2"><span>Sem. {m.week} · {m.label}</span><span className={`tabular-nums ${m.amount < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(m.amount)}</span></li>)}</ul>
         )}
       </section>
+        </div>
+      </details>
     </div>
   );
 }
