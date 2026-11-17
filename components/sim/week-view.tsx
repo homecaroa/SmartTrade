@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { cashStart, clientHistory, creditLimitAt, describeOffer, fixedPerWeekAt, growthBlocked, GROWTH_LABELS, incidentOptions, kmOwnCommitted, kmSubCommitted, MONTH_QUESTION, n2, palletCapacityAt, palletsCommitted, seasonOutcome, serviceLevelToDate, subcontractRoom, truckKmAt } from "@/lib/sim/engine";
+import { cashStart, clientHistory, creditLimitAt, describeOffer, fixedPerWeekAt, growthBlocked, GROWTH_LABELS, incidentOptions, kmOwnCommitted, kmSubCommitted, n2, palletCapacityAt, palletsCommitted, seasonOutcome, serviceLevelToDate, subcontractRoom, truckKmAt } from "@/lib/sim/engine";
 import { docsFor, MAX_ROUNDS, originalTerms, rateOf, validateProposal } from "@/lib/sim/deal";
 import { directCost } from "@/lib/sim/international";
+import { pendingQuestions } from "@/lib/sim/questions";
 import { organizeBlocked, WORKER_WEEK, workCapacityAt, workCommitted, workersAt } from "@/lib/sim/warehouse";
 import { clientOf, kmOf, REPUTATION_ALL_PRICES_FROM, reputationEffect, weeklyRevenue, workOf } from "@/lib/sim/market";
 import type { Action, GrowthOption, Offer, SimState, WeekRecord } from "@/lib/sim/model";
@@ -66,8 +67,8 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
         </section>
       )}
 
-      {s.weeks.length >= 4 && !s.answers[MONTH_QUESTION.id] && (
-        <p className="rounded-lg border border-indigo-200 bg-indigo-50 p-3 text-sm">Ya tienes el <b>informe del primer mes</b> con una pregunta sobre tus números. <button type="button" className="underline" onClick={onShowReport}>Ir al informe</button></p>
+      {pendingQuestions(s).length > 0 && (
+        <p className="rounded-lg border border-indigo-200 bg-indigo-50 p-3 text-sm">Tienes <b>{pendingQuestions(s).length} {pendingQuestions(s).length === 1 ? "pregunta" : "preguntas"}</b> de los informes mensuales sin responder. <button type="button" className="underline" onClick={onShowReport}>Ir al informe</button></p>
       )}
       {s.status === "quiebra" && <p className="rounded-lg border border-rose-300 bg-rose-50 p-4 text-sm"><b>Fin de la partida en la semana {s.weeks.length}:</b> {s.endReason ?? "la empresa no puede seguir."} <button type="button" className="underline" onClick={onShowReport}>Ver el resumen final</button>.</p>}
       {s.status === "fin" && (() => {

@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { knowledge, MONTH_QUESTION, seasonOutcome, serviceLevelToDate } from "@/lib/sim/engine";
+import { knowledge, seasonOutcome, serviceLevelToDate } from "@/lib/sim/engine";
+import { monthQuestions, type MonthQuestion } from "@/lib/sim/questions";
 import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 import type { Action, SimState } from "@/lib/sim/model";
 import { WEEKS_PER_MONTH } from "@/lib/sim/params";
@@ -29,16 +30,7 @@ export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action)
   const capacity = s.weeks.reduce((a, w) => a + w.kmCapacity, 0);
   return (
     <div className="space-y-4">
-      {s.weeks.length >= WEEKS_PER_MONTH ? (
-        <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="mes1">
-          <h2 id="mes1" className="text-base font-semibold">Informe del primer mes (semanas 1–4)</h2>
-          <p className="text-sm">Resultado del mes: <b>{fmtEur(month.reduce((a, w) => a + w.result, 0))}</b> · caja al cerrar la semana 4: <b>{fmtEur(month[month.length - 1].cashEnd)}</b> · cobrado en el mes: {fmtEur(month.reduce((a, w) => a + w.collections, 0))}.</p>
-          {!s.answers[MONTH_QUESTION.id] ? <MonthQuestion s={s} onAction={onAction} /> : s.answers[MONTH_QUESTION.id] && (() => {
-            const e = s.learning.find((l) => l.what.startsWith("Informe del mes"));
-            return e ? <p className="rounded bg-slate-50 p-2 text-sm"><span className="flex flex-wrap items-center gap-2"><b>Tu respuesta:</b> {e.answer} <GradeBadge grade={e.grade} /></span>{e.feedback}</p> : null;
-          })()}
-        </section>
-      ) : <p className="rounded-lg bg-white p-4 text-sm text-slate-600 shadow-sm">El informe del mes aparece al cerrar la semana 4.</p>}
+      {s.weeks.length >= WEEKS_PER_MONTH ? <MonthReports s={s} onAction={onAction} /> : <p className="rounded-lg bg-white p-4 text-sm text-slate-600 shadow-sm">El informe del mes, con sus preguntas, aparece al cerrar la semana 4.</p>}
 
       {months.length > 0 && (
         <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="meses">
@@ -82,18 +74,59 @@ export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action)
   );
 }
 
-function MonthQuestion({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
-  const [pick, setPick] = useState("");
+/**
+ * Informes mensuales con sus preguntas (17/11/2026: cinco por mes, más la original del mes 1; lib/sim/questions.ts).
+ * Las pendientes se muestran primero; las respondidas, con su corrección.
+ */
+function MonthReports({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
+  const qs = monthQuestions(s);
+  const months = [...new Set(qs.map((q) => q.month))].sort((a, b) => b - a);
+  const pending = qs.filter((q) => !s.answers[q.id]).length;
   return (
-    <form className="space-y-2 rounded border border-indigo-200 p-3" onSubmit={(e) => { e.preventDefault(); if (pick) onAction({ t: "pregunta", pregunta: MONTH_QUESTION.id, opcion: pick }); }}>
+    <section className="space-y-3 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="informes">
+      <h2 id="informes" className="text-base font-semibold">Preguntas de los informes mensuales</h2>
+      <p className="text-sm text-slate-600">{pending ? `Tienes ${pending} sin responder.` : "Las has respondido todas."} Unas usan tus números del mes; otras, lo que hay que saber de comercio y logística. No bloquean el juego y cuentan en tu nota de decisiones.</p>
+      {months.map((m) => {
+        const ws = s.weeks.slice((m - 1) * WEEKS_PER_MONTH, m * WEEKS_PER_MONTH);
+        const mine = qs.filter((q) => q.month === m);
+        const open = mine.some((q) => !s.answers[q.id]);
+        return (
+          <details key={m} open={open} className="rounded border border-slate-200 p-3">
+            <summary className="cursor-pointer text-sm font-semibold">Mes {m} (semanas {ws[0].week}–{ws.at(-1)!.week}) · {mine.filter((q) => s.answers[q.id]).length} de {mine.length} respondidas</summary>
+            <p className="mt-1 text-xs text-slate-600">Resultado del mes: <b>{fmtEur(ws.reduce((a, w) => a + w.result, 0))}</b> · caja al cerrar: <b>{fmtEur(ws.at(-1)!.cashEnd)}</b> · cobrado: {fmtEur(ws.reduce((a, w) => a + w.collections, 0))}.</p>
+            <div className="mt-2 space-y-3">{mine.map((q) => <QuestionCard key={q.id} q={q} s={s} onAction={onAction} />)}</div>
+          </details>
+        );
+      })}
+    </section>
+  );
+}
+
+function QuestionCard({ q, s, onAction }: { q: MonthQuestion; s: SimState; onAction: (a: Action) => void }) {
+  const [pick, setPick] = useState("");
+  const answered = s.answers[q.id];
+  if (answered) {
+    const o = q.options.find((x) => x.id === answered)!;
+    const right = q.options.find((x) => x.grade === "correcta")!;
+    return (
+      <div className="rounded bg-slate-50 p-2 text-sm">
+        <p className="text-xs font-semibold uppercase text-slate-600">{q.topic}</p>
+        <p className="font-semibold">{q.prompt}</p>
+        <p className="mt-1 flex flex-wrap items-center gap-2"><b>Tu respuesta:</b> {o.label} <GradeBadge grade={o.grade} /></p>
+        <p>{o.feedback}</p>
+        {o.grade !== "correcta" && <p className="mt-1 text-xs"><b>La correcta:</b> {right.label}. {right.feedback}</p>}
+      </div>
+    );
+  }
+  return (
+    <form className="space-y-2 rounded border border-indigo-200 p-3" onSubmit={(e) => { e.preventDefault(); if (pick) onAction({ t: "pregunta", pregunta: q.id, opcion: pick }); }}>
       <fieldset className="space-y-2">
-        <legend className="text-sm font-semibold">{MONTH_QUESTION.prompt}</legend>
-        {displayOrder(MONTH_QUESTION.options, `${s.seed}:mes1`).map((o) => (
-          <label key={o.id} className="flex cursor-pointer items-start gap-2 text-sm"><input type="radio" name="mes1" value={o.id} checked={pick === o.id} onChange={() => setPick(o.id)} className="mt-1" /><span>{o.label}</span></label>
+        <legend className="text-sm"><span className="block text-xs font-semibold uppercase text-slate-600">{q.topic}</span><span className="font-semibold">{q.prompt}</span></legend>
+        {displayOrder(q.options, `${s.seed}:${q.id}`).map((o) => (
+          <label key={o.id} className="flex cursor-pointer items-start gap-2 text-sm"><input type="radio" name={q.id} value={o.id} checked={pick === o.id} onChange={() => setPick(o.id)} className="mt-1" /><span>{o.label}</span></label>
         ))}
       </fieldset>
       <button type="submit" disabled={!pick} className="rounded bg-indigo-600 px-3 py-1 text-sm font-semibold text-white disabled:opacity-50">Responder</button>
-      <p className="text-xs text-slate-600">No bloquea el juego: puedes seguir y responder cuando quieras antes de terminar.</p>
     </form>
   );
 }
