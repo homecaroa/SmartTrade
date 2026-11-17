@@ -2,6 +2,7 @@ import { round2, sum } from "../learning/money";
 import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validateProposal, withTerms, type Terms } from "./deal";
 import { applyClaimDecision, claimIncidents, claimOptions, isClaim } from "./claims";
 import { mailById, replyExercise } from "./inbox";
+import { MONTH_QUESTION, monthQuestions } from "./questions";
 import { directCost, fixedShare } from "./international";
 import { applyWarehouseDecision, gradeOrganize, gradeStorage, isWarehouseIncident, organizeBlocked, warehouseIncidents, warehouseOptions, WORKER_WEEK, workCapacityAt, workCommitted } from "./warehouse";
 import { clientOf, handlingRevenue, kmOf, offersFor, REPUTATION_ALL_PRICES_FROM, workOf } from "./market";
@@ -243,15 +244,7 @@ export function dueIncidents(s: SimState): Incident[] {
 
 // ── Acciones ───────────────────────────────────────────────────────────────────────────────────────────────────────
 
-export const MONTH_QUESTION = {
-  id: "mes1",
-  prompt: "En la semana 4 pagaste de golpe el alquiler y las nóminas del mes. ¿Por qué la caja ha bajado mucho más que el resultado de la semana?",
-  options: [
-    { id: "fijos", label: "Porque los costes fijos se reconocen cada semana pero se pagan juntos cada 4 semanas, y las primeras facturas aún no se han cobrado", grade: "correcta" as Grade, feedback: "Exacto: resultado (devengo) y caja (cobros y pagos) van con calendarios distintos." },
-    { id: "perdidas", label: "Porque la empresa ha perdido esa semana exactamente lo que ha bajado la caja", grade: "grave" as Grade, feedback: "No: el resultado de la semana solo incluye la parte de fijos de esa semana; la caja pagó los de cuatro semanas." },
-    { id: "amortizacion", label: "Por la amortización del camión", grade: "grave" as Grade, feedback: "La amortización es un coste que no sale de la caja: reparte el valor del camión en el tiempo." },
-  ],
-};
+export { MONTH_QUESTION };
 
 const learn = (s: SimState, e: LearningEntry) => { s.learning.push(e); };
 
@@ -337,11 +330,14 @@ export function apply(prev: SimState, a: Action): SimState {
     return s;
   }
   if (a.t === "pregunta") {
-    if (a.pregunta !== MONTH_QUESTION.id || s.weeks.length < WEEKS_PER_MONTH || s.answers[a.pregunta]) throw new Error("Pregunta no disponible.");
-    const opt = MONTH_QUESTION.options.find((x) => x.id === a.opcion);
+    // Desde el 17/11/2026 hay dos o tres preguntas por mes (lib/sim/questions.ts); «mes1» sigue siendo la misma.
+    const q = monthQuestions(s).find((x) => x.id === a.pregunta);
+    if (!q || s.answers[a.pregunta]) throw new Error("Pregunta no disponible.");
+    const opt = q.options.find((x) => x.id === a.opcion);
     if (!opt) throw new Error("Opción no válida.");
     s.answers[a.pregunta] = a.opcion;
-    learn(s, { week: s.week, what: "Informe del mes: caja frente a resultado", answer: opt.label, grade: opt.grade, feedback: opt.feedback, competences: ["0623-RA6", "0623-RA7"] });
+    // «mes1» deja exactamente el mismo registro que antes (las partidas guardadas no cambian).
+    learn(s, { week: s.week, what: q.id === MONTH_QUESTION.id ? "Informe del mes: caja frente a resultado" : `Informe del mes ${q.month}: ${q.topic}`, answer: opt.label, grade: opt.grade, feedback: opt.feedback, competences: q.competences });
     return s;
   }
   if (a.t === "responder") {

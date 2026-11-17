@@ -7,7 +7,9 @@ export const COMPETENCE_LABELS: Record<string, string> = {
   "0622-RA1": "Transporte: conveniencia de modos y medios",
   "0622-RA2": "Transporte: elegir medios, rutas y capacidad",
   "0622-RA3": "Transporte: contrato y costes",
+  "0622-RA4": "Transporte: integridad de la mercancía",
   "0622-RA5": "Transporte: documentación",
+  "0622-RA7": "Transporte: seguro de la mercancía",
   "0622-RA6": "Transporte: incidencias",
   "0623-RA3": "Gestión económica: financiar inversiones",
   "0623-RA4": "Gestión económica: comprar o alquilar activos",
@@ -20,6 +22,8 @@ export const COMPETENCE_LABELS: Record<string, string> = {
   "0625-RA4": "Almacén: gestión de stocks",
   "0625-RA5": "Almacén: logística inversa",
   "0627-RA4": "Gestión administrativa: expedición e introducción en la UE",
+  "0627-RA5": "Gestión administrativa: documentación del comercio exterior",
+  "0826-RA3": "Medios de pago internacionales",
   "0824-RA2": "Negociación: comunicación con clientes de otros países",
   "0824-RA3": "Negociación: preparar y conducir la negociación",
 };

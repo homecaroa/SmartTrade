@@ -621,6 +621,23 @@ La respuesta queda en el informe como 0824-RA2 (comunicación con clientes de ot
 
 Las tablas muestran las últimas 4 semanas, o toda la temporada con un botón. Solo cambia la interfaz.
 
+**Preguntas de los informes mensuales (17/11/2026, petición del dueño: «más preguntas y más variadas, esto es para aprender»).** Antes había una sola en toda la temporada. Ahora salen **cinco al cerrar cada mes** (seis el primero, que conserva la original), unas 30 por temporada (`lib/sim/questions.ts`):
+- **Dos con tus números del mes**, tomados del historial cerrado (la respuesta no cambia aunque contestes más tarde): periodo medio de cobro, ocupación, punto muerto del camión, coste e ingreso por km, uso del camión y resultado frente a caja.
+- **Tres de concepto**, sin repetir en la temporada, de un banco de 25:
+  - Incoterms: EXW, CIP o CIF, reglas marítimas, riesgo en DAP;
+  - IVA en una entrega intracomunitaria, EUR.1, medios de pago, CMR frente a B/L;
+  - mora, reservas, subcontratación, carta de porte, documento de control;
+  - peso tasable, palé europeo, FIFO y FEFO, cross-docking, ADR, ABC, punto de pedido;
+  - seguro al 110 %, fianza, margen frente a markup, liquidez, reputación.
+
+  La normativa citada es solo la ya comprobada (§19), y el resto, conocimiento estándar del ciclo y de los casos prácticos.
+- Cuáles salen lo decide la semilla.
+- Cada opción incorrecta es un error típico, con su explicación; si fallas, se muestra la correcta.
+- Responder es aprendizaje: cuenta en la nota de decisiones y en las competencias, sin efecto en la economía.
+- 30.640 preguntas generadas en 1.200 partidas automáticas: ninguna mal formada.
+
+**Seguridad (17/11/2026):** `next build` se negó a compilar con Next 16.4.2 por la vulnerabilidad GHSA-mfr8-8qww-v76h, moderada, de Next 16.3.0–16.4.4. Afecta a `unstable_cache` y `use cache`, que el proyecto no usa. Actualizado a 16.4.6; `npm audit`: 0 vulnerabilidades.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.

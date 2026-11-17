@@ -16,6 +16,7 @@ import { play } from "@/lib/sim/strategies";
 import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 import { cashForecast } from "@/lib/sim/forecast";
 import { inboxFor, replyExercise } from "@/lib/sim/inbox";
+import { monthQuestions } from "@/lib/sim/questions";
 import { fixedSplitAt, weekLines } from "@/lib/sim/lines";
 
 /**
@@ -1096,5 +1097,48 @@ describe("responder en inglés: el error no se delata por la forma", () => {
       expect(bad).toHaveLength(ok.length);
       expect(bad.filter((x, i) => x !== ok[i])).toHaveLength(1);
     }
+  });
+});
+
+describe("preguntas de los informes mensuales (17/11/2026)", () => {
+  it("cinco por mes (seis el primero), con tres opciones y una sola correcta, sin repetir conceptos en la temporada", () => {
+    for (const sd of SEEDS.slice(0, 12)) for (const st of ["selectiva", "crecedora"] as const) {
+      const s = play(sd, st).state;
+      const qs = monthQuestions(s);
+      const months = Math.floor(s.weeks.length / 4);
+      for (let m = 1; m <= months; m++) expect(qs.filter((q) => q.month === m).length).toBe(m === 1 ? 6 : 5);
+      for (const q of qs) {
+        expect(q.options).toHaveLength(3);
+        expect(new Set(q.options.map((o) => o.id)).size).toBe(3);
+        expect(q.options.filter((o) => o.grade === "correcta")).toHaveLength(1);
+        expect(new Set(q.options.map((o) => o.label)).size).toBe(3);
+      }
+      expect(new Set(qs.map((q) => q.id)).size).toBe(qs.length);
+      for (let m = 1; m <= months; m++) expect(new Set(qs.filter((q) => q.month === m).map((q) => q.key)).size).toBe(qs.filter((q) => q.month === m).length);
+    }
+  }, 120_000);
+  it("las preguntas de un mes no cambian aunque se respondan más tarde (salen del historial cerrado)", () => {
+    const { actions } = play(SEEDS[4], "selectiva");
+    let s = newGame(SEEDS[4]);
+    let at8: string | null = null;
+    for (const a of actions) {
+      s = apply(s, a);
+      if (s.weeks.length === 8 && at8 === null) at8 = JSON.stringify(monthQuestions(s));
+    }
+    const later = monthQuestions(s).filter((q) => q.month <= 2);
+    expect(JSON.stringify(later)).toBe(at8);
+  }, 60_000);
+  it("responder registra la nota con sus competencias; la del mes 1 deja el mismo registro que antes", () => {
+    let s = newGame(SEEDS[2]);
+    for (let i = 0; i < 8; i++) { s = apply(s, { t: "cerrar" }); while (s.status === "incidencia") s = apply(s, { t: "responder", incidencia: s.pending!.id, opcion: incidentOptions(s.pending!, s.version)[0].id }); }
+    const r = apply(s, { t: "pregunta", pregunta: "mes1", opcion: "fijos" });
+    expect(r.learning.at(-1)).toMatchObject({ what: "Informe del mes: caja frente a resultado", grade: "correcta", competences: ["0623-RA6", "0623-RA7"] });
+    const q = monthQuestions(s).find((x) => x.month === 2)!;
+    const ok = q.options.find((o) => o.grade === "correcta")!;
+    const r2 = apply(s, { t: "pregunta", pregunta: q.id, opcion: ok.id });
+    expect(r2.learning.at(-1)).toMatchObject({ what: `Informe del mes 2: ${q.topic}`, grade: "correcta", competences: q.competences });
+    expect(r2.cash).toBe(s.cash);
+    expect(() => apply(r2, { t: "pregunta", pregunta: q.id, opcion: ok.id })).toThrow();
+    expect(() => apply(s, { t: "pregunta", pregunta: "m9-cobro", opcion: "ok" })).toThrow();
   });
 });
