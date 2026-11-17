@@ -103,7 +103,7 @@ export interface WeekRecord {
   notes: string[];
 }
 
-export type IncidentKind = "averia" | "mora" | "dano" | "retraso" | "plazo" | "stock" | "devoluciones";
+export type IncidentKind = "averia" | "mora" | "dano" | "retraso" | "plazo" | "stock" | "devoluciones" | "reparto";
 export interface Incident { id: string; kind: IncidentKind; week: number; title: string; prompt: string; concept: string; data: Record<string, number | string> }
 export interface IncidentOption { id: string; label: string; grade: Grade; feedback: string }
 
@@ -140,7 +140,8 @@ export interface SimState {
   /** Herramientas para crecer contratadas y semana de la decisión (surten efecto la semana siguiente; 10/11/2026). */
   growth?: Growth;
   /** Indemnizaciones y costas decididas en una incidencia, que se cargan al cerrar la semana (reglas v4). */
-  claims?: { label: string; amount: number; note: string }[];
+  /** Importe positivo = gasto; negativo = lo que te paga el cargador (reglas v9). `unserved`: unidades de servicio fallado. */
+  claims?: { label: string; amount: number; note: string; unserved?: number }[];
   /** Organización del almacén (v6): reorganización ABC y mozos temporales (semana de la decisión). */
   staff?: { abcWeek?: number; temps?: number[] };
 }

@@ -17,9 +17,10 @@
  *   del almacén (antes solo al precio principal; ver scaleRates en market.ts).
  * - v8 (11/11/2026): las devoluciones guardadas sin cobrar ocupan sitio, pero no cuentan para el objetivo de ocupación
  *   ni, si no caben, generan el aviso de que el cliente cancela (ver HELD_RETURNS_FROM en lib/sim/warehouse.ts).
+ * - v9 (17/11/2026): incidencias durante los repartos (ver DELIVERY y lib/sim/delivery.ts).
  */
-export const ENGINE_VERSION = 8;
-export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8] as const;
+export const ENGINE_VERSION = 9;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -195,4 +196,30 @@ export const WAREHOUSE_V6 = {
   abc: { cost: 900, productivity: 0.15 },
   stock: { window: { from: 7, to: 18 }, penaltyShort: 400, penaltyExcess: 300 },
   returns: { window: { from: 10, to: 22 }, pallets: { min: 10, max: 40 }, sortRate: 8, gestorPerPallet: 3, dumpFine: 1_500, holdWeeks: 4 },
+} as const;
+
+/**
+ * Incidencias en los repartos (reglas v9, 17/11/2026, petición del dueño: «más problemas en algunos repartos,
+ * situaciones reales»; docs/simulador.md §17 terdecies). Solo en transporte nacional (la Ley 15/2009 no rige el
+ * internacional, que va por el Convenio CMR). Desde la semana 3, cada semana con repartos propios hay una probabilidad
+ * de que surja una; cada tipo, como mucho una vez por temporada. Base legal comprobada en el BOE el 17/11/2026 (Ley
+ * 15/2009, arts. 20, 21, 22, 26, 29, 36 y 47). Importes y probabilidades: SIMULADOS.
+ * - `paralizacionPerHour`: el art. 22.3 fija dos veces el IPREM/día por hora, sin contar las dos primeras ni más de diez
+ *   al día; con el IPREM de 600 €/mes (no comprobado en el BOE, ver CLAIMS) son 40 € por hora.
+ */
+export const DELIVERY = {
+  fromVersion: 9,
+  fromWeek: 3,
+  chance: 0.35,
+  paralizacionPerHour: 40,
+  waitHours: { min: 4, max: 7 },
+  stolenGoods: 900,
+  overweightFine: 1_200,
+  stowageDamage: 800,
+  stowageDispute: 300,
+  missingPallets: 2,
+  palletValue: 350,
+  disputeCost: 200,
+  returnTripCost: 180,
+  detourKm: { min: 40, max: 120 },
 } as const;

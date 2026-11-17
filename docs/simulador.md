@@ -638,6 +638,29 @@ Las tablas muestran las últimas 4 semanas, o toda la temporada con un botón. S
 
 **Seguridad (17/11/2026):** `next build` se negó a compilar con Next 16.4.2 por la vulnerabilidad GHSA-mfr8-8qww-v76h, moderada, de Next 16.3.0–16.4.4. Afecta a `unstable_cache` y `use cache`, que el proyecto no usa. Actualizado a 16.4.6; `npm audit`: 0 vulnerabilidades.
 
+## 17 terdecies. Incidencias en los repartos (17/11/2026, reglas v9)
+
+**Petición del dueño:** «esto es para aprender, no solo para aceptar o no aceptar encargos; más problemas en algunos repartos, situaciones reales».
+
+**Qué se añade (`lib/sim/delivery.ts`; cifras [S] en `DELIVERY`).**
+- Desde la semana 3, cada semana con repartos nacionales propios hay un 35 % de probabilidad de que surja una incidencia. Cada tipo sale como mucho una vez por temporada.
+- Base legal [N]: Ley 15/2009, leída en el BOE el 17/11/2026. El transporte internacional queda fuera porque se rige por el Convenio CMR.
+
+| Incidencia | Lo correcto | Base legal | Errores típicos y su coste [S] |
+|---|---|---|---|
+| **Destinatario ausente** | Avisar al cargador y esperar instrucciones; sus gastos los paga él | Art. 36 | Dejar los palés en la puerta: respondes hasta la entrega (art. 47.1), 900 € y pierdes el cliente. Volver sin avisar: 180 € a tu cargo. |
+| **Horas esperando para descargar** | Anotar las horas y reclamar la paralización | Art. 22: más de 2 horas; 40 €/hora con el IPREM no comprobado | Irse sin descargar: servicio fallado y el cliente se va. |
+| **Peso declarado sospechoso** | Pesar la carga; si la declaración era falsa, paga el cargador | Art. 26.1 | Salir igualmente: multa de 1.200 €. |
+| **Mala estiba del cargador** | Que la corrijan y, si no, dejarlo por escrito | Art. 20 | Indicarles tú cómo estibar sin dejarlo escrito: respondes de los daños (art. 20.2), 800 €. |
+| **Bultos que no coinciden con la carta de porte** | Anotar la diferencia al cargar | Art. 21.1 | Firmar tal cual: pagas los palés que faltan, 700 €. |
+| **Cambio de destino en ruta** | Aceptar y cobrar los km de más | Arts. 29.1 y 36.3 | Negarse: el cliente se va. |
+
+- Responder bien no cuesta dinero (la paralización incluso se cobra), así que el equilibrio de las estrategias que eligen bien no cambia: 300 partidas, mismas victorias que en la v8.
+- La estrategia que acepta todo pierde más.
+- Las seis salen en todas las partidas de la estrategia selectiva.
+
+**Versiones:** solo partidas nuevas. 240 partidas v1–v8 del motor publicado se reproducen idénticas; 630 partidas aleatorias v1–v9 sin fallos.
+
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
 Ilustra la economía completa: incluye movimientos de almacén y subcontratación, que llegan en la fase 2.

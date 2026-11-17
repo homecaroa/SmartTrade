@@ -1,6 +1,7 @@
 import { round2, sum } from "../learning/money";
 import { bestDocs, DOC_RISK, docsFor, gradeDocs, originalTerms, respond, validateProposal, withTerms, type Terms } from "./deal";
 import { applyClaimDecision, claimIncidents, claimOptions, isClaim } from "./claims";
+import { applyDeliveryDecision, deliveryIncidents, deliveryOptions, isDelivery } from "./delivery";
 import { mailById, replyExercise } from "./inbox";
 import { MONTH_QUESTION, monthQuestions } from "./questions";
 import { directCost, fixedShare } from "./international";
@@ -199,6 +200,7 @@ export const subcontractPerKm = (version: number) => (version >= 3 ? GROWTH.subc
 export function incidentOptions(inc: Pick<Incident, "kind" | "data">, version: number): IncidentOption[] {
   if (isClaim(inc.kind)) return claimOptions(inc as Incident);
   if (isWarehouseIncident(inc.kind)) return warehouseOptions(inc as Incident);
+  if (isDelivery(inc.kind)) return deliveryOptions(inc as Incident);
   const kind = inc.kind as "averia" | "mora";
   return kind === "averia" && version >= 3 ? INCIDENT_OPTIONS.averia.map((o) => (o.id === "subcontratar" ? { ...o, feedback: o.feedback.replace(n2(P.subcontractPerKm), n2(subcontractPerKm(version))) } : o)) : INCIDENT_OPTIONS[kind];
 }
@@ -238,7 +240,7 @@ export function dueIncidents(s: SimState): Incident[] {
     out.push({ id: `mora-${c.id}`, kind: "mora", week: w, title: "Un cliente no paga a su vencimiento", concept: "Facturar no es cobrar. En el transporte por carretera, quien paga incurre en mora a los 30 días (Ley 15/2009, art. 41); el resto de servicios nunca puede pactarse a más de 60 días (Ley 3/2004, art. 4).",
       prompt: `${c.name} no ha pagado la factura de ${inv.amount.toLocaleString("es-ES", { minimumFractionDigits: 2 })} € que vencía esta semana.`, data: { client: c.id, amount: inv.amount } });
   }
-  out.push(...claimIncidents(s), ...warehouseIncidents(s));
+  out.push(...claimIncidents(s), ...warehouseIncidents(s), ...deliveryIncidents(s));
   return out;
 }
 
@@ -349,6 +351,7 @@ export function apply(prev: SimState, a: Action): SimState {
     if (s.pending.kind === "mora") applyMoraDecision(s, String(s.pending.data.client), a.opcion);
     if (isClaim(s.pending.kind)) applyClaimDecision(s, s.pending, a.opcion);
     if (isWarehouseIncident(s.pending.kind)) applyWarehouseDecision(s, s.pending, a.opcion);
+    if (isDelivery(s.pending.kind)) applyDeliveryDecision(s, s.pending, a.opcion);
     s.pending = null;
     s.status = "jugando";
     return close(s);
@@ -358,7 +361,7 @@ export function apply(prev: SimState, a: Action): SimState {
 }
 
 /** Competencias de cada incidencia (docs/curriculo.md). */
-const COMPETENCES: Record<Incident["kind"], string[]> = { averia: ["0622-RA6"], mora: ["0623-RA5"], dano: ["0622-RA6", "0622-RA3"], retraso: ["0622-RA6", "0622-RA3"], plazo: ["0623-RA5", "0824-RA3"], stock: ["0625-RA4"], devoluciones: ["0625-RA5", "0625-RA1"] };
+const COMPETENCES: Record<Incident["kind"], string[]> = { averia: ["0622-RA6"], mora: ["0623-RA5"], dano: ["0622-RA6", "0622-RA3"], retraso: ["0622-RA6", "0622-RA3"], plazo: ["0623-RA5", "0824-RA3"], stock: ["0625-RA4"], devoluciones: ["0625-RA5", "0625-RA1"], reparto: ["0622-RA6", "0622-RA3"] };
 
 export const replay = (seed: number, actions: Action[]): SimState => actions.reduce(apply, newGame(seed));
 
@@ -499,7 +502,7 @@ function resolveWeek(s: SimState) {
   // Indemnizaciones y costas decididas en las reclamaciones de esta semana (reglas v4).
   const claimMoves: { label: string; amount: number }[] = [];
   if (s.claims) {
-    for (const c of s.claims) { notes.push(c.note); if (c.amount) { costPenalties += c.amount; claimMoves.push(c); } }
+    for (const c of s.claims) { notes.push(c.note); if (c.amount) { costPenalties += c.amount; claimMoves.push(c); } if (c.unserved) unservedWeight += c.unserved; }
     delete s.claims;
   }
 

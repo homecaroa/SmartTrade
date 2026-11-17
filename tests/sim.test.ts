@@ -203,7 +203,8 @@ describe("decisiones e incidencias", () => {
     while (s.week < b.week) {
       for (const o of [...s.offers]) if (o.kind === "distribucion") s = apply(s, { t: "aceptar", oferta: o.id });
       s = apply(s, { t: "cerrar" });
-      if (s.status === "incidencia") s = apply(s, { t: "responder", incidencia: s.pending!.id, opcion: s.pending!.kind === "mora" ? "reclamar" : "subcontratar" });
+      // Desde las reglas v9 también puede haber incidencias de reparto: se responden bien para llegar a la avería.
+      while (s.status === "incidencia") s = apply(s, { t: "responder", incidencia: s.pending!.id, opcion: s.pending!.kind === "mora" ? "reclamar" : s.pending!.kind === "averia" ? "subcontratar" : incidentOptions(s.pending!, s.version).find((o) => o.grade === "correcta")!.id });
     }
     return s;
   }
@@ -390,11 +391,14 @@ describe("documentación de cada operación", () => {
       const { state } = play(seed, "codiciosa");
       const pen = state.weeks.reduce((a, w) => a + w.costPenalties, 0);
       // Desde las reglas v4 esta partida también incluye indemnizaciones y costas de las reclamaciones, y desde la v6 las
-      // penalizaciones del almacén (rotura de stock, sobrestock, residuos).
-      const cash = state.ledger.filter((m) => /^(Sanciones|Indemnización|Laudo|Rotura|Sobrestock|Multa|Gestor)/.test(m.label)).reduce((a, m) => a - m.amount, 0);
+      // penalizaciones del almacén (rotura de stock, sobrestock, residuos), y desde la v9 las de los repartos (y el
+      // cobro de la paralización, que entra con signo contrario).
+      const cash = state.ledger.filter((m) => /^(Sanciones|Indemnización|Laudo|Rotura|Sobrestock|Multa|Gestor|Mercancía desaparecida|Retorno y nueva|Daños por mala|Discusión|Palés que faltan|Gastos de la discusión|Kilómetros de más)/.test(m.label)).reduce((a, m) => a - m.amount, 0);
       expect(pen).toBeCloseTo(cash, 2);
-      expect(state.contracts.filter((c) => c.docPenalized).length * 1).toBeGreaterThanOrEqual(pen > 0 ? 1 : 0);
-      if (pen > 0) hits++;
+      // Lo que es de documentación se paga una vez por contrato: hay al menos un contrato marcado si hubo sanciones.
+      const docs = state.ledger.filter((m) => m.label === "Sanciones y reclamaciones por documentación").reduce((a, m) => a - m.amount, 0);
+      expect(state.contracts.filter((c) => c.docPenalized).length).toBeGreaterThanOrEqual(docs > 0 ? 1 : 0);
+      if (docs > 0) hits++;
       expect(balanceGap(state)).toBe(0);
     }
     expect(hits).toBeGreaterThan(0);
@@ -471,7 +475,7 @@ describe("viajes puntuales (v2) y versiones de reglas", () => {
   });
   it("las partidas nuevas empiezan con la versión actual", () => {
     expect(newGame(1).version).toBe(ENGINE_VERSION);
-    expect(ENGINE_VERSION).toBe(8);
+    expect(ENGINE_VERSION).toBe(9);
   });
 });
 
@@ -1141,4 +1145,51 @@ describe("preguntas de los informes mensuales (17/11/2026)", () => {
     expect(() => apply(r2, { t: "pregunta", pregunta: q.id, opcion: ok.id })).toThrow();
     expect(() => apply(s, { t: "pregunta", pregunta: "m9-cobro", opcion: "ok" })).toThrow();
   });
+});
+
+describe("incidencias en los repartos (reglas v9, 17/11/2026)", () => {
+  /** Partida en la que está pendiente la incidencia de reparto del tipo pedido. */
+  function at(type: string): SimState {
+    for (const sd of SEEDS) {
+      let s = newGame(sd);
+      for (const a of play(sd, "selectiva").actions) { if (s.status === "incidencia" && s.pending?.id === `reparto-${type}`) return s; s = apply(s, a); }
+    }
+    throw new Error(`sin incidencia ${type}`);
+  }
+  const settle = (x: SimState) => { while (x.status === "incidencia") x = apply(x, { t: "responder", incidencia: x.pending!.id, opcion: incidentOptions(x.pending!, x.version).find((o) => o.grade === "correcta")!.id }); return x; };
+  const pick = (s: SimState, opcion: string) => settle(apply(s, { t: "responder", incidencia: s.pending!.id, opcion }));
+  const week = (s: SimState, w: number) => s.weeks.find((x) => x.week === w)!;
+  it("solo en partidas v9, cada tipo una vez por temporada, con una sola respuesta correcta", () => {
+    for (const sd of SEEDS.slice(0, 20)) {
+      expect(play(sd, "selectiva", 8).actions.some((a) => a.t === "responder" && a.incidencia.startsWith("reparto-"))).toBe(false);
+      const ids = play(sd, "selectiva").actions.filter((a) => a.t === "responder" && a.incidencia.startsWith("reparto-")).map((a) => (a as { incidencia: string }).incidencia);
+      expect(new Set(ids).size).toBe(ids.length);
+    }
+    for (const t of ["ausente", "espera", "peso", "estiba", "bultos", "destino"]) {
+      const s = at(t);
+      expect(incidentOptions(s.pending!, s.version).filter((o) => o.grade === "correcta")).toHaveLength(1);
+    }
+  }, 120_000);
+  it("espera: reclamar la paralización (art. 22) es un ingreso; irse deja la entrega sin hacer y el cliente se va", () => {
+    const s = at("espera");
+    const amount = Number(s.pending!.data.indemnizacion);
+    expect(amount).toBe((Number(s.pending!.data.horas) - 2) * 40);
+    const ok = pick(s, "reclamar");
+    expect(ok.ledger.some((m) => m.week === s.week && m.label.startsWith("Indemnización por paralización") && m.amount === amount)).toBe(true);
+    const gone = pick(s, "irse");
+    expect(week(gone, s.week).serviceLevel).toBeLessThan(week(ok, s.week).serviceLevel);
+    const client = s.pending!.data.client;
+    expect(gone.contracts.filter((c) => c.clientId === client && c.endWeek > s.week).every((c) => c.cancelledWeek === s.week + 1)).toBe(true);
+    for (const x of [ok, gone]) expect(balanceGap(x)).toBe(0);
+  }, 60_000);
+  it("las malas decisiones cuestan lo que dice su corrección y las buenas no", () => {
+    const cases: [string, string, number][] = [["ausente", "puerta", 900], ["peso", "salir", 1200], ["estiba", "indicar", 800], ["bultos", "firmar", 700]];
+    for (const [t, bad, cost] of cases) {
+      const s = at(t);
+      const good = pick(s, incidentOptions(s.pending!, s.version).find((o) => o.grade === "correcta")!.id);
+      const wrong = pick(s, bad);
+      expect(round2(week(wrong, s.week).costPenalties - week(good, s.week).costPenalties)).toBeCloseTo(cost, 2);
+      expect(balanceGap(wrong)).toBe(0);
+    }
+  }, 120_000);
 });
