@@ -11,7 +11,8 @@ import { semesterKey } from "./calendar";
  * por carretera, con lo que dice la Ley 15/2009 (comprobada en el BOE el 17/11/2026):
  * - «ausente»: el destinatario no está. Se avisa al cargador y se esperan instrucciones; sus gastos los paga él
  *   (art. 36.1 y 36.3). Hasta la entrega, la mercancía es responsabilidad tuya (art. 47.1).
- * - «espera»: más de dos horas esperando para descargar dan derecho a una indemnización por paralización (art. 22).
+ * - «espera»: más de una hora esperando para cargar o descargar da derecho a una indemnización por paralización (art. 22,
+ *   redacción vigente desde el 02/03/2022; las reglas v9 calculaban con la original de 2009, dos horas: ver DELIVERY).
  * - «peso»: si sospechas que el peso declarado es falso, puedes comprobarlo; si lo era, los gastos los paga el cargador
  *   (art. 26.1).
  * - «estiba»: la carga y la estiba son del cargador, salvo pacto; pero si la hizo siguiendo tus instrucciones, respondes tú
@@ -47,16 +48,19 @@ export function deliveryIncidents(s: SimState): Incident[] {
     prompt: `Tu conductor llega con la carga de ${name} a la dirección de la carta de porte y la nave del destinatario está cerrada. Nadie contesta al teléfono.` }];
   if (type === "espera") {
     const h = intIn(r, DELIVERY.waitHours.min, DELIVERY.waitHours.max);
-    Object.assign(data, { horas: h, horas_cobrables: h - 2, indemnizacion: (h - 2) * DELIVERY.paralizacionPerHour });
+    // v10: la ley vigente no cuenta la primera hora; la v9 descontaba dos (redacción de 2009). `horas_libres` solo desde la
+    // v10, para que el estado de las partidas v9 guardadas no cambie.
+    const free = s.version >= 10 ? DELIVERY.freeHours : DELIVERY.freeHoursV9;
+    Object.assign(data, { horas: h, horas_cobrables: h - free, indemnizacion: (h - free) * DELIVERY.paralizacionPerHour, ...(s.version >= 10 ? { horas_libres: free } : {}) });
     return [{ ...base, title: "Horas esperando para descargar", data,
-      concept: "Si el camión espera más de dos horas a que lo carguen o descarguen por causas que no son del transportista, este puede exigir al cargador una indemnización por paralización: dos veces el IPREM/día por hora, sin contar las dos primeras (Ley 15/2009, art. 22).",
+      concept: `Si el camión espera más de una hora a que lo carguen o descarguen por causas que no son del transportista, este puede exigir al cargador una indemnización por paralización: dos veces el IPREM/día por cada hora o fracción, sin contar la primera (Ley 15/2009, art. 22, redacción vigente desde el 02/03/2022).${s.version >= 10 ? "" : " Esta partida usa las reglas v9, que calculaban con la redacción original de 2009 (sin contar las dos primeras horas): por eso aquí se descuentan dos."}`,
       prompt: `El cliente del destino de ${name} tiene a tu camión ${h} horas esperando para descargar, aunque llegó a la hora pactada.` }];
   }
   if (type === "peso") return [{ ...base, title: "El peso declarado no cuadra", data,
     concept: "Si hay sospechas fundadas de que la declaración del cargador es falsa, el transportista puede comprobar el peso y las medidas; si la declaración era falsa, los gastos de la comprobación los paga el cargador (Ley 15/2009, art. 26.1).",
     prompt: `Al cargar para ${name}, la carta de porte dice 9 t, pero el camión va claramente más hundido de lo normal y el conductor sospecha que llevan bastante más.` }];
   if (type === "estiba") return [{ ...base, title: "La carga está mal estibada", data,
-    concept: "Salvo pacto, la carga y la estiba son del cargador, y los daños que causen también (Ley 15/2009, art. 20). Pero si el cargador estiba siguiendo las instrucciones del transportista, los daños por mala estiba son del transportista (art. 20.2).",
+    concept: "La carga y la estiba son del cargador, y los daños que causen también, salvo que se pacte por escrito que las haga el transportista a cambio de un suplemento (Ley 15/2009, art. 20.1, redacción vigente desde el 02/03/2022). Pero si el cargador estiba siguiendo las instrucciones del transportista, los daños por mala estiba son del transportista (art. 20.2).",
     prompt: `El personal de ${name} ha cargado los palés sin calzar y apilados de forma inestable. Tienen prisa y piden a tu conductor que salga ya.` }];
   if (type === "bultos") return [{ ...base, title: "Los bultos no coinciden con la carta de porte", data: { ...data, palets_documento: 14, palets_cargados: 14 - DELIVERY.missingPallets },
     concept: "Los bultos tienen que estar identificados y coincidir con lo que dice la carta de porte (Ley 15/2009, art. 21.1). Una diferencia se anota al cargar: si no, al entregar parecerá que se han perdido en tu camión.",
@@ -80,7 +84,7 @@ export function deliveryOptions(inc: Incident): IncidentOption[] {
       o("volver", "Volver al almacén y repetir la entrega mañana sin decir nada", "razonable", `La mercancía queda a salvo, pero sin avisar al cargador no puedes cobrarle los gastos: el retorno y la nueva entrega (${eur(DELIVERY.returnTripCost)}) los pagas tú.`),
     ];
     case "espera": return [
-      o("reclamar", "Anotar las horas de llegada y de salida en el documento de entrega y reclamar la paralización al cargador", "correcta", `Correcto: pasadas dos horas hay derecho a indemnización (art. 22). ${d.horas_cobrables} horas cobrables × ${eur(DELIVERY.paralizacionPerHour)} = ${eur(Number(d.indemnizacion))} (importe simulado: depende del IPREM). Sin las horas anotadas, no podrías probarlo.`),
+      o("reclamar", "Anotar las horas de llegada y de salida en el documento de entrega y reclamar la paralización al cargador", "correcta", `Correcto: pasada la primera hora hay derecho a indemnización (art. 22)${d.horas_libres === undefined ? "; con las reglas v9 de esta partida se descuentan dos" : ""}. ${d.horas_cobrables} horas cobrables × ${eur(DELIVERY.paralizacionPerHour)} = ${eur(Number(d.indemnizacion))} (importe simulado: depende del IPREM). Sin las horas anotadas, no podrías probarlo.`),
       o("irse", "Irte sin descargar para no perder más tiempo", "grave", "Dejas la entrega sin hacer: el cliente no recibe su mercancía, falla tu servicio y lo pierdes como cliente. La espera se reclama, no se resuelve marchándose."),
       o("esperar", "Esperar sin decir nada: es lo normal en el sector", "razonable", "Entregas, pero pierdes el dinero que la ley te reconoce por la espera (art. 22) y el cliente se acostumbra a hacerte esperar."),
     ];

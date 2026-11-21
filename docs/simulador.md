@@ -649,7 +649,7 @@ Las tablas muestran las últimas 4 semanas, o toda la temporada con un botón. S
 | Incidencia | Lo correcto | Base legal | Errores típicos y su coste [S] |
 |---|---|---|---|
 | **Destinatario ausente** | Avisar al cargador y esperar instrucciones; sus gastos los paga él | Art. 36 | Dejar los palés en la puerta: respondes hasta la entrega (art. 47.1), 900 € y pierdes el cliente. Volver sin avisar: 180 € a tu cargo. |
-| **Horas esperando para descargar** | Anotar las horas y reclamar la paralización | Art. 22: más de 2 horas; 40 €/hora con el IPREM no comprobado | Irse sin descargar: servicio fallado y el cliente se va. |
+| **Horas esperando para descargar** | Anotar las horas y reclamar la paralización | Art. 22: más de 1 hora, sin contar la primera (redacción vigente; la v9 contaba con la de 2009, 2 horas: ver §17 quattuordecies); 40 €/hora con el IPREM no comprobado | Irse sin descargar: servicio fallado y el cliente se va. |
 | **Peso declarado sospechoso** | Pesar la carga; si la declaración era falsa, paga el cargador | Art. 26.1 | Salir igualmente: multa de 1.200 €. |
 | **Mala estiba del cargador** | Que la corrijan y, si no, dejarlo por escrito | Art. 20 | Indicarles tú cómo estibar sin dejarlo escrito: respondes de los daños (art. 20.2), 800 €. |
 | **Bultos que no coinciden con la carta de porte** | Anotar la diferencia al cargar | Art. 21.1 | Firmar tal cual: pagas los palés que faltan, 700 €. |
@@ -660,6 +660,19 @@ Las tablas muestran las últimas 4 semanas, o toda la temporada con un botón. S
 - Las seis salen en todas las partidas de la estrategia selectiva.
 
 **Versiones:** solo partidas nuevas. 240 partidas v1–v8 del motor publicado se reproducen idénticas; 630 partidas aleatorias v1–v9 sin fallos.
+
+## 17 quattuordecies. Corrección legal: art. 22 y art. 20.1 (21/11/2026, reglas v10)
+
+**Qué estaba mal.** La incidencia «Horas esperando para descargar» (v9) decía que la paralización se indemniza pasadas **dos horas** y sin contar **las dos primeras**. Esa es la redacción **original de 2009** de la Ley 15/2009, art. 22. Desde la modificación publicada el 02/03/2022, la ley dice «un plazo superior a una hora» y «sin que se tenga en cuenta la primera hora». Se comprobó el 21/11/2026 comparando en el BOE el texto inicial (12/11/2009) con el vigente (última actualización publicada el 15/04/2026).
+
+**Corrección:**
+- **Reglas v10** (partidas nuevas): se descuenta solo la primera hora.
+- **Partidas v9 guardadas:** conservan su cálculo, para que se reproduzcan igual, pero el texto explica ya la ley vigente y avisa de que esa partida descontaba dos horas.
+- **Estiba:** el texto se precisa con el art. 20.1 vigente. La carga y la estiba son del cargador salvo pacto **por escrito** con un **suplemento**; antes de 2022 bastaba con que el transportista las asumiera.
+
+**Auditoría del resto.** Se contrastaron con el texto vigente los demás artículos de la Ley 15/2009 que cita el simulador: 6.1, 10, 12, 20.2, 21.1, 26.1, 29.1, 36.1, 36.3, 41, 47, 48.1, 56, 57.1, 57.2, 60.1, 60.3 y 61. Todos siguen igual que en 2009.
+
+**Para la fase B (gasóleo):** el art. 38 vigente hace **obligatoria y automática** la revisión del precio cuando el combustible varía un 5 % o más, salvo un umbral menor pactado por escrito. En el transporte continuado, la revisión se hace en cada periodo de facturación. El pacto en contrario es nulo (art. 38.3). Por tanto, no es una cláusula que se negocie.
 
 ## 18. Ejemplo comentado: primeras 3 semanas [S]
 
