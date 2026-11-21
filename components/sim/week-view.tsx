@@ -9,7 +9,8 @@ import { organizeBlocked, WORKER_WEEK, workCapacityAt, workCommitted, workersAt 
 import { clientOf, kmOf, REPUTATION_ALL_PRICES_FROM, reputationEffect, weeklyRevenue, workOf } from "@/lib/sim/market";
 import type { Action, GrowthOption, Offer, SimState, WeekRecord } from "@/lib/sim/model";
 import { weekLines, type LineMargin } from "@/lib/sim/lines";
-import { GROWTH, P, payTermLabel, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
+import { CAREER_DEEP, GROWTH, INTERNATIONAL, P, payTermLabel, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
+import { fullCost, gradeEstimate, isDeep } from "@/lib/sim/deep";
 import { CAREER_YEARS, lastWeekOf, modeOf, weekLabel } from "@/lib/sim/calendar";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
@@ -234,6 +235,7 @@ export function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction:
   const room = o.kind === "almacenaje" ? 0 : subcontractRoom(s, o);
   const [error, setError] = useState<string | null>(null);
   const rounds = o.round ?? 0;
+  const deep = isDeep(s);
   const propose = () => {
     const v = Number(rate.replace(",", "."));
     const w = o.kind === "puntual" || o.kind === "internacional" ? 1 : Number(weeks);
@@ -254,11 +256,13 @@ export function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction:
       })()}
       {o.kind === "almacenaje" && o.movesWeek !== undefined && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (solo el sitio), más {o.movesWeek} movimientos a <b>{n2(o.moveRate!)} €</b> y {o.linesWeek} líneas de pedido a <b>{n2(o.lineRate!)} €</b> por semana, durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana. Trabajo: un {Math.round(workOf(o) * 100)} % de un mozo.</p>}
       {o.kind === "almacenaje" && o.movesWeek === undefined && <p>{o.pallets} palés a <b>{n2(o.palletRate!)} €/palé/semana</b> (manipulación incluida) durante {o.weeks} semanas → {fmtEur(weeklyRevenue(o))}/semana.</p>}
+      {deep && <DeepFicha o={o} s={s} onAction={onAction} />}
       <p className="text-xs text-slate-600">Pago a {payTermLabel(o.payWeeks)} · {h.paid || h.overdue ? <><b>Tu experiencia:</b> {historyText(h)}</> : h.invoices ? <><b>Ya trabajas con este cliente:</b> aún no ha vencido ninguna factura. Referencias: {o.clientHint}</> : o.clientHint}</p>
       <ul className="space-y-0.5 text-xs" aria-label="Efecto en tu capacidad">{offerImpact(s, o).map((x) => <li key={x.text} className={`rounded px-1.5 py-0.5 ${x.over ? "bg-rose-50 font-semibold text-rose-800" : "bg-slate-50 text-slate-700"}`}>{x.over ? "⚠ " : "✓ "}{x.text}</li>)}</ul>
       {o.note && <p className={`rounded p-1.5 text-xs ${o.agreed ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900"}`}><b>{c.name.replace(" (ficticia)", "")}:</b> {o.note} {o.agreed ? "Confirma la operación preparando la documentación." : `Su oferta inicial era ${n2(base.rate)} ${UNIT[o.kind]}.`}</p>}
 
-      {mode === "ver" && (
+      {deep && o.estimate === undefined && <EstimateForm o={o} onAction={onAction} />}
+      {mode === "ver" && !(deep && o.estimate === undefined) && (
         <div className="flex flex-wrap gap-2 pt-1">
           <button type="button" onClick={() => setMode("documentar")} className="rounded border border-indigo-600 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-50">{o.agreed ? "Confirmar el acuerdo" : o.round ? "Aceptar su contraoferta" : "Aceptar tal cual"}</button>
           {!o.agreed && rounds < MAX_ROUNDS + 1 && <button type="button" onClick={() => setMode("negociar")} className="rounded border border-slate-300 px-3 py-1 text-xs hover:bg-slate-100">Negociar{rounds ? ` (ronda ${rounds + 1})` : ""}</button>}
@@ -405,4 +409,52 @@ function historyText(h: ReturnType<typeof clientHistory>): string {
   if (h.paid) parts.push(h.paidLate ? `de ${h.paid} ${h.paid === 1 ? "factura cobrada" : "facturas cobradas"}, ${h.paidLate} con retraso (hasta ${h.maxDelayWeeks} ${h.maxDelayWeeks === 1 ? "semana" : "semanas"})` : `te ha pagado a tiempo ${h.paid === 1 ? "la factura cobrada" : `las ${h.paid} facturas cobradas`}`);
   if (h.overdue) parts.push(`${h.overdue} ${h.overdue === 1 ? "factura vencida sin pagar" : "facturas vencidas sin pagar"}`);
   return parts.join("; ") + ".";
+}
+
+/**
+ * Carrera v11 (lib/sim/deep.ts): la solicitud del cliente con su ficha, el informe comercial y, una vez hecho, tu
+ * escandallo corregido. Sin escandallo no se puede negociar ni aceptar.
+ */
+function DeepFicha({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Action) => void }) {
+  const c = clientOf(o.clientId);
+  const f = o.ficha;
+  const report = s.answers[`informe-${c.id}`];
+  const g = o.estimate !== undefined ? gradeEstimate(o, o.estimate) : null;
+  return (
+    <div className="space-y-1 rounded border border-slate-200 bg-slate-50 p-2 text-xs">
+      {f && <p><b>Solicitud:</b> {f.goods}, {f.pallets} palés ({f.tonnes.toLocaleString("es-ES")} t){f.route ? <>, de Valencia a <b>{f.route}</b> ({f.kmOneWay} km), {f.trips} {f.trips === 1 ? "viaje" : "viajes"} a la semana con la vuelta en vacío</> : null}. Valor de la mercancía: unos {f.valuePerKg.toLocaleString("es-ES")} €/kg. {o.kind === "distribucion" || o.kind === "almacenaje" ? `Contrato de ${o.weeks} semanas.` : ""}</p>}
+      {report
+        ? <p><b>Informe comercial:</b> {c.profile === "tardio" ? "suele pagar con 1 a 3 semanas de retraso sobre el vencimiento." : "paga a su vencimiento; sin incidencias de cobro."}</p>
+        : <p className="flex flex-wrap items-center gap-2"><span>Sobre sus pagos solo tienes referencias de terceros.</span><button type="button" disabled={s.status !== "jugando"} onClick={() => onAction({ t: "informe", cliente: c.id })} className="rounded border border-slate-300 bg-white px-2 py-0.5 hover:bg-slate-100 disabled:opacity-50">Pedir informe comercial ({fmtEur(CAREER_DEEP.reportCost)})</button></p>}
+      {g && <div className={`rounded p-1.5 ${g.grade === "correcta" ? "bg-emerald-50 text-emerald-900" : g.grade === "razonable" ? "bg-amber-50 text-amber-900" : "bg-rose-50 text-rose-900"}`}><p><b>Tu escandallo: {o.estimate!.toLocaleString("es-ES")} {g.real.unit}.</b> {g.feedback}</p></div>}
+    </div>
+  );
+}
+
+/** Escandallo de la Carrera: el coste completo de la operación, calculado por el jugador con los datos de su empresa. */
+function EstimateForm({ o, onAction }: { o: Offer; onAction: (a: Action) => void }) {
+  const [v, setV] = useState("");
+  const [err, setErr] = useState<string | null>(null);
+  const unit = fullCost(o).unit;
+  const what = o.kind === "distribucion" ? "por km recorrido" : o.kind === "almacenaje" ? "por semana (sitio y trabajo del mozo)" : "del viaje completo (ida y vuelta)";
+  const send = () => { const x = Number(v.replace(",", ".")); if (!(x > 0)) { setErr("Escribe un coste mayor que cero."); return; } setErr(null); onAction({ t: "escandallo", oferta: o.id, coste: x }); };
+  return (
+    <form className="space-y-1 rounded border border-indigo-200 p-2 text-xs" onSubmit={(e) => { e.preventDefault(); send(); }}>
+      <p><b>Escandallo:</b> antes de negociar o aceptar, calcula el coste completo de esta operación {what}: costes directos más la parte de los fijos de tu camión o tu almacén que ocupa. No incluyas el gerente ni la gestoría.</p>
+      <details><summary className="cursor-pointer text-indigo-800">Los costes de tu empresa</summary>
+        <ul className="mt-1 list-disc pl-4">
+          <li>Gasóleo, mantenimiento y peajes: {P.variablePerKm.toLocaleString("es-ES")} €/km.</li>
+          <li>Conductor {fmtEur(P.fixedMonthly.conductor)} y seguro {fmtEur(P.fixedMonthly.seguro)} al mes; amortización del camión {fmtEur(P.amortizationWeek)} a la semana. Un mes son 4 semanas.</li>
+          <li>El camión hace como mucho {TRUCK_KM_WEEK.toLocaleString("es-ES")} km a la semana en reparto ({P.kmPerDay} km al día, {P.workDays} días).</li>
+          <li>Viaje internacional: peajes extranjeros y dietas de {fmtEur(INTERNATIONAL.dietPerDay)} al día, además del gasóleo; el camión cuenta por días (5 a la semana).</li>
+          <li>Nave: alquiler {fmtEur(P.fixedMonthly.alquiler)} al mes para {P.warehousePallets} palés. Mozo: {fmtEur(P.fixedMonthly.mozo)} al mes; en una semana hace {WAREHOUSE_V6.movesPerWorker} movimientos o {WAREHOUSE_V6.linesPerWorker.toLocaleString("es-ES")} líneas de pedido.</li>
+        </ul>
+      </details>
+      <div className="flex flex-wrap items-end gap-2">
+        <label>Coste completo ({unit})<input value={v} onChange={(e) => setV(e.target.value)} inputMode="decimal" className="mt-0.5 block w-28 rounded border border-slate-300 px-1 py-0.5" /></label>
+        <button type="submit" className="rounded bg-indigo-600 px-3 py-1 font-semibold text-white">Comprobar el escandallo</button>
+      </div>
+      {err && <p role="alert" className="text-rose-700">{err}</p>}
+    </form>
+  );
 }

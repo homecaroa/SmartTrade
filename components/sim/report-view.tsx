@@ -9,6 +9,8 @@ import { WEEKS_PER_MONTH } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
 import { CAREER_YEARS, modeOf, weekLabel, weekOfYear, yearOf } from "@/lib/sim/calendar";
 import { incomeStatement, periods } from "@/lib/sim/statements";
+import { contractReviews, isDeep } from "@/lib/sim/deep";
+import { describeOffer } from "@/lib/sim/engine";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
 
@@ -75,6 +77,8 @@ export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action)
         </section>
       )}
 
+      {isDeep(s) && <ContractReviews s={s} />}
+
       <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="decisiones">
         <h2 id="decisiones" className="text-base font-semibold">Tus decisiones</h2>
         {s.learning.length === 0 ? <p className="text-sm text-slate-600">Aún no has tomado decisiones calificables.</p> : (
@@ -139,5 +143,35 @@ function QuestionCard({ q, s, onAction }: { q: MonthQuestion; s: SimState; onAct
       </fieldset>
       <button type="submit" disabled={!pick} className="rounded bg-indigo-600 px-3 py-1 text-sm font-semibold text-white disabled:opacity-50">Responder</button>
     </form>
+  );
+}
+
+/**
+ * Carrera v11: evaluación de cada contrato terminado. Margen previsto con TU escandallo frente al real (lo facturado
+ * menos el coste completo de lo que de verdad se hizo). Los más recientes, primero.
+ */
+function ContractReviews({ s }: { s: SimState }) {
+  const rs = contractReviews(s).sort((a, b) => b.ended - a.ended);
+  return (
+    <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="evaluaciones">
+      <h2 id="evaluaciones" className="text-base font-semibold">Contratos terminados: previsto frente a real</h2>
+      <p className="text-xs text-slate-600">Previsto: lo que habrías facturado y gastado con tu escandallo. Real: lo facturado de verdad menos el coste completo de lo que se hizo.</p>
+      {rs.length === 0 ? <p className="mt-1 text-sm text-slate-600">Aún no ha terminado ningún contrato con escandallo.</p> : (
+        <div className="mt-2 overflow-x-auto">
+          <table className="w-full text-sm">
+            <thead><tr className="border-b text-left"><th scope="col" className="py-1 pr-3">Operación</th><th scope="col" className="py-1 pr-3 text-right">Margen previsto</th><th scope="col" className="py-1 pr-3 text-right">Margen real</th><th scope="col" className="py-1 pr-3">Por qué</th></tr></thead>
+            <tbody>{rs.slice(0, 20).map((r) => (
+              <tr key={r.contract.id} className="border-b border-slate-100 align-top">
+                <th scope="row" className="py-1 pr-3 text-left font-normal">{describeOffer(r.contract)} <span className="text-xs text-slate-500">(hasta la semana {r.ended})</span></th>
+                <td className={`py-1 pr-3 text-right tabular-nums ${r.plannedMargin < 0 ? "text-rose-700" : ""}`}>{fmtEur(r.plannedMargin)}</td>
+                <td className={`py-1 pr-3 text-right tabular-nums font-semibold ${r.realMargin < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(r.realMargin)}</td>
+                <td className="py-1 pr-3 text-xs text-slate-700">{r.reasons.join(" ")}</td>
+              </tr>
+            ))}</tbody>
+          </table>
+          {rs.length > 20 && <p className="mt-1 text-xs text-slate-600">Se muestran los 20 más recientes de {rs.length}.</p>}
+        </div>
+      )}
+    </section>
   );
 }

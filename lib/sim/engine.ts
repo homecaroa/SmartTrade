@@ -6,11 +6,13 @@ import { mailById, replyExercise } from "./inbox";
 import { MONTH_QUESTION, monthQuestions } from "./questions";
 import { directCost, fixedShare } from "./international";
 import { applyWarehouseDecision, gradeOrganize, gradeStorage, isWarehouseIncident, organizeBlocked, warehouseIncidents, warehouseOptions, WORKER_WEEK, workCapacityAt, workCommitted } from "./warehouse";
-import { clientOf, handlingRevenue, kmOf, offersFor, REPUTATION_ALL_PRICES_FROM, workOf } from "./market";
+import { clientOf, CLIENTS, handlingRevenue, kmOf, offersFor, REPUTATION_ALL_PRICES_FROM, workOf } from "./market";
+const CLIENT_IDS = new Set(CLIENTS.map((c) => c.id));
 import type { Action, Contract, Grade, Growth, GrowthOption, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
-import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, WAREHOUSE_V6, P, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
+import { BREAKDOWN_WINDOWS, CAREER_DEEP, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, WAREHOUSE_V6, P, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
 import { intIn, stream } from "./rng";
 import { lastWeekOf, localWeek, modeOf, semesterKey, semesterOf, semesterSeed } from "./calendar";
+import { deepOffers, gradeEstimate, isDeep } from "./deep";
 
 /**
  * Motor del Business Simulator, Fase 1 (docs/simulador.md). Puro y determinista: el estado se obtiene aplicando las
@@ -32,9 +34,12 @@ export function newGame(seed: number, version: number = ENGINE_VERSION, mode?: "
   return {
     version, seed: seed >>> 0, ...(mode === "carrera" ? { mode } : {}), week: 1, status: "jugando",
     cash: P.initialCash, deposit: 0, truckValue: P.truckBookValue, equity0: P.initialCash + P.truckBookValue, result: 0, accruedFixed: 0,
-    receivables: [], payables: [], contracts: [], offers: offersFor(seed >>> 0, 1, 100, version), weeks: [], ledger: [], pending: null, answers: {}, negativeWeeks: 0, learning: [],
+    receivables: [], payables: [], contracts: [], offers: marketFor({ mode, version }, seed >>> 0, 1, 100), weeks: [], ledger: [], pending: null, answers: {}, negativeWeeks: 0, learning: [],
   };
 }
+
+/** Ofertas de una semana: las de siempre o, en la Carrera v11, pocas y más profundas (lib/sim/deep.ts). */
+const marketFor = (s: Pick<SimState, "mode" | "version">, seed: number, week: number, service: number) => (isDeep(s) ? deepOffers(seed, week, service, s.version) : offersFor(seed, week, service, s.version));
 
 const activeIn = (c: Contract, w: number) => c.startWeek <= w && w <= c.endWeek && !(c.cancelledWeek !== undefined && w >= c.cancelledWeek);
 export const kmCommitted = (s: Pick<SimState, "contracts">, w: number) => sum(s.contracts.filter((c) => activeIn(c, w)).map(kmOf));
@@ -294,6 +299,7 @@ function applyInPlace(s: SimState, a: Action): SimState {
     if (s.status !== "jugando") throw new Error(s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.");
     const o = s.offers.find((x) => x.id === a.oferta);
     if (!o) throw new Error("Oferta no disponible.");
+    if (isDeep(s) && o.estimate === undefined) throw new Error("Antes calcula el escandallo de esta operación.");
     if (a.retorno && !o.backhaul) throw new Error("Esta oferta no tiene carga de retorno.");
     if (a.subcontratar && o.kind === "almacenaje") throw new Error("El almacenaje no se puede subcontratar.");
     if (a.subcontratar && o.kind === "internacional") throw new Error("Tus subcontratistas solo hacen transporte nacional.");
@@ -318,6 +324,7 @@ function applyInPlace(s: SimState, a: Action): SimState {
     if (s.status !== "jugando") throw new Error(s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.");
     const o = s.offers.find((x) => x.id === a.oferta);
     if (!o) throw new Error("Oferta no disponible.");
+    if (isDeep(s) && o.estimate === undefined) throw new Error("Antes calcula el escandallo de esta operación.");
     const p: Terms = { rate: a.tarifa, weeks: o.kind === "puntual" ? 1 : a.semanas, payWeeks: a.plazo };
     const invalid = validateProposal(o, p);
     if (invalid) throw new Error(invalid);
@@ -335,6 +342,28 @@ function applyInPlace(s: SimState, a: Action): SimState {
       const gain = round2((reply.terms.rate / base.rate - 1) * 100);
       learn(s, { week: s.week, what: `Negociación con ${name}`, answer: `Propusiste ${n2(p.rate)}`, grade: gain >= 0 ? "correcta" : "razonable", feedback: gain > 0 ? `Acuerdo un ${n2(gain)} % por encima de su tarifa inicial.` : gain === 0 ? "Acuerdo con la tarifa inicial y tus condiciones." : `Acuerdo, pero ${n2(-gain)} % por debajo de su tarifa inicial: has cedido precio sin necesidad.`, competences: ["0824-RA3"] });
     }
+    return s;
+  }
+  if (a.t === "escandallo") {
+    if (!isDeep(s)) throw new Error("El escandallo forma parte de las operaciones de la Carrera.");
+    if (s.status !== "jugando") throw new Error(s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.");
+    const o = s.offers.find((x) => x.id === a.oferta);
+    if (!o) throw new Error("Oferta no disponible.");
+    if (o.estimate !== undefined) throw new Error("Ya hiciste el escandallo de esta operación.");
+    if (!(a.coste > 0) || !Number.isFinite(a.coste)) throw new Error("Escribe un coste mayor que cero.");
+    const g = gradeEstimate(o, a.coste);
+    s.offers = s.offers.map((x) => (x.id === o.id ? { ...x, estimate: round2(a.coste) } : x));
+    learn(s, { week: s.week, what: `Escandallo: ${describeOffer(o)}`, answer: `${round2(a.coste).toLocaleString("es-ES")} ${g.real.unit}`, grade: g.grade, feedback: g.feedback, competences: o.kind === "almacenaje" ? ["0625-RA3"] : ["0622-RA3"] });
+    return s;
+  }
+  if (a.t === "informe") {
+    if (!isDeep(s)) throw new Error("El informe comercial forma parte de las operaciones de la Carrera.");
+    if (s.status !== "jugando") throw new Error(s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.");
+    if (!CLIENT_IDS.has(a.cliente)) throw new Error("Cliente desconocido.");
+    const key = `informe-${a.cliente}`;
+    if (s.answers[key]) throw new Error("Ya tienes el informe de este cliente.");
+    s.answers[key] = "pedido";
+    (s.services ??= []).push({ label: `Informe comercial de ${clientOf(a.cliente).name}`, amount: CAREER_DEEP.reportCost });
     return s;
   }
   if (a.t === "crecer") {
@@ -542,6 +571,11 @@ function resolveWeek(s: SimState) {
     delete s.claims;
   }
 
+  // Servicios externos contratados esta semana (Carrera v11: informes comerciales): se pagan al cerrarla.
+  let costServices = 0;
+  if (s.services) { for (const x of s.services) { costServices += x.amount; move(x.label, -x.amount); } delete s.services; }
+  costServices = round2(costServices);
+
   // Facturas: vencen según el plazo pactado; un cliente tardío paga 1-3 semanas después (según la semilla).
   for (const { c, amount } of invoices) {
     const due = w + c.payWeeks;
@@ -571,7 +605,7 @@ function resolveWeek(s: SimState) {
   costFinancial = round2(costFinancial);
   // Horas extra, temporales y la reorganización ABC: se pagan con las nóminas del mes.
   s.accruedFixed = round2(s.accruedFixed + costStaff);
-  const result = round2(revenueTransport + revenueWarehouse - costVariable - costSubcontract - repair - costPenalties - costFinancial - costStaff - fixed - amortization);
+  const result = round2(revenueTransport + revenueWarehouse - costVariable - costSubcontract - repair - costPenalties - costFinancial - costStaff - costServices - fixed - amortization);
   s.result = round2(s.result + result);
 
   // Caja: cobros y pagos que vencen esta semana; fijos cada 4 semanas.
@@ -587,7 +621,7 @@ function resolveWeek(s: SimState) {
 
   const rec: WeekRecord = {
     week: w, kmCapacity: capacity, kmCommitted: kmCommitted(s, w), kmOwn, kmSubcontracted: kmSub, kmUnserved, palletsCommitted: palletsCommitted(s, w), palletsStored: stored,
-    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: fixed, costPenalties, costFinancial, palletCapacity, ...(v6 ? { workLoad, workCapacity, workUnserved, costStaff } : {}), ...(held ? { palletsHeld: held } : {}), amortization, result,
+    revenueTransport, revenueWarehouse, costVariable, costSubcontract, costRepair: repair, costFixed: fixed, costPenalties, costFinancial, palletCapacity, ...(v6 ? { workLoad, workCapacity, workUnserved, costStaff } : {}), ...(held ? { palletsHeld: held } : {}), ...(costServices ? { costServices } : {}), amortization, result,
     collections: round2(collections), payments: round2(payments), cashEnd: s.cash, serviceLevel, notes,
   };
   s.weeks.push(rec);
@@ -600,7 +634,7 @@ function resolveWeek(s: SimState) {
   if (s.lowServiceWeeks >= SERVICE_FLOOR.weeks) { s.status = "quiebra"; s.endReason = `Tu nivel de servicio ha estado por debajo del ${SERVICE_FLOOR.pct} % ${SERVICE_FLOOR.weeks} semanas seguidas: tus clientes clave se van y la empresa no puede seguir.`; return; }
   if (w >= lastWeekOf(s)) { s.status = "fin"; return; }
   s.week = w + 1;
-  s.offers = offersFor(s.seed, s.week, serviceLevelToDate(s), s.version);
+  s.offers = marketFor(s, s.seed, s.week, serviceLevelToDate(s));
 }
 
 // ── Lecturas para la interfaz y las pruebas ───────────────────────────────────────────────────────────────────────

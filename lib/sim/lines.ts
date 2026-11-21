@@ -9,7 +9,8 @@ import { GROWTH, P, WEEKS_PER_MONTH } from "./params";
  * - Transporte: ingresos de transporte − gasóleo, subcontratación y reparaciones − conductor(es), seguro, renting y
  *   amortización del camión o los camiones.
  * - Almacén: ingresos del almacén − alquiler(es), mozo(s), horas extra, temporales y reorganización.
- * - Estructura: gerente, gestoría, sanciones, indemnizaciones e intereses (no dependen de una sola línea).
+ * - Estructura: gerente, gestoría, sanciones, indemnizaciones, intereses e informes comerciales (Carrera v11): no
+ *   dependen de una sola línea.
  * También mide el uso de la capacidad y lo que costó la que no se usó (la parte de los costes fijos de esa línea que
  * corresponde a lo que quedó libre): capacidad ociosa.
  */
@@ -39,7 +40,7 @@ export function weekLines(s: Pick<SimState, "growth">, r: WeekRecord): WeekLines
   const aCosts = round2(aFixed + (r.costStaff ?? 0));
   const capacity = r.palletCapacity ?? P.warehousePallets;
   const aUse = capacity ? Math.min(1, (r.palletsStored - (r.palletsHeld ?? 0)) / capacity) : 0;
-  const eCosts = round2(f.estructura + r.costPenalties + (r.costFinancial ?? 0));
+  const eCosts = round2(f.estructura + r.costPenalties + (r.costFinancial ?? 0) + (r.costServices ?? 0));
   return {
     transporte: { revenue: r.revenueTransport, costs: tCosts, margin: round2(r.revenueTransport - tCosts), use: Math.round(tUse * 100), idleCost: round2(tFixed * (1 - tUse)) },
     almacen: { revenue: r.revenueWarehouse, costs: aCosts, margin: round2(r.revenueWarehouse - aCosts), use: Math.round(aUse * 100), idleCost: round2(aFixed * (1 - aUse)) },

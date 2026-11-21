@@ -25,7 +25,7 @@ export interface Period { kind: PeriodKind; index: number; from: number; to: num
 
 export interface IncomeStatement {
   revenueTransport: number; revenueWarehouse: number; revenue: number;
-  costVariable: number; costSubcontract: number; costRepair: number; costStaff: number; costFixed: number; costPenalties: number;
+  costVariable: number; costSubcontract: number; costRepair: number; costStaff: number; costFixed: number; costPenalties: number; costServices: number;
   ebitda: number; amortization: number; costFinancial: number; result: number;
   ebitdaMarginPct: number | null;
 }
@@ -72,11 +72,11 @@ export function incomeStatement(s: SimState, from: number, to: number): IncomeSt
   const revenueTransport = sumOf(ws, (w) => w.revenueTransport), revenueWarehouse = sumOf(ws, (w) => w.revenueWarehouse);
   const revenue = round2(revenueTransport + revenueWarehouse);
   const costVariable = sumOf(ws, (w) => w.costVariable), costSubcontract = sumOf(ws, (w) => w.costSubcontract), costRepair = sumOf(ws, (w) => w.costRepair);
-  const costStaff = sumOf(ws, (w) => w.costStaff ?? 0), costFixed = sumOf(ws, (w) => w.costFixed), costPenalties = sumOf(ws, (w) => w.costPenalties);
-  const ebitda = round2(revenue - costVariable - costSubcontract - costRepair - costStaff - costFixed - costPenalties);
+  const costStaff = sumOf(ws, (w) => w.costStaff ?? 0), costFixed = sumOf(ws, (w) => w.costFixed), costPenalties = sumOf(ws, (w) => w.costPenalties), costServices = sumOf(ws, (w) => w.costServices ?? 0);
+  const ebitda = round2(revenue - costVariable - costSubcontract - costRepair - costStaff - costFixed - costPenalties - costServices);
   const amortization = sumOf(ws, (w) => w.amortization), costFinancial = sumOf(ws, (w) => w.costFinancial ?? 0);
   const result = round2(ebitda - amortization - costFinancial);
-  return { revenueTransport, revenueWarehouse, revenue, costVariable, costSubcontract, costRepair, costStaff, costFixed, costPenalties, ebitda, amortization, costFinancial, result, ebitdaMarginPct: revenue ? round2(ebitda / revenue * 100) : null };
+  return { revenueTransport, revenueWarehouse, revenue, costVariable, costSubcontract, costRepair, costStaff, costFixed, costPenalties, costServices, ebitda, amortization, costFinancial, result, ebitdaMarginPct: revenue ? round2(ebitda / revenue * 100) : null };
 }
 
 const isInvestment = (label: string) => label === "Compra del segundo camión" || label.startsWith("Fianza");

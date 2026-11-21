@@ -26,6 +26,8 @@ const isAction = (a: unknown): a is Action => {
   if (x.t === "proponer") return typeof x.oferta === "string" && [x.tarifa, x.semanas, x.plazo].every((n) => typeof n === "number" && Number.isFinite(n));
   if (x.t === "responder") return typeof x.incidencia === "string" && typeof x.opcion === "string";
   if (x.t === "pregunta") return typeof x.pregunta === "string" && typeof x.opcion === "string";
+  if (x.t === "escandallo") return typeof x.oferta === "string" && typeof x.coste === "number" && Number.isFinite(x.coste);
+  if (x.t === "informe") return typeof x.cliente === "string";
   return false;
 };
 

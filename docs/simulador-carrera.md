@@ -76,6 +76,54 @@ La Carrera es un modo de varios años del Business Simulator. La Temporada de 26
 
 No hay errores de consola ni desplazamiento horizontal en el móvil.
 
+## 1 bis. Fase B1: operaciones profundas (21/11/2026, reglas v11)
+
+Esta es la petición del dueño: «menos ofertas de trabajos y más profundidad en cada una». Solo cambian las Carreras **nuevas** (v11). La Temporada v11 se juega exactamente igual que la v10, y las Carreras v10 siguen con el mercado de la fase A.
+
+**Una operación pasa por estas fases** (`lib/sim/deep.ts`):
+
+1. **Solicitud (ficha):**
+   - mercancía, palés y toneladas, y su valor por kg;
+   - en distribución, el destino (distancias aproximadas, simuladas) y los viajes por semana;
+   - contrato de 8 a 26 semanas.
+2. **Informe comercial** (opcional, 90 €): revela cómo paga de verdad el cliente. Su coste se registra como «Informes comerciales» en la cuenta de resultados y en el reparto por líneas.
+3. **Escandallo** (obligatorio antes de negociar o aceptar):
+   - El jugador calcula el coste completo con los costes de su empresa, que tiene a mano en el formulario.
+   - Coste completo = costes directos + la parte de los fijos de la línea (conductor, seguro y amortización; alquiler y mozo). No incluye la estructura. Es una convención declarada.
+   - Se corrige así: a menos del 10 %, bien; a menos del 25 %, razonable; más lejos, error importante. La corrección explica cada partida y el margen.
+   - Si el precio no cubre el coste completo, la corrección cita la Ley 15/2009, art. 10 bis.1.g (desde el 02/08/2022, el precio pactado con el porteador efectivo debe cubrir sus costes efectivos; comprobado en el BOE el 21/11/2026).
+4. **Negociación y documentación:** las de siempre.
+5. **Evaluación** (Informe → «Contratos terminados»): margen previsto con tu escandallo frente al real. El real es lo facturado de verdad menos el coste completo de lo que se hizo. Cada contrato explica sus diferencias: cancelación, servicio no hecho o escandallo alejado.
+
+**Mercado.** Las ofertas salen de la lista de siempre de esa semana, pero llegan de 0 a 3 (1,55 de media, un tercio que en la Temporada). Son más grandes (×1,2–1,8), duran de 2 a 6 meses y se pagan un 20 % mejor. La semana 1 trae una distribución y un almacenaje.
+
+**Calibrado con estrategias automáticas, no con datos de mercado:**
+
+1. **Primer intento: 1 oferta de media.** Todas las estrategias quebraban. El camión solo es rentable casi lleno (1,30 €/km a 1.050 km por semana, 1,96 €/km a 600), los contratos llegaban a trozos y el almacén pasaba años medio vacío.
+2. **Siguiente intento: 1,55 de media con precio +10 %.** Seguía quebrando la mitad.
+3. **Resultado final** (10 carreras por estrategia):
+
+| Estrategia | Terminan los 5 años | Resultado por año |
+|---|---|---|
+| crecedora | 10 | +19 a +34 k€ |
+| prudente | 7 | entre −10 y +2 k€ |
+| selectiva | 8 | entre −12 y +2 k€ |
+| negociadora | 8 | entre −12 y −1 k€ |
+| nada | 0 | quiebra |
+| codiciosa | 0 | quiebra |
+
+**Lectura:** una empresa de un camión y con gerente no es rentable sin crecer. Crecer (segundo camión, nave y subcontratación) es lo que funciona.
+
+**Verificación:**
+- 14 pruebas nuevas (`tests/sim-deep.test.ts`).
+- 726 partidas de `main` (Temporadas v1–v10 y Carreras v10) se reproducen idénticas.
+- 10 mutaciones en rojo. Una estuvo en verde en la primera pasada («la evaluación ignora lo facturado»): en la partida de prueba todos los contratos se cumplían enteros. Se añadió un contrato cancelado a medias y ya se pone en rojo.
+- La app se ha abierto en escritorio y móvil.
+
+**Pendiente (B2):**
+- Gasóleo variable con la revisión **obligatoria** del art. 38 (no se negocia).
+- Paralizaciones (art. 22) y valor declarado (art. 61) como condiciones de la operación.
+
 ## 2. Límites conocidos de la fase A
 
 - El crecimiento tiene techo, como se mide en el §1.
