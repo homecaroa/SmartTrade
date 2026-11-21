@@ -44,12 +44,13 @@ function choose(strategy: Strategy, s: SimState): string {
 /** Margen por unidad de capacidad: €/km recorrido sobre el coste variable, o €/palé/semana. */
 const unitMargin = (o: Offer) => (o.kind === "internacional" ? (o.price! + (o.backhaul?.price ?? 0) - directCost(o).total) / kmOf(o) : o.kind === "distribucion" ? o.ratePerKm! - P.variablePerKm : o.kind === "puntual" ? (o.price! + (o.backhaul?.price ?? 0)) / (2 * o.kmOneWay!) - P.variablePerKm : o.palletRate!);
 
-export function play(seed: number, strategy: Strategy, version?: number): { state: SimState; actions: Action[]; maxGap: number } {
-  let s = newGame(seed, version);
+/** `mode`: «carrera» juega los 5 años (lib/sim/calendar.ts) con las mismas reglas de decisión. */
+export function play(seed: number, strategy: Strategy, version?: number, mode?: "carrera"): { state: SimState; actions: Action[]; maxGap: number } {
+  let s = newGame(seed, version, mode);
   const actions: Action[] = [];
   let maxGap = 0;
   const run = (a: Action) => { actions.push(a); s = apply(s, a); maxGap = Math.max(maxGap, Math.abs(balanceGap(s))); };
-  for (let guard = 0; guard < 400 && (s.status === "jugando" || s.status === "incidencia"); guard++) {
+  for (let guard = 0; guard < 400 * (mode === "carrera" ? 12 : 1) && (s.status === "jugando" || s.status === "incidencia"); guard++) {
     if (s.status === "incidencia" && s.pending) { run({ t: "responder", incidencia: s.pending.id, opcion: choose(strategy, s) }); continue; }
     const accept = (o: Offer, sub = false) => run({ t: "aceptar", oferta: o.id, docs: strategy === "codiciosa" ? [] : bestDocs(o.kind), ...(o.backhaul ? { retorno: true } : {}), ...(sub ? { subcontratar: true } : {}) });
     const grow = strategy === "crecedora";

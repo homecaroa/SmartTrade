@@ -39,6 +39,14 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 - Bandeja de correos sin IA (§17 duodecies). Clientes con persona propia; los internacionales escriben en inglés. Cada correo tiene una ficha de datos preparada para la IA futura.
 - Incidencias en los repartos (17/11/2026, reglas v9, §17 terdecies): destinatario ausente, espera para descargar, peso sospechoso, mala estiba, bultos que no coinciden y cambio de destino. Base: Ley 15/2009, arts. 20, 21, 22, 26, 29, 36 y 47, comprobados en el BOE.
 - Preguntas mensuales (17/11/2026): cinco al cerrar cada mes, unas 30 por temporada. Dos con tus números y tres de concepto, de un banco de 25. Next actualizado a 16.4.6 por seguridad: el build se negaba a compilar con 16.4.2.
+
+**Carrera, fase A** (21/11/2026, `docs/simulador-carrera.md`):
+- `/simulador/carrera`: 5 años (260 semanas) con el mismo motor. Los sucesos de la temporada se repiten cada semestre con otra semilla; las preguntas de concepto no se repiten dentro de un año. Se guarda aparte de la Temporada.
+- «Avanzar hasta la próxima decisión»: se para con incidencia, informe del mes, fin de contrato, aviso de caja o 13 semanas; no arranca sin trabajo comprometido.
+- Estados financieros por trimestre y año (resultados con EBITDA, balance reconstruido, flujos de caja), calculados sin guardar nada. Cuadran en todas las semanas.
+- Reproducción sin clonar en cada acción: cargar 5 años pasó de 2,6–4,7 s a 140–200 ms, así que no hacen falta instantáneas. Las preguntas mensuales dejaron de recalcularse en cascada.
+- La Temporada no cambia: 783 partidas de `main` (v1–v9) se reproducen con el estado idéntico.
+- Medido: con el contenido actual la empresa no crece en 5 años (techo de la Temporada). Lo resuelven las fases B–E. Pendiente del dueño: IVA, detalle del personal y duración.
 - Finanzas simplificada (16/11/2026): resumen con cuatro cifras, gráfico de caja frente a beneficio, tablas de 4 semanas y detalle contable plegado.
 - Responder en inglés (14/11/2026): tres borradores, uno correcto, uno informal y uno con un error técnico. Se califican y quedan en el informe (0824-RA2).
 

@@ -115,6 +115,8 @@ export type GameStatus = "jugando" | "incidencia" | "quiebra" | "fin";
 export interface SimState {
   version: number;
   seed: number;
+  /** Modo de juego (21/11/2026): sin él, Temporada de 26 semanas; «carrera», 5 años (lib/sim/calendar.ts). */
+  mode?: "carrera";
   week: number;
   status: GameStatus;
   cash: number;
@@ -160,4 +162,4 @@ export type Action =
   | { t: "pregunta"; pregunta: string; opcion: string }
   | { t: "cerrar" };
 
-export interface SaveFile { app: "smartrade-simulador"; version: number; seed: number; actions: Action[]; savedAt: string }
+export interface SaveFile { app: "smartrade-simulador"; version: number; seed: number; actions: Action[]; savedAt: string; mode?: "carrera" }

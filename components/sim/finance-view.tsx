@@ -8,6 +8,8 @@ import { clientOf } from "@/lib/sim/market";
 import type { SimState } from "@/lib/sim/model";
 import { fmtEur, sum } from "@/lib/learning/money";
 import { FinanceSummary } from "./finance-summary";
+import { StatementsView } from "./statements-view";
+import { modeOf } from "@/lib/sim/calendar";
 
 /**
  * Finanzas (simplificada el 16/11/2026, petición del dueño: «poco intuitiva, muchos números, muchas semanas»).
@@ -16,7 +18,9 @@ import { FinanceSummary } from "./finance-summary";
  */
 export function FinanceView({ s }: { s: SimState }) {
   const [period, setPeriod] = useState<"4" | "todo">("4");
-  const shown = period === "4" ? s.weeks.slice(-4) : s.weeks;
+  // En la Carrera, «todo» serían 260 columnas: se queda en el último trimestre (los años están en los estados financieros).
+  const career = modeOf(s) === "carrera";
+  const shown = period === "4" ? s.weeks.slice(-4) : career ? s.weeks.slice(-13) : s.weeks;
   const th = "py-1 pr-3 text-right font-semibold";
   const td = "py-1 pr-3 text-right tabular-nums";
   const rec = pendingReceivables(s);
@@ -25,10 +29,11 @@ export function FinanceView({ s }: { s: SimState }) {
   return (
     <div className="space-y-4">
       <FinanceSummary s={s} />
+      {career && <StatementsView s={s} />}
       {s.weeks.length > 4 && (
         <div className="flex items-center gap-2 text-sm" role="group" aria-label="Semanas que se muestran en las tablas">
           <span className="text-slate-600">Tablas:</span>
-          {(["4", "todo"] as const).map((p) => <button key={p} type="button" aria-pressed={period === p} onClick={() => setPeriod(p)} className={`rounded border px-2 py-0.5 ${period === p ? "border-indigo-600 bg-indigo-50 font-semibold text-indigo-800" : "border-slate-300"}`}>{p === "4" ? "Últimas 4 semanas" : "Toda la temporada"}</button>)}
+          {(["4", "todo"] as const).map((p) => <button key={p} type="button" aria-pressed={period === p} onClick={() => setPeriod(p)} className={`rounded border px-2 py-0.5 ${period === p ? "border-indigo-600 bg-indigo-50 font-semibold text-indigo-800" : "border-slate-300"}`}>{p === "4" ? "Últimas 4 semanas" : career ? "Últimas 13 semanas" : "Toda la temporada"}</button>)}
         </div>
       )}
       {s.weeks.length > 0 && (() => {
@@ -154,7 +159,7 @@ export function FinanceView({ s }: { s: SimState }) {
       <section className="rounded border border-slate-200 p-3" aria-labelledby="caja">
         <h3 id="caja" className="text-sm font-semibold">Movimientos de caja</h3>
         {s.ledger.length === 0 ? <p className="text-sm text-slate-600">Aún no hay movimientos.</p> : (
-          <ul className="mt-1 max-h-72 space-y-0.5 overflow-y-auto text-sm">{[...s.ledger].reverse().map((m, i) => <li key={i} className="flex justify-between gap-2"><span>Sem. {m.week} · {m.label}</span><span className={`tabular-nums ${m.amount < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(m.amount)}</span></li>)}</ul>
+          <ul className="mt-1 max-h-72 space-y-0.5 overflow-y-auto text-sm">{(career ? s.ledger.filter((m) => !shown.length || m.week >= shown[0].week) : [...s.ledger]).reverse().map((m, i) => <li key={i} className="flex justify-between gap-2"><span>Sem. {m.week} · {m.label}</span><span className={`tabular-nums ${m.amount < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(m.amount)}</span></li>)}</ul>
         )}
       </section>
         </div>

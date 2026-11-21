@@ -9,7 +9,8 @@ import { organizeBlocked, WORKER_WEEK, workCapacityAt, workCommitted, workersAt 
 import { clientOf, kmOf, REPUTATION_ALL_PRICES_FROM, reputationEffect, weeklyRevenue, workOf } from "@/lib/sim/market";
 import type { Action, GrowthOption, Offer, SimState, WeekRecord } from "@/lib/sim/model";
 import { weekLines, type LineMargin } from "@/lib/sim/lines";
-import { GROWTH, P, payTermLabel, SEASON_WEEKS, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
+import { GROWTH, P, payTermLabel, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
+import { CAREER_YEARS, lastWeekOf, modeOf, weekLabel } from "@/lib/sim/calendar";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
@@ -36,16 +37,17 @@ function Bar({ value, max, label, kind, unit = "" }: { value: number; max: numbe
   );
 }
 
-export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState; lastWeek: number | null; onAction: (a: Action) => void; onShowReport: () => void }) {
+/** `onAdvance` (solo en la Carrera): cerrar semanas seguidas hasta que haya algo que decidir (ver simulator.tsx). */
+export function WeekView({ s, lastWeek, onAction, onShowReport, onAdvance }: { s: SimState; lastWeek: number | null; onAction: (a: Action) => void; onShowReport: () => void; onAdvance?: () => void }) {
   const done = s.status === "fin" || s.status === "quiebra";
   const closed = lastWeek !== null ? s.weeks.find((w) => w.week === lastWeek) : null;
   const decisions = closed ? s.learning.filter((l) => l.week === closed.week) : [];
-  const horizon = Array.from({ length: 4 }, (_, i) => s.week + i).filter((w) => w <= SEASON_WEEKS);
+  const horizon = Array.from({ length: 4 }, (_, i) => s.week + i).filter((w) => w <= lastWeekOf(s));
   return (
     <div className="space-y-4">
       {closed && (
-        <section className="space-y-2 rounded-lg border border-indigo-200 bg-white p-4 shadow-sm" aria-label={`Semana ${closed.week} cerrada`}>
-          <h2 className="text-base font-semibold">Semana {closed.week} cerrada</h2>
+        <section className="space-y-2 rounded-lg border border-indigo-200 bg-white p-4 shadow-sm" aria-label={`${weekLabel(s, closed.week)} cerrada`}>
+          <h2 className="text-base font-semibold">{weekLabel(s, closed.week)} cerrada</h2>
           <div className="grid gap-2 text-sm sm:grid-cols-2">
             <div className="rounded border border-slate-200 p-2">
               <h3 className="text-xs font-semibold uppercase text-slate-600">Beneficio de la semana (lo ganado)</h3>
@@ -71,9 +73,10 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
         <p className="rounded-lg border border-indigo-200 bg-indigo-50 p-3 text-sm">Tienes <b>{pendingQuestions(s).length} {pendingQuestions(s).length === 1 ? "pregunta" : "preguntas"}</b> de los informes mensuales sin responder. <button type="button" className="underline" onClick={onShowReport}>Ir al informe</button></p>
       )}
       {s.status === "quiebra" && <p className="rounded-lg border border-rose-300 bg-rose-50 p-4 text-sm"><b>Fin de la partida en la semana {s.weeks.length}:</b> {s.endReason ?? "la empresa no puede seguir."} <button type="button" className="underline" onClick={onShowReport}>Ver el resumen final</button>.</p>}
-      {s.status === "fin" && (() => {
+      {s.status === "fin" && modeOf(s) === "carrera" && <p className="rounded-lg border border-emerald-300 bg-emerald-50 p-4 text-sm"><b>Carrera completada:</b> la empresa ha llegado al final del año {CAREER_YEARS}. <button type="button" className="underline" onClick={onShowReport}>Ver el resumen final</button>.</p>}
+      {s.status === "fin" && modeOf(s) !== "carrera" && (() => {
         const out = seasonOutcome(s);
-        return <p className={`rounded-lg border p-4 text-sm ${out.victory ? "border-emerald-300 bg-emerald-50" : "border-amber-300 bg-amber-50"}`}><b>{out.victory ? "¡Temporada ganada!" : "Temporada terminada sin cumplir los objetivos."}</b> Has completado las {SEASON_WEEKS} semanas. <button type="button" className="underline" onClick={onShowReport}>Ver el resumen final</button>.</p>;
+        return <p className={`rounded-lg border p-4 text-sm ${out.victory ? "border-emerald-300 bg-emerald-50" : "border-amber-300 bg-amber-50"}`}><b>{out.victory ? "¡Temporada ganada!" : "Temporada terminada sin cumplir los objetivos."}</b> Has completado las {lastWeekOf(s)} semanas. <button type="button" className="underline" onClick={onShowReport}>Ver el resumen final</button>.</p>;
       })()}
 
       {s.status === "incidencia" && s.pending && <IncidentCard s={s} onAction={onAction} />}
@@ -114,10 +117,12 @@ export function WeekView({ s, lastWeek, onAction, onShowReport }: { s: SimState;
 
           <div className="rounded-lg bg-white p-4 shadow-sm">
             <div className="flex flex-wrap items-center gap-3">
-              <button type="button" onClick={() => onAction({ t: "cerrar" })} className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">Cerrar la semana {s.week}</button>
+              <button type="button" onClick={() => onAction({ t: "cerrar" })} className="rounded bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700">{modeOf(s) === "carrera" ? `Cerrar la semana (${weekLabel(s, s.week).toLowerCase()})` : `Cerrar la semana ${s.week}`}</button>
+              {onAdvance && <button type="button" onClick={onAdvance} className="rounded border border-indigo-300 px-3 py-2 text-sm font-semibold text-indigo-800 hover:bg-indigo-50">Avanzar hasta la próxima decisión</button>}
               <button type="button" onClick={() => document.getElementById("capacidad")?.scrollIntoView({ behavior: "smooth", block: "start" })} className="rounded border border-slate-300 px-3 py-2 text-sm hover:bg-slate-100">↑ Ver la capacidad comprometida</button>
             </div>
             <p className="mt-1 text-xs text-slate-600">Se hacen los trabajos, se facturan, se cobran y pagan los vencimientos y llegan las ofertas de la semana siguiente.</p>
+            {onAdvance && <p className="mt-1 text-xs text-slate-600"><b>Avanzar</b> cierra semanas seguidas sin aceptar trabajos nuevos (las ofertas de esas semanas se pierden) y se para en cuanto haya algo tuyo: una incidencia, un informe mensual, un contrato que termina, un aviso de caja o, como mucho, un trimestre.</p>}
           </div>
         </>
       )}
@@ -378,7 +383,7 @@ export function IncidentCard({ s, onAction }: { s: SimState; onAction: (a: Actio
   return (
     <form className="space-y-3 rounded-lg border-2 border-rose-300 bg-rose-50 p-4 shadow-sm" onSubmit={(e) => { e.preventDefault(); if (pick) onAction({ t: "responder", incidencia: inc.id, opcion: pick }); }}>
       <fieldset className="space-y-2">
-        <legend className="text-base font-semibold">⚠️ {inc.title} (semana {inc.week})</legend>
+        <legend className="text-base font-semibold">⚠️ {inc.title} ({weekLabel(s, inc.week).toLowerCase()})</legend>
         <p className="text-sm">{inc.prompt}</p>
         <p className="rounded bg-white p-2 text-xs text-slate-700"><b>Concepto:</b> {inc.concept}</p>
         {opts.map((o) => (
