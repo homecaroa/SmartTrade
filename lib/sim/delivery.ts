@@ -4,6 +4,7 @@ import { clientOf } from "./market";
 import type { Contract, Grade, Incident, IncidentOption, SimState } from "./model";
 import { DELIVERY, P } from "./params";
 import { intIn, stream } from "./rng";
+import { semesterKey } from "./calendar";
 
 /**
  * Incidencias durante los repartos (reglas v9; docs/simulador.md §17 terdecies). Situaciones de cada día en el transporte
@@ -33,12 +34,13 @@ export function deliveryIncidents(s: SimState): Incident[] {
   if (r() >= DELIVERY.chance) return [];
   const own = s.contracts.filter((c) => activeIn(c, s.week) && (c.kind === "distribucion" || c.kind === "puntual") && !c.subcontracted).sort((a, b) => a.id.localeCompare(b.id));
   if (!own.length) return [];
-  const left = DELIVERY_TYPES.filter((t) => !s.answers[`reparto-${t}`]);
+  // En la Carrera, cada tipo una vez por semestre (clave «reparto-espera@2»…: lib/sim/calendar.ts).
+  const left = DELIVERY_TYPES.filter((t) => !s.answers[semesterKey(`reparto-${t}`, s.week)]);
   if (!left.length) return [];
   const type = [...left].sort((a, b) => fnv1a(`${s.seed}:${a}`) - fnv1a(`${s.seed}:${b}`))[Math.floor(r() * left.length)];
   const c = own[Math.floor(r() * own.length)];
   const name = clientOf(c.clientId).name;
-  const base = { id: `reparto-${type}`, kind: "reparto" as const, week: s.week };
+  const base = { id: semesterKey(`reparto-${type}`, s.week), kind: "reparto" as const, week: s.week };
   const data: Record<string, string | number> = { type, contract: c.id, client: c.clientId };
   if (type === "ausente") return [{ ...base, title: "El destinatario no está", data,
     concept: "Si no se puede entregar porque el destinatario no está, el transportista avisa al cargador y espera sus instrucciones; los gastos de esperar y de ejecutarlas los paga el cargador (Ley 15/2009, art. 36). Hasta la entrega, la mercancía es responsabilidad del transportista (art. 47.1).",

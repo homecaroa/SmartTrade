@@ -8,8 +8,9 @@ import { directCost, fixedShare } from "./international";
 import { applyWarehouseDecision, gradeOrganize, gradeStorage, isWarehouseIncident, organizeBlocked, warehouseIncidents, warehouseOptions, WORKER_WEEK, workCapacityAt, workCommitted } from "./warehouse";
 import { clientOf, handlingRevenue, kmOf, offersFor, REPUTATION_ALL_PRICES_FROM, workOf } from "./market";
 import type { Action, Contract, Grade, Growth, GrowthOption, Incident, IncidentOption, LearningEntry, Offer, SimState, WeekRecord } from "./model";
-import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, WAREHOUSE_V6, P, SEASON_WEEKS, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
+import { BREAKDOWN_WINDOWS, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH, OBJECTIVES, WAREHOUSE_V6, P, SERVICE_FLOOR, TRUCK_KM_WEEK, WEEKS_PER_MONTH } from "./params";
 import { intIn, stream } from "./rng";
+import { lastWeekOf, localWeek, modeOf, semesterKey, semesterOf, semesterSeed } from "./calendar";
 
 /**
  * Motor del Business Simulator, Fase 1 (docs/simulador.md). Puro y determinista: el estado se obtiene aplicando las
@@ -23,10 +24,13 @@ const clone = <T>(x: T): T => structuredClone(x);
 /** Importe unitario con dos decimales (tarifas y costes por km o palé). */
 export const n2 = (v: number) => v.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-/** Partida nueva. `version`: reglas con las que se juega (las guardadas se reproducen con la suya; ver params.ts). */
-export function newGame(seed: number, version: number = ENGINE_VERSION): SimState {
+/**
+ * Partida nueva. `version`: reglas con las que se juega (las guardadas se reproducen con la suya; ver params.ts).
+ * `mode`: «carrera» para la partida de 5 años (lib/sim/calendar.ts); sin él, la Temporada de siempre.
+ */
+export function newGame(seed: number, version: number = ENGINE_VERSION, mode?: "carrera"): SimState {
   return {
-    version, seed: seed >>> 0, week: 1, status: "jugando",
+    version, seed: seed >>> 0, ...(mode === "carrera" ? { mode } : {}), week: 1, status: "jugando",
     cash: P.initialCash, deposit: 0, truckValue: P.truckBookValue, equity0: P.initialCash + P.truckBookValue, result: 0, accruedFixed: 0,
     receivables: [], payables: [], contracts: [], offers: offersFor(seed >>> 0, 1, 100, version), weeks: [], ledger: [], pending: null, answers: {}, negativeWeeks: 0, learning: [],
   };
@@ -147,7 +151,7 @@ export function growthBlocked(s: SimState, opcion: GrowthOption): string | null 
   if ((opcion === "renting" || opcion === "compra") && s.growth?.camion) return "Ya tienes el segundo camión.";
   if (opcion === "almacen" && s.growth?.almacen) return "Ya has ampliado el almacén.";
   if (opcion === "poliza" && s.growth?.poliza) return "Ya tienes la póliza de crédito.";
-  if (s.week >= SEASON_WEEKS) return "Es la última semana de la temporada.";
+  if (s.week >= lastWeekOf(s)) return modeOf(s) === "carrera" ? "Es la última semana de la carrera." : "Es la última semana de la temporada.";
   return null;
 }
 
@@ -191,7 +195,14 @@ export function breakdownsOf(seed: number) {
   });
 }
 export const breakdownOf = (seed: number) => breakdownsOf(seed)[0];
-export const breakdownAt = (seed: number, week: number) => breakdownsOf(seed).find((b) => b.week === week) ?? null;
+/**
+ * Avería de una semana. En la Carrera las averías se repiten cada semestre con otra semilla y otra clave (calendar.ts);
+ * en el primer semestre son exactamente las de la Temporada.
+ */
+export function breakdownAt(seed: number, week: number) {
+  const b = breakdownsOf(semesterSeed(seed, semesterOf(week))).find((x) => x.week === localWeek(week));
+  return b ? { ...b, id: semesterKey(b.id, week), week } : null;
+}
 
 /** Precio del subcontratista en una avería: 1,05 €/km hasta la v2 (partidas guardadas); desde la v3, el de mercado. */
 export const subcontractPerKm = (version: number) => (version >= 3 ? GROWTH.subcontract.perKm : P.subcontractPerKm);
@@ -235,9 +246,11 @@ export function dueIncidents(s: SimState): Incident[] {
   }
   for (const inv of s.receivables) {
     const c = clientOf(inv.clientId);
-    if (c.profile !== "tardio" || inv.paidWeek !== undefined || inv.dueWeek !== w || inv.payWeek <= w || s.answers[`mora-${c.id}`]) continue;
-    if (out.some((i) => i.id === `mora-${c.id}`)) continue;
-    out.push({ id: `mora-${c.id}`, kind: "mora", week: w, title: "Un cliente no paga a su vencimiento", concept: "Facturar no es cobrar. En el transporte por carretera, quien paga incurre en mora a los 30 días (Ley 15/2009, art. 41); el resto de servicios nunca puede pactarse a más de 60 días (Ley 3/2004, art. 4).",
+    // El aviso de mora es uno por cliente y semestre (en la Temporada, uno por cliente).
+    const key = semesterKey(`mora-${c.id}`, w);
+    if (c.profile !== "tardio" || inv.paidWeek !== undefined || inv.dueWeek !== w || inv.payWeek <= w || s.answers[key]) continue;
+    if (out.some((i) => i.id === key)) continue;
+    out.push({ id: key, kind: "mora", week: w, title: "Un cliente no paga a su vencimiento", concept: "Facturar no es cobrar. En el transporte por carretera, quien paga incurre en mora a los 30 días (Ley 15/2009, art. 41); el resto de servicios nunca puede pactarse a más de 60 días (Ley 3/2004, art. 4).",
       prompt: `${c.name} no ha pagado la factura de ${inv.amount.toLocaleString("es-ES", { minimumFractionDigits: 2 })} € que vencía esta semana.`, data: { client: c.id, amount: inv.amount } });
   }
   out.push(...claimIncidents(s), ...warehouseIncidents(s), ...deliveryIncidents(s));
@@ -250,10 +263,33 @@ export { MONTH_QUESTION };
 
 const learn = (s: SimState, e: LearningEntry) => { s.learning.push(e); };
 
+/** Aplica una acción y devuelve un estado NUEVO: el anterior no se toca (la interfaz y las pruebas dependen de ello). */
 export function apply(prev: SimState, a: Action): SimState {
   // Con la partida terminada solo se puede responder a la pregunta del informe mensual, si quedó pendiente.
   if ((prev.status === "fin" || prev.status === "quiebra") && a.t !== "pregunta") throw new Error("La partida ha terminado.");
-  const s = clone(prev);
+  return applyInPlace(clone(prev), a);
+}
+
+/**
+ * Reproduce acciones sobre UNA copia del estado, sin clonarlo en cada acción (21/11/2026). Clonar el estado entero en
+ * cada paso hacía que reproducir una partida costara el cuadrado de su longitud: inapreciable en 26 semanas, segundos en
+ * una Carrera de 5 años. Si una acción falla, puede haber dejado el estado a medias: por eso se rehace desde el principio
+ * solo con las que funcionaron (que, al ser el motor determinista, vuelven a funcionar). Devuelve cuántas se aplicaron.
+ */
+export function replayFrom(start: () => SimState, actions: readonly Action[]): { state: SimState; applied: number } {
+  const run = (n: number) => { const s = start(); for (let i = 0; i < n; i++) applyChecked(s, actions[i]); return s; };
+  const s = start();
+  for (let i = 0; i < actions.length; i++) {
+    try { applyChecked(s, actions[i]); } catch { return { state: run(i), applied: i }; }
+  }
+  return { state: s, applied: actions.length };
+}
+function applyChecked(s: SimState, a: Action): SimState {
+  if ((s.status === "fin" || s.status === "quiebra") && a.t !== "pregunta") throw new Error("La partida ha terminado.");
+  return applyInPlace(s, a);
+}
+
+function applyInPlace(s: SimState, a: Action): SimState {
   if (a.t === "aceptar") {
     if (s.status !== "jugando") throw new Error(s.status === "incidencia" ? "Primero resuelve la incidencia." : "La partida ha terminado.");
     const o = s.offers.find((x) => x.id === a.oferta);
@@ -510,7 +546,7 @@ function resolveWeek(s: SimState) {
   for (const { c, amount } of invoices) {
     const due = w + c.payWeeks;
     const late = clientOf(c.clientId).profile === "tardio" ? intIn(stream(s.seed, w, `pago-${c.id}`), 1, 3) : 0;
-    const decided = s.answers[`mora-${c.clientId}`];
+    const decided = s.answers[semesterKey(`mora-${c.clientId}`, w)];
     const payWeek = decided === "reclamar" ? due + Math.min(late, 1) : due + late;
     s.receivables.push({ id: `f${w}-${c.id}`, contractId: c.id, clientId: c.clientId, amount: round2(amount), week: w, dueWeek: due, payWeek });
   }
@@ -562,7 +598,7 @@ function resolveWeek(s: SimState) {
   s.lowServiceWeeks = serviceLevel < SERVICE_FLOOR.pct ? (s.lowServiceWeeks ?? 0) + 1 : 0;
   if (s.negativeWeeks >= 2) { s.status = "quiebra"; s.endReason = limit ? "La caja ha superado el límite de la póliza de crédito dos semanas seguidas: el banco no te da más y no puedes pagar a tus proveedores ni las nóminas." : "La caja ha estado en negativo dos semanas seguidas: no puedes pagar a tus proveedores ni las nóminas."; return; }
   if (s.lowServiceWeeks >= SERVICE_FLOOR.weeks) { s.status = "quiebra"; s.endReason = `Tu nivel de servicio ha estado por debajo del ${SERVICE_FLOOR.pct} % ${SERVICE_FLOOR.weeks} semanas seguidas: tus clientes clave se van y la empresa no puede seguir.`; return; }
-  if (w >= SEASON_WEEKS) { s.status = "fin"; return; }
+  if (w >= lastWeekOf(s)) { s.status = "fin"; return; }
   s.week = w + 1;
   s.offers = offersFor(s.seed, s.week, serviceLevelToDate(s), s.version);
 }

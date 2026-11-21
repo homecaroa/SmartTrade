@@ -3,6 +3,7 @@ import type { Client, Offer, OfferKind } from "./model";
 import { internationalOffer } from "./international";
 import { ENGINE_VERSION, EXTRA_OFFERS, MARKET_GROWTH_FROM, P, PUNTUAL_V2, WAREHOUSE_V6, RELIABILITY_PREMIUM, SEASON_LOW, SEASON_PEAK } from "./params";
 import { intIn, pick, stream, type Rng } from "./rng";
+import { localWeek } from "./calendar";
 
 /**
  * Clientes y ofertas (docs/simulador.md §11). Empresas FICTICIAS; tarifas y volúmenes SIMULADOS. El perfil de pago es
@@ -61,7 +62,9 @@ export function offersFor(seed: number, week: number, serviceLevel = 100, versio
   const r = stream(seed, week, "ofertas");
   // Estacionalidad: se ajusta DESPUÉS del sorteo base, así las semanas fuera de campaña dan las mismas ofertas que antes.
   // Desde la semana 7 el mercado ya conoce a la empresa: llega una oferta más por semana (MARKET_GROWTH_FROM).
-  const n = intIn(r, 3, 5) + (week >= MARKET_GROWTH_FROM ? EXTRA_OFFERS : 0) + (week >= SEASON_PEAK.from && week <= SEASON_PEAK.to ? 1 : week >= SEASON_LOW.from && week <= SEASON_LOW.to ? -1 : 0);
+  // En la Carrera, la campaña y el valle se repiten cada semestre (lib/sim/calendar.ts); en la Temporada, igual que antes.
+  const lw = localWeek(week);
+  const n = intIn(r, 3, 5) + (week >= MARKET_GROWTH_FROM ? EXTRA_OFFERS : 0) + (lw >= SEASON_PEAK.from && lw <= SEASON_PEAK.to ? 1 : lw >= SEASON_LOW.from && lw <= SEASON_LOW.to ? -1 : 0);
   const kinds: OfferKind[] = week === 1 ? ["distribucion", "almacenaje", "puntual"] : [];
   while (kinds.length < n) kinds.push(pick(r, ["distribucion", "distribucion", "puntual", "puntual", "almacenaje"] as const));
   const base = kinds.map((k, i) => makeOffer(r, seed, week, i + 1, k, version));

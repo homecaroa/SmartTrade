@@ -3,6 +3,7 @@ import { clientOf, handlingRevenue, workOf } from "./market";
 import type { Contract, Grade, Incident, IncidentOption, Offer, SimState } from "./model";
 import { P, WAREHOUSE_V6, WEEKS_PER_MONTH } from "./params";
 import { intIn, stream } from "./rng";
+import { localWeek, semesterKey, semesterOf, semesterSeed } from "./calendar";
 
 /**
  * Almacén a fondo (reglas v6; docs/simulador.md §17 nonies; módulo 0625):
@@ -97,22 +98,24 @@ export function warehouseIncidents(s: SimState): Incident[] {
   if (s.version < W.fromVersion) return [];
   const out: Incident[] = [];
   for (const kind of ["stock", "devoluciones"] as const) {
-    const d = draw(s.seed, kind);
+    // En la Carrera, una de cada por semestre (otra semilla y clave «stock@2»…: lib/sim/calendar.ts).
+    const d = draw(semesterSeed(s.seed, semesterOf(s.week)), kind);
     const win = kind === "stock" ? W.stock.window : W.returns.window;
-    if (s.answers[kind] || s.week < d.week || s.week > win.to) continue;
+    const lw = localWeek(s.week);
+    if (s.answers[semesterKey(kind, s.week)] || lw < d.week || lw > win.to) continue;
     const c = pickStorage(s, kind);
     if (!c) continue;
     const name = clientOf(c.clientId).name;
     if (kind === "stock") {
       const r = d.r;
       const daily = intIn(r, 20, 80, 5), lead = intIn(r, 3, 8), safety = daily * intIn(r, 2, 4);
-      out.push({ id: "stock", kind: "stock", week: s.week, title: "Calcular el punto de pedido",
+      out.push({ id: semesterKey("stock", s.week), kind: "stock", week: s.week, title: "Calcular el punto de pedido",
         concept: "Punto de pedido = demanda diaria × plazo de entrega del proveedor + stock de seguridad. Se pide cuando las existencias bajan a ese nivel, para que el pedido llegue antes de quedarse sin nada; el stock de seguridad cubre los imprevistos.",
         prompt: `${name} te encarga la reposición de uno de sus productos. Se venden ${daily} unidades al día, el proveedor tarda ${lead} días en servir y el cliente quiere ${safety} unidades de stock de seguridad. ¿Cuándo lanzas el pedido al proveedor?`,
         data: { contract: c.id, client: c.clientId, daily, lead, safety, right: daily * lead + safety, noSafety: daily * lead, weeks: daily * lead * 7 + safety } });
     } else {
       const pallets = intIn(d.r, W.returns.pallets.min, W.returns.pallets.max, 5);
-      out.push({ id: "devoluciones", kind: "devoluciones", week: s.week, title: "Llegan devoluciones de un cliente",
+      out.push({ id: semesterKey("devoluciones", s.week), kind: "devoluciones", week: s.week, title: "Llegan devoluciones de un cliente",
         concept: "Logística inversa: la mercancía devuelta se recibe aparte, se inspecciona y se clasifica para revenderla, reacondicionarla o reciclarla. Lo que sea residuo se entrega a un gestor autorizado y se acredita por escrito (Ley 7/2022, art. 20.1); la jerarquía es reutilizar antes que reciclar y reciclar antes que eliminar (art. 8).",
         prompt: `${name} te manda ${pallets} palés de mercancía devuelta por sus clientes: una parte se puede revender, otra está rota. Su contrato no dice nada de devoluciones.`,
         data: { contract: c.id, client: c.clientId, pallets } });
@@ -148,7 +151,7 @@ export function applyWarehouseDecision(s: SimState, inc: Incident, option: strin
   const charge = (label: string, amount: number, note: string) => (s.claims ??= []).push({ label, amount: round2(amount), note });
   const service = (id: string, pallets: number, rate: number, weeks: number) => {
     const held = rate === 0 && s.version >= HELD_RETURNS_FROM;
-    s.contracts.push({ id: `${c.id}-${id}`, week: w, kind: "almacenaje", clientId: c.clientId, clientHint: c.clientHint, pallets, palletRate: rate, weeks, payWeeks: c.payWeeks, startWeek: w, endWeek: w + weeks - 1, docPenalized: true, ...(held ? { held: true } : {}) });
+    s.contracts.push({ id: semesterKey(`${c.id}-${id}`, w), week: w, kind: "almacenaje", clientId: c.clientId, clientHint: c.clientHint, pallets, palletRate: rate, weeks, payWeeks: c.payWeeks, startWeek: w, endWeek: w + weeks - 1, docPenalized: true, ...(held ? { held: true } : {}) });
   };
   if (inc.kind === "stock") {
     if (option === "sin_ss") charge(`Rotura de stock de ${name}`, W.stock.penaltyShort, `${name} se quedó sin producto: te repercute ${eur(W.stock.penaltyShort)}.`);

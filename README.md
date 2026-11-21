@@ -1,6 +1,6 @@
 # SmarTrade (MVP)
 
-**Desde el 09/11/2026 la portada (`/`) es el Modo Aprendizaje**, un simulador educativo para el Grado Superior de Comercio Internacional (exportación, importación y negociación). El análisis de mercados está en `/mercados`; las URLs antiguas de búsqueda (`/?q=…`) redirigen allí con la consulta intacta. El **Business Simulator** (`/simulador`) es una temporada de 26 semanas dirigiendo un operador logístico ficticio; sus reglas están en `docs/simulador.md`.
+**Desde el 09/11/2026 la portada (`/`) es el Modo Aprendizaje**, un simulador educativo para el Grado Superior de Comercio Internacional (exportación, importación y negociación). El análisis de mercados está en `/mercados`; las URLs antiguas de búsqueda (`/?q=…`) redirigen allí con la consulta intacta. El **Business Simulator** (`/simulador`) es una temporada de 26 semanas dirigiendo un operador logístico ficticio; sus reglas están en `docs/simulador.md`. Desde el 21/11/2026 hay además una **Carrera** de 5 años en construcción (`/simulador/carrera`, `docs/simulador-carrera.md`).
 
 Diagnóstico descriptivo de mercados de exportación para empresas españolas, a partir de estadísticas oficiales de comercio exterior: por producto, cuánto importa cada mercado, cómo ha evolucionado, qué parte llega desde España y quién más lo abastece. Indicadores en su unidad, sin puntuación ni previsiones (la puntuación se retiró el 06/11/2026: ver `docs/methodology.md`). Ficha por mercado, comparación, gráficos con tabla, trazabilidad de datos y exportación CSV.
 

@@ -7,6 +7,8 @@ import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 import type { Action, SimState } from "@/lib/sim/model";
 import { WEEKS_PER_MONTH } from "@/lib/sim/params";
 import { fmtEur } from "@/lib/learning/money";
+import { CAREER_YEARS, modeOf, weekLabel, weekOfYear, yearOf } from "@/lib/sim/calendar";
+import { incomeStatement, periods } from "@/lib/sim/statements";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
 
@@ -15,6 +17,7 @@ const COMPETENCE = COMPETENCE_LABELS;
 /** Informe del mes (con su pregunta) y resumen final: nota de decisiones, resultado empresarial y competencias, por separado. */
 export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action) => void }) {
   const done = s.status === "fin" || s.status === "quiebra";
+  const career = modeOf(s) === "carrera";
   const month = s.weeks.slice(0, WEEKS_PER_MONTH);
   const k = knowledge(s);
   const byCompetence = new Map<string, { n: number; pts: number }>();
@@ -49,12 +52,20 @@ export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action)
 
       {done && (
         <section className="space-y-3 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="resumen">
-          <h2 id="resumen" className="text-lg font-bold">Resumen final de la temporada</h2>
+          <h2 id="resumen" className="text-lg font-bold">{career ? "Resumen final de la carrera" : "Resumen final de la temporada"}</h2>
+          {career ? (
+            <div className={`rounded border p-3 ${s.status === "fin" ? "border-emerald-300 bg-emerald-50" : "border-amber-300 bg-amber-50"}`}>
+              <p className="font-semibold">{s.status === "quiebra" ? `Carrera terminada en el año ${yearOf(s.week)} (semana ${weekOfYear(s.week)}): ${s.endReason ?? ""}` : `Carrera completada: la empresa ha llegado al final del año ${CAREER_YEARS}.`}</p>
+              <ul className="mt-1 space-y-0.5 text-sm">{periods(s, "año").map((p) => { const r = incomeStatement(s, p.from, p.to).result; return <li key={p.index}>{p.label}{p.complete ? "" : " (incompleto)"}: resultado <b className={r < 0 ? "text-rose-700" : "text-emerald-700"}>{fmtEur(r)}</b></li>; })}</ul>
+              <p className="mt-1 text-xs text-slate-600">La Carrera no tiene objetivos de temporada: se trata de sobrevivir y de cómo evoluciona la empresa. Los estados de cada año están en Finanzas.</p>
+            </div>
+          ) : (
           <div className={`rounded border p-3 ${outcome.victory ? "border-emerald-300 bg-emerald-50" : "border-amber-300 bg-amber-50"}`}>
             <p className="font-semibold">{s.status === "quiebra" ? `Partida terminada en la semana ${s.weeks.length}: ${s.endReason ?? ""}` : outcome.victory ? "¡Temporada ganada!" : "Temporada terminada sin cumplir los objetivos."}</p>
             <ul className="mt-1 space-y-0.5 text-sm">{outcome.objectives.map((o) => <li key={o.id}>{o.ok ? "✔" : "✘"} {o.label}: <b>{o.shown}</b></li>)}</ul>
             <p className="mt-1 text-xs text-slate-600">Para ganar hace falta el beneficio de las últimas 8 semanas y al menos uno de los otros dos objetivos.</p>
           </div>
+          )}
           <div className="grid gap-3 md:grid-cols-3">
             <div className="rounded border border-slate-200 p-3"><h3 className="text-sm font-semibold">Nota de decisiones</h3><p className="text-2xl font-bold text-indigo-700">{k.pct.toLocaleString("es-ES")} %</p><p className="text-xs text-slate-600">{k.points} de {k.max} puntos (adecuada 10, razonable 6, error importante 0).</p></div>
             <div className="rounded border border-slate-200 p-3"><h3 className="text-sm font-semibold">Resultado empresarial</h3><p className={`text-2xl font-bold ${s.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{fmtEur(s.result)}</p><p className="text-xs text-slate-600">Caja final {fmtEur(s.cash)} · servicio {serviceLevelToDate(s).toLocaleString("es-ES")} % · uso del camión {capacity ? Math.round(own / capacity * 100) : 0} %.</p></div>
@@ -67,7 +78,7 @@ export function ReportView({ s, onAction }: { s: SimState; onAction: (a: Action)
       <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="decisiones">
         <h2 id="decisiones" className="text-base font-semibold">Tus decisiones</h2>
         {s.learning.length === 0 ? <p className="text-sm text-slate-600">Aún no has tomado decisiones calificables.</p> : (
-          <ol className="mt-2 space-y-2 text-sm">{s.learning.map((e, i) => <li key={i} className="rounded border border-slate-200 p-2"><p className="flex flex-wrap items-center gap-2"><span className="text-xs text-slate-500">Semana {e.week}</span><b>{e.what}</b><GradeBadge grade={e.grade} /></p><p className="text-slate-700">{e.feedback}</p></li>)}</ol>
+          <ol className="mt-2 space-y-2 text-sm">{s.learning.map((e, i) => <li key={i} className="rounded border border-slate-200 p-2"><p className="flex flex-wrap items-center gap-2"><span className="text-xs text-slate-500">{weekLabel(s, e.week)}</span><b>{e.what}</b><GradeBadge grade={e.grade} /></p><p className="text-slate-700">{e.feedback}</p></li>)}</ol>
         )}
       </section>
     </div>

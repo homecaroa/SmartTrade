@@ -3,6 +3,7 @@ import { clientOf, weeklyRevenue } from "./market";
 import type { Contract, Grade, Incident, IncidentOption, SimState } from "./model";
 import { CLAIMS } from "./params";
 import { intIn, stream } from "./rng";
+import { localWeek, semesterKey, semesterOf, semesterSeed } from "./calendar";
 
 /**
  * Reclamaciones con base legal (reglas v4; docs/simulador.md §17 septies). Tres incidencias que no dependen solo del azar:
@@ -41,12 +42,15 @@ function pickContract(s: SimState, kind: ClaimKind, ok: (c: Contract) => boolean
   return xs[Math.floor(stream(s.seed, s.week, `reclamacion-${kind}-contrato`)() * xs.length)];
 }
 
-/** Reclamaciones que tocan esta semana (como mucho una de cada tipo por temporada). */
+/**
+ * Reclamaciones que tocan esta semana (como mucho una de cada tipo por temporada; en la Carrera, por semestre, con otra
+ * semilla y la clave «dano@2»…: lib/sim/calendar.ts).
+ */
 export function claimIncidents(s: SimState): Incident[] {
   if (s.version < CLAIMS.fromVersion) return [];
-  const w = s.week;
+  const w = s.week, lw = localWeek(w);
   const out: Incident[] = [];
-  const due = (kind: ClaimKind) => { const d = draw(s.seed, kind); return !s.answers[kind] && w >= d.week && w <= CLAIMS[kind].window.to ? d : null; };
+  const due = (kind: ClaimKind) => { const d = draw(semesterSeed(s.seed, semesterOf(w)), kind); return !s.answers[semesterKey(kind, w)] && lw >= d.week && lw <= CLAIMS[kind].window.to ? d : null; };
 
   const dano = due("dano");
   const cd = dano && pickContract(s, "dano", (c) => c.kind === "distribucion" || c.kind === "puntual");
@@ -58,7 +62,7 @@ export function claimIncidents(s: SimState): Incident[] {
     const limit = round2(kg * CLAIMS.ipremMonthly / 30 / 3); // se redondea al final, no por kilo
     const receipt = !!cd.docs?.includes("recibo");
     const name = clientOf(cd.clientId).name;
-    out.push({ id: "dano", kind: "dano", week: w, title: "Reclamación por mercancía dañada",
+    out.push({ id: semesterKey("dano", w), kind: "dano", week: w, title: "Reclamación por mercancía dañada",
       concept: "El transportista responde de las averías desde que recibe la mercancía hasta que la entrega (Ley 15/2009, art. 47), con un límite por kilo (art. 57.1). Las reservas se hacen por escrito al entregar, o en 7 días si el daño no se ve; sin reservas, se presume que la mercancía llegó bien (art. 60.1).",
       prompt: late
         ? `${name} reclama ${eur(claim)} por ${kg} kg de mercancía dañada que entregaste hace ${CLAIMS.dano.lateDays} días. En la entrega no hizo ninguna reserva. ${receipt ? "Tienes el recibo de entrega firmado, sin reservas." : "No preparaste recibo de entrega firmado: no puedes probar cuándo ni cómo entregaste."}`
@@ -74,7 +78,7 @@ export function claimIncidents(s: SimState): Incident[] {
     const price = round2(weeklyRevenue(cr) + (cr.kind === "puntual" && cr.withBackhaul && cr.backhaul ? cr.backhaul.price : 0));
     const claim = Math.round(price * (CLAIMS.retraso.claimFactor.min + r() * (CLAIMS.retraso.claimFactor.max - CLAIMS.retraso.claimFactor.min)));
     const name = clientOf(cr.clientId).name;
-    out.push({ id: "retraso", kind: "retraso", week: w, title: "Reclamación por retraso en la entrega",
+    out.push({ id: semesterKey("retraso", w), kind: "retraso", week: w, title: "Reclamación por retraso en la entrega",
       concept: "El transportista responde del perjuicio que el retraso cause y se pruebe, con un máximo del precio del transporte (Ley 15/2009, arts. 56 y 57.2). No responde si el retraso vino de circunstancias que no pudo evitar ni cuyas consecuencias pudo impedir (art. 48.1). Las reservas por retraso deben llegar por escrito en 21 días (art. 60.3).",
       prompt: `${name} te envía por escrito, dentro de plazo, una reclamación de ${eur(claim)} por un retraso de un día en su entrega de esta semana. El precio de ese transporte es ${eur(price)}. ${own ? "El retraso fue tuyo: no planificaste el descanso obligatorio del conductor y tuvo que parar a mitad de ruta." : "El retraso no dependió de ti: la carretera estuvo cortada seis horas por el accidente de otro vehículo y no había alternativa."}`,
       data: { contract: cr.id, client: cr.clientId, price, claim, variant: own ? "propia" : "ajena" } });
@@ -84,7 +88,7 @@ export function claimIncidents(s: SimState): Incident[] {
   const cp = plazo && pickContract(s, "plazo", (c) => c.kind === "almacenaje" && c.endWeek === w);
   if (plazo && cp) {
     const name = clientOf(cp.clientId).name;
-    out.push({ id: "plazo", kind: "plazo", week: w, title: "Un cliente quiere pagar a 90 días",
+    out.push({ id: semesterKey("plazo", w), kind: "plazo", week: w, title: "Un cliente quiere pagar a 90 días",
       concept: "Entre empresas, el plazo de pago es de 30 días si no se pacta otro, y por pacto nunca puede pasar de 60 días (Ley 3/2004, art. 4.3). Aceptar más es dar crédito gratis a tu cliente con tu caja.",
       prompt: `${name} termina esta semana su almacenaje de ${cp.pallets} palés a ${eur(cp.palletRate!)}/palé/semana. Te ofrece prorrogarlo ${CLAIMS.plazo.extensionWeeks} semanas más con una condición: pagar cada factura a 90 días.`,
       data: { contract: cp.id, client: cp.clientId } });
@@ -161,7 +165,7 @@ export function applyClaimDecision(s: SimState, inc: Incident, option: string) {
   const extend = (payWeeks: number) => {
     const { cancelledWeek: _drop, ...base } = c;
     // La documentación es la del contrato original; su posible consecuencia ya se jugó en él (docPenalized).
-    s.contracts.push({ ...base, id: `${c.id}-prorroga`, week: w + 1, startWeek: w + 1, endWeek: w + CLAIMS.plazo.extensionWeeks, weeks: CLAIMS.plazo.extensionWeeks, payWeeks, docPenalized: true });
+    s.contracts.push({ ...base, id: semesterKey(`${c.id}-prorroga`, w), week: w + 1, startWeek: w + 1, endWeek: w + CLAIMS.plazo.extensionWeeks, weeks: CLAIMS.plazo.extensionWeeks, payWeeks, docPenalized: true });
   };
   if (option === "aceptar") extend(CLAIMS.plazo.askedWeeks);
   if (option === "legal") {

@@ -1,7 +1,8 @@
 import { round2, sum } from "../learning/money";
 import { creditLimitAt, fixedPerWeekAt } from "./engine";
 import type { SimState } from "./model";
-import { GROWTH, P, SEASON_WEEKS, WAREHOUSE_V6, WEEKS_PER_MONTH } from "./params";
+import { GROWTH, P, WAREHOUSE_V6, WEEKS_PER_MONTH } from "./params";
+import { lastWeekOf } from "./calendar";
 
 /**
  * Previsión de tesorería (11/11/2026, petición del dueño tras quedarse a una semana de la quiebra sin aviso).
@@ -16,7 +17,7 @@ export function cashForecast(s: SimState, weeks = 4): { rows: ForecastWeek[]; ov
   let cash = s.cash, accrued = s.accruedFixed;
   const pendingInv = s.receivables.filter((i) => i.paidWeek === undefined);
   const g = s.growth;
-  for (let w = s.week; w < s.week + weeks && w <= SEASON_WEEKS; w++) {
+  for (let w = s.week; w < s.week + weeks && w <= lastWeekOf(s); w++) {
     const collections = round2(sum(pendingInv.filter((i) => i.dueWeek === w).map((i) => i.amount)));
     const payments = round2(sum(s.payables.filter((p) => p.paidWeek === undefined && p.dueWeek === w).map((p) => p.amount)));
     const temps = s.version >= WAREHOUSE_V6.fromVersion ? (s.staff?.temps ?? []).filter((d) => w > d && w <= d + WAREHOUSE_V6.temp.weeks).length * WAREHOUSE_V6.temp.weeklyCost : 0;

@@ -6,6 +6,7 @@ import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../learning/grade-badge";
 import type { Action, SimState } from "@/lib/sim/model";
 import { IncidentCard, OfferCard } from "./week-view";
+import { weekLabel } from "@/lib/sim/calendar";
 
 /**
  * Bandeja de correos (11/11/2026; lib/sim/inbox.ts). Otra forma de ver las ofertas e incidencias de la semana, escritas
@@ -70,7 +71,7 @@ function MailReader({ m, s, onAction }: { m: Mail; s: SimState; onAction: (a: Ac
     <article className="space-y-3 rounded-lg bg-white p-4 shadow-sm" lang={m.lang}>
       <header className="border-b border-slate-200 pb-2">
         <h2 className="text-base font-semibold">{m.subject}</h2>
-        <p className="text-xs text-slate-600">{m.from.name}{m.from.role ? ` · ${m.from.role}` : ""}{m.from.company ? ` · ${m.from.company}` : ""} · semana {m.week}</p>
+        <p className="text-xs text-slate-600">{m.from.name}{m.from.role ? ` · ${m.from.role}` : ""}{m.from.company ? ` · ${m.from.company}` : ""} · {weekLabel(s, m.week).toLowerCase()}</p>
       </header>
       <div className="space-y-2 text-sm">{m.body.map((p, i) => <p key={i}>{p}</p>)}</div>
       {m.lang === "en" && <p className="text-xs text-slate-600">Correo en inglés: los clientes internacionales escriben así. Las condiciones son las mismas que en la oferta de abajo.</p>}

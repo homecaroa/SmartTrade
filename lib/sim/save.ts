@@ -1,15 +1,17 @@
 import type { Action, SaveFile, SimState } from "./model";
 import { GROWTH_OPTIONS } from "./model";
 import { ENGINE_VERSION, SUPPORTED_VERSIONS } from "./params";
-import { apply, newGame } from "./engine";
+import { newGame, replayFrom } from "./engine";
 
 /**
  * Guardado (docs/simulador.md §14): se guarda la semilla y las acciones, nunca el estado. El estado se reconstruye
  * reproduciéndolas, así que una partida guardada siempre se puede rehacer y comprobar.
  */
 export const SAVE_KEY = "smartrade:simulador:partida";
+/** La Carrera (21/11/2026) se guarda aparte: empezar una no borra la Temporada en curso, ni al revés. */
+export const CAREER_SAVE_KEY = "smartrade:simulador:carrera";
 
-export const toSave = (seed: number, actions: Action[], version: number = ENGINE_VERSION, now = new Date()): SaveFile => ({ app: "smartrade-simulador", version, seed, actions, savedAt: now.toISOString() });
+export const toSave = (seed: number, actions: Action[], version: number = ENGINE_VERSION, now = new Date(), mode?: "carrera"): SaveFile => ({ app: "smartrade-simulador", version, seed, actions, savedAt: now.toISOString(), ...(mode === "carrera" ? { mode } : {}) });
 
 const isAction = (a: unknown): a is Action => {
   if (!a || typeof a !== "object") return false;
@@ -35,15 +37,15 @@ export function parseSave(raw: unknown): { ok: true; save: SaveFile; warning: st
   const known = (SUPPORTED_VERSIONS as readonly number[]).includes(x.version ?? -1);
   const version = known ? x.version! : ENGINE_VERSION;
   const warning = known ? null : `La partida se guardó con la versión ${x.version} del motor, que esta aplicación no conoce: se reproduce con la versión ${ENGINE_VERSION} y el resultado puede variar.`;
-  return { ok: true, save: { app: "smartrade-simulador", version, seed: x.seed, actions: x.actions, savedAt: typeof x.savedAt === "string" ? x.savedAt : "" }, warning };
+  return { ok: true, save: { app: "smartrade-simulador", version, seed: x.seed, actions: x.actions, savedAt: typeof x.savedAt === "string" ? x.savedAt : "", ...(x.mode === "carrera" ? { mode: "carrera" as const } : {}) }, warning };
 }
 
-/** Reconstruye el estado; si una acción ya no es válida con las reglas actuales, se detiene ahí y lo indica. */
+/**
+ * Reconstruye el estado; si una acción ya no es válida con las reglas actuales, se detiene ahí y lo indica. Reproduce
+ * sobre una sola copia (replayFrom): en una Carrera de 5 años, clonar en cada acción tardaba segundos. La partida de
+ * partida se clona una vez para que la reproducción no pueda tocar nada compartido con el módulo.
+ */
 export function restore(save: SaveFile): { state: SimState; actions: Action[]; dropped: number } {
-  let state = newGame(save.seed, save.version);
-  const ok: Action[] = [];
-  for (const a of save.actions) {
-    try { state = apply(state, a); ok.push(a); } catch { break; }
-  }
-  return { state, actions: ok, dropped: save.actions.length - ok.length };
+  const { state, applied } = replayFrom(() => structuredClone(newGame(save.seed, save.version, save.mode)), save.actions);
+  return { state, actions: save.actions.slice(0, applied), dropped: save.actions.length - applied };
 }

@@ -2,6 +2,7 @@ import { round2, sum } from "../learning/money";
 import { fnv1a } from "../learning/order";
 import type { Grade, SimState, WeekRecord } from "./model";
 import { P, RELIABILITY_PREMIUM, WEEKS_PER_MONTH } from "./params";
+import { yearOfMonth } from "./calendar";
 
 /**
  * Preguntas del informe mensual (17/11/2026, petición del dueño: «más preguntas y más variadas»). Hasta ese día había UNA
@@ -124,7 +125,7 @@ const NUMBERS: Builder[] = [
 ];
 
 // ── Concepto y normativa (solo lo comprobado en el BOE: docs/simulador.md §19) ────────────────────────────────────────
-const CONCEPTS: Builder[] = [
+export const CONCEPTS: Builder[] = [
   { key: "mora", title: "plazo de mora", competences: ["0623-RA5"], build: () => ({ prompt: "Un cliente te encargó un transporte por carretera y no ha pagado la factura. ¿A los cuántos días incurre en mora?", options: [
     opt("30", "A los 30 días", "correcta", "Correcto: en el transporte por carretera, quien paga incurre en mora a los 30 días (Ley 15/2009, art. 41)."),
     opt("60", "A los 60 días", "grave", "60 días es el máximo que se puede pactar en otros servicios entre empresas (Ley 3/2004, art. 4), no el plazo de mora del transporte."),
@@ -270,8 +271,11 @@ const CONCEPTS: Builder[] = [
   ] }) },
 ];
 
-/** Preguntas del mes `month` (1-6): la del mes 1 se mantiene; después, una con tus números y otra de concepto. */
-function questionsFor(s: SimState, month: number): MonthQuestion[] {
+/**
+ * Preguntas del mes `month`: la del mes 1 se mantiene; después, dos con tus números y tres de concepto. `before`: las
+ * claves que ya salieron este año (no se repiten las de concepto).
+ */
+function questionsFor(s: SimState, month: number, before: Set<string>): MonthQuestion[] {
   const ws = s.weeks.slice((month - 1) * WEEKS_PER_MONTH, month * WEEKS_PER_MONTH);
   if (ws.length < WEEKS_PER_MONTH) return [];
   const out: MonthQuestion[] = [];
@@ -288,15 +292,27 @@ function questionsFor(s: SimState, month: number): MonthQuestion[] {
     }
     return picked;
   };
-  const before = new Set<string>();
-  for (let m = 1; m < month; m++) for (const q of questionsFor(s, m)) before.add(q.key);
   out.push(...pick(NUMBERS, "num", 2, before, true), ...pick(CONCEPTS, "con", 3, before, false));
   return out;
 }
 
 /** Todas las preguntas disponibles hasta ahora (meses cerrados), en orden. */
+/**
+ * Hasta el 21/11/2026 cada mes recalculaba, recursivamente, todos los anteriores para saber qué había salido: con 6 meses
+ * no se notaba, pero en una Carrera de 65 meses el coste crecía con el cubo de los meses. Ahora es una sola pasada. Las
+ * de concepto no se repiten dentro de un mismo AÑO de juego (13 meses; lib/sim/calendar.ts): la Temporada entera cae en
+ * el año 1, así que sus preguntas son exactamente las de antes.
+ */
 export function monthQuestions(s: SimState): MonthQuestion[] {
   const months = Math.floor(s.weeks.length / WEEKS_PER_MONTH);
-  return Array.from({ length: months }, (_, i) => questionsFor(s, i + 1)).flat();
+  const out: MonthQuestion[] = [];
+  let before = new Set<string>();
+  for (let m = 1; m <= months; m++) {
+    if (m > 1 && yearOfMonth(m) !== yearOfMonth(m - 1)) before = new Set();
+    const qs = questionsFor(s, m, before);
+    for (const q of qs) before.add(q.key);
+    out.push(...qs);
+  }
+  return out;
 }
 export const pendingQuestions = (s: SimState) => monthQuestions(s).filter((q) => !s.answers[q.id]);

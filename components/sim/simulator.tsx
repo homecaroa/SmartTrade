@@ -1,11 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { apply, creditLimitAt, newGame, pendingPayables, pendingReceivables, serviceLevelToDate } from "@/lib/sim/engine";
+import { apply, creditLimitAt, kmCommitted, newGame, palletsCommitted, pendingPayables, pendingReceivables, serviceLevelToDate } from "@/lib/sim/engine";
+import { CAREER_WEEKS, CAREER_YEARS, weekLabel, weekPhrase, WEEKS_PER_QUARTER } from "@/lib/sim/calendar";
+import { pendingQuestions } from "@/lib/sim/questions";
 import { cashForecast } from "@/lib/sim/forecast";
 import type { Action, SimState } from "@/lib/sim/model";
 import { SEASON_WEEKS } from "@/lib/sim/params";
-import { parseSave, restore, SAVE_KEY, toSave } from "@/lib/sim/save";
+import { CAREER_SAVE_KEY, parseSave, restore, SAVE_KEY, toSave } from "@/lib/sim/save";
 import { fmtEur, sum } from "@/lib/learning/money";
 import { SimulatedNotice } from "../learning/simulated-notice";
 import { FinanceView } from "./finance-view";
@@ -20,7 +23,13 @@ type Tab = "semana" | "correo" | "finanzas" | "informe";
 /** Semilla nueva: fuera del motor (el motor no usa azar propio). */
 const randomSeed = () => { try { return crypto.getRandomValues(new Uint32Array(1))[0] % 1_000_000; } catch { return Date.now() % 1_000_000; } };
 
-export function Simulator() {
+/**
+ * `mode`: «carrera» para la partida de 5 años (/simulador/carrera, fase A del 21/11/2026; docs/simulador-carrera.md).
+ * Cada modo tiene su propio guardado.
+ */
+export function Simulator({ mode }: { mode?: "carrera" } = {}) {
+  const career = mode === "carrera";
+  const key = career ? CAREER_SAVE_KEY : SAVE_KEY;
   const [game, setGame] = useState<Game | null>(null);
   const [loaded, setLoaded] = useState(false);
   const [tab, setTab] = useState<Tab>("semana");
@@ -30,17 +39,49 @@ export function Simulator() {
 
   useEffect(() => {
     try {
-      const raw = window.localStorage.getItem(SAVE_KEY);
+      const raw = window.localStorage.getItem(key);
       if (raw) {
         const p = parseSave(JSON.parse(raw));
-        if (p.ok) { const r = restore(p.save); setGame({ seed: p.save.seed, actions: r.actions, state: r.state }); if (p.warning) setMessage(p.warning); }
+        if (p.ok && p.save.mode === mode) { const r = restore(p.save); setGame({ seed: p.save.seed, actions: r.actions, state: r.state }); if (p.warning) setMessage(p.warning); }
       }
     } catch { /* sin almacenamiento: se juega sin guardar */ }
     setLoaded(true);
-  }, []);
-  useEffect(() => { if (game) try { window.localStorage.setItem(SAVE_KEY, JSON.stringify(toSave(game.seed, game.actions, game.state.version))); } catch { /* sin guardar */ } }, [game]);
+  }, [key, mode]);
+  useEffect(() => { if (game) try { window.localStorage.setItem(key, JSON.stringify(toSave(game.seed, game.actions, game.state.version, new Date(), mode))); } catch { /* sin guardar */ } }, [game, key, mode]);
 
-  const start = (seed: number) => { setGame({ seed, actions: [], state: newGame(seed) }); setTab("semana"); setLastWeek(null); setMessage(null); };
+  const start = (seed: number) => { setGame({ seed, actions: [], state: newGame(seed, undefined, mode) }); setTab("semana"); setLastWeek(null); setMessage(null); };
+  /**
+   * «Avanzar hasta la próxima decisión» (Carrera): cierra semanas seguidas, sin aceptar trabajo nuevo, y se para en cuanto
+   * hay algo del jugador. Son acciones «cerrar» normales: el guardado y la reproducción no cambian.
+   */
+  const advance = () => {
+    if (!game || game.state.status !== "jugando") return;
+    let st = game.state;
+    const actions = [...game.actions];
+    const from = st.week;
+    let why = `has llegado al límite de ${WEEKS_PER_QUARTER} semanas por vez`;
+    for (let n = 0; n < WEEKS_PER_QUARTER; n++) {
+      // Sin nada comprometido, avanzar solo quema semanas de fijos (en la prueba con el navegador, quiebra en la 17).
+      if (kmCommitted(st, st.week) + palletsCommitted(st, st.week) === 0) { why = "no tienes trabajo comprometido esta semana: acepta alguna oferta antes de seguir"; break; }
+      const before = st;
+      try { st = apply(st, { t: "cerrar" }); } catch (e) { setMessage(e instanceof Error ? e.message : "Acción no válida."); break; }
+      actions.push({ t: "cerrar" });
+      if (st.status === "incidencia") { why = "hay una incidencia que resolver"; break; }
+      if (st.status !== "jugando") { why = "la partida ha terminado"; break; }
+      if (pendingQuestions(st).length > pendingQuestions(before).length) { why = "tienes el informe del mes"; break; }
+      if (before.contracts.some((c) => c.endWeek === before.week || c.cancelledWeek === st.week)) { why = "ha terminado un contrato y tienes capacidad libre"; break; }
+      if (st.cash < -creditLimitAt(st, st.week) || cashForecast(st).firstBreach !== null) { why = "hay un aviso de caja"; break; }
+    }
+    const closedTo = st.weeks.length ? st.weeks[st.weeks.length - 1].week : from;
+    // Semanas CERRADAS (una incidencia salta antes de cerrar la semana: el «cerrar» queda hecho, pero la semana no).
+    const n = st.weeks.length - game.state.weeks.length;
+    const span = n === 1 ? weekLabel(st, from).toLowerCase() : `${weekLabel(st, from).toLowerCase()} a ${weekLabel(st, closedTo).toLowerCase()}`;
+    setMessage(n > 0 ? `Has avanzado ${n} ${n === 1 ? "semana" : "semanas"} (${span}) y te detienes porque ${why}. ${n === 1 ? "Las ofertas de esa semana se han perdido." : "Las ofertas de esas semanas se han perdido."}` : actions.length > game.actions.length ? `Antes de cerrar la semana ${why}.` : `No avanzas: ${why}.`);
+    if (actions.length === game.actions.length) return;
+    setGame({ ...game, actions, state: st });
+    setLastWeek(closedTo);
+    headingRef.current?.focus();
+  };
   const act = (a: Action) => {
     if (!game) return;
     try {
@@ -53,10 +94,10 @@ export function Simulator() {
   };
   const exportFile = () => {
     if (!game) return;
-    const blob = new Blob([JSON.stringify(toSave(game.seed, game.actions, game.state.version), null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(toSave(game.seed, game.actions, game.state.version, new Date(), mode), null, 2)], { type: "application/json" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = `smartrade-partida-${game.seed}-semana-${game.state.week}.json`;
+    a.download = `smartrade-${career ? "carrera" : "partida"}-${game.seed}-semana-${game.state.week}.json`;
     a.click();
     URL.revokeObjectURL(a.href);
   };
@@ -64,6 +105,7 @@ export function Simulator() {
     try {
       const p = parseSave(JSON.parse(await f.text()));
       if (!p.ok) { setMessage(p.error); return; }
+      if (p.save.mode !== mode) { setMessage(career ? "Este archivo es de una Temporada de 26 semanas: impórtalo en el simulador de temporada." : "Este archivo es de una Carrera de 5 años: impórtalo en la página de la Carrera."); return; }
       const r = restore(p.save);
       setGame({ seed: p.save.seed, actions: r.actions, state: r.state });
       setMessage([p.warning, r.dropped ? `${r.dropped} acciones ya no son válidas con las reglas actuales y se han descartado.` : null].filter(Boolean).join(" ") || "Partida importada.");
@@ -71,7 +113,7 @@ export function Simulator() {
   };
 
   if (!loaded) return <p className="text-sm text-slate-600">Cargando…</p>;
-  if (!game) return <StartScreen onStart={start} onImport={importFile} message={message} />;
+  if (!game) return <StartScreen career={career} onStart={start} onImport={importFile} message={message} />;
 
   const s = game.state;
   const last = s.weeks[s.weeks.length - 1];
@@ -82,12 +124,12 @@ export function Simulator() {
   return (
     <div className="space-y-4">
       <header className="space-y-2 rounded-lg bg-white p-4 shadow-sm">
-        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Business Simulator · temporada de {SEASON_WEEKS} semanas · partida {game.seed}</p>
+        <p className="text-xs font-semibold uppercase tracking-wide text-emerald-700">Business Simulator · {career ? `carrera de ${CAREER_YEARS} años` : `temporada de ${SEASON_WEEKS} semanas`} · partida {game.seed}</p>
         <h1 ref={headingRef} tabIndex={-1} className="text-xl font-bold">Transportes y Almacenes del Turia (ficticia)</h1>
         <SimulatedNotice compact />
         <div className="grid gap-2 text-sm md:grid-cols-[auto_1fr_1fr]">
           <dl className="grid grid-cols-2 gap-2 rounded border border-slate-200 p-2 md:grid-cols-1">
-            <div><dt className="text-slate-600">Semana</dt><dd className="text-lg font-bold">{s.status === "fin" || s.status === "quiebra" ? "Terminada" : `${s.week} de ${SEASON_WEEKS}`}</dd></div>
+            <div><dt className="text-slate-600">Semana</dt><dd className="text-lg font-bold">{s.status === "fin" || s.status === "quiebra" ? "Terminada" : career ? <>{weekLabel(s, s.week)} <span className="text-xs font-normal text-slate-600">({s.week} de {CAREER_WEEKS})</span></> : `${s.week} de ${SEASON_WEEKS}`}</dd></div>
             <div><dt className="text-slate-600">Nivel de servicio (reputación)</dt><dd className="text-lg font-bold">{serviceLevelToDate(s).toLocaleString("es-ES")} %</dd></div>
           </dl>
           <div className="rounded border border-slate-200 p-2" aria-label="Beneficio">
@@ -114,7 +156,7 @@ export function Simulator() {
         {tabBtn("semana", "Semana")}{tabBtn("correo", `Correo (${inboxFor(s).length})`)}{tabBtn("finanzas", "Finanzas")}{tabBtn("informe", s.status === "fin" || s.status === "quiebra" ? "Resumen final" : "Informe")}
       </div>
       <div role="tabpanel">
-        {tab === "semana" && <WeekView s={s} lastWeek={lastWeek} onAction={act} onShowReport={() => setTab("informe")} />}
+        {tab === "semana" && <WeekView s={s} lastWeek={lastWeek} onAction={act} onShowReport={() => setTab("informe")} onAdvance={career ? advance : undefined} />}
         {tab === "correo" && <InboxView s={s} onAction={act} />}
         {tab === "finanzas" && <FinanceView s={s} />}
         {tab === "informe" && <ReportView s={s} onAction={act} />}
@@ -142,25 +184,26 @@ function CashAlert({ s, onShowFinance }: { s: SimState; onShowFinance: () => voi
   const more = <button type="button" className="underline" onClick={onShowFinance}>Ver la previsión de tesorería</button>;
   if (s.cash < -limit) return (
     <p role="alert" className="rounded border border-rose-300 bg-rose-50 p-2 text-sm text-rose-900">
-      <b>Peligro de quiebra:</b> tu caja cerró la semana en {fmtEur(s.cash)}{limit ? `, por debajo del límite de tu póliza (−${fmtEur(limit)})` : " y no tienes póliza de crédito"}. Si la semana {s.week} también termina así, la empresa quiebra.
+      <b>Peligro de quiebra:</b> tu caja cerró la semana en {fmtEur(s.cash)}{limit ? `, por debajo del límite de tu póliza (−${fmtEur(limit)})` : " y no tienes póliza de crédito"}. Si {weekPhrase(s, s.week)} también termina así, la empresa quiebra.
       {now && <> Con lo ya facturado y comprometido terminarías esta semana en unos <b>{fmtEur(now.end)}</b> (sin contar gasóleo ni imprevistos).</>}
       {!limit && " Una póliza de crédito te daría margen."} {more}
     </p>
   );
   if (f.firstBreach !== null) return (
     <p role="status" className="rounded border border-amber-300 bg-amber-50 p-2 text-sm text-amber-900">
-      <b>Atención a la caja:</b> con lo ya facturado y comprometido, la caja bajaría {limit ? "del límite de tu póliza" : "de cero"} en la semana {f.firstBreach}. {more}
+      <b>Atención a la caja:</b> con lo ya facturado y comprometido, la caja bajaría {limit ? "del límite de tu póliza" : "de cero"} en {weekPhrase(s, f.firstBreach)}. {more}
     </p>
   );
   return null;
 }
 
-function StartScreen({ onStart, onImport, message }: { onStart: (seed: number) => void; onImport: (f: File) => void; message: string | null }) {
+function StartScreen({ career, onStart, onImport, message }: { career: boolean; onStart: (seed: number) => void; onImport: (f: File) => void; message: string | null }) {
   const [seed, setSeed] = useState("");
   const valid = /^\d{1,9}$/.test(seed.trim());
   return (
     <section className="space-y-4 rounded-lg bg-white p-6 shadow-sm" aria-labelledby="titulo-simulador">
-      <h1 id="titulo-simulador" className="text-xl font-bold">Business Simulator</h1>
+      <h1 id="titulo-simulador" className="text-xl font-bold">{career ? "Business Simulator · Carrera" : "Business Simulator"}</h1>
+      {career ? <CareerIntro /> : <>
       <p className="text-sm">Diriges <b>Transportes y Almacenes del Turia</b> (ficticia), un operador logístico de Valencia: un camión, un almacén de 600 palés, un conductor y un mozo, y 40.000 € en caja. Cada semana eliges qué trabajos aceptas, cobras y pagas. La temporada dura <b>{SEASON_WEEKS} semanas</b>.</p>
       <ul className="list-disc space-y-1 pl-5 text-sm">
         <li>Facturar no es cobrar: el transporte se cobra a 30 días y el alquiler y las nóminas se pagan cada 4 semanas.</li>
@@ -173,6 +216,8 @@ function StartScreen({ onStart, onImport, message }: { onStart: (seed: number) =
         <li>Tu <b>nivel de servicio es tu reputación</b>: si cumples, a partir de la semana 7 los clientes pagan más; si fallas, te llegan menos ofertas y peores.</li>
         <li>Lo que no depende de ti (ofertas, averías, pagos) lo decide la <b>semilla</b> de la partida: con la misma semilla puedes rejugar y comparar estrategias.</li>
       </ul>
+      <p className="text-sm">¿Quieres más tiempo? Prueba la <Link href="/simulador/carrera" className="font-semibold underline">Carrera de {CAREER_YEARS} años</Link> (en construcción), con estados financieros por trimestre y año.</p>
+      </>}
       <SimulatedNotice compact />
       {message && <p role="status" className="rounded bg-amber-50 p-2 text-sm text-amber-900">{message}</p>}
       <div className="flex flex-wrap items-end gap-3">
@@ -184,5 +229,22 @@ function StartScreen({ onStart, onImport, message }: { onStart: (seed: number) =
         <label className="text-sm">Importar partida<input type="file" accept="application/json,.json" onChange={(e) => { const f = e.target.files?.[0]; if (f) onImport(f); }} className="mt-1 block text-xs" /></label>
       </div>
     </section>
+  );
+}
+
+/** Presentación de la Carrera (fase A): qué es igual que en la Temporada y qué cambia. */
+function CareerIntro() {
+  return (
+    <>
+      <p className="text-sm">La misma empresa, <b>Transportes y Almacenes del Turia</b> (ficticia), durante <b>{CAREER_YEARS} años</b> ({CAREER_WEEKS} semanas). Empiezas igual que en la Temporada: un camión, un almacén de 600 palés, un conductor, un mozo y 40.000 € en caja.</p>
+      <ul className="list-disc space-y-1 pl-5 text-sm">
+        <li>Las <b>reglas son las de la Temporada</b>: averías, reclamaciones, incidencias del almacén y de reparto, la campaña y el valle se repiten cada semestre, con otros sucesos.</li>
+        <li>Cada trimestre y cada año tienes tus <b>estados financieros</b> en Finanzas: cuenta de resultados, balance y flujos de caja.</li>
+        <li>Con <b>Avanzar hasta la próxima decisión</b> pasan las semanas solas, sin aceptar trabajos nuevos, hasta que haya algo tuyo: una incidencia, el informe del mes, un contrato que termina o un aviso de caja.</li>
+        <li>No hay objetivos de temporada: pierdes si te quedas sin caja dos semanas o si tu servicio cae por debajo del 80 % cuatro semanas seguidas.</li>
+        <li><b>En construcción.</b> Por ahora la empresa no puede crecer más que en la Temporada (un segundo camión, una nave y una póliza): las operaciones más profundas, la flota, el personal y la financiación llegarán por fases. Se guarda aparte de tu Temporada.</li>
+      </ul>
+      <p className="text-sm">¿Primera vez? Empieza por la <Link href="/simulador" className="font-semibold underline">Temporada de {SEASON_WEEKS} semanas</Link>.</p>
+    </>
   );
 }
