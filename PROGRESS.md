@@ -40,6 +40,8 @@ Reglas del juego en `docs/simulador.md`: operador logístico ficticio de Valenci
 - Incidencias en los repartos (17/11/2026, reglas v9, §17 terdecies): destinatario ausente, espera para descargar, peso sospechoso, mala estiba, bultos que no coinciden y cambio de destino. Base: Ley 15/2009, arts. 20, 21, 22, 26, 29, 36 y 47, comprobados en el BOE.
 - Preguntas mensuales (17/11/2026): cinco al cerrar cada mes, unas 30 por temporada. Dos con tus números y tres de concepto, de un banco de 25. Next actualizado a 16.4.6 por seguridad: el build se negaba a compilar con 16.4.2.
 
+**Corrección legal, reglas v10** (21/11/2026, `docs/simulador.md` §17 quattuordecies): la espera para descargar se indemniza pasada la primera hora (Ley 15/2009, art. 22, redacción vigente desde el 02/03/2022). La v9 usaba el texto de 2009 (dos horas). Las partidas v9 conservan su cálculo con el texto corregido. Revisados en el BOE los demás artículos citados: siguen igual.
+
 **Carrera, fase A** (21/11/2026, `docs/simulador-carrera.md`):
 - `/simulador/carrera`: 5 años (260 semanas) con el mismo motor. Los sucesos de la temporada se repiten cada semestre con otra semilla; las preguntas de concepto no se repiten dentro de un año. Se guarda aparte de la Temporada.
 - «Avanzar hasta la próxima decisión»: se para con incidencia, informe del mes, fin de contrato, aviso de caja o 13 semanas; no arranca sin trabajo comprometido.

@@ -18,9 +18,11 @@
  * - v8 (11/11/2026): las devoluciones guardadas sin cobrar ocupan sitio, pero no cuentan para el objetivo de ocupación
  *   ni, si no caben, generan el aviso de que el cliente cancela (ver HELD_RETURNS_FROM en lib/sim/warehouse.ts).
  * - v9 (17/11/2026): incidencias durante los repartos (ver DELIVERY y lib/sim/delivery.ts).
+ * - v10 (21/11/2026): la paralización por espera se cuenta desde la PRIMERA hora (Ley 15/2009, art. 22, redacción vigente
+ *   desde el 02/03/2022). La v9 usaba la redacción original de 2009 (dos horas): ver DELIVERY.
  */
-export const ENGINE_VERSION = 9;
-export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9] as const;
+export const ENGINE_VERSION = 10;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -204,14 +206,21 @@ export const WAREHOUSE_V6 = {
  * internacional, que va por el Convenio CMR). Desde la semana 3, cada semana con repartos propios hay una probabilidad
  * de que surja una; cada tipo, como mucho una vez por temporada. Base legal comprobada en el BOE el 17/11/2026 (Ley
  * 15/2009, arts. 20, 21, 22, 26, 29, 36 y 47). Importes y probabilidades: SIMULADOS.
- * - `paralizacionPerHour`: el art. 22.3 fija dos veces el IPREM/día por hora, sin contar las dos primeras ni más de diez
- *   al día; con el IPREM de 600 €/mes (no comprobado en el BOE, ver CLAIMS) son 40 € por hora.
+ * - `paralizacionPerHour`: el art. 22.3 fija dos veces el IPREM/día por hora o fracción, sin contar la primera ni más de
+ *   diez al día; con el IPREM de 600 €/mes (no comprobado en el BOE, ver CLAIMS) son 40 € por hora.
+ * - `freeHoursV9`/`freeHours`: CORRECCIÓN del 21/11/2026. Las reglas v9 se escribieron con la redacción ORIGINAL de 2009
+ *   del art. 22 («más de dos horas», «sin contar las dos primeras»). Desde la modificación publicada el 02/03/2022 la ley
+ *   dice «superior a una hora» y «sin que se tenga en cuenta la primera hora» (texto vigente, 15/04/2026, leído en el
+ *   BOE el 21/11/2026, junto con el original). Desde la v10 se calcula así; las partidas v9 guardadas conservan su
+ *   cálculo para reproducirse igual, pero su texto explica ya la ley vigente.
  */
 export const DELIVERY = {
   fromVersion: 9,
   fromWeek: 3,
   chance: 0.35,
   paralizacionPerHour: 40,
+  freeHoursV9: 2,
+  freeHours: 1,
   waitHours: { min: 4, max: 7 },
   stolenGoods: 900,
   overweightFine: 1_200,
