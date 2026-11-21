@@ -62,6 +62,7 @@ export function StatementsView({ s }: { s: SimState }) {
               {row("Subcontratistas y reparaciones", pl.map((x) => neg(x.costSubcontract + x.costRepair)), { sign: true })}
               {row("Personal, alquiler y estructura", pl.map((x) => neg(x.costFixed + x.costStaff)), { sign: true })}
               {row("Sanciones y reclamaciones (neto)", pl.map((x) => neg(x.costPenalties)), { sign: true })}
+              {pl.some((x) => x.costServices) && row("Informes comerciales", pl.map((x) => neg(x.costServices)), { sign: true })}
               {row("EBITDA", pl.map((x) => x.ebitda), { strong: true, sign: true })}
               {row("Amortización", pl.map((x) => neg(x.amortization)), { sign: true })}
               {row("Gastos financieros", pl.map((x) => neg(x.costFinancial)), { sign: true })}

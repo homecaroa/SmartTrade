@@ -238,11 +238,13 @@ function CareerIntro() {
     <>
       <p className="text-sm">La misma empresa, <b>Transportes y Almacenes del Turia</b> (ficticia), durante <b>{CAREER_YEARS} años</b> ({CAREER_WEEKS} semanas). Empiezas igual que en la Temporada: un camión, un almacén de 600 palés, un conductor, un mozo y 40.000 € en caja.</p>
       <ul className="list-disc space-y-1 pl-5 text-sm">
-        <li>Las <b>reglas son las de la Temporada</b>: averías, reclamaciones, incidencias del almacén y de reparto, la campaña y el valle se repiten cada semestre, con otros sucesos.</li>
+        <li><b>Menos ofertas y más profundas</b>: llegan de 0 a 3 por semana, más grandes y de 2 a 6 meses. Cada una trae su solicitud (mercancía, palés, ruta, viajes) y antes de negociar o aceptar tienes que hacer su <b>escandallo</b>: calcular su coste completo con los costes de tu empresa. Puedes pedir un <b>informe comercial</b> para saber cómo paga el cliente.</li>
+        <li>Al terminar cada contrato, el Informe compara el <b>margen previsto</b> con tu escandallo y el <b>real</b>.</li>
+        <li>El resto de reglas son las de la Temporada: averías, reclamaciones, incidencias del almacén y de reparto, la campaña y el valle se repiten cada semestre, con otros sucesos.</li>
         <li>Cada trimestre y cada año tienes tus <b>estados financieros</b> en Finanzas: cuenta de resultados, balance y flujos de caja.</li>
         <li>Con <b>Avanzar hasta la próxima decisión</b> pasan las semanas solas, sin aceptar trabajos nuevos, hasta que haya algo tuyo: una incidencia, el informe del mes, un contrato que termina o un aviso de caja.</li>
         <li>No hay objetivos de temporada: pierdes si te quedas sin caja dos semanas o si tu servicio cae por debajo del 80 % cuatro semanas seguidas.</li>
-        <li><b>En construcción.</b> Por ahora la empresa no puede crecer más que en la Temporada (un segundo camión, una nave y una póliza): las operaciones más profundas, la flota, el personal y la financiación llegarán por fases. Se guarda aparte de tu Temporada.</li>
+        <li><b>En construcción.</b> Por ahora la empresa no puede crecer más que en la Temporada (un segundo camión, una nave y una póliza): la flota, el personal, la financiación y el gasóleo variable llegarán por fases. Se guarda aparte de tu Temporada.</li>
       </ul>
       <p className="text-sm">¿Primera vez? Empieza por la <Link href="/simulador" className="font-semibold underline">Temporada de {SEASON_WEEKS} semanas</Link>.</p>
     </>

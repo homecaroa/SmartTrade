@@ -43,6 +43,10 @@ export interface Offer {
   destination?: { city: string; country: string };
   days?: number;
   tolls?: number;
+  /** Carrera v11: lo que cuenta el cliente en su solicitud (lib/sim/deep.ts). */
+  ficha?: { goods: string; pallets: number; tonnes: number; valuePerKg: number; route?: string; kmOneWay?: number; trips?: number };
+  /** Carrera v11: tu escandallo, en la unidad de deep.fullCost (€/km, € el viaje o € por semana). */
+  estimate?: number;
 }
 
 export interface Contract extends Offer {
@@ -90,6 +94,8 @@ export interface WeekRecord {
   costStaff?: number;
   /** Intereses y comisiones de la póliza de crédito (10/11/2026; ausente en semanas anteriores). */
   costFinancial?: number;
+  /** Servicios externos de la semana (Carrera v11: informes comerciales). Solo si los hay. */
+  costServices?: number;
   /** Palés guardados sin cobrar esa semana (devoluciones, reglas v8): no cuentan para el objetivo de ocupación. */
   palletsHeld?: number;
   /** Palés que cabían esa semana (10/11/2026; ausente = P.warehousePallets). */
@@ -146,6 +152,8 @@ export interface SimState {
   claims?: { label: string; amount: number; note: string; unserved?: number }[];
   /** Organización del almacén (v6): reorganización ABC y mozos temporales (semana de la decisión). */
   staff?: { abcWeek?: number; temps?: number[] };
+  /** Servicios contratados esta semana que se pagan al cerrarla (Carrera v11: informes comerciales). */
+  services?: { label: string; amount: number }[];
 }
 
 export const GROWTH_OPTIONS = ["renting", "compra", "almacen", "poliza"] as const;
@@ -160,6 +168,10 @@ export type Action =
   | { t: "proponer"; oferta: string; tarifa: number; semanas: number; plazo: number }
   | { t: "responder"; incidencia: string; opcion: string }
   | { t: "pregunta"; pregunta: string; opcion: string }
+  /** Carrera v11: tu coste completo estimado para una oferta (lib/sim/deep.ts). */
+  | { t: "escandallo"; oferta: string; coste: number }
+  /** Carrera v11: pedir el informe comercial de un cliente. */
+  | { t: "informe"; cliente: string }
   | { t: "cerrar" };
 
 export interface SaveFile { app: "smartrade-simulador"; version: number; seed: number; actions: Action[]; savedAt: string; mode?: "carrera" }

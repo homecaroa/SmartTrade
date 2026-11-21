@@ -20,9 +20,11 @@
  * - v9 (17/11/2026): incidencias durante los repartos (ver DELIVERY y lib/sim/delivery.ts).
  * - v10 (21/11/2026): la paralización por espera se cuenta desde la PRIMERA hora (Ley 15/2009, art. 22, redacción vigente
  *   desde el 02/03/2022). La v9 usaba la redacción original de 2009 (dos horas): ver DELIVERY.
+ * - v11 (21/11/2026): Carrera, fase B1 (operaciones profundas: CAREER_DEEP y lib/sim/deep.ts). Solo cambia la Carrera;
+ *   una Temporada v11 se juega exactamente como una v10.
  */
-export const ENGINE_VERSION = 10;
-export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] as const;
+export const ENGINE_VERSION = 11;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -231,4 +233,29 @@ export const DELIVERY = {
   disputeCost: 200,
   returnTripCost: 180,
   detourKm: { min: 40, max: 120 },
+} as const;
+
+/**
+ * Carrera, fase B1 (reglas v11, 21/11/2026; lib/sim/deep.ts y docs/simulador-carrera.md §6). Todas las cifras son
+ * SIMULADAS, decisiones de diseño a medir con las estrategias automáticas, no datos del mercado:
+ * - `count`: probabilidad de que en una semana lleguen 0, 1, 2 o 3 ofertas: 1,55 de media, un tercio de las de la
+ *   Temporada (3-6). Medido con estrategias automáticas el 21/11/2026: con una de media (0, 1 o 2), TODAS quebraban.
+ *   El camión solo es rentable casi lleno (1,30 €/km a 1.050 km por semana, 1,96 €/km a 600) y con tan pocas ofertas
+ *   los contratos llegan a trozos: el camión iba al 60 % y el almacén pasaba años medio vacío.
+ * - `priceFactor`: una operación grande y comprometida se paga un 20 % mejor que la media de los encargos sueltos. Con
+ *   el 10 % seguían quebrando la mitad de las prudentes. Decisión calibrada con las estrategias, no un dato de mercado.
+ * - `weeks`: un contrato recurrente dura de 8 a 26 semanas (2 a 6 meses); `volume`: piden entre 1,2 y 1,8 veces más.
+ * - `maxKmWeek`: una distribución no pide más de 1.000 km a la semana (lo que hace un camión).
+ * - `tolerance`: el escandallo es correcto a menos de un 10 % del coste completo y razonable a menos de un 25 %.
+ * - `reportCost`: lo que cuesta un informe comercial de un cliente.
+ */
+export const CAREER_DEEP = {
+  fromVersion: 11,
+  count: [0.1, 0.4, 0.35, 0.15],
+  weeks: { min: 8, max: 26 },
+  volume: { min: 1.2, max: 1.8 },
+  maxKmWeek: 1_000,
+  tolerance: { ok: 0.1, close: 0.25 },
+  reportCost: 90,
+  priceFactor: 1.2,
 } as const;
