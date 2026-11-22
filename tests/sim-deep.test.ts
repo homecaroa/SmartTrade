@@ -11,7 +11,8 @@ import { play } from "@/lib/sim/strategies";
  * Carrera, fase B1 (reglas v11, 21/11/2026; docs/simulador-carrera.md §6): pocas ofertas y más profundas, ficha,
  * informe comercial, escandallo obligatorio y evaluación de previsto frente a real.
  */
-const career = (seed = 5) => newGame(seed, undefined, "carrera");
+// Reglas v11 fijadas: estas pruebas son de la fase B1 (el gasóleo de la v12 tiene las suyas en sim-fuel.test.ts).
+const career = (seed = 5) => newGame(seed, 11, "carrera");
 const closeUntilOffers = (s: SimState) => { for (let i = 0; i < 20 && s.offers.length === 0; i++) s = apply(s, { t: "cerrar" }); return s; };
 
 describe("solo en la Carrera v11", () => {
@@ -115,7 +116,7 @@ describe("informe comercial", () => {
 });
 
 describe("evaluación y una carrera entera", () => {
-  const g = play(7919 * 3 + 3, "negociadora", undefined, "carrera");
+  const g = play(7919 * 3 + 3, "negociadora", 11, "carrera");
   it("una carrera v11 de la estrategia negociadora llega al final con la contabilidad cuadrada", () => {
     expect(g.state.version).toBe(11);
     expect(g.state.status).toBe("fin");

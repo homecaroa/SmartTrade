@@ -22,9 +22,11 @@
  *   desde el 02/03/2022). La v9 usaba la redacción original de 2009 (dos horas): ver DELIVERY.
  * - v11 (21/11/2026): Carrera, fase B1 (operaciones profundas: CAREER_DEEP y lib/sim/deep.ts). Solo cambia la Carrera;
  *   una Temporada v11 se juega exactamente como una v10.
+ * - v12 (22/11/2026): Carrera, fase B2: gasóleo variable y revisión del precio (Ley 15/2009, art. 38; FUEL y
+ *   lib/sim/fuel.ts). Solo la Carrera; la Temporada v12 se juega como la v10.
  */
-export const ENGINE_VERSION = 11;
-export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11] as const;
+export const ENGINE_VERSION = 12;
+export const SUPPORTED_VERSIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 /**
  * Viajes puntuales desde la v2. Precio por km de IDA entre 1,60 y 3,20 € (0,80-1,60 €/km recorrido contando el retorno):
  * cerca del 40 % cubre el coste completo del camión y ninguno queda por debajo del variable. En un 40 % de los viajes el
@@ -258,4 +260,28 @@ export const CAREER_DEEP = {
   tolerance: { ok: 0.1, close: 0.25 },
   reportCost: 90,
   priceFactor: 1.2,
+} as const;
+
+/**
+ * Gasóleo variable (Carrera, fase B2, reglas v12, 22/11/2026; lib/sim/fuel.ts). La ley está comprobada (Ley 15/2009,
+ * art. 38); las cifras son SIMULADAS:
+ * - `fuelPerKm`: la parte de gasóleo de los 0,42 €/km variables (P.variablePerKm). Es la única que se mueve con el índice.
+ * - Índice semanal: paso aleatorio de hasta ±`weeklyStep`, con vuelta a la media (`meanReversion`) y entre `min` y `max`.
+ * - `threshold`: el 5 % del art. 38.2 (sin pacto de un umbral menor).
+ * - `shareOfFullCost`: peso del gasóleo en el coste completo del camión lleno (0,30 de 1,30 €/km). La ley remite a la
+ *   fórmula de la Administración (no leída): este peso es del juego.
+ * - `unilateralRise`, `lateRefundCost`, `disputeWeeks`: consecuencias de las respuestas equivocadas.
+ */
+export const FUEL = {
+  fromVersion: 12,
+  fuelPerKm: 0.3,
+  weeklyStep: 0.025,
+  meanReversion: 0.03,
+  min: 0.75,
+  max: 1.45,
+  threshold: 0.05,
+  shareOfFullCost: 0.23,
+  unilateralRise: 0.15,
+  lateRefundCost: 150,
+  disputeWeeks: 6,
 } as const;

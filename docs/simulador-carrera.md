@@ -124,6 +124,45 @@ Esta es la petición del dueño: «menos ofertas de trabajos y más profundidad 
 - Gasóleo variable con la revisión **obligatoria** del art. 38 (no se negocia).
 - Paralizaciones (art. 22) y valor declarado (art. 61) como condiciones de la operación.
 
+## 1 ter. Fase B2: gasóleo variable y revisión del precio (22/11/2026, reglas v12)
+
+**Ley** (Ley 15/2009, art. 38, redacción vigente desde el 02/03/2022; leída en el BOE el 21/11/2026, junto con el texto de 2009):
+- Si el combustible varía entre la celebración del contrato y el transporte, el precio se revisa **al alza o a la baja**, según el peso del combustible en los costes. La diferencia va **desglosada** en la factura (38.1).
+- La revisión es automática a partir de una variación del 5 %, salvo que se haya pactado por escrito un umbral menor. En el transporte continuado se aplica en cada periodo de facturación (38.2).
+- **El pacto en contrario es nulo** (38.3).
+
+La redacción de 2009 era distinta: hablaba solo del gasóleo, la revisión era a petición de parte y solo anulaba los pactos abusivos. **No es una cláusula que se negocie**, y el diseño de la propuesta («no tenía revisión de precios en dos contratos») se ha corregido por eso.
+
+**Lo que es del juego** (`lib/sim/fuel.ts`, `FUEL`):
+- Un índice semanal del gasóleo, sembrado. En 200 semillas y 5 años, el mínimo va de 0,83 a 0,93 y el máximo de 1,07 a 1,16.
+- Solo se mueve la parte de gasóleo de los 0,42 €/km: 0,30 €/km.
+- La fórmula de revisión es suya: precio × (1 + 0,23 × variación). El 0,23 es el peso del gasóleo en el coste completo del camión lleno. La ley remite a las fórmulas de la Administración (condiciones generales de contratación, Orden de 1997 modificada por la FOM/2184/2008), que **no se han leído**.
+- Solo afecta a la distribución (transporte continuado).
+
+**La decisión.** La primera vez que un contrato cruza el 5 % aparece una decisión:
+
+| Si el gasóleo… | Respuesta correcta | Razonable | Error importante |
+|---|---|---|---|
+| sube | Revisar, desglosado. Desde ahí, cada factura se revisa sola. | Absorberlo: pierdes el dinero. | Subir un 15 % por tu cuenta: el cliente rescinde. |
+| baja | Aplicar la rebaja. | Esperar: la aplicas igual y pagas 150 € de rectificativa. | Mantener el precio: es nulo; devuelves 6 semanas de diferencia y el cliente se va. |
+
+El escandallo y el coste variable de la semana usan el gasóleo de esa semana.
+
+**Medido:**
+- Unas 9 decisiones de gasóleo por carrera.
+- La revisión mueve pocos euros por semana y contrato: aquí importa aprender la ley, no la economía.
+- Equilibrio (10 carreras por estrategia): casi igual que en B1. La «selectiva», que ya iba justa, quiebra en 4 de 10 en lugar de 2. La «crecedora» termina todas, con 19–32 k€ al año.
+
+**Verificación:**
+- 10 pruebas (`tests/sim-fuel.test.ts`).
+- 650 partidas de `main` (Temporadas v1–v11 y Carreras v10 y v11) se reproducen idénticas. Hubo que mantener el texto de una etiqueta para que las v11 no cambiaran.
+- 10 mutaciones, todas rojas. Dos estaban huecas en la primera pasada:
+  - la de la fórmula, porque la prueba usaba la misma función que se mutaba;
+  - la del escandallo con el gasóleo de la semana.
+- La app se ha abierto en escritorio y móvil.
+
+**Pendiente (B3):** paralizaciones (art. 22) y valor declarado (art. 61) como condiciones de cada operación.
+
 ## 2. Límites conocidos de la fase A
 
 - El crecimiento tiene techo, como se mide en el §1.

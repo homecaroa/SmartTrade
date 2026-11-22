@@ -13,6 +13,7 @@ import { BREAKDOWN_WINDOWS, CAREER_DEEP, ENGINE_VERSION, FIXED_PER_WEEK, GROWTH,
 import { intIn, stream } from "./rng";
 import { lastWeekOf, localWeek, modeOf, semesterKey, semesterOf, semesterSeed } from "./calendar";
 import { deepOffers, gradeEstimate, isDeep } from "./deep";
+import { applyFuelDecision, fuelIncidents, fuelOn, fuelOptions, revisionFactor, variablePerKmAt } from "./fuel";
 
 /**
  * Motor del Business Simulator, Fase 1 (docs/simulador.md). Puro y determinista: el estado se obtiene aplicando las
@@ -217,6 +218,7 @@ export function incidentOptions(inc: Pick<Incident, "kind" | "data">, version: n
   if (isClaim(inc.kind)) return claimOptions(inc as Incident);
   if (isWarehouseIncident(inc.kind)) return warehouseOptions(inc as Incident);
   if (isDelivery(inc.kind)) return deliveryOptions(inc as Incident);
+  if (inc.kind === "gasoleo") return fuelOptions(inc as Incident);
   const kind = inc.kind as "averia" | "mora";
   return kind === "averia" && version >= 3 ? INCIDENT_OPTIONS.averia.map((o) => (o.id === "subcontratar" ? { ...o, feedback: o.feedback.replace(n2(P.subcontractPerKm), n2(subcontractPerKm(version))) } : o)) : INCIDENT_OPTIONS[kind];
 }
@@ -258,7 +260,7 @@ export function dueIncidents(s: SimState): Incident[] {
     out.push({ id: key, kind: "mora", week: w, title: "Un cliente no paga a su vencimiento", concept: "Facturar no es cobrar. En el transporte por carretera, quien paga incurre en mora a los 30 días (Ley 15/2009, art. 41); el resto de servicios nunca puede pactarse a más de 60 días (Ley 3/2004, art. 4).",
       prompt: `${c.name} no ha pagado la factura de ${inv.amount.toLocaleString("es-ES", { minimumFractionDigits: 2 })} € que vencía esta semana.`, data: { client: c.id, amount: inv.amount } });
   }
-  out.push(...claimIncidents(s), ...warehouseIncidents(s), ...deliveryIncidents(s));
+  out.push(...claimIncidents(s), ...warehouseIncidents(s), ...deliveryIncidents(s), ...fuelIncidents(s));
   return out;
 }
 
@@ -351,7 +353,7 @@ function applyInPlace(s: SimState, a: Action): SimState {
     if (!o) throw new Error("Oferta no disponible.");
     if (o.estimate !== undefined) throw new Error("Ya hiciste el escandallo de esta operación.");
     if (!(a.coste > 0) || !Number.isFinite(a.coste)) throw new Error("Escribe un coste mayor que cero.");
-    const g = gradeEstimate(o, a.coste);
+    const g = gradeEstimate(o, a.coste, variablePerKmAt(s, s.week));
     s.offers = s.offers.map((x) => (x.id === o.id ? { ...x, estimate: round2(a.coste) } : x));
     learn(s, { week: s.week, what: `Escandallo: ${describeOffer(o)}`, answer: `${round2(a.coste).toLocaleString("es-ES")} ${g.real.unit}`, grade: g.grade, feedback: g.feedback, competences: o.kind === "almacenaje" ? ["0625-RA3"] : ["0622-RA3"] });
     return s;
@@ -417,6 +419,7 @@ function applyInPlace(s: SimState, a: Action): SimState {
     if (isClaim(s.pending.kind)) applyClaimDecision(s, s.pending, a.opcion);
     if (isWarehouseIncident(s.pending.kind)) applyWarehouseDecision(s, s.pending, a.opcion);
     if (isDelivery(s.pending.kind)) applyDeliveryDecision(s, s.pending, a.opcion);
+    if (s.pending.kind === "gasoleo") applyFuelDecision(s, s.pending, a.opcion);
     s.pending = null;
     s.status = "jugando";
     return close(s);
@@ -426,7 +429,7 @@ function applyInPlace(s: SimState, a: Action): SimState {
 }
 
 /** Competencias de cada incidencia (docs/curriculo.md). */
-const COMPETENCES: Record<Incident["kind"], string[]> = { averia: ["0622-RA6"], mora: ["0623-RA5"], dano: ["0622-RA6", "0622-RA3"], retraso: ["0622-RA6", "0622-RA3"], plazo: ["0623-RA5", "0824-RA3"], stock: ["0625-RA4"], devoluciones: ["0625-RA5", "0625-RA1"], reparto: ["0622-RA6", "0622-RA3"] };
+const COMPETENCES: Record<Incident["kind"], string[]> = { averia: ["0622-RA6"], mora: ["0623-RA5"], dano: ["0622-RA6", "0622-RA3"], retraso: ["0622-RA6", "0622-RA3"], plazo: ["0623-RA5", "0824-RA3"], stock: ["0625-RA4"], devoluciones: ["0625-RA5", "0625-RA1"], reparto: ["0622-RA6", "0622-RA3"], gasoleo: ["0622-RA3", "0623-RA7"] };
 
 export const replay = (seed: number, actions: Action[]): SimState => actions.reduce(apply, newGame(seed));
 
@@ -481,6 +484,7 @@ function resolveWeek(s: SimState) {
   let revenueTransport = 0;
   const breached: Contract[] = [];
   const invoices: { c: Contract; amount: number }[] = [];
+  let fuelRevised = 0;
   for (const c of transport) {
     const need = kmOf(c);
     let served = Math.min(need, left);
@@ -495,7 +499,9 @@ function resolveWeek(s: SimState) {
     unservedWeight += missing * (broke && decision === "avisar" ? 0.5 : 1);
     // Un contrato recurrente que se incumple sin avisar se pierde: el cliente lo cancela desde la semana siguiente.
     if (missing > 0 && c.kind === "distribucion" && !(broke && decision === "avisar")) breached.push(c);
-    const amount = c.kind === "distribucion" ? round2((need - missing) * c.ratePerKm!) : missing === 0 ? c.price! + (c.withBackhaul && c.backhaul ? c.backhaul.price : 0) : 0;
+    let amount = c.kind === "distribucion" ? round2((need - missing) * c.ratePerKm!) : missing === 0 ? c.price! + (c.withBackhaul && c.backhaul ? c.backhaul.price : 0) : 0;
+    // Carrera v12: revisión por gasóleo (art. 38), desglosada en la factura de la semana.
+    if (fuelOn(s) && c.fuelRevision === "si" && amount) { const rev = round2(amount * (revisionFactor(s, c, w) - 1)); fuelRevised += rev; amount = round2(amount + rev); }
     revenueTransport += amount;
     if (amount > 0) invoices.push({ c, amount });
   }
@@ -514,6 +520,7 @@ function resolveWeek(s: SimState) {
     invoices.push({ c, amount });
   }
   if (kmUnserved > 0) notes.push(`${kmUnserved} km comprometidos sin hacer: no se facturan.`);
+  if (fuelRevised) notes.push(`Revisión por gasóleo en las facturas de la semana (art. 38): ${fuelRevised > 0 ? "+" : ""}${n2(round2(fuelRevised))} €.`);
   if (broke && decision === "callar") {
     const biggest = transport.filter((c) => c.kind === "distribucion").sort((a, c) => kmOf(c) - kmOf(a))[0];
     if (biggest) { biggest.cancelledWeek = w + 1; notes.push(`${clientOf(biggest.clientId).name} cancela su contrato por el fallo sin aviso.`); }
@@ -586,7 +593,9 @@ function resolveWeek(s: SimState) {
   }
 
   // Costes del devengo.
-  const costVariable = round2((kmOwn - intlUnits) * P.variablePerKm + intlFuel + intlExtras);
+  // Carrera v12: el gasóleo de esa semana (lib/sim/fuel.ts); fuera de ella, P.variablePerKm como siempre.
+  const vpk = variablePerKmAt(s, w);
+  const costVariable = round2((kmOwn - intlUnits) * vpk + (vpk === P.variablePerKm ? intlFuel : round2(intlFuel * vpk / P.variablePerKm)) + intlExtras);
   const costSubcontract = round2((kmSub - kmPlanned) * subcontractPerKm(s.version) + kmPlanned * GROWTH.subcontract.perKm);
   if (kmSub > 0) s.payables.push({ id: `p${w}-sub`, label: `Subcontratista (${kmSub} km)`, amount: costSubcontract, week: w, dueWeek: w + GROWTH.subcontract.payWeeks });
   move("Gasóleo, mantenimiento y peajes", -round2(costVariable - intlExtras));

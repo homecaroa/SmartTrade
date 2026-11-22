@@ -64,6 +64,8 @@ export interface Contract extends Offer {
   held?: boolean;
   /** Transporte encargado a otro transportista (10/11/2026): no ocupa tu camión y cuesta P.subcontractPerKm. */
   subcontracted?: boolean;
+  /** Carrera v12: revisión del precio por el gasóleo (art. 38): «si» se aplica cada semana; «no», renunciaste. */
+  fuelRevision?: "si" | "no";
 }
 
 export interface Invoice { id: string; contractId: string; clientId: string; amount: number; week: number; dueWeek: number; payWeek: number; paidWeek?: number }
@@ -109,7 +111,7 @@ export interface WeekRecord {
   notes: string[];
 }
 
-export type IncidentKind = "averia" | "mora" | "dano" | "retraso" | "plazo" | "stock" | "devoluciones" | "reparto";
+export type IncidentKind = "averia" | "mora" | "dano" | "retraso" | "plazo" | "stock" | "devoluciones" | "reparto" | "gasoleo";
 export interface Incident { id: string; kind: IncidentKind; week: number; title: string; prompt: string; concept: string; data: Record<string, number | string> }
 export interface IncidentOption { id: string; label: string; grade: Grade; feedback: string }
 
