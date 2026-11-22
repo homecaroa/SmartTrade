@@ -4,6 +4,7 @@ import { clientOf, handlingRevenue, kmOf, offersFor, scaleRates, weeklyRevenue, 
 import type { Contract, Grade, Offer, SimState } from "./model";
 import { CAREER_DEEP, P, WEEKS_PER_MONTH } from "./params";
 import { intIn, stream } from "./rng";
+import { variablePerKmAt } from "./fuel";
 
 /**
  * Carrera, fase B1: operaciones más profundas (21/11/2026; docs/simulador-carrera.md §6). Petición del dueño: «menos
@@ -103,26 +104,30 @@ export type CostUnit = "€/km" | "€ el viaje" | "€ por semana";
 export interface CostLine { label: string; amount: number }
 export interface FullCost { unit: CostUnit; value: number; lines: CostLine[]; weekly: number; note: string }
 
-/** Coste completo de una operación con los costes de tu empresa (la convención está arriba). */
-export function fullCost(o: Offer): FullCost {
+/**
+ * Coste completo de una operación con los costes de tu empresa (la convención está arriba). `vpk`: gasóleo,
+ * mantenimiento y peajes por km de esa semana (Carrera v12: cambia con el gasóleo; lib/sim/fuel.ts).
+ */
+export function fullCost(o: Offer, vpk: number = P.variablePerKm): FullCost {
   if (o.kind === "distribucion") {
-    const v = P.variablePerKm, f = round2(TRUCK_FIXED_WEEK / TRUCK_KM);
+    const v = vpk, f = round2(TRUCK_FIXED_WEEK / TRUCK_KM);
     return { unit: "€/km", value: round2(v + f), weekly: round2((v + f) * o.kmWeek!), note: `Por km: ${o.kmWeek} km a la semana.`, lines: [
-      { label: `Gasóleo, mantenimiento y peajes: ${P.variablePerKm.toLocaleString("es-ES")} €/km`, amount: v },
+      { label: `Gasóleo, mantenimiento y peajes: ${vpk.toLocaleString("es-ES")} €/km`, amount: v },
       { label: `Conductor, seguro y amortización: ${round2(TRUCK_FIXED_WEEK).toLocaleString("es-ES")} € a la semana ÷ ${TRUCK_KM.toLocaleString("es-ES")} km que puede hacer el camión`, amount: f },
     ] };
   }
   if (o.kind === "puntual") {
-    const km = kmOf(o), v = round2(km * P.variablePerKm), f = round2(km * TRUCK_FIXED_WEEK / TRUCK_KM);
+    const km = kmOf(o), v = round2(km * vpk), f = round2(km * TRUCK_FIXED_WEEK / TRUCK_KM);
     return { unit: "€ el viaje", value: round2(v + f), weekly: round2(v + f), note: `Ida y vuelta: ${km} km (la vuelta en vacío también cuesta).`, lines: [
-      { label: `Gasóleo, mantenimiento y peajes: ${km} km × ${P.variablePerKm.toLocaleString("es-ES")} €`, amount: v },
+      { label: `Gasóleo, mantenimiento y peajes: ${km} km × ${vpk.toLocaleString("es-ES")} €`, amount: v },
       { label: `Conductor, seguro y amortización por los ${km} km que ocupa el camión`, amount: f },
     ] };
   }
   if (o.kind === "internacional") {
-    const d = directCost(o), f = fixedShare(o.days!);
-    return { unit: "€ el viaje", value: round2(d.total + f), weekly: round2(d.total + f), note: `${o.days} días de camión.`, lines: [
-      { label: `Gasóleo, mantenimiento y peajes españoles: ${2 * o.kmOneWay!} km`, amount: d.fuel },
+    const d = directCost(o), f = fixedShare(o.days!), fuel = round2(2 * o.kmOneWay! * vpk), total = round2(fuel + d.extras);
+    return { unit: "€ el viaje", value: round2(total + f), weekly: round2(total + f), note: `${o.days} días de camión.`, lines: [
+      // El «× €/km» solo cuando el gasóleo se mueve (v12): las partidas v11 guardadas conservan su texto.
+      { label: `Gasóleo, mantenimiento y peajes españoles: ${2 * o.kmOneWay!} km${vpk === P.variablePerKm ? "" : ` × ${vpk.toLocaleString("es-ES")} €`}`, amount: fuel },
       { label: "Peajes extranjeros y dietas del conductor", amount: d.extras },
       { label: `Conductor, seguro y amortización por ${o.days} días de camión`, amount: f },
     ] };
@@ -139,8 +144,8 @@ export function fullCost(o: Offer): FullCost {
 export const priceIn = (o: Offer) => (o.kind === "distribucion" ? o.ratePerKm! : o.kind === "almacenaje" ? weeklyRevenue(o) : o.price! + (o.backhaul?.price ?? 0));
 
 /** Corrección del escandallo: dentro del 10 %, bien; dentro del 25 %, razonable; más lejos, error importante. */
-export function gradeEstimate(o: Offer, estimate: number): { grade: Grade; feedback: string; real: FullCost } {
-  const real = fullCost(o);
+export function gradeEstimate(o: Offer, estimate: number, vpk: number = P.variablePerKm): { grade: Grade; feedback: string; real: FullCost } {
+  const real = fullCost(o, vpk);
   const dev = real.value ? Math.abs(estimate - real.value) / real.value : 1;
   const grade: Grade = dev <= CAREER_DEEP.tolerance.ok ? "correcta" : dev <= CAREER_DEEP.tolerance.close ? "razonable" : "grave";
   const fmt = (v: number) => `${v.toLocaleString("es-ES", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ${real.unit}`;
@@ -169,7 +174,7 @@ export function contractReviews(s: SimState): ContractReview[] {
     const plannedRevenue = round2(weeklyRevenue(c) * c.weeks + (c.withBackhaul && c.backhaul ? c.backhaul.price : 0));
     const realRevenue = round2(sum(s.receivables.filter((i) => i.contractId === c.id).map((i) => i.amount)));
     const servedShare = plannedRevenue ? Math.min(1, realRevenue / plannedRevenue) : 0;
-    const cost = fullCost(c);
+    const cost = fullCost(c, variablePerKmAt(s, c.week));
     const plannedCost = round2(c.estimate! * unitsPerWeek * c.weeks);
     const realCost = round2(cost.value * unitsPerWeek * c.weeks * servedShare);
     const reasons: string[] = [];

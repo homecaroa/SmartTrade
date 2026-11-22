@@ -1,4 +1,5 @@
 import { fullCost, isDeep } from "./deep";
+import { variablePerKmAt } from "./fuel";
 import { apply, balanceGap, gradeGrowth, incidentOptions, gradeOffer, growthBlocked, newGame, serviceLevelToDate, subcontractRoom } from "./engine";
 import { directCost } from "./international";
 import { kmOf } from "./market";
@@ -55,7 +56,7 @@ export function play(seed: number, strategy: Strategy, version?: number, mode?: 
     if (s.status === "incidencia" && s.pending) { run({ t: "responder", incidencia: s.pending.id, opcion: choose(strategy, s) }); continue; }
     // Carrera v11: el escandallo va antes de negociar o aceptar. Las estrategias que eligen bien calculan el coste
     // completo; la codiciosa solo cuenta el variable (el error típico); «nada» no hace nada.
-    if (isDeep(s) && strategy !== "nada") for (const o of [...s.offers]) if (o.estimate === undefined) { const c = fullCost(o); run({ t: "escandallo", oferta: o.id, coste: strategy === "codiciosa" ? Math.max(0.01, c.lines[0].amount) : c.value }); }
+    if (isDeep(s) && strategy !== "nada") for (const o of [...s.offers]) if (o.estimate === undefined) { const c = fullCost(o, variablePerKmAt(s, s.week)); run({ t: "escandallo", oferta: o.id, coste: strategy === "codiciosa" ? Math.max(0.01, c.lines[0].amount) : c.value }); }
     const accept = (o: Offer, sub = false) => run({ t: "aceptar", oferta: o.id, docs: strategy === "codiciosa" ? [] : bestDocs(o.kind), ...(o.backhaul ? { retorno: true } : {}), ...(sub ? { subcontratar: true } : {}) });
     const grow = strategy === "crecedora";
     // Almacén (v6): las estrategias que eligen bien contratan un temporal si el trabajo de la semana que viene supera la

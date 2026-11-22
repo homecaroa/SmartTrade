@@ -11,6 +11,7 @@ import type { Action, GrowthOption, Offer, SimState, WeekRecord } from "@/lib/si
 import { weekLines, type LineMargin } from "@/lib/sim/lines";
 import { CAREER_DEEP, GROWTH, INTERNATIONAL, P, payTermLabel, TRUCK_KM_WEEK, WAREHOUSE_V6 } from "@/lib/sim/params";
 import { fullCost, gradeEstimate, isDeep } from "@/lib/sim/deep";
+import { fuelIndex, fuelOn, variablePerKmAt } from "@/lib/sim/fuel";
 import { CAREER_YEARS, lastWeekOf, modeOf, weekLabel } from "@/lib/sim/calendar";
 import { fmtEur } from "@/lib/learning/money";
 import { displayOrder } from "@/lib/learning/order";
@@ -87,6 +88,7 @@ export function WeekView({ s, lastWeek, onAction, onShowReport, onAdvance }: { s
           <CapacityStrip s={s} />
           <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="capacidad">
             <h2 id="capacidad" className="text-base font-semibold">Capacidad comprometida</h2>
+            {fuelOn(s) && (() => { const ch = Math.round((fuelIndex(s.seed, s.week) - 1) * 1000) / 10; return <p className="text-xs text-slate-600"><b>Gasóleo esta semana:</b> {ch === 0 ? "igual que en la semana 1" : `${ch > 0 ? "+" : ""}${ch.toLocaleString("es-ES")} % sobre la semana 1`} · gasóleo, mantenimiento y peajes a {variablePerKmAt(s, s.week).toLocaleString("es-ES")} €/km.</p>; })()}
             {horizon.map((w) => (
               <div key={w} className="grid gap-2 sm:grid-cols-2">
                 <Bar kind="camion" label={`Semana ${w} · ${truckKmAt(s, w) > TRUCK_KM_WEEK ? "tus dos camiones" : "camión"} (km)`} value={kmOwnCommitted(s, w)} max={truckKmAt(s, w)} />
@@ -261,7 +263,7 @@ export function OfferCard({ o, s, onAction }: { o: Offer; s: SimState; onAction:
       <ul className="space-y-0.5 text-xs" aria-label="Efecto en tu capacidad">{offerImpact(s, o).map((x) => <li key={x.text} className={`rounded px-1.5 py-0.5 ${x.over ? "bg-rose-50 font-semibold text-rose-800" : "bg-slate-50 text-slate-700"}`}>{x.over ? "⚠ " : "✓ "}{x.text}</li>)}</ul>
       {o.note && <p className={`rounded p-1.5 text-xs ${o.agreed ? "bg-emerald-50 text-emerald-900" : "bg-amber-50 text-amber-900"}`}><b>{c.name.replace(" (ficticia)", "")}:</b> {o.note} {o.agreed ? "Confirma la operación preparando la documentación." : `Su oferta inicial era ${n2(base.rate)} ${UNIT[o.kind]}.`}</p>}
 
-      {deep && o.estimate === undefined && <EstimateForm o={o} onAction={onAction} />}
+      {deep && o.estimate === undefined && <EstimateForm o={o} vpk={variablePerKmAt(s, s.week)} onAction={onAction} />}
       {mode === "ver" && !(deep && o.estimate === undefined) && (
         <div className="flex flex-wrap gap-2 pt-1">
           <button type="button" onClick={() => setMode("documentar")} className="rounded border border-indigo-600 px-3 py-1 text-xs font-semibold text-indigo-700 hover:bg-indigo-50">{o.agreed ? "Confirmar el acuerdo" : o.round ? "Aceptar su contraoferta" : "Aceptar tal cual"}</button>
@@ -310,7 +312,7 @@ function ActiveContracts({ s }: { s: SimState }) {
   return (
     <section className="rounded-lg bg-white p-4 shadow-sm" aria-labelledby="contratos">
       <h2 id="contratos" className="text-base font-semibold">Tus contratos en curso</h2>
-      <ul className="mt-1 space-y-1 text-sm">{active.map((c) => <li key={c.id}>{describeOffer(c)} <span className="text-xs text-slate-600">(semanas {c.startWeek}–{c.endWeek}{c.subcontracted ? " · subcontratado" : ""})</span></li>)}</ul>
+      <ul className="mt-1 space-y-1 text-sm">{active.map((c) => <li key={c.id}>{describeOffer(c)} <span className="text-xs text-slate-600">(semanas {c.startWeek}–{c.endWeek}{c.subcontracted ? " · subcontratado" : ""}{c.fuelRevision === "si" ? " · con revisión por gasóleo" : c.fuelRevision === "no" ? " · sin revisión por gasóleo" : ""})</span></li>)}</ul>
     </section>
   );
 }
@@ -419,7 +421,7 @@ function DeepFicha({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
   const c = clientOf(o.clientId);
   const f = o.ficha;
   const report = s.answers[`informe-${c.id}`];
-  const g = o.estimate !== undefined ? gradeEstimate(o, o.estimate) : null;
+  const g = o.estimate !== undefined ? gradeEstimate(o, o.estimate, variablePerKmAt(s, o.week)) : null;
   return (
     <div className="space-y-1 rounded border border-slate-200 bg-slate-50 p-2 text-xs">
       {f && <p><b>Solicitud:</b> {f.goods}, {f.pallets} palés ({f.tonnes.toLocaleString("es-ES")} t){f.route ? <>, de Valencia a <b>{f.route}</b> ({f.kmOneWay} km), {f.trips} {f.trips === 1 ? "viaje" : "viajes"} a la semana con la vuelta en vacío</> : null}. Valor de la mercancía: unos {f.valuePerKg.toLocaleString("es-ES")} €/kg. {o.kind === "distribucion" || o.kind === "almacenaje" ? `Contrato de ${o.weeks} semanas.` : ""}</p>}
@@ -432,10 +434,10 @@ function DeepFicha({ o, s, onAction }: { o: Offer; s: SimState; onAction: (a: Ac
 }
 
 /** Escandallo de la Carrera: el coste completo de la operación, calculado por el jugador con los datos de su empresa. */
-function EstimateForm({ o, onAction }: { o: Offer; onAction: (a: Action) => void }) {
+function EstimateForm({ o, vpk, onAction }: { o: Offer; vpk: number; onAction: (a: Action) => void }) {
   const [v, setV] = useState("");
   const [err, setErr] = useState<string | null>(null);
-  const unit = fullCost(o).unit;
+  const unit = fullCost(o, vpk).unit;
   const what = o.kind === "distribucion" ? "por km recorrido" : o.kind === "almacenaje" ? "por semana (sitio y trabajo del mozo)" : "del viaje completo (ida y vuelta)";
   const send = () => { const x = Number(v.replace(",", ".")); if (!(x > 0)) { setErr("Escribe un coste mayor que cero."); return; } setErr(null); onAction({ t: "escandallo", oferta: o.id, coste: x }); };
   return (
@@ -443,7 +445,7 @@ function EstimateForm({ o, onAction }: { o: Offer; onAction: (a: Action) => void
       <p><b>Escandallo:</b> antes de negociar o aceptar, calcula el coste completo de esta operación {what}: costes directos más la parte de los fijos de tu camión o tu almacén que ocupa. No incluyas el gerente ni la gestoría.</p>
       <details><summary className="cursor-pointer text-indigo-800">Los costes de tu empresa</summary>
         <ul className="mt-1 list-disc pl-4">
-          <li>Gasóleo, mantenimiento y peajes: {P.variablePerKm.toLocaleString("es-ES")} €/km.</li>
+          <li>Gasóleo, mantenimiento y peajes: {vpk.toLocaleString("es-ES")} €/km esta semana{vpk !== P.variablePerKm ? " (cambia con el precio del gasóleo)" : ""}.</li>
           <li>Conductor {fmtEur(P.fixedMonthly.conductor)} y seguro {fmtEur(P.fixedMonthly.seguro)} al mes; amortización del camión {fmtEur(P.amortizationWeek)} a la semana. Un mes son 4 semanas.</li>
           <li>El camión hace como mucho {TRUCK_KM_WEEK.toLocaleString("es-ES")} km a la semana en reparto ({P.kmPerDay} km al día, {P.workDays} días).</li>
           <li>Viaje internacional: peajes extranjeros y dietas de {fmtEur(INTERNATIONAL.dietPerDay)} al día, además del gasóleo; el camión cuenta por días (5 a la semana).</li>

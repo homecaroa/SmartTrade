@@ -475,7 +475,7 @@ describe("viajes puntuales (v2) y versiones de reglas", () => {
   });
   it("las partidas nuevas empiezan con la versión actual", () => {
     expect(newGame(1).version).toBe(ENGINE_VERSION);
-    expect(ENGINE_VERSION).toBe(11);
+    expect(ENGINE_VERSION).toBe(12);
   });
 });
 
