@@ -6,6 +6,10 @@ import { manualById } from "@/lib/sim/campaign/manual";
 import type { Action, CampaignState } from "@/lib/sim/campaign/model";
 import { L1_STRATEGIES, playCampaign, type Plan } from "@/lib/sim/campaign/strategies";
 import { UPGRADES } from "@/lib/sim/campaign/upgrades";
+import { ACHIEVEMENTS, achieved } from "@/lib/sim/campaign/achievements";
+import { personWeekly } from "@/lib/sim/campaign/helpers";
+import { LABOR } from "@/lib/sim/campaign/params";
+import { incidentChance, resolveIncident } from "@/lib/sim/campaign/levels/l6";
 import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 
 /**
@@ -162,6 +166,87 @@ describe("reglas de la operación", () => {
   it("reclamar la deuda suma los 40 € de costes de cobro como ingreso, no como gasto", () => {
     const good = playCampaign(SEEDS[2], ["equilibrio", "urbana", "austeridad"]).state;
     expect(good.logs.some((l) => l.notes.some((n) => n === "Costes de cobro reclamados (Ley 3/2004, art. 8): +40 €."))).toBe(true);
+  });
+});
+
+describe("niveles 4 a 6 (23/11/2026)", () => {
+  const P1 = ["equilibrio", "urbana", "poliza", "experta"] as const;
+  it("nivel 4: experta, junior y flexible superan el nivel; no contratar a nadie, no", () => {
+    for (const x of ["experta", "junior", "flexible"] as const) expect(share([...P1.slice(0, 3), x] as unknown as Plan, 3, 1)).toBe(1);
+    expect(share([...P1.slice(0, 3), "mala"] as unknown as Plan, 3, 1)).toBe(0);
+  }, 120_000);
+  it("nivel 4: el coste de una persona es el sueldo más las cotizaciones de 2026; el temporal cotiza más", () => {
+    const g = playCampaign(SEEDS[0], [...P1.slice(0, 3), "junior"] as unknown as Plan).state;
+    const javi = g.company.staff!.find((p) => p.id === "javi")!;
+    expect(personWeekly(javi)).toBeCloseTo(javi.salaryMonthly * (1 + 0.236 + 0.055 + 0.002 + 0.006 + 0.0075 + 0.015) / 4, 2);
+    expect(LABOR.employerRate.temporal - LABOR.employerRate.indefinido).toBeCloseTo(0.012, 4);
+    const fb = g.learning.find((l) => l.id === "conductor")!.feedback;
+    expect(fb).toMatch(/art\. 14\.1/);
+    expect(LABOR.smi).toBe(1_221);
+    for (const c of [1_400, 2_000]) expect(c).toBeGreaterThan(LABOR.smi);
+  });
+  it("nivel 4: el temporal del pico se va solo al acabar su contrato", () => {
+    const g = playCampaign(SEEDS[1], [...P1.slice(0, 3), "junior"] as unknown as Plan).state;
+    const tmp = g.company.staff!.find((p) => p.id === "temporal-pico");
+    if (tmp) { expect(tmp.left).toBe(true); expect(tmp.endAbs! - tmp.startAbs + 1).toBe(3); }
+  });
+  it("nivel 5: paquete equilibrado y concesiones cruzadas consiguen ★★; aceptar su primera oferta nunca la ★★★", () => {
+    for (const x of ["equilibrado", "cruzado"] as const) expect(share([...P1, x] as unknown as Plan, 4, 2)).toBe(1);
+    expect(share([...P1, "alternativa"] as unknown as Plan, 4, 1)).toBe(1);
+    expect(share([...P1, "mala"] as unknown as Plan, 4, 3)).toBe(0);
+    const bad = playCampaign(SEEDS[0], [...P1, "mala"] as unknown as Plan).state;
+    expect(bad.learning.find((l) => l.id === "apertura")!.grade).toBe("grave");
+  }, 120_000);
+  it("nivel 5: si te falta capacidad para el acuerdo hay que decidir; el almacén externo no ocupa tu nave", () => {
+    const g = playCampaign(SEEDS[2], [...P1, "cruzado"] as unknown as Plan).state;
+    const cap = g.learning.find((l) => l.id === "capacidad");
+    expect(cap).toBeDefined();
+    // Nave urbana (200 palés) con Bazar (150): los 120 de Hiper no caben y van a un espacio externo, sin fallar.
+    const ext = g.company.deals.find((d) => d.id === "l5-hiper-externo")!;
+    expect(ext.external).toBe(true);
+    const after = g.logs.filter((x) => x.level === 4 && x.abs > ext.fromAbs);
+    expect(after.length).toBeGreaterThan(0);
+    for (const l of after) expect(l.notes.some((n) => /palés de Grupo Hiper Levante \(ficticia\) no caben/.test(n))).toBe(false);
+    expect(balanceGap(g)).toBe(0);
+  });
+  it("nivel 6: prevención, selectiva y seguro superan la auditoría; no prevenir y responder mal, no", () => {
+    for (const x of ["prevencion", "selectiva", "seguro"] as const) expect(share([...P1, "cruzado", x] as unknown as Plan, 5, 1)).toBe(1);
+    expect(share([...P1, "cruzado", "mala"] as unknown as Plan, 5, 1)).toBe(0);
+    const g = playCampaign(SEEDS[3], [...P1, "cruzado", "selectiva"] as unknown as Plan).state;
+    for (const l of g.learning.filter((x) => x.id.startsWith("incidencia-"))) expect(l.feedback).toMatch(/art\. \d+/);
+  }, 120_000);
+  it("nivel 6: el seguro deja las incidencias graves en la franquicia; la prevención baja la probabilidad", () => {
+    const s = newCampaign(1);
+    expect(resolveIncident(s, "ausente", "puerta").cost).toBe(900);
+    s.answers["prev-seguro"] = "si";
+    expect(resolveIncident(s, "ausente", "puerta").cost).toBe(150);
+    expect(resolveIncident(s, "estiba", "indicar").cost).toBe(150);
+    const base = incidentChance(newCampaign(1));
+    const t = newCampaign(1); t.answers["prev-formacion"] = "si"; t.answers["prev-procedimiento"] = "si";
+    expect(incidentChance(t)).toBeCloseTo(base * 0.6 * 0.7, 6);
+    expect(base).toBeCloseTo(0.65, 6);
+    // Y el nivel la usa de verdad: en 300 semanas, con prevención salen muchas menos incidencias.
+    const count = (prev: boolean) => {
+      let n = 0;
+      for (let abs = 100; abs < 400; abs++) {
+        const x = newCampaign(7); x.level = 5; x.week = 3; x.abs = abs; x.status = "jugando"; x.data = { auditor: "bazar" };
+        if (prev) { x.answers["prev-formacion"] = "si"; x.answers["prev-procedimiento"] = "si"; }
+        n += levelDef(5).decisionsAt(x).filter((d) => d.id.startsWith("incidencia-")).length;
+      }
+      return n;
+    };
+    expect(count(true)).toBeLessThan(count(false) * 0.6);
+  });
+  it("una campaña entera de seis niveles se puede completar por rutas muy distintas", () => {
+    const routes: [Plan, boolean][] = [[["equilibrio", "urbana", "poliza", "experta", "cruzado", "prevencion"], false], [["premium", "compartida", "austeridad", "junior", "equilibrado", "selectiva"], false], [["equilibrio", "poligono", "poliza", "flexible", "alternativa", "seguro"], false], [["volumen", "urbana", "cobrar-antes", "experta", "equilibrado", "seguro"], true]];
+    for (const [plan, rescue] of routes) { const s = playCampaign(SEEDS[4], plan, rescue).state; expect(s.results.filter((r) => r.passed)).toHaveLength(6); expect(balanceGap(s)).toBe(0); }
+  }, 120_000);
+  it("los logros salen del estado y no se guardan", () => {
+    const s = playCampaign(SEEDS[0], ["equilibrio"]).state;
+    expect(achieved(s)).toEqual(expect.arrayContaining(["cliente-fijo", "mision"]));
+    expect(achieved(newCampaign(1))).toEqual([]);
+    expect(JSON.stringify(s)).not.toMatch(/cliente-fijo/);
+    for (const a of ACHIEVEMENTS) expect(a.text.length).toBeGreaterThan(10);
   });
 });
 

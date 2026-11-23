@@ -48,3 +48,32 @@ export const BANK = { creditLimit: 10_000, openingFee: 0.005, annualRate: 0.07, 
  * `lateInterestAnnual` es simulado.
  */
 export const LATE = { recoveryFee: 40, lateInterestAnnual: 0.12 };
+
+/**
+ * Personal (nivel 4). Normativa leída en el BOE el 23/11/2026, texto literal:
+ * - Estatuto de los Trabajadores (RDLeg 2/2015, consolidado, actualización del 18/11/2026): periodo de prueba de
+ *   hasta 2 meses (3 en empresas de menos de 25 personas) y 6 meses para técnicos titulados (art. 14.1); contrato por
+ *   circunstancias de la producción de hasta 6 meses, ampliable a un año por convenio sectorial, y para situaciones
+ *   ocasionales y previsibles hasta 90 días en el año (art. 15.2); jornada de 40 horas semanales de promedio anual
+ *   (art. 34.1); como mucho 80 horas extra al año (art. 35.2); al acabar un contrato temporal, 12 días de salario por año
+ *   (art. 49.1.c); despido objetivo, 20 días por año con un máximo de 12 mensualidades (art. 53.1.b); improcedente, 33
+ *   días por año con un máximo de 24 (art. 56.1).
+ * - Orden PJC/297/2026 (cotización 2026): la empresa paga contingencias comunes 23,60 %, desempleo 5,50 % (indefinido)
+ *   o 6,70 % (duración determinada), FOGASA 0,20 %, formación profesional 0,60 % y MEI 0,75 % (art. 16). Accidentes de
+ *   trabajo: según la tarifa de primas de cada actividad, NO un porcentaje fijo: el 1,5 % del juego es SIMULADO.
+ * - Salario mínimo 2026: 1.221 € al mes (Real Decreto 126/2026, art. 1).
+ * Sueldos y productividad: SIMULADOS.
+ */
+export const LABOR = {
+  employerRate: { indefinido: 0.236 + 0.055 + 0.002 + 0.006 + 0.0075, temporal: 0.236 + 0.067 + 0.002 + 0.006 + 0.0075 },
+  accidentRate: 0.015,
+  smi: 1_221,
+  trialWeeks: { general: 8, small: 12 },
+  temporaryMaxWeeks: 26,
+  occasionalMaxDays: 90,
+  overtimeMaxYear: 80,
+  overtimeFactor: 1.4,
+  endOfTemporaryDays: 12,
+  objectiveDismissalDays: 20,
+  unfairDismissalDays: 33,
+};

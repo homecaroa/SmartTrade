@@ -102,6 +102,72 @@ Los trámites con el ayuntamiento del nivel 2 son **simulados**: dependen de cad
 - **Socio:** si al empezar un nivel la caja baja de 3.000 €, puede entrar un socio que aporta 10.000 € a cambio del 20 % de la empresa (financiarse con capital).
 - **Para pasar de nivel hay que superar el anterior.**
 
+## 4 bis. Segunda entrega (23/11/2026): niveles 4–6, dibujos y animaciones
+
+### Niveles nuevos
+
+| Nivel | Mecánica nueva | Estrategias válidas | La mala |
+|---|---|---|---|
+| **4 · Tu primer equipo** (contratación) | Plantilla con personas con nombre (puestos clave), coste para la empresa con cotizaciones, periodo de prueba, horas extra y temporal para un pico. Clientes nuevos que llegan por tu reputación y llenan el segundo turno | Conductora con experiencia · junior indefinido con formación · junior temporal con horas extra | No contratar a nadie |
+| **5 · El gran cliente** (negociación) | Acuerdo marco negociado por paquetes: precio, plazo, penalización, exclusividad y volumen garantizado. Una alternativa a la vista. Decidir la capacidad al firmar (subcontratar, espacio externo o renegociar). Lo firmado se cumple después: penalizaciones, recorte de pedidos, exclusividad sin clientes nuevos | Paquete equilibrado · concesiones cruzadas · irse a la alternativa | Aceptar su primera oferta: se califica como error grave y nunca consigue ★★★, aunque con capacidad de sobra puede superar el nivel |
+| **6 · Calidad o nada** (operaciones) | Prevención (formación, procedimiento de entrega, revisión, seguro), incidencias reales de reparto con la Ley 15/2009 vigente y auditorías en las semanas 4 y 8 | Prevención completa · selectiva · asegurar y responder bien | No prevenir y responder mal |
+
+**Normativa leída en el BOE el 23/11/2026, texto literal:**
+- **Estatuto de los Trabajadores** (consolidado, actualización del 18/11/2026):
+  - art. 14.1: periodo de prueba;
+  - art. 15.2: contrato por circunstancias de la producción, 6 meses (y 90 días al año para situaciones ocasionales);
+  - art. 34.1: jornada;
+  - art. 35.2: 80 horas extra al año;
+  - art. 49.1.c: 12 días al acabar un contrato temporal;
+  - art. 53.1.b: 20 días por despido objetivo;
+  - art. 56.1: 33 días por despido improcedente.
+- **Orden PJC/297/2026** (cotización de la empresa): 23,60 % de contingencias comunes, 5,50 % o 6,70 % de desempleo, 0,20 % de FOGASA, 0,60 % de formación y 0,75 % de MEI (art. 16).
+- **Real Decreto 126/2026:** salario mínimo de 1.221 € al mes.
+
+**Lo que no se ha encontrado ni comprobado:**
+- No se ha encontrado publicado el **convenio de transporte de mercancías de Valencia**: los sueldos son simulados y quedan por encima del salario mínimo.
+- La prima de **accidentes de trabajo** depende de la actividad: el 1,5 % del juego es simulado.
+
+**Calibrado** (estrategias automáticas, 10–12 semillas por combinación):
+
+| Problema medido | Ajuste |
+|---|---|
+| Al aceptar clientes nuevos con la capacidad prestada del pico (horas extra, temporal), luego se les fallaba | El pico se cubre aparte y no cuenta como capacidad permanente |
+| Firmar el acuerdo grande hacía perder dinero a quien tenía la nave urbana: los palés no cabían | Decisión de capacidad al firmar, con almacenaje externo que no ocupa la nave |
+
+**Resultado:**
+- Cuatro rutas muy distintas completan los seis niveles en todas las semillas.
+- Una ruta que no previene y responde mal falla el nivel 6.
+
+### Dibujos y animaciones (petición del dueño: «dosis de videojuego»)
+
+**Dibujo de la empresa** (`components/sim/campaign/scene.tsx`): la nave que alquilaste (en obras si lo está, con los palés que guardas), tus vehículos y tu plantilla con nombre. Aparece en la sede y en «Tu empresa».
+
+**Las once animaciones de la página de muestras** (`fx.tsx` y `app/globals.css`):
+
+| # | Animación |
+|---|---|
+| 1 | Estrellas que saltan |
+| 2 | Caja y resultado que cuentan, con «+X €» o «−X €» |
+| 3 | Confeti al superar un nivel con ★★ o más |
+| 4 | Mejoras que aparecen girando con un reflejo |
+| 5 | Barras de capacidad que se llenan y parpadean en rojo si te pasas |
+| 6 | Furgoneta que cruza al cerrar la semana |
+| 7 | Sello sobre la decisión recién tomada |
+| 8 | Logros (`achievements.ts`: diez hitos que se calculan del estado, sin guardarse) |
+| 9 | El concepto nuevo vuela al Manual |
+| 10 | Temblor y destello si la caja baja del límite |
+| 11 | Medidor de reputación |
+
+Todas **sin dependencias nuevas**. Hay un interruptor «Animaciones: sí/no», que se recuerda en el navegador, y se respeta la preferencia del sistema de reducir el movimiento.
+
+### Verificación de la segunda entrega
+
+- **Campañas guardadas:** las 384 de la primera entrega (12 combinaciones de rutas en 6 semillas, con y sin socio) se reproducen idénticas. Los campos nuevos (plantilla, subcontratación propia, almacenaje externo) solo aparecen cuando se usan.
+- **Pruebas:** 27 en `tests/campaign.test.ts`.
+- **Mutaciones:** 15 sobre lo nuevo, todas en rojo. Cuatro estaban huecas en la primera pasada y se reforzaron sus pruebas: el almacén externo dentro de la nave, el seguro que no cubre, la prevención sin efecto y la prevención que el nivel no usa (con una prueba estadística).
+- **App:** abierta en escritorio y móvil, con el informe del nivel 5, el nivel 4 a medias y la sede del nivel 6. Sin errores y sin desplazamiento horizontal.
+
 ## 5. Conservación de los modos actuales
 
 - **`/simulador`** es ahora el menú. La **Temporada** se ha movido a `/simulador/temporada` y lee **la misma clave** de siempre (`smartrade:simulador:partida`). La **Carrera** sigue en `/simulador/carrera` con su clave.
@@ -124,9 +190,9 @@ Los trámites con el ayuntamiento del nivel 2 son **simulados**: dependen de cad
 
 ## 7. Siguiente entrega
 
-Niveles 4–6:
-- **Contratación:** antes hay que leer en el BOE el Estatuto de los Trabajadores, las cotizaciones y el convenio.
-- **Negociación de un acuerdo marco.**
-- **Calidad y operaciones.**
+Niveles 7–9:
+- **Competencia:** rivales con estrategia propia.
+- **Segundo vehículo:** comprar, leasing, renting o subcontratar.
+- **El banco:** préstamo, aval y ratios.
 
-También, más mejoras en el árbol.
+También más mejoras en el árbol y en la plantilla. Antes de programar el nivel 9 hay que leer la normativa que aplique a la financiación.
