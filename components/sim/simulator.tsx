@@ -246,7 +246,7 @@ function CareerIntro() {
         <li>No hay objetivos de temporada: pierdes si te quedas sin caja dos semanas o si tu servicio cae por debajo del 80 % cuatro semanas seguidas.</li>
         <li><b>En construcción.</b> Por ahora la empresa no puede crecer más que en la Temporada (un segundo camión, una nave y una póliza): la flota, el personal, la financiación y el gasóleo variable llegarán por fases. Se guarda aparte de tu Temporada.</li>
       </ul>
-      <p className="text-sm">¿Primera vez? Empieza por la <Link href="/simulador" className="font-semibold underline">Temporada de {SEASON_WEEKS} semanas</Link>.</p>
+      <p className="text-sm">¿Primera vez? Empieza por la <Link href="/simulador/temporada" className="font-semibold underline">Temporada de {SEASON_WEEKS} semanas</Link>.</p>
     </>
   );
 }
