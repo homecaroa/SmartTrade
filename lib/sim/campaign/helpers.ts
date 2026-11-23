@@ -1,6 +1,6 @@
 import { round2, sum } from "../../learning/money";
-import type { CampaignState, Company, LearningRec } from "./model";
-import { START, VAN_VARIABLE, WEEKS_PER_MONTH } from "./params";
+import type { CampaignState, Company, LearningRec, Person } from "./model";
+import { LABOR, START, VAN_VARIABLE, WEEKS_PER_MONTH } from "./params";
 import { has } from "./upgrades";
 
 /** Utilidades del motor de campaña que usan también los niveles (sin dependencias circulares). */
@@ -13,12 +13,18 @@ export const learn = (s: CampaignState, r: Omit<LearningRec, "week" | "level">) 
 export const unlock = (s: CampaignState, ...ids: string[]) => { for (const id of ids) if (!s.manual.includes(id)) s.manual.push(id); };
 export const remember = (s: CampaignState, flag: string) => { if (!s.company.memory.includes(flag)) s.company.memory.push(flag); };
 export const relate = (s: CampaignState, client: string, delta: number) => { s.company.relation[client] = Math.max(0, Math.min(100, (s.company.relation[client] ?? 50) + delta)); };
-export const capacityKm = (c: Company) => sum(c.vehicles.map((v) => v.kmWeek));
+export const capacityKm = (c: Company) => sum(c.vehicles.map((v) => v.kmWeek)) + sum(activeStaff(c).map((p) => p.kmBonus ?? 0));
 export const variablePerKm = (c: Company) => round2(VAN_VARIABLE * (has(c, "rutas") ? 0.92 : 1));
 export const palletCapacity = (c: Company, abs: number) => (c.facility && abs >= c.facility.readyAbs ? c.facility.pallets + (has(c, "estanterias") ? 100 : 0) : 0);
 export const activeDeals = (c: Company, abs: number) => c.deals.filter((d) => !d.ended && d.fromAbs <= abs && (d.toAbs === undefined || abs <= d.toAbs));
 export const transportKm = (c: Company, abs: number) => sum(activeDeals(c, abs).filter((d) => d.kind === "transporte" && !d.sub).map((d) => d.km!)) + (c.facility && abs >= c.facility.readyAbs ? c.facility.kmExtra : 0);
-export const weeklyFixed = (c: Company, abs: number) => round2((sum(c.vehicles.map((v) => v.monthly)) + START.insuranceMonthly + START.ownerMonthly + (c.facility?.rentMonthly ?? 0)) / WEEKS_PER_MONTH + (c.facility && abs >= c.facility.readyAbs ? c.facility.opsWeek : 0));
+export const weeklyFixed = (c: Company, abs: number) => round2((sum(c.vehicles.map((v) => v.monthly)) + START.insuranceMonthly + START.ownerMonthly + (c.facility?.rentMonthly ?? 0)) / WEEKS_PER_MONTH + (c.facility && abs >= c.facility.readyAbs ? Math.max(0, c.facility.opsWeek - sum(activeStaff(c).map((p) => p.opsSaving ?? 0))) : 0));
+
+/** Plantilla activa (sin los que se han ido). */
+export const activeStaff = (c: Company) => (c.staff ?? []).filter((p) => !p.left);
+/** Coste para la empresa de una persona a la semana: sueldo bruto más cotizaciones (LABOR). Un mes de juego = 4 semanas. */
+export const personWeekly = (p: Person) => round2(p.salaryMonthly * (1 + LABOR.employerRate[p.contract] + LABOR.accidentRate) / WEEKS_PER_MONTH);
+export const staffWeekly = (c: Company) => round2(sum(activeStaff(c).map(personWeekly)));
 
 
 /** Nombres de los clientes (los registra cada nivel). */

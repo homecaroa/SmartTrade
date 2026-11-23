@@ -8,6 +8,8 @@ import { has } from "@/lib/sim/campaign/upgrades";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../../learning/grade-badge";
 import { eur } from "./campaign";
+import { Confetti, FlipIn, Gauge, Meter, Stamp, StarBurst, VanCrossing } from "./fx";
+import { CompanyScene } from "./scene";
 
 type Props = { s: CampaignState; save: Pick<CampaignSave, "seed" | "levels">; onAction: (a: Action) => void; onNext: () => void; onRepeat: () => void };
 
@@ -34,6 +36,7 @@ function Sede({ s, onAction }: { s: CampaignState; onAction: (a: Action) => void
   const ups = upgradesFor(s);
   return (
     <div className="space-y-4">
+      <CompanyScene s={s} />
       <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="briefing">
         <h2 id="briefing" className="text-base font-semibold">La misión</h2>
         <p className="text-sm">{def.briefing}</p>
@@ -46,15 +49,15 @@ function Sede({ s, onAction }: { s: CampaignState; onAction: (a: Action) => void
         <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="mejoras">
           <h2 id="mejoras" className="text-base font-semibold">Mejoras para tu empresa</h2>
           <p className="text-xs text-slate-600">Son inversiones: se pagan ahora, van al activo y se amortizan. Tienes {eur(s.company.cash)} en caja.</p>
-          <ul className="grid gap-2 md:grid-cols-2">{ups.map((u) => {
+          <ul className="grid gap-2 md:grid-cols-2">{ups.map((u, i) => {
             const owned = has(s.company, u.id), why = u.requires?.(s.company);
             return (
-              <li key={u.id} className="space-y-1 rounded border border-slate-200 p-2 text-sm">
+              <li key={u.id}><FlipIn delay={i * 0.15} className="h-full space-y-1 rounded border border-slate-200 bg-white p-2 text-sm">
                 <p className="font-semibold">{u.name} · {eur(u.cost)}</p>
                 <p>{u.effect}</p>
                 <p className="text-xs text-slate-600">{u.lesson}</p>
                 {owned ? <p className="text-xs font-semibold text-emerald-800">Ya la tienes.</p> : why ? <p className="text-xs text-slate-600">{why}</p> : <button type="button" disabled={s.company.cash < u.cost} onClick={() => onAction({ t: "mejora", id: u.id })} className="rounded border border-indigo-600 px-2 py-0.5 text-xs font-semibold text-indigo-700 hover:bg-indigo-50 disabled:opacity-50">Comprar</button>}
-              </li>
+              </FlipIn></li>
             );
           })}</ul>
         </section>
@@ -77,9 +80,10 @@ function Weeks({ s, onAction }: { s: CampaignState; onAction: (a: Action) => voi
   const last = s.logs.at(-1);
   const recent = s.learning.filter((l) => l.level === s.level && l.week === s.week);
   const cap = capacityKm(c), used = transportKm(c, s.abs) + Number(s.data.spotKm ?? 0);
-  const pc = palletCapacity(c, s.abs), pu = activeDeals(c, s.abs).filter((d) => d.kind === "almacen").reduce((a, d) => a + d.pallets!, 0);
+  const pc = palletCapacity(c, s.abs), pu = activeDeals(c, s.abs).filter((d) => d.kind === "almacen" && !d.external).reduce((a, d) => a + d.pallets!, 0);
   return (
     <div className="space-y-4">
+      <VanCrossing trigger={s.logs.length} label={`Semana ${s.week} de ${def.weeks}`} />
       {last && last.level === s.level && (
         <section className="rounded-lg border border-indigo-200 bg-white p-3 text-sm shadow-sm" aria-label="Semana anterior">
           <p className="font-semibold">Semana {last.week} cerrada: resultado <span className={last.result < 0 ? "text-rose-700" : "text-emerald-700"}>{eur(last.result)}</span> · caja {eur(last.cashEnd)}</p>
@@ -105,17 +109,12 @@ function Weeks({ s, onAction }: { s: CampaignState; onAction: (a: Action) => voi
       {recent.length > 0 && (
         <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="aprendido">
           <h2 id="aprendido" className="text-base font-semibold">Lo que han traído tus decisiones</h2>
-          {[...recent].reverse().map((l, i) => <div key={i} className="rounded border border-slate-200 p-2 text-sm"><p className="flex flex-wrap items-center gap-2"><b>{l.what}</b><GradeBadge grade={l.grade} /></p><p className="text-slate-700">{l.feedback}</p></div>)}
+          {[...recent].reverse().map((l, i) => <div key={`${l.id}-${i}`} className="rounded border border-slate-200 p-2 text-sm"><p className="flex flex-wrap items-center gap-2"><b>{l.what}</b>{i === 0 ? <Stamp key={l.id} grade={l.grade} /> : <GradeBadge grade={l.grade} />}</p><p className="text-slate-700">{l.feedback}</p></div>)}
         </section>
       )}
       <details className="rounded-lg bg-white p-4 text-sm shadow-sm"><summary className="cursor-pointer font-semibold">Objetivos del nivel</summary><div className="mt-2"><Objectives s={s} /></div></details>
     </div>
   );
-}
-
-function Meter({ label, value, max }: { label: string; value: number; max: number }) {
-  const pct = Math.min(100, Math.round(value / Math.max(1, max) * 100));
-  return <div><p className="text-xs">{label}</p><div className="mt-1 h-2 rounded bg-slate-200"><div className={`h-2 rounded ${value > max ? "bg-rose-600" : "bg-blue-500"}`} style={{ width: `${pct}%` }} /></div></div>;
 }
 
 function DecisionCard({ d, s, onAction }: { d: Decision; s: CampaignState; onAction: (a: Action) => void }) {
@@ -152,11 +151,13 @@ function Report({ s, save, onAction, onNext, onRepeat }: Props) {
   const last = s.level + 1 >= LEVELS.length;
   return (
     <div className="space-y-4">
-      <section className={`space-y-2 rounded-lg border p-4 ${r.passed ? "border-emerald-300 bg-emerald-50" : "border-rose-300 bg-rose-50"}`} aria-labelledby="informe">
-        <h2 id="informe" className="text-lg font-bold">{s.status === "quiebra" ? "La empresa no ha aguantado" : r.passed ? "Misión cumplida" : "Misión no cumplida"} <span aria-label={`${r.passed ? stars : 0} estrellas de 3`} className="text-amber-500">{"★".repeat(r.passed ? stars : 0)}<span className="text-slate-300">{"★".repeat(3 - (r.passed ? stars : 0))}</span></span></h2>
+      <section className={`relative space-y-2 overflow-hidden rounded-lg border p-4 ${r.passed ? "border-emerald-300 bg-emerald-50" : "border-rose-300 bg-rose-50"}`} aria-labelledby="informe">
+        <Confetti fire={r.passed && stars >= 2} />
+        <h2 id="informe" className="flex flex-wrap items-center gap-2 text-lg font-bold">{s.status === "quiebra" ? "La empresa no ha aguantado" : r.passed ? "Misión cumplida" : "Misión no cumplida"} <StarBurst stars={r.passed ? r.stars : [false, false, false]} /></h2>
         {s.endReason && <p className="text-sm">{s.endReason}</p>}
         <Objectives s={s} done={r.passed ? r.stars : [false, false, false]} />
         <p className="text-sm">Resultado del nivel: <b className={r.resultLevel < 0 ? "text-rose-700" : "text-emerald-700"}>{eur(r.resultLevel)}</b> · caja al terminar: <b>{eur(r.cashEnd)}</b></p>
+        <div className="flex justify-center sm:justify-start"><Gauge value={s.company.reputation.fiabilidad} label="Reputación" /></div>
         <p className="text-xs text-slate-600">Las estrellas miden tu gestión. Tu aprendizaje se mide aparte: {mine.length ? `${Math.round(pts / (mine.length * 10) * 100)} % en ${mine.length} decisiones de este nivel` : "aún sin decisiones calificadas"} (detalle en la pestaña Aprendizaje).</p>
       </section>
 

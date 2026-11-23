@@ -1,6 +1,8 @@
 "use client";
 
-import { activeDeals, capacityKm, clientName, mastery, palletCapacity, weeklyFixed } from "@/lib/sim/campaign/engine";
+import { activeDeals, activeStaff, capacityKm, clientName, mastery, palletCapacity, personWeekly, weeklyFixed } from "@/lib/sim/campaign/engine";
+import { Gauge } from "./fx";
+import { CompanyScene } from "./scene";
 import { MANUAL } from "@/lib/sim/campaign/manual";
 import type { CampaignState } from "@/lib/sim/campaign/model";
 import { upgradeById } from "@/lib/sim/campaign/upgrades";
@@ -16,6 +18,17 @@ export function CompanyPanel({ s }: { s: CampaignState }) {
   const owe = c.payables.filter((p) => p.paidAbs === undefined).reduce((a, p) => a + p.amount, 0);
   return (
     <div className="grid gap-4 md:grid-cols-2">
+      <div className="md:col-span-2"><CompanyScene s={s} /></div>
+      <section className="space-y-1 rounded-lg bg-white p-4 text-sm shadow-sm md:col-span-2" aria-labelledby="equipo">
+        <h2 id="equipo" className="text-base font-semibold">Tu equipo y tu reputación</h2>
+        <div className="flex flex-wrap items-center gap-4">
+          <Gauge value={c.reputation.fiabilidad} label="Fiabilidad" />
+          <ul className="space-y-0.5">
+            <li><b>Tú</b>: dirección (tu sueldo: {eur(1_200)} al mes)</li>
+            {activeStaff(c).map((p) => <li key={p.id}><b>{p.name}</b>: {p.role === "conductor" ? "conductor/a" : p.role === "mozo" ? "mozo/a" : "temporal"}, {p.contract}, {eur(p.salaryMonthly)} brutos al mes · te cuesta {eur(personWeekly(p))} a la semana con cotizaciones{p.endAbs ? ` · hasta la semana ${p.endAbs - s.abs + s.week} del nivel` : ""}{s.abs <= p.trialUntilAbs ? " · en periodo de prueba" : ""}</li>)}
+          </ul>
+        </div>
+      </section>
       <section className="space-y-1 rounded-lg bg-white p-4 text-sm shadow-sm" aria-labelledby="medios">
         <h2 id="medios" className="text-base font-semibold">Medios</h2>
         {c.vehicles.map((v) => <p key={v.id}>{v.name}: {v.kmWeek.toLocaleString("es-ES")} km a la semana ({eur(v.monthly)} al mes)</p>)}
@@ -34,7 +47,7 @@ export function CompanyPanel({ s }: { s: CampaignState }) {
       <section className="space-y-1 rounded-lg bg-white p-4 text-sm shadow-sm md:col-span-2" aria-labelledby="clientes">
         <h2 id="clientes" className="text-base font-semibold">Tus clientes</h2>
         {deals.length === 0 ? <p className="text-slate-600">Aún no tienes clientes fijos.</p> : (
-          <ul className="space-y-0.5">{deals.map((d) => <li key={d.id}>{clientName(d.client)}: {d.kind === "transporte" ? `${d.km} km a la semana a ${d.rate!.toLocaleString("es-ES")} €/km${d.sub ? " (subcontratado)" : ""}` : `${d.pallets} palés a ${d.palletRate!.toLocaleString("es-ES")} € por palé y semana`} · cobro a {d.payWeeks * 7} días · relación {Math.round(c.relation[d.client] ?? 50)}/100</li>)}</ul>
+          <ul className="space-y-0.5">{deals.map((d) => <li key={d.id}>{clientName(d.client)}: {d.kind === "transporte" ? `${d.km} km a la semana a ${d.rate!.toLocaleString("es-ES", { minimumFractionDigits: 2 })} €/km${d.sub ? " (subcontratado)" : ""}` : `${d.pallets} palés a ${d.palletRate!.toLocaleString("es-ES", { minimumFractionDigits: 2 })} € por palé y semana${d.external ? " (espacio externo)" : ""}`} · cobro a {d.payWeeks * 7} días · relación {Math.round(c.relation[d.client] ?? 50)}/100</li>)}</ul>
         )}
       </section>
     </div>

@@ -8,6 +8,9 @@ import type { Action, CampaignSave, CampaignState } from "@/lib/sim/campaign/mod
 import { SimulatedNotice } from "../../learning/simulated-notice";
 import { CompanyPanel, LearningPanel, ManualPanel } from "./panels";
 import { Mission } from "./mission";
+import { AchievementToast, AnimatedEuro, DangerAlert, FlyingConcept, FxContext } from "./fx";
+import { ACHIEVEMENTS, achieved } from "@/lib/sim/campaign/achievements";
+import { manualById } from "@/lib/sim/campaign/manual";
 
 type Tab = "mision" | "empresa" | "manual" | "aprendizaje";
 interface Game { seed: number; levels: Action[][]; state: CampaignState }
@@ -29,6 +32,12 @@ export function Campaign() {
   const [loaded, setLoaded] = useState(false);
   const [tab, setTab] = useState<Tab>("mision");
   const [message, setMessage] = useState<string | null>(null);
+  // Animaciones (petición del dueño, 23/11/2026): se pueden apagar; la preferencia se recuerda en este navegador.
+  const [fx, setFx] = useState(true);
+  const [toasts, setToasts] = useState<{ icon: string; title: string; text: string }[]>([]);
+  const [newConcept, setNewConcept] = useState<string | null>(null);
+  useEffect(() => { try { if (window.localStorage.getItem(FX_KEY) === "no") setFx(false); } catch { /* sin almacenamiento */ } }, []);
+  const toggleFx = () => { const v = !fx; setFx(v); try { window.localStorage.setItem(FX_KEY, v ? "si" : "no"); } catch { /* sin guardar */ } };
   useEffect(() => {
     try {
       const raw = window.localStorage.getItem(CAMPAIGN_SAVE_KEY);
@@ -43,6 +52,12 @@ export function Campaign() {
     try {
       const state = apply(game.state, a);
       const levels = game.levels.map((l, i) => (i === game.levels.length - 1 ? [...l, a] : l));
+      // Logros nuevos y conceptos nuevos del Manual: se celebran al conseguirlos.
+      const before = new Set(achieved(game.state));
+      const fresh = ACHIEVEMENTS.filter((x) => x.done(state) && !before.has(x.id));
+      if (fresh.length) setToasts((q) => [...q, ...fresh]);
+      const added = state.manual.filter((m) => !game.state.manual.includes(m));
+      if (added.length) setNewConcept(manualById(added[0])?.title ?? null);
       setGame({ ...game, levels, state });
       setMessage(null);
     } catch (e) { setMessage(e instanceof Error ? e.message : "Acción no válida."); }
@@ -67,11 +82,12 @@ export function Campaign() {
     <button type="button" role="tab" aria-selected={tab === t} onClick={() => setTab(t)} className={`rounded-t border-b-2 px-3 py-1.5 text-sm font-semibold ${tab === t ? "border-indigo-600 text-indigo-700" : "border-transparent text-slate-600 hover:text-slate-900"}`}>{label}</button>
   );
   return (
-    <div className="space-y-4">
+    <FxContext.Provider value={fx}>
+    <div className={`space-y-4 ${fx ? "" : "fx-off"}`}>
       <Header s={s} />
       {message && <p role="status" className="rounded bg-amber-50 p-2 text-sm text-amber-900">{message}</p>}
       <div role="tablist" aria-label="Vistas de la campaña" className="flex flex-wrap gap-1 border-b border-slate-200">
-        {tabBtn("mision", "Misión")}{tabBtn("empresa", "Tu empresa")}{tabBtn("manual", `Manual (${s.manual.length})`)}{tabBtn("aprendizaje", "Aprendizaje")}
+        {tabBtn("mision", "Misión")}{tabBtn("empresa", "Tu empresa")}<span className="relative" key={`m${s.manual.length}`} onAnimationEnd={() => setNewConcept(null)}>{tabBtn("manual", `Manual (${s.manual.length})`)}<FlyingConcept title={newConcept} /></span>{tabBtn("aprendizaje", "Aprendizaje")}
       </div>
       <div role="tabpanel">
         {tab === "mision" && <Mission s={s} save={{ seed: game.seed, levels: game.levels }} onAction={act} onNext={goNext} onRepeat={repeat} />}
@@ -83,10 +99,15 @@ export function Campaign() {
         <button type="button" onClick={exportFile} className="underline">Exportar la campaña (archivo)</button>
         <button type="button" onClick={() => { if (window.confirm("¿Empezar una campaña nueva? La actual se perderá si no la has exportado.")) start(randomSeed()); }} className="underline">Campaña nueva</button>
         <Link href="/simulador" className="underline">Otros modos</Link>
+        <button type="button" onClick={toggleFx} aria-pressed={fx} className="underline">Animaciones: {fx ? "sí" : "no"}</button>
       </div>
+      <AchievementToast item={toasts[0] ?? null} onDone={() => setToasts((q) => q.slice(1))} />
     </div>
+    </FxContext.Provider>
   );
 }
+
+const FX_KEY = "smartrade:simulador:animaciones";
 
 function Header({ s }: { s: CampaignState }) {
   const def = levelDef(s.level);
@@ -98,10 +119,11 @@ function Header({ s }: { s: CampaignState }) {
       <h1 className="text-xl font-bold">{def.title}</h1>
       <dl className="grid grid-cols-2 gap-2 text-sm sm:grid-cols-4">
         <div className="rounded border border-slate-200 p-2"><dt className="text-xs text-slate-600">Momento</dt><dd className="font-bold">{week}</dd></div>
-        <div className="rounded border border-slate-200 p-2"><dt className="text-xs text-slate-600">Caja</dt><dd className={`font-bold ${c.cash < 0 ? "text-rose-700" : ""}`}>{eur(c.cash)}</dd></div>
-        <div className="rounded border border-slate-200 p-2"><dt className="text-xs text-slate-600">Resultado acumulado</dt><dd className={`font-bold ${c.result < 0 ? "text-rose-700" : "text-emerald-700"}`}>{eur(c.result)}</dd></div>
+        <div className="rounded border border-slate-200 p-2"><dt className="text-xs text-slate-600">Caja</dt><dd className={`font-bold ${c.cash < 0 ? "text-rose-700" : ""}`}><AnimatedEuro value={c.cash} /></dd></div>
+        <div className="rounded border border-slate-200 p-2"><dt className="text-xs text-slate-600">Resultado acumulado</dt><dd className={`font-bold ${c.result < 0 ? "text-rose-700" : "text-emerald-700"}`}><AnimatedEuro value={c.result} /></dd></div>
         <div className="rounded border border-slate-200 p-2"><dt className="text-xs text-slate-600">Reputación (fiabilidad)</dt><dd className="font-bold">{Math.round(c.reputation.fiabilidad)} / 100</dd></div>
       </dl>
+      {s.status === "jugando" && c.cash < -(c.credit?.limit ?? 0) && <DangerAlert key={s.abs}>Caja por debajo de {c.credit ? "tu póliza" : "cero"}: si la semana termina así otra vez, la empresa quiebra.</DangerAlert>}
       <SimulatedNotice compact />
     </header>
   );

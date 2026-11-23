@@ -11,6 +11,31 @@ export type { Grade };
 
 export interface Vehicle { id: string; name: string; kmWeek: number; monthly: number; mode: "renting" | "propio" }
 
+/**
+ * Persona de la plantilla (nivel 4 en adelante). Solo los puestos clave tienen nombre (decisión del dueño, 23/11/2026).
+ * Sueldos SIMULADOS (no se ha encontrado publicado el convenio de transporte de Valencia), siempre por encima del
+ * salario mínimo de 2026.
+ */
+export interface Person {
+  id: string;
+  name: string;
+  role: "conductor" | "mozo" | "temporal";
+  contract: "indefinido" | "temporal";
+  /** Sueldo bruto al mes (el coste para la empresa es mayor: cotizaciones). */
+  salaryMonthly: number;
+  startAbs: number;
+  /** Fin del contrato temporal (incluida) o salida. */
+  endAbs?: number;
+  /** Último día del periodo de prueba (Estatuto de los Trabajadores, art. 14). */
+  trialUntilAbs: number;
+  /** Km de más (o de menos) a la semana que hace la furgoneta con esta persona al volante. */
+  kmBonus?: number;
+  /** Ahorro semanal en horas de empresa de trabajo temporal en la nave. */
+  opsSaving?: number;
+  satisfaction: number;
+  left?: boolean;
+}
+
 export interface Facility {
   id: "urbana" | "poligono" | "compartida";
   name: string;
@@ -43,6 +68,10 @@ export interface Deal {
   ended?: boolean;
   /** Lo hace un subcontratista: no ocupa tu furgoneta y te cobra SUB_RATE por km. */
   sub?: boolean;
+  /** Lo cubre tu propia gente fuera de la capacidad normal (horas extra, un temporal): no lo cobra un subcontratista. */
+  selfCovered?: boolean;
+  /** Almacenaje en un espacio externo alquilado: no ocupa tu nave (su coste lo carga el nivel). */
+  external?: boolean;
 }
 
 export interface Invoice { id: string; client: string; amount: number; issuedAbs: number; dueAbs: number; payAbs: number; paidAbs?: number; factored?: boolean }
@@ -72,6 +101,8 @@ export interface Company {
   /** Reputación de la empresa, 0-100. */
   reputation: { fiabilidad: number; precio: number };
   upgrades: string[];
+  /** Plantilla (desde el nivel 4; ausente antes, para que las campañas guardadas no cambien). */
+  staff?: Person[];
   /** Lo que decidiste y tiene consecuencias más adelante (p. ej. «aplazaste el pago al taller sin pactarlo»). */
   memory: string[];
 }
@@ -103,6 +134,8 @@ export interface LearningRec {
 export interface WeekLog {
   abs: number; week: number; level: number;
   revenue: number; variable: number; fixed: number; financial: number; other: number; amortization: number; result: number;
+  /** Sueldos y cotizaciones de la plantilla (solo si la hay). */
+  staff?: number;
   kmDemand: number; kmCapacity: number; kmServed: number; pallets: number; palletCapacity: number;
   collections: number; payments: number; cashEnd: number; notes: string[];
 }

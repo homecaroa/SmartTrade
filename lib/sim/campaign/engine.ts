@@ -3,8 +3,9 @@ import { LEVELS, type LevelDef } from "./levels";
 import type { Action, CampaignSave, CampaignState, Company, Decision, LearningRec, WeekLog } from "./model";
 import { BANKRUPT_WEEKS, CAMPAIGN_VERSION, REPUTATION, START, SUB_RATE, VAN } from "./params";
 import { decideSpot } from "./spot";
+import { decideLead } from "./leads";
 import { has, upgradeById, UPGRADES } from "./upgrades";
-import { activeDeals, capacityKm, charge, clientName, invest, learn, palletCapacity, relate, remember, transportKm, unlock, variablePerKm, weeklyFixed } from "./helpers";
+import { activeDeals, capacityKm, charge, clientName, invest, learn, palletCapacity, relate, remember, staffWeekly, transportKm, unlock, variablePerKm, weeklyFixed } from "./helpers";
 export * from "./helpers";
 
 /**
@@ -84,6 +85,7 @@ export function apply(prev: CampaignState, a: Action): CampaignState {
     s.pending = s.pending.filter((x) => x.id !== a.id);
     if (d.key) s.history.push({ level: s.level, week: s.week, id: d.id, title: d.title, options: d.options, chosen: a.opcion });
     if (a.id.startsWith("urgente-")) decideSpot(s, d, a.opcion);
+    else if (a.id.startsWith("cliente-")) decideLead(s, d, a.opcion);
     else def.decide(s, d, a.opcion);
     return s;
   }
@@ -110,7 +112,7 @@ function resolveWeek(s: CampaignState, def: LevelDef) {
   const billed = new Map<string, { amount: number; payWeeks: number }>();
   const bill = (client: string, amount: number, payWeeks: number) => { if (amount <= 0) return; const x = billed.get(client) ?? { amount: 0, payWeeks }; x.amount = round2(x.amount + amount); billed.set(client, x); };
   // Lo subcontratado: se hace entero, se factura y el subcontratista cobra (sale de la caja esa semana).
-  for (const d of activeDeals(c, w).filter((x) => x.kind === "transporte" && x.sub)) { const amount = round2(d.km! * d.rate!); revenue += amount; bill(d.client, amount, d.payWeeks); charge(s, `Subcontratista para ${clientName(d.client)}`, d.km! * SUB_RATE); }
+  for (const d of activeDeals(c, w).filter((x) => x.kind === "transporte" && x.sub)) { const amount = round2(d.km! * d.rate!); revenue += amount; bill(d.client, amount, d.payWeeks); if (!d.selfCovered) charge(s, `Subcontratista para ${clientName(d.client)}`, d.km! * SUB_RATE); }
   for (const d of activeDeals(c, w).filter((x) => x.kind === "transporte" && !x.sub).sort((a, b) => a.fromAbs - b.fromAbs || a.id.localeCompare(b.id))) {
     const served = Math.min(d.km!, Math.max(0, left));
     left -= served; kmServed += served;
@@ -138,7 +140,9 @@ function resolveWeek(s: CampaignState, def: LevelDef) {
   // Almacén: palés por orden de llegada hasta la capacidad de la nave.
   const cap = palletCapacity(c, w);
   let room = cap, pallets = 0;
-  for (const d of activeDeals(c, w).filter((x) => x.kind === "almacen").sort((a, b) => a.fromAbs - b.fromAbs || a.id.localeCompare(b.id))) {
+  // Almacenaje en espacio externo: se factura entero y no ocupa tu nave.
+  for (const d of activeDeals(c, w).filter((x) => x.kind === "almacen" && x.external)) { const amount = round2(d.pallets! * d.palletRate!); revenue += amount; bill(d.client, amount, d.payWeeks); }
+  for (const d of activeDeals(c, w).filter((x) => x.kind === "almacen" && !x.external).sort((a, b) => a.fromAbs - b.fromAbs || a.id.localeCompare(b.id))) {
     const put = Math.min(d.pallets!, room);
     room -= put; pallets += put;
     const amount = round2(put * d.palletRate!);
@@ -155,13 +159,15 @@ function resolveWeek(s: CampaignState, def: LevelDef) {
   // Costes de la semana.
   const variable = round2(kmServed * variablePerKm(c));
   const fixed = weeklyFixed(c, w);
+  // Plantilla (nivel 4 en adelante): sueldos y cotizaciones; los temporales que acaban esta semana se van después.
+  const staff = staffWeekly(c);
   const financial = c.credit && startCash < 0 ? round2(-startCash * c.credit.annualRate / 52) : 0;
   if (financial) notes.push(`Intereses de la póliza: ${financial.toLocaleString("es-ES")} €.`);
   const other = round2(sum(s.charges.map((x) => x.amount)));
   for (const x of s.charges) if (x.amount && x.label) notes.push(`${x.label}: ${x.amount > 0 ? "−" : "+"}${Math.abs(x.amount).toLocaleString("es-ES")} €.`);
   const amortization = round2(Math.min(c.assets, c.assetsWeekly));
   c.assets = round2(c.assets - amortization);
-  const result = round2(revenue - variable - fixed - financial - other - amortization);
+  const result = round2(revenue - variable - fixed - staff - financial - other - amortization);
   c.result = round2(c.result + result);
   // Caja: cobros y pagos que vencen; costes de la semana; gastos que salen de la caja.
   let collections = 0, payments = 0;
@@ -171,9 +177,10 @@ function resolveWeek(s: CampaignState, def: LevelDef) {
   const nonCash = round2(sum(s.charges.filter((x) => !x.cash).map((x) => x.amount)));
   if (nonCash) c.payables.push({ id: `p${w}-otros`, label: "Gastos pendientes de pago", amount: nonCash, dueAbs: w + 4 });
   s.charges = [];
-  c.cash = round2(c.cash + collections - payments - variable - fixed - financial - cashCharges);
+  c.cash = round2(c.cash + collections - payments - variable - fixed - staff - financial - cashCharges);
+  for (const p of c.staff ?? []) if (!p.left && p.endAbs !== undefined && p.endAbs <= w) { p.left = true; notes.push(`${p.name} termina su contrato.`); }
   def.afterWeek?.(s, notes);
-  const log: WeekLog = { abs: w, week: s.week, level: s.level, revenue, variable, fixed, financial, other, amortization, result, kmDemand: transportKm(c, w) + spotKm, kmCapacity: capacityKm(c), kmServed, pallets, palletCapacity: cap, collections: round2(collections), payments: round2(payments), cashEnd: c.cash, notes };
+  const log: WeekLog = { abs: w, week: s.week, level: s.level, revenue, variable, fixed, financial, other, amortization, result, ...(staff ? { staff } : {}), kmDemand: transportKm(c, w) + spotKm, kmCapacity: capacityKm(c), kmServed, pallets, palletCapacity: cap, collections: round2(collections), payments: round2(payments), cashEnd: c.cash, notes };
   s.logs.push(log);
   const limit = c.credit?.limit ?? 0;
   s.negativeWeeks = c.cash < -limit ? s.negativeWeeks + 1 : 0;
