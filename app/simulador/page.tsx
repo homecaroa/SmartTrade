@@ -1,8 +1,8 @@
-import { Simulator } from "@/components/sim/simulator";
+import { SimulatorHub } from "@/components/sim/hub";
 
 export const metadata = { title: "Business Simulator · SmarTrade" };
 
-/** Business Simulator, fase 1 (docs/simulador.md). Todo el juego corre en el navegador: sin red ni servidor. */
+/** Menú del Business Simulator (23/11/2026): Campaña (principal), Temporada y Carrera. Todo corre en el navegador. */
 export default function SimulatorPage() {
-  return <Simulator />;
+  return <SimulatorHub />;
 }
