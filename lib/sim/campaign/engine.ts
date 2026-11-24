@@ -1,7 +1,7 @@
 import { round2, sum } from "../../learning/money";
 import { LEVELS, type LevelDef } from "./levels";
 import type { Action, CampaignSave, CampaignState, Company, Decision, LearningRec, WeekLog } from "./model";
-import { BANKRUPT_WEEKS, CAMPAIGN_VERSION, REPUTATION, START, SUB_RATE, VAN } from "./params";
+import { BANKRUPT_WEEKS, CAMPAIGN_VERSION, REPUTATION, START, SUB_RATE, VAN, WEEKS_PER_MONTH } from "./params";
 import { decideSpot } from "./spot";
 import { decideLead } from "./leads";
 import { has, upgradeById, UPGRADES } from "./upgrades";
@@ -16,7 +16,7 @@ export * from "./helpers";
  * Math.random ni de la hora del sistema.
  *
  * Contabilidad (se comprueba en cada paso, balanceGap): caja + clientes pendientes + fianzas + inmovilizado = capital +
- * resultado acumulado + proveedores pendientes.
+ * resultado acumulado + proveedores pendientes + préstamos y leasing pendientes (nivel 8 en adelante).
  */
 
 const clone = <T>(x: T): T => structuredClone(x);
@@ -161,8 +161,19 @@ function resolveWeek(s: CampaignState, def: LevelDef) {
   const fixed = weeklyFixed(c, w);
   // Plantilla (nivel 4 en adelante): sueldos y cotizaciones; los temporales que acaban esta semana se van después.
   const staff = staffWeekly(c);
-  const financial = c.credit && startCash < 0 ? round2(-startCash * c.credit.annualRate / 52) : 0;
-  if (financial) notes.push(`Intereses de la póliza: ${financial.toLocaleString("es-ES")} €.`);
+  const creditInterest = c.credit && startCash < 0 ? round2(-startCash * c.credit.annualRate / 52) : 0;
+  if (creditInterest) notes.push(`Intereses de la póliza: ${creditInterest.toLocaleString("es-ES")} €.`);
+  // Préstamos y leasing: cuota cada 4 semanas; los intereses son gasto, el resto devuelve deuda (no es gasto).
+  let loanInterest = 0, loanPrincipal = 0;
+  for (const l of c.loans ?? []) {
+    if (l.principal <= 0 || l.nextAbs !== w) continue;
+    const interest = round2(l.principal * l.annualRate / 12);
+    const paid = round2(Math.min(l.monthly - interest, l.principal));
+    l.principal = round2(l.principal - paid); l.monthsLeft = Math.max(0, l.monthsLeft - 1); l.nextAbs = w + WEEKS_PER_MONTH;
+    loanInterest += interest; loanPrincipal += paid;
+    notes.push(`Cuota de ${l.label}: ${round2(interest + paid).toLocaleString("es-ES")} € (${interest.toLocaleString("es-ES")} € de intereses).`);
+  }
+  const financial = round2(creditInterest + loanInterest);
   const other = round2(sum(s.charges.map((x) => x.amount)));
   for (const x of s.charges) if (x.amount && x.label) notes.push(`${x.label}: ${x.amount > 0 ? "−" : "+"}${Math.abs(x.amount).toLocaleString("es-ES")} €.`);
   const amortization = round2(Math.min(c.assets, c.assetsWeekly));
@@ -177,7 +188,7 @@ function resolveWeek(s: CampaignState, def: LevelDef) {
   const nonCash = round2(sum(s.charges.filter((x) => !x.cash).map((x) => x.amount)));
   if (nonCash) c.payables.push({ id: `p${w}-otros`, label: "Gastos pendientes de pago", amount: nonCash, dueAbs: w + 4 });
   s.charges = [];
-  c.cash = round2(c.cash + collections - payments - variable - fixed - staff - financial - cashCharges);
+  c.cash = round2(c.cash + collections - payments - variable - fixed - staff - financial - cashCharges - loanPrincipal);
   for (const p of c.staff ?? []) if (!p.left && p.endAbs !== undefined && p.endAbs <= w) { p.left = true; notes.push(`${p.name} termina su contrato.`); }
   def.afterWeek?.(s, notes);
   const log: WeekLog = { abs: w, week: s.week, level: s.level, revenue, variable, fixed, financial, other, amortization, result, ...(staff ? { staff } : {}), kmDemand: transportKm(c, w) + spotKm, kmCapacity: capacityKm(c), kmServed, pallets, palletCapacity: cap, collections: round2(collections), payments: round2(payments), cashEnd: c.cash, notes };
@@ -220,7 +231,7 @@ export const upgradesFor = (s: CampaignState) => UPGRADES.filter((u) => u.unlock
 export function balanceGap(s: CampaignState): number {
   const c = s.company;
   const assets = c.cash + sum(c.invoices.filter((i) => i.paidAbs === undefined && !i.factored).map((i) => i.amount)) + c.deposits + c.assets;
-  const sources = c.capital + c.result + sum(c.payables.filter((p) => p.paidAbs === undefined).map((p) => p.amount));
+  const sources = c.capital + c.result + sum(c.payables.filter((p) => p.paidAbs === undefined).map((p) => p.amount)) + sum((c.loans ?? []).map((l) => l.principal));
   return round2(assets - sources) || 0;
 }
 

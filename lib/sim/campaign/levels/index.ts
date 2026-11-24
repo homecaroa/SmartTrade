@@ -5,6 +5,9 @@ import { LEVEL3 } from "./l3";
 import { LEVEL4 } from "./l4";
 import { LEVEL5 } from "./l5";
 import { LEVEL6 } from "./l6";
+import { LEVEL7 } from "./l7";
+import { LEVEL8 } from "./l8";
+import { LEVEL9 } from "./l9";
 
 /** Pregunta del informe final de un nivel (como mucho 2-3: el aprendizaje va dentro de las decisiones). */
 export interface DebriefQ { id: string; topic: string; prompt: string; options: { id: string; label: string; grade: Grade; feedback: string }[]; competences: string[] }
@@ -42,5 +45,5 @@ export interface LevelDef {
   debrief(s: CampaignState): DebriefQ[];
 }
 
-export const LEVELS: LevelDef[] = [LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6];
+export const LEVELS: LevelDef[] = [LEVEL1, LEVEL2, LEVEL3, LEVEL4, LEVEL5, LEVEL6, LEVEL7, LEVEL8, LEVEL9];
 export const ACTS = ["Arranque", "Consolidación", "Crecimiento", "Internacional", "Grupo empresarial"];

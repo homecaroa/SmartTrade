@@ -11,6 +11,10 @@ import { personWeekly } from "@/lib/sim/campaign/helpers";
 import { LABOR } from "@/lib/sim/campaign/params";
 import { incidentChance, resolveIncident } from "@/lib/sim/campaign/levels/l6";
 import { COMPETENCE_LABELS } from "@/lib/sim/competences";
+import { annuity, debtOutstanding } from "@/lib/sim/campaign/helpers";
+import { churnChance, COMPETITION } from "@/lib/sim/campaign/levels/l7";
+import { costPerKm, VEHICLES } from "@/lib/sim/campaign/levels/l8";
+import { COLD, debtRatio, ebitdaYear, LOANS } from "@/lib/sim/campaign/levels/l9";
 
 /**
  * Campaña (motor nuevo, 23/11/2026; docs/simulador-campana.md): empresa persistente, niveles 1-3, estrellas de
@@ -247,6 +251,127 @@ describe("niveles 4 a 6 (23/11/2026)", () => {
     expect(achieved(newCampaign(1))).toEqual([]);
     expect(JSON.stringify(s)).not.toMatch(/cliente-fijo/);
     for (const a of ACHIEVEMENTS) expect(a.text.length).toBeGreaterThan(10);
+  });
+});
+
+describe("niveles 7 a 9 (24/11/2026)", () => {
+  const P6 = ["equilibrio", "urbana", "poliza", "experta", "cruzado", "prevencion"] as const;
+  const plan = (...xs: string[]) => [...P6, ...xs] as unknown as Plan;
+  /** Estrellas en el nivel `lv` de las semillas que llegan a él (las que no, no cuentan). */
+  const reached = (p: Plan, lv: number) => SEEDS.map((sd) => playCampaign(sd, p).state).filter((s) => s.results.some((r) => r.level === lv)).map((s) => starsOf(s, lv));
+  it("la contabilidad cuadra en cada acción también con préstamos, leasing y socio", () => {
+    for (const p of [plan("contratos", "leasing", "fijo"), plan("servicio", "renting", "socio"), plan("guerra", "camion", "variable")]) {
+      const { levels } = playCampaign(SEEDS[0], p);
+      let s = newCampaign(SEEDS[0]);
+      levels.forEach((acts, i) => { if (i > 0) s = nextLevel(s); for (const a of acts) { s = apply(s, a); expect(balanceGap(s)).toBe(0); } });
+      expect(s.level).toBeGreaterThanOrEqual(7);
+    }
+  }, 120_000);
+  it("nivel 7: servicio, contratos y bajar precios superan el nivel en la mayoría de semillas; pactar con el rival, nunca", () => {
+    // Medido el 24/11/2026 con estas 12 semillas: servicio 10, contratos 9, guerra 9 (la competencia es aleatoria).
+    expect(share(plan("servicio"), 6, 1)).toBeGreaterThanOrEqual(0.8);
+    expect(share(plan("contratos"), 6, 1)).toBeGreaterThanOrEqual(0.75);
+    expect(share(plan("guerra"), 6, 1)).toBeGreaterThanOrEqual(0.75);
+    expect(share(plan("mala"), 6, 1)).toBe(0);
+  }, 120_000);
+  it("nivel 7: el pacto de precios es ilegal (LDC art. 1.1), se descubre y se multa; mientras dura, nadie se va", () => {
+    const g = playCampaign(SEEDS[0], plan("mala")).state;
+    const fb = g.learning.find((l) => l.id === "respuesta")!;
+    expect(fb.grade).toBe("grave");
+    expect(fb.feedback).toMatch(/art\. 1\.1/);
+    expect(fb.feedback).toMatch(/63\.1\.c/);
+    const w4 = g.logs.find((l) => l.level === 6 && l.week === 4)!;
+    expect(w4.notes.some((n) => /denuncia el acuerdo/.test(n))).toBe(true);
+    expect(w4.other).toBeGreaterThanOrEqual(COMPETITION.fine);
+    const s = newCampaign(1); s.data = { pact: true, rivalCut: 0.15 };
+    const d = { id: "x", client: "flor", kind: "transporte" as const, km: 200, rate: 1, payWeeks: 4, fromAbs: 1, missed: 0 };
+    expect(churnChance(s, d)).toBe(0);
+    s.data.caught = true; expect(churnChance(s, d)).toBeGreaterThan(0);
+  });
+  it("nivel 7: la probabilidad de perder un cliente sube con la diferencia de precio y baja con el servicio y la relación", () => {
+    const s = newCampaign(1); s.data = { rivalCut: 0.15 };
+    const d = { id: "x", client: "flor", kind: "transporte" as const, km: 200, rate: 1, payWeeks: 4, fromAbs: 1, missed: 0 };
+    const base = churnChance(s, d);
+    expect(base).toBeCloseTo(COMPETITION.churnK * 0.15 * 1, 6);
+    s.company.relation.flor = 90; expect(churnChance(s, d)).toBeLessThan(base);
+    s.company.relation.flor = 50; s.data.response = "servicio"; expect(churnChance(s, d)).toBeCloseTo(base * COMPETITION.serviceFactor, 6);
+    s.data.response = ""; s.data.rivalCut = 0.03; expect(churnChance(s, d)).toBeLessThan(base / 4);
+  });
+  it("nivel 7: el temporal que acaba en el nivel se puede hacer indefinido (art. 15.2) y entonces no se va", () => {
+    const g = playCampaign(SEEDS[0], ["equilibrio", "urbana", "poliza", "flexible", "cruzado", "prevencion", "servicio"] as unknown as Plan).state;
+    const r = g.learning.find((l) => l.id.startsWith("renovar-"));
+    if (g.level >= 6 && r) {
+      expect(r.feedback).toMatch(/art\. 15\.2/);
+      const javi = g.company.staff!.find((p) => p.id.startsWith("javi"))!;
+      expect(javi.contract).toBe("indefinido"); expect(javi.left).toBeFalsy();
+    }
+  });
+  it("nivel 8: renting, leasing y camión consiguen ★★ donde se llega; comprar el camión al contado sin caja, no", () => {
+    for (const x of ["renting", "leasing", "camion"]) { const r = reached(plan("servicio", x), 7); expect(r.length).toBeGreaterThan(6); expect(r.filter((n) => n >= 2).length / r.length).toBeGreaterThanOrEqual(0.85); }
+    expect(reached(plan("servicio", "mala"), 7).every((n) => n === 0)).toBe(true);
+  }, 180_000);
+  it("nivel 8: el leasing lleva al balance el vehículo y una deuda por el mismo importe (PGC 8.ª); el renting, no", () => {
+    const run = (x: string) => { let s = playCampaign(SEEDS[1], plan("servicio")).state; s = nextLevel(s); s = apply(s, { t: "empezar" }); const assets0 = s.company.assets; s = apply(s, { t: "decidir", id: "vehiculo", opcion: "furgoneta" }); s = apply(s, { t: "decidir", id: "financiacion", opcion: x }); return { s, dAssets: s.company.assets - assets0 }; };
+    const l = run("leasing");
+    expect(l.dAssets).toBe(VEHICLES.furgoneta.price);
+    expect(debtOutstanding(l.s.company)).toBe(VEHICLES.furgoneta.price);
+    expect(balanceGap(l.s)).toBe(0);
+    expect(l.s.learning.at(-1)!.feedback).toMatch(/8\.ª, 1\.2/);
+    const r = run("renting");
+    expect(r.dAssets).toBe(0);
+    expect(r.s.company.loans).toBeUndefined();
+    expect(r.s.company.vehicles.at(-1)!.monthly).toBe(VEHICLES.furgoneta.renting);
+  });
+  it("nivel 8: rechazar a los clientes nuevos no supera el nivel", () => {
+    let s = nextLevel(playCampaign(SEEDS[1], plan("servicio")).state);
+    s = apply(s, { t: "empezar" });
+    for (let i = 0; i < 300 && s.status === "jugando"; i++) s = s.pending.length ? apply(s, { t: "decidir", id: s.pending[0].id, opcion: s.pending[0].id === "vehiculo" ? "rechazar" : s.pending[0].options.at(-1)!.id }) : apply(s, { t: "cerrar" });
+    expect(s.results.at(-1)!.passed).toBe(false);
+    expect(s.learning.find((l) => l.id === "vehiculo")!.grade).toBe("grave");
+  }, 60_000);
+  it("nivel 8: el coste por km del vehículo nuevo sale de sus costes y de sus km, y queda por debajo del subcontratista", () => {
+    const g = playCampaign(SEEDS[1], plan("servicio", "renting")).state;
+    expect(costPerKm(g)).toBeGreaterThan(0.5);
+    expect(costPerKm(g)).toBeLessThan(1.05);
+    expect(Number(g.data.newKmDone)).toBeGreaterThan(5_000);
+  }, 60_000);
+  it("cuotas: sistema francés, los intereses son gasto y el resto devuelve deuda", () => {
+    expect(annuity(45_000, 0.07, 60)).toBeCloseTo(891.05, 1);
+    const g = playCampaign(SEEDS[1], plan("servicio", "renting", "fijo")).state;
+    const loan = g.company.loans!.find((l) => l.id === "l9-prestamo")!;
+    const paid = g.logs.filter((l) => l.level === 8 && l.notes.some((n) => n.startsWith("Cuota de el préstamo")));
+    expect(paid.length).toBeGreaterThanOrEqual(1);
+    expect(loan.principal).toBeLessThan(COLD.cost);
+    expect(loan.principal).toBeGreaterThan(COLD.cost - paid.length * loan.monthly);
+    // Los intereses de la cuota (los que dice la nota) entran en el gasto financiero de esa semana.
+    for (const l of paid) { const m = l.notes.find((n) => n.startsWith("Cuota de el préstamo"))!.match(/\(([\d.,]+) € de intereses\)/)!; expect(l.financial).toBeGreaterThanOrEqual(Number(m[1].replace(/\./g, "").replace(",", "."))); }
+  }, 60_000);
+  it("nivel 9: fijo, variable y socio ponen en marcha la cámara; autónomo con impago, no", () => {
+    for (const x of ["fijo", "variable", "socio"]) { const r = reached(plan("servicio", "renting", x), 8); expect(r.length).toBeGreaterThan(6); expect(r.every((n) => n >= 1)).toBe(true); }
+    expect(reached(plan("servicio", "renting", "mala"), 8).every((n) => n === 0)).toBe(true);
+  }, 180_000);
+  it("nivel 9: la SL separa tu patrimonio (LSC art. 1.2) salvo que avales; el aval quita la ★★★", () => {
+    const sinAval = playCampaign(SEEDS[1], plan("servicio", "renting", "fijo")).state;
+    expect(sinAval.company.legal).toEqual({ form: "sl", capital: 3_000 });
+    expect(sinAval.results.at(-1)!.stars[2]).toBe(true);
+    expect(sinAval.company.loans!.find((l) => l.id === "l9-prestamo")!.annualRate).toBeCloseTo(LOANS.fixed.rate + LOANS.noGuaranteeSpread, 6);
+    const aval = playCampaign(SEEDS[1], plan("servicio", "renting", "variable")).state;
+    expect(aval.company.legal!.avalPersonal).toBe(true);
+    expect(aval.results.at(-1)!.stars[2]).toBe(false);
+    expect(aval.learning.find((l) => l.id === "forma")!.feedback).toMatch(/art\. 1\.2/);
+    // El variable sube en la semana 5.
+    expect(aval.company.loans!.find((l) => l.id === "l9-prestamo")!.annualRate).toBeCloseTo(LOANS.variable.rate + LOANS.variable.shock, 6);
+    const mala = playCampaign(SEEDS[1], plan("servicio", "renting", "mala")).state;
+    expect(mala.learning.find((l) => l.id === "cuota")!.grade).toBe("grave");
+    expect(mala.company.legal).toBeUndefined();
+  }, 60_000);
+  it("nivel 9: deuda ÷ EBITDA con lo que genera el negocio; sin beneficio, infinito", () => {
+    const s = newCampaign(1);
+    expect(debtRatio(s)).toBe(0);
+    expect(debtRatio(s, 10_000)).toBe(Infinity);
+    s.logs.push({ abs: 1, week: 1, level: 0, revenue: 1_000, variable: 200, fixed: 300, financial: 50, other: 0, amortization: 30, result: 420, kmDemand: 0, kmCapacity: 0, kmServed: 0, pallets: 0, palletCapacity: 0, collections: 0, payments: 0, cashEnd: 0, notes: [] });
+    expect(ebitdaYear(s)).toBe(500 * 52);
+    expect(debtRatio(s, 26_000)).toBe(1);
   });
 });
 

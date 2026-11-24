@@ -11,6 +11,8 @@ export const COMPETENCE_LABELS: Record<string, string> = {
   "0622-RA5": "Transporte: documentación",
   "0622-RA7": "Transporte: seguro de la mercancía",
   "0622-RA6": "Transporte: incidencias",
+  "0623-RA1": "Gestión económica: iniciativa emprendedora y entorno",
+  "0623-RA2": "Gestión económica: forma jurídica",
   "0623-RA3": "Gestión económica: financiar inversiones",
   "0623-RA4": "Gestión económica: comprar o alquilar activos",
   "0623-RA5": "Gestión económica: cobros y pagos",

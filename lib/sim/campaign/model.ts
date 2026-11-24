@@ -9,7 +9,32 @@ import type { Grade } from "../model";
 
 export type { Grade };
 
-export interface Vehicle { id: string; name: string; kmWeek: number; monthly: number; mode: "renting" | "propio" }
+export interface Vehicle {
+  id: string; name: string; kmWeek: number; monthly: number; mode: "renting" | "propio";
+  /** Tipo de vehículo para el dibujo (nivel 8 en adelante; ausente = furgoneta). */
+  kind?: "furgoneta" | "rigido";
+  /** Cómo se pagó (nivel 8): al contado, con leasing o en renting. Ausente en la furgoneta del principio. */
+  finance?: "contado" | "leasing" | "renting";
+}
+
+/**
+ * Deuda con cuotas mensuales (nivel 8 en adelante): préstamo bancario o arrendamiento financiero (leasing). Cada 4
+ * semanas se paga la cuota: los intereses son gasto financiero y el resto reduce lo que debes. Cuota constante
+ * (sistema francés); si el tipo es variable y cambia, se recalcula sobre lo que queda.
+ */
+export interface Loan {
+  id: string; label: string; kind: "prestamo" | "leasing";
+  /** Lo que queda por devolver. */
+  principal: number;
+  annualRate: number;
+  monthly: number;
+  monthsLeft: number;
+  /** Semana absoluta del próximo pago. */
+  nextAbs: number;
+  variable?: boolean;
+  /** Cuotas que no se pagaron a tiempo. */
+  missed?: number;
+}
 
 /**
  * Persona de la plantilla (nivel 4 en adelante). Solo los puestos clave tienen nombre (decisión del dueño, 23/11/2026).
@@ -66,6 +91,8 @@ export interface Deal {
   /** Semanas seguidas sin servirle entero (a la segunda, se va). */
   missed: number;
   ended?: boolean;
+  /** Contrato con permanencia (nivel 7): hasta esta semana el cliente no puede irse con la competencia. */
+  lockedUntilAbs?: number;
   /** Lo hace un subcontratista: no ocupa tu furgoneta y te cobra SUB_RATE por km. */
   sub?: boolean;
   /** Lo cubre tu propia gente fuera de la capacidad normal (horas extra, un temporal): no lo cobra un subcontratista. */
@@ -96,6 +123,10 @@ export interface Company {
   assets: number;
   assetsWeekly: number;
   credit: { limit: number; annualRate: number } | null;
+  /** Préstamos y leasing (nivel 8 en adelante; ausente antes, para que las campañas guardadas no cambien). */
+  loans?: Loan[];
+  /** Forma jurídica (nivel 9): ausente = autónomo (persona física). */
+  legal?: { form: "sl"; capital: number; avalPersonal?: boolean };
   /** Relación con cada cliente, 0-100. */
   relation: Record<string, number>;
   /** Reputación de la empresa, 0-100. */

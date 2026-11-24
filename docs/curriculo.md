@@ -104,6 +104,7 @@ En el Business Simulator (10/11/2026): RA3, RA4, RA5 y RA7 en parte (RA5: plazos
 - RA3: póliza de crédito, con comisión, interés sobre lo dispuesto y límite.
 - RA4: segundo camión en renting o comprado, con amortización y caja.
 - RA7: resultado frente a tesorería y rentabilidad de cada operación.
+- Campaña, niveles 7–9 (24/11/2026): RA1 (entorno competitivo: competencia, guerra de precios, acuerdos prohibidos), RA2 (autónomo o SL, capital y aval), RA3 (préstamo fijo o variable, socio, carencia), RA4 (contado, leasing o renting) y RA6 (cómo se contabilizan el leasing y el renting).
 
 Detalle en `docs/simulador.md` §17 sexies.
 

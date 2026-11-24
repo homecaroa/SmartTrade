@@ -10,6 +10,8 @@ import { COMPETENCE_LABELS } from "@/lib/sim/competences";
 import { GradeBadge } from "../../learning/grade-badge";
 import { eur } from "./campaign";
 
+const cap = (x: string) => x.charAt(0).toUpperCase() + x.slice(1);
+
 /** Tu empresa: lo que persiste entre niveles. */
 export function CompanyPanel({ s }: { s: CampaignState }) {
   const c = s.company;
@@ -31,7 +33,7 @@ export function CompanyPanel({ s }: { s: CampaignState }) {
       </section>
       <section className="space-y-1 rounded-lg bg-white p-4 text-sm shadow-sm" aria-labelledby="medios">
         <h2 id="medios" className="text-base font-semibold">Medios</h2>
-        {c.vehicles.map((v) => <p key={v.id}>{v.name}: {v.kmWeek.toLocaleString("es-ES")} km a la semana ({eur(v.monthly)} al mes)</p>)}
+        {c.vehicles.map((v) => <p key={v.id}>{v.name}: {v.kmWeek.toLocaleString("es-ES")} km a la semana ({eur(v.monthly)} al mes{v.finance && v.finance !== "renting" ? " de seguro" : ""})</p>)}
         <p>{c.facility ? `${c.facility.name}: ${palletCapacity(c, s.abs) || c.facility.pallets} palés (${eur(c.facility.rentMonthly)} al mes)${s.abs < c.facility.readyAbs ? ", en obras" : ""}` : "Sin nave"}</p>
         <p>Capacidad de transporte: {capacityKm(c).toLocaleString("es-ES")} km a la semana · fijos: {eur(weeklyFixed(c, s.abs))} a la semana</p>
         <p>Mejoras: {c.upgrades.length ? c.upgrades.map((u) => upgradeById(u)?.name).join(", ") : "ninguna todavía"}</p>
@@ -43,11 +45,13 @@ export function CompanyPanel({ s }: { s: CampaignState }) {
         <p>Fianzas {eur(c.deposits)} · instalaciones y mejoras {eur(c.assets)}</p>
         <p>Capital {eur(c.capital)} · resultado acumulado {eur(c.result)}</p>
         {c.credit && <p>Póliza de crédito: hasta {eur(c.credit.limit)}</p>}
+        {(c.loans ?? []).filter((l) => l.principal > 0).map((l) => <p key={l.id}>{cap(l.label.replace(/^(el|la) /, ""))}: debes {eur(l.principal)} · cuota de {eur(l.monthly)} al mes al {(l.annualRate * 100).toLocaleString("es-ES", { maximumFractionDigits: 2 })}{"\u00a0"}%{l.variable ? " variable" : ""}</p>)}
+        <p>Forma jurídica: {c.legal?.form === "sl" ? `sociedad limitada (capital de ${eur(c.legal.capital)})${c.legal.avalPersonal ? ", con tu aval personal en el préstamo" : ""}` : "autónomo"}</p>
       </section>
       <section className="space-y-1 rounded-lg bg-white p-4 text-sm shadow-sm md:col-span-2" aria-labelledby="clientes">
         <h2 id="clientes" className="text-base font-semibold">Tus clientes</h2>
         {deals.length === 0 ? <p className="text-slate-600">Aún no tienes clientes fijos.</p> : (
-          <ul className="space-y-0.5">{deals.map((d) => <li key={d.id}>{clientName(d.client)}: {d.kind === "transporte" ? `${d.km} km a la semana a ${d.rate!.toLocaleString("es-ES", { minimumFractionDigits: 2 })} €/km${d.sub ? " (subcontratado)" : ""}` : `${d.pallets} palés a ${d.palletRate!.toLocaleString("es-ES", { minimumFractionDigits: 2 })} € por palé y semana${d.external ? " (espacio externo)" : ""}`} · cobro a {d.payWeeks * 7} días · relación {Math.round(c.relation[d.client] ?? 50)}/100</li>)}</ul>
+          <ul className="space-y-0.5">{deals.map((d) => <li key={d.id}>{clientName(d.client)}: {d.kind === "transporte" ? `${d.km} km a la semana a ${d.rate!.toLocaleString("es-ES", { minimumFractionDigits: 2 })} €/km${d.sub ? " (subcontratado)" : ""}` : `${d.pallets} palés a ${d.palletRate!.toLocaleString("es-ES", { minimumFractionDigits: 2 })} € por palé y semana${d.id === "l9-frio" ? " (cámara de frío)" : d.external ? " (espacio externo)" : ""}`} · cobro a {d.payWeeks * 7} días · relación {Math.round(c.relation[d.client] ?? 50)}/100</li>)}</ul>
         )}
       </section>
     </div>
