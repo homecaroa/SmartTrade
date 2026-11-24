@@ -6,13 +6,13 @@ import { apply, CAMPAIGN_SAVE_KEY, levelDef, newCampaign, nextLevel, restore, to
 import { LEVELS } from "@/lib/sim/campaign/levels";
 import type { Action, CampaignSave, CampaignState } from "@/lib/sim/campaign/model";
 import { SimulatedNotice } from "../../learning/simulated-notice";
-import { CompanyPanel, LearningPanel, ManualPanel } from "./panels";
+import { CompanySide, LearningPanel, ManualPanel } from "./panels";
 import { Mission } from "./mission";
 import { AchievementToast, AnimatedEuro, DangerAlert, FlyingConcept, FxContext } from "./fx";
 import { ACHIEVEMENTS, achieved } from "@/lib/sim/campaign/achievements";
 import { manualById } from "@/lib/sim/campaign/manual";
 
-type Tab = "mision" | "empresa" | "manual" | "aprendizaje";
+type Tab = "mision" | "manual" | "aprendizaje";
 interface Game { seed: number; levels: Action[][]; state: CampaignState }
 
 const randomSeed = () => { try { return crypto.getRandomValues(new Uint32Array(1))[0] % 1_000_000; } catch { return Date.now() % 1_000_000; } };
@@ -87,11 +87,16 @@ export function Campaign() {
       <Header s={s} />
       {message && <p role="status" className="rounded bg-amber-50 p-2 text-sm text-amber-900">{message}</p>}
       <div role="tablist" aria-label="Vistas de la campaña" className="flex flex-wrap gap-1 border-b border-slate-200">
-        {tabBtn("mision", "Misión")}{tabBtn("empresa", "Tu empresa")}<span className="relative" key={`m${s.manual.length}`} onAnimationEnd={() => setNewConcept(null)}>{tabBtn("manual", `Manual (${s.manual.length})`)}<FlyingConcept title={newConcept} /></span>{tabBtn("aprendizaje", "Aprendizaje")}
+        {tabBtn("mision", "Misión")}<span className="relative" key={`m${s.manual.length}`} onAnimationEnd={() => setNewConcept(null)}>{tabBtn("manual", `Manual (${s.manual.length})`)}<FlyingConcept title={newConcept} /></span>{tabBtn("aprendizaje", "Aprendizaje")}
       </div>
       <div role="tabpanel">
-        {tab === "mision" && <Mission s={s} save={{ seed: game.seed, levels: game.levels, version: game.state.version }} onAction={act} onNext={goNext} onRepeat={repeat} />}
-        {tab === "empresa" && <CompanyPanel s={s} />}
+        {tab === "mision" && (
+          // Tu empresa va dentro de la misión (petición del dueño, 25/11/2026): al lado en escritorio, arriba en el móvil.
+          <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start">
+            <aside className="lg:sticky lg:top-4 lg:order-2 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto"><CompanySide s={s} /></aside>
+            <div className="min-w-0 lg:order-1"><Mission s={s} save={{ seed: game.seed, levels: game.levels, version: game.state.version }} onAction={act} onNext={goNext} onRepeat={repeat} /></div>
+          </div>
+        )}
         {tab === "manual" && <ManualPanel s={s} />}
         {tab === "aprendizaje" && <LearningPanel s={s} />}
       </div>
