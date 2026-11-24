@@ -4,6 +4,7 @@ import type { Action, CampaignSave, CampaignState, Company, Decision, LearningRe
 import { BANKRUPT_WEEKS, CAMPAIGN_VERSION, REPUTATION, START, SUB_RATE, VAN, WEEKS_PER_MONTH } from "./params";
 import { decideSpot } from "./spot";
 import { decideLead } from "./leads";
+import { decideQuiz, decideStore, quizDecision } from "./offers";
 import { has, upgradeById, UPGRADES } from "./upgrades";
 import { activeDeals, capacityKm, charge, clientName, invest, learn, palletCapacity, relate, remember, staffWeekly, transportKm, unlock, variablePerKm, weeklyFixed } from "./helpers";
 export * from "./helpers";
@@ -30,8 +31,8 @@ export function newCompany(): Company {
   };
 }
 
-export function newCampaign(seed: number): CampaignState {
-  return { version: CAMPAIGN_VERSION, seed: seed >>> 0, company: newCompany(), level: 0, week: 0, abs: 1, status: "sede", pending: [], answers: {}, logs: [], learning: [], manual: [], debrief: {}, data: {}, results: [], negativeWeeks: 0, charges: [], history: [] };
+export function newCampaign(seed: number, version = CAMPAIGN_VERSION): CampaignState {
+  return { version, seed: seed >>> 0, company: newCompany(), level: 0, week: 0, abs: 1, status: "sede", pending: [], answers: {}, logs: [], learning: [], manual: [], debrief: {}, data: {}, results: [], negativeWeeks: 0, charges: [], history: [] };
 }
 
 // ── Acciones ──────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -63,7 +64,7 @@ export function apply(prev: CampaignState, a: Action): CampaignState {
     s.status = "jugando"; s.week = 1;
     def.start(s);
     unlock(s, ...def.concepts);
-    s.pending = def.decisionsAt(s);
+    s.pending = weekDecisions(s, def);
     return s;
   }
   if (a.t === "pregunta") {
@@ -86,6 +87,8 @@ export function apply(prev: CampaignState, a: Action): CampaignState {
     if (d.key) s.history.push({ level: s.level, week: s.week, id: d.id, title: d.title, options: d.options, chosen: a.opcion });
     if (a.id.startsWith("urgente-")) decideSpot(s, d, a.opcion);
     else if (a.id.startsWith("cliente-")) decideLead(s, d, a.opcion);
+    else if (s.version >= 2 && a.id.startsWith("almacen-")) decideStore(s, d, a.opcion);
+    else if (s.version >= 2 && a.id.startsWith("pregunta-")) decideQuiz(s, d, a.opcion);
     else def.decide(s, d, a.opcion);
     return s;
   }
@@ -95,8 +98,15 @@ export function apply(prev: CampaignState, a: Action): CampaignState {
   if (s.status !== "jugando") return s;
   if (s.week >= def.weeks) { finishLevel(s, def); return s; }
   s.week += 1; s.abs += 1;
-  s.pending = def.decisionsAt(s);
+  s.pending = weekDecisions(s, def);
   return s;
+}
+
+/** Decisiones de la semana: las del nivel y, con las reglas 2, una pregunta del oficio si la semana está tranquila. */
+function weekDecisions(s: CampaignState, def: LevelDef): Decision[] {
+  const out = def.decisionsAt(s);
+  if (s.version >= 2) { const q = quizDecision(s, out); if (q) out.push(q); }
+  return out;
 }
 
 // ── La semana ─────────────────────────────────────────────────────────────────────────────────────────────────────
@@ -135,6 +145,8 @@ function resolveWeek(s: CampaignState, def: LevelDef) {
     if (served < spotKm) { charge(s, "Penalización por encargo urgente fallado", 150); c.reputation.fiabilidad = Math.max(0, c.reputation.fiabilidad - REPUTATION.spotFailed); notes.push(`Un encargo urgente se quedó sin hacer (${spotKm - served} km): penalización y peor reputación.`); }
   }
   s.data.spotKm = 0; s.data.spotRev = 0;
+  // Reglas 2: urgentes subcontratados (se facturan enteros; el subcontratista ya está en los cargos de la semana).
+  if (s.data.subSpotRev) { const v = Number(s.data.subSpotRev); revenue += v; bill("urgentes", v, 4); s.data.subSpotRev = 0; }
   if (missedKm) c.reputation.fiabilidad = Math.max(0, round2(c.reputation.fiabilidad - REPUTATION.per100kmMissed * missedKm / 100));
   else c.reputation.fiabilidad = Math.min(100, c.reputation.fiabilidad + 1);
   // Almacén: palés por orden de llegada hasta la capacidad de la nave.
@@ -191,7 +203,15 @@ function resolveWeek(s: CampaignState, def: LevelDef) {
   c.cash = round2(c.cash + collections - payments - variable - fixed - staff - financial - cashCharges - loanPrincipal);
   for (const p of c.staff ?? []) if (!p.left && p.endAbs !== undefined && p.endAbs <= w) { p.left = true; notes.push(`${p.name} termina su contrato.`); }
   def.afterWeek?.(s, notes);
-  const log: WeekLog = { abs: w, week: s.week, level: s.level, revenue, variable, fixed, financial, other, amortization, result, ...(staff ? { staff } : {}), kmDemand: transportKm(c, w) + spotKm, kmCapacity: capacityKm(c), kmServed, pallets, palletCapacity: cap, collections: round2(collections), payments: round2(payments), cashEnd: c.cash, notes };
+  // Reglas 2: lo que pasó de largo por falta de sitio, y los urgentes aplazados a la semana que viene.
+  const passedN = Number(s.data.passedN ?? 0);
+  if (passedN) {
+    const leads = Number(s.data.passedLeads ?? 0);
+    notes.push(`Por falta de sitio pasaron de largo ${passedN === 1 ? "una oferta" : `${passedN} ofertas`}${leads ? ` (${leads === 1 ? "un cliente fijo" : `${leads} clientes fijos`})` : ""}: ${Math.round(Number(s.data.passedRev)).toLocaleString("es-ES")} € que no facturaste.`);
+  }
+  if (s.data.nextSpotKm) { s.data.spotKm = Number(s.data.nextSpotKm); s.data.spotRev = Number(s.data.nextSpotRev); s.data.nextSpotKm = 0; s.data.nextSpotRev = 0; }
+  const log: WeekLog = { abs: w, week: s.week, level: s.level, revenue, variable, fixed, financial, other, amortization, result, ...(staff ? { staff } : {}), kmDemand: transportKm(c, w) + spotKm, kmCapacity: capacityKm(c), kmServed, pallets, palletCapacity: cap, collections: round2(collections), payments: round2(payments), cashEnd: c.cash, notes, ...(passedN ? { passed: { n: passedN, revenue: round2(Number(s.data.passedRev)) } } : {}) };
+  if (passedN) { s.data.passedN = 0; s.data.passedRev = 0; s.data.passedLeads = 0; }
   s.logs.push(log);
   const limit = c.credit?.limit ?? 0;
   s.negativeWeeks = c.cash < -limit ? s.negativeWeeks + 1 : 0;
@@ -246,11 +266,13 @@ export function mastery(s: CampaignState): { competence: string; pct: number; n:
 // ── Guardado, reproducción y «qué habría pasado si» ──────────────────────────────────────────────────────────────
 
 export const CAMPAIGN_SAVE_KEY = "smartrade:simulador:campana";
-export const toSave = (seed: number, levels: Action[][], now = new Date()): CampaignSave => ({ app: "smartrade-campana", version: CAMPAIGN_VERSION, seed, levels, savedAt: now.toISOString() });
+export const toSave = (seed: number, levels: Action[][], now = new Date(), version = CAMPAIGN_VERSION): CampaignSave => ({ app: "smartrade-campana", version, seed, levels, savedAt: now.toISOString() });
+/** Lo que hace falta para reconstruir una campaña. Sin `version`, las reglas 1 (las de los archivos antiguos). */
+export type SaveRef = Pick<CampaignSave, "seed" | "levels"> & { version?: number };
 
 /** Reconstruye la campaña: cada nivel desde el final del anterior. Se detiene en la primera acción que ya no valga. */
-export function restore(save: Pick<CampaignSave, "seed" | "levels">): { state: CampaignState; levels: Action[][]; dropped: number } {
-  let s = newCampaign(save.seed);
+export function restore(save: SaveRef): { state: CampaignState; levels: Action[][]; dropped: number } {
+  let s = newCampaign(save.seed, save.version ?? 1);
   const kept: Action[][] = [];
   let dropped = 0;
   for (let i = 0; i < save.levels.length; i++) {
@@ -268,9 +290,9 @@ export function restore(save: Pick<CampaignSave, "seed" | "levels">): { state: C
  * «Qué habría pasado si…»: rejuega el nivel cambiando UNA decisión y deja el resto de tus acciones igual (las que ya no
  * tengan sentido se saltan). Es posible porque el motor es determinista. Compara el final del nivel.
  */
-export function whatIf(save: Pick<CampaignSave, "seed" | "levels">, level: number, decisionId: string, opcion: string) {
+export function whatIf(save: SaveRef, level: number, decisionId: string, opcion: string) {
   const levels = save.levels.map((l, i) => (i === level ? l.map((a) => (a.t === "decidir" && a.id === decisionId ? { ...a, opcion } : a)) : l)).slice(0, level + 1);
-  let s = newCampaign(save.seed);
+  let s = newCampaign(save.seed, save.version ?? 1);
   for (let i = 0; i <= level; i++) {
     if (i > 0) s = nextLevel(s);
     for (const a of levels[i]) { try { s = apply(s, a); } catch { /* acción que ya no vale en la alternativa */ } }

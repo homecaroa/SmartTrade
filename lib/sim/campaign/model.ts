@@ -169,6 +169,8 @@ export interface WeekLog {
   staff?: number;
   kmDemand: number; kmCapacity: number; kmServed: number; pallets: number; palletCapacity: number;
   collections: number; payments: number; cashEnd: number; notes: string[];
+  /** Reglas 2: ofertas que pasaron de largo por falta de sitio (solo si hubo alguna). */
+  passed?: { n: number; revenue: number };
 }
 
 export type Status = "sede" | "jugando" | "fin_nivel" | "quiebra";

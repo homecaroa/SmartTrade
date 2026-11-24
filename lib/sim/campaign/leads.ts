@@ -2,6 +2,7 @@ import { round2 } from "../../learning/money";
 import { intIn, stream } from "../rng";
 import { capacityKm, learn, registerClients, transportKm, variablePerKm } from "./helpers";
 import type { CampaignState, Decision } from "./model";
+import { decideLeadV2, leadDecisionsV2 } from "./offers";
 
 /**
  * Clientes nuevos (desde el nivel 4): con la reputación que has ganado, cada semana puede llamarte un cliente con un
@@ -12,6 +13,7 @@ const NAMES = ["Ferretería Marítim (ficticia)", "Óptica Benimaclet (ficticia)
 export const LEAD = { chance: 0.55, km: { min: 200, max: 400 }, rate: { min: 0.95, max: 1.15 } };
 
 export function leadDecisions(s: CampaignState): Decision[] {
+  if (s.version >= 2) return leadDecisionsV2(s, NAMES);
   const r = stream(s.seed, s.abs, "campana-clientes");
   if (r() >= LEAD.chance * (s.company.reputation.fiabilidad >= 70 ? 1 : 0.5)) return [];
   const i = Math.floor(r() * NAMES.length), id = `nuevo-${s.abs}`;
@@ -25,6 +27,7 @@ export function leadDecisions(s: CampaignState): Decision[] {
 }
 
 export function decideLead(s: CampaignState, d: Decision, op: string) {
+  if (s.version >= 2) { decideLeadV2(s, d, op); return; }
   const km = Number(d.data!.km), rate = Number(d.data!.rate), client = String(d.data!.client);
   const free = capacityKm(s.company) - transportKm(s.company, s.abs);
   const fits = free >= km;

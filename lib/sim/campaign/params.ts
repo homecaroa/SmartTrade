@@ -3,7 +3,14 @@
  * empresa de transporte, calibradas con estrategias automáticas (lib/sim/campaign/strategies.ts), no precios de
  * mercado. La normativa que se cita está comprobada en el BOE; lo que no, se dice.
  */
-export const CAMPAIGN_VERSION = 1;
+/**
+ * Versión de las reglas de la campaña. Cada partida guarda la suya y se reproduce con ella.
+ * - 1 (23/11/2026): niveles 1–9.
+ * - 2 (24/11/2026): las ofertas que no caben y no tienen salida rentable no interrumpen (van al informe de la
+ *   semana), las que aparecen traen más opciones (pedir más, subcontratar, aplazar) y casos de documentación y
+ *   trámites, hay encargos sueltos de almacenaje y preguntas de los módulos en las semanas tranquilas.
+ */
+export const CAMPAIGN_VERSION = 2;
 
 /** Semana de juego = 1 semana; el mes son 4 semanas, como en el resto del simulador. */
 export const WEEKS_PER_MONTH = 4;

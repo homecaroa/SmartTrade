@@ -694,7 +694,8 @@ Ilustra la economía completa: incluye movimientos de almacén y subcontratació
 
 Actualizado el 11/11/2026. Ya comprobado en el BOE (no se repite aquí): Ley 15/2009 (arts. 2, 5, 6, 10-12, 15, 41, 47, 48, 56-62), Ley 3/2004 (art. 4), Orden FOM/2861/2012, Convenio CMR, LAU (art. 36), Ley 7/2022 (arts. 8, 20, 21).
 
-- **Tiempos de conducción:** texto consolidado vigente del Reglamento (CE) 561/2006 tras el Reglamento (UE) 2020/1054.
+- **Tiempos de conducción:** texto consolidado vigente del Reglamento (CE) 561/2006 tras el Reglamento (UE) 2020/1054. Intentado de nuevo el 24/11/2026: EUR-Lex no devolvió el texto.
+- Comprobado el 24/11/2026 (campaña, reglas 2): autorización de transporte, LOTT arts. 42.1 y 103.2.e, ROTT art. 33.2.d.
 - **IPREM 2026** (600 €/mes en fuentes secundarias, por la prórroga de los Presupuestos) para el límite de la Ley 15/2009, art. 57.1.
 - **Reglamento (CE) 1072/2009, art. 4** (copia certificada de la licencia comunitaria): leído en legislation.gov.uk; falta EUR-Lex.
 - **Autorizaciones de transporte con Marruecos**, antes de añadirlo como destino.

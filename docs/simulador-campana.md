@@ -242,6 +242,61 @@ Además, en el nivel 7, si un conductor temporal del nivel 4 termina su contrato
   Las pruebas también cazaron dos fallos: la multa del cártel se cargaba una semana tarde, y `round2` convertía un 8,5 % en un 9 %.
 - **App:** abierta en escritorio y móvil con el nivel 7, el 8 a medias y el final del 9. Se ven el camión y la segunda furgoneta, los préstamos, la SL y «qué habría pasado si» con las decisiones nuevas. Sin errores y sin desplazamiento horizontal.
 
+## 4 quater. Reglas 2 (24/11/2026): menos rechazos, más oficio
+
+**Problema medido** (pedido por el dueño, «se vuelve monótono»): en 12 campañas completas con las reglas 1, la mitad de las semanas (402 de 808) solo traían encargos urgentes o clientes nuevos, y el 84 % de esas decisiones (859 de 1.023) eran ofertas que no cabían: la única respuesta era rechazar.
+
+**Opciones presentadas y elegidas por el dueño:**
+- **A** (más opciones al coger trabajo) y **B** (lo que no cabe no interrumpe): ahora.
+- **C** (mazo de eventos variados): después.
+- Además: más aprendizaje de los módulos, con más preguntas, documentación y trámites.
+
+**Qué cambia** (`lib/sim/campaign/offers.ts` y `quiz.ts`; solo en las campañas nuevas):
+
+| | Antes | Ahora |
+|---|---|---|
+| Oferta que no cabe | Carta de aceptar o rechazar | Si subcontratar deja al menos 0,05 €/km, carta con subcontratar (respondes tú: Ley 15/2009, art. 6.1), proponer la semana siguiente (acepta la mitad) o rechazar. Si no, pasa de largo y el informe de la semana dice cuánto no facturaste |
+| Urgente que cabe | Aceptar o rechazar | Aceptar, pedir un 10 % más (el cliente tiene un límite oculto) o rechazar |
+| Cliente fijo que cabe | Aceptar o rechazar | Aceptar, contrapropuesta del +5 % o rechazar. Si no cabe, pasa de largo |
+| Casos (la mitad de las ofertas que caben) | — | Sin documentos: documento de control (Orden FOM/2861/2012; Ley 15/2009, art. 10). Estiba: art. 20. Mercancía de valor: declaración de valor, art. 61. Pago a 90 días: Ley 3/2004, art. 4.3, y Ley 15/2009, art. 41. Precio cerrado sin revisión por gasóleo: art. 38.3 |
+| Almacenaje suelto | — | 40 palés durante 3 semanas, si la nave tiene sitio, con o sin albarán de entrada (buena práctica, sin norma). El sitio cuenta lo ya firmado y se vuelve a comprobar al decidir |
+| Semanas tranquilas | Vacías o solo con rechazos | Una pregunta del oficio (24, sin repetir): transporte (0622), almacén (0625) y gestión (0623). Cuenta para el dominio, no para el dinero |
+
+**Normativa nueva leída en el BOE el 24/11/2026:**
+- LOTT, art. 42.1: el transporte público necesita autorización.
+- ROTT, art. 33.2.d: exentos los vehículos de hasta 2 t (2,5 t algunos N1 de combustibles alternativos).
+- LOTT, art. 103.2.e: la exención de 3,5 t es solo del transporte privado complementario. Corrige la idea común de que una furgoneta de 3,5 t no necesita autorización.
+
+**No comprobado:**
+- **Tiempos de conducción** (Reglamento 561/2006): EUR-Lex no devolvió el texto, así que ese caso no entra.
+- **Sanciones, daños y suplementos:** los importes son simulados.
+
+**Calibrado** (10 semillas por estrategia y nivel):
+
+| Hallazgo | Corrección |
+|---|---|
+| El almacenaje suelto decía «te caben» sin contar lo firmado que aún no había empezado; en el nivel 2, Bazar se iba | El sitio cuenta todas las semanas del encargo y se vuelve a comprobar al decidir |
+| La estrategia automática aceptaba cartas con caso que ya no cabían | Vuelve a comprobar el sitio al decidir |
+
+Con las reglas 2, todas las estrategias buenas quedan igual o mejor que con las reglas 1, y la mala sigue fallando en los nueve niveles.
+
+**Resultado** (las mismas 12 campañas):
+
+| | Reglas 1 | Reglas 2 |
+|---|---|---|
+| Semanas en las que solo se podía rechazar | 325 | 0 |
+| Rechazos | 859 | 42 |
+| Ofertas con caso | 0 | 150 |
+| Preguntas del oficio | 0 | 223 |
+| Ofertas que pasaron de largo (al informe) | — | 528 |
+
+**Compatibilidad:** cada campaña guarda su versión de reglas. Se reproducen idénticas 928 campañas guardadas con las reglas 1: las de las tres entregas, más 144 de nueve niveles.
+
+**Verificación:**
+- 9 pruebas nuevas.
+- 13 mutaciones, todas en rojo. Una estaba hueca y se cubrió: el sitio que no contaba lo firmado.
+- App abierta en escritorio y móvil con las cartas nuevas, sin errores.
+
 ## 5. Conservación de los modos actuales
 
 - **`/simulador`** es ahora el menú. La **Temporada** se ha movido a `/simulador/temporada` y lee **la misma clave** de siempre (`smartrade:simulador:partida`). La **Carrera** sigue en `/simulador/carrera` con su clave.
@@ -263,6 +318,8 @@ Además, en el nivel 7, si un conductor temporal del nivel 4 termina su contrato
 - **App:** abierta en escritorio y móvil. Se jugó el nivel 1 entero desde la interfaz: informe, «qué habría pasado si», preguntas, sede del nivel 2 con compra de una mejora y recarga. Además, el menú con la Temporada guardada, sin errores de consola y sin desplazamiento horizontal en el móvil.
 
 ## 7. Siguiente entrega
+
+- **Mazo de eventos variados** (opción C, aprobada por el dueño para después): un conductor de baja, un cliente que cambia el horario, una subida del gasóleo, un cliente que pide rebaja, una oportunidad de compra o un cliente que paga tarde.
 
 Niveles 10–12 (acto III):
 - **Almacén de verdad**;
