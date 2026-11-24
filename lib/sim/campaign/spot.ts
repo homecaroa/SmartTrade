@@ -4,12 +4,14 @@ import { capacityKm, learn, transportKm, unlock, variablePerKm } from "./helpers
 import type { CampaignState, Decision } from "./model";
 import { SPOT } from "./params";
 import { has } from "./upgrades";
+import { decideSpotV2, spotDecisionsV2 } from "./offers";
 
 /**
  * Encargos urgentes de la semana (todos los niveles): de su propia secuencia, para que no cambien según lo que decidas.
  * Aceptar sin capacidad libre es fallar al cliente.
  */
 export function spotDecisions(s: CampaignState): Decision[] {
+  if (s.version >= 2) return spotDecisionsV2(s);
   const r = stream(s.seed, s.abs, "campana-urgentes");
   const x = r();
   let n = x < SPOT.count[0] ? 0 : x < SPOT.count[0] + SPOT.count[1] ? 1 : 2;
@@ -27,6 +29,7 @@ export function spotDecisions(s: CampaignState): Decision[] {
 
 /** Corrección de un encargo urgente: depende de la capacidad libre que te quedaba al decidir. */
 export function decideSpot(s: CampaignState, d: Decision, opcion: string) {
+  if (s.version >= 2) { decideSpotV2(s, d, opcion); return; }
   const km = Number(d.data!.km), rate = Number(d.data!.rate);
   const used = transportKm(s.company, s.abs) + Number(s.data.spotKm ?? 0);
   const fits = used + km <= capacityKm(s.company);

@@ -18,9 +18,9 @@ interface Game { seed: number; levels: Action[][]; state: CampaignState }
 const randomSeed = () => { try { return crypto.getRandomValues(new Uint32Array(1))[0] % 1_000_000; } catch { return Date.now() % 1_000_000; } };
 
 /** Estado al empezar el nivel en curso (para repetirlo): la campaña reconstruida hasta el nivel anterior. */
-function stateAtLevelStart(seed: number, levels: Action[][]): CampaignState {
-  if (levels.length <= 1) return newCampaign(seed);
-  return nextLevel(restore({ seed, levels: levels.slice(0, -1) }).state);
+function stateAtLevelStart(seed: number, levels: Action[][], version: number): CampaignState {
+  if (levels.length <= 1) return newCampaign(seed, version);
+  return nextLevel(restore({ seed, levels: levels.slice(0, -1), version }).state);
 }
 
 /**
@@ -45,7 +45,7 @@ export function Campaign() {
     } catch { /* sin almacenamiento: se juega sin guardar */ }
     setLoaded(true);
   }, []);
-  useEffect(() => { if (game) try { window.localStorage.setItem(CAMPAIGN_SAVE_KEY, JSON.stringify(toSave(game.seed, game.levels))); } catch { /* sin guardar */ } }, [game]);
+  useEffect(() => { if (game) try { window.localStorage.setItem(CAMPAIGN_SAVE_KEY, JSON.stringify(toSave(game.seed, game.levels, new Date(), game.state.version))); } catch { /* sin guardar */ } }, [game]);
 
   const act = (a: Action) => {
     if (!game) return;
@@ -63,11 +63,11 @@ export function Campaign() {
     } catch (e) { setMessage(e instanceof Error ? e.message : "Acción no válida."); }
   };
   const goNext = () => { if (!game) return; try { setGame({ ...game, levels: [...game.levels, []], state: nextLevel(game.state) }); setTab("mision"); window.scrollTo({ top: 0 }); } catch (e) { setMessage(e instanceof Error ? e.message : "No se puede seguir."); } };
-  const repeat = () => { if (!game || !window.confirm("¿Repetir este nivel desde el principio? Tu empresa vuelve a como estaba al empezarlo.")) return; const levels = [...game.levels.slice(0, -1), []]; setGame({ ...game, levels, state: stateAtLevelStart(game.seed, levels) }); setTab("mision"); };
+  const repeat = () => { if (!game || !window.confirm("¿Repetir este nivel desde el principio? Tu empresa vuelve a como estaba al empezarlo.")) return; const levels = [...game.levels.slice(0, -1), []]; setGame({ ...game, levels, state: stateAtLevelStart(game.seed, levels, game.state.version) }); setTab("mision"); };
   const start = (seed: number) => { setGame({ seed, levels: [[]], state: newCampaign(seed) }); setTab("mision"); setMessage(null); };
   const exportFile = () => {
     if (!game) return;
-    const blob = new Blob([JSON.stringify(toSave(game.seed, game.levels), null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify(toSave(game.seed, game.levels, new Date(), game.state.version), null, 2)], { type: "application/json" });
     const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = `smartrade-campana-${game.seed}-nivel-${game.state.level + 1}.json`; a.click(); URL.revokeObjectURL(a.href);
   };
   const importFile = async (f: File) => {
@@ -90,7 +90,7 @@ export function Campaign() {
         {tabBtn("mision", "Misión")}{tabBtn("empresa", "Tu empresa")}<span className="relative" key={`m${s.manual.length}`} onAnimationEnd={() => setNewConcept(null)}>{tabBtn("manual", `Manual (${s.manual.length})`)}<FlyingConcept title={newConcept} /></span>{tabBtn("aprendizaje", "Aprendizaje")}
       </div>
       <div role="tabpanel">
-        {tab === "mision" && <Mission s={s} save={{ seed: game.seed, levels: game.levels }} onAction={act} onNext={goNext} onRepeat={repeat} />}
+        {tab === "mision" && <Mission s={s} save={{ seed: game.seed, levels: game.levels, version: game.state.version }} onAction={act} onNext={goNext} onRepeat={repeat} />}
         {tab === "empresa" && <CompanyPanel s={s} />}
         {tab === "manual" && <ManualPanel s={s} />}
         {tab === "aprendizaje" && <LearningPanel s={s} />}

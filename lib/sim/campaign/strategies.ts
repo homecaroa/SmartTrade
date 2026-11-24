@@ -1,5 +1,7 @@
 import { apply, capacityKm, nextLevel, newCampaign, rescueAvailable, transportKm } from "./engine";
 import type { Action, CampaignState, Decision } from "./model";
+import { QUIZ } from "./quiz";
+import { OFFERS, storeRoom } from "./offers";
 
 /**
  * Estrategias automáticas de la campaña (23/11/2026). Sirven para comprobar el diseño: cada nivel tiene que poder
@@ -19,9 +21,22 @@ export type Plan = [(typeof L1_STRATEGIES)[number], (typeof L2_STRATEGIES)[numbe
 
 const fits = (s: CampaignState, d: Decision) => transportKm(s.company, s.abs) + Number(s.data.spotKm ?? 0) + Number(d.data?.km ?? 0) <= capacityKm(s.company);
 
+/** Reglas 2: la estrategia buena acepta lo que cabe, subcontrata lo que deja margen y hace bien los trámites; la mala, al revés. */
+function offerChoice(s: CampaignState, d: Decision, bad: boolean): string {
+  const good: Record<string, string> = { lleno: "sub", documentos: "doc", estiba: "ellos", valor: "declarar", pago90: "30", combustible: "aviso" };
+  const wrong: Record<string, string> = { lleno: "rechazar", documentos: "sin", estiba: "indicar", valor: "normal", pago90: "90", combustible: "renuncia" };
+  const mode = String(d.data?.mode ?? "normal");
+  if (mode === "normal") return bad || fits(s, d) ? "aceptar" : "rechazar";
+  // Una carta con caso que ya no cabe (otra decisión de la semana ocupó el sitio): la buena la rechaza.
+  if (!bad && mode !== "lleno" && !fits(s, d)) return "rechazar";
+  return (bad ? wrong : good)[mode];
+}
+
 function choose(s: CampaignState, d: Decision, plan: Plan): string {
   const bad = plan[s.level] === "mala";
-  if (d.id.startsWith("urgente-") || d.id.startsWith("cliente-")) return bad || fits(s, d) ? "aceptar" : "rechazar";
+  if (d.id.startsWith("urgente-") || d.id.startsWith("cliente-")) return s.version >= 2 ? offerChoice(s, d, bad) : bad || fits(s, d) ? "aceptar" : "rechazar";
+  if (d.id.startsWith("almacen-")) return bad ? "sin" : storeRoom(s) >= OFFERS.store.pallets ? "albaran" : "rechazar";
+  if (d.id.startsWith("pregunta-")) { const q = QUIZ.find((x) => x.id === d.data?.q)!; return q.options.find((o) => o.grade === (bad ? "grave" : "correcta"))!.id; }
   const p = plan[s.level];
   if (s.level === 0) {
     const tiers: Record<string, [string, string, string]> = { premium: ["premium", "premium", "premium"], equilibrio: ["premium", "estandar", "estandar"], volumen: ["premium", "economica", "no"], mala: ["economica", "economica", "economica"] };
@@ -113,8 +128,8 @@ function choose(s: CampaignState, d: Decision, plan: Plan): string {
 
 /** Juega los niveles del plan con la misma empresa. Devuelve el estado y las acciones de cada nivel. */
 /** `rescue`: si al empezar un nivel hay poca caja, aceptar el socio (financiación con capital en vez de deuda). */
-export function playCampaign(seed: number, plan: Plan, rescue = false): { state: CampaignState; levels: Action[][] } {
-  let s = newCampaign(seed);
+export function playCampaign(seed: number, plan: Plan, rescue = false, version?: number): { state: CampaignState; levels: Action[][] } {
+  let s = newCampaign(seed, version);
   const levels: Action[][] = [];
   for (let lv = 0; lv < plan.length && plan[lv]; lv++) {
     if (lv > 0) { if (s.status !== "fin_nivel" || !s.results.at(-1)?.passed) break; s = nextLevel(s); }

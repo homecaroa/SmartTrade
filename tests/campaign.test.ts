@@ -15,6 +15,10 @@ import { annuity, debtOutstanding } from "@/lib/sim/campaign/helpers";
 import { churnChance, COMPETITION } from "@/lib/sim/campaign/levels/l7";
 import { costPerKm, VEHICLES } from "@/lib/sim/campaign/levels/l8";
 import { COLD, debtRatio, ebitdaYear, LOANS } from "@/lib/sim/campaign/levels/l9";
+import { OFFERS, storeRoom } from "@/lib/sim/campaign/offers";
+import { QUIZ } from "@/lib/sim/campaign/quiz";
+import { SUB_RATE } from "@/lib/sim/campaign/params";
+import type { Decision } from "@/lib/sim/campaign/model";
 
 /**
  * Campaña (motor nuevo, 23/11/2026; docs/simulador-campana.md): empresa persistente, niveles 1-3, estrellas de
@@ -139,18 +143,19 @@ describe("aprendizaje: aparte de las estrellas y con base legal", () => {
   it("«qué habría pasado si»: cambiar una decisión importante cambia el final del nivel", () => {
     const g = playCampaign(SEEDS[5], ["equilibrio"]);
     const mine = levelResult(g.state, 0);
-    const alt = whatIf({ seed: SEEDS[5], levels: g.levels }, 0, "tarifa-fresh", "economica");
+    const ref = { seed: SEEDS[5], levels: g.levels, version: g.state.version };
+    const alt = whatIf(ref, 0, "tarifa-fresh", "economica");
     expect(alt.result).not.toBe(mine);
-    const same = whatIf({ seed: SEEDS[5], levels: g.levels }, 0, "tarifa-fresh", "estandar");
+    const same = whatIf(ref, 0, "tarifa-fresh", "estandar");
     expect(same.result).toBeCloseTo(mine, 2);
   });
 });
 
 describe("reglas de la operación", () => {
-  it("un encargo urgente aceptado ocupa la furgoneta y se factura", () => {
+  it("un encargo urgente aceptado ocupa la furgoneta y se factura (reglas 1)", () => {
     // Semilla con un urgente en la semana 1 (se buscan, no se suponen).
     let s: CampaignState | null = null;
-    for (let seed = 1; seed < 200 && !s; seed++) { const x = apply(newCampaign(seed), { t: "empezar" }); if (x.pending.some((d) => d.id.startsWith("urgente-"))) s = x; }
+    for (let seed = 1; seed < 200 && !s; seed++) { const x = apply(newCampaign(seed, 1), { t: "empezar" }); if (x.pending.some((d) => d.id.startsWith("urgente-"))) s = x; }
     s = s!;
     for (const id of ["tarifa-flor", "tarifa-fresh", "tarifa-imprenta"]) s = apply(s, { t: "decidir", id, opcion: "premium" });
     const u = s.pending.find((d) => d.id.startsWith("urgente-"))!;
@@ -268,8 +273,8 @@ describe("niveles 7 a 9 (24/11/2026)", () => {
     }
   }, 120_000);
   it("nivel 7: servicio, contratos y bajar precios superan el nivel en la mayoría de semillas; pactar con el rival, nunca", () => {
-    // Medido el 24/11/2026 con estas 12 semillas: servicio 10, contratos 9, guerra 9 (la competencia es aleatoria).
-    expect(share(plan("servicio"), 6, 1)).toBeGreaterThanOrEqual(0.8);
+    // Medido el 24/11/2026 con estas 12 semillas: servicio 10 (9 con las reglas 2), contratos 9, guerra 9.
+    expect(share(plan("servicio"), 6, 1)).toBeGreaterThanOrEqual(0.75);
     expect(share(plan("contratos"), 6, 1)).toBeGreaterThanOrEqual(0.75);
     expect(share(plan("guerra"), 6, 1)).toBeGreaterThanOrEqual(0.75);
     expect(share(plan("mala"), 6, 1)).toBe(0);
@@ -373,6 +378,111 @@ describe("niveles 7 a 9 (24/11/2026)", () => {
     expect(ebitdaYear(s)).toBe(500 * 52);
     expect(debtRatio(s, 26_000)).toBe(1);
   });
+});
+
+describe("reglas 2 (24/11/2026): menos rechazos, más oficio", () => {
+  const P9 = ["equilibrio", "urbana", "poliza", "experta", "cruzado", "prevencion", "servicio", "leasing", "fijo"] as unknown as Plan;
+  /** Recorre una campaña acción a acción y devuelve el primer estado con una carta que cumpla `pick`. */
+  function find(pick: (d: Decision, s: CampaignState) => boolean, seeds = SEEDS): { s: CampaignState; d: Decision } {
+    for (const sd of seeds) {
+      const { levels } = playCampaign(sd, P9);
+      let s = newCampaign(sd);
+      for (let i = 0; i < levels.length; i++) { if (i > 0) s = nextLevel(s); for (const a of levels[i]) { const d = s.pending.find((x) => pick(x, s)); if (d && s.status === "jugando") return { s, d }; s = apply(s, a); } }
+    }
+    throw new Error("no se encontró la carta");
+  }
+  const closeWeek = (x: CampaignState) => { const w = x.abs; while (x.abs === w && x.status === "jugando") x = x.pending.length ? apply(x, { t: "decidir", id: x.pending[0].id, opcion: x.pending[0].options.find((o) => o.id === "rechazar")?.id ?? x.pending[0].options[0].id }) : apply(x, { t: "cerrar" }); return x; };
+
+  it("las campañas nuevas usan las reglas 2 y las guardadas con las 1 se reproducen con las 1", () => {
+    expect(newCampaign(1).version).toBe(2);
+    const v1 = playCampaign(SEEDS[0], ["equilibrio", "urbana"], false, 1);
+    const save = JSON.parse(JSON.stringify(toSave(SEEDS[0], v1.levels, new Date(0), 1)));
+    expect(save.version).toBe(1);
+    const r = restore(save);
+    expect(r.dropped).toBe(0);
+    expect(JSON.stringify(r.state)).toBe(JSON.stringify(v1.state));
+    expect(v1.state.learning.some((l) => l.id.startsWith("pregunta-") && !l.what.startsWith("Informe"))).toBe(false);
+  }, 60_000);
+  it("lo que no cabe y no deja margen subcontratado no interrumpe: va al informe con lo que no facturaste", () => {
+    const { state: g } = playCampaign(SEEDS[0], P9);
+    const logs = g.logs.filter((l) => l.passed);
+    expect(logs.length).toBeGreaterThan(10);
+    for (const l of logs) expect(l.notes.some((n) => n.includes("pasaron de largo") && n.includes(`${Math.round(l.passed!.revenue).toLocaleString("es-ES")} €`))).toBe(true);
+    // Ninguna carta «no te cabe» se ofrece si subcontratarla no deja margen.
+    for (const sd of SEEDS.slice(0, 4)) { const { levels } = playCampaign(sd, P9); let s = newCampaign(sd);
+      levels.forEach((acts, i) => { if (i > 0) s = nextLevel(s); for (const a of acts) { for (const d of s.pending) if (d.data?.mode === "lleno") expect(Number(d.data.rate)).toBeGreaterThanOrEqual(SUB_RATE + OFFERS.subMargin); s = apply(s, a); } }); }
+  }, 120_000);
+  it("subcontratar un urgente: se factura entero, se paga al subcontratista y la contabilidad cuadra (Ley 15/2009, art. 6.1)", () => {
+    const { s, d } = find((x) => x.data?.mode === "lleno");
+    const km = Number(d.data!.km), rate = Number(d.data!.rate);
+    const yes = closeWeek(apply(s, { t: "decidir", id: d.id, opcion: "sub" })), no = closeWeek(apply(s, { t: "decidir", id: d.id, opcion: "rechazar" }));
+    const a = yes.logs.at(-1)!, b = no.logs.at(-1)!;
+    expect(a.revenue - b.revenue).toBeCloseTo(km * rate, 2);
+    expect(a.other - b.other).toBeCloseTo(km * SUB_RATE, 2);
+    expect(a.kmServed).toBe(b.kmServed);
+    expect(balanceGap(yes)).toBe(0);
+    expect(yes.learning.find((l) => l.id === d.id)!.feedback).toMatch(/art\. 6\.1/);
+  }, 60_000);
+  it("aplazar a la semana siguiente: si el cliente acepta, esos km entran en la semana que viene", () => {
+    const { s, d } = find((x) => x.data?.mode === "lleno" && Number(x.data.later) === 1);
+    const km = Number(d.data!.km);
+    const yes = closeWeek(closeWeek(apply(s, { t: "decidir", id: d.id, opcion: "semana" }))), no = closeWeek(closeWeek(apply(s, { t: "decidir", id: d.id, opcion: "rechazar" })));
+    expect(yes.logs.at(-1)!.kmDemand - no.logs.at(-1)!.kmDemand).toBe(km);
+  }, 60_000);
+  it("sin documento de control: grave, con la norma y, si te paran, la sanción simulada", () => {
+    const { s, d } = find((x) => x.data?.mode === "documentos" && Number(x.data.hit) < OFFERS.inspection.chance && Number(x.data.km) <= 200);
+    const x = apply(s, { t: "decidir", id: d.id, opcion: "sin" });
+    const rec = x.learning.at(-1)!;
+    expect(rec.grade).toBe("grave");
+    expect(rec.feedback).toMatch(/Orden FOM\/2861\/2012/);
+    expect(x.charges.some((c) => c.amount === OFFERS.inspection.fine)).toBe(true);
+    const ok = apply(s, { t: "decidir", id: d.id, opcion: "doc" });
+    expect(ok.learning.at(-1)!.grade).toBe("correcta");
+    expect(ok.charges.length).toBe(s.charges.length);
+  }, 120_000);
+  it("un cliente que quiere pagar a 90 días: proponer 30 es lo correcto; aceptar 90 te financia a él", () => {
+    const { s, d } = find((x) => x.data?.mode === "pago90");
+    const ok = apply(s, { t: "decidir", id: d.id, opcion: "30" }), bad = apply(s, { t: "decidir", id: d.id, opcion: "90" });
+    expect(ok.company.deals.at(-1)!.payWeeks).toBe(4);
+    expect(bad.company.deals.at(-1)!.payWeeks).toBe(13);
+    expect(bad.learning.at(-1)!.grade).toBe("grave");
+    expect(bad.learning.at(-1)!.feedback).toMatch(/Ley 3\/2004, art\. 4\.3/);
+  }, 120_000);
+  it("almacenaje suelto: el sitio se comprueba al decidir y aceptar sin sitio es grave", () => {
+    const { s, d } = find((x) => x.id.startsWith("almacen-"));
+    expect(storeRoom(s)).toBeGreaterThanOrEqual(OFFERS.store.pallets);
+    expect(apply(s, { t: "decidir", id: d.id, opcion: "albaran" }).learning.at(-1)!.grade).toBe("correcta");
+    const full = structuredClone(s);
+    full.company.deals.push({ id: "relleno", client: "x", kind: "almacen", pallets: 5_000, palletRate: 1, payWeeks: 4, fromAbs: s.abs, missed: 0 });
+    expect(storeRoom(full)).toBeLessThan(OFFERS.store.pallets);
+    expect(apply(full, { t: "decidir", id: d.id, opcion: "albaran" }).learning.at(-1)!.grade).toBe("grave");
+    // Lo firmado que empieza la semana que viene también ocupa (el fallo de Bazar en el nivel 2, 24/11/2026).
+    const later = structuredClone(s);
+    later.company.deals.push({ id: "futuro", client: "x", kind: "almacen", pallets: 5_000, palletRate: 1, payWeeks: 4, fromAbs: s.abs + 1, missed: 0 });
+    expect(storeRoom(later)).toBeLessThan(OFFERS.store.pallets);
+  }, 120_000);
+  it("preguntas del oficio: solo en semanas tranquilas, sin repetirse, una respuesta correcta y la competencia con nombre", () => {
+    for (const q of QUIZ) {
+      expect(q.options.filter((o) => o.grade === "correcta")).toHaveLength(1);
+      for (const c of q.competences) expect(COMPETENCE_LABELS[c]).toBeDefined();
+      if (q.concept) expect(manualById(q.concept)).toBeDefined();
+    }
+    expect(new Set(QUIZ.map((q) => q.id)).size).toBe(QUIZ.length);
+    const { levels, state: g } = playCampaign(SEEDS[1], P9);
+    const asked = g.learning.filter((l) => l.id.startsWith("pregunta-") && !l.what.startsWith("Informe"));
+    expect(asked.length).toBeGreaterThan(8);
+    expect(new Set(asked.map((l) => l.what)).size).toBe(asked.length);
+    let s = newCampaign(SEEDS[1]);
+    levels.forEach((acts, i) => { if (i > 0) s = nextLevel(s); for (const a of acts) { const q = s.pending.filter((d) => d.id.startsWith("pregunta-")); if (q.length) { expect(q).toHaveLength(1); expect(s.pending.some((d) => d.key)).toBe(false); } s = apply(s, a); } });
+  }, 120_000);
+  it("la semana tiene algo que decidir: ya no hay semanas en las que solo se puede rechazar", () => {
+    const { state: g } = playCampaign(SEEDS[2], P9);
+    const byWeek = new Map<string, typeof g.learning>();
+    for (const l of g.learning) { const k = `${l.level}-${l.week}`; byWeek.set(k, [...(byWeek.get(k) ?? []), l]); }
+    const onlyReject = [...byWeek.values()].filter((ls) => ls.every((l) => /^(urgente|cliente|almacen)-/.test(l.id) && /^Rechaz/.test(l.answer))).length;
+    // Medido el 24/11/2026 en 12 campañas: 325 semanas así con las reglas 1, 0 con las 2.
+    expect(onlyReject).toBe(0);
+  }, 60_000);
 });
 
 describe("guardado propio de la campaña", () => {

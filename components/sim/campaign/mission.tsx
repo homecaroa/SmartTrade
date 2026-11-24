@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { activeDeals, capacityKm, levelDef, levelResult, palletCapacity, RESCUE, rescueAvailable, transportKm, upgradesFor, whatIf } from "@/lib/sim/campaign/engine";
+import { activeDeals, capacityKm, levelDef, levelResult, palletCapacity, RESCUE, rescueAvailable, transportKm, upgradesFor, whatIf, type SaveRef } from "@/lib/sim/campaign/engine";
 import { LEVELS } from "@/lib/sim/campaign/levels";
-import type { Action, CampaignSave, CampaignState, Decision } from "@/lib/sim/campaign/model";
+import type { Action, CampaignState, Decision } from "@/lib/sim/campaign/model";
 import { has } from "@/lib/sim/campaign/upgrades";
 import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../../learning/grade-badge";
@@ -11,7 +11,7 @@ import { eur } from "./campaign";
 import { Confetti, FlipIn, Gauge, Meter, Stamp, StarBurst, VanCrossing } from "./fx";
 import { CompanyScene } from "./scene";
 
-type Props = { s: CampaignState; save: Pick<CampaignSave, "seed" | "levels">; onAction: (a: Action) => void; onNext: () => void; onRepeat: () => void };
+type Props = { s: CampaignState; save: SaveRef; onAction: (a: Action) => void; onNext: () => void; onRepeat: () => void };
 
 /** La misión: preparación en la sede, semanas con decisiones y el informe final. */
 export function Mission({ s, save, onAction, onNext, onRepeat }: Props) {
@@ -185,7 +185,7 @@ function Report({ s, save, onAction, onNext, onRepeat }: Props) {
   );
 }
 
-function WhatIf({ h, s, save }: { h: CampaignState["history"][number]; s: CampaignState; save: Pick<CampaignSave, "seed" | "levels"> }) {
+function WhatIf({ h, s, save }: { h: CampaignState["history"][number]; s: CampaignState; save: SaveRef }) {
   const [alt, setAlt] = useState<{ opcion: string; cash: number; result: number; stars: number; bankrupt: boolean } | null>(null);
   const others = h.options.filter((o) => o.id !== h.chosen);
   const mineResult = levelResult(s, s.level);
