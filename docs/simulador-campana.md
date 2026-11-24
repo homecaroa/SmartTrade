@@ -141,7 +141,7 @@ Los trámites con el ayuntamiento del nivel 2 son **simulados**: dependen de cad
 
 ### Dibujos y animaciones (petición del dueño: «dosis de videojuego»)
 
-**Dibujo de la empresa** (`components/sim/campaign/scene.tsx`): la nave que alquilaste (en obras si lo está, con los palés que guardas), tus vehículos y tu plantilla con nombre. Aparece en la sede y en «Tu empresa».
+**Dibujo de la empresa** (`components/sim/campaign/scene.tsx`): la nave que alquilaste (en obras si lo está, con los palés que guardas), tus vehículos y tu plantilla con nombre. Desde el 25/11/2026 (petición del dueño) «Tu empresa» ya no es una pestaña: va dentro de la misión. En escritorio ocupa una columna fija junto a las decisiones, con el dibujo y un resumen (fiabilidad, capacidad, nave, fijos, contratos, lo que te deben y el equipo). En el móvil va arriba. En los dos casos, el detalle de equipo, medios, cuentas y clientes queda en desplegables.
 
 **Las once animaciones de la página de muestras** (`fx.tsx` y `app/globals.css`):
 

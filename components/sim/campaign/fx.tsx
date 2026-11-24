@@ -157,7 +157,7 @@ export function FlyingConcept({ title }: { title: string | null }) {
 }
 
 /** 11. Medidor de reputación con aguja. */
-export function Gauge({ value, label = "Reputación" }: { value: number; label?: string }) {
+export function Gauge({ value, label = "Reputación", className = "w-44" }: { value: number; label?: string; className?: string }) {
   const on = useFx();
   const v = Math.max(0, Math.min(100, Math.round(value)));
   const [shown, setShown] = useState(on ? 0 : v);
@@ -165,7 +165,7 @@ export function Gauge({ value, label = "Reputación" }: { value: number; label?:
   const color = v < 60 ? "#e11d48" : v < 80 ? "#d97706" : "#059669";
   const trans = on ? "transform 1.2s cubic-bezier(.3,1.5,.5,1), stroke-dashoffset 1.2s cubic-bezier(.3,1.2,.5,1)" : undefined;
   return (
-    <svg viewBox="0 0 180 110" className="w-44" role="img" aria-label={`${label}: ${v} de 100`}>
+    <svg viewBox="0 0 180 110" className={className} role="img" aria-label={`${label}: ${v} de 100`}>
       <path d="M14 90a76 76 0 0 1 152 0" fill="none" stroke="#e2e8f0" strokeWidth="12" strokeLinecap="round" />
       <path d="M14 90a76 76 0 0 1 152 0" fill="none" stroke={color} strokeWidth="12" strokeLinecap="round" strokeDasharray="239" strokeDashoffset={239 * (1 - shown / 100)} style={{ transition: trans }} />
       <g style={{ transform: `rotate(${-80 + shown * 1.6}deg)`, transformOrigin: "90px 90px", transition: trans }}><rect x="88" y="26" width="4" height="64" rx="2" fill="#1e293b" /></g>

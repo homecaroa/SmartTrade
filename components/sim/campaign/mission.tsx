@@ -9,7 +9,6 @@ import { displayOrder } from "@/lib/learning/order";
 import { GradeBadge } from "../../learning/grade-badge";
 import { eur } from "./campaign";
 import { Confetti, FlipIn, Gauge, Meter, Stamp, StarBurst, VanCrossing } from "./fx";
-import { CompanyScene } from "./scene";
 
 type Props = { s: CampaignState; save: SaveRef; onAction: (a: Action) => void; onNext: () => void; onRepeat: () => void };
 
@@ -36,7 +35,6 @@ function Sede({ s, onAction }: { s: CampaignState; onAction: (a: Action) => void
   const ups = upgradesFor(s);
   return (
     <div className="space-y-4">
-      <CompanyScene s={s} />
       <section className="space-y-2 rounded-lg bg-white p-4 shadow-sm" aria-labelledby="briefing">
         <h2 id="briefing" className="text-base font-semibold">La misión</h2>
         <p className="text-sm">{def.briefing}</p>
