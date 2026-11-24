@@ -12,7 +12,10 @@ export const L3_STRATEGIES = ["poliza", "cobrar-antes", "austeridad", "mala"] as
 export const L4_STRATEGIES = ["experta", "junior", "flexible", "mala"] as const;
 export const L5_STRATEGIES = ["equilibrado", "cruzado", "alternativa", "mala"] as const;
 export const L6_STRATEGIES = ["prevencion", "selectiva", "seguro", "mala"] as const;
-export type Plan = [(typeof L1_STRATEGIES)[number], (typeof L2_STRATEGIES)[number]?, (typeof L3_STRATEGIES)[number]?, (typeof L4_STRATEGIES)[number]?, (typeof L5_STRATEGIES)[number]?, (typeof L6_STRATEGIES)[number]?];
+export const L7_STRATEGIES = ["servicio", "contratos", "guerra", "mala"] as const;
+export const L8_STRATEGIES = ["renting", "leasing", "camion", "mala"] as const;
+export const L9_STRATEGIES = ["fijo", "variable", "socio", "mala"] as const;
+export type Plan = [(typeof L1_STRATEGIES)[number], (typeof L2_STRATEGIES)[number]?, (typeof L3_STRATEGIES)[number]?, (typeof L4_STRATEGIES)[number]?, (typeof L5_STRATEGIES)[number]?, (typeof L6_STRATEGIES)[number]?, (typeof L7_STRATEGIES)[number]?, (typeof L8_STRATEGIES)[number]?, (typeof L9_STRATEGIES)[number]?];
 
 const fits = (s: CampaignState, d: Decision) => transportKm(s.company, s.abs) + Number(s.data.spotKm ?? 0) + Number(d.data?.km ?? 0) <= capacityKm(s.company);
 
@@ -76,6 +79,34 @@ function choose(s: CampaignState, d: Decision, plan: Plan): string {
       const badA: Record<string, string> = { espera: "irse", ausente: "puerta", estiba: "indicar", bultos: "firmar", dano: "ignorar" };
       return (bad ? badA : good)[String(d.data?.kind)];
     }
+  }
+  if (s.level === 6) {
+    const t: Record<string, Record<string, string>> = {
+      servicio: { respuesta: "servicio", ataque: "valor", recuperar: "si" },
+      contratos: { respuesta: "contratos", ataque: "igualar", recuperar: "si" },
+      guerra: { respuesta: "guerra", ataque: "igualar", guerra2: "parar", recuperar: "si" },
+      mala: { respuesta: "pacto", ataque: "dejar", recuperar: "no" },
+    };
+    if (t[p!]?.[d.id]) return t[p!][d.id];
+  }
+  if (s.level === 7) {
+    const t: Record<string, Record<string, string>> = {
+      renting: { vehiculo: "furgoneta", financiacion: "renting" },
+      leasing: { vehiculo: "furgoneta", financiacion: "leasing" },
+      camion: { vehiculo: "rigido", financiacion: "leasing" },
+      mala: { vehiculo: "rigido", financiacion: "contado", tercero: "rechazar" },
+    };
+    if (t[p!]?.[d.id]) return t[p!][d.id];
+    if (d.id === "tercero") return Number(d.data?.free) >= 800 ? "aceptar" : "rechazar";
+  }
+  if (s.level === 8) {
+    const t: Record<string, Record<string, string>> = {
+      fijo: { forma: "sl-3000", financiar: "fijo", aval: "sin-aval", cuota: "pagar" },
+      variable: { forma: "sl-3000", financiar: "variable", aval: "firmar", cuota: "carencia" },
+      socio: { forma: "sl-3000", financiar: "socio", cuota: "pagar" },
+      mala: { forma: "autonomo", financiar: "variable", cuota: "impagar" },
+    };
+    if (t[p!]?.[d.id]) return t[p!][d.id];
   }
   return d.options[0].id;
 }

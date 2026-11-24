@@ -1,5 +1,5 @@
 import { round2, sum } from "../../learning/money";
-import type { CampaignState, Company, LearningRec, Person } from "./model";
+import type { CampaignState, Company, LearningRec, Loan, Person } from "./model";
 import { LABOR, START, VAN_VARIABLE, WEEKS_PER_MONTH } from "./params";
 import { has } from "./upgrades";
 
@@ -7,6 +7,20 @@ import { has } from "./upgrades";
 
 /** Pagar algo ahora que es una inversión (activo que se amortiza en `weeks` semanas). */
 export function invest(s: CampaignState, amount: number, weeks: number) { s.company.cash = round2(s.company.cash - amount); s.company.assets = round2(s.company.assets + amount); s.company.assetsWeekly = round2(s.company.assetsWeekly + amount / weeks); }
+/** Activo que entra sin pagar ahora (leasing: lo financia la deuda); se amortiza en `weeks` semanas. */
+export function capitalize(s: CampaignState, amount: number, weeks: number) { s.company.assets = round2(s.company.assets + amount); s.company.assetsWeekly = round2(s.company.assetsWeekly + amount / weeks); }
+/** Cuota constante (sistema francés) de un préstamo a `months` meses al tipo anual `annualRate`. */
+export const annuity = (principal: number, annualRate: number, months: number) => { const r = annualRate / 12; return round2(r === 0 ? principal / months : principal * r / (1 - (1 + r) ** -months)); };
+/**
+ * Endeudarse. Préstamo: entra el dinero en la caja. Leasing: entra el vehículo en el activo (se capitaliza aparte) y la
+ * deuda por el mismo importe (PGC, norma 8.ª, 1.2). La primera cuota, a las 4 semanas.
+ */
+export function borrow(s: CampaignState, l: Omit<Loan, "monthly" | "nextAbs" | "principal" | "monthsLeft"> & { amount: number; months: number }) {
+  const { amount, months, ...rest } = l;
+  if (rest.kind === "prestamo") s.company.cash = round2(s.company.cash + amount);
+  (s.company.loans ??= []).push({ ...rest, principal: round2(amount), monthsLeft: months, monthly: annuity(amount, rest.annualRate, months), nextAbs: s.abs + WEEKS_PER_MONTH });
+}
+export const debtOutstanding = (c: Company) => round2(sum((c.loans ?? []).map((l) => l.principal)));
 /** Gasto o ingreso de la semana (positivo = gasto). `cash: false` si no sale de la caja ahora (queda como deuda). */
 export function charge(s: CampaignState, label: string, amount: number, cash = true) { s.charges.push({ label, amount: round2(amount), cash }); }
 export const learn = (s: CampaignState, r: Omit<LearningRec, "week" | "level">) => { s.learning.push({ ...r, week: s.week, level: s.level }); };

@@ -168,6 +168,80 @@ Todas **sin dependencias nuevas**. Hay un interruptor «Animaciones: sí/no», q
 - **Mutaciones:** 15 sobre lo nuevo, todas en rojo. Cuatro estaban huecas en la primera pasada y se reforzaron sus pruebas: el almacén externo dentro de la nave, el seguro que no cubre, la prevención sin efecto y la prevención que el nivel no usa (con una prueba estadística).
 - **App:** abierta en escritorio y móvil, con el informe del nivel 5, el nivel 4 a medias y la sede del nivel 6. Sin errores y sin desplazamiento horizontal.
 
+## 4 ter. Tercera entrega (24/11/2026): niveles 7–9
+
+### Niveles nuevos
+
+| Nivel | Mecánica nueva | Estrategias válidas | La mala |
+|---|---|---|---|
+| **7 · Llega la competencia** (estrategia comercial) | Un rival entra un 15 % más barato. Cada cliente puede irse cada semana, con una probabilidad que sube con la diferencia de precio y baja con la relación y el servicio. El rival va a por tu cliente más grande. Si no le declaras la guerra de precios, sube sus precios en la semana 4 y los clientes perdidos te llaman para volver | Servicio diferenciado · contratos de permanencia con descuento · bajar precios y salir a tiempo | Pactar precios con el rival: se descubre, multa y el nivel no se supera |
+| **8 · Segundo vehículo** (inversión) | Dos clientes nuevos que no caben. Furgoneta o camión, al contado, en leasing o en renting, con un conductor con nombre. Se mide el coste por km del vehículo nuevo frente al subcontratista. Hay avería si es tuyo, un posible recorte de un cliente y un tercer cliente que solo llena el camión | Furgoneta en renting · furgoneta en leasing · camión en leasing | Camión al contado sin caja: quiebra |
+| **9 · El banco** (financiación) | Una cámara de frío de 45.000 € para un contrato de 3 años. Antes de pedir el préstamo, autónomo o SL (con 1 € o 3.000 € de capital). Después, préstamo fijo o variable, socio, caja o renunciar. El banco pide aval personal o cobra 1,5 puntos más sin él. En la semana 5 sube el Euríbor y en la 6 el cliente paga tarde: pagar la cuota, pedir carencia o impagar | SL y préstamo fijo sin aval · SL y variable con aval · socio | Autónomo, variable e impago de la cuota |
+
+Además, en el nivel 7, si un conductor temporal del nivel 4 termina su contrato, hay que decidir: pasarlo a indefinido o dejar que acabe pagando los 12 días por año. Antes se iba sin avisar y la empresa perdía capacidad (lo destapó el calibrado).
+
+**Motor:**
+- Préstamos y leasing (`Company.loans`) con cuota constante cada 4 semanas. Los intereses son gasto financiero y el resto devuelve deuda.
+- La deuda entra en el cuadre del balance.
+- Vehículos con tipo y forma de pago, permanencia de los contratos (`Deal.lockedUntilAbs`) y forma jurídica (`Company.legal`).
+- Todos los campos son opcionales y solo aparecen cuando se usan.
+
+**Normativa leída en el BOE el 24/11/2026, texto literal:**
+- **Ley 15/2007, de Defensa de la Competencia** (actualización del 28/12/2023):
+  - art. 1.1 a) y c): prohibidos los acuerdos para fijar precios y repartirse el mercado;
+  - art. 63.1.c: infracciones muy graves, multa de hasta el 10 % del volumen de negocios. La multa del juego (4.000 €) es simulada.
+- **Ley 3/1991, de Competencia Desleal** (actualización del 27/12/2025):
+  - art. 17.1: la fijación de precios es libre;
+  - art. 17.2: casos en que la venta bajo coste es desleal; el c) es eliminar a un competidor.
+- **Plan General de Contabilidad**, norma de registro y valoración 8.ª (actualización del 21/12/2024):
+  - 1.2: el leasing financiero se registra como activo y pasivo por el mismo importe;
+  - 2: las cuotas del arrendamiento operativo son gasto del ejercicio.
+- **Ley de Sociedades de Capital** (actualización del 03/01/2025):
+  - art. 1.2: los socios de la SL no responden personalmente de las deudas sociales;
+  - art. 4: capital mínimo de 1 €; por debajo de 3.000 €, reserva legal del 20 % y responsabilidad solidaria de la diferencia.
+
+**No comprobado:**
+- **Código Civil, art. 1911** (responsabilidad con todos los bienes): no se pudo leer en el BOE, así que no se cita. Del autónomo solo se dice que no tiene la separación del art. 1.2 de la Ley de Sociedades de Capital.
+- Precios, tipos, el umbral del banco (3 veces el EBITDA), la caja mínima de la ★★ del nivel 9 (5.000 €) y el socio son simulados o decisiones documentadas.
+
+**Calibrado** (estrategias automáticas en 3 rutas de los niveles 1–6 y 12 semillas):
+
+| Problema medido | Ajuste |
+|---|---|
+| Nivel 8: la ★★★ («resultado ≥ 2.000 €») se cumplía siempre (resultado entre 4.300 y 7.600 €) | ★★★ = vehículo nuevo a 0,80 €/km o menos, sacado de lo medido: la furgoneta en renting sale entre 0,77 y 0,86 €/km, y el camión lleno entre 0,67 y 0,81 €/km |
+| Nivel 9: las empresas llegaban con 10.000–23.000 € de caja y una deuda de 0,4–0,7 veces el EBITDA, así que una cámara de 20.000 € se pagaba con la caja sin decidir nada | Cámara de 45.000 €; aval personal o tipo más alto; ★★ con caja mínima |
+| Nivel 8: renting o leasing quebraban en la ruta con menos caja, porque se subcontrataba al tercer cliente perdiendo 0,03 €/km y pagando cada semana lo que se cobraba a 30 días. La explicación decía «ganas poco» | Explicación corregida (pierdes en cada km) y aviso de caja en la pista |
+
+**Resultado medido** (36 partidas por estrategia en el nivel 7 y unas 30 en los niveles 8 y 9):
+
+| Nivel | Estrategia | Resultado |
+|---|---|---|
+| 7 | Servicio | 24 superan, con ★★★ en 22 |
+| 7 | Contratos | 24 superan |
+| 7 | Guerra de precios | 28 superan, pero ganando de media 78 € frente a 775 y 2.171 € |
+| 7 | Pacto | 0 superan |
+| 8 | Renting y leasing | todas con ★★ o más |
+| 8 | Camión | 3 quiebran (es su riesgo) |
+| 8 | La mala | quiebra siempre |
+| 9 | Fijo y socio | ★★★ |
+| 9 | Variable con aval | ★★ |
+| 9 | La mala | no lo supera |
+
+**Pendiente, anterior a esta entrega:**
+- El temporal del pico del nivel 4 se va sin cobrar los 12 días por año del art. 49.1.c. Son unos 90 €. Corregirlo cambiaría las campañas guardadas, así que queda anotado.
+- Dos clientes nuevos pueden salir con el mismo nombre ficticio.
+
+### Verificación de la tercera entrega
+
+- **Campañas guardadas:** se reproducen idénticas las 784 guardadas con el motor anterior: las 384 de la primera entrega y 400 nuevas de seis niveles.
+- **Pruebas:** 40 en `tests/campaign.test.ts`; 660 en total.
+- **Mutaciones:** 16 sobre lo nuevo. Dos estaban huecas:
+  - los intereses fuera del gasto: la prueba se conformaba con el gasto de la póliza;
+  - rechazar a los clientes nuevos: la condición era redundante y se quitó.
+
+  Las pruebas también cazaron dos fallos: la multa del cártel se cargaba una semana tarde, y `round2` convertía un 8,5 % en un 9 %.
+- **App:** abierta en escritorio y móvil con el nivel 7, el 8 a medias y el final del 9. Se ven el camión y la segunda furgoneta, los préstamos, la SL y «qué habría pasado si» con las decisiones nuevas. Sin errores y sin desplazamiento horizontal.
+
 ## 5. Conservación de los modos actuales
 
 - **`/simulador`** es ahora el menú. La **Temporada** se ha movido a `/simulador/temporada` y lee **la misma clave** de siempre (`smartrade:simulador:partida`). La **Carrera** sigue en `/simulador/carrera` con su clave.
@@ -190,9 +264,9 @@ Todas **sin dependencias nuevas**. Hay un interruptor «Animaciones: sí/no», q
 
 ## 7. Siguiente entrega
 
-Niveles 7–9:
-- **Competencia:** rivales con estrategia propia.
-- **Segundo vehículo:** comprar, leasing, renting o subcontratar.
-- **El banco:** préstamo, aval y ratios.
+Niveles 10–12 (acto III):
+- **Almacén de verdad**;
+- **La licitación**;
+- **Nueva delegación** (expansión).
 
-También más mejoras en el árbol y en la plantilla. Antes de programar el nivel 9 hay que leer la normativa que aplique a la financiación.
+Antes de programar la licitación hay que leer en el BOE la normativa de contratación pública que aplique.
