@@ -1,0 +1,187 @@
+{
+  "modulo": "0622",
+  "tema": "2.10",
+  "titulo": "Puntos de origen y destino, terminales y fronteras",
+  "preguntas": [
+    {
+      "id": "0622-2.10-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una terminal de carga?",
+      "opciones": [
+        "Una oficina que cobra los impuestos de importación",
+        "Un vehículo especializado en transportar contenedores",
+        "Un contrato de transporte multimodal con varios porteadores",
+        "Una instalación para recibir, consolidar y transferir carga"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las terminales de carga (de puerto, aeropuerto, ferrocarril o carretera) son los puntos de transbordo físico: reciben, almacenan temporalmente, consolidan o desconsolidan y entregan la carga. Su eficiencia determina plazos y costes. Se completan con servicios aduaneros e inspecciones cuando se trata de puntos de frontera.",
+      "criterio": "RA2.c",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Terminales de carga y puntos de frontera»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los puntos físicos de origen y destino de una operación de transporte?",
+      "opciones": [
+        "Puertos, aeropuertos y centros de carga terrestre",
+        "Las fronteras exteriores de la Unión Europea únicamente",
+        "Solo los almacenes propios del comprador de la mercancía",
+        "Los documentos aduaneros que acompañan la operación"
+      ],
+      "respuesta": 0,
+      "explicacion": "Son los lugares físicos donde se inicia o termina el tramo principal: puertos, aeropuertos y centros de carga terrestre (centros de transporte de mercancías, terminales ferroviarias). Su elección depende de la capacidad, las conexiones, la frecuencia de servicios, el calado o la longitud de pista y el coste.",
+      "criterio": "RA2.c",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Puntos físicos de origen y destino. Puertos, Aeropuertos, Centros de carga terrestre»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En un puerto marítimo, ¿qué es el calado?",
+      "opciones": [
+        "La longitud total del muelle disponible para atracar",
+        "El número de grúas operativas en la terminal de contenedores",
+        "La profundidad del agua, que limita el tamaño del buque",
+        "El tiempo medio de espera de los buques en el fondeadero"
+      ],
+      "respuesta": 2,
+      "explicacion": "El calado es la profundidad de agua disponible (en el canal de acceso y en el muelle) y limita el calado máximo, y con él la capacidad, de los buques que pueden operar. Junto con la longitud de atraque, las grúas y las conexiones terrestres, define la capacidad de una terminal marítima.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general de infraestructuras portuarias.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene elegir un aeropuerto con buena conectividad de carga (vuelos de carga, terminal, transitarios y aduana en el recinto)?",
+      "opciones": [
+        "Menores costes de combustible para el avión de carga",
+        "Una carga que siempre queda exenta de aranceles",
+        "Que el avión transporte más mercancía que su capacidad",
+        "Más frecuencias, trámites ágiles y menos esperas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Un centro de carga aérea con terminal de carga, agentes, aduana y almacenes en el propio aeropuerto reduce tiempos y manipulaciones, y ofrece más frecuencias, rutas y capacidad. Es un criterio de selección del punto de origen o destino, junto con el coste y la distancia al cliente.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general; Decreto 95/2012 («Los aeropuertos. Gestión. Terminales y centros de carga aérea»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Dentro del mercado único de la Unión Europea, una mercancía comunitaria que viaja de España a Francia:",
+      "opciones": [
+        "Debe presentarse siempre en una aduana con DUA",
+        "Debe cruzar la frontera con cuaderno TIR obligatoriamente",
+        "Sin controles aduaneros, pero con IVA e Intrastat",
+        "Paga aranceles de importación al entrar en Francia"
+      ],
+      "respuesta": 2,
+      "explicacion": "Entre Estados miembros las mercancías comunitarias circulan libremente, sin trámite aduanero ni aranceles en las fronteras interiores: se trata como una entrega/adquisición intracomunitaria (con las obligaciones de IVA y estadísticas Intrastat). Los controles aduaneros (DUA, aranceles) se aplican en las fronteras exteriores de la UE.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general del mercado único. El detalle de aduanas e IVA corresponde al módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son los principales pasos fronterizos terrestres por carretera entre España y Francia?",
+      "opciones": [
+        "La Jonquera (Girona) e Irún (Gipuzkoa)",
+        "Algeciras y Tarifa, en el estrecho de Gibraltar",
+        "Badajoz y Elvas, en la frontera con Portugal",
+        "Valencia y Cartagena, en el litoral mediterráneo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los dos grandes ejes de carretera hacia Francia son La Jonquera, en el Mediterráneo (AP-7/N-II, hacia Le Perthus), e Irún, en el Atlántico (A-8/AP-1, hacia Hendaya). Por ellos pasa la mayor parte del tráfico de mercancías por carretera entre la península y Europa. Algeciras y Tarifa son puertos marítimos; Badajoz–Elvas es el paso con Portugal.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de geografía del transporte.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función cumplen los puestos de control fronterizo (antes, puestos de inspección fronteriza) en las fronteras exteriores de la UE?",
+      "opciones": [
+        "Cobrar el IVA de las importaciones en la frontera exterior",
+        "Verificar ciertas mercancías mediante controles oficiales",
+        "Revisar los tiempos de conducción y descanso de los conductores",
+        "Controlar la nacionalidad de los viajeros que entran en la UE"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los puestos de control fronterizo (PCF) son instalaciones donde las autoridades sanitarias y fitosanitarias realizan los controles oficiales de determinadas mercancías (animales vivos, productos de origen animal, algunos vegetales y piensos) que entran en la UE. Son un punto de parada obligatorio en la ruta y deben incluirse en la planificación de plazos.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de controles sanitarios y fitosanitarios en frontera. No he consultado el Reglamento (UE) 2017/625.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un centro de transporte de mercancías (o centro de carga terrestre)?",
+      "opciones": [
+        "Un puerto marítimo con calado profundo para grandes buques",
+        "Una instalación terrestre con servicios para transportistas",
+        "Una aduana de importación con almacén de depósito temporal",
+        "Una compañía aérea especializada en carga y paquetería"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los centros de carga terrestre (centros de transporte de mercancías) son plataformas interiores donde se concentran terminales, almacenes, empresas de transporte y logística, y servicios (combustible, restauración, talleres). Facilitan el grupaje, la consolidación y los transbordos entre vehículos y modos.",
+      "criterio": "RA1.d",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Centros de carga terrestre»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-009",
+      "tipo": "opcion_unica",
+      "enunciado": "En una terminal marítima de contenedores, ¿qué es un «patio» (yard)?",
+      "opciones": [
+        "El canal de navegación que conduce hasta el puerto",
+        "La zona de aparcamiento reservada a los trabajadores",
+        "La zona donde se apilan los contenedores",
+        "La oficina donde trabaja el capitán del puerto"
+      ],
+      "respuesta": 2,
+      "explicacion": "En una terminal de contenedores se distinguen el muelle (atraque y grúas pórtico para cargar y descargar los buques), el patio donde se apilan temporalmente los contenedores y las puertas de entrada y salida por camión y ferrocarril. La gestión del patio condiciona el tiempo de estancia del contenedor y el coste de almacenaje.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general de terminales portuarias.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.10-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Al planificar una ruta, ¿por qué hay que tener en cuenta los puntos de frontera?",
+      "opciones": [
+        "Pueden suponer controles, esperas y trámites",
+        "Eliminan la necesidad de cualquier documento de transporte",
+        "Siempre reducen el coste total del transporte contratado",
+        "Solo afectan a las operaciones de transporte aéreo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los pasos de frontera (sobre todo exteriores) implican controles aduaneros, sanitarios o de seguridad que añaden tiempos de espera, documentación y costes, y pueden afectar al riesgo y a la elección del modo. El currículo exige reconocer los puntos operativos estratégicos y los puntos de frontera al valorar rutas (RA2.c y RA2.d).",
+      "criterio": "RA2.d",
+      "fuente": "RD 1574/2011, RA2.c y RA2.d.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

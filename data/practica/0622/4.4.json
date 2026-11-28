@@ -1,0 +1,349 @@
+{
+  "modulo": "0622",
+  "tema": "4.4",
+  "titulo": "Embalajes internacionales, NIMF 15 y exportación",
+  "preguntas": [
+    {
+      "id": "0622-4.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regula la NIMF 15?",
+      "opciones": [
+        "El marcado de las mercancías peligrosas por carretera",
+        "El embalaje de los alimentos que van refrigerados",
+        "El tránsito aduanero de contenedores entre países",
+        "Medidas fitosanitarias para el embalaje de madera"
+      ],
+      "respuesta": 3,
+      "explicacion": "Aplica a embalajes de madera sin elaborar (palés, cajas, calzos, estibas) para reducir el riesgo de introducir plagas.",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué material de madera queda exento de la NIMF 15?",
+      "opciones": [
+        "El embalaje de madera transformada, como el contrachapado",
+        "Los palés de madera maciza sin transformar",
+        "Las cajas de madera natural sin tratamiento previo",
+        "Los calzos de madera utilizados para estibar la carga"
+      ],
+      "respuesta": 0,
+      "explicacion": "Estos materiales han sido procesados de forma que están libres de plagas; sí entra el dunnage (calzos y estiba).",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son los dos tratamientos más frecuentes aprobados en la NIMF 15?",
+      "opciones": [
+        "Congelación del embalaje y posterior lavado",
+        "Tratamiento térmico (HT) y bromuro de metilo",
+        "Irradiación del embalaje y posterior pintura",
+        "Secado al aire libre y posterior barnizado"
+      ],
+      "respuesta": 1,
+      "explicacion": "También se aprobaron el calor dieléctrico (DH) y el fluoruro de sulfurilo (SF).",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué requisito mínimo tiene el tratamiento térmico convencional (HT) de la NIMF 15?",
+      "opciones": [
+        "30 °C durante 56 minutos continuados en el núcleo",
+        "100 °C durante cinco minutos en la superficie",
+        "56 °C durante 30 minutos continuos, núcleo incluido",
+        "20 °C durante 24 horas seguidas en la superficie"
+      ],
+      "respuesta": 2,
+      "explicacion": "La temperatura se mide en el núcleo de la madera.",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué abreviatura indica en la marca NIMF 15 que el tratamiento fue térmico?",
+      "opciones": [
+        "MB",
+        "DH",
+        "SF",
+        "HT"
+      ],
+      "respuesta": 3,
+      "explicacion": "HT = heat treatment; DH = calor dieléctrico; MB = bromuro de metilo; SF = fluoruro de sulfurilo.",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué elementos debe llevar la marca NIMF 15 en el embalaje de madera?",
+      "opciones": [
+        "Símbolo, código de país, del productor y del tratamiento",
+        "Solo el código del país de origen del embalaje",
+        "El peso y el volumen del embalaje de madera",
+        "El nombre del exportador y su número de identificación fiscal"
+      ],
+      "respuesta": 0,
+      "explicacion": "El código de país es el código ISO de dos letras; el código del productor lo asigna la ONPF.",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué código de país utiliza la marca NIMF 15?",
+      "opciones": [
+        "El código de tres letras que utiliza la OMC",
+        "El código ISO de dos letras del país",
+        "El prefijo telefónico internacional del país",
+        "El código postal de la localidad del productor"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se separa con un guion del código del productor o proveedor del tratamiento.",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo oficial asigna el código del productor de embalajes de madera en cada país?",
+      "opciones": [
+        "La Organización Mundial del Comercio, desde Ginebra",
+        "La aduana del país de destino de la mercancía",
+        "La Organización Nacional de Protección Fitosanitaria",
+        "La asociación de transportistas del país exportador"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es la autoridad fitosanitaria nacional (en España, el Ministerio de Agricultura).",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Además de tratarse, ¿qué exige la NIMF 15 a la madera del embalaje?",
+      "opciones": [
+        "Que esté pintada de color blanco en todas sus caras",
+        "Que proceda de una sola especie de árbol",
+        "Que sea nueva y no haya tenido ningún uso anterior",
+        "Que esté descortezada, con corteza residual limitada"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se admiten pequeños trozos de corteza de menos de 3 cm de ancho, o de más de 3 cm si su superficie es menor de 50 cm².",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (FAO/CIPF, 2018), leída (mb160e.pdf).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si un envío llega a un país con material de embalaje de madera sin la marca NIMF 15?",
+      "opciones": [
+        "Puede ser rechazado, devuelto, tratado o destruido",
+        "No ocurre nada, porque la marca es solo recomendable",
+        "Solo se paga un arancel mayor a la entrada",
+        "Pasa a regirse por el Convenio CMR"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los países exigen el cumplimiento; los costes los asume el exportador o importador según el contrato.",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (leída) y conocimiento general de su aplicación.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué suele recomendarse a los exportadores usar embalajes de cartón o plástico en lugar de madera maciza?",
+      "opciones": [
+        "Son siempre más resistentes que la madera maciza",
+        "Están exentos de la NIMF 15 y evitan tratamientos",
+        "No tienen ningún peso, por lo que no cuestan flete",
+        "La ley prohíbe el uso de la madera en el transporte"
+      ],
+      "respuesta": 1,
+      "explicacion": "El cartón y el plástico no son material de madera sin transformar; el contrachapado también está exento.",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (leída), apartado 2.1 de exenciones.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué es especialmente importante el embalaje en la exportación?",
+      "opciones": [
+        "Porque el embalaje determina el arancel aplicable",
+        "Porque el embalaje sustituye por completo al seguro",
+        "Transporte largo, muchas manipulaciones",
+        "Porque lo exige siempre el Incoterm pactado"
+      ],
+      "respuesta": 2,
+      "explicacion": "Un embalaje inadecuado puede dar lugar a daños no cubiertos por el seguro por culpa del cargador.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de comercio exterior y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué puede pasar si el daño de la mercancía se debe a un embalaje insuficiente del cargador?",
+      "opciones": [
+        "El transportista responde siempre del cien por cien del daño",
+        "El seguro paga el doble del valor de la mercancía",
+        "El destinatario no puede rechazar la entrega de la mercancía",
+        "El transportista puede quedar exento y el seguro excluirlo"
+      ],
+      "respuesta": 3,
+      "explicacion": "En el CMR, el transportista queda exonerado si el daño se debe a la falta o defecto de embalaje (art. 17).",
+      "criterio": "RA4.b",
+      "fuente": "CMR, art. 17.4.b (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe valorarse al elegir el embalaje de exportación?",
+      "opciones": [
+        "Producto, modo, clima, destino y coste",
+        "Solo el color del embalaje que se va a utilizar",
+        "Solo el precio más barato que ofrezca el proveedor",
+        "Solo la marca comercial del fabricante del embalaje"
+      ],
+      "respuesta": 0,
+      "explicacion": "El embalaje es una decisión de coste-protección; un exceso encarece y un defecto aumenta las pérdidas.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de comercio exterior y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre el embalaje de transporte marítimo y el aéreo?",
+      "opciones": [
+        "No existe ninguna diferencia entre ambos embalajes",
+        "El marítimo, humedad y apilado; el aéreo, menos peso",
+        "El aéreo exige siempre embalaje de madera maciza",
+        "El marítimo no necesita ningún tipo de embalaje"
+      ],
+      "respuesta": 1,
+      "explicacion": "El peso volumétrico aéreo (6.000 cm³/kg) penaliza los embalajes voluminosos.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de comercio exterior y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo de embalaje se utiliza para mercancía muy frágil o de gran valor, como equipos electrónicos?",
+      "opciones": [
+        "Una bolsa de plástico simple alrededor del equipo",
+        "Ningún embalaje, para abaratar el envío",
+        "Protección interior y caja exterior rígida",
+        "Cartón fino sin ningún material de relleno"
+      ],
+      "respuesta": 2,
+      "explicacion": "Debe amortiguar golpes y vibraciones y llevar pictogramas de manipulación.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de comercio exterior y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué materiales ayudan a evitar daños por humedad en contenedores marítimos?",
+      "opciones": [
+        "Papel de seda envolviendo cada bulto",
+        "Cartón sin ningún tratamiento impermeable",
+        "Cinta adhesiva sellando las juntas",
+        "Desecantes, films barrera e impermeables"
+      ],
+      "respuesta": 3,
+      "explicacion": "La humedad y la condensación son riesgos frecuentes en trayectos largos con cambios de temperatura.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de comercio exterior y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué medios se usan para asegurar la carga unitarizada sobre el palé?",
+      "opciones": [
+        "Film, flejes, esquineros y cantoneras",
+        "Solo cinta de pintor alrededor de los bultos",
+        "Nada, porque el palé ya sujeta la carga",
+        "Solo sellos de plomo en los extremos del palé"
+      ],
+      "respuesta": 0,
+      "explicacion": "Evitan el desplazamiento y refuerzan las esquinas frente al apilado.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de comercio exterior y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.4-019",
+      "tipo": "opcion_unica",
+      "enunciado": "Un exportador envía palés de madera tratada a un país exigente. ¿Qué documento puede además pedirle el comprador sobre el tratamiento fitosanitario?",
+      "opciones": [
+        "Un certificado de nacimiento del exportador",
+        "Un certificado fitosanitario o de tratamiento",
+        "El permiso de conducir del chófer del camión",
+        "Una póliza de crédito a la exportación"
+      ],
+      "respuesta": 1,
+      "explicacion": "La marca NIMF 15 en el embalaje es la prueba principal; algunos países exigen además declaración o certificado.",
+      "criterio": "RA4.b",
+      "fuente": "NIMF 15 (leída) y práctica habitual; la exigencia concreta depende del país de destino (no verificado).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "modulo": "0623",
+  "tema": "3.3",
+  "titulo": "Préstamos y sistemas de amortización",
+  "preguntas": [
+    {
+      "id": "0623-3.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la amortización de un préstamo?",
+      "opciones": [
+        "La devolución gradual del capital mediante cuotas",
+        "El pago de los impuestos que gravan el préstamo",
+        "La subida del tipo de interés aplicado al capital",
+        "La firma del contrato ante el notario"
+      ],
+      "respuesta": 0,
+      "explicacion": "Cada cuota (anualidad) suele componerse de intereses y cuota de amortización de capital.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué componentes tiene la cuota (anualidad) de un préstamo?",
+      "opciones": [
+        "Solo los intereses devengados en el periodo",
+        "Los intereses del periodo y el capital amortizado",
+        "Solo el capital que se devuelve en cada cuota",
+        "El IVA y los gastos de la notaría y del registro"
+      ],
+      "respuesta": 1,
+      "explicacion": "Anualidad = interés + cuota de amortización.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza al sistema de amortización francés?",
+      "opciones": [
+        "Amortización de capital constante y cuota decreciente",
+        "Pago solo de intereses y el capital al final",
+        "Cuotas constantes, con más peso de intereses al principio",
+        "Cuotas que crecen cada año según el índice"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es el sistema más usado en préstamos hipotecarios y personales.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza al sistema de cuotas de amortización constantes (italiano)?",
+      "opciones": [
+        "La cuota total permanece constante todo el plazo",
+        "No se pagan intereses durante el plazo del préstamo",
+        "Todo el capital se devuelve en el momento inicial",
+        "Se amortiza el mismo capital y la cuota total decrece"
+      ],
+      "respuesta": 3,
+      "explicacion": "La primera cuota es la más alta.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza al sistema americano?",
+      "opciones": [
+        "Solo intereses y el capital se devuelve al final",
+        "Cuotas constantes con capital e intereses",
+        "El capital se amortiza en partes iguales",
+        "No se pagan intereses en ningún periodo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Puede acompañarse de un fondo de amortización para acumular el capital.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Un préstamo de 50.000,00 € al 6 % anual se amortiza con el sistema francés en 5 cuotas anuales. ¿Cuál es la cuota?",
+      "opciones": [
+        "10.000,00 €",
+        "11.869,82 €",
+        "13.000,00 €",
+        "13.382,26 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "a = C·i / (1 − (1+i)^−n) = 50.000 × 0,06 / (1 − 1,06^−5) = 11.869,82 €.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En el préstamo anterior, ¿cuántos intereses se pagan en la primera cuota?",
+      "opciones": [
+        "712,19 €",
+        "8.869,82 €",
+        "3.000,00 €",
+        "15.000,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Intereses del primer año = capital pendiente × tipo = 50.000 × 0,06 = 3.000,00 €.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el préstamo anterior, ¿cuánto capital se amortiza en la primera cuota?",
+      "opciones": [
+        "3.000,00 €",
+        "10.000,00 €",
+        "11.869,82 €",
+        "8.869,82 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Amortización = cuota − intereses = 11.869,82 − 3.000,00 = 8.869,82 €.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "En el préstamo anterior, ¿cuál es el capital pendiente tras pagar la primera cuota?",
+      "opciones": [
+        "41.130,18 €",
+        "38.130,18 €",
+        "47.000,00 €",
+        "40.000,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Pendiente = 50.000 − 8.869,82 = 41.130,18 €.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el total de intereses que se pagan en el préstamo francés anterior?",
+      "opciones": [
+        "15.000,00 €",
+        "9.349,10 €",
+        "59.349,10 €",
+        "3.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Total pagado = 11.869,82 × 5 = 59.349,10; intereses = total − 50.000 = 9.349,10 €.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Con amortización constante, el mismo préstamo (50.000,00 €, 6 %, 5 años), ¿cuál es la primera cuota?",
+      "opciones": [
+        "11.869,82 €",
+        "10.000,00 €",
+        "13.000,00 €",
+        "3.000,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Amortización constante = 50.000 ÷ 5 = 10.000,00; intereses 1.º año = 3.000; cuota = 13.000,00 €.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Con amortización constante, ¿cuál es la segunda cuota?",
+      "opciones": [
+        "13.000,00 €",
+        "11.869,82 €",
+        "10.000,00 €",
+        "12.400,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Pendiente tras el 1.er año = 40.000; intereses = 2.400; cuota = 10.000 + 2.400 = 12.400,00 €.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Con amortización constante, ¿cuál es el total de intereses del préstamo?",
+      "opciones": [
+        "9.000,00 €",
+        "9.349,10 €",
+        "15.000,00 €",
+        "3.000,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Intereses = 3.000 + 2.400 + 1.800 + 1.200 + 600 = 9.000,00 €; menos que con el francés.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistema suele generar menos intereses totales a igual tipo y plazo: el francés o el de amortización constante?",
+      "opciones": [
+        "El sistema francés, por tener la cuota constante",
+        "El de amortización constante, por devolver capital antes",
+        "Ambos generan exactamente los mismos intereses",
+        "El americano, por no amortizar capital hasta el final"
+      ],
+      "respuesta": 1,
+      "explicacion": "A cambio, su primera cuota es más alta.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Con el sistema americano, ¿cuánto se paga cada año de intereses en el préstamo de 50.000,00 € al 6 %?",
+      "opciones": [
+        "11.869,82 €",
+        "10.000,00 €",
+        "3.000,00 €",
+        "15.000,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Intereses anuales = 50.000 × 0,06 = 3.000 €. Al final del año 5 se devuelve además el capital.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Con el sistema americano, ¿cuál es el total pagado al final del año 5 (intereses del año más el capital)?",
+      "opciones": [
+        "3.000,00 €",
+        "11.869,82 €",
+        "50.000,00 €",
+        "53.000,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "3.000 de intereses + 50.000 de capital = 53.000 €.",
+      "criterio": "RA3.f",
+      "fuente": "Cálculo con la fórmula indicada y los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre con el peso de los intereses dentro de la cuota en un préstamo francés a medida que pasa el tiempo?",
+      "opciones": [
+        "Disminuye, porque el capital pendiente se reduce",
+        "Aumenta, porque el capital pendiente crece",
+        "Se mantiene igual durante todo el plazo",
+        "Desaparece a partir del segundo año"
+      ],
+      "respuesta": 0,
+      "explicacion": "Por eso la cuota constante contiene cada vez más amortización.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las comisiones de un préstamo?",
+      "opciones": [
+        "Los intereses ordinarios que se devengan del préstamo",
+        "Gastos por estudio, apertura, amortización o cancelación",
+        "El capital que se solicita a la entidad bancaria",
+        "El IVA que grava la operación de préstamo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Elevan el coste real y se incluyen en la TAE si son obligatorias.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué garantías puede exigir el banco para conceder un préstamo?",
+      "opciones": [
+        "Ninguna garantía en ningún tipo de préstamo",
+        "Solo el DNI de los socios de la empresa",
+        "Reales, como hipoteca o prenda, o personales como el aval",
+        "Solo el IVA que se repercute en las ventas"
+      ],
+      "respuesta": 2,
+      "explicacion": "El RA3.c pide analizar procedimiento, requisitos, garantías y documentación.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una garantía real?",
+      "opciones": [
+        "La que depende de la solvencia de una persona",
+        "Un seguro que cubre el impago de la deuda",
+        "Una comisión que cobra el banco por la operación",
+        "La que afecta un bien concreto al pago de la deuda"
+      ],
+      "respuesta": 3,
+      "explicacion": "La personal (aval o fianza) compromete el patrimonio de otra persona.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.3-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documentación suele exigir un banco a una empresa para un préstamo?",
+      "opciones": [
+        "Cuentas anuales, impuestos, plan de inversión y datos de socios",
+        "Solo el nombre de la empresa y su dirección",
+        "Solo un certificado de nacimiento del administrador",
+        "Ninguna documentación, porque basta la solicitud"
+      ],
+      "respuesta": 0,
+      "explicacion": "Sirve para evaluar la solvencia y viabilidad.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Financiación a largo plazo. Productos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,427 @@
+{
+  "modulo": "0623",
+  "tema": "2.2",
+  "titulo": "Sociedades mercantiles: SL, SA, colectiva, comanditaria y laboral",
+  "preguntas": [
+    {
+      "id": "0623-2.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las sociedades de capital según la Ley de Sociedades de Capital?",
+      "opciones": [
+        "La SL, la SA y la comanditaria por acciones",
+        "La sociedad colectiva y la comanditaria simple",
+        "Las cooperativas y las sociedades laborales",
+        "Las comunidades de bienes y las sociedades civiles"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 1.1 LSC. En ellas los socios (salvo los colectivos de la comanditaria por acciones) no responden personalmente de las deudas sociales.",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué se divide el capital de la sociedad limitada (SL)?",
+      "opciones": [
+        "En acciones",
+        "En participaciones sociales",
+        "En obligaciones",
+        "En bonos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 1.2 LSC. Las participaciones no pueden representarse por títulos ni anotaciones en cuenta, ni denominarse acciones (art. 92.2).",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), arts. 1.2 y 92.2.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0623-2.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué se divide el capital de la sociedad anónima (SA)?",
+      "opciones": [
+        "En participaciones",
+        "En cuotas",
+        "En acciones",
+        "En obligaciones"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 1.3 LSC. Las acciones pueden ser títulos o anotaciones en cuenta y tienen la consideración de valores mobiliarios (art. 92.1).",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), arts. 1.3 y 92.1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Responden personalmente los socios de una SL de las deudas sociales?",
+      "opciones": [
+        "Sí, solidariamente",
+        "Solo los fundadores",
+        "Solo si hay beneficios",
+        "No, como regla general"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 1.2 LSC: los socios no responden personalmente de las deudas sociales. Hay excepciones, como la de la liquidación con capital inferior a 3.000 € (art. 4).",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 1.2.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el capital social mínimo de una sociedad limitada hoy?",
+      "opciones": [
+        "1 euro, con reglas especiales hasta 3.000 euros",
+        "3.000 euros fijos para cualquier sociedad limitada",
+        "60.000 euros, como en la sociedad anónima",
+        "12.000 euros, como exige una sociedad de capital"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 4.1 LSC (reforma de 2022) fija 1 euro y, mientras no llegue a 3.000 €, exige destinar el 20 % del beneficio a reserva legal y la responsabilidad solidaria de los socios en liquidación por la diferencia.",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 4.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regla especial se aplica a una SL con capital inferior a 3.000 euros?",
+      "opciones": [
+        "No poder repartir ningún dividendo nunca",
+        "Destinar a reserva legal el 20 % del beneficio",
+        "Tener que transformarse en sociedad anónima",
+        "No poder tener trabajadores contratados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 4.1 LSC: la reserva se mantiene hasta que reserva y capital sumen 3.000 €.",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 4.1.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el capital social mínimo de una sociedad anónima?",
+      "opciones": [
+        "3.000 euros",
+        "1 euro",
+        "60.000 euros",
+        "30.000 euros"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 4.2 LSC. Debe estar íntegramente suscrito y desembolsado, al menos, en una cuarta parte.",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 4.2.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué parte del valor nominal de las acciones debe estar desembolsada al constituir una SA?",
+      "opciones": [
+        "La mitad del valor nominal de las acciones",
+        "La totalidad del valor nominal de las acciones",
+        "Solo el 10 % del valor nominal de las acciones",
+        "Al menos una cuarta parte, el 25 %"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 79 LSC: íntegramente suscritas y desembolsadas al menos en una cuarta parte.",
+      "criterio": "RA2.b",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 79.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Pueden aportarse trabajo o servicios como capital en una sociedad de capital?",
+      "opciones": [
+        "No: solo bienes o derechos valorables",
+        "Sí, siempre que se valore el trabajo prestado",
+        "Solo en las sociedades anónimas de gran tamaño",
+        "Solo en las sociedades limitadas unipersonales"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 58 LSC. En ningún caso pueden ser objeto de aportación el trabajo o los servicios.",
+      "criterio": "RA2.b",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 58.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué indicación debe figurar necesariamente en la denominación de una SL?",
+      "opciones": [
+        "«Sociedad Anónima» o la abreviatura S.A.",
+        "«Sociedad Limitada» o las siglas S.L. o S.R.L.",
+        "«Sociedad Cooperativa» o la abreviatura S. Coop.",
+        "«Sociedad Anónima Laboral» o las siglas S.A.L."
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 6.1 LSC. En la SA debe figurar «Sociedad Anónima» o «S.A.».",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 6.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué exige la constitución de una sociedad de capital?",
+      "opciones": [
+        "Un contrato verbal entre los socios fundadores",
+        "Solo la inscripción en la Agencia Tributaria",
+        "Escritura pública inscrita en el Registro Mercantil",
+        "Un documento privado sin inscripción registral"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 20 LSC. La inscripción da personalidad jurídica a la sociedad.",
+      "criterio": "RA2.e",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 20.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué órgano de la SL o SA decide sobre la aprobación de las cuentas anuales y el reparto del resultado?",
+      "opciones": [
+        "El auditor de cuentas de la sociedad",
+        "El administrador único de la sociedad",
+        "El notario que autorizó la constitución",
+        "La junta general de socios"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 160.a LSC. La junta ordinaria se reúne dentro de los seis primeros meses del ejercicio (art. 164).",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), arts. 160 y 164.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo debe reunirse la junta general ordinaria para aprobar las cuentas?",
+      "opciones": [
+        "En los seis primeros meses del ejercicio",
+        "En el primer mes siguiente al cierre del ejercicio",
+        "En el plazo de un año desde el cierre",
+        "Cuando lo decida el notario de la sociedad"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 164.1 LSC.",
+      "criterio": "RA2.g",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 164.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué órgano gestiona y representa a la sociedad?",
+      "opciones": [
+        "La junta general de socios o accionistas",
+        "El órgano de administración",
+        "El Registro Mercantil donde está inscrita",
+        "El auditor que revisa las cuentas anuales"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 209 LSC: es competencia de los administradores la gestión y la representación de la sociedad.",
+      "criterio": "RA2.a",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), arts. 209 y 210.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dentro de qué plazo deben depositarse las cuentas anuales en el Registro Mercantil?",
+      "opciones": [
+        "En el plazo de un año desde el cierre",
+        "En el plazo de seis meses desde el cierre",
+        "Dentro del mes siguiente a su aprobación",
+        "No existe ninguna obligación de depositarlas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 279 LSC.",
+      "criterio": "RA2.g",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 279.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuánto del beneficio debe destinarse a reserva legal en una sociedad de capital, hasta alcanzar el 20 % del capital?",
+      "opciones": [
+        "El 50 % del beneficio de cada ejercicio",
+        "El 1 % del beneficio de cada ejercicio",
+        "El 100 % del beneficio del ejercicio",
+        "El 10 % del beneficio del ejercicio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 274.1 LSC. La reserva legal solo puede usarse para compensar pérdidas si no hay otras reservas disponibles.",
+      "criterio": "RA2.g",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 274.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo responden los socios de una sociedad colectiva de las deudas sociales?",
+      "opciones": [
+        "Personal y solidariamente, con todos sus bienes",
+        "Solo con el capital que cada uno aportó",
+        "Con el 50 % de su patrimonio personal",
+        "Solo los socios que administran la sociedad"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 127 del Código de Comercio: todos los socios están obligados personal y solidariamente con todos sus bienes a las resultas de las operaciones sociales.",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), art. 127.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0623-2.2-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la «razón social» de una sociedad colectiva?",
+      "opciones": [
+        "El capital social que aportan los socios",
+        "El nombre de la compañía formado con el de los socios",
+        "El domicilio social de la compañía",
+        "La forma de pago de las aportaciones"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las personalistas giran bajo una razón social con nombres de los socios; las de capital, bajo una denominación.",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), arts. 125 y 146.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-019",
+      "tipo": "opcion_unica",
+      "enunciado": "En la sociedad colectiva, ¿puede un socio industrial dedicarse a otras negociaciones?",
+      "opciones": [
+        "Sí, siempre y sin ninguna autorización",
+        "Solo con el visto bueno del 50 % de los socios",
+        "No, salvo que la compañía lo permita",
+        "Solo si la otra actividad se hace en el extranjero"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 138 CCom: el socio industrial no podrá ocuparse en negociaciones de especie alguna, salvo permiso; si lo hace, los capitalistas pueden excluirlo.",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), art. 138.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0623-2.2-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo responden los socios colectivos de una sociedad comanditaria?",
+      "opciones": [
+        "Solo con la aportación que realizaron",
+        "No responden de las deudas sociales",
+        "Con un tercio de su patrimonio personal",
+        "Personal y solidariamente, como en la colectiva"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 148 CCom. Los socios comanditarios responden solo hasta los fondos que pusieron o se obligaron a poner.",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), art. 148.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la responsabilidad de los socios comanditarios?",
+      "opciones": [
+        "Limitada a lo que aportaron o se obligaron a aportar",
+        "Ilimitada, con todo su patrimonio",
+        "Solidaria con los socios colectivos sin límite",
+        "No existe ninguna responsabilidad frente a terceros"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 148 CCom. No pueden aparecer en la razón social: si lo hacen, responden como gestores (art. 147).",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), arts. 147 y 148.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-022",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una sociedad laboral?",
+      "opciones": [
+        "Una cooperativa de trabajo asociado",
+        "SA o SL con mayoría del capital de trabajadores",
+        "Una sociedad civil de profesionales",
+        "Una sociedad colectiva de socios industriales"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 1 de la Ley 44/2015: al menos la mayoría del capital debe ser de trabajadores que presten servicios retribuidos de forma personal y directa, con contrato indefinido.",
+      "criterio": "RA2.a",
+      "fuente": "Ley 44/2015 de Sociedades Laborales y Participadas (BOE-A-2015-11071, texto consolidado), art. 1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.2-023",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué límite tiene cada socio en el capital de una sociedad laboral, con excepciones?",
+      "opciones": [
+        "El 51 % del capital social como máximo",
+        "El 75 % del capital social como máximo",
+        "Ninguno puede superar la tercera parte del capital",
+        "El 10 % del capital social como máximo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 1.2.b) Ley 44/2015, con excepciones (por ejemplo, dos socios trabajadores iniciales 50/50 que deben ajustarse en 36 meses, o entidades públicas).",
+      "criterio": "RA2.a",
+      "fuente": "Ley 44/2015 de Sociedades Laborales y Participadas (BOE-A-2015-11071, texto consolidado), art. 1.2.b.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "modulo": "0625",
+  "tema": "3.5",
+  "titulo": "Preparación de pedidos, picking y cross-docking",
+  "preguntas": [
+    {
+      "id": "0625-3.5-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la preparación de pedidos (picking)?",
+      "opciones": [
+        "La descarga e ingreso de la mercancía que llega del proveedor",
+        "La fabricación de los productos que se venden al cliente",
+        "Extraer y agrupar los productos de cada pedido de cliente",
+        "El transporte de los pedidos hasta el domicilio del cliente"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es la actividad que más costes concentra en el almacén.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el picking por pedido (orden a orden)?",
+      "opciones": [
+        "El operario prepara varios pedidos a la vez en un solo recorrido",
+        "El operario prepara solo una referencia para todos los pedidos",
+        "El operario no prepara pedidos, solo reabastece estanterías",
+        "El operario prepara un pedido completo cada vez"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es simple, pero genera muchos desplazamientos.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el picking por lotes (batch picking)?",
+      "opciones": [
+        "Agrupar pedidos y recoger cada referencia de una vez",
+        "Preparar un único pedido por operario en cada recorrido",
+        "Preparar los pedidos de forma aleatoria sin planificación",
+        "Preparar los pedidos mediante instrucciones por voz"
+      ],
+      "respuesta": 0,
+      "explicacion": "Reduce desplazamientos, pero exige un reparto posterior.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el picking por zonas?",
+      "opciones": [
+        "Un solo operario prepara todo el pedido recorriendo el almacén",
+        "Cada operario prepara su zona y luego se consolida",
+        "Los pedidos se preparan desde un sistema aéreo de cintas",
+        "El almacén no se divide en zonas de preparación"
+      ],
+      "respuesta": 1,
+      "explicacion": "Reduce recorridos pero exige consolidar.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el picking por oleadas (wave)?",
+      "opciones": [
+        "Preparar un pedido por hora en turnos rotativos",
+        "Preparar sin planificación según llegan los pedidos",
+        "Agrupar pedidos por franjas horarias o de transporte",
+        "Preparar los pedidos únicamente en el turno de noche"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se sincroniza con las salidas de transporte.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el picking por voz (pick-by-voice)?",
+      "opciones": [
+        "Un sistema que usa códigos de barras para cada ubicación",
+        "Un sistema de luces que indican la ubicación y la cantidad",
+        "Un sistema automático que prepara pedidos sin personas",
+        "Instrucciones por auriculares, con las manos libres"
+      ],
+      "respuesta": 3,
+      "explicacion": "Reduce errores y aumenta la productividad.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el pick-to-light?",
+      "opciones": [
+        "Luces en las ubicaciones que indican qué y cuánto coger",
+        "Un sistema de voz con auriculares y micrófono",
+        "Un sistema de listados de papel con la hoja de ruta",
+        "Un sistema de camiones que reparten a los clientes"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es muy rápido en picking de piezas pequeñas.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el principio «producto al hombre» (goods-to-person)?",
+      "opciones": [
+        "El operario recorre el almacén para ir a buscar el producto",
+        "El producto llega automáticamente al operario",
+        "El cliente recoge su pedido directamente en el almacén",
+        "El proveedor entrega el producto en la zona de picking"
+      ],
+      "respuesta": 1,
+      "explicacion": "Aumenta la productividad en almacenes automáticos.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el cross-docking?",
+      "opciones": [
+        "Un almacén de larga duración con stock de seguridad",
+        "Un sistema de inventario permanente por ubicaciones",
+        "Clasificar y expedir sin almacenar la mercancía recibida",
+        "Un sistema de alquiler de espacio por palé y mes"
+      ],
+      "respuesta": 2,
+      "explicacion": "Reduce stocks y tiempos de permanencia.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventajas tiene el cross-docking?",
+      "opciones": [
+        "Aumenta los stocks por la mayor rotación de entradas",
+        "Incrementa el espacio necesario en el almacén",
+        "Elimina el transporte entre proveedor y cliente",
+        "Reduce stocks, costes de almacenaje y plazos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Requiere buena sincronización entre entradas y salidas.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué requisitos necesita el cross-docking?",
+      "opciones": [
+        "Aviso anticipado, sincronización de entradas y salidas, y muelles",
+        "Un gran stock de seguridad de todas las referencias",
+        "Un almacén totalmente automatizado con transelevadores",
+        "Un tiempo de permanencia largo de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Si falla la sincronización, se acumula mercancía.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué productos suelen manejarse mediante cross-docking?",
+      "opciones": [
+        "Productos de baja rotación con demanda incierta",
+        "Productos de alta rotación o perecederos de demanda conocida",
+        "Productos peligrosos, que no admiten manipulación rápida",
+        "Productos sin demanda previsible en el corto plazo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Por ejemplo, alimentación y distribución comercial.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la diferencia entre cross-docking directo e indirecto?",
+      "opciones": [
+        "No hay diferencia entre ambas modalidades de cross-docking",
+        "El directo usa siempre el almacén y el indirecto, no",
+        "Directo: sin pasar por almacén; indirecto: se clasifica antes",
+        "El indirecto solo se aplica al transporte aéreo"
+      ],
+      "respuesta": 2,
+      "explicacion": "El indirecto añade una fase de clasificación.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-014",
+      "tipo": "opcion_unica",
+      "enunciado": "En una jornada de 8 horas, 6 operarios preparan 480 líneas de pedido. ¿Cuál es la productividad por operario y hora?",
+      "opciones": [
+        "60,0 líneas/h",
+        "80,0 líneas/h",
+        "20,0 líneas/h",
+        "10,0 líneas/h"
+      ],
+      "respuesta": 3,
+      "explicacion": "Productividad = 480 / (6 × 8) = 10,0 líneas/h.",
+      "criterio": "RA2.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.5-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Un almacén prepara 1.200 pedidos con 24 errores. ¿Cuál es el porcentaje de error?",
+      "opciones": [
+        "2,00 %",
+        "50,00 %",
+        "20,00 %",
+        "98,00 %"
+      ],
+      "respuesta": 0,
+      "explicacion": "Error = 24 / 1.200 × 100 = 2,00 %.",
+      "criterio": "RA2.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

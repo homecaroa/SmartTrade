@@ -1,0 +1,313 @@
+{
+  "modulo": "0625",
+  "tema": "1.3",
+  "titulo": "Tratamiento de datos, gráficos e impresión",
+  "preguntas": [
+    {
+      "id": "0625-1.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve ordenar datos en una hoja de cálculo?",
+      "opciones": [
+        "Calcular los totales de cada columna numérica",
+        "Crear gráficos a partir de los datos seleccionados",
+        "Reorganizar las filas según una o varias columnas",
+        "Imprimir los datos con el formato de la hoja"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se puede ordenar de A a Z, de menor a mayor o por varios criterios.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace un filtro automático?",
+      "opciones": [
+        "Borra las filas que no cumplen el criterio elegido",
+        "Ordena las filas según el criterio elegido",
+        "Suma las filas que cumplen el criterio elegido",
+        "Muestra solo las filas que cumplen un criterio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los datos ocultos no se eliminan.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve una tabla dinámica?",
+      "opciones": [
+        "Resumir y analizar muchos datos con totales y agrupaciones",
+        "Dar formato a la hoja con colores y bordes",
+        "Proteger la hoja frente a cambios no autorizados",
+        "Imprimir la hoja ajustando la escala de página"
+      ],
+      "respuesta": 0,
+      "explicacion": "Permite cambiar rápidamente las vistas del análisis.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace la opción «Quitar duplicados»?",
+      "opciones": [
+        "Ordena los datos de la lista por las columnas elegidas",
+        "Elimina las filas repetidas según las columnas elegidas",
+        "Suma los valores de las filas que están duplicadas",
+        "Protege las filas duplicadas frente a su borrado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Conviene hacer copia antes.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve «Texto en columnas»?",
+      "opciones": [
+        "Unir el contenido de varias celdas en una sola",
+        "Insertar gráficos a partir de las columnas",
+        "Separar el contenido de una celda en varias columnas",
+        "Proteger las celdas de una columna con contraseña"
+      ],
+      "respuesta": 2,
+      "explicacion": "Útil para importar datos.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace la herramienta «Buscar objetivo»?",
+      "opciones": [
+        "Busca un texto determinado en toda la hoja",
+        "Crea un gráfico con los datos de la selección",
+        "Ordena los datos del rango por una columna",
+        "Calcula el dato de entrada para lograr un resultado"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es un análisis de hipótesis.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo de gráfico es adecuado para comparar categorías (por ejemplo, ventas por producto)?",
+      "opciones": [
+        "Gráfico de columnas o barras",
+        "Gráfico circular de varias series de datos",
+        "Gráfico de dispersión con dos variables numéricas",
+        "Gráfico de cotizaciones de máximos y mínimos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las columnas facilitan la comparación visual.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué gráfico es adecuado para mostrar la evolución de una variable a lo largo del tiempo?",
+      "opciones": [
+        "Gráfico circular",
+        "Gráfico de líneas",
+        "Gráfico de anillos",
+        "Gráfico de barras apiladas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Muestra tendencias.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué gráfico es adecuado para mostrar la proporción de cada parte sobre un total (una sola serie)?",
+      "opciones": [
+        "Gráfico de líneas",
+        "Gráfico de dispersión",
+        "Gráfico circular",
+        "Gráfico de áreas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Conviene que haya pocas categorías.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué gráfico se utiliza para estudiar la relación entre dos variables numéricas?",
+      "opciones": [
+        "Gráfico circular",
+        "Gráfico de columnas apiladas",
+        "Gráfico de anillos",
+        "Gráfico de dispersión (XY)"
+      ],
+      "respuesta": 3,
+      "explicacion": "Cada punto representa un par de valores.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué elementos debe tener un buen gráfico?",
+      "opciones": [
+        "Título, ejes rotulados, leyenda y unidades",
+        "Solo colores llamativos para cada serie de datos",
+        "Solo una imagen decorativa en el fondo del gráfico",
+        "Ningún texto, para que el gráfico se vea más limpio"
+      ],
+      "respuesta": 0,
+      "explicacion": "La claridad es más importante que la decoración.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el «área de impresión»?",
+      "opciones": [
+        "La hoja entera, sin posibilidad de limitar el rango",
+        "El rango de celdas que se imprimirá",
+        "La barra de herramientas de la ventana principal",
+        "La zona donde están los gráficos de la hoja"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se define antes de imprimir.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve «Repetir filas en extremo superior» al imprimir?",
+      "opciones": [
+        "Duplicar los datos de la hoja en cada página",
+        "Ocultar las columnas que no caben en la página",
+        "Que los encabezados salgan en todas las páginas",
+        "Proteger las filas para que no se puedan editar"
+      ],
+      "respuesta": 2,
+      "explicacion": "Útil en listados de varias páginas.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve el encabezado y pie de página en una hoja?",
+      "opciones": [
+        "Calcular los totales de cada columna numérica",
+        "Ordenar los datos de la hoja de cálculo",
+        "Proteger la hoja de cálculo con contraseña",
+        "Añadir título, fecha y número de página al imprimir"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se configura en Diseño de página.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué orientación se usa para hojas muy anchas?",
+      "opciones": [
+        "Horizontal (apaisada)",
+        "Vertical",
+        "Cualquiera es igual",
+        "Diagonal"
+      ],
+      "respuesta": 0,
+      "explicacion": "También se puede ajustar la escala.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve la vista previa de impresión?",
+      "opciones": [
+        "Guardar el archivo en el formato original",
+        "Ver cómo quedará la hoja antes de imprimirla",
+        "Dar formato condicional a las celdas de la hoja",
+        "Ordenar los datos de la hoja por una columna"
+      ],
+      "respuesta": 1,
+      "explicacion": "Evita malgastar papel.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué formato de archivo es apropiado para compartir una hoja sin que se modifique?",
+      "opciones": [
+        "XLSX",
+        "CSV",
+        "PDF",
+        "TXT"
+      ],
+      "respuesta": 2,
+      "explicacion": "El PDF conserva el aspecto y no permite editar fácilmente.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

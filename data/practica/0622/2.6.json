@@ -1,0 +1,187 @@
+{
+  "modulo": "0622",
+  "tema": "2.6",
+  "titulo": "Combinaciones de modos y corredores intermodales",
+  "preguntas": [
+    {
+      "id": "0622-2.6-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Un camión embarca en un buque ro-ro (roll-on/roll-off) y cruza el mar con su carga. ¿Qué combinación de modos es?",
+      "opciones": [
+        "Carretera–aéreo",
+        "Carretera–marítimo",
+        "Ferrocarril–fluvial",
+        "Marítimo–aéreo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es una combinación carretera–marítimo: el vehículo (o el semirremolque) entra rodando al buque, que realiza el tramo principal, y sale rodando en destino, sin ruptura de carga. Es la base de las «autopistas del mar»; el Reglamento (UE) 2024/1679 integra esa idea en el nuevo Espacio Marítimo Europeo de la red transeuropea de transporte.",
+      "criterio": "RA2.d",
+      "fuente": "Decreto 95/2012 («Sistemas o combinaciones. Carretera-Marítimo…»); Reglamento (UE) 2024/1679, considerando sobre el Espacio Marítimo Europeo que engloba las antiguas «autopistas del mar» (BOE, DOUE-L-2024-80996).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-002",
+      "tipo": "opcion_unica",
+      "enunciado": "En la combinación carretera–aéreo, ¿qué función cumple el camión?",
+      "opciones": [
+        "Ninguna, porque el avión recoge la mercancía en la propia fábrica",
+        "Solo transporta mercancías peligrosas dentro del aeropuerto",
+        "Solo opera dentro de las pistas y plataformas del aeropuerto",
+        "Hace los acarreos hasta el aeropuerto y a veces sustituye al avión"
+      ],
+      "respuesta": 3,
+      "explicacion": "El avión no llega al almacén del cliente: el transporte aéreo necesita acarreos por carretera hasta el aeropuerto de origen y desde el de destino. Además, las compañías usan camiones como «vuelos» entre aeropuertos cercanos (road feeder service) para completar su red, con documentación aérea (AWB) emitida para el tramo.",
+      "criterio": "RA2.d",
+      "fuente": "Decreto 95/2012 («Carretera-aéreo»). Detalle del road feeder service: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En la combinación carretera–ferrocarril, ¿cómo suele resolverse el tramo ferroviario con unidades de carga?",
+      "opciones": [
+        "Cargar unidades de carga sobre vagones, con carretera al inicio y al final",
+        "Descargar toda la mercancía a mano en cada estación",
+        "Cargar solo mercancías peligrosas en vagones tolva",
+        "Hacer circular los camiones por las vías sin necesidad de vagones"
+      ],
+      "respuesta": 0,
+      "explicacion": "El transporte combinado carretera–ferrocarril lleva unidades de transporte intermodal (contenedores, cajas móviles, semirremolques) sobre vagones, de modo que la carretera se usa solo para los tramos de recogida y entrega y el tren para el tramo largo. Reduce congestión y emisiones, pero exige terminales intermodales y horarios coordinados.",
+      "criterio": "RA2.d",
+      "fuente": "Decreto 95/2012 («Carretera-ferrocarril»). Conocimiento general sobre transporte combinado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-004",
+      "tipo": "opcion_unica",
+      "enunciado": "En la combinación marítimo–ferrocarril, ¿qué conexión es la habitual?",
+      "opciones": [
+        "Los trenes de pasajeros llevan los contenedores como equipaje",
+        "El buque descarga directamente en la estación de pasajeros",
+        "Trenes de contenedores entre puertos y terminales interiores",
+        "Los trenes recogen la mercancía en alta mar"
+      ],
+      "respuesta": 2,
+      "explicacion": "La combinación marítimo–ferrocarril se apoya en trenes de contenedores que salen de la terminal del puerto hacia puertos secos o plataformas del interior (hinterland) y viceversa. Es clave para dar salida eficiente al contenedor sin saturar las carreteras de acceso a los puertos.",
+      "criterio": "RA2.d",
+      "fuente": "Decreto 95/2012 («Marítimo-ferrocarril»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos corredores europeos de transporte establece el Reglamento (UE) 2024/1679 de la red transeuropea de transporte (RTE-T)?",
+      "opciones": [
+        "Cinco",
+        "Nueve",
+        "Doce",
+        "Veinte"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 11 del Reglamento (UE) 2024/1679 enumera nueve corredores europeos de transporte: Atlántico; Mar Báltico–Mar Negro–Mar Egeo; Mar Báltico–Mar Adriático; Mediterráneo; Mar del Norte–Rin–Mediterráneo; Mar del Norte–Báltico; Rin–Danubio; Escandinavia–Mediterráneo; y Balcanes Occidentales–Mediterráneo Oriental.",
+      "criterio": "RA2.c",
+      "fuente": "Reglamento (UE) 2024/1679, art. 11.1 (BOE, DOUE-L-2024-80996).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dos corredores europeos de transporte discurren por España?",
+      "opciones": [
+        "Escandinavia–Mediterráneo y Rin–Danubio",
+        "Mar Báltico–Mar Adriático y Mar del Norte–Báltico",
+        "Mar Báltico–Mar Negro–Mar Egeo y Balcanes Occidentales–Mediterráneo Oriental",
+        "Atlántico y Mediterráneo"
+      ],
+      "respuesta": 3,
+      "explicacion": "España está atravesada por el corredor Atlántico (península ibérica hacia Francia por la costa atlántica) y por el corredor Mediterráneo (eje mediterráneo, de Algeciras y Almería hasta la frontera francesa y la Europa central). Ambos figuran entre los nueve corredores del art. 11 del Reglamento (UE) 2024/1679.",
+      "criterio": "RA2.a",
+      "fuente": "Reglamento (UE) 2024/1679, art. 11.1; Ministerio de Transportes, «Red Transeuropea de Transporte» y «El Corredor Atlántico» (localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Reglamento (UE) 2024/1679, ¿en qué fechas deben completarse la red básica, la red básica ampliada y la red global de la RTE-T?",
+      "opciones": [
+        "2030, 2040 y 2050, respectivamente",
+        "2025, 2030 y 2035, respectivamente",
+        "2035, 2045 y 2060, respectivamente",
+        "Todas en 2050, sin fechas intermedias"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 6.1 fija: red básica a más tardar el 31 de diciembre de 2030, red básica ampliada a más tardar el 31 de diciembre de 2040 y red global a más tardar el 31 de diciembre de 2050. El plazo de 2040 es nuevo respecto al Reglamento (UE) 1315/2013, que solo fijaba 2030 y 2050.",
+      "criterio": "RA2.c",
+      "fuente": "Reglamento (UE) 2024/1679, art. 6.1 y considerando 19 (BOE, DOUE-L-2024-80996).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un «puente terrestre» (land bridge) en el transporte intermodal?",
+      "opciones": [
+        "Un puente sobre un río que permite el paso de camiones",
+        "Un acuerdo aduanero que evita utilizar el régimen TIR",
+        "Un recorrido terrestre que une dos mares y sustituye parte de la ruta marítima",
+        "Una terminal que solo opera trenes de mercancías"
+      ],
+      "respuesta": 2,
+      "explicacion": "Un puente terrestre es el tramo continental, habitualmente ferroviario, que conecta dos costas y sustituye a un tramo marítimo más largo o congestionado, como el Transiberiano entre Asia oriental y Europa o los trenes de contenedores entre las costas de Estados Unidos. El contenedor viaja bajo un único documento de transporte.",
+      "criterio": "RA2.d",
+      "fuente": "Decreto 95/2012 («Corredores intermodales y puentes terrestres»). Definición y ejemplos: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un corredor logístico intermodal?",
+      "opciones": [
+        "Un pasillo físico situado dentro de un almacén",
+        "Un eje que concentra flujos con terminales y servicios intermodales",
+        "Una ruta aérea sin escalas entre dos aeropuertos",
+        "Un contrato firmado entre dos transportistas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Un corredor intermodal es un eje geográfico en el que se concentran grandes flujos de mercancías y donde existen infraestructuras (vías, puertos, terminales) y servicios de ferrocarril, barco o transporte combinado que compiten con la carretera. Los corredores RTE-T son ejemplos institucionales de ese concepto.",
+      "criterio": "RA2.c",
+      "fuente": "Decreto 95/2012 («Corredores logísticos. Corredores intermodales y puentes terrestres»). Definición: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.6-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja ambiental y qué limitación tiene el transporte intermodal frente al transporte solo por carretera?",
+      "opciones": [
+        "Más emisiones por tonelada, pero mayor flexibilidad de horarios",
+        "Más ruido, pero menor coste en todas las distancias",
+        "Menos capacidad de carga, pero mayor rapidez",
+        "Menos emisiones y congestión, pero depende de terminales y horarios"
+      ],
+      "respuesta": 3,
+      "explicacion": "Al llevar el tramo largo en tren o barco, el intermodal suele reducir emisiones y congestión por tonelada transportada y permite mayor capacidad. A cambio, depende de terminales, horarios y conexiones, y los transbordos añaden complejidad y tiempo. Por eso rinde más en distancias largas. El currículo valora la apuesta por medios que contribuyan a políticas medioambientales (RA2.i).",
+      "criterio": "RA2.i",
+      "fuente": "RD 1574/2011, RA2.i; conocimiento general sobre transporte combinado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

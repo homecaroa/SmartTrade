@@ -1,0 +1,277 @@
+{
+  "modulo": "0625",
+  "tema": "2.1",
+  "titulo": "Marco legal del contrato de depósito",
+  "preguntas": [
+    {
+      "id": "0625-2.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el contrato de depósito?",
+      "opciones": [
+        "El que obliga a guardar una cosa ajena y devolverla",
+        "El que cede el uso de una cosa ajena a cambio de un alquiler",
+        "El que transmite la propiedad de una cosa con pacto de retro",
+        "El que encarga el traslado de una cosa de un lugar a otro"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se define en el Código Civil (art. 1758). En el depósito mercantil se rige además por el Código de Comercio.",
+      "criterio": "RA1.b",
+      "fuente": "Código Civil, art. 1758; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué requisitos exige el Código de Comercio para que un depósito sea mercantil?",
+      "opciones": [
+        "Que el contrato se formalice siempre ante notario público",
+        "Depositario comerciante, cosas de comercio y operación mercantil",
+        "Que el depositante sea comerciante y el depositario, particular",
+        "Que se pacte una retribución superior al precio de mercado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 303 Código de Comercio.",
+      "criterio": "RA1.b",
+      "fuente": "Código de Comercio, art. 303, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Tiene derecho el depositario mercantil a exigir una retribución?",
+      "opciones": [
+        "No, porque el depósito mercantil es siempre gratuito",
+        "Solo si el depósito dura más de un año natural",
+        "Sí, salvo pacto en contrario",
+        "Solo si el depositario contrata un seguro de las mercancías"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 304 Código de Comercio.",
+      "criterio": "RA1.b",
+      "fuente": "Código de Comercio, art. 304, leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo queda constituido el depósito, según el Código de Comercio?",
+      "opciones": [
+        "Con la firma del contrato, aunque no se entregue la cosa",
+        "Con el pago de la retribución pactada al depositario",
+        "Con la inscripción del contrato en el Registro Mercantil",
+        "Con la entrega de la cosa al depositario"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 305: el depósito es un contrato real que se perfecciona con la entrega.",
+      "criterio": "RA1.b",
+      "fuente": "Código de Comercio, art. 305, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué obligación principal tiene el depositario?",
+      "opciones": [
+        "Conservar la cosa y devolverla cuando el depositante la pida",
+        "Venderla al mejor precio de mercado en nombre del depositante",
+        "Usarla en su propio negocio mientras no se la reclamen",
+        "Asegurarla siempre por el 150 % de su valor de reposición"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 306.",
+      "criterio": "RA1.b",
+      "fuente": "Código de Comercio, art. 306, leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿De qué daños responde el depositario?",
+      "opciones": [
+        "De ninguno, salvo que exista fuerza mayor acreditada",
+        "De los daños por malicia o negligencia",
+        "Solo de los robos cometidos por terceros en el almacén",
+        "Solo de los incendios que se produzcan en las instalaciones"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 306, párrafo segundo.",
+      "criterio": "RA1.b",
+      "fuente": "Código de Comercio, art. 306, leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el depositario dispone de las cosas depositadas con asentimiento del depositante, ¿qué ocurre?",
+      "opciones": [
+        "Se mantiene el depósito con las mismas obligaciones de las partes",
+        "El contrato es nulo y las partes deben restituirse las prestaciones",
+        "Cesa el depósito y rigen las reglas del préstamo",
+        "El depositante pierde la propiedad de las cosas sin compensación"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 309.",
+      "criterio": "RA1.b",
+      "fuente": "Código de Comercio, art. 309, leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué normas rigen los depósitos hechos en almacenes generales, bancos y sociedades de crédito?",
+      "opciones": [
+        "Solo el Código Civil, que desplaza a cualquier otra norma",
+        "Solo el Reglamento aduanero de los depósitos de mercancías",
+        "Solo la LOTT, que regula la actividad del almacenista",
+        "Estatutos, Código de Comercio y Derecho común"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 310 Código de Comercio.",
+      "criterio": "RA1.b",
+      "fuente": "Código de Comercio, art. 310, leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué elementos debe incluir un contrato de depósito de mercancías en un almacén?",
+      "opciones": [
+        "Partes, mercancías, plazo, tarifas y responsabilidad",
+        "Solo el nombre del depositario y su domicilio fiscal",
+        "Solo el precio del servicio y la forma de pago pactada",
+        "Solo la fecha de entrada y la fecha de retirada"
+      ],
+      "respuesta": 0,
+      "explicacion": "Un contrato claro evita conflictos sobre inventario, daños y reclamaciones.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién es el depositante?",
+      "opciones": [
+        "Quien recibe la mercancía y se obliga a guardarla",
+        "Quien entrega la mercancía para su custodia",
+        "El transportista que lleva la mercancía al almacén",
+        "El comprador final que recibirá la mercancía depositada"
+      ],
+      "respuesta": 1,
+      "explicacion": "El depositario es quien la guarda.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién es el depositario?",
+      "opciones": [
+        "Quien entrega la mercancía para que se la custodien",
+        "Quien compra la mercancía depositada en el almacén",
+        "Quien recibe la mercancía y se obliga a custodiarla",
+        "Quien transporta la mercancía hasta las instalaciones"
+      ],
+      "respuesta": 2,
+      "explicacion": "En logística, es el almacén o almacenista.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Si un almacenista guarda mercancías ajenas durante un tiempo y cobra por ello, ¿qué contrato suele celebrar?",
+      "opciones": [
+        "Una compraventa de las mercancías con pago aplazado",
+        "Un arrendamiento de obra con precio cerrado",
+        "Un contrato de agencia con comisión sobre las ventas",
+        "Un depósito mercantil retribuido"
+      ],
+      "respuesta": 3,
+      "explicacion": "Con tarifa por espacio, tiempo y servicios añadidos.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Puede el depositario servirse de las cosas depositadas sin permiso del depositante?",
+      "opciones": [
+        "No: usarlas sin consentimiento es un incumplimiento",
+        "Sí, siempre que las conserve en buen estado",
+        "Solo si las cosas son perecederas y van a estropearse",
+        "Solo si paga al depositante una indemnización por el uso"
+      ],
+      "respuesta": 0,
+      "explicacion": "El uso sin permiso transforma el contrato (art. 309 Código de Comercio) y genera responsabilidad.",
+      "criterio": "RA1.b",
+      "fuente": "Código de Comercio, art. 309, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo suele cobrar un almacén por el depósito de mercancías?",
+      "opciones": [
+        "Solo por los kilos transportados desde el origen",
+        "Por espacio y tiempo, más los servicios añadidos",
+        "Solo por la factura de venta de cada mercancía",
+        "No cobra nada, porque el depósito es gratuito"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las tarifas de depósito se pactan en el contrato (art. 304 Código de Comercio).",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un inventario de mercancías depositadas?",
+      "opciones": [
+        "Un seguro que cubre las pérdidas durante el almacenaje",
+        "Una factura que emite el almacén por el servicio prestado",
+        "La relación periódica de mercancías y su estado",
+        "Un contrato de transporte entre almacén y destinatario"
+      ],
+      "respuesta": 2,
+      "explicacion": "Permite detectar diferencias y reclamar.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

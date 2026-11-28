@@ -1,0 +1,295 @@
+{
+  "modulo": "0625",
+  "tema": "7.1",
+  "titulo": "Sistemas de calidad, seguridad y trazabilidad en el almacén",
+  "preguntas": [
+    {
+      "id": "0625-7.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un sistema de calidad en el almacén?",
+      "opciones": [
+        "Procesos y responsabilidades para cumplir requisitos y mejorar",
+        "Un software de contabilidad para el cierre del ejercicio",
+        "Un tipo de estantería para almacenar cajas pequeñas",
+        "Un tipo de seguro que cubre las mercancías almacenadas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se documenta en un manual de calidad.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO regula los sistemas de gestión de la calidad?",
+      "opciones": [
+        "ISO 14001",
+        "ISO 9001",
+        "ISO 28000",
+        "ISO 45001"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es certificable y se basa en la mejora continua.",
+      "criterio": "RA6.a",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO regula los sistemas de gestión ambiental?",
+      "opciones": [
+        "ISO 9001",
+        "ISO 28000",
+        "ISO 14001",
+        "ISO 39001"
+      ],
+      "respuesta": 2,
+      "explicacion": "Aplicable a la gestión de residuos y consumo en almacenes.",
+      "criterio": "RA6.b",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO regula los sistemas de seguridad y salud en el trabajo?",
+      "opciones": [
+        "ISO 9001",
+        "ISO 14001",
+        "ISO 27001",
+        "ISO 45001"
+      ],
+      "respuesta": 3,
+      "explicacion": "Sustituyó a OHSAS 18001.",
+      "criterio": "RA6.b",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO trata la seguridad de la cadena de suministro?",
+      "opciones": [
+        "ISO 28000",
+        "ISO 9001",
+        "ISO 14001",
+        "ISO 45001"
+      ],
+      "respuesta": 0,
+      "explicacion": "Gestiona riesgos de seguridad como robo y manipulación.",
+      "criterio": "RA6.b",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO regula la seguridad de la información?",
+      "opciones": [
+        "ISO 9001",
+        "ISO 27001",
+        "ISO 14001",
+        "ISO 28000"
+      ],
+      "respuesta": 1,
+      "explicacion": "Relevante en sistemas informáticos del almacén.",
+      "criterio": "RA6.b",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ciclo PDCA?",
+      "opciones": [
+        "Pagar, descargar, cobrar y archivar documentos",
+        "Pedir, desembalar, clasificar y almacenar mercancía",
+        "Planificar, hacer, verificar y actuar",
+        "Producir, distribuir, comprar y archivar existencias"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se aplica a procesos del almacén.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un manual de calidad?",
+      "opciones": [
+        "Un inventario valorado de las existencias",
+        "Una factura de servicios de almacenaje",
+        "Un contrato de trabajo de los operarios",
+        "El documento que describe el sistema de calidad y las responsabilidades"
+      ],
+      "respuesta": 3,
+      "explicacion": "Acompaña a los procedimientos.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un procedimiento operativo normalizado (POE)?",
+      "opciones": [
+        "Un documento que describe paso a paso una actividad",
+        "Un impuesto que grava la actividad del almacén",
+        "Una nómina del personal de operaciones",
+        "Una póliza de seguro de las existencias"
+      ],
+      "respuesta": 0,
+      "explicacion": "Asegura repetibilidad.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una auditoría interna de calidad?",
+      "opciones": [
+        "Una revisión fiscal que realiza la Agencia Tributaria",
+        "Una revisión del sistema de calidad hecha por la propia empresa",
+        "Una inspección sanitaria de las instalaciones",
+        "Un inventario físico de las existencias"
+      ],
+      "respuesta": 1,
+      "explicacion": "Detecta no conformidades.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se define una no conformidad en un sistema de calidad?",
+      "opciones": [
+        "Un pedido de cliente servido con éxito",
+        "Una factura emitida correctamente al cliente",
+        "El incumplimiento de un requisito del cliente, norma o procedimiento",
+        "Un descuento concedido por pronto pago"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se trata con acciones correctivas.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la trazabilidad en el almacén?",
+      "opciones": [
+        "La rapidez con que se entregan los pedidos",
+        "El coste de almacenar cada unidad de carga",
+        "La altura máxima a la que se estiban los palés",
+        "Seguir el historial, ubicación y destino de un lote"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se apoya en códigos de lote y sistemas informáticos.",
+      "criterio": "RA6.e",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve la trazabilidad ante una retirada de producto?",
+      "opciones": [
+        "Localizar y retirar solo los lotes afectados",
+        "Retirar todo el stock siempre para evitar riesgos",
+        "Ocultar el problema para no perder clientes",
+        "Cambiar el precio del producto afectado"
+      ],
+      "respuesta": 0,
+      "explicacion": "Reduce el coste y el riesgo.",
+      "criterio": "RA6.e",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistemas de seguridad protegen a las personas en el almacén?",
+      "opciones": [
+        "Solo cámaras de videovigilancia en los pasillos",
+        "Señalización, EPI, protecciones, extintores y emergencias",
+        "Solo vigilantes de seguridad en el acceso",
+        "Ningún sistema específico para las personas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se determinan en la evaluación de riesgos.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistemas de seguridad protegen las mercancías?",
+      "opciones": [
+        "Solo un candado en la puerta principal del almacén",
+        "Ningún sistema específico para las mercancías",
+        "Control de accesos, videovigilancia, alarmas y cerramientos",
+        "Solo seguros que cubran las pérdidas de existencias"
+      ],
+      "respuesta": 2,
+      "explicacion": "Reducen robos y pérdidas.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistemas permiten seguir la mercancía en el almacén mediante radiofrecuencia?",
+      "opciones": [
+        "Solo listados de papel que firma cada operario",
+        "Solo el teléfono fijo de la oficina del almacén",
+        "Solo cartas con las incidencias para cada cliente",
+        "RFID y terminales de radiofrecuencia conectados al WMS"
+      ],
+      "respuesta": 3,
+      "explicacion": "Mejoran la exactitud del inventario.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

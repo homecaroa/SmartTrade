@@ -1,0 +1,225 @@
+{
+  "modulo": "0622",
+  "tema": "3.6",
+  "titulo": "Sujetos del contrato y agentes del transporte internacional",
+  "preguntas": [
+    {
+      "id": "0622-3.6-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la LOTT, ¿qué necesitan quienes pretendan intermediar en la contratación de transportes de mercancías por carretera (agencia de transporte, transitario, almacenista-distribuidor u operador logístico)?",
+      "opciones": [
+        "Una autorización de operador de transporte",
+        "Ninguna autorización, al ser una actividad plenamente libre",
+        "Solo estar inscritos en el Registro Mercantil de su provincia",
+        "Una licencia comunitaria de transporte de viajeros por carretera"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 119.1 LOTT exige la autorización de operador de transporte a quienes intermedian en la contratación de transportes de mercancías por carretera, sea como agencia, transitario, almacenista-distribuidor, operador logístico u otra figura. Exceptúa a ciertos titulares de autorizaciones de transporte público y a las cooperativas de transportistas en los supuestos del precepto.",
+      "criterio": "RA1.f",
+      "fuente": "LOTT, art. 119 (BOE-A-1987-17803, texto consolidado).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la LOTT, ¿en nombre de quién deben contratar los titulares de la autorización de operador de transporte?",
+      "opciones": [
+        "En nombre del cliente que demanda el servicio de transporte",
+        "En nombre del transportista que realiza materialmente el servicio",
+        "En nombre propio",
+        "En nombre de la Administración que otorgó la autorización"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 119.3 LOTT obliga a los titulares de la autorización de operador de transporte a contratar en nombre propio con el demandante del servicio y con el transportista. Coincide con el art. 5.2 de la Ley 15/2009, que obliga a las agencias, transitarios y operadores logísticos a contratar en nombre propio. Por eso responden como porteadores frente a su cliente.",
+      "criterio": "RA1.f",
+      "fuente": "LOTT, art. 119.3; Ley 15/2009, art. 5.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la LOTT, ¿qué es una agencia de transporte de mercancías?",
+      "opciones": [
+        "Una empresa que presta el transporte con vehículos propios",
+        "Una empresa que intermedia entre usuarios y transportistas",
+        "Una empresa dedicada solo al almacenaje de mercancías",
+        "Una autoridad portuaria que ordena el tráfico de buques"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 120 LOTT define las agencias de transporte como empresas especializadas en intermediar en la contratación de transportes de mercancías, organización auxiliar interpuesta entre usuarios y transportistas; pueden desarrollar las actuaciones previas de gestión, información, oferta y organización de cargas y servicios necesarias para contratar.",
+      "criterio": "RA1.f",
+      "fuente": "LOTT, art. 120.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la LOTT, ¿qué es un transitario?",
+      "opciones": [
+        "Empresa que realiza transportes con vehículos propios entre dos ciudades",
+        "Empresa especializada en fabricar embalajes para el transporte",
+        "Autoridad aduanera que despacha las mercancías en frontera",
+        "Empresa que organiza por cuenta ajena transportes internacionales"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 121 LOTT define transitarios como empresas especializadas en organizar, por cuenta ajena, transportes internacionales de mercancías, recibiendo mercancías como consignatarios o entregándolas a quienes hayan de transportarlas y, en su caso, realizando las gestiones administrativas, fiscales, aduaneras y logísticas inherentes a esa clase de transportes, o intermediando en su contratación.",
+      "criterio": "RA1.f",
+      "fuente": "LOTT, art. 121.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la LOTT, ¿qué es un operador logístico?",
+      "opciones": [
+        "Empresa que organiza y controla operaciones logísticas por cuenta ajena",
+        "Un conductor profesional autónomo con vehículo propio",
+        "Un fabricante de contenedores para el transporte marítimo",
+        "Un agente de seguros especializado en mercancías"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 122 LOTT define a los operadores logísticos como empresas especializadas en organizar, gestionar y controlar, por cuenta ajena, las operaciones de aprovisionamiento, transporte, almacenaje o distribución de mercancías que precisan sus clientes. Es la figura legal del «3PL» que ya vimos en la unidad 2.",
+      "criterio": "RA1.f",
+      "fuente": "LOTT, art. 122 (texto parcial leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Navegación Marítima, ¿quién es el consignatario del buque?",
+      "opciones": [
+        "El destinatario de las mercancías en el puerto de destino",
+        "El capitán que manda el buque durante la travesía",
+        "Quien atiende al buque en puerto por cuenta del armador",
+        "El cargador que entrega las mercancías para su embarque"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 319 LNM define al consignatario como la persona que, por cuenta del armador o del naviero, se ocupa de las gestiones materiales y jurídicas necesarias para el despacho y demás atenciones al buque en puerto. Es el agente marítimo. Todo buque extranjero debe tener un consignatario en los puertos nacionales. No debe confundirse con el consignatario de las mercancías (destinatario).",
+      "criterio": "RA1.f",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 319 y régimen de buques extranjeros.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el consignatario firma un conocimiento de embarque por cuenta del armador sin hacer constar el nombre y dirección de este, ¿qué consecuencia tiene según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Ninguna: el conocimiento de embarque queda anulado",
+        "Responde solidariamente con el armador o naviero",
+        "El conocimiento pasa a ser nominativo e intransmisible",
+        "El cargador pierde su derecho a reclamar por daños"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 321 LNM permite al consignatario firmar los conocimientos por cuenta del armador o naviero, debiendo hacer constar su nombre y dirección; si no lo hace, responde del transporte solidariamente con el armador o naviero. La misma regla se sigue si firma por cuenta del porteador fletador.",
+      "criterio": "RA1.f",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 321.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Navegación Marítima, ¿responde el consignatario del buque ante los destinatarios de las indemnizaciones por daños o pérdidas de las mercancías?",
+      "opciones": [
+        "Sí, siempre, solidariamente con el capitán del buque",
+        "Sí, aunque solo cuando el armador es de nacionalidad extranjera",
+        "Solo del retraso en la entrega, pero no de los daños",
+        "No ante los destinatarios, sí frente al armador por su culpa"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 322 LNM establece que el consignatario no responde ante los destinatarios de las indemnizaciones por daños, pérdidas o retraso de las mercancías; responde frente al armador o naviero de los daños causados por su culpa. La responsabilidad ante el destinatario es del porteador (armador, naviero o fletador).",
+      "criterio": "RA1.f",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 322.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un agente de carga IATA?",
+      "opciones": [
+        "Un agente acreditado por IATA que puede emitir cartas de porte aéreas",
+        "Un funcionario de aduanas destinado en el aeropuerto",
+        "Un piloto de aviones de carga de una aerolínea",
+        "Un banco que financia las operaciones de transporte aéreo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los agentes de carga acreditados por IATA («Registered IATA Cargo Agents») son intermediarios autorizados por el sistema IATA para actuar con las compañías aéreas: venden su espacio, emiten AWB y cobran comisión. El AWB incluye un ejemplar para el agente (Copy 8). En el modelo de Madrid de 2025-26, el agente de carga IATA actúa como expedidor y emite el AWB.",
+      "criterio": "RA1.f",
+      "fuente": "IATA Cargo Agent's Handbook (Res. 801 y 600a: «Registered IATA Cargo Agent», «Copy 8 (for Agent)»). Funciones: contenido del Decreto 95/2012.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-3.6-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En una exportación, ¿qué papel tiene el agente de aduanas o representante aduanero?",
+      "opciones": [
+        "Transporta físicamente la mercancía hasta el puerto de embarque",
+        "Asegura la mercancía durante todo el transporte internacional",
+        "Hace los trámites aduaneros en representación del operador",
+        "Fija las tarifas del flete que cobra la naviera"
+      ],
+      "respuesta": 2,
+      "explicacion": "El agente de aduanas (representante aduanero) tramita las formalidades aduaneras, como la presentación de la declaración de exportación o importación, en nombre del operador (representación directa) o en nombre propio y por su cuenta (indirecta). Muchos transitarios prestan también este servicio. El detalle del despacho se estudia en el módulo 0627.",
+      "criterio": "RA1.f",
+      "fuente": "Decreto 95/2012 («Agentes en el transporte internacional: agentes transitarios, agentes de aduanas…»). Detalle de la representación: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-011",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte marítimo, ¿qué función cumple el corredor marítimo (shipbroker)?",
+      "opciones": [
+        "El capitán que dirige el buque durante la travesía",
+        "Intermediario entre armadores y fletadores",
+        "La autoridad que despacha los buques en el puerto",
+        "El propietario del buque que se ofrece en fletamento"
+      ],
+      "respuesta": 1,
+      "explicacion": "El shipbroker (corredor marítimo) intermedia entre quienes ofrecen espacio o buques (armadores, navieros) y quienes los demandan (fletadores o cargadores), negociando precios y condiciones, normalmente para fletamentos por viaje o por tiempo (tramp). Cobra una comisión (corretaje).",
+      "criterio": "RA1.f",
+      "fuente": "Decreto 95/2012 («corredores marítimos (shipbroker)»). Función: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.6-012",
+      "tipo": "opcion_unica",
+      "enunciado": "En una red de transitarios internacionales, ¿en qué se diferencian un corresponsal y un delegado?",
+      "opciones": [
+        "No hay ninguna diferencia entre ambas figuras en la práctica",
+        "El corresponsal es el capitán y el delegado es el armador",
+        "El corresponsal solo trabaja en aduanas y el delegado en puertos",
+        "El corresponsal es independiente; el delegado es propio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Para cubrir destinos o gestionar mercancías en otros países, el transitario usa corresponsales (empresas independientes, vinculadas por acuerdos o redes como FIATA) o delegados (oficinas, filiales o representantes propios). Con el corresponsal hay un contrato de servicios; con el delegado, una relación interna de la propia organización.",
+      "criterio": "RA1.f",
+      "fuente": "Decreto 95/2012 («corresponsales y delegados»). Distinción: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

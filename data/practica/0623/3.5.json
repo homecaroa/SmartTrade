@@ -1,0 +1,403 @@
+{
+  "modulo": "0623",
+  "tema": "3.5",
+  "titulo": "Financiación a corto plazo: crédito comercial, descuento, póliza y factoring",
+  "preguntas": [
+    {
+      "id": "0623-3.5-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el crédito comercial?",
+      "opciones": [
+        "Aplazamiento de pago que concede el proveedor",
+        "Un préstamo que concede el banco a la empresa",
+        "Una subvención que concede la administración",
+        "Una ampliación de capital con nuevos socios"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es una fuente de financiación a corto plazo, normalmente sin coste explícito.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un descuento por pronto pago?",
+      "opciones": [
+        "Recargo que se aplica por pagar tarde",
+        "Rebaja del proveedor si se paga antes del plazo",
+        "Impuesto que grava el pago anticipado",
+        "Tipo de interés que cobra el banco por anticipar"
+      ],
+      "respuesta": 1,
+      "explicacion": "Por ejemplo, «2/10 neto 30»: 2 % de descuento si se paga en 10 días; si no, el total a 30.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Un proveedor ofrece «2/10 neto 30». ¿Qué significa?",
+      "opciones": [
+        "2 % de recargo si se paga a los 10 días",
+        "10 % de descuento si se paga a los 2 días",
+        "2 % de descuento a 10 días o pago íntegro a 30",
+        "30 % de descuento si se paga a los 10 días"
+      ],
+      "respuesta": 2,
+      "explicacion": "Renunciar al descuento supone un coste financiero muy elevado.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-004",
+      "tipo": "opcion_unica",
+      "enunciado": "En «2/10 neto 30», ¿cuál es el coste financiero anual aproximado (año de 360 días) de no aprovechar el descuento?",
+      "opciones": [
+        "2 %",
+        "12 %",
+        "36,00 %",
+        "36,73 %"
+      ],
+      "respuesta": 3,
+      "explicacion": "Coste = 2/98 × 360/20 = 36,73 %: pagar 20 días más tarde supone renunciar a un 2,04 % sobre lo pagado. Conviene pedir un préstamo si es más barato.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el descuento comercial de efectos?",
+      "opciones": [
+        "El banco adelanta el importe de letras pendientes de cobro",
+        "Un descuento del proveedor por pago al contado",
+        "Un impuesto que grava la emisión de letras",
+        "Un préstamo hipotecario con garantía de la nave"
+      ],
+      "respuesta": 0,
+      "explicacion": "El banco cobra el efecto a su vencimiento. Es financiación a corto plazo.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Se descuenta un efecto de 10.000,00 € que vence dentro de 60 días, con tipo de descuento del 8 % anual (año de 360 días). ¿Cuál es el descuento (intereses)?",
+      "opciones": [
+        "800,00 €",
+        "133,33 €",
+        "136,51 €",
+        "66,67 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "D = N × d × t / 360 = 10.000 × 0,08 × 60 / 360 = 133,33 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Con una comisión del 0,5 % del nominal, ¿qué importe efectivo recibe la empresa?",
+      "opciones": [
+        "9.866,67 €",
+        "9.950,00 €",
+        "9.816,67 €",
+        "10.133,33 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Efectivo = N − descuento − comisión = 10.000 − 133,33 − 50,00 = 9.816,67 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el coste anual efectivo (TAE) aproximado de esta operación de descuento (año de 365 días)?",
+      "opciones": [
+        "8,00 %",
+        "1,87 %",
+        "8,50 %",
+        "11,91 %"
+      ],
+      "respuesta": 3,
+      "explicacion": "TAE = (N / Efectivo)^(365/60) − 1 = (10.000 / 9.816,67)^(6,0833) − 1 = 11,91 %. Es superior al tipo nominal por las comisiones y la capitalización.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una póliza o cuenta de crédito?",
+      "opciones": [
+        "Un límite de crédito del que se paga solo lo dispuesto",
+        "Un préstamo con cuotas fijas desde el primer día",
+        "Una subvención a fondo perdido para circulante",
+        "Un seguro que cubre el impago de los clientes"
+      ],
+      "respuesta": 0,
+      "explicacion": "Suele cobrar también comisiones de apertura y por saldo no dispuesto.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se calculan los intereses de una póliza de crédito?",
+      "opciones": [
+        "Sobre el límite total concedido siempre",
+        "Sobre el saldo realmente dispuesto",
+        "Sobre el capital social de la empresa",
+        "Sobre las ventas del último trimestre"
+      ],
+      "respuesta": 1,
+      "explicacion": "Por eso se paga menos que con un préstamo por el mismo límite si no se dispone todo.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-011",
+      "tipo": "opcion_unica",
+      "enunciado": "En una póliza de crédito con límite de 50.000 €, la empresa tiene dispuestos 20.000,00 € de media durante 90 días, a un tipo del 5,50 % anual (año de 360 días). ¿Cuántos intereses paga?",
+      "opciones": [
+        "1.100,00 €",
+        "687,50 €",
+        "275,00 €",
+        "91,67 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Intereses = 20.000,00 × 0,055 × 90 / 360 = 275,00 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Con una comisión por saldo no dispuesto del 0,25 % anual sobre los 30.000 € no dispuestos durante esos 90 días (año de 360), ¿cuál es dicha comisión?",
+      "opciones": [
+        "75,00 €",
+        "12,50 €",
+        "275,00 €",
+        "18,75 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Comisión = 30.000 × 0,0025 × 90 / 360 = 18,75 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el factoring?",
+      "opciones": [
+        "Gestión y anticipo del cobro de facturas por una sociedad",
+        "Un préstamo hipotecario sobre los inmuebles de la empresa",
+        "Un seguro de transporte de las mercancías vendidas",
+        "Una subvención pública para financiar el circulante"
+      ],
+      "respuesta": 0,
+      "explicacion": "Incluye gestión de cobro, anticipo de fondos y, a veces, cobertura del riesgo de impago.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el factoring «sin recurso»?",
+      "opciones": [
+        "El cedente asume todo el riesgo de impago",
+        "La sociedad de factoring asume el riesgo de impago",
+        "No se cobra comisión por la gestión",
+        "No se concede anticipo sobre las facturas"
+      ],
+      "respuesta": 1,
+      "explicacion": "En el factoring con recurso, si el deudor no paga, el cedente devuelve el anticipo.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Se cede en factoring una factura de 20.000,00 € con anticipo del 80 %. ¿Cuánto se anticipa?",
+      "opciones": [
+        "20.000,00 €",
+        "4.000,00 €",
+        "16.000,00 €",
+        "19.600,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Anticipo = 20.000 × 80 % = 16.000 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Con comisión de gestión del 1,5 % del nominal, ¿cuál es dicha comisión?",
+      "opciones": [
+        "240,00 €",
+        "600,00 €",
+        "3.000,00 €",
+        "300,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Comisión = 20.000 × 1,5 % = 300 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Con intereses del 7 % anual sobre el anticipo durante 90 días (año de 360), ¿cuánto suponen?",
+      "opciones": [
+        "280,00 €",
+        "1.120,00 €",
+        "350,00 €",
+        "286,16 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Intereses = 16.000 × 0,07 × 90 / 360 = 280,00 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuánto recibe la empresa al hacer efectivo el anticipo, descontadas la comisión de gestión y los intereses?",
+      "opciones": [
+        "16.000,00 €",
+        "15.420,00 €",
+        "15.700,00 €",
+        "15.720,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Neto = 16.000 − 300 − 280,00 = 15.420,00 €. El 20 % restante se recibe al cobrar la factura, deducidos los costes pendientes.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el confirming?",
+      "opciones": [
+        "Un servicio de cobro de las facturas a clientes",
+        "Un seguro de crédito frente al impago",
+        "Un banco gestiona el pago a proveedores de la empresa",
+        "Un contrato de leasing de equipos informáticos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es el equivalente del factoring, pero para el pago de facturas de proveedores.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre factoring y confirming?",
+      "opciones": [
+        "Son lo mismo con distinto nombre comercial",
+        "El factoring gestiona pagos y el confirming, cobros",
+        "El factoring no utiliza facturas como base",
+        "El factoring gestiona cobros; el confirming, pagos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Ambos son financiación a corto plazo basada en las facturas.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una letra de cambio?",
+      "opciones": [
+        "Un documento mercantil por el que el librador ordena al librado pagar una cantidad en una fecha a favor del tomador",
+        "Un tipo de préstamo hipotecario",
+        "Un seguro",
+        "Una factura electrónica"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se puede descontar en un banco para anticipar su importe.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.5-022",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un pagaré?",
+      "opciones": [
+        "Una orden de pago a un tercero",
+        "Un documento por el que el firmante se compromete a pagar una cantidad en una fecha determinada",
+        "Un seguro de crédito",
+        "Un tipo de sociedad"
+      ],
+      "respuesta": 1,
+      "explicacion": "A diferencia de la letra, interviene solo el firmante (emisor) y el beneficiario.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,385 @@
+{
+  "modulo": "0622",
+  "tema": "5.2",
+  "titulo": "Documentación en transporte marítimo, aéreo y multimodal",
+  "preguntas": [
+    {
+      "id": "0622-5.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento se entrega al cargador una vez que las mercancías están a bordo del buque?",
+      "opciones": [
+        "La carta de porte CMR, propia de la carretera",
+        "El conocimiento de embarque (bill of lading)",
+        "El certificado de origen de la mercancía",
+        "El carnet TIR para el tránsito aduanero"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 246 Ley 14/2014: documenta el derecho a la restitución de las mercancías en el puerto de destino.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 246, leída.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tres funciones cumple el conocimiento de embarque?",
+      "opciones": [
+        "Seguro, aduana y factura de la mercancía",
+        "Certificado de origen, packing list y factura",
+        "Recibo, prueba del contrato y título",
+        "Orden de pago, aval y crédito documentario"
+      ],
+      "respuesta": 2,
+      "explicacion": "La función de título permite transmitir las mercancías endosando el conocimiento (arts. 250-252).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 246-252, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Si un conocimiento de embarque se emite antes de que las mercancías estén a bordo, ¿qué debe hacer el capitán una vez embarcadas?",
+      "opciones": [
+        "Nada, porque el documento ya es plenamente válido",
+        "Destruir el conocimiento y no emitir ningún otro",
+        "Emitir una factura por la mercancía embarcada",
+        "Una apostilla «embarcado» con fecha, u otro B/L"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 246.2: es el «shipped on board» que exige el crédito documentario habitualmente.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 246.2, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo puede emitirse más de un original del conocimiento de embarque?",
+      "opciones": [
+        "Si lo pide el cargador, con el número de ejemplares",
+        "Nunca, porque solo se puede emitir un original",
+        "Solo si el conocimiento es nominativo",
+        "Solo si la mercancía está asegurada"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 247. La entrega contra cualquiera de los originales libera al porteador, que amortiza los demás (art. 252.3).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 247 y 252, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe incluir el conocimiento de embarque en el momento de su entrega al cargador?",
+      "opciones": [
+        "Solo el precio de venta de la mercancía",
+        "Porteador, cargador, mercancías, puertos y fecha",
+        "Solo el número del contenedor utilizado",
+        "Solo el nombre del buque que la transporta"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 248.1 Ley 14/2014. Si las mercancías son peligrosas, debe constar de forma destacada.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 248, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿De qué tres formas puede circular un conocimiento de embarque?",
+      "opciones": [
+        "Solo a la orden del cargador",
+        "Solo nominativo a favor del destinatario",
+        "Al portador, a la orden o nominativo",
+        "Solo en formato electrónico"
+      ],
+      "respuesta": 2,
+      "explicacion": "El portador se transmite por entrega; el emitido a la orden, por endoso; el nominativo, por cesión (art. 250).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 250, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿A quién debe entregar el porteador las mercancías en el puerto de destino?",
+      "opciones": [
+        "Al primero que reclame la mercancía en el puerto",
+        "Al transitario del cargador en el puerto de origen",
+        "Al banco emisor del crédito documentario",
+        "Al tenedor legítimo del original"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 252.1. Si entrega a persona no legitimada, responde frente al tenedor del valor de las mercancías sin poder limitar (art. 252.2).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 252, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un conocimiento «limpio» (clean B/L)?",
+      "opciones": [
+        "El que no lleva reservas sobre el estado aparente",
+        "El que se emite sin que lleve la firma del porteador",
+        "El que se emite sin que figure el cargador",
+        "El que no incluye el precio del transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los bancos exigen normalmente un B/L limpio en los créditos documentarios.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de documentación del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un «sea waybill» (SWB) frente al conocimiento de embarque?",
+      "opciones": [
+        "Un conocimiento emitido al portador y negociable",
+        "Marítimo no negociable, sin valor de título",
+        "Un seguro marítimo que cubre la mercancía",
+        "Un certificado de peso emitido por la terminal"
+      ],
+      "respuesta": 1,
+      "explicacion": "La entrega se hace al consignatario designado sin necesidad de presentar el original.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de documentación del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento de transporte es el básico en el transporte aéreo de carga?",
+      "opciones": [
+        "El conocimiento de embarque marítimo",
+        "La carta de porte CIM ferroviaria",
+        "La carta de porte aéreo (Air Waybill, AWB)",
+        "El manifiesto TIR de tránsito por carretera"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 4.1 del Convenio de Montreal.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de Montreal 1999, art. 4, leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En cuántos ejemplares originales extiende el expedidor la carta de porte aéreo según el Convenio de Montreal?",
+      "opciones": [
+        "Uno",
+        "Dos",
+        "Cuatro",
+        "Tres"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 7: primero «para el transportista», segundo «para el destinatario» y tercero para el expedidor.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de Montreal 1999, art. 7, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué indicaciones mínimas exige el Convenio de Montreal en la carta de porte aéreo?",
+      "opciones": [
+        "Partida, destino, escalas previstas y peso",
+        "El precio de venta y la forma de pago pactada",
+        "El nombre del piloto que realiza el vuelo",
+        "La matrícula del avión que realiza el transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 5. La ausencia de otros requisitos no afecta a la validez del contrato (art. 9).",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de Montreal 1999, art. 5, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Puede sustituirse la carta de porte aérea por otros medios, como el electrónico?",
+      "opciones": [
+        "No, porque el papel es obligatorio en todos los casos",
+        "Sí; el transportista da, si se pide, un recibo de carga",
+        "Solo en los vuelos nacionales dentro de España",
+        "Solo para las mercancías peligrosas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 4.2 Montreal: base jurídica del e-AWB.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de Montreal 1999, art. 4.2, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una carta de porte aérea maestra (MAWB) y qué una HAWB?",
+      "opciones": [
+        "Son exactamente lo mismo y se usan indistintamente",
+        "La HAWB la emite la aerolínea y la MAWB el cargador",
+        "MAWB: aerolínea al agente; HAWB: agente a cada cargador",
+        "Ambas las emite la aduana del aeropuerto de salida"
+      ],
+      "respuesta": 2,
+      "explicacion": "En grupajes aéreos, la HAWB (house) se consolida bajo una MAWB (master).",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de documentación del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Es negociable la carta de porte aérea (AWB)?",
+      "opciones": [
+        "Sí, siempre es un título negociable",
+        "Solo si se emite a la orden del cargador",
+        "Solo si así lo exige el banco",
+        "No; no es negociable ni representa propiedad"
+      ],
+      "respuesta": 3,
+      "explicacion": "Esto difiere del conocimiento de embarque marítimo.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de documentación del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Convenio de Ginebra de 1980, ¿cómo puede emitirse el documento de transporte multimodal?",
+      "opciones": [
+        "Negociable o no, a elección del cargador",
+        "Solo negociable, siempre a la orden",
+        "Solo no negociable, siempre nominativo",
+        "Solo en formato electrónico"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 5 del Convenio de la ONU sobre transporte multimodal internacional de mercancías.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de las Naciones Unidas sobre el transporte multimodal internacional de mercancías (Ginebra, 1980), art. 5, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el documento FIATA FBL?",
+      "opciones": [
+        "Un seguro específico para los transitarios",
+        "Conocimiento multimodal negociable FIATA",
+        "Una carta de porte aéreo de transitarios",
+        "Un permiso de conducción para transitarios"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es el modelo de B/L multimodal más extendido entre transitarios.",
+      "criterio": "RA5.a",
+      "fuente": "Modelo FIATA; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el manifiesto de carga (cargo manifest)?",
+      "opciones": [
+        "La factura que emite el exportador al comprador",
+        "El certificado del seguro de la mercancía",
+        "Relación de mercancías cargadas, para autoridades",
+        "El permiso de circulación del vehículo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se presenta ante la aduana de llegada.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de documentación del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento acredita que un contenedor ha sido cargado y precintado, y su peso verificado (VGM) en transporte marítimo?",
+      "opciones": [
+        "La factura proforma del vendedor",
+        "El carnet ATA de admisión temporal",
+        "El certificado de origen de la mercancía",
+        "La declaración del peso bruto verificado (VGM)"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es requisito del Convenio SOLAS para que el contenedor se embarque.",
+      "criterio": "RA5.a",
+      "fuente": "SOLAS, regla VI/2 (VGM); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un «delivery order» (D/O)?",
+      "opciones": [
+        "La orden de entrega contra el B/L original",
+        "La orden de compra del cliente",
+        "La orden de embarque en origen",
+        "El pedido del seguro de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "El consignatario presenta el B/L para obtener el D/O y retirar el contenedor.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de documentación del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.2-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe verificarse antes de presentar la documentación de un crédito documentario con B/L?",
+      "opciones": [
+        "Nada, porque el banco corrige los errores",
+        "Que importes, fechas y descripción coincidan con el crédito",
+        "Solo la firma del cargador en el documento",
+        "Solo el peso total de la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las discrepancias en fecha de embarque, descripción o importes son la causa más frecuente de rechazo bancario.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de documentación del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

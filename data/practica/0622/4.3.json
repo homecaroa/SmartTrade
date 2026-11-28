@@ -1,0 +1,367 @@
+{
+  "modulo": "0622",
+  "tema": "4.3",
+  "titulo": "Marcado, etiquetado y códigos de barras",
+  "preguntas": [
+    {
+      "id": "0622-4.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué información incluye normalmente la marca de expedición de un bulto?",
+      "opciones": [
+        "Solo el precio de venta del contenido del bulto",
+        "Solo el nombre del transportista que lo lleva",
+        "Destinatario, destino, número de bulto y pesos",
+        "Solo el seguro que se ha contratado para el envío"
+      ],
+      "respuesta": 2,
+      "explicacion": "Permite identificar y dirigir el bulto en toda la cadena de transporte.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirven los pictogramas de manipulación (por ejemplo, la copa para «frágil» o las flechas para «este lado arriba»)?",
+      "opciones": [
+        "Identifican el contenido comercial del bulto",
+        "Sustituyen al documento de transporte",
+        "Indican el valor declarado de la mercancía",
+        "Cómo manipular y estibar, con símbolos universales"
+      ],
+      "respuesta": 3,
+      "explicacion": "Están normalizados por la ISO 780.",
+      "criterio": "RA4.c",
+      "fuente": "ISO 780 (pictogramas de manipulación); contenido conocido, no leído en el texto de la norma.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO regula el código, identificación y marcado de los contenedores?",
+      "opciones": [
+        "ISO 6346",
+        "ISO 9001",
+        "ISO 14001",
+        "ISO 3166"
+      ],
+      "respuesta": 0,
+      "explicacion": "El código de contenedor incluye prefijo del propietario, categoría, número de serie y dígito de control.",
+      "criterio": "RA4.c",
+      "fuente": "ISO 6346; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "En el código de un contenedor ISO 6346 (por ejemplo, CSQU 305438 3), ¿qué indica la cuarta letra?",
+      "opciones": [
+        "El país en el que está registrado el propietario",
+        "La categoría del equipo; «U» es contenedor de carga",
+        "El tipo de mercancía que contiene el contenedor",
+        "El peso máximo que admite el contenedor"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las tres primeras letras son el código del propietario.",
+      "criterio": "RA4.c",
+      "fuente": "ISO 6346; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Calculando con el algoritmo de la ISO 6346, ¿cuál es el dígito de control de un contenedor con código CSQU305438?",
+      "opciones": [
+        "4",
+        "7",
+        "3",
+        "9"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se asigna valor a cada carácter (letras sin múltiplos de 11), se multiplica por 2^posición, se suma, se divide entre 11 y se toma el resto (10 → 0). Para CSQU305438 resulta 3 (el contenedor completo es CSQU3054383).",
+      "criterio": "RA4.c",
+      "fuente": "ISO 6346; cálculo con el algoritmo conocido, verificado por código.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un código de barras EAN-13?",
+      "opciones": [
+        "Un identificador de 8 dígitos para palés",
+        "Un código aduanero de clasificación arancelaria",
+        "Un número de póliza de seguro de transporte",
+        "Un código de 13 dígitos (GTIN-13) del sistema GS1"
+      ],
+      "respuesta": 3,
+      "explicacion": "El EAN-13 identifica artículos de venta; el prefijo indica la organización GS1 nacional (el 84 es España).",
+      "criterio": "RA4.c",
+      "fuente": "Especificaciones GS1; contenido conocido, no leído en el texto oficial (acceso bloqueado).",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué prefijo GS1 identifica a los códigos de barras emitidos por GS1 España (AECOC)?",
+      "opciones": [
+        "84",
+        "33",
+        "49",
+        "55"
+      ],
+      "respuesta": 0,
+      "explicacion": "El prefijo no indica necesariamente el país de fabricación del producto.",
+      "criterio": "RA4.c",
+      "fuente": "Especificaciones GS1; contenido conocido, no leído en el texto oficial (acceso bloqueado).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Calcula el dígito de control del EAN-13 cuyos 12 primeros dígitos son 400638133393.",
+      "opciones": [
+        "2",
+        "1",
+        "4",
+        "6"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se suman los dígitos de posición par multiplicados por 3 y los de posición impar por 1; el dígito de control completa hasta el múltiplo de 10 siguiente. El código completo es 4006381333931.",
+      "criterio": "RA4.c",
+      "fuente": "Algoritmo GS1 del dígito de control; verificado por código.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué identificador de GS1 se usa para las unidades logísticas, como palés, y consta de 18 dígitos?",
+      "opciones": [
+        "EAN-8, el código de 8 dígitos",
+        "DUN-14 siempre, de 14 dígitos",
+        "SSCC (Serial Shipping Container Code)",
+        "ISBN, el identificador de libros"
+      ],
+      "respuesta": 2,
+      "explicacion": "Suele codificarse en GS1-128 y permite el seguimiento individual de cada palé.",
+      "criterio": "RA4.c",
+      "fuente": "Especificaciones GS1; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo de código se usa habitualmente para las cajas o embalajes exteriores de varias unidades?",
+      "opciones": [
+        "EAN-8, el código de los envases pequeños",
+        "Código Morse impreso en la caja",
+        "Un QR propio de la tienda",
+        "ITF-14 (o GS1-128), con el GTIN-14 de la caja"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es más tolerante a la impresión sobre cartón ondulado.",
+      "criterio": "RA4.c",
+      "fuente": "Especificaciones GS1; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo desarrolla y mantiene los estándares globales de códigos de barras y datos logísticos en el comercio?",
+      "opciones": [
+        "GS1",
+        "OMC",
+        "IATA",
+        "CMR"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es una organización sin ánimo de lucro con representación nacional (en España, AECOC).",
+      "criterio": "RA4.c",
+      "fuente": "Especificaciones GS1; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué forma y tamaño mínimo debe tener una etiqueta de peligro de mercancías peligrosas según el ADR?",
+      "opciones": [
+        "Un círculo de 50 mm de diámetro",
+        "Un rombo de, como mínimo, 100 × 100 mm",
+        "Un rectángulo de 210 × 297 mm",
+        "Un triángulo de 200 mm de lado"
+      ],
+      "respuesta": 1,
+      "explicacion": "5.2.2.2.1.1.2; las dimensiones pueden reducirse proporcionalmente si el bulto es pequeño.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.2.2.2.1.1.2 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dimensiones mínimas tiene una placa-etiqueta ADR colocada en un vehículo?",
+      "opciones": [
+        "100 × 100 mm, con forma de rombo",
+        "500 × 500 mm, con forma de rombo",
+        "250 × 250 mm, con forma de rombo",
+        "300 × 400 mm, con forma rectangular"
+      ],
+      "respuesta": 2,
+      "explicacion": "5.3.1.7.1. Las etiquetas de los bultos, en cambio, miden al menos 100 × 100 mm.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.3.1.7.1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dimensiones y características tiene el panel naranja que señala los vehículos con mercancías peligrosas?",
+      "opciones": [
+        "Rectangular de 100 × 100 mm sin ribete",
+        "Cuadrado de 250 mm de lado con ribete",
+        "Circular de 40 cm de diámetro",
+        "Retroreflectante, 40 × 30 cm con ribete negro"
+      ],
+      "respuesta": 3,
+      "explicacion": "5.3.2.2.1. Se coloca delante y detrás del vehículo, y puede llevar número de identificación de peligro y número ONU.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.3.2.2.1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántas cifras tiene un número ONU de mercancía peligrosa?",
+      "opciones": [
+        "Cuatro",
+        "Dos",
+        "Seis",
+        "Ocho"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es el número de identificación de cuatro cifras de las materias u objetos, que figura en la tabla A del capítulo 3.2.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 1.2.1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dos números aparecen en un panel naranja con numeración dividido en dos mitades?",
+      "opciones": [
+        "Arriba, el número ONU; abajo, el peso de la carga",
+        "Arriba, peligro; abajo, número ONU",
+        "Arriba, la clase; abajo, el país de origen",
+        "Arriba, la matrícula; abajo, el destino del transporte"
+      ],
+      "respuesta": 1,
+      "explicacion": "Cuando el panel es con numeración, identifica la materia o el peligro principal.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.3.2.1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la finalidad de las etiquetas de clase en un bulto de mercancía peligrosa?",
+      "opciones": [
+        "Anunciar la marca comercial del producto",
+        "Informar del precio de venta del producto",
+        "Señalar el peligro a quien manipule o intervenga",
+        "Evitar las inspecciones de la carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "Cada clase tiene su propio pictograma, color y número de clase en el vértice inferior.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.2.2 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe hacerse con las marcas y paneles que no correspondan a las mercancías peligrosas transportadas?",
+      "opciones": [
+        "Dejarlos visibles para evitar controles",
+        "Taparlos solo a medias",
+        "Cambiarles el color a naranja",
+        "Retirarlos o cubrirlos por completo"
+      ],
+      "respuesta": 3,
+      "explicacion": "5.3.2.1.8: el recubrimiento debe ser total y seguir siendo eficaz después de un incendio de 15 minutos.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.3.2.1.8 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una norma internacional de marcado?",
+      "opciones": [
+        "Una especificación consensuada de identificación",
+        "Una tasa aduanera que grava el envase",
+        "Un tipo de seguro del transporte",
+        "Un permiso de conducir de mercancías"
+      ],
+      "respuesta": 0,
+      "explicacion": "Facilita el reconocimiento y la automatización en todo el mundo.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.3-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué pictograma de manipulación debe llevar un bulto que no puede mojarse?",
+      "opciones": [
+        "Una copa rota, que significa frágil",
+        "Un paraguas («mantener seco»)",
+        "Una cadena, que indica el punto de eslingado",
+        "Un termómetro, que indica límite de temperatura"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los pictogramas de ISO 780 se aplican por estarcido o etiqueta; los más usuales son frágil, este lado arriba y mantener seco.",
+      "criterio": "RA4.c",
+      "fuente": "ISO 780; contenido conocido, no leído en el texto de la norma.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

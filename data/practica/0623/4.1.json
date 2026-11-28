@@ -1,0 +1,223 @@
+{
+  "modulo": "0623",
+  "tema": "4.1",
+  "titulo": "Necesidades de activos, compra o alquiler y mercados de segunda mano",
+  "preguntas": [
+    {
+      "id": "0623-4.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe analizar una empresa antes de adquirir un vehículo o maquinaria?",
+      "opciones": [
+        "Sus necesidades, uso, coste, financiación y alternativas",
+        "Solo el color y el diseño del vehículo",
+        "Solo la marca y el prestigio del fabricante",
+        "Solo el precio de venta que figura en la oferta"
+      ],
+      "respuesta": 0,
+      "explicacion": "La decisión debe basarse en datos de uso y coste.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia fundamental hay entre comprar y alquilar un vehículo?",
+      "opciones": [
+        "Ninguna, porque ambas figuras son equivalentes",
+        "Al comprar se adquiere la propiedad; al alquilar, el uso",
+        "El alquiler incluye siempre la propiedad del vehículo",
+        "La compra nunca necesita financiación externa"
+      ],
+      "respuesta": 1,
+      "explicacion": "El alquiler evita inmovilizar capital.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo suele convenir el alquiler de un vehículo?",
+      "opciones": [
+        "Para uso intensivo durante muchos años seguidos",
+        "Para vehículos que conservarán un valor residual alto",
+        "Para necesidades puntuales, breves o inciertas",
+        "Cuando se pretende revender el vehículo al cabo del tiempo"
+      ],
+      "respuesta": 2,
+      "explicacion": "A largo plazo, la compra suele ser más barata.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene comprar un vehículo de segunda mano?",
+      "opciones": [
+        "Garantía total del fabricante durante varios años",
+        "Tecnología más actual y menores emisiones",
+        "Menor coste de mantenimiento en todos los casos",
+        "Menor precio y menor depreciación inicial"
+      ],
+      "respuesta": 3,
+      "explicacion": "A cambio, más riesgo de averías y menor garantía.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué inconveniente tiene un vehículo de segunda mano?",
+      "opciones": [
+        "Más riesgo de averías, mantenimiento y menor vida útil",
+        "Un precio de adquisición superior al del vehículo nuevo",
+        "Una depreciación inicial mayor que la del nuevo",
+        "La imposibilidad de financiar su compra con préstamo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se debe revisar su historial y estado.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene un vehículo nuevo?",
+      "opciones": [
+        "Un precio de adquisición inferior al de segunda mano",
+        "Garantía, menos mantenimiento y tecnología actual",
+        "Ausencia total de depreciación durante los primeros años",
+        "Exención de los impuestos que gravan la compra"
+      ],
+      "respuesta": 1,
+      "explicacion": "Tiene una fuerte depreciación en los primeros años.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el valor residual de un vehículo?",
+      "opciones": [
+        "El valor de compra que consta en la factura",
+        "El valor por el que se asegura el vehículo",
+        "El valor estimado al final de su vida útil",
+        "El valor de los costes de mantenimiento acumulados"
+      ],
+      "respuesta": 2,
+      "explicacion": "Influye en la cuota del leasing.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventajas tiene el renting para una empresa de transporte?",
+      "opciones": [
+        "Propiedad del vehículo al finalizar el contrato",
+        "Menor coste total en cualquier caso",
+        "Ausencia de límite de kilometraje contratado",
+        "Cuota fija, servicios incluidos y sin inmovilizar capital"
+      ],
+      "respuesta": 3,
+      "explicacion": "Habitualmente tiene límite de kilometraje.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se debe determinar al planificar la flota?",
+      "opciones": [
+        "El número y tipo de vehículos según rutas y cargas",
+        "Solo el color y la rotulación de los vehículos",
+        "Solo el seguro obligatorio de cada vehículo",
+        "Solo el combustible que consumirá la flota"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se calcula a partir de la demanda.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué instalaciones y activos necesita una empresa de transporte además de vehículos?",
+      "opciones": [
+        "Solo vehículos, sin instalaciones fijas",
+        "Naves, muelles, equipos de manutención y sistemas",
+        "Solo oficinas para la gestión administrativa",
+        "Ningún otro activo, porque se subcontrata todo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Todos forman parte de la inversión.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la obsolescencia de un activo?",
+      "opciones": [
+        "El desgaste físico que produce el uso diario",
+        "Una multa por incumplir una norma de circulación",
+        "La pérdida de valor por avances tecnológicos o normativos",
+        "Un impuesto que grava la titularidad del vehículo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Afecta a la decisión de compra o alquiler.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la principal desventaja de comprar con fondos propios?",
+      "opciones": [
+        "Genera intereses que debe pagar la empresa",
+        "Supone perder la propiedad del vehículo adquirido",
+        "Impide deducir el IVA soportado en la compra",
+        "Inmoviliza liquidez y expone a la depreciación"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se compara con alternativas de financiación.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

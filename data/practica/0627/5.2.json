@@ -1,0 +1,259 @@
+{
+  "modulo": "0627",
+  "tema": "5.2",
+  "titulo": "El DUA y la documentación que acompaña a la declaración",
+  "preguntas": [
+    {
+      "id": "0627-5.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el DUA?",
+      "opciones": [
+        "Un certificado que acredita el origen de la mercancía",
+        "La declaración en aduana normalizada para importar o exportar",
+        "Una factura que emite el agente de aduanas al cliente",
+        "Un permiso de transporte para circular por la UE"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se presenta hoy por vía electrónica.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documentos justificativos suelen acompañar a la declaración en aduana?",
+      "opciones": [
+        "Solo el contrato de seguro de la mercancía transportada",
+        "Solo el albarán de entrega firmado por el destinatario",
+        "Factura, documento de transporte, lista de bultos y certificados",
+        "Solo la letra de cambio con la que se paga la operación"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 163 CAU: documentos justificativos necesarios.",
+      "criterio": "RA5.d",
+      "fuente": "Código Aduanero de la Unión, art. 163 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué contiene una declaración en aduana normal?",
+      "opciones": [
+        "Solo el nombre del importador y su número de identificación",
+        "Solo el peso bruto de la mercancía que se presenta",
+        "Solo el valor de la factura y la divisa de la operación",
+        "Los datos necesarios para aplicar el régimen declarado"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 162 CAU.",
+      "criterio": "RA5.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 162 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué código de régimen aduanero se utiliza en la casilla 37 del DUA para el despacho a libre práctica y consumo?",
+      "opciones": [
+        "40",
+        "10",
+        "51",
+        "71"
+      ],
+      "respuesta": 0,
+      "explicacion": "El 10 es exportación definitiva; el 51, perfeccionamiento activo; el 71, depósito aduanero.",
+      "criterio": "RA5.d",
+      "fuente": "Códigos de régimen del DUA; contenido conocido, no contrastado con la norma vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué código de régimen se utiliza para la exportación definitiva?",
+      "opciones": [
+        "40",
+        "10",
+        "61",
+        "53"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es el código del régimen de exportación definitiva en el DUA.",
+      "criterio": "RA5.d",
+      "fuente": "Códigos de régimen del DUA; contenido conocido, no contrastado con la norma vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se declara en la casilla del código de mercancía en el DUA?",
+      "opciones": [
+        "El peso del contenedor en el que se transporta",
+        "El país donde tiene su sede la empresa importadora",
+        "El código arancelario que clasifica la mercancía",
+        "El tipo de pago acordado en el contrato de compraventa"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se debe declarar con el nivel de detalle exigible (código TARIC).",
+      "criterio": "RA5.d",
+      "fuente": "Formato del DUA; contenido conocido, no contrastado con la norma vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el EORI?",
+      "opciones": [
+        "Un impuesto que grava las operaciones de importación",
+        "Un certificado que acredita el origen de la mercancía",
+        "Un contrato de seguro de crédito a la exportación",
+        "El número que identifica a los operadores ante las aduanas de la UE"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se utiliza en las declaraciones en aduana y en la ENS.",
+      "criterio": "RA5.d",
+      "fuente": "Código Aduanero de la Unión, arts. 9 y 30 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la declaración de valor en aduana (DV1)?",
+      "opciones": [
+        "El documento con los elementos del valor en aduana de la mercancía",
+        "La factura comercial que emite el vendedor extranjero",
+        "La carta de porte que firma el transportista",
+        "La póliza de seguro que cubre la mercancía hasta destino"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se aporta junto al DUA de importación.",
+      "criterio": "RA5.d",
+      "fuente": "Práctica aduanera habitual; no contrastado con la norma vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un agente de aduanas?",
+      "opciones": [
+        "Un funcionario de la Agencia Tributaria que despacha mercancías",
+        "Un profesional que tramita ante la aduana como representante",
+        "Un transportista que realiza el transporte de la mercancía",
+        "Un asegurador que cubre los riesgos de la operación"
+      ],
+      "respuesta": 1,
+      "explicacion": "Representa al importador o exportador ante la aduana.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué consecuencia tiene presentar datos erróneos en el DUA?",
+      "opciones": [
+        "Ninguna consecuencia si el error es de escasa cuantía",
+        "Una corrección automática que se hace en el siguiente envío",
+        "Regularizaciones, recargos y posibles sanciones",
+        "La anulación de la factura comercial de la operación"
+      ],
+      "respuesta": 2,
+      "explicacion": "El declarante responde de la exactitud de los datos.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el efecto de la admisión de la declaración en aduana?",
+      "opciones": [
+        "Se concede el levante inmediato de las mercancías",
+        "Se paga el flete que se debe al transportista",
+        "Se cierra el régimen en que estaban las mercancías",
+        "Es cuando nace la deuda aduanera de la importación"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 77.2 CAU.",
+      "criterio": "RA5.d",
+      "fuente": "Código Aduanero de la Unión, art. 77 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Es lo mismo la declaración en aduana de exportación que el EAD (documento de acompañamiento de exportación)?",
+      "opciones": [
+        "No: el EAD acompaña a la mercancía y acredita la salida",
+        "Sí, ambos son el mismo documento con distinto nombre",
+        "El EAD es un documento que se utiliza solo para el IVA",
+        "El EAD es la póliza de seguro de la mercancía exportada"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se obtiene tras el levante y es la base de la exención de IVA.",
+      "criterio": "RA5.d",
+      "fuente": "Sistema de control de exportaciones de la UE (ECS); contenido conocido, no verificado.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si no se aporta un documento justificativo exigido (por ejemplo, un certificado fitosanitario)?",
+      "opciones": [
+        "No ocurre nada, porque el documento es opcional",
+        "Puede suspender el despacho o rechazar la declaración",
+        "Se despacha igualmente y se reclama el documento después",
+        "Se impone una multa mínima y se concede el levante"
+      ],
+      "respuesta": 1,
+      "explicacion": "Hay que obtener los certificados antes del despacho.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué plazo existe para presentar la declaración en aduana de importación después de la presentación de la mercancía?",
+      "opciones": [
+        "Un año desde la fecha de presentación de la mercancía",
+        "Cinco años desde la llegada del medio de transporte",
+        "Dentro del plazo del depósito temporal, de 90 días como máximo",
+        "No existe ningún plazo para presentar la declaración"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 149 CAU.",
+      "criterio": "RA5.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 149 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

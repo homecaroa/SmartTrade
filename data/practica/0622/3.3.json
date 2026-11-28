@@ -1,0 +1,243 @@
+{
+  "modulo": "0622",
+  "tema": "3.3",
+  "titulo": "Clases de contrato y documentos de transporte",
+  "preguntas": [
+    {
+      "id": "0622-3.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento formaliza habitualmente el contrato de fletamento por tiempo o por viaje entre el armador y el fletador?",
+      "opciones": [
+        "El conocimiento de embarque",
+        "La carta de porte CMR",
+        "La póliza de fletamento",
+        "El manifiesto de carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "El fletamento de la totalidad o parte del buque, por tiempo o por viaje, se documenta en una póliza de fletamento (charter party); las partes pueden compelerse a suscribirla (art. 204.3 LNM). El conocimiento de embarque (B/L), en cambio, documenta el derecho a la restitución de las mercancías en destino y se entrega al cargador una vez embarcadas (art. 246).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 204.3 y 246.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Si las mercancías pueden ser transportadas en cubierta, ¿qué exige la Ley de Navegación Marítima respecto al conocimiento de embarque?",
+      "opciones": [
+        "Que se haga constar expresamente en el conocimiento",
+        "Que el conocimiento se emita en forma nominativa",
+        "Que el conocimiento no pueda transmitirse a terceros",
+        "Nada, porque no es relevante para el documento"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 248.1.3.º exige que, si las mercancías pudieran ser transportadas en cubierta, se haga constar expresamente en el conocimiento. Entre las menciones obligatorias figuran también: porteador, cargador, descripción de las mercancías (naturaleza, marcas, número de bultos, cantidad o peso, estado aparente), puertos de carga y descarga, fecha de entrega al porteador, lugar de emisión y número de originales. Si son peligrosas, se hace constar de forma destacada.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 248.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "El porteador marítimo comprueba que el estado aparente de las mercancías recibidas no se corresponde con el descrito por el cargador. ¿Qué debe hacer según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Rechazar el transporte en todo caso y devolver la carga",
+        "Entregar el conocimiento tal cual lo redactó el cargador",
+        "Corregir la mercancía antes de emitir el conocimiento",
+        "Incluir en el conocimiento una reserva sobre el estado real"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 257.2 obliga al porteador a incluir en el conocimiento una reserva con el estado real cuando comprueba que el estado aparente no se corresponde con el descrito por el cargador. En defecto de reserva, se presumirá que recibió las mercancías en buen estado. Un conocimiento con reservas («sucio» o claused) puede dificultar su aceptación en un crédito documentario.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 257.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el porteador marítimo no ha tenido medios adecuados para comprobar las declaraciones del cargador sobre el número de bultos o el peso, ¿qué puede hacer?",
+      "opciones": [
+        "Negarse en todo caso a emitir el conocimiento de embarque",
+        "Incluir una reserva que haga constar que no pudo comprobarlo",
+        "Modificar el contrato de transporte sin avisar al cargador",
+        "Exigir un seguro adicional al destinatario de la carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 258 permite incluir una reserva por falta de medios de comprobación (la fórmula habitual en los B/L de contenedores cerrados es «said to contain», «shipper's load and count»). Con ello se protege de reclamaciones por inexactitud de lo declarado. El art. 259 regula la eficacia de las reservas.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 258 y 259.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Una carta de garantía por la que el cargador se compromete a indemnizar al porteador si este emite un B/L «limpio» sin reservas, ¿qué eficacia tiene según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Vale entre las partes, salvo mala fe, pero no frente a terceros",
+        "Es nula en todo caso y no produce ningún efecto jurídico",
+        "Obliga al tercero adquirente del B/L a indemnizar al porteador",
+        "Sustituye al conocimiento de embarque como título de transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 261 declara plenamente válidas y eficaces entre cargador y porteador las cartas de garantía (pacto o declaración unilateral del cargador de indemnizar al porteador por la falta de reservas), salvo mala fe en la omisión de las reservas con intención de perjudicar a un tercero, pero no producen efecto frente a los terceros a quienes se hubiera transmitido el conocimiento. El porteador sigue respondiendo ante el tercero de buena fe (art. 256.2).",
+      "criterio": "RA3.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 256.2 y 261.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Navegación Marítima, ¿qué naturaleza tiene la carta de porte marítimo (sea waybill)?",
+      "opciones": [
+        "Un título-valor negociable igual que el conocimiento de embarque",
+        "Un título al portador que se transmite por simple entrega",
+        "Un documento no negociable que no es título-valor",
+        "Un documento que solo se utiliza para mercancías peligrosas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los documentos de transporte no negociables, en particular las cartas de porte marítimo, no son títulos-valores (art. 268.1); su transmisión no da al adquirente mejor derecho que el del tenedor (art. 268.2). Deben contener las menciones del conocimiento y una indicación expresa de su carácter no negociable (art. 269), y se les aplican las reglas sobre fuerza probatoria y reservas (art. 270).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 268 a 270.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Cuando el porteador entrega una carta de porte marítimo con designación del destinatario, ¿cómo recibe este las mercancías en destino?",
+      "opciones": [
+        "Debe presentar el original en destino, como con el B/L",
+        "Necesita un endoso del cargador para recibir la carga",
+        "Debe pedir autorización judicial para recoger la carga",
+        "Tiene derecho a la entrega sin necesidad de presentar el documento"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 271 dice que el destinatario designado en una carta de porte marítimo tiene derecho a la entrega de las mercancías en destino sin presentar el documento; basta su identificación. Esta es la gran diferencia con el B/L: en el B/L la entrega se hace contra la presentación del original, lo que obliga a enviar los originales por mensajería y puede retrasar el despacho. Por eso la carta de porte marítimo es más ágil, pero no sirve para vender la mercancía en tránsito.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 271; para el B/L, art. 246.1 y art. 252.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Se emitió un conocimiento de embarque cuando las mercancías aún no estaban a bordo. ¿Qué debe hacer el capitán una vez embarcadas?",
+      "opciones": [
+        "Nada, porque el documento ya es plenamente válido",
+        "Una apostilla «embarcado» con día y hora, o sustituirlo",
+        "Destruir el conocimiento y no emitir ningún otro",
+        "Entregar el B/L directamente al destinatario de la carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 246.2 LNM: si el B/L se emitió antes del embarque («recibido para embarque»), el capitán debe incluir una apostilla «embarcado» con el día y hora de inicio y fin de la carga, o sustituirlo por un nuevo conocimiento que exprese que las mercancías están efectivamente a bordo (con el nombre del buque). Es el origen del «shipped on board B/L» que exigen los créditos documentarios.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 246.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Si, a petición del expedidor, el transportista aéreo extiende la carta de porte aéreo, ¿qué se presume según el Convenio de Montreal?",
+      "opciones": [
+        "Que actuó en nombre del expedidor, salvo prueba en contrario",
+        "Que actuó como comisionista del destinatario de la mercancía",
+        "Que el documento no tiene ningún valor probatorio",
+        "Que el contrato de transporte queda sin efecto"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 7.4 del Convenio de Montreal: si a petición del expedidor el transportista extiende la carta de porte aéreo, se considera, salvo prueba en contrario, que ha actuado en nombre del expedidor. Por eso el expedidor sigue siendo responsable de la exactitud de lo declarado (art. 10). La carta de porte aérea se extiende en tres originales (art. 7.1).",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de Montreal, arts. 7.1, 7.4 y 10 (BOE-A-2004-9347).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte ferroviario internacional, ¿qué hace el transportista con el duplicado de la carta de porte CIM?",
+      "opciones": [
+        "Lo destruye al llegar la mercancía a su destino",
+        "Lo entrega al destinatario junto con la mercancía",
+        "Certifica en él la toma a cargo y lo devuelve al expedidor",
+        "Lo envía a la aduana de partida para su archivo"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 6.4 CIM: el transportista debe certificar la toma a cargo de la mercancía en el duplicado de la carta de porte y devolverlo al expedidor. La carta de porte firmada por expedidor y transportista no tiene efecto de conocimiento de embarque (art. 6.5). El duplicado permite al expedidor ejercer su derecho de disposición (art. 18).",
+      "criterio": "RA5.a",
+      "fuente": "CIM, arts. 6.3 a 6.5 y 18.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué se diferencian los documentos FIATA FBL y FWB?",
+      "opciones": [
+        "El FBL es de transporte aéreo y el FWB de transporte marítimo",
+        "FBL: multimodal negociable; FWB: multimodal no negociable",
+        "Ambos son documentos aduaneros de exportación",
+        "El FBL solo se emite para mercancías peligrosas"
+      ],
+      "respuesta": 1,
+      "explicacion": "FIATA ofrece dos documentos estándar para transitarios que actúan como operadores de transporte multimodal: el FIATA Multimodal Transport Bill of Lading (FBL), negociable, que puede servir como título de la mercancía, y el FIATA Multimodal Transport Waybill (FWB), no negociable. Existe una versión electrónica del FBL (eFBL).",
+      "criterio": "RA5.a",
+      "fuente": "FIATA, «FIATA Documents» (fiata.org), localizado mediante búsqueda; los términos del FWB no los he abierto. Currículo: «Fiata Bill of Lading (FBL). FIATA Transport Multimodal Waybill (FWB)».",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-3.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué condiciones puede emitirse un conocimiento de embarque en soporte electrónico según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Siempre, sin necesidad de ningún acuerdo previo entre las partes",
+        "Solo si lo autoriza expresamente la aduana de salida",
+        "Nunca, porque la ley exige siempre el soporte en papel",
+        "Si cargador y porteador lo acordaron por escrito antes de la carga"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 262.1 permite el B/L electrónico si cargador y porteador lo acuerdan por escrito antes de la carga. El contrato debe fijar el sistema de emisión y circulación, la seguridad del soporte, la legitimación del titular, la constancia de la entrega y la pérdida de validez. El conocimiento electrónico tiene el mismo régimen y efectos que el de papel (art. 264) y puede sustituirse por papel o a la inversa por acuerdo escrito (arts. 263 y 265).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 262 a 266.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "En el CMR, ¿qué efecto tiene que el transportista no anote reservas en la carta de porte al recibir la mercancía?",
+      "opciones": [
+        "Se presume buen estado aparente y conformidad con la carta de porte",
+        "Se presume que la mercancía estaba dañada al recibirla",
+        "Se presume que no existe contrato de transporte",
+        "No tiene ningún efecto jurídico para las partes"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 9.2 CMR: en ausencia de anotación de reservas motivadas del transportista en la carta de porte, se presume que la mercancía y su embalaje estaban en buen estado aparente al hacerse cargo de ella y que el número de bultos, marcas y números eran conformes. Por eso el transportista debe revisar y anotar reservas (art. 8).",
+      "criterio": "RA5.a",
+      "fuente": "Convenio CMR, arts. 8 y 9.2.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

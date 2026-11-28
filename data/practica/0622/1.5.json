@@ -1,0 +1,205 @@
+{
+  "modulo": "0622",
+  "tema": "1.5",
+  "titulo": "Transporte fluvial",
+  "preguntas": [
+    {
+      "id": "0622-1.5-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo se aplica el Convenio CMNI (Budapest, 2000) al contrato de transporte de mercancías por vías navegables interiores?",
+      "opciones": [
+        "Con puertos de carga y descarga en dos Estados, uno Parte",
+        "Solo cuando ambos Estados son miembros de la Unión Europea",
+        "Solo cuando el transporte se realiza por el río Rin",
+        "Únicamente en transportes nacionales por ríos navegables"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 2.1 CMNI lo aplica a todo contrato de transporte en el que el puerto de carga (o lugar de toma a cargo) y el de descarga (o de entrega) estén en dos Estados diferentes, de los que al menos uno sea Parte. También puede aplicarse a transportes mixtos por vías navegables interiores y marítimas, sin transbordo, en las condiciones del art. 2.2.",
+      "criterio": "RA1.g",
+      "fuente": "Convenio CMNI, art. 2 (texto del Consejo de la UE, doc. 17025/14 ADD 1, en inglés).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el CMNI, ¿qué documento debe emitir el porteador en cada transporte regido por el Convenio?",
+      "opciones": [
+        "Siempre un conocimiento de embarque, en todos los casos",
+        "Una póliza de fletamento firmada por el destinatario",
+        "Un documento de transporte; el B/L solo si se acuerda",
+        "Ningún documento, porque el contrato es siempre verbal"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 11.1 CMNI obliga a emitir un documento de transporte por cada transporte, que puede tener forma de conocimiento de embarque o de carta de porte; el conocimiento de embarque solo se emite si el cargador lo solicita y se pactó antes de cargar o tomar las mercancías. La falta de documento o su incompletitud no afecta a la validez del contrato.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio CMNI, art. 11.1 y 11.3.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Cuando en el transporte fluvial se emite un conocimiento de embarque conforme al CMNI, ¿qué naturaleza tienen sus originales?",
+      "opciones": [
+        "Son simples recibos sin valor para disponer de la mercancía",
+        "Son documentos nominativos y no se pueden transmitir",
+        "Solo sirven como prueba del flete que se ha pagado",
+        "Pueden ser nominativos, a la orden o al portador"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 13 CMNI: los originales del conocimiento de embarque son títulos (documents of title) emitidos a nombre del consignatario, a la orden o al portador. En destino, la mercancía solo se entrega contra el original presentado en primer lugar; después no se puede reclamar la entrega con otros originales. Es el mismo principio del B/L marítimo.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio CMNI, art. 13.1 y 13.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el CMNI, ¿de qué responde el porteador fluvial y cómo se exonera?",
+      "opciones": [
+        "Solo responde de la pérdida total y nunca del retraso",
+        "De pérdida, avería y retraso, salvo que pruebe que fue inevitable",
+        "Solo responde si el cargador prueba su negligencia",
+        "Solo responde de lo ocurrido durante la navegación, no en la carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 16.1 CMNI hace responsable al porteador de la pérdida o avería causada entre la toma a cargo y la entrega y del retraso, salvo que pruebe que el daño se debió a circunstancias que un porteador diligente no pudo prevenir. Para el periodo anterior a la carga en el buque o posterior a la descarga se aplica la ley del Estado aplicable al contrato (art. 16.2).",
+      "criterio": "RA3.g",
+      "fuente": "Convenio CMNI, art. 16.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En el CMNI, ¿cuál es el límite máximo de responsabilidad del porteador por pérdida o avería de las mercancías, salvo declaración o pacto distinto?",
+      "opciones": [
+        "666,67 DEG por bulto o 2 DEG por kilo; el más alto",
+        "8,33 DEG por kilogramo de peso bruto de la mercancía",
+        "17 DEG por kilogramo de masa bruta de la mercancía",
+        "26 DEG por kilogramo de peso bruto de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 20.1 CMNI: 666,67 unidades de cuenta por bulto u otra unidad de carga o 2 unidades de cuenta por kg de peso, el que sea más alto. La unidad de cuenta es el DEG del FMI. Obsérvese la similitud con La Haya-Visby, frente a los límites exclusivamente por kg de CMR (8,33), CIM (17) y Montreal (26).",
+      "criterio": "RA3.g",
+      "fuente": "Convenio CMNI, art. 20.1 y art. 28.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Si la mercancía va en un contenedor y el documento de transporte no menciona los bultos que contiene, ¿cómo calcula el CMNI el límite de responsabilidad?",
+      "opciones": [
+        "Siempre 2 DEG por kilogramo, sin tener en cuenta el contenedor",
+        "No existe límite alguno para los contenedores",
+        "1.500 DEG por el contenedor y 25.000 por su contenido",
+        "666,67 DEG por contenedor y nada más por la carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 20.1 CMNI: si la unidad es un contenedor y el documento no menciona ningún bulto o unidad agrupada en él, los 666,67 DEG se sustituyen por 1.500 DEG por el contenedor (sin las mercancías) y, además, 25.000 DEG por las mercancías contenidas. Si el documento enumera los bultos, cada uno cuenta como unidad (art. 20.2).",
+      "criterio": "RA3.g",
+      "fuente": "Convenio CMNI, art. 20.1 y 20.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En el CMNI, ¿qué plazos tiene el destinatario para notificar daños no aparentes y retraso, respectivamente?",
+      "opciones": [
+        "24 horas para los daños y 7 días para el retraso",
+        "3 días laborables para los daños y 10 para el retraso",
+        "14 días naturales para los daños y 30 para el retraso",
+        "7 días para daños no aparentes y 21 para el retraso"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 23 CMNI: si el daño es aparente, la reserva debe formularse por escrito a más tardar en el momento de la entrega (salvo comprobación conjunta); si no es aparente, por escrito a más tardar 7 días consecutivos desde la entrega; por retraso, no hay indemnización salvo aviso recibido por el porteador en 21 días consecutivos tras la entrega. Los de 3 y 10 días laborables son los de la Ley de Navegación Marítima (marítimo).",
+      "criterio": "RA6.e",
+      "fuente": "Convenio CMNI, art. 23.3-23.5; comparación con Ley 14/2014, art. 285.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo prescriben las acciones derivadas de un contrato regido por el CMNI?",
+      "opciones": [
+        "Seis meses desde la firma del contrato de transporte",
+        "Un año desde que debieron entregarse las mercancías",
+        "Dos años desde que se cargaron las mercancías",
+        "Cinco años desde que se descargaron las mercancías"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 24.1 CMNI: las acciones prescriben al año, a contar desde el día en que las mercancías fueron o debieron ser entregadas al destinatario; ese día no se incluye en el plazo. La persona contra quien se ejercita la acción puede ampliar el plazo por declaración escrita (art. 24.2). Coincide con el plazo general del CMR y de la Ley de Navegación Marítima (un año).",
+      "criterio": "RA6.e",
+      "fuente": "Convenio CMNI, art. 24.1 y 24.2.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo internacional, con sede en Estrasburgo, administra el régimen de libertad de navegación del Rin?",
+      "opciones": [
+        "La Comisión Central para la Navegación del Rin (CCNR)",
+        "La Comisión del Danubio, con sede en Budapest",
+        "La Organización Marítima Internacional (OMI), con sede en Londres",
+        "La Organización Intergubernamental para el Transporte Internacional por Ferrocarril (OTIF)"
+      ],
+      "respuesta": 0,
+      "explicacion": "La CCNR es el organismo internacional del Rin (Acta de Mannheim de 1868) y su sede está en Estrasburgo. La Comisión del Danubio, con sede en Budapest, cumple una función análoga en el Danubio. La CCNR, junto con la Comisión del Danubio y la CEPE, organizó la Conferencia que adoptó el CMNI.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general; el papel de CCNR, Comisión del Danubio y CEPE en el CMNI figura en el texto del Convenio.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la ventaja principal del transporte fluvial de mercancías y su principal limitación?",
+      "opciones": [
+        "Gran rapidez y puerta a puerta, pero con un coste muy alto",
+        "Capacidad, bajo coste y poco impacto, pero lento",
+        "Máxima flexibilidad de rutas, pero con capacidad muy reducida",
+        "Plazos garantizados y fiabilidad, pero solo para mercancías peligrosas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las barcazas permiten mover grandes volúmenes de graneles, contenedores y mercancías pesadas con bajo coste por tonelada y poco impacto ambiental, pero son lentas y solo pueden operar donde hay vías navegables adecuadas (calado, esclusas, conexiones con puertos y terminales), lo que obliga a acarreos terrestres.",
+      "criterio": "RA1.b",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Transporte fluvial: marco normativo. Zonas navegables. Clasificación de naves»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.5-011",
+      "tipo": "opcion_unica",
+      "enunciado": "El canal Rin–Meno–Danubio es relevante para el transporte fluvial europeo porque:",
+      "opciones": [
+        "Une el Mediterráneo con el Atlántico a través de España",
+        "Conecta la cuenca del Rin con la del Danubio",
+        "Es el único canal navegable que existe en la Unión Europea",
+        "Sustituye al canal de Suez para el tráfico procedente de Asia"
+      ],
+      "respuesta": 1,
+      "explicacion": "El canal Rin–Meno–Danubio, abierto en 1992, une la red fluvial del Rin con la del Danubio, de modo que se puede navegar entre el mar del Norte (Róterdam) y el mar Negro. Es un eje clave del transporte fluvial interior europeo.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; no consultado en fuente primaria.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

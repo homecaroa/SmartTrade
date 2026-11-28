@@ -1,0 +1,189 @@
+{
+  "modulo": "0622",
+  "tema": "2.7",
+  "titulo": "Hubs, plataformas y operadores logísticos",
+  "preguntas": [
+    {
+      "id": "0622-2.7-001",
+      "tipo": "opcion_unica",
+      "enunciado": "En transporte y logística, ¿qué es un «hub»?",
+      "opciones": [
+        "Un nodo que concentra y redistribuye flujos de mercancías",
+        "Un contrato de transporte con un único cargador habitual",
+        "Un tipo de contenedor refrigerado para cargas sensibles",
+        "Una oficina de aduanas situada en la frontera exterior"
+      ],
+      "respuesta": 0,
+      "explicacion": "Un hub es un punto de la red (puerto, aeropuerto, terminal ferroviaria o plataforma logística) que concentra tráficos y los redistribuye, siguiendo un esquema «radial» (hub and spoke): en vez de conectar cada origen con cada destino, todos se conectan al hub. Reduce el número de rutas y mejora la ocupación, a costa de un transbordo.",
+      "criterio": "RA1.d",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Los Hubs o plataformas logísticas. Características»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.7-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por «hinterland» de un puerto?",
+      "opciones": [
+        "El conjunto de muelles y atraques de la terminal portuaria",
+        "El canal de acceso marítimo que conduce hasta el puerto",
+        "La zona terrestre de influencia del puerto",
+        "El dique exterior que protege la dársena del oleaje"
+      ],
+      "respuesta": 2,
+      "explicacion": "El hinterland es la zona de interior que un puerto abastece o de la que capta tráficos (el «traspaís»). Su amplitud depende de las conexiones por carretera y ferrocarril y de los costes. Su opuesto marítimo es el foreland (las rutas y puertos con los que el puerto se conecta por mar).",
+      "criterio": "RA1.d",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Hinterland»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.7-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una ZAL (Zona de Actividades Logísticas)?",
+      "opciones": [
+        "Una zona exclusivamente residencial próxima a un aeropuerto",
+        "Un área logística próxima a un nodo de transporte",
+        "Un tipo de acuerdo de libre comercio entre varios países",
+        "Un impuesto especial aplicado a las importaciones"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las ZAL son zonas preparadas para actividades logísticas (almacenaje, distribución, consolidación, valor añadido) junto a infraestructuras de transporte, normalmente un puerto. Aprovechan las economías de escala y la conexión intermodal.",
+      "criterio": "RA1.d",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Zonas o Áreas de Actividades Logísticas (ZAL)»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.7-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué se distingue una plataforma logística intermodal de una unimodal?",
+      "opciones": [
+        "La intermodal solo almacena mercancías peligrosas y la unimodal no",
+        "La unimodal no dispone de ningún almacén dentro del recinto",
+        "La intermodal no necesita acceso por carretera a la instalación",
+        "La intermodal conecta varios modos; la unimodal, uno"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las plataformas pueden tener un solo modo o más de uno. La intermodal permite cambiar de modo sin romper la unidad de carga (por ejemplo, una terminal con acceso por carretera y ferrocarril) y suele ser el centro de redes de transporte combinado.",
+      "criterio": "RA1.d",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Plataformas con uno o con más de un modo de transporte»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.7-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un puerto seco?",
+      "opciones": [
+        "Una terminal interior conectada con un puerto",
+        "Un puerto marítimo sin actividad comercial internacional alguna",
+        "Una instalación portuaria situada en la propia línea de costa",
+        "Una zona logística sin conexión con el transporte marítimo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Un puerto seco extiende el puerto marítimo al interior: recibe contenedores por tren o carretera, los almacena y los despacha (incluso con servicios aduaneros), descongestionando el puerto y acercando el servicio al cliente. Es un nodo típico de transporte combinado marítimo–ferrocarril.",
+      "criterio": "RA1.d",
+      "fuente": "Concepto equivalente al de los modelos de Madrid (2025-26, nº 43). Conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.7-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un operador logístico (3PL)?",
+      "opciones": [
+        "Un fabricante que transporta con sus propios camiones",
+        "Un banco que financia las operaciones de exportación",
+        "Una empresa que gestiona varias funciones logísticas del cliente",
+        "Una autoridad portuaria que gestiona los muelles"
+      ],
+      "respuesta": 2,
+      "explicacion": "Un operador logístico (third party logistics, 3PL) presta servicios integrados de transporte, almacenaje, preparación de pedidos y distribución, con medios propios o subcontratados, por cuenta de otra empresa. Permite al cliente concentrarse en su actividad principal y variabilizar costes.",
+      "criterio": "RA2.g",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Operadores logísticos. Ventajas»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.7-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia a un operador logístico 4PL de un 3PL?",
+      "opciones": [
+        "El 4PL solo realiza transporte aéreo de mercancías urgentes",
+        "Integra y coordina la cadena y a varios 3PL",
+        "El 4PL es siempre el cliente final de la mercancía",
+        "El 4PL y el 3PL son exactamente lo mismo en la práctica"
+      ],
+      "respuesta": 1,
+      "explicacion": "El 3PL ejecuta servicios logísticos concretos. El 4PL (fourth party logistics) es un integrador que planifica, coordina y controla la cadena completa, subcontratando a distintos 3PL, transportistas y almacenes, normalmente sin activos propios.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.7-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una ventaja de externalizar el transporte o la logística en un operador especializado?",
+      "opciones": [
+        "Mayor control directo de todos los procesos de la cadena",
+        "Eliminación total del riesgo operativo del cargador",
+        "Garantía de costes siempre inferiores a los propios",
+        "Menos inversión, especialización y flexibilidad"
+      ],
+      "respuesta": 3,
+      "explicacion": "Externalizar permite convertir costes fijos en variables, aprovechar la red, el conocimiento y la tecnología del operador y adaptar la capacidad a la demanda. No elimina el riesgo ni garantiza menor coste. El inconveniente típico es la pérdida de control directo y la dependencia del proveedor.",
+      "criterio": "RA2.g",
+      "fuente": "RD 1574/2011, RA2.g: «ventajas e inconvenientes de externalizar algunas o todas las fases del transporte».",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.7-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es un inconveniente habitual de externalizar el transporte?",
+      "opciones": [
+        "Pérdida de control directo y dependencia del proveedor",
+        "Imposibilidad absoluta de cambiar de proveedor en el futuro",
+        "Aumento garantizado de los plazos de entrega al cliente",
+        "Obligación de comprar los vehículos al operador contratado"
+      ],
+      "respuesta": 0,
+      "explicacion": "Al delegar, la empresa cede parte del control sobre la calidad, los plazos y la información, y depende de la fiabilidad del proveedor (de ahí la importancia de indicadores de calidad y contratos con niveles de servicio). No hay un aumento «garantizado» de plazos ni obligación de comprar vehículos.",
+      "criterio": "RA2.g",
+      "fuente": "RD 1574/2011, RA2.g.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.7-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja ofrece el esquema «hub and spoke» frente a unir directamente cada origen con cada destino?",
+      "opciones": [
+        "Elimina cualquier transbordo entre origen y destino",
+        "Aumenta el número de rutas necesarias entre los puntos",
+        "Menos conexiones y mejor uso de la capacidad, con transbordo",
+        "Hace innecesarias las terminales intermedias de carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "Con n puntos, conectar todos con todos exige muchas rutas; con un hub, basta una por punto. Se consolidan flujos y aumentan los coeficientes de carga, a cambio de un transbordo (más tiempo y manipulación). Es el modelo típico de aerolíneas, integradores de paquetería y redes de grupaje.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general de redes de transporte.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

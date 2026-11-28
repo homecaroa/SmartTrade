@@ -1,0 +1,349 @@
+{
+  "modulo": "0627",
+  "tema": "1.3",
+  "titulo": "OCDE, UNCTAD, FMI, Banco Mundial y otros organismos internacionales",
+  "preguntas": [
+    {
+      "id": "0627-1.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde tiene su sede la OCDE?",
+      "opciones": [
+        "En París",
+        "En Ginebra, junto a la sede de la OMC",
+        "En Washington D. C., junto al FMI y al Banco Mundial",
+        "En Nueva York, junto a la sede de las Naciones Unidas"
+      ],
+      "respuesta": 0,
+      "explicacion": "La Organización para la Cooperación y el Desarrollo Económicos tiene su sede en París.",
+      "criterio": "RA1.b",
+      "fuente": "OCDE, FMI, Banco Mundial y UNCTAD (sitios oficiales; localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿De qué organización procede la OCDE?",
+      "opciones": [
+        "Del GATT, firmado por 23 países en el año 1947",
+        "De la OECE, creada para gestionar el Plan Marshall",
+        "Del Banco Mundial, constituido tras Bretton Woods",
+        "De la Sociedad de Naciones, disuelta tras la guerra"
+      ],
+      "respuesta": 1,
+      "explicacion": "La Convención de 1960 transformó la OECE en OCDE, que entró en vigor en 1961.",
+      "criterio": "RA1.b",
+      "fuente": "OCDE, FMI, Banco Mundial y UNCTAD (sitios oficiales; localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el objetivo principal de la OCDE?",
+      "opciones": [
+        "Conceder préstamos a los países más pobres del mundo",
+        "Fijar los tipos de cambio entre las monedas de los miembros",
+        "Promover políticas de bienestar con análisis y estadísticas",
+        "Resolver los litigios comerciales entre los países miembros"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es un foro de países para coordinar políticas y compartir buenas prácticas; elabora estadísticas y estudios (por ejemplo, PISA).",
+      "criterio": "RA1.b",
+      "fuente": "OCDE, FMI, Banco Mundial y UNCTAD (sitios oficiales; localizados mediante búsqueda).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde tiene su sede el Fondo Monetario Internacional (FMI)?",
+      "opciones": [
+        "En Ginebra, junto a la sede de la OMC",
+        "En París, junto a la sede de la OCDE",
+        "En Londres, junto al Banco de Inglaterra",
+        "En Washington D. C."
+      ],
+      "respuesta": 3,
+      "explicacion": "Tanto el FMI como el Banco Mundial están en Washington D. C.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde se acordó la creación del FMI y del Banco Mundial?",
+      "opciones": [
+        "En la conferencia de Bretton Woods, en 1944",
+        "En la Ronda Uruguay, que culminó en 1994",
+        "En el Tratado de Roma, firmado en el año 1957",
+        "En la Conferencia de Yalta, celebrada en el año 1945"
+      ],
+      "respuesta": 0,
+      "explicacion": "Bretton Woods (julio de 1944) diseñó el orden económico de posguerra: el FMI para la estabilidad monetaria y el Banco Mundial para la reconstrucción y el desarrollo.",
+      "criterio": "RA1.b",
+      "fuente": "OCDE, FMI, Banco Mundial y UNCTAD (sitios oficiales; localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la función principal del FMI?",
+      "opciones": [
+        "Financiar proyectos de desarrollo a largo plazo en países pobres",
+        "Cooperación monetaria, estabilidad cambiaria y ayuda a países con desequilibrios",
+        "Resolver las diferencias comerciales entre los países miembros",
+        "Fijar los aranceles que se aplican a las importaciones"
+      ],
+      "respuesta": 1,
+      "explicacion": "Presta fondos con condiciones (programas de ajuste) a países con problemas de balanza de pagos y supervisa sus políticas.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los Derechos Especiales de Giro (DEG)?",
+      "opciones": [
+        "Una moneda emitida por el Banco Central Europeo",
+        "Un impuesto especial que grava las importaciones de la UE",
+        "Un activo de reserva del FMI basado en una cesta de monedas",
+        "Un contrato de seguro de crédito a la exportación"
+      ],
+      "respuesta": 2,
+      "explicacion": "El DEG es la unidad de cuenta que usan convenios de transporte como el CMR o Montreal para fijar límites de responsabilidad.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la función principal del Banco Mundial?",
+      "opciones": [
+        "Estabilizar los tipos de cambio entre las principales monedas",
+        "Vigilar la competencia entre las empresas en la Unión Europea",
+        "Recaudar los derechos de aduana de los países miembros",
+        "Financiar el desarrollo y reducir la pobreza con préstamos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Su objetivo es el desarrollo a largo plazo, frente al FMI, centrado en la estabilidad macroeconómica y financiera.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué instituciones forman la base del Banco Mundial?",
+      "opciones": [
+        "El BIRF y la AIF, Asociación Internacional de Fomento",
+        "El Banco Central Europeo y el Banco Europeo de Inversiones",
+        "La Organización Mundial del Comercio y la UNCTAD",
+        "El GATT y la OCDE, ambas con sede en Ginebra y París"
+      ],
+      "respuesta": 0,
+      "explicacion": "El BIRF presta a países de renta media y la AIF ofrece créditos en condiciones favorables a los más pobres. El grupo incluye también la CFI y el OMGI.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la UNCTAD?",
+      "opciones": [
+        "Un banco de desarrollo para los países de renta baja",
+        "La Conferencia de la ONU sobre Comercio y Desarrollo",
+        "Un tribunal internacional de comercio con sede en La Haya",
+        "Una unión aduanera entre países en desarrollo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Creada en 1964 por la Asamblea General de la ONU, con sede en Ginebra.",
+      "criterio": "RA1.b",
+      "fuente": "OCDE, FMI, Banco Mundial y UNCTAD (sitios oficiales; localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué año se creó la UNCTAD?",
+      "opciones": [
+        "En 1945",
+        "En 1995",
+        "En 1964",
+        "En 1975"
+      ],
+      "respuesta": 2,
+      "explicacion": "La Asamblea General la estableció por la resolución 1995 (XIX) de diciembre de 1964.",
+      "criterio": "RA1.b",
+      "fuente": "OCDE, FMI, Banco Mundial y UNCTAD (sitios oficiales; localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la Organización Mundial de Aduanas (OMA)?",
+      "opciones": [
+        "Un departamento de la OMC que fija los aranceles consolidados",
+        "El órgano aduanero de la UE con sede en Bruselas",
+        "La policía de fronteras de las Naciones Unidas",
+        "Una organización intergubernamental que gestiona el Sistema Armonizado"
+      ],
+      "respuesta": 3,
+      "explicacion": "La OMA (WCO) administra el Convenio del Sistema Armonizado y otros instrumentos, como el Convenio de Kioto revisado.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Sistema Armonizado (SA)?",
+      "opciones": [
+        "Una nomenclatura internacional para clasificar las mercancías",
+        "Un sistema de pagos entre bancos de distintos países",
+        "Un tratado de libre comercio entre la UE y otros países",
+        "Un sistema de seguros de crédito a la exportación"
+      ],
+      "respuesta": 0,
+      "explicacion": "Lo gestiona la OMA y es la base de aranceles y estadísticas; en la UE se desarrolla en la Nomenclatura Combinada (UD4).",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la OMPI (WIPO)?",
+      "opciones": [
+        "La Organización Mundial de Pesca, con sede en Roma",
+        "La Organización Mundial de la Propiedad Intelectual, en Ginebra",
+        "Una agencia aduanera de la Unión Europea en Bruselas",
+        "Un organismo de la UE que registra marcas comerciales"
+      ],
+      "respuesta": 1,
+      "explicacion": "Administra tratados de patentes, marcas y derechos de autor.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Centro de Comercio Internacional (ITC)?",
+      "opciones": [
+        "Un banco de inversión que financia a las pymes europeas",
+        "Un tribunal arbitral que resuelve litigios entre empresas",
+        "Una agencia de la OMC y la ONU que ayuda a las pymes a exportar",
+        "Una zona franca de la UE para el comercio con África"
+      ],
+      "respuesta": 2,
+      "explicacion": "Su sede está en Ginebra y ofrece información de mercados y formación a empresas exportadoras.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la función del Banco Europeo de Inversiones (BEI)?",
+      "opciones": [
+        "Emitir los billetes y las monedas en euros en la zona euro",
+        "Supervisar a todos los bancos del mundo con presencia en la UE",
+        "Fijar los tipos de interés oficiales de la moneda única",
+        "Financiar proyectos que sirven a los objetivos de la UE"
+      ],
+      "respuesta": 3,
+      "explicacion": "Tiene su sede en Luxemburgo. No es el BCE, que gestiona la política monetaria.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Banco de Pagos Internacionales (BPI)?",
+      "opciones": [
+        "El banco de los bancos centrales, con sede en Basilea",
+        "El banco central de la UE, con sede en Fráncfort",
+        "Un banco comercial suizo que financia el comercio exterior",
+        "El banco de la OMC, que concede créditos a los países miembros"
+      ],
+      "respuesta": 0,
+      "explicacion": "Promueve la cooperación entre bancos centrales y reúne al Comité de Basilea.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la Cámara de Comercio Internacional (CCI/ICC)?",
+      "opciones": [
+        "Un organismo intergubernamental de la ONU con sede en Nueva York",
+        "Una organización empresarial mundial que elabora los Incoterms",
+        "Una cámara de la UE que representa a los comerciantes europeos",
+        "Un departamento del FMI dedicado a los créditos documentarios"
+      ],
+      "respuesta": 1,
+      "explicacion": "La ICC es privada y sus reglas son de aplicación voluntaria por las partes.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el BERD (EBRD)?",
+      "opciones": [
+        "El banco central de Rusia, creado tras la disolución de la URSS",
+        "Un banco de comercio de la OMC que financia las exportaciones",
+        "Un banco creado en 1991 para la transición en Europa del Este",
+        "Una agencia de la UE que gestiona las ayudas de la PAC"
+      ],
+      "respuesta": 2,
+      "explicacion": "Tiene su sede en Londres y no debe confundirse con el BEI ni con el BCE.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 (organismos internacionales).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

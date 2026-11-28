@@ -1,0 +1,223 @@
+{
+  "modulo": "0622",
+  "tema": "3.2",
+  "titulo": "El contrato según el modo de transporte",
+  "preguntas": [
+    {
+      "id": "0622-3.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué normas regulan el contrato de transporte de mercancías por carretera en cada caso?",
+      "opciones": [
+        "El CMR en el transporte nacional y la Ley 15/2009 en el internacional",
+        "Ley 15/2009 en el nacional y CMR en el internacional",
+        "Solo el Convenio CMR, que se aplica también al transporte nacional",
+        "Solo el Convenio de Montreal, tanto en el nacional como en el internacional"
+      ],
+      "respuesta": 1,
+      "explicacion": "La Ley 15/2009 regula el contrato de transporte terrestre de mercancías (nacional), sujeta a los tratados internacionales vigentes (art. 2.2). El Convenio CMR se aplica cuando el lugar de carga y el de entrega están en dos países distintos, uno al menos contratante (art. 1.1). Ambas coinciden en puntos clave: tres ejemplares de la carta de porte, responsabilidad objetiva con causas de exoneración, plazos de reservas y prescripción.",
+      "criterio": "RA1.g",
+      "fuente": "Ley 15/2009, art. 2.2; Convenio CMR, art. 1.1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "En un transporte ferroviario de mercancías regido por la Ley 15/2009, ¿qué consideración tienen los administradores de la infraestructura ferroviaria respecto al porteador?",
+      "opciones": [
+        "Son terceros ajenos al transporte, de los que el porteador no responde",
+        "Son los cargadores del transporte ferroviario de que se trate",
+        "Son los destinatarios por defecto de todas las mercancías",
+        "Son auxiliares del porteador, que responde de ellos"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 47.4 dice que los administradores de la infraestructura ferroviaria sobre la que se realiza el transporte se consideran auxiliares del porteador, y por el art. 47.3 el porteador responde de los actos y omisiones de sus auxiliares. Así, un retraso por una incidencia en la red (Adif) es imputable al porteador ferroviario frente al cargador.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 47.3 y 47.4.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Navegación Marítima, ¿en qué consiste un contrato de volumen?",
+      "opciones": [
+        "Transporte de un conjunto de mercancías en varios viajes",
+        "Transporte de una sola mercancía en un único viaje determinado",
+        "Alquiler del buque por un periodo de tiempo con tripulación del fletador",
+        "Contrato de seguro que cubre las mercancías durante la travesía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 208 LNM: el contrato puede referirse al transporte de un conjunto de mercancías en varios buques o varios viajes; se aplican a cada uno las reglas del fletamento por viaje, salvo pacto diverso. Es la figura habitual de contratos marco entre cargadores con volumen estable y navieras.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 208.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte aéreo de carga, ¿cómo se acredita el contrato según el Convenio de Montreal?",
+      "opciones": [
+        "Solo mediante un contrato escrito otorgado ante notario",
+        "Con la carta de porte aéreo (AWB) o un medio equivalente",
+        "No hace falta ningún documento para acreditar el contrato",
+        "Con un conocimiento de embarque aéreo siempre negociable"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 4 del Convenio de Montreal: en el transporte de carga se expedirá una carta de porte aéreo; cualquier otro medio que deje constancia del transporte puede sustituirla; si se usan otros medios, el transportista entrega un recibo de carga si el expedidor lo pide. Es la base del AWB electrónico (e-AWB). Los defectos del documento no afectan a la validez del contrato (art. 9).",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de Montreal, arts. 4 y 9 (BOE-A-2004-9347, texto consolidado).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Un porteador que contrató con el cargador subcontrata la realización de una parte del transporte con otro porteador. Según la Ley 15/2009, ¿qué posición ocupa frente al segundo?",
+      "opciones": [
+        "La de destinatario de las mercancías transportadas",
+        "La de cargador respecto del segundo porteador",
+        "La de aseguradora de la mercancía durante el transporte",
+        "No tiene ninguna relación contractual con el segundo porteador"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 6.2 Ley 15/2009: el porteador que contrató directamente con el cargador y subcontrata a otro porteador queda obligado frente a este como cargador. Es una cadena de contratos: cada eslabón es cargador del siguiente y porteador del anterior. El cargador original reclama al primer porteador, que podrá repetir contra el subcontratado.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 15/2009, art. 6.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, ¿a partir de qué espera puede el porteador exigir al cargador una indemnización por paralización del vehículo en la carga o descarga?",
+      "opciones": [
+        "Desde el primer minuto de espera del vehículo en el muelle",
+        "Cuando la espera supera las dos horas de duración",
+        "Solo cuando la espera llega a las ocho horas completas",
+        "Cuando espera más de una hora"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 22.1 establece que si el vehículo debe esperar un plazo superior a una hora hasta concluir la carga o descarga, el porteador puede exigir una indemnización por paralización. El plazo se cuenta desde la puesta a disposición del vehículo. La cuantía legal (si no se pacta otra superior): 2 × IPREM/día por hora o fracción, sin contar la primera hora ni más de diez horas diarias, con incrementos del 25 % el segundo día y del 50 % desde el tercero.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 22.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, ¿qué puede hacer el cargador en virtud de su derecho de disposición sobre la mercancía?",
+      "opciones": [
+        "Detener el transporte, devolver la mercancía o cambiar el destino",
+        "Modificar unilateralmente el precio pactado con el porteador",
+        "Exigir que el porteador utilice otro vehículo distinto del pactado",
+        "Prohibir la entrega al destinatario sin asumir ningún coste"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 29.1 reconoce al cargador el derecho de disponer de la mercancía: detener el transporte, devolverla al origen o entregarla en otro lugar o a otro destinatario. Corresponderá al destinatario si así se pactó expresamente (art. 29.2). El ejercicio y la extinción de este derecho, así como los costes que genera, se regulan en el art. 30.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 15/2009, arts. 29 y 30.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte ferroviario nacional de vagones completos, sin acuerdo de las partes, ¿cuáles son los plazos máximos de transporte que fija la Ley 15/2009?",
+      "opciones": [
+        "24 horas de expedición más 12 horas por cada fracción de 400 km",
+        "48 horas de expedición más 24 horas por cada fracción de 200 km",
+        "12 horas de expedición más 24 horas por cada 400 km",
+        "La ley no fija ningún plazo máximo y rige solo el pacto"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 33.2.a: vagones completos: plazo de expedición 12 horas y plazo de transporte de 24 horas por cada fracción indivisible de 400 km. Para envíos en paquetería: 24 horas de expedición y 24 horas por cada fracción de 200 km. Son los mismos plazos que fija el CIM en el transporte internacional (art. 16). El porteador puede ampliarlos en los casos del art. 33.3 (cambio de ancho de vía, circunstancias extraordinarias…).",
+      "criterio": "RA3.d",
+      "fuente": "Ley 15/2009, art. 33.2 y 33.3; CIM, art. 16.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte terrestre nacional (Ley 15/2009), ¿cuándo pueden considerarse perdidas las mercancías por falta de entrega?",
+      "opciones": [
+        "A los dos días de la fecha convenida para la entrega",
+        "A los 20 días de la fecha pactada o 30 desde la recogida",
+        "A los noventa días de cualquier fecha, con o sin plazo",
+        "Nunca, salvo que lo declare una resolución judicial firme"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 54.3 permite considerar perdidas las mercancías cuando hayan transcurrido veinte días desde la fecha convenida de entrega sin que esta se haya efectuado o, a falta de plazo, treinta días desde que el porteador se hizo cargo. En el CMR el supuesto es de treinta días tras el plazo convenido o sesenta días desde la recepción sin plazo (art. 20).",
+      "criterio": "RA6.e",
+      "fuente": "Ley 15/2009, art. 54.3; comparación con CMR, art. 20.1.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, ¿cuándo se revisa automáticamente el precio del transporte por carretera por la variación del combustible?",
+      "opciones": [
+        "Cuando el precio del combustible varía un 1 % o más",
+        "Solo si el porteador lo solicita por escrito al cargador",
+        "Nunca, porque el precio del transporte es inamovible",
+        "Cuando el combustible varía un 5 % o más"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 38 prevé la revisión del precio por la variación del precio del combustible entre la celebración del contrato y la ejecución del transporte, con los criterios que fije la Administración, y se aplica de forma automática cuando la variación sea igual o superior al 5 % (salvo pacto escrito de un umbral menor). La variación debe reflejarse desglosada en la factura.",
+      "criterio": "RA3.d",
+      "fuente": "Ley 15/2009, art. 38.1 y 38.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte terrestre de mercancías, ¿en qué plazo incurre en mora el obligado al pago del transporte según la Ley 15/2009?",
+      "opciones": [
+        "En treinta días, según la Ley 3/2004",
+        "A las veinticuatro horas de efectuada la entrega",
+        "A los seis meses de la entrega de la mercancía",
+        "Solo cuando el porteador lo reclama por vía judicial"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 41 fija que el obligado al pago incurre en mora a los treinta días, en los términos de la Ley 3/2004; si la fecha de recibo de la factura es dudosa (o en autofacturación), se cuenta desde la entrega en destino. Se consideran nulos los pactos abusivos en perjuicio del porteador.",
+      "criterio": "RA3.d",
+      "fuente": "Ley 15/2009, art. 41.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Un fletador por viaje o por tiempo subroga a un tercero en los derechos y obligaciones de la póliza de fletamento. Según la Ley de Navegación Marítima (subfletamento), ¿sigue siendo responsable ante el porteador?",
+      "opciones": [
+        "No, queda liberado de responsabilidad en cuanto subroga",
+        "Solo si el tercero subrogado no paga el flete pactado",
+        "Sí, sigue siendo responsable ante el porteador",
+        "Solo durante la primera semana posterior a la subrogación"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 206 LNM: salvo disposición expresa de la póliza en contrario, el fletador puede subrogar a un tercero en los derechos y obligaciones derivados de la póliza, sin perjuicio de seguir siendo responsable de su cumplimiento ante el porteador. Es el subfletamento. Además, si el fletador contrata a su vez el transporte de mercancías en régimen de conocimiento con terceros, responde solidariamente con el porteador frente a estos (art. 207).",
+      "criterio": "RA3.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 206 y 207.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

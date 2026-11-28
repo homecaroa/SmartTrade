@@ -1,0 +1,349 @@
+{
+  "modulo": "0627",
+  "tema": "1.1",
+  "titulo": "Introducción a la operación de comercio internacional y balanza de pagos",
+  "preguntas": [
+    {
+      "id": "0627-1.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la balanza de pagos de un país?",
+      "opciones": [
+        "El registro sistemático de las transacciones económicas entre residentes y no residentes durante un periodo",
+        "El registro de las deudas del Estado con los bancos nacionales",
+        "La suma de todos los impuestos recaudados en las aduanas",
+        "El presupuesto anual de gastos e ingresos del Estado"
+      ],
+      "respuesta": 0,
+      "explicacion": "Recoge todos los cobros y pagos con el resto del mundo en un periodo: bienes, servicios, rentas, transferencias y operaciones de capital y financieras.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son las tres grandes cuentas de la balanza de pagos?",
+      "opciones": [
+        "Cuenta comercial, cuenta fiscal y cuenta monetaria",
+        "Cuenta corriente, cuenta de capital y cuenta financiera",
+        "Cuenta de exportaciones, cuenta de importaciones y cuenta de reservas",
+        "Cuenta pública, cuenta privada y cuenta exterior"
+      ],
+      "respuesta": 1,
+      "explicacion": "La estructura actual (manual BPM6 del FMI) distingue cuenta corriente, cuenta de capital y cuenta financiera, más la partida de errores y omisiones.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué subbalanzas componen la cuenta corriente?",
+      "opciones": [
+        "Bienes, capital, reservas y deuda",
+        "Inversiones directas, de cartera, otras y reservas",
+        "Bienes, servicios, rentas primarias y rentas secundarias",
+        "Exportaciones, importaciones, aranceles e IVA"
+      ],
+      "respuesta": 2,
+      "explicacion": "La cuenta corriente incluye el comercio de bienes, el de servicios y las rentas primarias (trabajo y capital) y secundarias (transferencias corrientes).",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la balanza comercial?",
+      "opciones": [
+        "La diferencia entre ingresos y gastos públicos",
+        "La suma de exportaciones e importaciones de bienes y servicios",
+        "El saldo de las inversiones extranjeras",
+        "La diferencia entre las exportaciones y las importaciones de bienes"
+      ],
+      "respuesta": 3,
+      "explicacion": "Saldo = exportaciones de bienes − importaciones de bienes. Es solo una parte de la cuenta corriente (no incluye servicios ni rentas).",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Un país exporta bienes por 500 millones e importa bienes por 620 millones. ¿Cuál es su saldo comercial?",
+      "opciones": [
+        "Déficit de 120 millones",
+        "Superávit de 120 millones",
+        "Superávit de 1.120 millones",
+        "Déficit de 620 millones"
+      ],
+      "respuesta": 0,
+      "explicacion": "500 − 620 = −120: hay déficit comercial porque se importa más de lo que se exporta.",
+      "criterio": "RA1.a",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Si las exportaciones de bienes de un país son 480 y las importaciones 600, ¿cuál es su tasa de cobertura?",
+      "opciones": [
+        "125 %",
+        "80 %",
+        "120 %",
+        "20 %"
+      ],
+      "respuesta": 1,
+      "explicacion": "Tasa de cobertura = exportaciones ÷ importaciones × 100 = 480 ÷ 600 × 100 = 80 %. Por debajo del 100 % hay déficit comercial.",
+      "criterio": "RA1.a",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Los ingresos que un país recibe por los turistas extranjeros se registran en la balanza de:",
+      "opciones": [
+        "Bienes",
+        "Capital",
+        "Servicios (cuenta corriente)",
+        "Reservas oficiales"
+      ],
+      "respuesta": 2,
+      "explicacion": "El turismo es una exportación de servicios: los turistas consumen en el país y pagan con divisas.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Las remesas que envían los emigrantes a su familia en su país de origen se registran como:",
+      "opciones": [
+        "Exportaciones de bienes",
+        "Inversión extranjera directa",
+        "Rentas primarias del capital",
+        "Rentas secundarias (transferencias corrientes)"
+      ],
+      "respuesta": 3,
+      "explicacion": "Son transferencias unilaterales sin contrapartida: se incluyen en las rentas secundarias de la cuenta corriente.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Los dividendos e intereses que una empresa española cobra de sus inversiones en el extranjero se incluyen en:",
+      "opciones": [
+        "Las rentas primarias de la cuenta corriente",
+        "La balanza comercial de bienes",
+        "La cuenta de capital",
+        "Los errores y omisiones"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las rentas de inversión (dividendos, intereses, beneficios) son rentas primarias: remuneran los factores trabajo y capital.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde se registran las inversiones directas de una empresa en una filial en el extranjero?",
+      "opciones": [
+        "En la cuenta corriente",
+        "En la cuenta financiera",
+        "En la balanza comercial",
+        "En las rentas secundarias"
+      ],
+      "respuesta": 1,
+      "explicacion": "La cuenta financiera recoge la adquisición y venta de activos y pasivos financieros: inversión directa, de cartera, otras inversiones y reservas.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué recoge, en esencia, la cuenta de capital?",
+      "opciones": [
+        "Las exportaciones de bienes de equipo",
+        "Los dividendos cobrados del extranjero",
+        "Transferencias de capital y adquisiciones o ventas de activos no financieros no producidos",
+        "Las reservas del banco central"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una cuenta de menor tamaño: condonaciones de deuda, ciertas transferencias de capital y compraventa de activos no producidos (patentes, derechos).",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve la partida «errores y omisiones» de la balanza de pagos?",
+      "opciones": [
+        "Para registrar las operaciones ilegales detectadas",
+        "Para anotar las sanciones aduaneras",
+        "Para contabilizar las pérdidas de las empresas exportadoras",
+        "Para ajustar las discrepancias estadísticas, de modo que el saldo total sea cero"
+      ],
+      "respuesta": 3,
+      "explicacion": "Como las fuentes estadísticas son distintas, los datos no cuadran exactamente; la partida compensa las diferencias.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "En teoría contable, ¿cuál debe ser el saldo total de la balanza de pagos?",
+      "opciones": [
+        "Cero",
+        "Siempre positivo",
+        "Siempre negativo",
+        "Igual al saldo comercial"
+      ],
+      "respuesta": 0,
+      "explicacion": "Cada operación tiene una contrapartida (partida doble): el conjunto de las cuentas, con errores y omisiones, suma cero. Lo que puede haber son desequilibrios de cada cuenta.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Un déficit persistente de la cuenta corriente suele financiarse con:",
+      "opciones": [
+        "Más aranceles a las exportaciones",
+        "Entradas netas de capital (endeudamiento o inversión extranjera) o uso de reservas",
+        "Más exportaciones de bienes duraderos",
+        "Un superávit de la cuenta de capital únicamente"
+      ],
+      "respuesta": 1,
+      "explicacion": "Si un país gasta en el exterior más de lo que ingresa, debe financiar la diferencia pidiendo prestado, atrayendo inversión o usando reservas.",
+      "criterio": "RA1.a",
+      "fuente": "Decreto 95/2012, módulo 0627 («La balanza de pagos: concepto y estructura»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué institución elabora la balanza de pagos de España?",
+      "opciones": [
+        "El Instituto Nacional de Estadística en solitario",
+        "El Ministerio de Hacienda",
+        "El Banco de España",
+        "La Agencia Tributaria"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es el Banco de España quien la elabora y publica, siguiendo la metodología del FMI.",
+      "criterio": "RA1.a",
+      "fuente": "Conocimiento general; Banco de España.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "En el comercio internacional, ¿qué diferencia hay entre una «exportación» y una «expedición» desde España?",
+      "opciones": [
+        "Exportación es por mar y expedición por carretera",
+        "Exportación es de mercancía nueva y expedición de usada",
+        "No hay diferencia: son sinónimos",
+        "Exportación es la salida de mercancía hacia un país no UE; expedición, el envío a otro Estado miembro de la UE"
+      ],
+      "respuesta": 3,
+      "explicacion": "En el mercado único se habla de expediciones (salidas) y adquisiciones o introducciones (entradas) intracomunitarias; exportación e importación se reservan para terceros países.",
+      "criterio": "RA4.a",
+      "fuente": "RD 1574/2011, RA4.a; conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una «introducción» de mercancías?",
+      "opciones": [
+        "La entrada de mercancías en España procedentes de otro Estado miembro de la UE",
+        "La entrada de mercancía de un país tercero",
+        "La salida de mercancía hacia un país tercero",
+        "El envío a otro Estado miembro"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se contrapone a importación (de terceros países). Las introducciones están sujetas a IVA como adquisiciones intracomunitarias y a la declaración INTRASTAT.",
+      "criterio": "RA4.a",
+      "fuente": "RD 1574/2011, RA4.a.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "En inglés, ¿cómo se llama a quien envía las mercancías (el remitente o expedidor)?",
+      "opciones": [
+        "Consignee",
+        "Shipper (consignor)",
+        "Carrier",
+        "Notify party"
+      ],
+      "respuesta": 1,
+      "explicacion": "Consignee es el destinatario, carrier el transportista y notify party la persona a la que hay que avisar de la llegada. El glosario en inglés forma parte del currículo.",
+      "criterio": "RA5.b",
+      "fuente": "Decreto 95/2012: «Glosario de términos del comercio internacional en español e inglés».",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "En inglés, «invoice» es:",
+      "opciones": [
+        "Albarán",
+        "Conocimiento de embarque",
+        "Factura",
+        "Póliza de seguro"
+      ],
+      "respuesta": 2,
+      "explicacion": "Commercial invoice = factura comercial; bill of lading = conocimiento de embarque; packing list = lista de bultos; insurance policy = póliza.",
+      "criterio": "RA5.b",
+      "fuente": "Decreto 95/2012: «Glosario de términos del comercio internacional».",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

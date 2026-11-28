@@ -1,0 +1,241 @@
+{
+  "modulo": "0625",
+  "tema": "5.3",
+  "titulo": "Rotación de existencias y período medio de maduración",
+  "preguntas": [
+    {
+      "id": "0625-5.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué mide la rotación de existencias?",
+      "opciones": [
+        "El coste total de mantener las existencias",
+        "El tamaño del almacén en metros cuadrados",
+        "Las veces que el stock se renueva en un periodo",
+        "El número de empleados necesarios en el almacén"
+      ],
+      "respuesta": 2,
+      "explicacion": "Rotación = consumo (o coste de ventas) / stock medio.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la fórmula de la rotación de existencias?",
+      "opciones": [
+        "Stock medio dividido entre el consumo anual",
+        "Consumo anual multiplicado por el stock medio",
+        "Stock máximo dividido entre el stock mínimo",
+        "Consumo anual dividido entre el stock medio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se puede expresar en veces o en días.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué indica una rotación alta?",
+      "opciones": [
+        "Renovación rápida y menos capital inmovilizado",
+        "Que hay mucho stock acumulado en el almacén",
+        "Que existe obsolescencia en las existencias",
+        "Que no se han producido ventas en el periodo"
+      ],
+      "respuesta": 0,
+      "explicacion": "En general es positiva, salvo riesgo de rotura.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el período medio de maduración económico (PMM)?",
+      "opciones": [
+        "El tiempo de entrega que tarda el proveedor",
+        "Tiempo medio del ciclo desde la compra hasta el cobro",
+        "El tiempo de vida útil del producto vendido",
+        "El tiempo que dura la reparación de un equipo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Suma aprovisionamiento, fabricación, venta y cobro.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué fases componen el PMM económico en una empresa industrial?",
+      "opciones": [
+        "Solo la compra de materias y su pago al proveedor",
+        "Solo la fabricación de los productos en planta",
+        "Materias primas, fabricación, producto terminado y cobro",
+        "Solo la venta y la entrega al cliente final"
+      ],
+      "respuesta": 2,
+      "explicacion": "El PMM financiero resta el pago a proveedores.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el PMM financiero?",
+      "opciones": [
+        "El PMM económico más el periodo de pago a proveedores",
+        "El tiempo que se tarda en cobrar a los clientes",
+        "El tiempo de fabricación de los productos terminados",
+        "El PMM económico menos el periodo de pago a proveedores"
+      ],
+      "respuesta": 3,
+      "explicacion": "Mide el tiempo que hay que financiar.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué conviene reducir el PMM?",
+      "opciones": [
+        "Porque reduce la financiación necesaria del ciclo",
+        "Porque aumenta el stock que mantiene la empresa",
+        "Porque reduce las ventas totales del periodo",
+        "Porque aumenta los costes financieros del ciclo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Menos días = menos capital circulante necesario.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Consumo anual 36.000 uds y stock medio 3.000 uds. ¿Cuál es la rotación anual?",
+      "opciones": [
+        "0,08 veces",
+        "12,0 veces",
+        "108.000.000 veces",
+        "36,0 veces"
+      ],
+      "respuesta": 1,
+      "explicacion": "Rotación = 36.000 / 3.000 = 12,0 veces.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Con esa rotación anual de 12 veces, ¿cuántos días permanece de media una unidad en el almacén?",
+      "opciones": [
+        "4.380 días",
+        "12 días",
+        "30,4 días",
+        "353 días"
+      ],
+      "respuesta": 2,
+      "explicacion": "Días = 365 / 12 = 30,4.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "PMM: almacén de materias primas 12 días, fabricación 20, almacén de producto terminado 25, cobro 35. ¿Cuál es el PMM económico?",
+      "opciones": [
+        "57 días",
+        "35 días",
+        "240 días",
+        "92 días"
+      ],
+      "respuesta": 3,
+      "explicacion": "PMM = 12 + 20 + 25 + 35 = 92 días.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Con ese PMM económico de 92 días y un periodo medio de pago a proveedores de 30 días, ¿cuál es el PMM financiero?",
+      "opciones": [
+        "62 días",
+        "122 días",
+        "30 días",
+        "92 días"
+      ],
+      "respuesta": 0,
+      "explicacion": "PMM financiero = 92 − 30 = 62 días.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Un stock inicial de 2.000 uds y un stock final de 4.000 uds. ¿Cuál es el stock medio?",
+      "opciones": [
+        "6.000 uds",
+        "3.000 uds",
+        "2.000 uds",
+        "4.000 uds"
+      ],
+      "respuesta": 1,
+      "explicacion": "Stock medio = (2.000 + 4.000) / 2 = 3.000.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el coste de ventas es de 600.000 € y el stock medio de 50.000 €, ¿cuál es la rotación?",
+      "opciones": [
+        "0,1 veces",
+        "650 veces",
+        "12,0 veces",
+        "5,0 veces"
+      ],
+      "respuesta": 2,
+      "explicacion": "600.000 / 50.000 = 12 veces.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

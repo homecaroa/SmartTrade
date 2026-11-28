@@ -1,0 +1,349 @@
+{
+  "modulo": "0627",
+  "tema": "3.3",
+  "titulo": "Barreras no arancelarias, técnicas, administrativas y fiscales",
+  "preguntas": [
+    {
+      "id": "0627-3.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las barreras no arancelarias?",
+      "opciones": [
+        "Cupos, licencias, normas técnicas y trámites distintos del arancel",
+        "Los aranceles específicos que se fijan por unidad de peso o de volumen",
+        "Los impuestos sobre la renta que pagan las empresas importadoras",
+        "Las tasas de transporte que cobran las navieras en los puertos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Son más difíciles de medir y a veces menos transparentes que los aranceles.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un cupo o contingente cuantitativo?",
+      "opciones": [
+        "Un descuento arancelario aplicable a toda la cantidad que se importe",
+        "Un límite máximo de unidades importables en un periodo",
+        "Un impuesto especial que grava el consumo de ciertos productos",
+        "Un certificado sanitario exigido para introducir alimentos en el mercado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Si se agota, se prohíbe importar más. Se diferencia del contingente arancelario, donde lo que excede paga arancel normal.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una licencia de importación?",
+      "opciones": [
+        "El documento con el que el importador acredita el pago de la mercancía",
+        "El seguro que cubre el riesgo de impago del cliente extranjero",
+        "La autorización previa para importar ciertos productos",
+        "El contrato por el que se encarga el transporte hasta el destino"
+      ],
+      "respuesta": 2,
+      "explicacion": "Puede ser automática (solo para vigilar) o no automática (con restricción cuantitativa).",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la autolimitación de las exportaciones («restricción voluntaria»)?",
+      "opciones": [
+        "Un descuento que concede el exportador para ganar cuota de mercado",
+        "Un seguro con el que el exportador cubre el riesgo de impago",
+        "Una tasa que impone la OMC a los países con mayor superávit",
+        "Un pacto por el que el exportador limita sus ventas"
+      ],
+      "respuesta": 3,
+      "explicacion": "El Acuerdo de Salvaguardias de la OMC busca eliminar y prohibir estas medidas, como recoge el Reglamento (UE) 2015/478.",
+      "criterio": "RA3.b",
+      "fuente": "Reglamento (UE) 2015/478 (régimen común aplicable a las importaciones), DOUE L 83, 27.3.2015, vía BOE, considerando 4.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto económico tiene un cupo frente a un arancel?",
+      "opciones": [
+        "Limita la cantidad y no genera ingresos arancelarios",
+        "Aumenta siempre la recaudación del Estado por derechos de aduana",
+        "Reduce los precios internos al ampliar la oferta de productos",
+        "No tiene ningún efecto sobre la cantidad ni sobre el precio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Por eso la OMC prefiere los aranceles, más transparentes y negociables.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una barrera técnica al comercio?",
+      "opciones": [
+        "Un arancel muy elevado que se aplica a los productos de terceros países",
+        "Una norma técnica que dificulta la entrada de productos",
+        "Un cupo que fija la cantidad máxima de importación en un año",
+        "Un impuesto de matriculación que se paga al inscribir un vehículo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Incluyen requisitos de etiquetado, seguridad, homologación o marcado. El Acuerdo OTC de la OMC exige que no creen obstáculos innecesarios.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el marcado CE?",
+      "opciones": [
+        "Un impuesto europeo que se cobra al introducir productos industriales",
+        "Una marca de calidad voluntaria que concede un organismo privado",
+        "La marca de conformidad con la legislación de la UE",
+        "Un certificado que acredita el país de origen de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "El fabricante la coloca bajo su responsabilidad tras la evaluación de conformidad.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la homologación?",
+      "opciones": [
+        "Un trámite portuario previo al embarque de la mercancía en el buque",
+        "Un impuesto que se paga al introducir un producto en el mercado",
+        "Un contrato de seguro que cubre los defectos del producto",
+        "El reconocimiento oficial de conformidad con las normas técnicas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es una barrera técnica típica en vehículos, electrodomésticos o productos sanitarios.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un certificado fitosanitario?",
+      "opciones": [
+        "El que acredita que los vegetales están libres de plagas",
+        "Un certificado de calidad que acredita la conformidad de un producto industrial",
+        "Un certificado que acredita el país de origen de las mercancías",
+        "Un certificado que acredita la cobertura de un seguro de transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Lo emite el servicio oficial de sanidad vegetal del país exportador.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un certificado sanitario o veterinario?",
+      "opciones": [
+        "Un certificado de la Seguridad Social que acredita el alta de los trabajadores",
+        "El que acredita los requisitos sanitarios de productos animales",
+        "Un certificado de transporte que acredita las condiciones del vehículo",
+        "Un certificado de importación que autoriza la entrada de cualquier mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se exige en la exportación e importación de carne, lácteos, pescado, etc.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el SOIVRE?",
+      "opciones": [
+        "Un seguro de crédito que cubre el riesgo de impago de los clientes",
+        "Un banco público que financia las operaciones de comercio exterior",
+        "El servicio oficial de control de calidad en frontera",
+        "Una cámara de comercio que expide los certificados de origen"
+      ],
+      "respuesta": 2,
+      "explicacion": "Depende del ministerio competente en comercio; emite certificados de inspección y controla la conformidad con normas de seguridad y calidad.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el convenio CITES?",
+      "opciones": [
+        "Un acuerdo de transporte que regula las mercancías perecederas",
+        "Un acuerdo de pagos que regula los créditos documentarios",
+        "Un acuerdo aduanero de tránsito entre países de la UE",
+        "El convenio sobre el comercio de especies amenazadas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Exige permisos para exportar, importar o reexportar especies protegidas (por ejemplo, marfil, determinadas maderas).",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las barreras administrativas al comercio?",
+      "opciones": [
+        "Los trámites y controles documentales que dificultan el comercio",
+        "Los precios altos del transporte que encarecen la mercancía importada",
+        "Los aranceles específicos que gravan cada unidad de producto",
+        "Los acuerdos de libre comercio entre la UE y otros países"
+      ],
+      "respuesta": 0,
+      "explicacion": "Por ejemplo, exceso de documentos, horarios limitados o exigencias de agentes locales.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las barreras fiscales?",
+      "opciones": [
+        "Los aranceles únicamente, con exclusión de cualquier otro impuesto",
+        "Cargas que gravan de forma discriminatoria lo importado",
+        "Las tasas de transporte que cobran los puertos y los aeropuertos",
+        "Los seguros obligatorios que se exigen a los importadores"
+      ],
+      "respuesta": 1,
+      "explicacion": "En el comercio internacional el IVA y los impuestos especiales se liquidan en la importación; las exportaciones están exentas de IVA.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se tratan, en general, las exportaciones a terceros países en el IVA?",
+      "opciones": [
+        "Tributan al tipo reducido del IVA, sin posibilidad de deducción",
+        "Pagan IVA en el país de origen y también en el país de destino",
+        "Están exentas, con derecho a deducir el IVA soportado en las compras",
+        "Quedan fuera del IVA sin derecho a deducir el IVA soportado"
+      ],
+      "respuesta": 2,
+      "explicacion": "Principio de imposición en destino: el impuesto se paga donde se consume. Se estudia en la UD4.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué impuestos especiales se aplican en la importación de determinados productos?",
+      "opciones": [
+        "Ropa, calzado y textiles de cualquier origen y calidad",
+        "Libros, periódicos y material didáctico para la enseñanza",
+        "Maquinaria industrial y bienes de equipo de uso profesional",
+        "Alcohol, tabaco, hidrocarburos y otros consumos específicos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se liquidan en la aduana junto con los derechos de importación y el IVA.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una restricción cuantitativa a la importación?",
+      "opciones": [
+        "Un límite a la cantidad o al valor de la mercancía que puede importarse",
+        "Un arancel muy bajo que se aplica a las importaciones de la UE",
+        "Un acuerdo de exención de IVA para determinadas operaciones",
+        "Una exención de aduana para las muestras sin valor comercial"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 34 TFUE prohíbe las restricciones cuantitativas entre Estados miembros.",
+      "criterio": "RA3.b",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 34.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué prohíben los arts. 34 y 35 TFUE entre los Estados miembros?",
+      "opciones": [
+        "Los aranceles que fija la UE frente a las mercancías de terceros",
+        "Las restricciones cuantitativas y las medidas equivalentes",
+        "Los impuestos sobre la renta de las empresas exportadoras",
+        "Las subvenciones que concede la política agrícola común"
+      ],
+      "respuesta": 1,
+      "explicacion": "Son una de las bases del mercado interior.",
+      "criterio": "RA3.b",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), arts. 34 y 35.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las normas de contenido local («local content») como barrera comercial?",
+      "opciones": [
+        "Un impuesto a la exportación que grava los productos locales",
+        "Un seguro obligatorio que cubre la fabricación en el país",
+        "La exigencia de que una parte del producto se fabrique con insumos nacionales",
+        "Un acuerdo de transporte que reserva rutas a empresas locales"
+      ],
+      "respuesta": 2,
+      "explicacion": "Están prohibidas por el Acuerdo SMC de la OMC cuando son condición para recibir subvenciones.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

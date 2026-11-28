@@ -1,0 +1,349 @@
+{
+  "modulo": "0627",
+  "tema": "3.1",
+  "titulo": "Política comercial común y barreras arancelarias: el arancel de aduanas",
+  "preguntas": [
+    {
+      "id": "0627-3.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una barrera al comercio internacional?",
+      "opciones": [
+        "Cualquier medida que restringe el intercambio de bienes o servicios",
+        "Cualquier acuerdo de libre comercio entre dos países socios",
+        "Un tipo de contenedor normalizado para el transporte intermodal",
+        "Un impuesto interior sobre la renta de las empresas importadoras"
+      ],
+      "respuesta": 0,
+      "explicacion": "Pueden ser arancelarias (aranceles), no arancelarias (cupos, licencias), técnicas, administrativas y fiscales.",
+      "criterio": "RA3.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se clasifican las barreras al comercio?",
+      "opciones": [
+        "En nacionales y locales, según el ámbito territorial",
+        "En arancelarias y no arancelarias",
+        "En aéreas y marítimas, según el modo de transporte",
+        "En directas y mixtas, según el tipo de gravamen"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las no arancelarias incluyen restricciones cuantitativas, barreras técnicas, administrativas y fiscales, entre otras.",
+      "criterio": "RA3.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un arancel de aduanas?",
+      "opciones": [
+        "Un impuesto sobre la renta de las personas físicas importadoras",
+        "Una tasa de transporte que cobran los puertos y aeropuertos",
+        "Un impuesto sobre las mercancías al cruzar la frontera",
+        "Un impuesto sobre el patrimonio de las empresas importadoras"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es la barrera arancelaria típica: encarece el producto importado y protege al productor nacional.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función tiene el arancel como instrumento de política comercial?",
+      "opciones": [
+        "Fomentar la entrada masiva de importaciones baratas al país",
+        "Reducir la recaudación del Estado para abaratar los precios",
+        "Eliminar por completo la competencia internacional en el mercado",
+        "Proteger la producción nacional y obtener ingresos públicos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Al subir el precio de las importaciones, favorece a los productores locales; también genera recaudación.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un derecho de aduana «ad valorem»?",
+      "opciones": [
+        "Un porcentaje sobre el valor de la mercancía",
+        "Un importe fijo por unidad de peso de la mercancía",
+        "Una cuota fija por cada contenedor que cruza la frontera",
+        "Un derecho que solo se aplica a las exportaciones"
+      ],
+      "respuesta": 0,
+      "explicacion": "Ejemplo: 6,5 % sobre el valor en aduana. Se contrapone al derecho específico (importe por unidad: kg, litro...).",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un derecho específico?",
+      "opciones": [
+        "Un porcentaje que se calcula sobre el valor de la mercancía",
+        "Un importe fijo por unidad de peso, volumen o cantidad",
+        "Una tasa que se cobra por cada trámite de despacho aduanero",
+        "Un impuesto que se añade al IVA de la importación"
+      ],
+      "respuesta": 1,
+      "explicacion": "Ejemplo: 50 euros por 100 kg. Un derecho mixto combina ad valorem y específico.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un derecho mixto o compuesto?",
+      "opciones": [
+        "El que solo se aplica a las mercancías en tránsito",
+        "El que depende del Incoterm pactado en la compraventa",
+        "El que combina un porcentaje y un importe específico",
+        "El que paga el exportador al banco que financia la venta"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se encuentran, por ejemplo, en algunos productos agrícolas y alimentarios del TARIC.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Una mercancía con valor en aduana de 10.000 € paga un derecho de importación del 6,5 % ad valorem. ¿Cuánto es el derecho?",
+      "opciones": [
+        "65 €",
+        "6.500 €",
+        "1.065 €",
+        "650 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "10.000 × 6,5 % = 650 €.",
+      "criterio": "RA3.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién fija los derechos del arancel aduanero común de la UE, según el Tratado?",
+      "opciones": [
+        "El Consejo, a propuesta de la Comisión",
+        "Cada Estado miembro por separado para sus importaciones",
+        "El Parlamento Europeo sin intervención de la Comisión",
+        "La OMC, mediante decisión de su Conferencia Ministerial"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 31 TFUE. Es una competencia de la Unión, no de los Estados.",
+      "criterio": "RA3.c",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 31.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué prohíbe el art. 30 del TFUE entre los Estados miembros?",
+      "opciones": [
+        "Los impuestos sobre la renta de las personas físicas",
+        "Los derechos de aduana y las exacciones de efecto equivalente",
+        "El IVA y los impuestos especiales sobre el consumo",
+        "Las tasas de transporte que cobran los puertos y aeropuertos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Esta prohibición se aplica también a los derechos de aduana de carácter fiscal. Es la base de la unión aduanera.",
+      "criterio": "RA3.a",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 30.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué comprende la unión aduanera de la UE según el art. 28 TFUE?",
+      "opciones": [
+        "Solo la libre circulación de personas entre los Estados miembros",
+        "Solo una moneda común para todos los Estados miembros",
+        "Sin derechos entre Estados y con un arancel común frente a terceros",
+        "Solo el euro y una política monetaria única gestionada por el BCE"
+      ],
+      "respuesta": 2,
+      "explicacion": "La unión aduanera abarca la totalidad de los intercambios de mercancías.",
+      "criterio": "RA3.a",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 28.1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una «exacción de efecto equivalente» a un derecho de aduana?",
+      "opciones": [
+        "Un impuesto sobre el beneficio de las empresas importadoras",
+        "Una multa de tráfico impuesta al conductor del camión",
+        "Una tasa por servicios que presta una empresa privada",
+        "Una carga pecuniaria por cruzar la frontera, aunque no se llame arancel"
+      ],
+      "respuesta": 3,
+      "explicacion": "Está prohibida entre Estados miembros (art. 30 TFUE). Ejemplo: una tasa a los productos importados por una inspección sanitaria que no es obligatoria.",
+      "criterio": "RA3.a",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 30.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una medida de efecto equivalente a una restricción cuantitativa?",
+      "opciones": [
+        "Una medida distinta del cupo que puede obstaculizar el comercio",
+        "Un impuesto sobre sociedades que grava los beneficios de la empresa",
+        "Una subvención al transporte de mercancías entre regiones",
+        "Una norma contable que regula la valoración de las existencias"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los arts. 34 y 35 TFUE prohíben las restricciones cuantitativas y las medidas de efecto equivalente entre Estados miembros.",
+      "criterio": "RA3.a",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), arts. 34 y 35.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué casos permite el art. 36 TFUE mantener restricciones al comercio entre Estados miembros?",
+      "opciones": [
+        "Para proteger a los productores nacionales de la competencia exterior",
+        "Por orden público, salud, patrimonio u otros motivos, sin discriminación arbitraria",
+        "Si un Estado lo decide unilateralmente y sin justificar el motivo",
+        "Solo en tiempo de guerra o en situación de excepción nacional"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las restricciones no pueden constituir un medio de discriminación arbitraria ni una restricción encubierta del comercio entre Estados miembros.",
+      "criterio": "RA3.a",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 36.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la política comercial común?",
+      "opciones": [
+        "La política de cada Estado miembro con los países terceros",
+        "La política de moneda única de los países de la zona euro",
+        "La política de la UE hacia terceros países con principios uniformes",
+        "La política común de transportes en el interior de la Unión"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 207 TFUE. Es competencia exclusiva de la Unión: los Estados miembros no negocian aranceles por separado.",
+      "criterio": "RA3.d",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 207.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién negocia los acuerdos comerciales de la UE con terceros países?",
+      "opciones": [
+        "Cada ministerio de comercio nacional de forma independiente",
+        "El Banco Central Europeo, con la autorización del Parlamento",
+        "La Organización Mundial del Comercio, en nombre de los Estados",
+        "La Comisión Europea, con mandato del Consejo"
+      ],
+      "respuesta": 3,
+      "explicacion": "El Parlamento Europeo debe dar su aprobación a los acuerdos comerciales.",
+      "criterio": "RA3.d",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 207 y 218 (conocimiento general).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el régimen de «libre práctica»?",
+      "opciones": [
+        "Mercancías de terceros países que han pagado derechos y circulan libremente",
+        "El libre comercio con cualquier país sin derechos ni controles",
+        "La exención total de impuestos para toda mercancía importada",
+        "El tránsito de mercancías por la UE sin control aduanero alguno"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 29 TFUE. Los productos en libre práctica se asimilan a los originarios de la Unión a efectos de circulación.",
+      "criterio": "RA4.g",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 29.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el SPG (Sistema de Preferencias Generalizadas) de la UE?",
+      "opciones": [
+        "Un seguro de transporte para mercancías de alto valor",
+        "Aranceles reducidos o nulos para importaciones de países en desarrollo",
+        "Un sistema de pagos entre bancos de países en desarrollo",
+        "Un acuerdo de la OMC sobre las subvenciones agrícolas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es una medida unilateral de la política comercial autónoma destinada a favorecer a los países en desarrollo.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un contingente arancelario?",
+      "opciones": [
+        "Una prohibición total de importar determinados productos",
+        "Un impuesto especial sobre el consumo de ciertos bienes",
+        "Un volumen con arancel reducido; el exceso paga el arancel normal",
+        "Una exención del IVA para la importación de bienes de equipo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se diferencia del cupo o contingente cuantitativo, que limita la cantidad con prohibición de lo que excede.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,223 @@
+{
+  "modulo": "0622",
+  "tema": "1.9",
+  "titulo": "Organismos y empresas públicas del transporte",
+  "preguntas": [
+    {
+      "id": "0622-1.9-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el ámbito principal de actuación de la Organización Marítima Internacional (OMI), con sede en Londres?",
+      "opciones": [
+        "La regulación del comercio mundial de mercancías",
+        "La seguridad marítima y la prevención de la contaminación causada por los buques",
+        "La financiación de infraestructuras portuarias",
+        "La defensa de los intereses de los armadores"
+      ],
+      "respuesta": 1,
+      "explicacion": "La OMI es el organismo especializado de las Naciones Unidas para el transporte marítimo: elabora normas sobre seguridad, protección y prevención de la contaminación (el Código IMDG de mercancías peligrosas es de la OMI). No es una asociación de armadores ni regula el comercio, que es competencia de la OMC.",
+      "criterio": "RA1.f",
+      "fuente": "UNECE (listado de direcciones de organismos): OMI, 4 Albert Embankment, Londres. Mandato: conocimiento general.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estas organizaciones es un organismo intergubernamental de las Naciones Unidas y no una asociación de empresas?",
+      "opciones": [
+        "IATA",
+        "IRU",
+        "FIATA",
+        "OACI"
+      ],
+      "respuesta": 3,
+      "explicacion": "La OACI (Organización de Aviación Civil Internacional, con sede en Montreal desde 1946) es el organismo de la ONU para la aviación civil. IATA agrupa a aerolíneas, IRU a asociaciones de transportistas por carretera y FIATA a asociaciones de transitarios: son organizaciones no gubernamentales del sector privado.",
+      "criterio": "RA1.f",
+      "fuente": "OACI (sede en Montreal, «The Postal History of ICAO»). Naturaleza de IATA/IRU/FIATA: conocimiento general.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo internacional representa y defiende los intereses del transporte por carretera?",
+      "opciones": [
+        "La Unión Internacional del Transporte por Carretera (IRU), con sede en Ginebra",
+        "La Organización Mundial del Comercio, que regula los intercambios globales",
+        "El Banco Mundial, que financia infraestructuras",
+        "El Fondo Monetario Internacional"
+      ],
+      "respuesta": 0,
+      "explicacion": "La IRU es la organización mundial del transporte por carretera: reúne a asociaciones de transportistas y defiende al sector, y tiene su sede en Ginebra. Es una organización no gubernamental, con un papel importante en el sistema de garantía del régimen TIR.",
+      "criterio": "RA1.f",
+      "fuente": "IRU («Our offices»: sede en Ginebra). Papel en TIR: conocimiento general.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": ["2025-26"]
+    },
+    {
+      "id": "0622-1.9-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde tiene IATA su sede principal?",
+      "opciones": [
+        "Ginebra",
+        "Londres",
+        "Montreal",
+        "Nueva York"
+      ],
+      "respuesta": 2,
+      "explicacion": "IATA (International Air Transport Association), la asociación mundial de aerolíneas, tiene su sede principal en Montreal (Canadá) y su oficina ejecutiva en Ginebra (Suiza). Entre otras funciones, desarrolla normas como la Resolución 600a del AWB y gestiona la acreditación de agentes de carga.",
+      "criterio": "RA1.f",
+      "fuente": "IATA, «Our offices» y «Office addresses».",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organización administra el Convenio COTIF y, con él, las reglas CIM del transporte ferroviario internacional de mercancías?",
+      "opciones": [
+        "La IRU, con sede en Ginebra",
+        "La OTIF, con sede en Berna",
+        "La OMI, con sede en Londres",
+        "La OACI, con sede en Montreal"
+      ],
+      "respuesta": 1,
+      "explicacion": "La OTIF (Organización Intergubernamental para los Transportes Internacionales por Ferrocarril) tiene su sede en Berna y administra el COTIF, cuyo Apéndice B son las Reglas Uniformes CIM, y cuyo Apéndice C es el RID (mercancías peligrosas).",
+      "criterio": "RA1.f",
+      "fuente": "OTIF, «About OTIF» (sede en Berna) y texto CIM del COTIF 1999.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-006",
+      "tipo": "opcion_unica",
+      "enunciado": "FIATA, la federación internacional con secretaría en Suiza, agrupa a:",
+      "opciones": [
+        "Compañías aéreas de carga",
+        "Armadores y navieras",
+        "Empresas de transporte por carretera",
+        "Asociaciones de transitarios y agentes de transporte"
+      ],
+      "respuesta": 3,
+      "explicacion": "FIATA (Federación Internacional de Asociaciones de Transitarios) representa a transitarios y agentes de transporte y logística de todo el mundo. Su secretaría está en Glattbrugg (Suiza). Es también la creadora de documentos multimodales como el FIATA Bill of Lading (FBL).",
+      "criterio": "RA1.f",
+      "fuente": "FIATA (secretaría en Glattbrugg, según resultados de búsqueda). Documentos FBL/FWB: Decreto 95/2012, contenidos del módulo.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo elabora y publica las reglas Incoterms?",
+      "opciones": [
+        "La Cámara de Comercio Internacional (ICC/CCI), con sede en París",
+        "La Organización Mundial del Comercio",
+        "La Organización Marítima Internacional",
+        "La Unión Europea"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los Incoterms son reglas de la Cámara de Comercio Internacional (ICC/CCI) para la interpretación de los términos comerciales usados en la compraventa internacional (reparto de costes, riesgos y obligaciones). La ICC es una organización empresarial privada; los Incoterms son de adopción voluntaria por las partes.",
+      "criterio": "RA3.a",
+      "fuente": "Currículo del módulo (RD 1574/2011: «Transferencia de riesgos. Cámara de Comercio Internacional (ICC)»; Decreto 95/2012). Sede: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo de las Naciones Unidas, con sede en Ginebra, es el que gestiona el Convenio TIR?",
+      "opciones": [
+        "La OMC",
+        "La UNCTAD",
+        "La Comisión Económica para Europa (CEPE/UNECE)",
+        "La OMI"
+      ],
+      "respuesta": 2,
+      "explicacion": "La CEPE (UNECE) es la comisión regional de la ONU para Europa; su secretaría TIR gestiona el Convenio TIR de 1975 y publica el Manual TIR, y su comité de transportes interiores es el foro de otros convenios como el ADR y el CMR.",
+      "criterio": "RA1.f",
+      "fuente": "UNECE, TIR Handbook y página «About eTIR» (localizados mediante búsqueda; la sede en Ginebra no la he comprobado en fuente primaria).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ente público español coordina y controla de forma global el sistema portuario de titularidad estatal?",
+      "opciones": [
+        "Puertos del Estado",
+        "La Agencia Estatal de Seguridad Aérea (AESA)",
+        "Adif",
+        "Aena"
+      ],
+      "respuesta": 0,
+      "explicacion": "Puertos del Estado es el organismo público del Ministerio de Transportes que coordina el sistema portuario de titularidad estatal; cada puerto de interés general lo gestiona una Autoridad Portuaria. AESA supervisa la aviación civil, Adif gestiona la infraestructura ferroviaria y Aena los aeropuertos.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del marco institucional español; no consultado el texto refundido de la Ley de Puertos.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En España, ¿qué entidad pública administra la infraestructura ferroviaria de la red de interés general?",
+      "opciones": [
+        "Renfe Mercancías",
+        "Aena",
+        "Adif",
+        "Puertos del Estado"
+      ],
+      "respuesta": 2,
+      "explicacion": "Adif es el administrador de infraestructuras ferroviarias: gestiona la red de interés general (vías, estaciones, terminales de carga) y la capacidad de circulación. Las empresas ferroviarias, como Renfe Mercancías u otros operadores, son las que prestan el servicio de transporte sobre esa red.",
+      "criterio": "RA1.f",
+      "fuente": "Adif (Declaración sobre la Red; Corredor Mediterráneo), localizado mediante búsqueda.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sociedad gestiona los aeropuertos de interés general en España?",
+      "opciones": [
+        "AESA",
+        "ENAIRE",
+        "Renfe",
+        "Aena"
+      ],
+      "respuesta": 3,
+      "explicacion": "Aena gestiona los aeropuertos de interés general. ENAIRE se ocupa de la navegación aérea (control del tráfico aéreo) y AESA es la autoridad de supervisión de la seguridad de la aviación civil.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del marco institucional español.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.9-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos es una organización no gubernamental del sector privado?",
+      "opciones": [
+        "OMI",
+        "IATA",
+        "OACI",
+        "OTIF"
+      ],
+      "respuesta": 1,
+      "explicacion": "IATA es una asociación comercial de aerolíneas. La OMI y la OACI son organismos especializados de la ONU y la OTIF es una organización intergubernamental. Otras organizaciones no gubernamentales del sector: IRU (carretera), FIATA (transitarios) y la ICC (comercio).",
+      "criterio": "RA1.f",
+      "fuente": "IATA («Our offices»); naturaleza de las demás: conocimiento general.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

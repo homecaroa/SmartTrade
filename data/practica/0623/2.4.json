@@ -1,0 +1,349 @@
+{
+  "modulo": "0623",
+  "tema": "2.4",
+  "titulo": "Insolvencia: concurso de acreedores y causas de disolución",
+  "preguntas": [
+    {
+      "id": "0623-2.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo procede la declaración de concurso?",
+      "opciones": [
+        "Cuando el deudor se encuentra insolvente",
+        "Siempre que la empresa tenga pérdidas contables",
+        "Cuando el deudor lo desee por motivos fiscales",
+        "Cuando exista una deuda pendiente con Hacienda"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 2.1 TRLC. El deudor debe fundar su solicitud en que se encuentra en estado de insolvencia.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 2.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién puede ser declarado en concurso?",
+      "opciones": [
+        "Solo las sociedades mercantiles de capital",
+        "Cualquier deudor, persona física o jurídica",
+        "Solo los empresarios que ejercen una actividad",
+        "Solo las personas jurídicas con más de 50 empleados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 1.1 TRLC. Se exceptúan las entidades públicas (art. 1.3).",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué entidades no pueden ser declaradas en concurso?",
+      "opciones": [
+        "Las sociedades anónimas de capital privado",
+        "Los autónomos que ejercen una actividad",
+        "Las entidades territoriales y los entes públicos",
+        "Las comunidades de bienes con actividad económica"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 1.3 TRLC.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 1.3.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la insolvencia actual?",
+      "opciones": [
+        "Tener más activos que pasivos en el balance",
+        "Haber tenido pérdidas contables en un ejercicio",
+        "Ser deudor de Hacienda por un impuesto pendiente",
+        "No cumplir regularmente las deudas exigibles"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 2.3 TRLC.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 2.3.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la insolvencia inminente?",
+      "opciones": [
+        "Prever que en tres meses no cumplirá",
+        "Haber tenido pérdidas durante un único ejercicio",
+        "Deber una cantidad a un solo acreedor",
+        "Que el impago se produzca al día siguiente"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 2.3 TRLC. Permite al deudor solicitar el concurso de forma anticipada.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 2.3.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién está legitimado para solicitar la declaración de concurso?",
+      "opciones": [
+        "Solo el juez, de oficio y sin petición previa",
+        "El deudor y cualquiera de sus acreedores",
+        "Solo el deudor, que es quien conoce su situación",
+        "Solo Hacienda, como principal acreedor del Estado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 3.1 TRLC. En una persona jurídica, decide presentar la solicitud el órgano de administración o de liquidación.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 3.1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dentro de qué plazo debe el deudor solicitar el concurso desde que conoce su insolvencia actual?",
+      "opciones": [
+        "Diez días desde que se produce el primer impago",
+        "Un año desde el cierre del ejercicio contable",
+        "Dos meses desde que conoció la insolvencia",
+        "No hay plazo legal para solicitarlo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 5.1 TRLC. Es el deber de solicitar el concurso; su incumplimiento puede dar lugar a la calificación de culpable.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 5.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el concurso de acreedores?",
+      "opciones": [
+        "Un préstamo bancario que reestructura las deudas",
+        "Un tipo de sociedad que se crea para pagar deudas",
+        "Una subasta pública de bienes del deudor",
+        "El procedimiento judicial para pagar a acreedores"
+      ],
+      "respuesta": 3,
+      "explicacion": "Sustituyó a la suspensión de pagos y la quiebra con la Ley Concursal de 2003.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado) (arts. 1 y 2).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Existen hoy en la legislación española la «suspensión de pagos» y la «quiebra»?",
+      "opciones": [
+        "No, se unificaron en el concurso de acreedores",
+        "Sí, ambos procedimientos siguen vigentes",
+        "Solo sigue vigente la quiebra de los comerciantes",
+        "Solo sigue vigente la suspensión de pagos"
+      ],
+      "respuesta": 0,
+      "explicacion": "El currículo las menciona por razones históricas; la Ley 22/2003 (en vigor desde 2004) las sustituyó por el concurso. Por eso conviene saber ambos nombres.",
+      "criterio": "RA2.i",
+      "fuente": "Decreto 95/2012 (los menciona); legislación concursal vigente: TRLC.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son las fases habituales del concurso?",
+      "opciones": [
+        "Solo la fase de liquidación de los bienes",
+        "Fase común, convenio o liquidación y calificación",
+        "Solo la fase de convenio con los acreedores",
+        "Solo la sección de calificación del concurso"
+      ],
+      "respuesta": 1,
+      "explicacion": "El TRLC estructura el concurso en una fase común, la de convenio o de liquidación, y la calificación (que valora si fue fortuito o culpable).",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), índice (títulos de fase común, convenio, liquidación y calificación).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la liquidación en el concurso?",
+      "opciones": [
+        "Se aprueba un convenio con quitas y esperas",
+        "Se solicita al juez la declaración del concurso",
+        "Se venden los bienes para pagar a los acreedores",
+        "Se cobran las ayudas públicas a empresas en crisis"
+      ],
+      "respuesta": 2,
+      "explicacion": "Si no hay convenio posible, se abre la liquidación.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), Libro I, título de la liquidación.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un convenio en el concurso?",
+      "opciones": [
+        "Un contrato de seguro que cubre las deudas",
+        "Una sanción que impone el juez al deudor",
+        "Una subasta de los bienes del deudor",
+        "Acuerdo con quitas o esperas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Permite continuar la actividad cumpliendo lo pactado.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), Libro I, título del convenio.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la sección de calificación?",
+      "opciones": [
+        "Determina si el concurso es fortuito o culpable",
+        "La subasta de los bienes del deudor concursado",
+        "La solicitud de ayudas públicas por la crisis",
+        "El pago de dividendos a los accionistas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Un concurso culpable puede conllevar inhabilitación e incluso la obligación de cubrir el déficit.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), índice (sección de calificación).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "En una sociedad de capital, ¿qué causa de disolución se produce por pérdidas?",
+      "opciones": [
+        "Que el beneficio del ejercicio baje un 5 %",
+        "Pérdidas que bajan el patrimonio de la mitad del capital",
+        "Que haya pérdidas durante un solo ejercicio",
+        "Que el capital social se reduzca a 3.000 euros"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 363.1.e LSC. Obliga a actuar: ampliar capital, reducirlo, o disolver (o solicitar concurso si procede).",
+      "criterio": "RA2.i",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 363.1.e.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué otra causa de disolución prevé la LSC por inactividad?",
+      "opciones": [
+        "Cualquier inactividad durante un mes",
+        "Que la sociedad tenga un único socio",
+        "El cese de la actividad, tras más de un año",
+        "No repartir dividendos durante un ejercicio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 363.1.a LSC.",
+      "criterio": "RA2.i",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 363.1.a.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la exoneración del pasivo insatisfecho («segunda oportunidad»)?",
+      "opciones": [
+        "Un impuesto que grava el patrimonio del deudor",
+        "Un préstamo para reestructurar las deudas",
+        "Un tipo de sociedad para empresarios en crisis",
+        "Que el deudor de buena fe quede libre de deudas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 486 TRLC: el deudor persona natural, sea o no empresario, de buena fe, puede solicitarla con plan de pagos o con liquidación de la masa activa.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 486.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué permite la comunicación de apertura de negociaciones del art. 585 TRLC?",
+      "opciones": [
+        "Comunicar al juzgado la negociación con acreedores",
+        "Declarar el concurso de forma automática",
+        "Cobrar una ayuda pública a empresas en crisis",
+        "Cancelar las deudas sin acuerdo de acreedores"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es un mecanismo preconcursal introducido en la reforma de 2022 para intentar evitar el concurso.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado), art. 585.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué responsabilidad tiene un empresario individual en un concurso?",
+      "opciones": [
+        "Solo con el capital que aportó a la actividad",
+        "Con todo su patrimonio, salvo exoneración",
+        "Con ninguno, porque responde la empresa",
+        "Solo con el local donde ejerce la actividad"
+      ],
+      "respuesta": 1,
+      "explicacion": "Por eso es relevante la «segunda oportunidad» para autónomos de buena fe.",
+      "criterio": "RA2.i",
+      "fuente": "Texto refundido de la Ley Concursal, RDLeg 1/2020 (BOE-A-2020-4859, texto consolidado) (art. 486) y principios generales de responsabilidad patrimonial.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.4-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene en general la declaración de concurso sobre las facultades de administración del deudor?",
+      "opciones": [
+        "Se refuerzan al contar con ayuda de la administración",
+        "No cambian nunca, aunque haya concurso declarado",
+        "Quedan intervenidas por la administración concursal",
+        "Se transfieren al Registro Mercantil de la provincia"
+      ],
+      "respuesta": 2,
+      "explicacion": "El tipo de efecto depende de si el concurso es voluntario o necesario y de la decisión del juez.",
+      "criterio": "RA2.i",
+      "fuente": "Conocimiento general; TRLC, Libro I (no se ha leído el artículo concreto).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

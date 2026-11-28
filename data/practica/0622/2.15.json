@@ -1,0 +1,187 @@
+{
+  "modulo": "0622",
+  "tema": "2.15",
+  "titulo": "Selección de rutas",
+  "preguntas": [
+    {
+      "id": "0622-2.15-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el currículo del módulo, ¿qué debe valorarse para seleccionar la ruta adecuada?",
+      "opciones": [
+        "Solo la distancia en kilómetros entre origen y destino",
+        "Solo el precio del flete que ofrece cada transportista",
+        "Rutas, puntos de intercambio, producto, destino y contrato",
+        "Solo el modo de transporte que prefiera el cliente"
+      ],
+      "respuesta": 2,
+      "explicacion": "El criterio RA2.d pide valorar las rutas disponibles, los puntos de intercambio óptimos, las características del producto, el destino y las condiciones del contrato. El RA2.e añade analizar todos los componentes de coste, los plazos de recogida y entrega y los riesgos. Es una decisión multicriterio, no solo de precio o de distancia.",
+      "criterio": "RA2.d",
+      "fuente": "RD 1574/2011, Anexo I, módulo 0622, RA2.d y RA2.e.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué consiste el método de ponderación para comparar rutas alternativas?",
+      "opciones": [
+        "Dar peso a cada criterio, puntuar cada ruta y sumar",
+        "Elegir siempre la ruta más barata de las disponibles",
+        "Sortear la ruta entre las distintas alternativas posibles",
+        "Elegir siempre la ruta que tenga un mayor número de escalas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es una técnica de decisión multicriterio: se fijan pesos que reflejan la importancia de cada criterio (suman 100 %), se puntúa cada ruta y se calcula la suma ponderada. La mejor puntuación indica la alternativa preferible, aunque conviene comprobar las restricciones obligatorias (por ejemplo, un plazo máximo), que no siempre se recogen en la puntuación.",
+      "criterio": "RA2.d",
+      "fuente": "Decreto 95/2012 («Selección de rutas. Optimización. Confección, métodos de selección de rutas. Evaluación de alternativas»). Técnica estándar.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué la ruta más corta en kilómetros no siempre es la óptima?",
+      "opciones": [
+        "El número de kilómetros no influye nunca en el coste total",
+        "Las rutas más cortas son siempre las más peligrosas",
+        "Los kilómetros solo tienen importancia en el transporte aéreo",
+        "Influyen también plazo, coste total, restricciones y fiabilidad"
+      ],
+      "respuesta": 3,
+      "explicacion": "La ruta óptima equilibra coste total, tiempo, fiabilidad, riesgo y restricciones. Una ruta corta puede tener peajes, congestión, trasbordos, restricciones de circulación o falta de servicios frecuentes; otra más larga por autopista o por ferrocarril puede ser más rápida, barata o fiable.",
+      "criterio": "RA2.e",
+      "fuente": "RD 1574/2011, RA2.e.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Una mercancía de 120.000 € de valor tarda 30 días en llegar y el coste financiero del capital es del 8 % anual. Con año de 365 días, ¿cuál es el coste financiero de la mercancía en tránsito?",
+      "opciones": [
+        "640,00 €",
+        "789,04 €",
+        "800,00 €",
+        "960,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Coste financiero = valor × tasa × días ÷ 365 = 120.000 × 0,08 × 30 ÷ 365 = 789,04 €. Es un coste real de las rutas lentas: la mercancía inmovilizada en tránsito financia stock. Con año comercial de 360 días saldrían 800,00 €, pero el enunciado fija 365.",
+      "criterio": "RA2.e",
+      "fuente": "Cálculo financiero simple aplicado a la elección de rutas (RA2.e: componentes de costes).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué indicadores permiten valorar si las decisiones de ruta tomadas fueron acertadas y mejorarlas en futuras operaciones?",
+      "opciones": [
+        "El color de los vehículos y el logotipo del transportista",
+        "El número de teléfono del conductor asignado al envío",
+        "Puntualidad, coste por envío, incidencias y reclamaciones",
+        "El número de países atravesados por la ruta elegida"
+      ],
+      "respuesta": 2,
+      "explicacion": "El criterio RA2.h pide definir indicadores de calidad que permitan valorar las decisiones tomadas y aplicar mejoras: porcentaje de entregas a tiempo (OTD), coste por envío o por tonelada-km, tasa de daños o incidencias, reclamaciones, tiempos de tránsito reales frente a los previstos.",
+      "criterio": "RA2.h",
+      "fuente": "RD 1574/2011, RA2.h.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Al planificar una ruta por carretera en España, ¿qué condicionante hay que consultar además de la distancia?",
+      "opciones": [
+        "Calendarios de restricciones a la circulación publicados por tráfico",
+        "El horario de apertura de las oficinas de correos locales",
+        "El número de pasajeros que viajan en el vehículo",
+        "El tipo de embalaje que utiliza el propio conductor"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las autoridades de tráfico publican cada año resoluciones con restricciones a la circulación (por ejemplo, de vehículos pesados o de mercancías peligrosas en fines de semana, festivos o tramos concretos); un ejemplo es la Resolución ISP/430/2025 de Cataluña, publicada en el BOE. Ignorarlas retrasa el viaje y puede dar lugar a sanciones.",
+      "criterio": "RA2.e",
+      "fuente": "BOE-A-2025-4085 (Resolución ISP/430/2025, restricciones a la circulación en 2025). Localizada mediante búsqueda: no he leído el contenido.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Reglamento (CE) 561/2006 sobre tiempos de conducción y descanso, ¿tras cuántas horas de conducción debe el conductor hacer una pausa de al menos 45 minutos?",
+      "opciones": [
+        "Tras 3 horas de conducción continuada",
+        "Tras 6 horas de conducción continuada",
+        "Tras 8 horas de conducción continuada",
+        "Tras 4,5 horas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Tras un periodo de conducción de cuatro horas y media, el conductor debe hacer una pausa ininterrumpida de al menos 45 minutos (puede sustituirse por una pausa de 15 minutos seguida de otra de 30). Estos límites condicionan el plazo de la ruta y la necesidad de relevos o de más de un conductor.",
+      "criterio": "RA2.e",
+      "fuente": "Reglamento (CE) 561/2006, art. 7. Conocimiento general; no he podido abrir el texto del Reglamento.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Reglamento (CE) 561/2006, ¿cuál es el tiempo de conducción diario máximo con carácter general?",
+      "opciones": [
+        "Seis horas, sin posibilidad de ampliación alguna",
+        "Nueve horas, ampliable a diez dos veces por semana",
+        "Doce horas, ampliables a catorce una vez por semana",
+        "No hay límite diario, solo semanal"
+      ],
+      "respuesta": 1,
+      "explicacion": "El tiempo de conducción diario no puede exceder de nueve horas, ampliable a diez como máximo dos veces por semana. También hay límites semanales (56 horas) y bisemanales (90 horas) y descansos diarios y semanales obligatorios, controlados con el tacógrafo.",
+      "criterio": "RA2.e",
+      "fuente": "Reglamento (CE) 561/2006, art. 6. Conocimiento general; no he podido abrir el texto del Reglamento.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Al evaluar una alternativa de ruta con transbordo frente a otra directa, ¿qué ventaja e inconveniente típicos presenta el transbordo?",
+      "opciones": [
+        "Aprovecha un modo más barato, pero añade tiempo y riesgo",
+        "Reduce siempre el plazo y elimina por completo el riesgo",
+        "No tiene ningún coste adicional para la operación",
+        "Obliga a cambiar el contrato de compraventa internacional"
+      ],
+      "respuesta": 0,
+      "explicacion": "El transbordo permite combinar modos (tren o barco en el tramo largo), consolidar cargas y conectar redes, pero cada cambio de medio añade tiempo, costes de manipulación y probabilidad de daños o pérdidas. El RA2.f pide considerar las posibilidades de consolidación y de transbordo, junto con la fragilidad y peligrosidad de la mercancía.",
+      "criterio": "RA2.f",
+      "fuente": "RD 1574/2011, RA2.f.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.15-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se introduce la valoración medioambiental en la elección de la ruta?",
+      "opciones": [
+        "No se puede valorar el impacto ambiental del transporte",
+        "Solo mediante el color de los vehículos que se utilizan",
+        "Comparar emisiones de CO₂ por tonelada-kilómetro",
+        "Eligiendo siempre el modo de transporte más rápido"
+      ],
+      "respuesta": 2,
+      "explicacion": "El RA2.i valora la apuesta por medios que contribuyan a políticas de conservación medioambientales: se comparan emisiones por tonelada-kilómetro (en general, menores en barco y tren que en camión y avión) y se puede incluir el cálculo de huella de carbono como criterio, además del coste y el plazo.",
+      "criterio": "RA2.i",
+      "fuente": "RD 1574/2011, RA2.i.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,367 @@
+{
+  "modulo": "0627",
+  "tema": "1.7",
+  "titulo": "Incoterms 2020 y su aplicación en la compraventa internacional",
+  "preguntas": [
+    {
+      "id": "0627-1.7-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los Incoterms?",
+      "opciones": [
+        "Impuestos que se aplican al comercio exterior de la UE",
+        "Reglas de la CCI sobre obligaciones, costes y riesgos en la entrega",
+        "Un seguro que cubre las mercancías durante el transporte",
+        "Normas de la OMC sobre aranceles en el comercio de bienes"
+      ],
+      "respuesta": 1,
+      "explicacion": "No regulan la transmisión de la propiedad ni el pago; son de uso voluntario y deben incorporarse al contrato.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántas reglas contiene la versión Incoterms 2020?",
+      "opciones": [
+        "Trece",
+        "Ocho",
+        "Once",
+        "Quince"
+      ],
+      "respuesta": 2,
+      "explicacion": "Siete reglas valen para cualquier modo de transporte (EXW, FCA, CPT, CIP, DAP, DPU, DDP) y cuatro son para transporte marítimo y vías navegables interiores (FAS, FOB, CFR, CIF).",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué Incoterms 2020 son aptos para cualquier modo o modos de transporte?",
+      "opciones": [
+        "FOB, CFR, CIF y FAS, reservados al transporte marítimo",
+        "Solo EXW y DDP, que son los extremos de la gama",
+        "FOB, DAP y DDP, para el transporte multimodal",
+        "EXW, FCA, CPT, CIP, DAP, DPU y DDP"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los cuatro marítimos son FAS, FOB, CFR y CIF.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué Incoterms 2020 son exclusivos del transporte marítimo y por vías navegables interiores?",
+      "opciones": [
+        "FAS, FOB, CFR y CIF",
+        "EXW, FCA, CPT, CIP",
+        "DAP, DPU, DDP",
+        "CPT, CIP, DPU"
+      ],
+      "respuesta": 0,
+      "explicacion": "No deben usarse para contenedores si la mercancía se entrega en una terminal antes de cargar.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regla Incoterms supone la mínima obligación para el vendedor?",
+      "opciones": [
+        "DDP, con entrega en destino y derechos pagados",
+        "EXW (En Fábrica), la de menor obligación para el vendedor",
+        "CIF, con transporte y seguro hasta el puerto de destino",
+        "FOB, con entrega a bordo en el puerto de embarque"
+      ],
+      "respuesta": 1,
+      "explicacion": "En EXW el vendedor pone la mercancía a disposición del comprador en sus instalaciones, sin despacharla de exportación ni cargarla.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regla Incoterms supone la máxima obligación para el vendedor?",
+      "opciones": [
+        "EXW, en la que el vendedor solo pone la mercancía a disposición",
+        "FCA, en la que entrega al transportista del comprador",
+        "DDP (Entregada con Derechos Pagados), la de mayor obligación",
+        "FOB, en la que entrega a bordo en el puerto de embarque"
+      ],
+      "respuesta": 2,
+      "explicacion": "En DDP el vendedor entrega en destino, despachada de importación y con los derechos pagados.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En EXW, ¿quién realiza el despacho de exportación?",
+      "opciones": [
+        "El vendedor",
+        "El transportista",
+        "Nadie",
+        "El comprador"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es una de las particularidades de EXW; por eso suele recomendarse FCA.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En FCA, ¿quién se encarga del despacho de exportación?",
+      "opciones": [
+        "El vendedor",
+        "El comprador",
+        "El transportista",
+        "El banco"
+      ],
+      "respuesta": 0,
+      "explicacion": "El vendedor entrega al transportista designado por el comprador, con la mercancía despachada para la exportación.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-009",
+      "tipo": "opcion_unica",
+      "enunciado": "En FOB, ¿en qué momento se transmite el riesgo al comprador?",
+      "opciones": [
+        "Cuando sale de la fábrica",
+        "Cuando la mercancía está a bordo del buque designado en el puerto de embarque",
+        "Cuando cruza la borda del buque en el puerto de destino",
+        "Cuando llega al almacén del comprador"
+      ],
+      "respuesta": 1,
+      "explicacion": "En 2020, FOB mantiene la entrega «a bordo» en el puerto de embarque.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué Incoterm es adecuado para mercancía en contenedor, si se entrega al transportista en una terminal en lugar de a bordo?",
+      "opciones": [
+        "FOB, porque es la regla propia de los contenedores",
+        "FAS, que exige colocar la carga al costado del buque",
+        "FCA, o CPT/CIP según el caso, mejor que FOB",
+        "CIF, que incluye siempre el transporte y el seguro"
+      ],
+      "respuesta": 2,
+      "explicacion": "En contenedor, el riesgo suele pasar al entregar a la terminal; FOB no refleja la práctica.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-011",
+      "tipo": "opcion_unica",
+      "enunciado": "En CIF, ¿quién contrata el transporte principal y el seguro?",
+      "opciones": [
+        "El comprador",
+        "El transportista",
+        "El banco",
+        "El vendedor"
+      ],
+      "respuesta": 3,
+      "explicacion": "El riesgo pasa al comprador al cargarse a bordo; el vendedor paga flete y seguro hasta el puerto de destino.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-012",
+      "tipo": "opcion_unica",
+      "enunciado": "En CFR, ¿qué obligación NO tiene el vendedor?",
+      "opciones": [
+        "Contratar el seguro de transporte",
+        "Contratar el transporte principal",
+        "Despachar la exportación",
+        "Entregar la mercancía a bordo"
+      ],
+      "respuesta": 0,
+      "explicacion": "CFR = coste y flete, sin seguro.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre CPT y CIP?",
+      "opciones": [
+        "No hay diferencia, porque ambas reglas incluyen seguro",
+        "En CIP el vendedor contrata además un seguro, con la cobertura (A)",
+        "CIP es una regla exclusivamente marítima, a diferencia de CPT",
+        "CPT incluye el seguro de transporte con cobertura mínima"
+      ],
+      "respuesta": 1,
+      "explicacion": "En ambos, el riesgo pasa al entregar al primer transportista.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regla sustituyó a DAT en Incoterms 2020?",
+      "opciones": [
+        "DAP, con la mercancía lista para descargar en destino",
+        "DDP, con derechos de importación pagados por el vendedor",
+        "DPU (Entregada en Lugar Descargada)",
+        "FCA, con entrega al transportista del comprador"
+      ],
+      "respuesta": 2,
+      "explicacion": "DPU admite cualquier lugar de destino, no solo una terminal; el vendedor debe descargar.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-015",
+      "tipo": "opcion_unica",
+      "enunciado": "En DAP, ¿quién descarga la mercancía en el lugar de destino?",
+      "opciones": [
+        "El vendedor",
+        "El transportista siempre",
+        "El banco",
+        "El comprador"
+      ],
+      "respuesta": 3,
+      "explicacion": "En DAP el vendedor entrega con la mercancía lista para descarga en el medio de transporte llegado.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-016",
+      "tipo": "opcion_unica",
+      "enunciado": "En DDP, ¿quién paga los derechos e impuestos de importación?",
+      "opciones": [
+        "El vendedor",
+        "El comprador",
+        "El transportista",
+        "El banco"
+      ],
+      "respuesta": 0,
+      "explicacion": "Solo debe usarse si el vendedor puede gestionar el despacho de importación.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regla suele usarse para mercancías a granel o carga voluminosa en barco que se entrega al costado del buque?",
+      "opciones": [
+        "EXW, con la mercancía a disposición en la fábrica",
+        "FAS (Franco al Costado del Buque), con entrega junto al buque",
+        "DDP, con entrega en destino y derechos pagados",
+        "DPU, con entrega descargada en el lugar de destino"
+      ],
+      "respuesta": 1,
+      "explicacion": "En FAS el riesgo pasa cuando la mercancía se coloca al costado del buque en el puerto de embarque.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el «Incoterm + lugar» en el contrato (por ejemplo, FOB Valencia)?",
+      "opciones": [
+        "Solo una referencia comercial sin efectos jurídicos",
+        "Un código aduanero que se declara en el DUA",
+        "La regla más el lugar o puerto, que fija la entrega y el riesgo",
+        "El nombre del buque que realiza el transporte principal"
+      ],
+      "respuesta": 2,
+      "explicacion": "Sin lugar preciso, la regla puede interpretarse de forma discutida.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué Incoterm 2020 incluye por defecto un seguro más amplio de lo mínimo?",
+      "opciones": [
+        "CIF, con la cobertura mínima (C) del seguro de mercancías",
+        "CPT, que no incluye seguro de ninguna clase",
+        "FOB, que no obliga a contratar seguro alguno",
+        "CIP, con la cobertura (A)"
+      ],
+      "respuesta": 3,
+      "explicacion": "CIF mantiene el mínimo (C).",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.7-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Se transmite la propiedad de la mercancía mediante el Incoterm?",
+      "opciones": [
+        "No: no regulan la propiedad, el pago ni el incumplimiento",
+        "Sí, la propiedad pasa al comprador al elegir el Incoterm",
+        "Sí, pero solo cuando se pacta DDP o DPU entre las partes",
+        "Solo en EXW, donde el comprador asume todos los riesgos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Estas cuestiones se pactan en el contrato de compraventa o en la ley aplicable.",
+      "criterio": "RA5.a",
+      "fuente": "Incoterms® 2020 (ICC); contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

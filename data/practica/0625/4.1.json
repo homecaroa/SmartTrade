@@ -1,0 +1,295 @@
+{
+  "modulo": "0625",
+  "tema": "4.1",
+  "titulo": "Costes de almacenamiento: variables y clasificación",
+  "preguntas": [
+    {
+      "id": "0625-4.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coste de almacenamiento?",
+      "opciones": [
+        "Los gastos de mantener las mercancías almacenadas",
+        "Solo el alquiler de las instalaciones del almacén",
+        "Solo el precio de compra de las mercancías",
+        "Solo el transporte hasta el cliente final"
+      ],
+      "respuesta": 0,
+      "explicacion": "Incluye costes fijos y variables.",
+      "criterio": "RA3.a",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué partidas entran en el presupuesto del almacén?",
+      "opciones": [
+        "Solo el personal fijo y las horas extraordinarias",
+        "Alquiler, personal, energía, seguros y equipos",
+        "Solo la energía eléctrica que consume el almacén",
+        "Solo los impuestos locales que gravan la actividad"
+      ],
+      "respuesta": 1,
+      "explicacion": "El presupuesto estima los costes del periodo.",
+      "criterio": "RA3.a",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es un coste fijo del almacén?",
+      "opciones": [
+        "Las horas extra que se hacen en campañas puntuales",
+        "El material de embalaje que se consume por pedido",
+        "El alquiler de la nave",
+        "La energía que consumen las carretillas según el uso"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los fijos no varían con el volumen de actividad a corto plazo.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es un coste variable del almacén?",
+      "opciones": [
+        "El alquiler mensual de la nave del almacén",
+        "La amortización de las estanterías metálicas",
+        "El seguro anual que cubre el edificio",
+        "El material de embalaje que se consume por pedido"
+      ],
+      "respuesta": 3,
+      "explicacion": "Varía con el nivel de actividad.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coste de posesión del stock?",
+      "opciones": [
+        "Financiación, seguros, obsolescencia y mermas",
+        "El precio de compra que se paga al proveedor",
+        "El coste del transporte desde el proveedor al almacén",
+        "El coste administrativo de cada pedido de reposición"
+      ],
+      "respuesta": 0,
+      "explicacion": "Suele expresarse como porcentaje anual del valor del stock.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coste de emisión o de pedido?",
+      "opciones": [
+        "El coste de mantener las existencias en el almacén",
+        "El coste administrativo de cada pedido de reposición",
+        "El coste de no tener producto cuando se necesita",
+        "El coste del personal fijo del departamento de compras"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es independiente del tamaño del pedido.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coste de ruptura de stock?",
+      "opciones": [
+        "El coste de guardar las existencias durante un periodo",
+        "El coste de transportar las mercancías al cliente",
+        "Ventas perdidas y penalizaciones por falta de producto",
+        "El coste de embalar los pedidos antes de expedirlos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se compara con el coste de mantener más stock.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los costes directos del almacén?",
+      "opciones": [
+        "Los que no pueden asignarse a ninguna actividad",
+        "Los impuestos que gravan la propiedad de la nave",
+        "Los costes financieros de los préstamos del almacén",
+        "Los que se asignan a una actividad concreta"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los indirectos se reparten con criterios.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los costes indirectos?",
+      "opciones": [
+        "Los que se reparten entre varias actividades",
+        "Los que pertenecen a una sola actividad del almacén",
+        "Los que no existen en la contabilidad de costes",
+        "Los que son extraordinarios y no se repiten cada año"
+      ],
+      "respuesta": 0,
+      "explicacion": "Ejemplo: alquiler repartido por superficie.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un indicador de coste por hora de operario?",
+      "opciones": [
+        "El coste total del almacén dividido entre las unidades",
+        "Coste de personal entre horas trabajadas",
+        "El coste de alquiler dividido entre los metros cuadrados",
+        "El coste de energía dividido entre los kilovatios"
+      ],
+      "respuesta": 1,
+      "explicacion": "Sirve para medir productividad.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coste por servicio en un almacén?",
+      "opciones": [
+        "El coste que supone la firma de un contrato de depósito",
+        "El coste que supone la emisión de una factura",
+        "El coste medio de realizar una operación",
+        "El precio de venta que se cobra al cliente final"
+      ],
+      "respuesta": 2,
+      "explicacion": "Permite fijar tarifas y comparar.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo influye la urgencia de un pedido en el coste?",
+      "opciones": [
+        "Lo reduce, porque se trabaja con mayor rapidez",
+        "No influye, porque el coste fijo no varía con la urgencia",
+        "Solo influye en el IVA que se repercute al cliente",
+        "Lo aumenta por recursos o transporte extra"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se repercute a veces con un recargo.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una desviación presupuestaria?",
+      "opciones": [
+        "La diferencia entre el coste real y el presupuestado",
+        "La diferencia entre los costes de dos clientes distintos",
+        "La diferencia entre los costes de dos años consecutivos",
+        "El coste que supone elaborar el presupuesto del almacén"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se analiza para detectar causas y corregir.",
+      "criterio": "RA3.e",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Alquiler 12.000 €, personal 30.000 €, energía 4.800 €, seguros 2.400 €, mantenimiento 3.600 € y amortización 9.000 € al año. ¿Cuál es el coste total anual del almacén?",
+      "opciones": [
+        "52.800,00 €",
+        "61.800,00 €",
+        "73.800,00 €",
+        "42.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Total = 12.000 + 30.000 + 4.800 + 2.400 + 3.600 + 9.000 = 61.800,00 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Con ese coste total y 50.000 unidades movidas al año, ¿cuál es el coste medio por unidad?",
+      "opciones": [
+        "12,36 €",
+        "0,81 €",
+        "1,24 €",
+        "1,03 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Coste unitario = 61.800 / 50.000 = 1,24 €.",
+      "criterio": "RA3.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Un almacén de 1.500 m² paga 12.000 € de alquiler al año. ¿Cuál es el coste de alquiler por m² y año?",
+      "opciones": [
+        "0,12 €",
+        "80,00 €",
+        "18.000.000,00 €",
+        "8,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "12.000 / 1.500 = 8,00 € por m² y año.",
+      "criterio": "RA3.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

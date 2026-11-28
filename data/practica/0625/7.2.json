@@ -1,0 +1,277 @@
+{
+  "modulo": "0625",
+  "tema": "7.2",
+  "titulo": "Formación del equipo y nuevas tecnologías en el almacén",
+  "preguntas": [
+    {
+      "id": "0625-7.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un plan de formación?",
+      "opciones": [
+        "Un plan de ventas para alcanzar los objetivos comerciales",
+        "Acciones formativas planificadas para el personal",
+        "Un plan de compras para abastecer el almacén",
+        "Un plan fiscal para optimizar los impuestos de la empresa"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se basa en las necesidades detectadas.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué objetivos tiene un plan de formación en el almacén?",
+      "opciones": [
+        "Aumentar las incidencias para detectar los problemas",
+        "Reducir la plantilla para ahorrar costes de personal",
+        "Mejorar eficiencia y seguridad y reducir errores",
+        "Eliminar los procedimientos para ganar flexibilidad"
+      ],
+      "respuesta": 2,
+      "explicacion": "Debe alinearse con los objetivos de la empresa.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la formación inicial?",
+      "opciones": [
+        "La formación anual que se ofrece a toda la plantilla",
+        "La formación específica que recibe el director",
+        "La formación que se ofrece a los proveedores",
+        "La del trabajador al incorporarse al puesto"
+      ],
+      "respuesta": 3,
+      "explicacion": "En prevención de riesgos es obligatoria al contratarse.",
+      "criterio": "RA6.g",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la formación continua?",
+      "opciones": [
+        "La que se recibe para actualizarse en el trabajo",
+        "La que solo se recibe al empezar en la empresa",
+        "La que no cuenta como formación para el puesto",
+        "La que es obligatoria por la normativa fiscal"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se adapta a cambios en equipos y procesos.",
+      "criterio": "RA6.g",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se detectan las necesidades de formación?",
+      "opciones": [
+        "Preguntando solo al director de la empresa",
+        "Comparando competencias requeridas y reales",
+        "Sin ningún análisis previo, según las modas formativas",
+        "Por sorteo entre los trabajadores de la plantilla"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se pueden hacer entrevistas, observación y evaluación del desempeño.",
+      "criterio": "RA6.g",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué métodos de formación existen?",
+      "opciones": [
+        "Solo presencial, en aula y con formador",
+        "Solo online, mediante cursos grabados",
+        "Presencial, en el puesto, online y mixta",
+        "Solo lectura de manuales de procedimientos"
+      ],
+      "respuesta": 2,
+      "explicacion": "La elección depende del objetivo y del colectivo.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se evalúa un plan de formación?",
+      "opciones": [
+        "No se evalúa, porque la formación se da por buena",
+        "Solo con una encuesta de satisfacción al finalizar",
+        "Solo con el control de asistencia de los alumnos",
+        "Midiendo reacción, aprendizaje y resultados"
+      ],
+      "respuesta": 3,
+      "explicacion": "Modelo de Kirkpatrick: cuatro niveles.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un programa de gestión de tareas o cronograma?",
+      "opciones": [
+        "Una herramienta que planifica tareas y plazos",
+        "Un archivo de datos con las existencias valoradas",
+        "Un inventario de los equipos de manutención",
+        "Un tipo de embalaje para las unidades de carga"
+      ],
+      "respuesta": 0,
+      "explicacion": "Ejemplos: diagrama de Gantt.",
+      "criterio": "RA6.h",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un diagrama de Gantt?",
+      "opciones": [
+        "Un gráfico circular con porcentajes de las ventas",
+        "Un gráfico de barras de tareas en el tiempo",
+        "Un diagrama de flujo de los procesos del almacén",
+        "Un mapa de ubicaciones de las referencias"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se usa para planificar proyectos y turnos.",
+      "criterio": "RA6.h",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la automatización del almacén?",
+      "opciones": [
+        "El almacenamiento manual con carretillas convencionales",
+        "El inventario anual que se realiza a mano",
+        "Equipos que hacen tareas sin intervención humana",
+        "La formación continua del personal del almacén"
+      ],
+      "respuesta": 2,
+      "explicacion": "Aumenta productividad y reduce errores.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los robots móviles autónomos (AMR/AGV) en el almacén?",
+      "opciones": [
+        "Carretillas elevadoras que conduce un operario",
+        "Transpaletas manuales de trayectos cortos",
+        "Cintas fijas que unen dos puntos del almacén",
+        "Vehículos que transportan cargas sin conductor"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los AGV siguen rutas fijas; los AMR se adaptan.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Internet de las Cosas (IoT) aplicado al almacén?",
+      "opciones": [
+        "Sensores que envían datos en tiempo real",
+        "Un tipo de papel para imprimir las etiquetas",
+        "Un tipo de camión para el reparto urbano",
+        "Un tipo de contrato de arrendamiento de naves"
+      ],
+      "respuesta": 0,
+      "explicacion": "Mejora la visibilidad y la trazabilidad.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja ofrece la analítica de datos (Big Data) en el almacén?",
+      "opciones": [
+        "Elimina por completo la necesidad de stock",
+        "Prever la demanda y detectar ineficiencias",
+        "Elimina al personal del almacén",
+        "No aporta ninguna ventaja operativa al almacén"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se apoya en el WMS y los sensores.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué riesgo tiene la automatización mal planificada?",
+      "opciones": [
+        "Ningún riesgo, porque la automatización es siempre rentable",
+        "Más errores en todas las operaciones sin excepción",
+        "Inversión elevada y problemas de integración",
+        "Menor productividad que el trabajo manual en todos los casos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Exige análisis de rentabilidad.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-7.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué significa «almacén inteligente» (smart warehouse)?",
+      "opciones": [
+        "Un almacén pequeño de poca capacidad de almacenaje",
+        "Un almacén en el que no trabaja ninguna persona",
+        "Un almacén al aire libre sin edificación alguna",
+        "Un almacén que automatiza con tecnologías digitales"
+      ],
+      "respuesta": 3,
+      "explicacion": "Combina WMS, sensores, robots y analítica.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de gestión de calidad, formación y tecnología en almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

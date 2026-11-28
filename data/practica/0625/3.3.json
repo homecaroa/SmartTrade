@@ -1,0 +1,277 @@
+{
+  "modulo": "0625",
+  "tema": "3.3",
+  "titulo": "Organización de flujos, layout y recepción de mercancías",
+  "preguntas": [
+    {
+      "id": "0625-3.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué fases tiene el flujo básico de mercancías en un almacén?",
+      "opciones": [
+        "Recepción, almacenaje, preparación y expedición",
+        "Compra, venta, cobro y pago de las mercancías",
+        "Producción, marketing, servicio y atención al cliente",
+        "Transporte, seguro, aduana y entrega en destino"
+      ],
+      "respuesta": 0,
+      "explicacion": "Cada fase tiene procedimientos y documentos.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el layout o diseño en planta del almacén?",
+      "opciones": [
+        "La lista de proveedores con sus condiciones de pago",
+        "La distribución de zonas, muelles y pasillos",
+        "El manual de calidad con los procedimientos internos",
+        "El inventario valorado de las existencias al cierre"
+      ],
+      "respuesta": 1,
+      "explicacion": "Debe minimizar recorridos y cruces de flujos.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué zonas suele tener un almacén?",
+      "opciones": [
+        "Solo la zona de almacenaje con estanterías y pasillos",
+        "Solo oficinas para la gestión administrativa del almacén",
+        "Muelles, almacenaje, picking, oficinas y devoluciones",
+        "Solo muelles para la carga y descarga de camiones"
+      ],
+      "respuesta": 2,
+      "explicacion": "La organización depende de la actividad.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipos de flujo de mercancías en planta existen?",
+      "opciones": [
+        "Solo en espiral alrededor del muelle de entrada",
+        "Solo vertical, de una planta a otra del almacén",
+        "Solo aleatorio, según el hueco libre más próximo",
+        "En U, en línea recta y en L"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se elige según el espacio, los muelles y el tipo de operación.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la recepción de mercancías?",
+      "opciones": [
+        "Descarga, control e ingreso de la mercancía",
+        "La preparación de los pedidos que salen del almacén",
+        "La expedición de la mercancía hacia los clientes",
+        "El envasado de los productos para su venta al detalle"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es el primer paso del flujo.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se compara en el control de recepción?",
+      "opciones": [
+        "La factura con el cheque que paga el proveedor",
+        "La mercancía recibida con el pedido y el albarán",
+        "El pedido de compra con el inventario del año anterior",
+        "El albarán de entrega con la nómina del operario"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se comprueban cantidades, referencias y estado.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el control cuantitativo en recepción?",
+      "opciones": [
+        "Que la calidad del producto sea la pactada con el proveedor",
+        "Que el precio facturado coincida con el del pedido",
+        "Que bultos y unidades coincidan con el albarán",
+        "Que la fecha del pedido coincida con la de recepción"
+      ],
+      "respuesta": 2,
+      "explicacion": "El cualitativo comprueba el estado y la calidad.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el control cualitativo en recepción?",
+      "opciones": [
+        "Contar el número de bultos que descarga el camión",
+        "Revisar la factura que emite el proveedor",
+        "Medir el hueco libre del muelle de recepción",
+        "Comprobar estado y calidad de la mercancía"
+      ],
+      "respuesta": 3,
+      "explicacion": "Puede hacerse por muestreo.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Si al recibir se detectan daños en la mercancía, ¿qué debe hacerse?",
+      "opciones": [
+        "Anotar reservas y notificar al proveedor y transportista",
+        "Firmar el albarán sin comentarios para evitar problemas",
+        "Rechazar la entrega sin dejar constancia escrita",
+        "Esperar al inventario anual para comunicar el daño"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las reservas protegen la reclamación.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un aviso de expedición (ASN)?",
+      "opciones": [
+        "Un albarán que acompaña a la entrega de la mercancía",
+        "Un aviso anticipado del contenido del envío",
+        "Una factura que se emite al final del mes",
+        "Una nota de abono por una devolución de mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Permite preparar la recepción.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el «3-way match» (conciliación de tres vías)?",
+      "opciones": [
+        "Comparar las existencias de tres almacenes distintos",
+        "Comprobar la solvencia de tres proveedores alternativos",
+        "Comprobar que pedido, albarán y factura coinciden",
+        "Comparar los precios de tres ofertas de proveedores"
+      ],
+      "respuesta": 2,
+      "explicacion": "Evita pagar mercancía no recibida.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un muelle de carga?",
+      "opciones": [
+        "Zona de picking donde se preparan los pedidos de cliente",
+        "Zona de oficinas con el personal administrativo",
+        "Zona de estanterías donde se guarda el stock",
+        "Zona de carga y descarga de camiones"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los muelles deben dimensionarse según los camiones.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la ubicación de la mercancía tras la recepción?",
+      "opciones": [
+        "Asignar a cada carga su lugar en el almacén",
+        "Cobrar al proveedor el coste de la descarga",
+        "Etiquetar las cajas con los datos del cliente",
+        "Vaciar el almacén para dejar sitio a la nueva carga"
+      ],
+      "respuesta": 0,
+      "explicacion": "Puede ser fija o aleatoria.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el documento que justifica la entrada de mercancía en el almacén?",
+      "opciones": [
+        "El pedido de venta emitido por el cliente final",
+        "El albarán de entrega o nota de recepción",
+        "La nómina del operario que realiza la descarga",
+        "El contrato de depósito firmado con el depositante"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se compara con el pedido y se archiva.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un cross-docking?",
+      "opciones": [
+        "Un almacén frigorífico para productos perecederos",
+        "Un tipo de estantería de gran altura para palés",
+        "Un flujo que expide sin almacenar la mercancía",
+        "Un sistema de inventario permanente por ubicaciones"
+      ],
+      "respuesta": 2,
+      "explicacion": "Reduce los tiempos y el almacenaje.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,12 +1,13 @@
 // allowedDevOrigins: permite `npm run dev` a través del dominio de reenvío de puertos de GitHub Codespaces.
 // outputFileTracingIncludes: los datos guardados (data/snapshots) se leen con fs en tiempo de ejecución; sin esta línea
 // Vercel no los copiaría a las funciones del servidor y la web volvería a consultar en vivo sin avisar.
+// data/practica: los tests de estudio (/practica) también se leen con fs en tiempo de ejecución.
 // Claves de querySchema (lib/schemas/query.ts); tests/errors-and-pages.test.ts comprueba que coinciden.
 export const ANALYSIS_PARAMS = ["q", "market", "year", "minSize", "minGrowth", "fuente", "sort", "producto", "order", "page", "pageSize"];
 
 export default {
   allowedDevOrigins: ["*.app.github.dev"],
-  outputFileTracingIncludes: { "/**": ["./data/snapshots/**/*.json"] },
+  outputFileTracingIncludes: { "/**": ["./data/snapshots/**/*.json", "./data/practica/**/*.json"] },
   // El Laboratorio de logística (publicado el 30/10/2026) se integró ese mismo día en las operaciones de exportación:
   // sus enlaces llevan a la portada del Modo Aprendizaje en lugar de dar 404.
   //

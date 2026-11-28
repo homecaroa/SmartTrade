@@ -1,0 +1,349 @@
+{
+  "modulo": "0622",
+  "tema": "5.3",
+  "titulo": "Mercancías especiales, permisos y organismos de inspección",
+  "preguntas": [
+    {
+      "id": "0622-5.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué información debe incluir el documento de transporte ADR para cada materia peligrosa?",
+      "opciones": [
+        "Solo el peso y el precio de la mercancía",
+        "Solo el nombre del conductor del vehículo",
+        "Número ONU, designación, clase y grupo de embalaje",
+        "Únicamente el número de bultos transportados"
+      ],
+      "respuesta": 2,
+      "explicacion": "5.4.1.1.1 a)-d); además cantidad, número y descripción de bultos y datos del expedidor y destinatario.",
+      "criterio": "RA5.a",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.4.1.1.1, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "En el documento de transporte ADR, ¿cómo se escribe el número ONU?",
+      "opciones": [
+        "Sin ningún prefijo, solo con las cuatro cifras",
+        "Con el prefijo «UN» y tres cifras",
+        "Con el prefijo «ADR» y cuatro cifras",
+        "Con el prefijo «UN» y cuatro cifras"
+      ],
+      "respuesta": 3,
+      "explicacion": "Ejemplo: UN 1203.",
+      "criterio": "RA5.a",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.4.1.1.1.a, leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué abreviatura puede preceder al grupo de embalaje en el documento de transporte ADR?",
+      "opciones": [
+        "«GE» (por ejemplo, «GE II»)",
+        "«PG» obligatoriamente, por el inglés packing group",
+        "«CE», por comunidad europea",
+        "Ninguna abreviatura puede preceder al grupo"
+      ],
+      "respuesta": 0,
+      "explicacion": "5.4.1.1.1.d): puede ir precedido de «GE» o de las iniciales equivalentes en el idioma del documento.",
+      "criterio": "RA5.a",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.4.1.1.1.d, leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde deben llevarse las instrucciones escritas del ADR durante el transporte?",
+      "opciones": [
+        "En la oficina de la empresa transportista",
+        "En la cabina, al alcance, en un idioma legible",
+        "En el maletero del vehículo, junto a la rueda de repuesto",
+        "En poder del destinatario de la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "5.4.3.1 y 5.4.3.2: las proporciona el transportista antes de la salida.",
+      "criterio": "RA5.a",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.4.3.1-5.4.3.2, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué figura deben designar las empresas que expiden o transportan mercancías peligrosas por carretera?",
+      "opciones": [
+        "Un jefe de ventas especializado en el producto",
+        "Un auditor financiero de las cuentas de la empresa",
+        "Uno o varios consejeros de seguridad",
+        "Un agente de aduanas para los despachos"
+      ],
+      "respuesta": 2,
+      "explicacion": "1.8.3.1 ADR: salvo exenciones, la empresa designa a un consejero de seguridad.",
+      "criterio": "RA5.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 1.8.3.1, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Si un transporte de mercancías peligrosas en contenedor precede a un recorrido marítimo, ¿qué certificado debe entregarse al transportista marítimo?",
+      "opciones": [
+        "El certificado de origen de la mercancía",
+        "La carta de porte aéreo de la mercancía",
+        "El permiso de circulación del vehículo",
+        "El certificado de arrumazón (Código IMDG)"
+      ],
+      "respuesta": 3,
+      "explicacion": "5.4.2 ADR. Un documento único puede cumplir las funciones del documento de transporte y del certificado de arrumazón.",
+      "criterio": "RA5.a",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.4.2, leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la declaración del cargador de mercancías peligrosas en el transporte marítimo?",
+      "opciones": [
+        "Que la mercancía está bien clasificada y etiquetada",
+        "La factura comercial de la mercancía peligrosa",
+        "El seguro que cubre la mercancía peligrosa",
+        "El certificado de peso del contenedor cargado"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es la «Dangerous Goods Declaration» exigida por el IMDG; el cargador es responsable de su exactitud.",
+      "criterio": "RA5.a",
+      "fuente": "Código IMDG; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte aéreo, ¿qué documento equivale a la declaración del cargador de mercancías peligrosas?",
+      "opciones": [
+        "El conocimiento de embarque marítimo",
+        "La declaración del expedidor (IATA DGR)",
+        "El carnet TIR de tránsito aduanero",
+        "El certificado ATP del vehículo isotermo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Debe entregarse con la AWB y firmarla el expedidor formado.",
+      "criterio": "RA5.a",
+      "fuente": "IATA DGR; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué certificado acredita que un vehículo cumple las condiciones del Acuerdo ATP para transportar mercancías perecederas?",
+      "opciones": [
+        "El certificado fitosanitario",
+        "El carnet ATA",
+        "El certificado ATP del vehículo",
+        "El certificado de origen"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se emite tras ensayo y se renueva periódicamente.",
+      "criterio": "RA5.b",
+      "fuente": "Acuerdo ATP; contenido conocido, no leído en texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Para transportar animales vivos por carretera, ¿qué debe acompañar a los animales según el Reglamento (CE) n.º 1/2005?",
+      "opciones": [
+        "Solo una factura de la mercancía",
+        "Nada, si el transporte se realiza en el mismo país",
+        "Solo una póliza de seguro de los animales",
+        "Cuaderno de a bordo y documentación sanitaria"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los viajes largos requieren cuaderno de a bordo u hoja de ruta (anexo II); el reglamento exige además autorización del transportista.",
+      "criterio": "RA5.b",
+      "fuente": "Reglamento (CE) n.º 1/2005, anexo II (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo español realiza las inspecciones de calidad y seguridad de productos industriales en la importación y exportación (SOIVRE)?",
+      "opciones": [
+        "El Servicio de Inspección y Vigilancia de Exportaciones",
+        "La Agencia Tributaria, a través de sus aduanas",
+        "La Dirección General de Tráfico, a través de sus agentes",
+        "El Banco de España, a través de sus oficinas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Realiza controles de calidad y seguridad (por ejemplo, de productos industriales) en frontera, además de certificar la conformidad en exportación.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general del SOIVRE; no contrastado con la norma vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué controla Sanidad Exterior en las fronteras?",
+      "opciones": [
+        "Los aranceles que se aplican en las aduanas",
+        "Productos de uso humano y sanidad de personas",
+        "La velocidad que llevan los camiones en carretera",
+        "Los impuestos especiales sobre ciertos productos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Depende del Ministerio de Sanidad.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general; no contrastado con la norma vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué certificado exigen muchos países para la entrada de vegetales y productos vegetales?",
+      "opciones": [
+        "El certificado ATP",
+        "El certificado de arrumazón",
+        "El certificado fitosanitario",
+        "El carnet TIR"
+      ],
+      "respuesta": 2,
+      "explicacion": "Lo emite la autoridad fitosanitaria del país de origen. En envases de madera, la marca NIMF 15 es la prueba equivalente.",
+      "criterio": "RA5.e",
+      "fuente": "Convención Internacional de Protección Fitosanitaria; contenido conocido, no verificado.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué puestos controlan la entrada en la UE de animales y productos de origen animal?",
+      "opciones": [
+        "Los puertos secos del interior del país",
+        "Las oficinas de correos de las fronteras",
+        "Las lonjas de los puertos pesqueros",
+        "Los puestos de control fronterizo (antes PIF)"
+      ],
+      "respuesta": 3,
+      "explicacion": "Son los puntos autorizados para el control veterinario y sanitario oficial.",
+      "criterio": "RA5.e",
+      "fuente": "Reglamento (UE) 2017/625 y práctica habitual; no contrastado con el texto.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué convención regula el comercio internacional de especies de fauna y flora amenazadas y exige permisos específicos?",
+      "opciones": [
+        "La CITES",
+        "El CMR",
+        "El ADR",
+        "La NIMF 15"
+      ],
+      "respuesta": 0,
+      "explicacion": "Cada envío necesita permiso de exportación, importación o reexportación, según el caso.",
+      "criterio": "RA5.c",
+      "fuente": "Convención CITES; contenido conocido, no verificado en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo gestiona en España el despacho aduanero y la declaración de las mercancías?",
+      "opciones": [
+        "La CNMC, la Comisión Nacional de los Mercados",
+        "La Agencia Tributaria (Aduanas)",
+        "El ICEX, el Instituto de Comercio Exterior",
+        "El Banco de España, a través de su servicio"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los operadores presentan el DUA (declaración aduanera) mediante agente de aduanas o directamente.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe hacerse para obtener un permiso o autorización previa necesaria antes de embarcar?",
+      "opciones": [
+        "Esperar a llegar al puerto para solicitarla",
+        "Pedírselo al transportista al final del trayecto",
+        "Pedirla con antelación a la autoridad competente",
+        "Ninguna, porque se concede siempre de oficio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Un permiso tardío paraliza la mercancía, genera costes y puede bloquear el crédito documentario.",
+      "criterio": "RA5.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué técnica 3R debe aplicarse en la gestión de documentación (reducir, reutilizar y reciclar)?",
+      "opciones": [
+        "Imprimir siempre tres copias de cada documento",
+        "Destruir los documentos al terminar la operación",
+        "Usar papel de colores para cada tipo de documento",
+        "Reducir papel, reutilizar y reciclar, con firma electrónica"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es un criterio de evaluación (RA5.i) del módulo.",
+      "criterio": "RA5.i",
+      "fuente": "RD 1574/2011, criterio de evaluación RA5.i (leído).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué es importante archivar con un sistema de clasificación la documentación de transporte?",
+      "opciones": [
+        "Localizarlos en reclamaciones y auditorías",
+        "Guardarlos sin ningún orden en cajas",
+        "Porque el archivo no tiene ninguna utilidad",
+        "Evitar que se emitan las facturas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los plazos de prescripción obligan a conservar las pruebas (por ejemplo, un año en el transporte terrestre).",
+      "criterio": "RA5.g",
+      "fuente": "Ley 15/2009, art. 79 (leída) y criterios RA5.g-h.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

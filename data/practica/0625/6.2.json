@@ -1,0 +1,259 @@
+{
+  "modulo": "0625",
+  "tema": "6.2",
+  "titulo": "Costes de las devoluciones y reutilización de unidades y embalajes",
+  "preguntas": [
+    {
+      "id": "0625-6.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué costes generan las devoluciones?",
+      "opciones": [
+        "Solo el transporte de retorno de la mercancía",
+        "Transporte de retorno, inspección y reparación",
+        "Solo la reparación del producto devuelto",
+        "Ninguno, porque la devolución no genera coste alguno"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se suman a la pérdida de venta.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué suele ser el principal componente del coste de una devolución?",
+      "opciones": [
+        "La publicidad que se hace del producto devuelto",
+        "Los impuestos que gravan la devolución",
+        "El transporte, la manipulación y la depreciación",
+        "La formación del personal que gestiona las devoluciones"
+      ],
+      "respuesta": 2,
+      "explicacion": "Por eso interesa prevenir las devoluciones.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo puede reducirse el coste de las devoluciones?",
+      "opciones": [
+        "Ampliando los plazos de devolución sin ningún control",
+        "Ignorando las causas que originan las devoluciones",
+        "Rechazando todas las devoluciones que se reciban",
+        "Mejorando embalaje, información y calidad"
+      ],
+      "respuesta": 3,
+      "explicacion": "La prevención es más barata que el tratamiento.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una unidad de carga reutilizable?",
+      "opciones": [
+        "Un palé, caja o contenedor que se usa varias veces",
+        "Un embalaje de un solo uso que se desecha",
+        "Un envase de cartón fino que no admite reutilización",
+        "Una etiqueta adhesiva que se adhiere al bulto"
+      ],
+      "respuesta": 0,
+      "explicacion": "Reduce costes y residuos.",
+      "criterio": "RA5.f",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un sistema de palés retornables o de intercambio?",
+      "opciones": [
+        "Un sistema de venta de palés usados a terceros",
+        "Intercambiar palés vacíos por llenos",
+        "Un sistema de seguros para los palés dañados",
+        "Un sistema aduanero de control de los palés"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los palés EUR/EPAL se intercambian habitualmente.",
+      "criterio": "RA5.f",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventajas tienen los envases retornables?",
+      "opciones": [
+        "Aumentan siempre los costes de la cadena logística",
+        "No protegen la mercancía durante el transporte",
+        "Menos residuos y costes a largo plazo",
+        "No pueden reutilizarse más de una vez"
+      ],
+      "respuesta": 2,
+      "explicacion": "Exigen una logística de recogida.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dificultades tienen los envases retornables?",
+      "opciones": [
+        "Ninguna, porque no requieren gestión específica",
+        "Solo el color y la imagen de los envases",
+        "Solo el peso que añaden al transporte de la mercancía",
+        "Recogida, limpieza, inventario y pérdida o deterioro"
+      ],
+      "respuesta": 3,
+      "explicacion": "Requieren trazabilidad.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el depósito o fianza de un envase retornable?",
+      "opciones": [
+        "Cantidad que se devuelve al retornar el envase",
+        "Una multa que se impone al cliente por la devolución",
+        "Un impuesto que grava los envases retornables",
+        "Un descuento sobre el precio de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Incentiva la devolución.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un contenedor plegable?",
+      "opciones": [
+        "Un contenedor rígido fijo que ocupa lo mismo vacío",
+        "Un contenedor que se pliega en vacío y ahorra espacio",
+        "Un palé de madera con medidas europeas",
+        "Un camión con caja plegable para el retorno"
+      ],
+      "respuesta": 1,
+      "explicacion": "Reduce el coste del flete de retorno.",
+      "criterio": "RA5.f",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se clasifican los envases y embalajes para su reutilización?",
+      "opciones": [
+        "Por el color con que se presentan los envases",
+        "Por el precio que se pagó al comprarlos",
+        "Por material, estado y posibilidad de reutilizar",
+        "Por la marca del fabricante del envase"
+      ],
+      "respuesta": 2,
+      "explicacion": "Facilita la gestión del retorno.",
+      "criterio": "RA5.g",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre con un embalaje de madera deteriorado?",
+      "opciones": [
+        "Se tira a la calle sin ninguna gestión de residuos",
+        "Se mezcla con el stock disponible para su venta",
+        "Se vende como nuevo para recuperar su coste",
+        "Se repara o se recicla según la normativa"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se separa del flujo de reutilizables.",
+      "criterio": "RA5.g",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la economía circular?",
+      "opciones": [
+        "Mantener productos en uso y reducir residuos",
+        "Un modelo lineal de producir, usar y tirar",
+        "Un modelo de transporte con rutas circulares",
+        "Un modelo fiscal para las devoluciones de IVA"
+      ],
+      "respuesta": 0,
+      "explicacion": "La logística inversa es clave para ella.",
+      "criterio": "RA5.g",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Un palé reutilizable cuesta 25,00 € y se usa 25 veces. ¿Cuál es su coste por uso?",
+      "opciones": [
+        "625,00 €",
+        "1,00 €",
+        "2,50 €",
+        "25,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "25,00 / 25 = 1,00 € por uso.",
+      "criterio": "RA5.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Un palé de un solo uso cuesta 6 €; uno reutilizable cuesta 25 € y se usa 10 veces, con 1 € de gestión por viaje. ¿Cuál es el coste por viaje del reutilizable?",
+      "opciones": [
+        "2,50 €",
+        "6,00 €",
+        "3,50 €",
+        "26,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "25/10 + 1 = 3,50 €, menor que el de un solo uso (6 €).",
+      "criterio": "RA5.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

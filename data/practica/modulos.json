@@ -1,0 +1,2734 @@
+{
+ "version": 2,
+ "modulos": [
+  {
+   "codigo": "0622",
+   "nombre": "Transporte internacional de mercancías",
+   "horas": 210,
+   "fuente": "Decreto 95/2012 (BOCM 06/09/2012), RD 1574/2011 (BOE-A-2011-19439) e índice del libro de texto del alumno",
+   "disponible": true,
+   "resultados_aprendizaje": {
+    "1": "Determina la conveniencia de los distintos modos y medios de transporte evaluando las distintas alternativas.",
+    "2": "Selecciona los distintos modos y medios de transporte y las rutas óptimas, analizando las distintas alternativas.",
+    "3": "Elabora y cumplimenta contratos de transporte, calculando los costes correspondientes.",
+    "4": "Determina los elementos que garantizan la integridad y el tránsito de las mercancías, identificando las situaciones de riesgo habituales.",
+    "5": "Formaliza y gestiona la documentación de las operaciones de transporte internacional, analizando los requisitos exigidos en cada medio de transporte utilizado en función de la mercancía enviada.",
+    "6": "Secuencia las fases habituales del transporte y las posibles incidencias, utilizando los sistemas de comunicación, gestión y supervisión adecuados en cada operación.",
+    "7": "Tramita el seguro de las mercancías durante el transporte, ajustándose a la normativa vigente y a las condiciones establecidas en el contrato de compraventa internacional."
+   },
+   "criterios": {
+    "RA1.a": "Se han descrito los distintos modos de transporte.",
+    "RA1.b": "Se han interpretado las normas básicas que regulan las modalidades de transporte y se han clasificado sus variables, analizando ventajas e inconvenientes.",
+    "RA1.c": "Se han determinado las distintas alternativas según la mercancía y los puntos de origen y destino.",
+    "RA1.d": "Se han reconocido las infraestructuras logísticas disponibles.",
+    "RA1.e": "Se han valorado los requerimientos y la legislación específica aplicable a las mercancías peligrosas.",
+    "RA1.f": "Se han reconocido las funciones de los distintos profesionales que pueden intervenir en las expediciones internacionales.",
+    "RA1.g": "Se ha analizado la normativa legal aplicable según el modo de transporte y la operación.",
+    "RA2.a": "Se han reconocido los elementos básicos de la geografía viaria, ferroviaria, marítima y aérea de los estados miembros de la Unión Europea.",
+    "RA2.b": "Se ha obtenido información sobre posibles proveedores y los servicios que prestan, en función de las características de la operación y de los medios de transporte.",
+    "RA2.c": "Se han reconocido las áreas de cobertura de la ruta y los puntos operativos estratégicos.",
+    "RA2.d": "Se han valorado las rutas disponibles, los puntos de intercambio óptimos, las características del producto, el destino y las condiciones de contrato, para seleccionar la ruta adecuada.",
+    "RA2.e": "Se han analizado todos los componentes de costes, plazos de recogida, entrega de la mercancía y riesgos, para la selección de la ruta óptima.",
+    "RA2.f": "Se han considerado las posibilidades de consolidación y/o transbordo de la mercancía, así como la fragilidad y/o peligrosidad de la mercancía.",
+    "RA2.g": "Se han analizado las ventajas e inconvenientes de externalizar algunas o todas las fases del transporte.",
+    "RA2.h": "Se han definido indicadores de calidad que permitan valorar las decisiones tomadas y aplicar mejoras en futuras operaciones.",
+    "RA2.i": "Se ha valorado la apuesta por medios que contribuyan a políticas de conservación medioambientales.",
+    "RA3.a": "Se han descrito los contratos de transporte, teniendo en cuenta los incoterms y las obligaciones de cada una de las partes contratantes.",
+    "RA3.b": "Se ha seleccionado y formalizado el modelo de contrato del servicio de transporte.",
+    "RA3.c": "Se ha identificado la normativa, las técnicas y el sistema de tarifas aplicable a cada medio de transporte.",
+    "RA3.d": "Se han interpretado las cláusulas habituales y los componentes del coste del servicio de transporte terrestre, marítimo, aéreo y multimodal.",
+    "RA3.e": "Se ha calculado el coste de operaciones de transportes terrestres, ferroviarios, marítimos, aéreos y multimodales, con los medios informáticos adecuados.",
+    "RA3.f": "Se ha calculado el valor de la mercancía en un punto determinado de la ruta.",
+    "RA3.g": "Se han valorado los costes adicionales y los riesgos que se pueden originar en función de la mercancía, el medio de transporte y la ruta.",
+    "RA3.h": "Se han relacionado las incidencias producidas en las operaciones con las actuaciones posteriores para su subsanación.",
+    "RA4.a": "Se ha identificado la legislación específica vigente según el tipo de producto: mercancía peligrosa, perecedera, animales vivos o gran volumen.",
+    "RA4.b": "Se han seleccionado los medios de protección física, embalajes y/o coberturas exteriores adecuadas a la mercancía, así como el medio de transporte y las posibles manipulaciones en los centros de carga.",
+    "RA4.c": "Se han descrito las condiciones de señalización, rotulación y etiquetado necesarias.",
+    "RA4.d": "Se han fijado las necesidades específicas para la estiba y colocación de mercancías, según su naturaleza y la cadena de transporte utilizada.",
+    "RA4.e": "Se ha valorado la importancia de dar instrucciones concretas y se han delimitado las competencias de los distintos agentes externos que intervienen en las operaciones de transporte.",
+    "RA5.a": "Se han seleccionado los documentos de porte y tránsito necesarios según productos, ruta y medios de transporte.",
+    "RA5.b": "Se ha determinado la tipología de permisos de circulación o navegación requeridos en las distintas modalidades de transporte y los trámites para la expedición y renovación de los mismos.",
+    "RA5.c": "Se han gestionado los permisos y autorizaciones previas necesarias.",
+    "RA5.d": "Se han verificado los importes, fechas y plazos de toda la documentación.",
+    "RA5.e": "Se han descrito los procesos de inspección de las operaciones de exportación, importación, expediciones intracomunitarias, adquisiciones intracomunitarias y de compra o venta domésticas.",
+    "RA5.f": "Se han asegurado las condiciones de seguimiento y trazabilidad de la mercancía.",
+    "RA5.g": "Se han seleccionado los soportes de registro y archivo, y el sistema de clasificación y mantenimiento más adecuado para la operativa de transporte internacional.",
+    "RA5.h": "Se han respetado los niveles de protección, seguridad y acceso a la información, así como la normativa vigente.",
+    "RA5.i": "Se han aplicado, en la formalización y archivo de la documentación, las técnicas 3R (reducir, reutilizar y reciclar).",
+    "RA6.a": "Se ha analizado la importancia de la localización de la mercancía a lo largo del recorrido.",
+    "RA6.b": "Se han señalado los medios de seguimiento y supervisión de cada operación.",
+    "RA6.c": "Se han determinado los medios o aplicaciones de comunicación e información óptimos para cada operación, modo de transporte, ruta y destino.",
+    "RA6.d": "Se ha comprobado que las instrucciones dadas a los profesionales intervinientes se ajustan al procedimiento establecido para cada operación y modo de transporte.",
+    "RA6.e": "Se han definido las actuaciones que se deben realizar en caso de siniestro o incidencia.",
+    "RA6.f": "Se han especificado los indicadores de calidad del servicio de transporte y las actuaciones en caso de desviaciones endógenas repetitivas.",
+    "RA7.a": "Se han descrito las características básicas de un contrato de seguro en el transporte internacional de mercancías y los elementos que lo constituyen.",
+    "RA7.b": "Se han identificado los riesgos más habituales en una operación de compraventa internacional de mercancías y las necesidades de cobertura, para garantizar la llegada de las mercancías a su destino en las debidas condiciones.",
+    "RA7.c": "Se han determinado los sistemas de protección jurídica de las mercancías y los tipos de pólizas de seguro más utilizadas en el comercio internacional, según la modalidad de transporte utilizado.",
+    "RA7.d": "Se han utilizado las cláusulas que habitualmente se incluyen en las pólizas de seguro.",
+    "RA7.e": "Se han establecido los procedimientos de contratación del seguro en las operaciones de comercio internacional.",
+    "RA7.f": "Se ha seleccionado la póliza de seguro más adecuada para cada operación de comercio internacional, según sus condicionantes.",
+    "RA7.g": "Se ha establecido el procedimiento que se debe seguir en caso de siniestro o incidencias surgidas en las operaciones de comercio internacional cubiertas con una póliza de seguro.",
+    "RA7.h": "Se ha obtenido información sobre las principales compañías de seguros que operan en el mercado, tramitando los riesgos a través de las herramientas informáticas de sus páginas web."
+   },
+   "unidades": [
+    {
+     "num": 1,
+     "titulo": "Determinación de los distintos modos y medios de transporte",
+     "ra": [
+      1
+     ],
+     "pagina": 6,
+     "apartados": [
+      {
+       "id": "1.1",
+       "titulo": "El transporte internacional de mercancías",
+       "pagina": 8
+      },
+      {
+       "id": "1.2",
+       "titulo": "Transporte por carretera",
+       "pagina": 24
+      },
+      {
+       "id": "1.3",
+       "titulo": "Transporte ferroviario",
+       "pagina": 50
+      },
+      {
+       "id": "1.4",
+       "titulo": "Transporte marítimo",
+       "pagina": 59
+      },
+      {
+       "id": "1.5",
+       "titulo": "Transporte fluvial",
+       "pagina": 74
+      },
+      {
+       "id": "1.6",
+       "titulo": "Transporte aéreo",
+       "pagina": 81
+      },
+      {
+       "id": "1.7",
+       "titulo": "Mercancías peligrosas, perecederas y animales vivos",
+       "pagina": 105
+      },
+      {
+       "id": "1.8",
+       "titulo": "Normas UNE de la calidad de la gestión del transporte público. Sistemas de gestión de calidad según ISO. Modelos de excelencia",
+       "pagina": 120
+      },
+      {
+       "id": "1.9",
+       "titulo": "Organismos públicos y empresas públicas del transporte. Nacionales e internacionales. Organismos no gubernamentales",
+       "pagina": 134
+      }
+     ],
+     "tests": [
+      {
+       "id": "1.1",
+       "titulo": "El transporte internacional de mercancías",
+       "apartados": [
+        "1.1"
+       ],
+       "archivo": "0622/1.1"
+      },
+      {
+       "id": "1.2a",
+       "titulo": "Carretera: normativa, clases, acceso al mercado",
+       "apartados": [
+        "1.2"
+       ],
+       "archivo": "0622/1.2a"
+      },
+      {
+       "id": "1.2b",
+       "titulo": "Carretera: contrato CMR y régimen TIR",
+       "apartados": [
+        "1.2"
+       ],
+       "archivo": "0622/1.2b",
+       "ra_extra": [
+        3,
+        5,
+        6
+       ]
+      },
+      {
+       "id": "1.3",
+       "titulo": "Transporte ferroviario",
+       "apartados": [
+        "1.3"
+       ],
+       "archivo": "0622/1.3",
+       "ra_extra": [
+        3,
+        5,
+        6
+       ]
+      },
+      {
+       "id": "1.4",
+       "titulo": "Transporte marítimo",
+       "apartados": [
+        "1.4"
+       ],
+       "archivo": "0622/1.4",
+       "ra_extra": [
+        3,
+        5,
+        6
+       ]
+      },
+      {
+       "id": "1.5",
+       "titulo": "Transporte fluvial",
+       "apartados": [
+        "1.5"
+       ],
+       "archivo": "0622/1.5",
+       "ra_extra": [
+        3,
+        5,
+        6
+       ]
+      },
+      {
+       "id": "1.6",
+       "titulo": "Transporte aéreo",
+       "apartados": [
+        "1.6"
+       ],
+       "archivo": "0622/1.6",
+       "ra_extra": [
+        3,
+        5,
+        6
+       ]
+      },
+      {
+       "id": "1.7",
+       "titulo": "Mercancías peligrosas, perecederas y animales vivos",
+       "apartados": [
+        "1.7"
+       ],
+       "archivo": "0622/1.7",
+       "ra_extra": [
+        4,
+        5
+       ]
+      },
+      {
+       "id": "1.8",
+       "titulo": "Calidad en el transporte: UNE, ISO y modelos de excelencia",
+       "apartados": [
+        "1.8"
+       ],
+       "archivo": "0622/1.8",
+       "ra_extra": [
+        2,
+        6
+       ]
+      },
+      {
+       "id": "1.9",
+       "titulo": "Organismos y empresas públicas del transporte",
+       "apartados": [
+        "1.9"
+       ],
+       "archivo": "0622/1.9",
+       "ra_extra": [
+        3
+       ]
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 2,
+     "titulo": "Selección de los modos y medios de transporte y de las rutas óptimas",
+     "ra": [
+      2
+     ],
+     "pagina": 141,
+     "apartados": [
+      {
+       "id": "2.1",
+       "titulo": "Combinación de diferentes modos de transporte. Puntos operativos estratégicos, puntos de intercambio",
+       "pagina": 144
+      },
+      {
+       "id": "2.2",
+       "titulo": "Tipología de empresas y servicios",
+       "pagina": 147
+      },
+      {
+       "id": "2.3",
+       "titulo": "Transporte multimodal",
+       "pagina": 149
+      },
+      {
+       "id": "2.4",
+       "titulo": "Marco normativo. Convenio de Ginebra",
+       "pagina": 150
+      },
+      {
+       "id": "2.5",
+       "titulo": "Contratación y responsabilidades",
+       "pagina": 153
+      },
+      {
+       "id": "2.6",
+       "titulo": "Sistemas o combinaciones: carretera-marítimo, carretera-aéreo, carretera-ferrocarril, marítimo-ferrocarril",
+       "pagina": 154
+      },
+      {
+       "id": "2.7",
+       "titulo": "Los hubs o plataformas logísticas. Características",
+       "pagina": 156
+      },
+      {
+       "id": "2.8",
+       "titulo": "Corredores logísticos. Corredores intermodales y puentes terrestres",
+       "pagina": 160
+      },
+      {
+       "id": "2.9",
+       "titulo": "Operadores logísticos. Ventajas",
+       "pagina": 163
+      },
+      {
+       "id": "2.10",
+       "titulo": "Puntos físicos de origen y destino. Puertos, aeropuertos, centros de carga terrestre",
+       "pagina": 164
+      },
+      {
+       "id": "2.11",
+       "titulo": "Terminales de carga y puntos de frontera",
+       "pagina": 166
+      },
+      {
+       "id": "2.12",
+       "titulo": "Características de carga. Carga útil, riesgo, tiempo, exigencias de medio de transporte y de contrato",
+       "pagina": 167
+      },
+      {
+       "id": "2.13",
+       "titulo": "Operativa de carga. Trasbordo, tránsito y consolidación",
+       "pagina": 169
+      },
+      {
+       "id": "2.14",
+       "titulo": "Planificación y distribución de cargas",
+       "pagina": 172
+      },
+      {
+       "id": "2.15",
+       "titulo": "Selección de rutas. Optimización. Métodos de selección de rutas. Evaluación de alternativas",
+       "pagina": 179
+      }
+     ],
+     "tests": [
+      {
+       "id": "2.1",
+       "titulo": "Combinación de modos y tipología de empresas y servicios",
+       "apartados": [
+        "2.1",
+        "2.2"
+       ],
+       "archivo": "0622/2.1",
+       "ra_extra": [
+        1,
+        3,
+        5,
+        6
+       ]
+      },
+      {
+       "id": "2.3",
+       "titulo": "Transporte multimodal: Ginebra, contratación y responsabilidad",
+       "apartados": [
+        "2.3",
+        "2.4",
+        "2.5"
+       ],
+       "archivo": "0622/2.3",
+       "ra_extra": [
+        1,
+        3,
+        5,
+        6
+       ]
+      },
+      {
+       "id": "2.6",
+       "titulo": "Combinaciones de modos y corredores intermodales",
+       "apartados": [
+        "2.6",
+        "2.8"
+       ],
+       "archivo": "0622/2.6",
+       "ra_extra": [
+        1
+       ]
+      },
+      {
+       "id": "2.7",
+       "titulo": "Hubs, plataformas y operadores logísticos",
+       "apartados": [
+        "2.7",
+        "2.9"
+       ],
+       "archivo": "0622/2.7",
+       "ra_extra": [
+        1,
+        3
+       ]
+      },
+      {
+       "id": "2.10",
+       "titulo": "Puntos de origen y destino, terminales y fronteras",
+       "apartados": [
+        "2.10",
+        "2.11"
+       ],
+       "archivo": "0622/2.10",
+       "ra_extra": [
+        1,
+        5
+       ]
+      },
+      {
+       "id": "2.12",
+       "titulo": "Características de la carga, operativa y planificación",
+       "apartados": [
+        "2.12",
+        "2.13",
+        "2.14"
+       ],
+       "archivo": "0622/2.12",
+       "ra_extra": [
+        4
+       ]
+      },
+      {
+       "id": "2.15",
+       "titulo": "Selección de rutas",
+       "apartados": [
+        "2.15"
+       ],
+       "archivo": "0622/2.15",
+       "ra_extra": [
+        3
+       ]
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 3,
+     "titulo": "Elaboración y cumplimentación de contratos de transporte",
+     "ra": [
+      3
+     ],
+     "pagina": 190,
+     "apartados": [
+      {
+       "id": "3.1",
+       "titulo": "Contrato de transporte. Aspectos generales",
+       "pagina": 192
+      },
+      {
+       "id": "3.2",
+       "titulo": "El contrato de transporte por carretera, ferrocarril, marítimo, aéreo y multimodal",
+       "pagina": 206
+      },
+      {
+       "id": "3.3",
+       "titulo": "Clases de contrato según el medio de transporte utilizado",
+       "pagina": 213
+      },
+      {
+       "id": "3.4",
+       "titulo": "Sistemas de responsabilidad. Transferencia de riesgos",
+       "pagina": 229
+      },
+      {
+       "id": "3.5",
+       "titulo": "Daños resarcibles. Clases de daños. Evaluación. Limitaciones",
+       "pagina": 230
+      },
+      {
+       "id": "3.6",
+       "titulo": "Los sujetos del contrato de transporte: expedidor o cargador, transportista, destinatario o consignatario",
+       "pagina": 233
+      },
+      {
+       "id": "3.7",
+       "titulo": "Agentes en el transporte internacional: transitarios, agentes de aduanas, agentes marítimos, corredores marítimos (shipbroker), corresponsales y delegados",
+       "pagina": 234
+      },
+      {
+       "id": "3.8",
+       "titulo": "Técnicas y tarifas de transporte. Componentes",
+       "pagina": 236
+      },
+      {
+       "id": "3.9",
+       "titulo": "Costes: cálculo y control. Costes fijos y variables",
+       "pagina": 237
+      },
+      {
+       "id": "3.10",
+       "titulo": "Transferencia de riesgos. Cámara de Comercio Internacional (ICC)",
+       "pagina": 248
+      },
+      {
+       "id": "3.11",
+       "titulo": "Términos internacionales de comercio. Finalidad y clasificación de los incoterms",
+       "pagina": 249
+      }
+     ],
+     "tests": [
+      {
+       "id": "3.1",
+       "titulo": "Contrato de transporte: aspectos generales",
+       "apartados": [
+        "3.1"
+       ],
+       "archivo": "0622/3.1",
+       "ra_extra": [
+        1,
+        5
+       ]
+      },
+      {
+       "id": "3.2",
+       "titulo": "El contrato según el modo de transporte",
+       "apartados": [
+        "3.2"
+       ],
+       "archivo": "0622/3.2",
+       "ra_extra": [
+        1,
+        5,
+        6
+       ]
+      },
+      {
+       "id": "3.3",
+       "titulo": "Clases de contrato y documentos de transporte",
+       "apartados": [
+        "3.3"
+       ],
+       "archivo": "0622/3.3",
+       "ra_extra": [
+        5
+       ]
+      },
+      {
+       "id": "3.4",
+       "titulo": "Responsabilidad y daños resarcibles",
+       "apartados": [
+        "3.4",
+        "3.5"
+       ],
+       "archivo": "0622/3.4",
+       "ra_extra": [
+        6
+       ]
+      },
+      {
+       "id": "3.6",
+       "titulo": "Sujetos del contrato y agentes",
+       "apartados": [
+        "3.6",
+        "3.7"
+       ],
+       "archivo": "0622/3.6",
+       "ra_extra": [
+        1
+       ]
+      },
+      {
+       "id": "3.8",
+       "titulo": "Técnicas, tarifas y costes",
+       "apartados": [
+        "3.8",
+        "3.9"
+       ],
+       "archivo": "0622/3.8"
+      },
+      {
+       "id": "3.10",
+       "titulo": "Transferencia de riesgos e Incoterms",
+       "apartados": [
+        "3.10",
+        "3.11"
+       ],
+       "archivo": "0622/3.10"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 4,
+     "titulo": "Determinación de los elementos que garantizan la integridad y el tránsito de las mercancías",
+     "ra": [
+      4
+     ],
+     "pagina": 264,
+     "apartados": [
+      {
+       "id": "4.1",
+       "titulo": "Integridad física de mercancías. Unidades de transporte y embalajes",
+       "pagina": 266
+      },
+      {
+       "id": "4.2",
+       "titulo": "Riesgos de la fase del transporte",
+       "pagina": 273
+      },
+      {
+       "id": "4.3",
+       "titulo": "Protección física de mercancías y tipos de embalaje: las UTI, el palé y el contenedor",
+       "pagina": 279
+      },
+      {
+       "id": "4.4",
+       "titulo": "Normativa sobre la consolidación y la compatibilidad de productos. Normas de segregación",
+       "pagina": 282
+      },
+      {
+       "id": "4.5",
+       "titulo": "Manipulación y estiba de mercancías. Objetivos. Coeficientes de estiba",
+       "pagina": 284
+      },
+      {
+       "id": "4.6",
+       "titulo": "Marcas. Códigos de barras. Organismos de normalización. Normas internacionales de marcado ISO",
+       "pagina": 291
+      },
+      {
+       "id": "4.7",
+       "titulo": "Embalajes internacionales. Importancia para la exportación",
+       "pagina": 315
+      }
+     ],
+     "tests": [
+      {
+       "id": "4.1",
+       "titulo": "Integridad física, riesgos del transporte, UTI y embalajes",
+       "apartados": [
+        "4.1",
+        "4.2",
+        "4.3"
+       ],
+       "archivo": "0622/4.1"
+      },
+      {
+       "id": "4.2",
+       "titulo": "Consolidación, segregación, manipulación y estiba",
+       "apartados": [
+        "4.4",
+        "4.5"
+       ],
+       "archivo": "0622/4.2"
+      },
+      {
+       "id": "4.3",
+       "titulo": "Marcado, etiquetado y códigos de barras",
+       "apartados": [
+        "4.6"
+       ],
+       "archivo": "0622/4.3"
+      },
+      {
+       "id": "4.4",
+       "titulo": "Embalajes internacionales, NIMF 15 y exportación",
+       "apartados": [
+        "4.7"
+       ],
+       "archivo": "0622/4.4"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 5,
+     "titulo": "Formalización y gestión de la documentación de las operaciones de transporte internacional",
+     "ra": [
+      5
+     ],
+     "pagina": 320,
+     "apartados": [
+      {
+       "id": "5.1",
+       "titulo": "Documentación de operaciones de transporte según el modo elegido",
+       "pagina": 322
+      },
+      {
+       "id": "5.2",
+       "titulo": "Documentación de mercancías especiales. Declaración del cargador de mercancías",
+       "pagina": 338
+      },
+      {
+       "id": "5.3",
+       "titulo": "Organismos de inspección",
+       "pagina": 339
+      },
+      {
+       "id": "5.4",
+       "titulo": "Glosario de terminología en inglés utilizado en la documentación",
+       "pagina": 343
+      }
+     ],
+     "tests": [
+      {
+       "id": "5.1",
+       "titulo": "Documentación en carretera, ferrocarril y régimen TIR",
+       "apartados": [
+        "5.1"
+       ],
+       "archivo": "0622/5.1"
+      },
+      {
+       "id": "5.2",
+       "titulo": "Documentación en transporte marítimo, aéreo y multimodal",
+       "apartados": [
+        "5.1"
+       ],
+       "archivo": "0622/5.2"
+      },
+      {
+       "id": "5.3",
+       "titulo": "Mercancías especiales, permisos y organismos de inspección",
+       "apartados": [
+        "5.2",
+        "5.3"
+       ],
+       "archivo": "0622/5.3"
+      },
+      {
+       "id": "5.4",
+       "titulo": "Glosario de terminología inglesa en la documentación",
+       "apartados": [
+        "5.4"
+       ],
+       "archivo": "0622/5.4"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 6,
+     "titulo": "Secuenciación de las fases del transporte",
+     "ra": [
+      6
+     ],
+     "pagina": 355,
+     "apartados": [
+      {
+       "id": "6.1",
+       "titulo": "Sistemas de información y comunicación. Sistemas de intercambio de información",
+       "pagina": 357
+      },
+      {
+       "id": "6.2",
+       "titulo": "Puntos de verificación de la mercancía y trazabilidad",
+       "pagina": 363
+      },
+      {
+       "id": "6.3",
+       "titulo": "Variaciones producidas en la ruta",
+       "pagina": 377
+      },
+      {
+       "id": "6.4",
+       "titulo": "Indicadores de calidad y medidas correctoras. Certificaciones de calidad o medioambientales. Sistemas de control",
+       "pagina": 383
+      }
+     ],
+     "tests": [
+      {
+       "id": "6.1",
+       "titulo": "Sistemas de información y comunicación en el transporte",
+       "apartados": [
+        "6.1"
+       ],
+       "archivo": "0622/6.1"
+      },
+      {
+       "id": "6.2",
+       "titulo": "Puntos de verificación y trazabilidad",
+       "apartados": [
+        "6.2"
+       ],
+       "archivo": "0622/6.2"
+      },
+      {
+       "id": "6.3",
+       "titulo": "Variaciones en la ruta, incidencias y tiempos de conducción",
+       "apartados": [
+        "6.3"
+       ],
+       "archivo": "0622/6.3"
+      },
+      {
+       "id": "6.4",
+       "titulo": "Indicadores de calidad, certificaciones y medidas correctoras",
+       "apartados": [
+        "6.4"
+       ],
+       "archivo": "0622/6.4"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 7,
+     "titulo": "Tramitación del seguro de mercancías durante el transporte",
+     "ra": [
+      7
+     ],
+     "pagina": 399,
+     "apartados": [
+      {
+       "id": "7.1",
+       "titulo": "Protección jurídica de las mercancías. Marco legal",
+       "pagina": 401
+      },
+      {
+       "id": "7.2",
+       "titulo": "El contrato de seguro. Características esenciales: elementos, responsabilidad de cada parte y efectos",
+       "pagina": 403
+      },
+      {
+       "id": "7.3",
+       "titulo": "Tipos de pólizas de seguro según la modalidad de transporte",
+       "pagina": 406
+      },
+      {
+       "id": "7.4",
+       "titulo": "Pólizas y cláusulas más importantes. Pólizas Ship & Goods del Lloyd's",
+       "pagina": 409
+      },
+      {
+       "id": "7.5",
+       "titulo": "Selección de la póliza más adecuada según el contrato de compraventa y los incoterms",
+       "pagina": 411
+      },
+      {
+       "id": "7.6",
+       "titulo": "Identificación de los riesgos asegurables y necesidades de cobertura",
+       "pagina": 416
+      },
+      {
+       "id": "7.7",
+       "titulo": "Procedimiento de gestión y contratación de la póliza. Documentación",
+       "pagina": 418
+      },
+      {
+       "id": "7.8",
+       "titulo": "Actuación en caso de incidencia o siniestro",
+       "pagina": 420
+      },
+      {
+       "id": "7.9",
+       "titulo": "Utilización de las herramientas informáticas para la gestión de seguros",
+       "pagina": 427
+      }
+     ],
+     "tests": [
+      {
+       "id": "7.1",
+       "titulo": "Marco legal y contrato de seguro de mercancías",
+       "apartados": [
+        "7.1",
+        "7.2"
+       ],
+       "archivo": "0622/7.1"
+      },
+      {
+       "id": "7.2",
+       "titulo": "Tipos de pólizas, cláusulas y cobertura de mercancías",
+       "apartados": [
+        "7.3",
+        "7.4"
+       ],
+       "archivo": "0622/7.2"
+      },
+      {
+       "id": "7.3",
+       "titulo": "Selección de la póliza: Incoterms, riesgos y necesidades de cobertura",
+       "apartados": [
+        "7.5",
+        "7.6"
+       ],
+       "archivo": "0622/7.3"
+      },
+      {
+       "id": "7.4",
+       "titulo": "Contratación del seguro, documentación y gestión de siniestros",
+       "apartados": [
+        "7.7",
+        "7.8",
+        "7.9"
+       ],
+       "archivo": "0622/7.4"
+      }
+     ],
+     "en_alcance": true
+    }
+   ]
+  },
+  {
+   "codigo": "0627",
+   "nombre": "Gestión administrativa del comercio internacional",
+   "horas": 210,
+   "fuente": "Decreto 95/2012 (BOCM 06/09/2012), RD 1574/2011 (BOE-A-2011-19439) e índice del libro de texto del alumno",
+   "disponible": true,
+   "resultados_aprendizaje": {
+    "1": "Determina organismos e instituciones relacionados con el comercio internacional, analizando sus principales funciones.",
+    "2": "Organiza un sistema de información eficaz para las operaciones de compraventa internacional, utilizando las herramientas informáticas adecuadas.",
+    "3": "Reconoce las distintas barreras al comercio internacional, analizando la normativa que las regula.",
+    "4": "Caracteriza los procedimientos administrativos de las operaciones de importación/exportación y de introducción/expedición, interpretando la normativa vigente.",
+    "5": "Elabora y cumplimenta la documentación necesaria para las operaciones de importación/exportación e introducción/expedición de mercancías."
+   },
+   "criterios": {
+    "RA1.a": "Se ha analizado la estructura de balanza de pagos, diferenciando las distintas balanzas que la componen.",
+    "RA1.b": "Se han clasificado las funciones de los principales organismos e instituciones económicas internacionales.",
+    "RA1.c": "Se ha analizado el proceso de integración económica internacional, diferenciando los distintos niveles de integración.",
+    "RA1.d": "Se ha analizado el proceso de integración económica europea y su repercusión en el comercio comunitario.",
+    "RA1.e": "Se han identificado las distintas instituciones comunitarias, sus principales funciones y competencias.",
+    "RA1.f": "Se ha analizado el marco jurídico comunitario y se han identificado las normas con incidencia en el intercambio comercial.",
+    "RA2.a": "Se han elaborado bases de datos para las operaciones de comercio internacional.",
+    "RA2.b": "Se han confeccionado ficheros maestros de clientes y proveedores.",
+    "RA2.c": "Se ha elaborado la información que habitualmente solicita el cliente o el proveedor en las operaciones de compraventa internacional.",
+    "RA2.d": "Se ha realizado el mantenimiento y actualización de las bases de datos de clientes y proveedores.",
+    "RA2.e": "Se han elaborado informes sobre clientes y/o proveedores a partir de las bases de datos disponibles.",
+    "RA2.f": "Se ha aplicado la normativa legal y fiscal del país de destino de la mercancía que se va a exportar.",
+    "RA2.g": "Se ha procesado y archivado adecuadamente la información generada en las operaciones de compraventa internacional realizadas para su posterior utilización en futuras operaciones.",
+    "RA3.a": "Se han analizado las barreras arancelarias a la importación de mercancías y otras medidas de efecto equivalente.",
+    "RA3.b": "Se han analizado los principales instrumentos de protección comercial de naturaleza cuantitativa, que limitan o restringen las importaciones de mercancías.",
+    "RA3.c": "Se ha analizado la función del arancel de aduanas como instrumento de protección y su repercusión sobre el comercio internacional.",
+    "RA3.d": "Se han identificado las medidas de defensa de la competencia internacional aplicables en el marco de la OMC.",
+    "RA3.e": "Se han caracterizado las cláusulas de salvaguardia y las medidas de vigilancia, analizando los casos en que procede su aplicación en la UE.",
+    "RA3.f": "Se han caracterizado las principales barreras técnicas y administrativas al comercio.",
+    "RA3.g": "Se han determinado las distintas medidas de apoyo y fomento a las exportaciones.",
+    "RA4.a": "Se han identificado las diferencias entre una importación y una introducción y entre una exportación y una expedición.",
+    "RA4.b": "Se han identificado los documentos que se requieren en las operaciones de importación/exportación e introducción/expedición, los procedimientos para su tramitación y gestión, y los organismos implicados.",
+    "RA4.c": "Se ha determinado el origen de las mercancías y la documentación que se requiere para su acreditación.",
+    "RA4.d": "Se ha determinado el valor en aduana de diferentes mercancías.",
+    "RA4.e": "Se ha efectuado la clasificación arancelaria de las mercancías.",
+    "RA4.f": "Se han determinado los impuestos y otros tributos que gravan las operaciones de comercio internacional que integran la deuda aduanera.",
+    "RA4.g": "Se han reconocido los procesos administrativos de gestión aduanera.",
+    "RA4.h": "Se ha analizado el sistema de declaración estadística de las operaciones intracomunitarias (INTRASTAT).",
+    "RA5.a": "Se han interpretado las cláusulas que se incluyen en los contratos de compraventa internacional y se ha confeccionado el contrato de compraventa.",
+    "RA5.b": "Se han confeccionado los documentos comerciales, de transporte y seguro que se requieren en las operaciones de compraventa internacional.",
+    "RA5.c": "Se ha supervisado la documentación comercial y administrativa correspondiente a una operación de comercio internacional, comprobando las condiciones pactadas en el contrato.",
+    "RA5.d": "Se han cumplimentado los documentos de gestión aduanera de diferentes operaciones de compraventa internacional.",
+    "RA5.e": "Se ha realizado la gestión aduanera de operaciones relativas a los distintos regímenes aduaneros.",
+    "RA5.f": "Se ha utilizado un paquete informático de gestión administrativa para la obtención de la documentación necesaria para las operaciones de compraventa internacional."
+   },
+   "unidades": [
+    {
+     "num": 1,
+     "titulo": "Organismos e instituciones relacionadas con el comercio internacional",
+     "ra": [
+      1
+     ],
+     "pagina": 8,
+     "apartados": [
+      {
+       "id": "1.1",
+       "titulo": "Introducción a una operación de comercio internacional. Incoterms. Glosario español-inglés",
+       "pagina": 10
+      },
+      {
+       "id": "1.2",
+       "titulo": "La balanza de pagos: concepto y estructura",
+       "pagina": 27
+      },
+      {
+       "id": "1.3",
+       "titulo": "La Organización Mundial de Comercio (OMC)",
+       "pagina": 30
+      },
+      {
+       "id": "1.4",
+       "titulo": "La OCDE",
+       "pagina": 32
+      },
+      {
+       "id": "1.5",
+       "titulo": "La UNCTAD",
+       "pagina": 34
+      },
+      {
+       "id": "1.6",
+       "titulo": "El Fondo Monetario Internacional",
+       "pagina": 36
+      },
+      {
+       "id": "1.7",
+       "titulo": "El Banco Mundial",
+       "pagina": 38
+      },
+      {
+       "id": "1.8",
+       "titulo": "Otros organismos internacionales que afectan al comercio",
+       "pagina": 40
+      },
+      {
+       "id": "1.9",
+       "titulo": "El proceso de integración económica. Integración europea",
+       "pagina": 44
+      },
+      {
+       "id": "1.10",
+       "titulo": "Instituciones de la Unión Europea",
+       "pagina": 47
+      },
+      {
+       "id": "1.11",
+       "titulo": "El marco jurídico comunitario",
+       "pagina": 59
+      },
+      {
+       "id": "1.12",
+       "titulo": "Derecho aduanero comunitario: el código aduanero",
+       "pagina": 61
+      },
+      {
+       "id": "1.13",
+       "titulo": "El presupuesto comunitario. Recursos propios de la UE",
+       "pagina": 63
+      }
+     ],
+     "tests": [
+      {
+       "id": "1.1",
+       "titulo": "Introducción a la operación de comercio internacional y balanza de pagos",
+       "apartados": [
+        "1.1",
+        "1.2"
+       ],
+       "archivo": "0627/1.1",
+       "ra_extra": [
+        2,
+        3,
+        4,
+        5
+       ]
+      },
+      {
+       "id": "1.2",
+       "titulo": "La Organización Mundial del Comercio (OMC)",
+       "apartados": [
+        "1.3"
+       ],
+       "archivo": "0627/1.2",
+       "ra_extra": [
+        2,
+        3,
+        4,
+        5
+       ]
+      },
+      {
+       "id": "1.3",
+       "titulo": "OCDE, UNCTAD, FMI, Banco Mundial y otros organismos internacionales",
+       "apartados": [
+        "1.4",
+        "1.5",
+        "1.6",
+        "1.7",
+        "1.8"
+       ],
+       "archivo": "0627/1.3",
+       "ra_extra": [
+        2,
+        3,
+        4,
+        5
+       ]
+      },
+      {
+       "id": "1.4",
+       "titulo": "El proceso de integración económica",
+       "apartados": [
+        "1.9"
+       ],
+       "archivo": "0627/1.4",
+       "ra_extra": [
+        2,
+        3,
+        4,
+        5
+       ]
+      },
+      {
+       "id": "1.5",
+       "titulo": "Instituciones de la Unión Europea",
+       "apartados": [
+        "1.10"
+       ],
+       "archivo": "0627/1.5",
+       "ra_extra": [
+        2,
+        3,
+        4,
+        5
+       ]
+      },
+      {
+       "id": "1.6",
+       "titulo": "Marco jurídico comunitario, derecho aduanero y presupuesto de la UE",
+       "apartados": [
+        "1.11",
+        "1.12",
+        "1.13"
+       ],
+       "archivo": "0627/1.6",
+       "ra_extra": [
+        2,
+        3,
+        4,
+        5
+       ]
+      },
+      {
+       "id": "1.7",
+       "titulo": "Incoterms 2020 y su aplicación en la compraventa internacional",
+       "apartados": [
+        "1.1"
+       ],
+       "archivo": "0627/1.7",
+       "ra_extra": [
+        2,
+        3,
+        4,
+        5
+       ]
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 2,
+     "titulo": "Organización de sistemas de información aplicados al comercio internacional",
+     "ra": [
+      2
+     ],
+     "pagina": 70,
+     "apartados": [
+      {
+       "id": "2.1",
+       "titulo": "Fuentes de información sobre comercio internacional",
+       "pagina": 72
+      },
+      {
+       "id": "2.2",
+       "titulo": "El Instituto de Comercio Exterior (ICEX)",
+       "pagina": 73
+      },
+      {
+       "id": "2.3",
+       "titulo": "La Cámara de Comercio Internacional. Bases de datos",
+       "pagina": 75
+      },
+      {
+       "id": "2.4",
+       "titulo": "Obtención de información a través de Internet",
+       "pagina": 76
+      },
+      {
+       "id": "2.5",
+       "titulo": "Utilización de la información disponible e introducción en la base de datos de la empresa",
+       "pagina": 80
+      },
+      {
+       "id": "2.6",
+       "titulo": "Diseño y mantenimiento de bases de datos de clientes y proveedores",
+       "pagina": 83
+      },
+      {
+       "id": "2.7",
+       "titulo": "Sistemas de comunicación con clientes y proveedores",
+       "pagina": 88
+      },
+      {
+       "id": "2.8",
+       "titulo": "Herramienta de gestión de relaciones con clientes (CRM)",
+       "pagina": 89
+      },
+      {
+       "id": "2.9",
+       "titulo": "Sistemas de archivo de documentación",
+       "pagina": 92
+      },
+      {
+       "id": "2.10",
+       "titulo": "Bases de datos con información de las operaciones",
+       "pagina": 95
+      }
+     ],
+     "tests": [
+      {
+       "id": "2.1",
+       "titulo": "Fuentes de información: ICEX, Cámara de Comercio Internacional, Internet",
+       "apartados": [
+        "2.1",
+        "2.2",
+        "2.3",
+        "2.4",
+        "2.5"
+       ],
+       "archivo": "0627/2.1",
+       "ra_extra": [
+        3,
+        4,
+        5
+       ]
+      },
+      {
+       "id": "2.2",
+       "titulo": "Bases de datos de clientes y proveedores, CRM, comunicación y archivo",
+       "apartados": [
+        "2.6",
+        "2.7",
+        "2.8",
+        "2.9",
+        "2.10"
+       ],
+       "archivo": "0627/2.2",
+       "ra_extra": [
+        3,
+        4,
+        5
+       ]
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 3,
+     "titulo": "Reconocimiento de las distintas barreras al comercio internacional",
+     "ra": [
+      3
+     ],
+     "pagina": 101,
+     "apartados": [
+      {
+       "id": "3.1",
+       "titulo": "La política comercial común. La defensa comercial",
+       "pagina": 103
+      },
+      {
+       "id": "3.2",
+       "titulo": "Régimen de comercio de las importaciones y de las exportaciones",
+       "pagina": 108
+      },
+      {
+       "id": "3.3",
+       "titulo": "La política agrícola común (PAC)",
+       "pagina": 110
+      },
+      {
+       "id": "3.4",
+       "titulo": "Otras políticas comunitarias",
+       "pagina": 115
+      },
+      {
+       "id": "3.5",
+       "titulo": "Concepto y clasificación de las barreras al comercio internacional",
+       "pagina": 119
+      },
+      {
+       "id": "3.6",
+       "titulo": "Barreras arancelarias a la importación: el arancel de aduanas",
+       "pagina": 120
+      },
+      {
+       "id": "3.7",
+       "titulo": "Medidas de salvaguardia. Medidas de vigilancia",
+       "pagina": 120
+      },
+      {
+       "id": "3.8",
+       "titulo": "Medidas de defensa de la competencia: antidumping y antisubvención",
+       "pagina": 122
+      },
+      {
+       "id": "3.9",
+       "titulo": "Barreras no arancelarias: contingentes, licencias, autolimitación",
+       "pagina": 123
+      },
+      {
+       "id": "3.10",
+       "titulo": "Barreras técnicas y administrativas (SOIVRE, CITES, certificados)",
+       "pagina": 125
+      },
+      {
+       "id": "3.11",
+       "titulo": "Barreras fiscales",
+       "pagina": 128
+      },
+      {
+       "id": "3.12",
+       "titulo": "Otras barreras a las importaciones",
+       "pagina": 129
+      },
+      {
+       "id": "3.13",
+       "titulo": "Instrumentos de protección y fomento de las exportaciones",
+       "pagina": 130
+      }
+     ],
+     "tests": [
+      {
+       "id": "3.1",
+       "titulo": "Política comercial común y barreras arancelarias: el arancel de aduanas",
+       "apartados": [
+        "3.1",
+        "3.2",
+        "3.6"
+       ],
+       "archivo": "0627/3.1",
+       "ra_extra": [
+        1,
+        2,
+        4
+       ]
+      },
+      {
+       "id": "3.2",
+       "titulo": "Defensa comercial: salvaguardia, vigilancia, antidumping y antisubvención",
+       "apartados": [
+        "3.7",
+        "3.8"
+       ],
+       "archivo": "0627/3.2",
+       "ra_extra": [
+        1,
+        2,
+        4
+       ]
+      },
+      {
+       "id": "3.3",
+       "titulo": "Barreras no arancelarias, técnicas, administrativas y fiscales",
+       "apartados": [
+        "3.5",
+        "3.9",
+        "3.10",
+        "3.11",
+        "3.12"
+       ],
+       "archivo": "0627/3.3",
+       "ra_extra": [
+        1,
+        2,
+        4
+       ]
+      },
+      {
+       "id": "3.4",
+       "titulo": "Política agrícola común y medidas de apoyo a las exportaciones",
+       "apartados": [
+        "3.3",
+        "3.4",
+        "3.13"
+       ],
+       "archivo": "0627/3.4",
+       "ra_extra": [
+        1,
+        2,
+        4
+       ]
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 4,
+     "titulo": "Caracterización de los procedimientos administrativos de las operaciones de importación/exportación y de introducción/expedición",
+     "ra": [
+      4
+     ],
+     "pagina": 133,
+     "apartados": [
+      {
+       "id": "4.1",
+       "titulo": "El origen de las mercancías",
+       "pagina": 135
+      },
+      {
+       "id": "4.2",
+       "titulo": "El arancel de aduanas: estructura",
+       "pagina": 144
+      },
+      {
+       "id": "4.3",
+       "titulo": "Valoración en aduana de las mercancías",
+       "pagina": 152
+      },
+      {
+       "id": "4.4",
+       "titulo": "Fiscalidad del comercio exterior en las aduanas",
+       "pagina": 163
+      },
+      {
+       "id": "4.5",
+       "titulo": "Operaciones intracomunitarias",
+       "pagina": 180
+      }
+     ],
+     "tests": [
+      {
+       "id": "4.1",
+       "titulo": "El origen de las mercancías",
+       "apartados": [
+        "4.1"
+       ],
+       "archivo": "0627/4.1"
+      },
+      {
+       "id": "4.2",
+       "titulo": "Estructura del arancel de aduanas y clasificación arancelaria",
+       "apartados": [
+        "4.2"
+       ],
+       "archivo": "0627/4.2"
+      },
+      {
+       "id": "4.3",
+       "titulo": "Valoración en aduana de las mercancías",
+       "apartados": [
+        "4.3"
+       ],
+       "archivo": "0627/4.3"
+      },
+      {
+       "id": "4.4",
+       "titulo": "Fiscalidad del comercio exterior: arancel, IVA e impuestos especiales",
+       "apartados": [
+        "4.4"
+       ],
+       "archivo": "0627/4.4"
+      },
+      {
+       "id": "4.5",
+       "titulo": "Operaciones intracomunitarias, IVA e INTRASTAT",
+       "apartados": [
+        "4.5"
+       ],
+       "archivo": "0627/4.5"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 5,
+     "titulo": "Elaboración de la documentación de las operaciones de importación/exportación e introducción/expedición",
+     "ra": [
+      5
+     ],
+     "pagina": 189,
+     "apartados": [
+      {
+       "id": "5.1",
+       "titulo": "Gestión aduanera de las importaciones y de las exportaciones",
+       "pagina": 191
+      },
+      {
+       "id": "5.2",
+       "titulo": "Procedimiento de gestión aduanera. Presentación de la mercancía. Declaración sumaria",
+       "pagina": 195
+      },
+      {
+       "id": "5.3",
+       "titulo": "Presentación del DUA y demás documentos. Documentación en español e inglés",
+       "pagina": 199
+      },
+      {
+       "id": "5.4",
+       "titulo": "Despacho a libre práctica y despacho a consumo",
+       "pagina": 210
+      },
+      {
+       "id": "5.5",
+       "titulo": "Aceptación de la declaración y nacimiento de la deuda aduanera. Garantía",
+       "pagina": 210
+      },
+      {
+       "id": "5.6",
+       "titulo": "Levante de la mercancía. Pago, liquidación e ingreso de la deuda aduanera",
+       "pagina": 212
+      },
+      {
+       "id": "5.7",
+       "titulo": "Procedimientos simplificados de despacho",
+       "pagina": 213
+      },
+      {
+       "id": "5.8",
+       "titulo": "Aplicación informática de gestión administrativa y aduanera",
+       "pagina": 214
+      },
+      {
+       "id": "5.9",
+       "titulo": "Regímenes económicos aduaneros",
+       "pagina": 216
+      },
+      {
+       "id": "5.10",
+       "titulo": "Otros destinos aduaneros",
+       "pagina": 224
+      }
+     ],
+     "tests": [
+      {
+       "id": "5.1",
+       "titulo": "Gestión aduanera, presentación de la mercancía y declaración sumaria",
+       "apartados": [
+        "5.1",
+        "5.2"
+       ],
+       "archivo": "0627/5.1",
+       "ra_extra": [
+        4
+       ]
+      },
+      {
+       "id": "5.2",
+       "titulo": "El DUA y la documentación que acompaña a la declaración",
+       "apartados": [
+        "5.3",
+        "5.8"
+       ],
+       "archivo": "0627/5.2",
+       "ra_extra": [
+        4
+       ]
+      },
+      {
+       "id": "5.3",
+       "titulo": "Despacho a libre práctica, deuda aduanera y levante",
+       "apartados": [
+        "5.4",
+        "5.5",
+        "5.6"
+       ],
+       "archivo": "0627/5.3",
+       "ra_extra": [
+        4
+       ]
+      },
+      {
+       "id": "5.4",
+       "titulo": "Procedimientos simplificados de despacho y estatuto OEA",
+       "apartados": [
+        "5.7"
+       ],
+       "archivo": "0627/5.4",
+       "ra_extra": [
+        4
+       ]
+      },
+      {
+       "id": "5.5",
+       "titulo": "Regímenes aduaneros económicos o especiales",
+       "apartados": [
+        "5.9"
+       ],
+       "archivo": "0627/5.5",
+       "ra_extra": [
+        4
+       ]
+      },
+      {
+       "id": "5.6",
+       "titulo": "Otros destinos aduaneros: reexportación, destrucción y abandono",
+       "apartados": [
+        "5.10"
+       ],
+       "archivo": "0627/5.6",
+       "ra_extra": [
+        4
+       ]
+      }
+     ],
+     "en_alcance": true
+    }
+   ]
+  },
+  {
+   "codigo": "0623",
+   "nombre": "Gestión económica y financiera de la empresa",
+   "horas": 210,
+   "fuente": "Decreto 95/2012 (BOCM 06/09/2012) y RD 1574/2011 (BOE-A-2011-19439). Unidades = bloques de contenidos del Decreto (no se dispone del índice del libro).",
+   "disponible": true,
+   "resultados_aprendizaje": {
+    "1": "Recopila información sobre iniciativas emprendedoras y oportunidades de creación de empresas, valorando el impacto sobre el entorno de actuación e incorporando valores éticos.",
+    "2": "Establece la forma jurídica de la empresa, ajustándose a la normativa vigente.",
+    "3": "Organiza los trámites para la obtención de los recursos necesarios para la financiación de las inversiones y suministros, evaluando las distintas alternativas financieras posibles.",
+    "4": "Determina las formalidades para la compraventa y/o el alquiler de los vehículos y otros activos, analizando las necesidades de inversiones y suministros y los recursos financieros necesarios.",
+    "5": "Elabora facturas, recibos y documentos de cobro y pago de los productos y de los servicios prestados, aplicando las normas mercantiles y fiscales de facturación.",
+    "6": "Gestiona el proceso contable y fiscal de la empresa, aplicando la normativa mercantil y fiscal vigente, y los principios y normas del Plan General Contable.",
+    "7": "Determina la rentabilidad de las inversiones y la solvencia y eficiencia de la empresa, analizando los datos económicos y la información contable disponible."
+   },
+   "criterios": {
+    "RA1.a": "Se ha evaluado el concepto de cultura emprendedora y su importancia como fuente de creación de empleo y bienestar social.",
+    "RA1.b": "Se ha valorado la importancia de la iniciativa individual, la creatividad, la formación y la colaboración, para tener éxito en la actividad emprendedora.",
+    "RA1.c": "Se han descrito individualmente las funciones básicas de la empresa y se han analizado todas en conjunto como un sistema integral.",
+    "RA1.d": "Se han identificado los principales componentes del entorno general que rodea a la empresa: económico, social, demográfico y cultural.",
+    "RA1.e": "Se han evaluado los conceptos de cultura empresarial e imagen corporativa, y su relación con los objetivos empresariales.",
+    "RA1.f": "Se ha reconocido el fenómeno de la responsabilidad social de la empresa y su importancia como elemento de estrategia empresarial.",
+    "RA1.g": "Se han identificado prácticas que incorporan valores éticos y sociales.",
+    "RA1.h": "Se ha llevado a cabo un estudio de viabilidad económica y financiera de una pyme.",
+    "RA2.a": "Se han evaluado las distintas formas jurídicas de las empresas.",
+    "RA2.b": "Se han calculado los gastos de constitución y puesta en marcha de la empresa, derivados de las distintas formas jurídicas, consultando la legislación vigente.",
+    "RA2.c": "Se ha obtenido información sobre las posibles ayudas y subvenciones oficiales para la creación de una empresa.",
+    "RA2.d": "Se ha seleccionado, a partir de un estudio comparativo, la forma jurídica más adecuada, valorando los costes, la responsabilidad y las obligaciones jurídicas.",
+    "RA2.e": "Se han determinado los trámites jurídicos y administrativos que hay que realizar para la constitución de la empresa, a partir de la información obtenida en las administraciones y organismos competentes.",
+    "RA2.f": "Se han determinado los trámites administrativos, autorizaciones, licencias y, en su caso, capacitación profesional que se requieren para la puesta en marcha de una empresa.",
+    "RA2.g": "Se han identificado las obligaciones laborales y fiscales derivadas del ejercicio de la actividad económica de la empresa.",
+    "RA2.h": "Se han analizado las funciones de los sindicatos, comités de empresa, representantes de personal, inspectores de trabajo y otras instituciones sociales que intervienen en el sector correspondiente.",
+    "RA2.i": "Se han analizado las situaciones de insolvencia, quiebra, suspensión de pagos y el procedimiento de concurso de acreedores en casos de insolvencia, así como la responsabilidad del empresario.",
+    "RA3.a": "Se han identificado los organismos que informan sobre la obtención de ayudas y subvenciones públicas para la adquisición y renovación de activos.",
+    "RA3.b": "Se ha obtenido información sobre los instrumentos financieros y de crédito más habituales para la financiación de las inversiones y demás operaciones de la empresa.",
+    "RA3.c": "Se ha analizado la información sobre el procedimiento, requisitos, garantías y documentación que se exige para obtener un crédito o un préstamo en una entidad financiera.",
+    "RA3.d": "Se han calculado los costes y se han analizado los requisitos y garantías exigidos, en las operaciones de leasing y renting, para la compra de vehículos y otros inmovilizados.",
+    "RA3.e": "Se han diferenciado los conceptos de interés nominal e interés efectivo y la tasa anual equivalente (TAE), tanto en inversiones como en instrumentos financieros (préstamos y créditos).",
+    "RA3.f": "Se han calculado los costes y las cuotas de amortización de un préstamo, mediante los sistemas de amortización más utilizados.",
+    "RA3.g": "Se ha seleccionado la alternativa financiera más ventajosa para la adquisición de vehículos, maquinaria y otros activos en función de costes, riesgos y garantías.",
+    "RA3.h": "Se ha analizado el procedimiento y las condiciones para solicitar los avales, fianzas y garantías bancarias que se requieren para realizar determinadas operaciones de transporte especial.",
+    "RA3.i": "Se han utilizado hojas de cálculo para analizar, mediante las funciones oportunas, diferentes operaciones financieras.",
+    "RA4.a": "Se han determinado las necesidades de vehículos, instalaciones, maquinaria y otros activos, y los suministros necesarios en las empresas.",
+    "RA4.b": "Se han analizado las diferencias fundamentales entre la compraventa o el alquiler de vehículos, maquinaria e inmovilizados necesarios para el ejercicio de la actividad.",
+    "RA4.c": "Se han identificado las variables de un plan de inversión, diferenciando la financiación propia y ajena, y la recuperación de las inversiones a corto y a largo plazo.",
+    "RA4.d": "Se han determinado las necesidades de suministros y servicios de mantenimiento y repuestos, así como los costes que se derivan de los distintos sistemas de aprovisionamiento.",
+    "RA4.e": "Se han evaluado diferentes planes de inversión a partir de los costes y la previsión de ingresos.",
+    "RA4.f": "Se han analizado las ventajas y los inconvenientes de los mercados de primera y segunda mano, de alquiler de vehículos y otros activos.",
+    "RA4.g": "Se ha contactado vía online y offline con diferentes proveedores y suministradores potenciales y se ha solicitado la presentación de ofertas y presupuestos de acuerdo con las especificaciones recibidas.",
+    "RA4.h": "Se han evaluado las diferentes alternativas para la adquisición y renovación de vehículos, maquinaria e instalaciones, a partir del análisis comparativo de los presupuestos de compra y condiciones de pago.",
+    "RA5.a": "Se han interpretado las normas mercantiles y fiscales y los usos del comercio que regulan la facturación de productos y/o servicios, incluyendo la facturación electrónica.",
+    "RA5.b": "Se han identificado los impuestos que gravan los servicios de transporte y los tipos de gravamen aplicables en cada caso.",
+    "RA5.c": "Se han interpretado los aspectos del Impuesto sobre el Valor Añadido (IVA) y las obligaciones establecidas para la facturación de productos y/o servicios nacionales e internacionales.",
+    "RA5.d": "Se ha realizado la facturación de la venta de productos y/o la prestación de servicios, utilizando las aplicaciones informáticas adecuadas.",
+    "RA5.e": "Se han analizado las características, los costes de gestión de cobro y negociación y los riesgos de los diferentes medios de pago o cobro.",
+    "RA5.f": "Se han gestionado los impagados de clientes, cumpliendo los requisitos y plazos contemplados en la normativa vigente.",
+    "RA5.g": "Se han supervisado las condiciones de pago y cobro de las operaciones en divisas.",
+    "RA6.a": "Se han diferenciado las distintas partidas del balance, analizando su relación funcional: activo (fijo y circulante), pasivo (fijo y circulante) y patrimonio neto.",
+    "RA6.b": "Se han diferenciado los conceptos de inversión, gasto, pago, ingreso y cobro.",
+    "RA6.c": "Se han registrado las operaciones realizadas y se ha calculado el resultado, de acuerdo con los principios generales y las normas de valoración del Plan General Contable.",
+    "RA6.d": "Se ha determinado la amortización de los vehículos y demás elementos del inmovilizado, de acuerdo con la normativa fiscal vigente y el Plan General Contable.",
+    "RA6.e": "Se han elaborado las cuentas anuales de acuerdo con del Plan General Contable para las pymes.",
+    "RA6.f": "Se han identificado las obligaciones fiscales derivadas de la aplicación y gestión del Impuesto sobre el Valor Añadido (IVA).",
+    "RA6.g": "Se han establecido las gestiones que se han de realizar para la liquidación del Impuesto de Circulación de Vehículos, interpretando la normativa que lo regula.",
+    "RA6.h": "Se han identificado los impuestos sobre determinados vehículos, así como las tasas, cánones y derechos de uso que hay que pagar por la utilización de determinadas infraestructuras.",
+    "RA6.i": "Se han determinado las obligaciones fiscales relativas a los impuestos que gravan los beneficios, en función de la forma jurídica de la empresa: IRPF e Impuesto de Sociedades.",
+    "RA6.j": "Se ha utilizado una aplicación informática de contabilidad.",
+    "RA7.a": "Se han empleado las aplicaciones y utilidades de la información contable y los estados financieros para una gestión eficaz de la empresa.",
+    "RA7.b": "Se han valorado las relaciones del equilibrio necesarias entre las inversiones realizadas y los recursos financieros propios y ajenos, diferenciando entre la financiación básica y la del circulante.",
+    "RA7.c": "Se han aplicado los métodos más habituales para la evaluación de la rentabilidad de inversiones: tasa interna de rentabilidad (TIR), valor actual neto (VAN) y tasa de retorno.",
+    "RA7.d": "Se ha calculado el valor de adquisición, vida útil, valor actual, valor de reposición y valor residual de los elementos del inmovilizado.",
+    "RA7.e": "Se han calculado los flujos de tesorería o cash-flow y el período medio de maduración.",
+    "RA7.f": "Se ha calculado el punto muerto o umbral de rentabilidad.",
+    "RA7.g": "Se han calculado los principales ratios e indicadores financieros para analizar los estados financieros a través del balance y la cuenta de resultados.",
+    "RA7.h": "Se han utilizado hojas de cálculo para la determinación de los diferentes ratios financieros y para el cálculo de la rentabilidad de la empresa."
+   },
+   "unidades": [
+    {
+     "num": 1,
+     "titulo": "Iniciativa emprendedora y la empresa",
+     "ra": [
+      1
+     ],
+     "pagina": null,
+     "apartados": [
+      {
+       "id": "1.1",
+       "titulo": "Emprendedores, empresario y la empresa como sistema",
+       "pagina": null
+      },
+      {
+       "id": "1.2",
+       "titulo": "Plan de empresa y estudio de viabilidad",
+       "pagina": null
+      },
+      {
+       "id": "1.3",
+       "titulo": "El entorno de la empresa y la responsabilidad social",
+       "pagina": null
+      }
+     ],
+     "tests": [
+      {
+       "id": "1.1",
+       "titulo": "Emprendedores, empresario y la empresa como sistema",
+       "apartados": [
+        "1.1"
+       ],
+       "archivo": "0623/1.1",
+       "ra_extra": [
+        2
+       ]
+      },
+      {
+       "id": "1.2",
+       "titulo": "Plan de empresa y estudio de viabilidad",
+       "apartados": [
+        "1.2"
+       ],
+       "archivo": "0623/1.2"
+      },
+      {
+       "id": "1.3",
+       "titulo": "El entorno de la empresa y la responsabilidad social",
+       "apartados": [
+        "1.3"
+       ],
+       "archivo": "0623/1.3"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 2,
+     "titulo": "Forma jurídica de la empresa y constitución",
+     "ra": [
+      2
+     ],
+     "pagina": null,
+     "apartados": [
+      {
+       "id": "2.1",
+       "titulo": "Empresa individual, sociedades civiles y comunidades de bienes",
+       "pagina": null
+      },
+      {
+       "id": "2.2",
+       "titulo": "Sociedades mercantiles: SL, SA, colectiva, comanditaria y laboral",
+       "pagina": null
+      },
+      {
+       "id": "2.3",
+       "titulo": "Cooperativas, constitución, puesta en marcha y obligaciones",
+       "pagina": null
+      },
+      {
+       "id": "2.4",
+       "titulo": "Insolvencia: concurso de acreedores y causas de disolución",
+       "pagina": null
+      }
+     ],
+     "tests": [
+      {
+       "id": "2.1",
+       "titulo": "Empresa individual, sociedades civiles y comunidades de bienes",
+       "apartados": [
+        "2.1"
+       ],
+       "archivo": "0623/2.1"
+      },
+      {
+       "id": "2.2",
+       "titulo": "Sociedades mercantiles: SL, SA, colectiva, comanditaria y laboral",
+       "apartados": [
+        "2.2"
+       ],
+       "archivo": "0623/2.2"
+      },
+      {
+       "id": "2.3",
+       "titulo": "Cooperativas, constitución, puesta en marcha y obligaciones",
+       "apartados": [
+        "2.3"
+       ],
+       "archivo": "0623/2.3"
+      },
+      {
+       "id": "2.4",
+       "titulo": "Insolvencia: concurso de acreedores y causas de disolución",
+       "apartados": [
+        "2.4"
+       ],
+       "archivo": "0623/2.4"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 3,
+     "titulo": "Recursos financieros: inversión y financiación",
+     "ra": [
+      3
+     ],
+     "pagina": null,
+     "apartados": [
+      {
+       "id": "3.1",
+       "titulo": "Inversión y financiación: fuentes propias y ajenas",
+       "pagina": null
+      },
+      {
+       "id": "3.2",
+       "titulo": "Interés simple y compuesto, nominal, efectivo y TAE",
+       "pagina": null
+      },
+      {
+       "id": "3.3",
+       "titulo": "Préstamos y sistemas de amortización",
+       "pagina": null
+      },
+      {
+       "id": "3.4",
+       "titulo": "Leasing, renting, compra y garantías bancarias",
+       "pagina": null
+      },
+      {
+       "id": "3.5",
+       "titulo": "Financiación a corto plazo: crédito comercial, descuento, póliza y factoring",
+       "pagina": null
+      }
+     ],
+     "tests": [
+      {
+       "id": "3.1",
+       "titulo": "Inversión y financiación: fuentes propias y ajenas",
+       "apartados": [
+        "3.1"
+       ],
+       "archivo": "0623/3.1"
+      },
+      {
+       "id": "3.2",
+       "titulo": "Interés simple y compuesto, nominal, efectivo y TAE",
+       "apartados": [
+        "3.2"
+       ],
+       "archivo": "0623/3.2"
+      },
+      {
+       "id": "3.3",
+       "titulo": "Préstamos y sistemas de amortización",
+       "apartados": [
+        "3.3"
+       ],
+       "archivo": "0623/3.3"
+      },
+      {
+       "id": "3.4",
+       "titulo": "Leasing, renting, compra y garantías bancarias",
+       "apartados": [
+        "3.4"
+       ],
+       "archivo": "0623/3.4",
+       "ra_extra": [
+        4
+       ]
+      },
+      {
+       "id": "3.5",
+       "titulo": "Financiación a corto plazo: crédito comercial, descuento, póliza y factoring",
+       "apartados": [
+        "3.5"
+       ],
+       "archivo": "0623/3.5"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 4,
+     "titulo": "Compraventa y alquiler de vehículos y otros activos",
+     "ra": [
+      4
+     ],
+     "pagina": null,
+     "apartados": [
+      {
+       "id": "4.1",
+       "titulo": "Necesidades de activos, compra o alquiler y mercados de segunda mano",
+       "pagina": null
+      },
+      {
+       "id": "4.2",
+       "titulo": "Plan de inversión, financiación y recuperación",
+       "pagina": null
+      },
+      {
+       "id": "4.3",
+       "titulo": "Suministros, proveedores, ofertas y presupuestos",
+       "pagina": null
+      }
+     ],
+     "tests": [
+      {
+       "id": "4.1",
+       "titulo": "Necesidades de activos, compra o alquiler y mercados de segunda mano",
+       "apartados": [
+        "4.1"
+       ],
+       "archivo": "0623/4.1"
+      },
+      {
+       "id": "4.2",
+       "titulo": "Plan de inversión, financiación y recuperación",
+       "apartados": [
+        "4.2"
+       ],
+       "archivo": "0623/4.2"
+      },
+      {
+       "id": "4.3",
+       "titulo": "Suministros, proveedores, ofertas y presupuestos",
+       "apartados": [
+        "4.3"
+       ],
+       "archivo": "0623/4.3"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 5,
+     "titulo": "Facturación, cobros y pagos",
+     "ra": [
+      5
+     ],
+     "pagina": null,
+     "apartados": [
+      {
+       "id": "5.1",
+       "titulo": "Facturación: requisitos, plazos, moneda y tipos de factura",
+       "pagina": null
+      },
+      {
+       "id": "5.2",
+       "titulo": "IVA en el transporte y en las operaciones internacionales",
+       "pagina": null
+      },
+      {
+       "id": "5.3",
+       "titulo": "Medios de cobro y pago, morosidad, impagados y divisas",
+       "pagina": null
+      }
+     ],
+     "tests": [
+      {
+       "id": "5.1",
+       "titulo": "Facturación: requisitos, plazos, moneda y tipos de factura",
+       "apartados": [
+        "5.1"
+       ],
+       "archivo": "0623/5.1"
+      },
+      {
+       "id": "5.2",
+       "titulo": "IVA en el transporte y en las operaciones internacionales",
+       "apartados": [
+        "5.2"
+       ],
+       "archivo": "0623/5.2"
+      },
+      {
+       "id": "5.3",
+       "titulo": "Medios de cobro y pago, morosidad, impagados y divisas",
+       "apartados": [
+        "5.3"
+       ],
+       "archivo": "0623/5.3"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 6,
+     "titulo": "Proceso contable y fiscal",
+     "ra": [
+      6
+     ],
+     "pagina": null,
+     "apartados": [
+      {
+       "id": "6.1",
+       "titulo": "El balance: activo, pasivo y patrimonio neto; inversión, gasto, pago, ingreso y cobro",
+       "pagina": null
+      },
+      {
+       "id": "6.2",
+       "titulo": "El ciclo contable, las cuentas del PGC y la amortización del inmovilizado",
+       "pagina": null
+      },
+      {
+       "id": "6.3",
+       "titulo": "Cuentas anuales, PGC para pymes y obligaciones contables",
+       "pagina": null
+      },
+      {
+       "id": "6.4",
+       "titulo": "IVA, impuesto de circulación, tasas y otros impuestos del transporte",
+       "pagina": null
+      },
+      {
+       "id": "6.5",
+       "titulo": "Impuestos sobre beneficios: IRPF e Impuesto sobre Sociedades",
+       "pagina": null
+      }
+     ],
+     "tests": [
+      {
+       "id": "6.1",
+       "titulo": "El balance: activo, pasivo y patrimonio neto; inversión, gasto, pago, ingreso y cobro",
+       "apartados": [
+        "6.1"
+       ],
+       "archivo": "0623/6.1"
+      },
+      {
+       "id": "6.2",
+       "titulo": "El ciclo contable, las cuentas del PGC y la amortización del inmovilizado",
+       "apartados": [
+        "6.2"
+       ],
+       "archivo": "0623/6.2"
+      },
+      {
+       "id": "6.3",
+       "titulo": "Cuentas anuales, PGC para pymes y obligaciones contables",
+       "apartados": [
+        "6.3"
+       ],
+       "archivo": "0623/6.3"
+      },
+      {
+       "id": "6.4",
+       "titulo": "IVA, impuesto de circulación, tasas y otros impuestos del transporte",
+       "apartados": [
+        "6.4"
+       ],
+       "archivo": "0623/6.4"
+      },
+      {
+       "id": "6.5",
+       "titulo": "Impuestos sobre beneficios: IRPF e Impuesto sobre Sociedades",
+       "apartados": [
+        "6.5"
+       ],
+       "archivo": "0623/6.5"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 7,
+     "titulo": "Rentabilidad, solvencia y eficiencia",
+     "ra": [
+      7
+     ],
+     "pagina": null,
+     "apartados": [
+      {
+       "id": "7.1",
+       "titulo": "Equilibrio financiero, fondo de maniobra y ratios",
+       "pagina": null
+      },
+      {
+       "id": "7.2",
+       "titulo": "Rentabilidad de inversiones: VAN, TIR y plazo de recuperación",
+       "pagina": null
+      },
+      {
+       "id": "7.3",
+       "titulo": "Inmovilizado, cash-flow y punto muerto",
+       "pagina": null
+      }
+     ],
+     "tests": [
+      {
+       "id": "7.1",
+       "titulo": "Equilibrio financiero, fondo de maniobra y ratios",
+       "apartados": [
+        "7.1"
+       ],
+       "archivo": "0623/7.1"
+      },
+      {
+       "id": "7.2",
+       "titulo": "Rentabilidad de inversiones: VAN, TIR y plazo de recuperación",
+       "apartados": [
+        "7.2"
+       ],
+       "archivo": "0623/7.2"
+      },
+      {
+       "id": "7.3",
+       "titulo": "Inmovilizado, cash-flow y punto muerto",
+       "apartados": [
+        "7.3"
+       ],
+       "archivo": "0623/7.3"
+      }
+     ],
+     "en_alcance": true
+    }
+   ]
+  },
+  {
+   "codigo": "0625",
+   "nombre": "Logística de almacenamiento",
+   "horas": 120,
+   "fuente": "Decreto 95/2012 (BOCM 06/09/2012), RD 1574/2011 (BOE-A-2011-19439) e índice del libro de texto del alumno",
+   "disponible": true,
+   "resultados_aprendizaje": {
+    "1": "Relaciona la normativa específica del almacenaje, reconociendo las normas de contratación y de tratamiento de mercancías especiales.",
+    "2": "Organiza el proceso de almacenaje por tipo de actividad y volumen de mercancías, optimizando los espacios y los tiempos de manipulación.",
+    "3": "Confecciona y controla el presupuesto del almacén, identificando desviaciones provenientes de la asignación de costes.",
+    "4": "Gestiona los stocks del almacén, asegurando su aprovisionamiento y expedición.",
+    "5": "Gestiona las operaciones sujetas a la logística inversa, determinando el tratamiento a dar a las mercancías retornadas.",
+    "6": "Supervisa los procesos realizados en el almacén, implantando sistemas de mejora de la calidad del servicio y planes de formación/reciclaje del personal."
+   },
+   "criterios": {
+    "RA1.a": "Se han analizado las normas que reglamentan las actividades de almacenaje y distribución.",
+    "RA1.b": "Se ha aplicado la normativa en la cumplimentación del contrato de depósito.",
+    "RA1.c": "Se han caracterizado las normas nacionales e internacionales sobre el almacenaje de productos.",
+    "RA1.d": "Se han analizado los aspectos que caracterizan un depósito aduanero, una zona y depósito franco y un local autorizado, entre otros.",
+    "RA1.e": "Se han definido las formalidades y trámites que deben realizarse en un almacén.",
+    "RA1.f": "Se han planificado, en el almacén, sistemas de calidad homologables a nivel internacional.",
+    "RA2.a": "Se han analizado las condiciones y modalidades de los sistemas de almacenaje según diferentes variables.",
+    "RA2.b": "Se han secuenciado los diferentes subprocesos del proceso logístico de almacenaje.",
+    "RA2.c": "Se ha realizado el diseño en planta del almacén, en función de las operaciones y movimientos que hay que realizar.",
+    "RA2.d": "Se han seleccionado equipos, medios y herramientas de manutención, según las características del almacén y de las mercancías almacenadas, aplicando criterios económicos, de calidad y servicio.",
+    "RA2.e": "Se han aplicado métodos y técnicas de optimización de los espacios de almacenamiento.",
+    "RA2.f": "Se han utilizado métodos de reducción en los tiempos de localización y manipulación de las mercancías.",
+    "RA2.g": "Se han seleccionado diferentes sistemas modulares de envasado y embalaje de las mercancías del almacén.",
+    "RA2.h": "Se han concretado procedimientos de prevención de riesgos en el almacén.",
+    "RA3.a": "Se han determinado las partidas y conceptos que hay que tener en cuenta para elaborar un presupuesto estimativo del servicio de almacén.",
+    "RA3.b": "Se ha calculado periódicamente el coste de funcionamiento del almacén.",
+    "RA3.c": "Se han identificado los indicadores o estándares económicos óptimos: coste por hora y coste por servicio, entre otros.",
+    "RA3.d": "Se han calculado los costes de almacén en función de la urgencia, plazos de entrega, preparación de mercancías, co-packing y paletización, entre otros.",
+    "RA3.e": "Se han analizado las desviaciones sobre los costes previstos, identificando su causa y origen, y proponiendo medidas correctoras de acuerdo con el procedimiento establecido por la empresa.",
+    "RA3.f": "Se ha preparado el presupuesto de gastos del almacén, teniendo en cuenta los costes de la actividad y el nivel de servicio establecido, utilizando hojas de cálculo informático.",
+    "RA3.g": "Se han calculado periódicamente los costes de funcionamiento del almacén, utilizando hojas de cálculo informático.",
+    "RA4.a": "Se han clasificado los diferentes tipos de inventarios y la finalidad de cada uno de ellos.",
+    "RA4.b": "Se han aplicado los conceptos de stock medio, mínimo y óptimo, identificando las variables que intervienen en su cálculo y la velocidad de rotación de las existencias.",
+    "RA4.c": "Se han previsto las unidades necesarias de existencias en almacén para evitar roturas de stock.",
+    "RA4.d": "Se han valorado las existencias del almacén, utilizando diferentes métodos.",
+    "RA4.e": "Se han controlado las existencias del almacén, supervisando el procedimiento y las normas establecidas para identificar desviaciones del inventario y plantear medidas rectificadoras.",
+    "RA4.f": "Se han realizado las tareas necesarias para atender los pedidos de mercancías efectuados por los clientes y la expedición de las mismas.",
+    "RA4.g": "Se han registrado las altas, bajas y modificaciones de productos (código EAN), proveedores, clientes y/o servicios por medio de herramientas informáticas.",
+    "RA4.h": "Se han utilizado aplicaciones informáticas generales para gestionar los stocks y específicas para la identificación de materiales, gestión de pedidos, extracción y registro de salidas del almacén.",
+    "RA5.a": "Se han analizado las actividades relacionadas con la logística inversa según la política de devolución o acuerdos alcanzados con los clientes.",
+    "RA5.b": "Se han previsto las acciones que hay que realizar con las mercancías retornadas: reparación, reciclado, eliminación o reutilización en mercados secundarios.",
+    "RA5.c": "Se han definido las medidas necesarias para evitar la obsolescencia y/o contaminación de las mercancías retornadas.",
+    "RA5.d": "Se han aplicado las normativas sanitarias y medioambientales vigentes.",
+    "RA5.e": "Se ha diseñado la recogida de los envases retornables con la entrega de nueva mercancía, aplicando la normativa vigente.",
+    "RA5.f": "Se han clasificado las diferentes unidades y/o equipos de carga para su reutilización en otras operaciones de la cadena logística, evitando el transporte en vacío.",
+    "RA5.g": "Se han clasificado los diferentes tipos de envases y embalajes para reutilizarlos, siguiendo las especificaciones, recomendaciones y normativa vigente.",
+    "RA6.a": "Se han analizado los elementos necesarios para la implantación de un sistema de calidad en el almacén, siguiendo las pautas de la empresa y/o clientes.",
+    "RA6.b": "Se ha previsto la implantación de sistemas de calidad y seguridad para la mejora continua de los procesos y de los sistemas de almacenaje.",
+    "RA6.c": "Se ha valorado el cumplimiento de los procesos y protocolos del almacén, partiendo del plan o manual de calidad de la empresa.",
+    "RA6.d": "Se ha valorado la implantación y seguimiento de la mercancía por sistemas de radiofrecuencia o con otras innovaciones tecnológicas.",
+    "RA6.e": "Se han investigado los elementos necesarios para asegurar la trazabilidad de las mercancías y el cumplimiento de la normativa relativa a la misma, utilizando sistemas de gestión de almacenes.",
+    "RA6.f": "Se han fijado los objetivos de un plan de formación-tipo para mejorar la eficiencia y calidad del servicio de almacén.",
+    "RA6.g": "Se han detectado las necesidades de formación inicial y continua, tanto individuales como del equipo en su conjunto.",
+    "RA6.h": "Se han utilizado programas de gestión de tareas y cronogramas para controlar las tareas, los tiempos y el personal, cumpliendo con las normas de prevención de riesgos laborales."
+   },
+   "unidades": [
+    {
+     "num": 1,
+     "titulo": "La hoja de cálculo en el almacén",
+     "ra": [
+      3
+     ],
+     "pagina": 6,
+     "apartados": [
+      {
+       "id": "1.1",
+       "titulo": "Introducción y edición de datos",
+       "pagina": 8
+      },
+      {
+       "id": "1.2",
+       "titulo": "Formato de celdas, filas, columnas, páginas y hojas",
+       "pagina": 11
+      },
+      {
+       "id": "1.3",
+       "titulo": "Operaciones básicas con hojas de cálculo y fórmulas",
+       "pagina": 18
+      },
+      {
+       "id": "1.4",
+       "titulo": "Tratamiento de datos",
+       "pagina": 24
+      },
+      {
+       "id": "1.5",
+       "titulo": "Representación gráfica de datos",
+       "pagina": 26
+      },
+      {
+       "id": "1.6",
+       "titulo": "Impresión",
+       "pagina": 33
+      }
+     ],
+     "tests": [
+      {
+       "id": "1.1",
+       "titulo": "Introducción, edición de datos y formato de celdas",
+       "apartados": [
+        "1.1",
+        "1.2"
+       ],
+       "archivo": "0625/1.1"
+      },
+      {
+       "id": "1.2",
+       "titulo": "Operaciones básicas, fórmulas y funciones",
+       "apartados": [
+        "1.3"
+       ],
+       "archivo": "0625/1.2"
+      },
+      {
+       "id": "1.3",
+       "titulo": "Tratamiento de datos, gráficos e impresión",
+       "apartados": [
+        "1.4",
+        "1.5",
+        "1.6"
+       ],
+       "archivo": "0625/1.3"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 2,
+     "titulo": "Normativa específica del almacenaje",
+     "ra": [
+      1
+     ],
+     "pagina": 40,
+     "apartados": [
+      {
+       "id": "2.1",
+       "titulo": "Marco legal del contrato de depósito",
+       "pagina": 42
+      },
+      {
+       "id": "2.2",
+       "titulo": "Marco legal de la actividad de almacenaje-distribución",
+       "pagina": 48
+      },
+      {
+       "id": "2.3",
+       "titulo": "Normativa para mercancías especiales: peligrosas y perecederas entre otras",
+       "pagina": 56
+      },
+      {
+       "id": "2.4",
+       "titulo": "Regímenes de almacenamiento en el comercio internacional",
+       "pagina": 75
+      }
+     ],
+     "tests": [
+      {
+       "id": "2.1",
+       "titulo": "Marco legal del contrato de depósito",
+       "apartados": [
+        "2.1"
+       ],
+       "archivo": "0625/2.1"
+      },
+      {
+       "id": "2.2",
+       "titulo": "Marco legal de la actividad de almacenaje y distribución",
+       "apartados": [
+        "2.2"
+       ],
+       "archivo": "0625/2.2"
+      },
+      {
+       "id": "2.3",
+       "titulo": "Normativa para mercancías especiales: peligrosas, perecederas y otras",
+       "apartados": [
+        "2.3"
+       ],
+       "archivo": "0625/2.3"
+      },
+      {
+       "id": "2.4",
+       "titulo": "Regímenes de almacenamiento en el comercio internacional",
+       "apartados": [
+        "2.4"
+       ],
+       "archivo": "0625/2.4"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 3,
+     "titulo": "Organización del proceso de almacén",
+     "ra": [
+      2
+     ],
+     "pagina": 92,
+     "apartados": [
+      {
+       "id": "3.1",
+       "titulo": "Logística, conceptos y objetivos",
+       "pagina": 95
+      },
+      {
+       "id": "3.2",
+       "titulo": "El almacén. Definición y funciones",
+       "pagina": 98
+      },
+      {
+       "id": "3.3",
+       "titulo": "Organización de los almacenes en empresas de fabricación, distribución y servicios",
+       "pagina": 105
+      },
+      {
+       "id": "3.4",
+       "titulo": "Tipos de almacenes. Sistemas de almacenaje: ventajas y desventajas",
+       "pagina": 112
+      },
+      {
+       "id": "3.5",
+       "titulo": "Organización de actividades y flujos de mercancías en el almacén",
+       "pagina": 132
+      },
+      {
+       "id": "3.6",
+       "titulo": "Recepción de mercancías",
+       "pagina": 135
+      },
+      {
+       "id": "3.7",
+       "titulo": "Almacenamiento de materiales. Instalaciones y formas de almacenamiento",
+       "pagina": 143
+      },
+      {
+       "id": "3.8",
+       "titulo": "Manipulación de mercancías. Medios de manipulación móviles y fijos",
+       "pagina": 154
+      },
+      {
+       "id": "3.9",
+       "titulo": "Preparación de pedidos y distribución",
+       "pagina": 162
+      },
+      {
+       "id": "3.10",
+       "titulo": "El cross docking",
+       "pagina": 175
+      },
+      {
+       "id": "3.11",
+       "titulo": "Sistemas modulares. Unidades de carga: palé y contenedores",
+       "pagina": 176
+      },
+      {
+       "id": "3.12",
+       "titulo": "Sistemas de seguimiento de las mercancías: radiofrecuencia, codificación, lectores de barras, voz",
+       "pagina": 179
+      },
+      {
+       "id": "3.13",
+       "titulo": "Gestión del embalaje",
+       "pagina": 184
+      },
+      {
+       "id": "3.14",
+       "titulo": "Normativa de seguridad e higiene en almacenes",
+       "pagina": 197
+      }
+     ],
+     "tests": [
+      {
+       "id": "3.1",
+       "titulo": "Logística y almacén: conceptos, funciones y organización",
+       "apartados": [
+        "3.1",
+        "3.2",
+        "3.3"
+       ],
+       "archivo": "0625/3.1"
+      },
+      {
+       "id": "3.2",
+       "titulo": "Tipos de almacenes y sistemas de almacenaje",
+       "apartados": [
+        "3.4"
+       ],
+       "archivo": "0625/3.2"
+      },
+      {
+       "id": "3.3",
+       "titulo": "Organización de flujos, layout y recepción de mercancías",
+       "apartados": [
+        "3.5",
+        "3.6"
+       ],
+       "archivo": "0625/3.3"
+      },
+      {
+       "id": "3.4",
+       "titulo": "Almacenamiento de materiales, manipulación y medios de manutención",
+       "apartados": [
+        "3.7",
+        "3.8"
+       ],
+       "archivo": "0625/3.4"
+      },
+      {
+       "id": "3.5",
+       "titulo": "Preparación de pedidos, picking y cross-docking",
+       "apartados": [
+        "3.9",
+        "3.10"
+       ],
+       "archivo": "0625/3.5"
+      },
+      {
+       "id": "3.6",
+       "titulo": "Unidades de carga, sistemas de seguimiento y gestión del embalaje",
+       "apartados": [
+        "3.11",
+        "3.12",
+        "3.13"
+       ],
+       "archivo": "0625/3.6"
+      },
+      {
+       "id": "3.7",
+       "titulo": "Seguridad e higiene en almacenes",
+       "apartados": [
+        "3.14"
+       ],
+       "archivo": "0625/3.7",
+       "ra_extra": [
+        6
+       ]
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 4,
+     "titulo": "Identificación de desviaciones presupuestarias",
+     "ra": [
+      3
+     ],
+     "pagina": 206,
+     "apartados": [
+      {
+       "id": "4.1",
+       "titulo": "Costes de almacenamiento: variables que intervienen en su cálculo",
+       "pagina": 208
+      },
+      {
+       "id": "4.2",
+       "titulo": "Coste de adquisición",
+       "pagina": 218
+      },
+      {
+       "id": "4.3",
+       "titulo": "Coste por unidad almacenada",
+       "pagina": 220
+      },
+      {
+       "id": "4.4",
+       "titulo": "La hoja de cálculo como herramienta de procesamiento de datos",
+       "pagina": 222
+      }
+     ],
+     "tests": [
+      {
+       "id": "4.1",
+       "titulo": "Costes de almacenamiento: variables y clasificación",
+       "apartados": [
+        "4.1"
+       ],
+       "archivo": "0625/4.1"
+      },
+      {
+       "id": "4.2",
+       "titulo": "Coste de adquisición y coste por unidad almacenada",
+       "apartados": [
+        "4.2",
+        "4.3"
+       ],
+       "archivo": "0625/4.2"
+      },
+      {
+       "id": "4.3",
+       "titulo": "Desviaciones presupuestarias y hoja de cálculo",
+       "apartados": [
+        "4.4"
+       ],
+       "archivo": "0625/4.3"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 5,
+     "titulo": "Gestión de stocks",
+     "ra": [
+      4
+     ],
+     "pagina": 242,
+     "apartados": [
+      {
+       "id": "5.1",
+       "titulo": "Las existencias: concepto, funciones y tipos",
+       "pagina": 245
+      },
+      {
+       "id": "5.2",
+       "titulo": "Criterios de valoración de las existencias",
+       "pagina": 247
+      },
+      {
+       "id": "5.3",
+       "titulo": "Objetivos de la gestión de stocks",
+       "pagina": 250
+      },
+      {
+       "id": "5.4",
+       "titulo": "Nivel de stock; stock óptimo y stock de seguridad",
+       "pagina": 265
+      },
+      {
+       "id": "5.5",
+       "titulo": "Rotación de existencias y periodo medio de maduración",
+       "pagina": 268
+      },
+      {
+       "id": "5.6",
+       "titulo": "Clasificación ABC de las existencias",
+       "pagina": 273
+      },
+      {
+       "id": "5.7",
+       "titulo": "Control económico",
+       "pagina": 276
+      },
+      {
+       "id": "5.8",
+       "titulo": "Control de incidencias",
+       "pagina": 283
+      },
+      {
+       "id": "5.9",
+       "titulo": "El ciclo del pedido del cliente",
+       "pagina": 285
+      },
+      {
+       "id": "5.10",
+       "titulo": "Software general que integre los aspectos del almacén",
+       "pagina": 287
+      },
+      {
+       "id": "5.11",
+       "titulo": "Programas específicos de gestión de almacenes y existencias",
+       "pagina": 293
+      },
+      {
+       "id": "5.12",
+       "titulo": "Programas de gestión de compras, almacén y ventas",
+       "pagina": 304
+      }
+     ],
+     "tests": [
+      {
+       "id": "5.1",
+       "titulo": "Existencias, criterios de valoración y objetivos de la gestión de stocks",
+       "apartados": [
+        "5.1",
+        "5.2",
+        "5.3"
+       ],
+       "archivo": "0625/5.1"
+      },
+      {
+       "id": "5.2",
+       "titulo": "Niveles de stock: óptimo, seguridad y punto de pedido",
+       "apartados": [
+        "5.4"
+       ],
+       "archivo": "0625/5.2"
+      },
+      {
+       "id": "5.3",
+       "titulo": "Rotación de existencias y período medio de maduración",
+       "apartados": [
+        "5.5"
+       ],
+       "archivo": "0625/5.3"
+      },
+      {
+       "id": "5.4",
+       "titulo": "Clasificación ABC, inventarios y control económico",
+       "apartados": [
+        "5.6",
+        "5.7"
+       ],
+       "archivo": "0625/5.4"
+      },
+      {
+       "id": "5.5",
+       "titulo": "Control de incidencias y ciclo del pedido del cliente",
+       "apartados": [
+        "5.8",
+        "5.9"
+       ],
+       "archivo": "0625/5.5"
+      },
+      {
+       "id": "5.6",
+       "titulo": "Software de gestión de almacenes, aprovisionamiento y existencias",
+       "apartados": [
+        "5.10",
+        "5.11",
+        "5.12"
+       ],
+       "archivo": "0625/5.6"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 6,
+     "titulo": "Gestión de las operaciones sujetas a la logística inversa",
+     "ra": [
+      5
+     ],
+     "pagina": 313,
+     "apartados": [
+      {
+       "id": "6.1",
+       "titulo": "Actividades de la logística inversa",
+       "pagina": 315
+      },
+      {
+       "id": "6.2",
+       "titulo": "Devoluciones",
+       "pagina": 323
+      },
+      {
+       "id": "6.3",
+       "titulo": "Costes afectos a las devoluciones",
+       "pagina": 326
+      },
+      {
+       "id": "6.4",
+       "titulo": "Reutilización de unidades y equipos de carga",
+       "pagina": 330
+      },
+      {
+       "id": "6.5",
+       "titulo": "Contenedores y embalajes reutilizables",
+       "pagina": 338
+      }
+     ],
+     "tests": [
+      {
+       "id": "6.1",
+       "titulo": "Actividades de la logística inversa y tratamiento de devoluciones",
+       "apartados": [
+        "6.1",
+        "6.2"
+       ],
+       "archivo": "0625/6.1"
+      },
+      {
+       "id": "6.2",
+       "titulo": "Costes de las devoluciones y reutilización de unidades y embalajes",
+       "apartados": [
+        "6.3",
+        "6.4",
+        "6.5"
+       ],
+       "archivo": "0625/6.2"
+      }
+     ],
+     "en_alcance": true
+    },
+    {
+     "num": 7,
+     "titulo": "Supervisión de los procesos realizados en el almacén",
+     "ra": [
+      6
+     ],
+     "pagina": 344,
+     "apartados": [
+      {
+       "id": "7.1",
+       "titulo": "Sistemas de calidad en el almacén",
+       "pagina": 346
+      },
+      {
+       "id": "7.2",
+       "titulo": "Aplicaciones de sistemas de seguridad para personas y mercancías",
+       "pagina": 365
+      },
+      {
+       "id": "7.3",
+       "titulo": "Planes de formación inicial y continua en el equipo de trabajo",
+       "pagina": 372
+      },
+      {
+       "id": "7.4",
+       "titulo": "Nuevas tecnologías aplicadas a la automatización e informatización del almacén",
+       "pagina": 375
+      }
+     ],
+     "tests": [
+      {
+       "id": "7.1",
+       "titulo": "Sistemas de calidad, seguridad y trazabilidad en el almacén",
+       "apartados": [
+        "7.1",
+        "7.2"
+       ],
+       "archivo": "0625/7.1"
+      },
+      {
+       "id": "7.2",
+       "titulo": "Formación del equipo y nuevas tecnologías en el almacén",
+       "apartados": [
+        "7.3",
+        "7.4"
+       ],
+       "archivo": "0625/7.2"
+      }
+     ],
+     "en_alcance": true
+    }
+   ]
+  }
+ ],
+ "convocatorias_madrid": [
+  "2022-23",
+  "2023-24",
+  "2024-25",
+  "2025-26"
+ ],
+ "niveles_verificacion": {
+  "oficial": "Contrastado con texto normativo o documento oficial (BOE, IATA, ICAO, UNECE, etc.).",
+  "secundaria": "Contrastado solo con fuentes secundarias fiables; conviene revisar la fuente primaria.",
+  "general": "Conocimiento básico del currículo sin cifras ni normas que cambien."
+ }
+}

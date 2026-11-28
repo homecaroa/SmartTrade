@@ -1,0 +1,241 @@
+{
+  "modulo": "0623",
+  "tema": "4.3",
+  "titulo": "Suministros, proveedores, ofertas y presupuestos",
+  "preguntas": [
+    {
+      "id": "0623-4.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué suministros necesita una empresa de transporte?",
+      "opciones": [
+        "Solo combustible para los vehículos de la flota",
+        "Solo papel y material de oficina",
+        "Combustible, neumáticos, repuestos y mantenimiento",
+        "Solo mobiliario para las instalaciones"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se planifican según consumos.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el sistema de aprovisionamiento?",
+      "opciones": [
+        "La forma de vender los productos de la empresa",
+        "La forma de pagar las nóminas del personal",
+        "La forma de facturar los servicios prestados",
+        "La forma de obtener y gestionar los suministros"
+      ],
+      "respuesta": 3,
+      "explicacion": "Condiciona los costes y el stock.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene el aprovisionamiento justo a tiempo (JIT)?",
+      "opciones": [
+        "Menos stock y costes, con proveedores fiables",
+        "Aumenta el stock para evitar roturas",
+        "Elimina todo riesgo en el suministro",
+        "No necesita ninguna planificación previa"
+      ],
+      "respuesta": 0,
+      "explicacion": "Depende de la coordinación con proveedores.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una solicitud de oferta o presupuesto?",
+      "opciones": [
+        "La factura que emite el proveedor tras la venta",
+        "El documento que pide precio y condiciones",
+        "El albarán que acompaña a la mercancía",
+        "El pedido firme que ya compromete la compra"
+      ],
+      "respuesta": 1,
+      "explicacion": "Debe indicar especificaciones, cantidades y plazos.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué datos debe incluir una solicitud de oferta?",
+      "opciones": [
+        "Solo el nombre del proveedor al que se pide",
+        "Solo el precio máximo que se está dispuesto a pagar",
+        "Especificaciones, cantidades, plazo y pago",
+        "Solo la fecha en que se envía la solicitud"
+      ],
+      "respuesta": 2,
+      "explicacion": "Permite comparar ofertas homogéneas.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué criterios se usan para elegir proveedor?",
+      "opciones": [
+        "Solo el precio, sin otras consideraciones",
+        "Solo la cercanía geográfica del proveedor",
+        "Solo el logotipo y la imagen del proveedor",
+        "Precio, calidad, plazo, pago y fiabilidad"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se ponderan según importancia.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el fichero maestro de proveedores?",
+      "opciones": [
+        "La base de datos de proveedores",
+        "Un fichero con los datos de los clientes",
+        "Una factura con los importes de las compras",
+        "Un contrato marco de suministro"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se mantiene actualizado con altas y bajas.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un albarán de entrega?",
+      "opciones": [
+        "Es la factura que se emite al comprador",
+        "Acredita la entrega y se coteja con el pedido",
+        "Es el presupuesto que se pide al proveedor",
+        "Es el contrato firmado con el proveedor"
+      ],
+      "respuesta": 1,
+      "explicacion": "Permite controlar recepciones.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el descuento comercial en un presupuesto?",
+      "opciones": [
+        "Un recargo por pedidos de poca cuantía",
+        "Un impuesto que grava las compras",
+        "Una rebaja por cantidad o fidelidad",
+        "Un gasto financiero por pago aplazado"
+      ],
+      "respuesta": 2,
+      "explicacion": "Reduce el precio neto.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Oferta A: 10.000 € pagaderos a 90 días. Oferta B: 9.600 € al contado. Con un coste de financiación del 8 % anual, ¿cuál es el valor actual de A (aprox., descuento simple a 90 días)?",
+      "opciones": [
+        "10.000,00 €",
+        "9.600,00 €",
+        "8.820,00 €",
+        "9.803,92 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "VA = 10.000,00/(1+0,08×90/360) = 9.803,92 €. Es menor que B si B = 9.600, por lo que A conviene.",
+      "criterio": "RA4.h",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Con esos datos (A ≈ 9.803,92 € de valor actual y B = 9.600 €), ¿qué oferta es más barata en términos financieros?",
+      "opciones": [
+        "La oferta B",
+        "La oferta A",
+        "Cuestan lo mismo",
+        "No se puede comparar"
+      ],
+      "respuesta": 0,
+      "explicacion": "9.600 € < 9.803,92 €: la oferta al contado es más barata.",
+      "criterio": "RA4.h",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Se piden 3 presupuestos: 12.000 €, 11.500 € y 12.400 €. ¿Cuál es la diferencia entre el más caro y el más barato?",
+      "opciones": [
+        "500,00 €",
+        "900,00 €",
+        "1.300,00 €",
+        "11.500,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "12.400 − 11.500 = 900 €.",
+      "criterio": "RA4.h",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Un proveedor ofrece 5 % de descuento sobre 8.000 € y 150 € de transporte. ¿Cuál es el coste total?",
+      "opciones": [
+        "7.600,00 €",
+        "8.150,00 €",
+        "7.750,00 €",
+        "8.550,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "7.600 + 150 = 7.750 €.",
+      "criterio": "RA4.h",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

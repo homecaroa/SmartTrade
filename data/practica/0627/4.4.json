@@ -1,0 +1,241 @@
+{
+  "modulo": "0627",
+  "tema": "4.4",
+  "titulo": "Fiscalidad del comercio exterior: arancel, IVA e impuestos especiales",
+  "preguntas": [
+    {
+      "id": "0627-4.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué impuestos principales gravan una importación desde un tercer país?",
+      "opciones": [
+        "Solo el Impuesto sobre Sociedades de la empresa importadora",
+        "Solo el IRPF que paga el administrador de la empresa",
+        "Solo el flete y el seguro de la mercancía transportada",
+        "Derechos de aduana, IVA de importación e impuestos especiales"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los tres son parte de la deuda aduanera y tributaria asociada a la importación.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una importación a efectos del IVA?",
+      "opciones": [
+        "La entrada de un bien procedente de un país tercero",
+        "La compra de bienes a otra empresa establecida en España",
+        "La entrada de un bien procedente de otro Estado miembro",
+        "La salida de un bien hacia un país tercero fuera de la UE"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 18 Ley 37/1992. La entrada de otro Estado miembro es una adquisición intracomunitaria.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 18 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el tipo general del IVA en España?",
+      "opciones": [
+        "10 %",
+        "21 %",
+        "4 %",
+        "25 %"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 90 Ley 37/1992. Los reducidos son el 10 % (art. 91.uno) y el 4 % (art. 91.dos).",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 90 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la base imponible del IVA en las importaciones?",
+      "opciones": [
+        "Solo el valor que figura en la factura del proveedor extranjero",
+        "Solo el precio FOB sin los costes de transporte y seguro",
+        "Valor en aduana más derechos, gravámenes y gastos hasta destino",
+        "El valor en aduana sin sumar los derechos que se paguen"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 83.uno Ley 37/1992.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 83 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por «primer lugar de destino» en la base imponible del IVA de importación?",
+      "opciones": [
+        "El domicilio fiscal del importador en todos los casos",
+        "El puerto o aeropuerto por el que entran las mercancías",
+        "El almacén del vendedor extranjero en el país de origen",
+        "El de la carta de porte o donde se desagrega la carga"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 83.uno Ley 37/1992.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 83 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Valor en aduana: 21.350,00 €; derecho de arancel del 5 %; gastos de transporte hasta el almacén en España no incluidos en el valor: 400,00 €. ¿Cuál es la base imponible del IVA de importación?",
+      "opciones": [
+        "22.817,50 €",
+        "22.417,50 €",
+        "21.750,00 €",
+        "21.350,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Base = 21.350,00 + 1.067,50 (derecho) + 400,00 = 22.817,50 €.",
+      "criterio": "RA4.f",
+      "fuente": "Cálculo con los datos del enunciado. Art. 83 Ley 37/1992.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Con la base anterior y el tipo general del 21 %, ¿cuál es la cuota de IVA de importación?",
+      "opciones": [
+        "2.281,75 €",
+        "4.791,68 €",
+        "4.483,50 €",
+        "5.797,93 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "IVA = 22.817,50 × 21 % = 4.791,68 €.",
+      "criterio": "RA4.f",
+      "fuente": "Cálculo con los datos del enunciado. Art. 90 Ley 37/1992.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la deuda total (derecho de arancel + IVA) con los datos anteriores?",
+      "opciones": [
+        "4.791,68 €",
+        "1.067,50 €",
+        "5.859,18 €",
+        "6.259,18 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Derecho 1.067,50 + IVA 4.791,68 = 5.859,18 €.",
+      "criterio": "RA4.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Está exenta de IVA la entrega de bienes expedidos fuera de la Comunidad por el vendedor (exportación)?",
+      "opciones": [
+        "No, la exportación tributa siempre al tipo general del IVA",
+        "Solo si el cliente extranjero es un consumidor final",
+        "Solo si la mercancía sale de España por vía marítima",
+        "Sí, en las condiciones que se establezcan reglamentariamente"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 21.1 Ley 37/1992. La exención permite deducir el IVA soportado.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 21 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué requisito general debe cumplirse para la exención de la exportación?",
+      "opciones": [
+        "Que los bienes salgan de la Comunidad y pueda probarse",
+        "Que el comprador sea una empresa española con NIF-IVA",
+        "Que la mercancía haya sido asegurada por el exportador",
+        "Que el vendedor sea una persona física no empresaria"
+      ],
+      "respuesta": 0,
+      "explicacion": "La prueba de salida se obtiene del levante en la aduana de salida (mensaje de salida).",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992, art. 21 (leída) y práctica habitual.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los impuestos especiales (IIEE)?",
+      "opciones": [
+        "Impuestos que gravan el beneficio de las sociedades mercantiles",
+        "Impuestos sobre consumos como alcohol, tabaco o hidrocarburos",
+        "Impuestos que gravan el patrimonio de las personas físicas",
+        "Impuestos que gravan las rentas del trabajo de los empleados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se aplican también a la importación de estos productos.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Se paga arancel de aduanas por una mercancía de la UE que se envía a otro Estado miembro?",
+      "opciones": [
+        "Sí, siempre, por el hecho de cruzar la frontera interior",
+        "Solo si la mercancía es de lujo o de alto valor comercial",
+        "No: en la unión aduanera no hay derechos entre Estados",
+        "Solo si el valor de la mercancía supera los 1.000 euros"
+      ],
+      "respuesta": 2,
+      "explicacion": "La UE es una unión aduanera: libre circulación de mercancías en libre práctica.",
+      "criterio": "RA4.f",
+      "fuente": "Tratado de Funcionamiento de la UE, arts. 28-30 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Es el IVA de importación un impuesto que se puede deducir?",
+      "opciones": [
+        "Nunca, porque el IVA de importación no es deducible",
+        "Solo para los exportadores con exención de IVA",
+        "Solo si la mercancía se importa por vía marítima",
+        "Sí, si el importador puede deducir el IVA soportado"
+      ],
+      "respuesta": 3,
+      "explicacion": "El IVA de importación soportado en la aduana es deducible en la liquidación periódica.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

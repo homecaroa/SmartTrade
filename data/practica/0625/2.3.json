@@ -1,0 +1,295 @@
+{
+  "modulo": "0625",
+  "tema": "2.3",
+  "titulo": "Normativa para mercancías especiales: peligrosas, perecederas y otras",
+  "preguntas": [
+    {
+      "id": "0625-2.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué mercancías se consideran «especiales» en el almacenaje?",
+      "opciones": [
+        "Peligrosas, perecederas, medicamentos y de gran valor",
+        "Solo las de bajo precio unitario y escaso valor comercial",
+        "Solo las de mayor peso por bulto o por unidad de carga",
+        "Las que no necesitan ningún tipo de embalaje protector"
+      ],
+      "respuesta": 0,
+      "explicacion": "Requieren condiciones y normas específicas de almacenamiento y manipulación.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el ADR, ¿qué ocurre con los bultos con etiquetas de peligro distintas?",
+      "opciones": [
+        "Pueden cargarse siempre juntos en el mismo vehículo",
+        "No se cargan juntos salvo que lo autorice la tabla del 7.5.2.1",
+        "Solo se separan si el conjunto pesa más de una tonelada",
+        "Se cargan sin restricción cuando el transporte es por carretera"
+      ],
+      "respuesta": 1,
+      "explicacion": "La segregación evita reacciones peligrosas; el almacén aplica criterios equivalentes.",
+      "criterio": "RA1.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 7.5.2.1, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el ADR, ¿cómo deben estibarse los bultos de mercancías peligrosas?",
+      "opciones": [
+        "Sueltos, para que se acomoden solos con el movimiento",
+        "Apilados sin límite de altura y sin sujeción alguna",
+        "Calzados o sujetos para impedir movimientos que los dañen",
+        "Apoyados únicamente contra la cabina del vehículo"
+      ],
+      "respuesta": 2,
+      "explicacion": "7.5.7.1 ADR.",
+      "criterio": "RA1.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 7.5.7.1, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué normativa española regula el almacenamiento de productos químicos?",
+      "opciones": [
+        "Solo el ADR, que regula también el almacenamiento fijo",
+        "Solo la LOTT, que regula las actividades auxiliares",
+        "Solo el Código Civil, en materia de depósito",
+        "El Reglamento de almacenamiento químico (RD 656/2017)"
+      ],
+      "respuesta": 3,
+      "explicacion": "El ADR regula el transporte; el APQ, el almacenamiento.",
+      "criterio": "RA1.c",
+      "fuente": "Real Decreto 656/2017 (APQ); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe garantizar el almacén de productos químicos respecto a incompatibilidades?",
+      "opciones": [
+        "Separar los productos incompatibles según su ficha de seguridad",
+        "Que todos los productos se almacenen juntos para ahorrar espacio",
+        "Que los productos estén sin etiquetar para evitar confusiones",
+        "Que el almacén permanezca sin ventilación para evitar fugas"
+      ],
+      "respuesta": 0,
+      "explicacion": "La ficha de datos de seguridad indica la compatibilidad y el almacenamiento.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una ficha de datos de seguridad (FDS)?",
+      "opciones": [
+        "Una factura que emite el proveedor del producto químico",
+        "Informa de los peligros y de cómo manipularla",
+        "Un albarán que acompaña a la entrega de la sustancia",
+        "Un certificado de origen de la mercancía peligrosa"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es obligatoria para las sustancias y mezclas peligrosas.",
+      "criterio": "RA1.c",
+      "fuente": "Reglamento (CE) n.º 1907/2006 (REACH); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué acuerdo regula el transporte de mercancías perecederas y los vehículos isotermos y frigoríficos?",
+      "opciones": [
+        "El ADR",
+        "El CMR",
+        "El Acuerdo ATP",
+        "El TIR"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las instalaciones de almacén frigorífico siguen otros reglamentos específicos.",
+      "criterio": "RA1.c",
+      "fuente": "Acuerdo ATP; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿A qué temperatura debe mantenerse un producto congelado o ultracongelado en el almacén?",
+      "opciones": [
+        "0 °C",
+        "+4 °C",
+        "+10 °C",
+        "A –18 °C o menos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la temperatura de conservación de los productos congelados.",
+      "criterio": "RA1.c",
+      "fuente": "Normativa de alimentos congelados; contenido conocido, no verificado en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué método de rotación de stock se recomienda para productos perecederos?",
+      "opciones": [
+        "FEFO: primero sale lo que antes caduca",
+        "LIFO: primero sale lo último que ha entrado",
+        "FIFO sin mirar la fecha de caducidad de los lotes",
+        "Rotación aleatoria según el hueco libre más cercano"
+      ],
+      "respuesta": 0,
+      "explicacion": "FEFO se basa en la fecha de caducidad; FIFO, en la de entrada.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistema de seguridad alimentaria exige la normativa europea a las empresas alimentarias?",
+      "opciones": [
+        "El sistema ISO 14001 de gestión ambiental",
+        "El sistema APPCC (HACCP) de análisis de peligros",
+        "El sistema EDIFACT de intercambio electrónico de datos",
+        "El sistema OEA de operador económico autorizado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Reglamento (CE) n.º 852/2004.",
+      "criterio": "RA1.c",
+      "fuente": "Reglamento (CE) n.º 852/2004; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué exige la normativa alimentaria de la UE respecto a la trazabilidad?",
+      "opciones": [
+        "Solo identificar a quién se vendieron los productos",
+        "Solo identificar a quién se compraron los productos",
+        "Identificar a quién se compró y a quién se vendió",
+        "Nada, porque la trazabilidad es voluntaria"
+      ],
+      "respuesta": 2,
+      "explicacion": "Reglamento (CE) n.º 178/2002, art. 18: un paso atrás y un paso adelante.",
+      "criterio": "RA1.c",
+      "fuente": "Reglamento (CE) n.º 178/2002, art. 18; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se recomienda para almacenar medicamentos?",
+      "opciones": [
+        "Almacenarlos siempre a temperatura ambiente sin control",
+        "Almacenarlos a la intemperie bajo cubierta ligera",
+        "Almacenarlos sin control de lote ni de caducidad",
+        "Buenas prácticas de distribución (GDP) y control de temperatura"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las GDP regulan el almacenamiento y distribución de medicamentos.",
+      "criterio": "RA1.c",
+      "fuente": "Directrices de buenas prácticas de distribución (UE); contenido conocido, no leído.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se debe evitar al almacenar alimentos junto a productos químicos?",
+      "opciones": [
+        "La contaminación cruzada, separando zonas",
+        "Nada en particular, porque no hay incompatibilidad",
+        "Mezclarlos para aprovechar mejor el espacio disponible",
+        "Colocar el producto químico sobre el alimento envasado"
+      ],
+      "respuesta": 0,
+      "explicacion": "Principio básico de seguridad alimentaria.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si los animales vivos permanecen más de ocho horas en transporte?",
+      "opciones": [
+        "No tiene ninguna consecuencia sobre las condiciones de transporte",
+        "Es «viaje largo» y exige requisitos adicionales de bienestar",
+        "Se cancela el transporte hasta que se renueve la autorización",
+        "Solo se paga una tasa adicional por cada animal transportado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Reglamento (CE) n.º 1/2005, art. 2.m.",
+      "criterio": "RA1.c",
+      "fuente": "Reglamento (CE) n.º 1/2005, art. 2.m (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué normas internacionales aplican al almacenamiento y transporte de mercancías peligrosas por mar?",
+      "opciones": [
+        "El ADR",
+        "El CMR",
+        "El Código IMDG",
+        "El Código Civil"
+      ],
+      "respuesta": 2,
+      "explicacion": "El ADR es por carretera; el IMDG, por mar; el RID, por ferrocarril; la IATA DGR, por aire.",
+      "criterio": "RA1.c",
+      "fuente": "Código IMDG; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una norma de almacenamiento para mercancías de gran valor?",
+      "opciones": [
+        "No hay medidas especiales para estas mercancías",
+        "Solo un candado en la puerta principal del almacén",
+        "Almacenaje al aire libre con vigilancia ocasional",
+        "Zona restringida, vigilancia y control de accesos"
+      ],
+      "respuesta": 3,
+      "explicacion": "El riesgo de robo es el principal.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

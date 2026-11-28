@@ -1,0 +1,349 @@
+{
+  "modulo": "0622",
+  "tema": "6.4",
+  "titulo": "Indicadores de calidad, certificaciones y medidas correctoras",
+  "preguntas": [
+    {
+      "id": "0622-6.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un indicador de calidad del servicio de transporte?",
+      "opciones": [
+        "Un tipo de documento",
+        "Una medida cuantificable que permite evaluar el cumplimiento de objetivos, como puntualidad, daños o incidencias",
+        "Una norma ISO",
+        "Un impuesto"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se comparan con objetivos para detectar desviaciones y tomar medidas correctoras.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué mide el indicador OTIF?",
+      "opciones": [
+        "Coste por kilómetro",
+        "Daños por envío",
+        "Entregas a tiempo y completas (On Time In Full)",
+        "Rotación de stock"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es uno de los indicadores de calidad más utilizados en logística.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En un mes se realizan 500 entregas, de las cuales 482 llegan en plazo. ¿Cuál es el porcentaje de puntualidad?",
+      "opciones": [
+        "3,60 %",
+        "87,64 %",
+        "48,20 %",
+        "96,40 %"
+      ],
+      "respuesta": 3,
+      "explicacion": "Puntualidad = 482 / 500 × 100 = 96,40 %.",
+      "criterio": "RA6.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "De 1250 envíos, 15 llegan con daños. ¿Cuál es la tasa de daños?",
+      "opciones": [
+        "1,20 %",
+        "12,00 %",
+        "98,80 %",
+        "0,12 %"
+      ],
+      "respuesta": 0,
+      "explicacion": "Tasa = 15 / 1250 × 100 = 1,20 %.",
+      "criterio": "RA6.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Un camión recorre 8400 km en un mes, de los cuales 1260 km van en vacío. ¿Qué porcentaje de kilómetros en vacío supone?",
+      "opciones": [
+        "30,00 %",
+        "15,00 %",
+        "85,00 %",
+        "5,00 %"
+      ],
+      "respuesta": 1,
+      "explicacion": "Vacío = 1260 / 8400 × 100 = 15,00 %. Reducirlo mejora la eficiencia.",
+      "criterio": "RA6.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Un camión de 24 palés lleva 21 palés. ¿Cuál es su factor de carga?",
+      "opciones": [
+        "8,75 %",
+        "12,50 %",
+        "87,50 %",
+        "114,29 %"
+      ],
+      "respuesta": 2,
+      "explicacion": "Factor de carga = 21 / 24 × 100 = 87,50 %.",
+      "criterio": "RA6.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Si un vehículo cuesta 5.600 € al mes y recorre 4.000 km, ¿cuál es su coste por kilómetro?",
+      "opciones": [
+        "14,00 €/km",
+        "0,71 €/km",
+        "1,12 €/km",
+        "1,40 €/km"
+      ],
+      "respuesta": 3,
+      "explicacion": "Coste/km = 5.600 / 4.000 = 1,40 €/km.",
+      "criterio": "RA6.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una acción correctiva?",
+      "opciones": [
+        "Una medida para eliminar la causa de una no conformidad detectada y evitar que se repita",
+        "Una medida para castigar al transportista",
+        "Una medida para ocultar el fallo",
+        "Una nueva tarifa"
+      ],
+      "respuesta": 0,
+      "explicacion": "La preventiva actúa antes de que el problema aparezca.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué consiste el ciclo PDCA (Deming)?",
+      "opciones": [
+        "Pagar, descargar, cobrar y archivar",
+        "Planificar, hacer, verificar y actuar, de forma continua",
+        "Pedir, desembalar, clasificar y almacenar",
+        "Planificar, decidir, cerrar y auditar"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es la base de la mejora continua de los sistemas de calidad.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué herramienta ayuda a buscar las causas de un problema agrupándolas en categorías (método, mano de obra, medio...)?",
+      "opciones": [
+        "El carnet TIR",
+        "La factura proforma",
+        "El diagrama de Ishikawa (causa-efecto o espina de pescado)",
+        "El código de barras"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se usa junto con los «5 porqués» para llegar a la causa raíz.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Si una desviación se repite siempre en el mismo proceso interno (desviación endógena repetitiva), ¿qué hay que hacer?",
+      "opciones": [
+        "Aceptarla como normal",
+        "Cambiar solo el indicador",
+        "Culpar al cliente",
+        "Analizar la causa raíz y aplicar una acción correctiva que modifique el proceso"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la actuación que pide el criterio RA6.f.",
+      "criterio": "RA6.f",
+      "fuente": "RD 1574/2011, RA6.f (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma regula los sistemas de gestión de la calidad?",
+      "opciones": [
+        "ISO 9001",
+        "ISO 14001",
+        "ISO 28000",
+        "ISO 45001"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es la certificación de calidad más extendida en empresas de transporte y logística.",
+      "criterio": "RA6.f",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma regula los sistemas de gestión ambiental?",
+      "opciones": [
+        "ISO 9001",
+        "ISO 14001",
+        "ISO 28000",
+        "ISO 39001"
+      ],
+      "respuesta": 1,
+      "explicacion": "Permite gestionar y reducir el impacto ambiental, como las emisiones del transporte.",
+      "criterio": "RA6.f",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO trata los sistemas de gestión de la seguridad en la cadena de suministro?",
+      "opciones": [
+        "ISO 9001",
+        "ISO 14001",
+        "ISO 28000",
+        "ISO 3166"
+      ],
+      "respuesta": 2,
+      "explicacion": "Ayuda a gestionar riesgos de seguridad como robos y manipulaciones.",
+      "criterio": "RA6.f",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO se refiere a la seguridad vial en el transporte?",
+      "opciones": [
+        "ISO 9001",
+        "ISO 14001",
+        "ISO 668",
+        "ISO 39001"
+      ],
+      "respuesta": 3,
+      "explicacion": "Gestiona los riesgos de siniestralidad de flotas.",
+      "criterio": "RA6.f",
+      "fuente": "Normas ISO; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un cuadro de mando (balanced scorecard / dashboard) de transporte?",
+      "opciones": [
+        "Una herramienta que reúne los indicadores clave para controlar el rendimiento y detectar desviaciones",
+        "Un tipo de contrato",
+        "Un seguro de crédito",
+        "Una carta de porte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se actualiza periódicamente con datos del TMS.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el estatus OEA (Operador Económico Autorizado)?",
+      "opciones": [
+        "Un tipo de seguro",
+        "Un reconocimiento aduanero de fiabilidad y seguridad que facilita los trámites a las empresas que cumplen los requisitos",
+        "Una certificación ISO",
+        "Una póliza flotante"
+      ],
+      "respuesta": 1,
+      "explicacion": "Está previsto en el Código Aduanero de la Unión.",
+      "criterio": "RA6.f",
+      "fuente": "Reglamento (UE) n.º 952/2013, art. 38 (Código Aduanero de la Unión); contenido conocido, parcialmente leído.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Con qué frecuencia deben medirse los indicadores de calidad para detectar problemas a tiempo?",
+      "opciones": [
+        "Una vez al año si hay tiempo",
+        "Solo si el cliente reclama",
+        "De forma periódica y sistemática, con objetivos definidos y responsables asignados",
+        "Nunca"
+      ],
+      "respuesta": 2,
+      "explicacion": "La medición periódica permite actuar a tiempo.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.4-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una no conformidad?",
+      "opciones": [
+        "Un tipo de contrato",
+        "Un pago atrasado",
+        "Un descuento comercial",
+        "El incumplimiento de un requisito del cliente, de la norma o del procedimiento interno"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se registra y se trata con acciones correctivas.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

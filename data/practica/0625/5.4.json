@@ -1,0 +1,259 @@
+{
+  "modulo": "0625",
+  "tema": "5.4",
+  "titulo": "Clasificación ABC, inventarios y control económico",
+  "preguntas": [
+    {
+      "id": "0625-5.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué consiste la clasificación ABC de existencias?",
+      "opciones": [
+        "Ordenar los artículos por su valor de consumo",
+        "Ordenar los artículos alfabéticamente por su denominación",
+        "Ordenar los artículos por el tamaño del embalaje",
+        "Ordenar los artículos por el proveedor que los suministra"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se basa en el principio de Pareto.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué principio inspira el análisis ABC?",
+      "opciones": [
+        "El principio de Wilson sobre el lote económico de pedido",
+        "El principio de Pareto: pocos concentran el valor",
+        "El principio FIFO sobre la rotación de existencias",
+        "El principio de Peter sobre la promoción de los empleados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Aproximadamente el 20 % de los artículos supone el 80 % del valor.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué artículos forman la zona A?",
+      "opciones": [
+        "Muchos artículos de escaso valor de consumo anual",
+        "Los artículos que han quedado obsoletos en el almacén",
+        "Pocos artículos que suman la mayor parte del valor",
+        "Los artículos que no han tenido rotación en el año"
+      ],
+      "respuesta": 2,
+      "explicacion": "Requieren control estricto.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué artículos forman la zona C?",
+      "opciones": [
+        "Pocos artículos que concentran casi todo el valor",
+        "Los artículos nuevos que se acaban de incorporar",
+        "Los artículos perecederos con fecha de caducidad",
+        "Muchos artículos con una pequeña parte del valor"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se controlan de forma sencilla.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué política de control es adecuada para los artículos A?",
+      "opciones": [
+        "Inventario frecuente y previsión detallada",
+        "Ningún control, porque son los artículos de más rotación",
+        "Un control anual como el del resto de artículos",
+        "Pedidos aleatorios sin previsión de la demanda"
+      ],
+      "respuesta": 0,
+      "explicacion": "Son los de mayor impacto económico.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde conviene ubicar los artículos de más rotación (A) en el almacén?",
+      "opciones": [
+        "En la zona más alejada de los muelles de expedición",
+        "Cerca de los muelles y en alturas de fácil acceso",
+        "En la zona más alta de la estantería convencional",
+        "Sin ningún criterio, en cualquier hueco disponible"
+      ],
+      "respuesta": 1,
+      "explicacion": "Reduce recorridos de picking.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un inventario permanente?",
+      "opciones": [
+        "Un recuento físico que se hace una vez al año",
+        "Un inventario que realiza una empresa externa",
+        "Registro continuo con stock actualizado",
+        "Un inventario sin control de las existencias"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se complementa con recuentos físicos.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un inventario cíclico?",
+      "opciones": [
+        "Recontar todo el almacén una vez al año con cierre",
+        "No recontar nunca y confiar en el stock teórico",
+        "Recontar únicamente las referencias con faltantes",
+        "Recontar por partes sin parar la actividad"
+      ],
+      "respuesta": 3,
+      "explicacion": "Detecta y corrige diferencias de forma continua.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se hace con las diferencias entre el stock físico y el teórico?",
+      "opciones": [
+        "Investigar su causa y regularizar el inventario",
+        "Ignorarlas porque se compensarán con el tiempo",
+        "Ocultarlas para que no afecten a los indicadores",
+        "Duplicar el stock para cubrir las diferencias"
+      ],
+      "respuesta": 0,
+      "explicacion": "Pueden deberse a errores, mermas o robos.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las mermas?",
+      "opciones": [
+        "Los descuentos que se conceden a los clientes",
+        "Pérdidas por manipulación, evaporación o robo",
+        "Las devoluciones de mercancía por parte de clientes",
+        "Los costes de transporte hasta el almacén"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se registran como pérdidas de existencias.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Ventas anuales por artículo: P1 50.000 €, P2 25.000, P3 10.000, P4 6.000, P5 4.000, P6 3.000, P7 1.500 y P8 500. ¿Cuál es el valor total?",
+      "opciones": [
+        "99.500,00 €",
+        "110.000,00 €",
+        "100.000,00 €",
+        "75.000,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Total = 100.000 €.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Con los datos anteriores, ¿qué porcentaje del valor total representa P1?",
+      "opciones": [
+        "25,00 %",
+        "75,00 %",
+        "5,00 %",
+        "50,00 %"
+      ],
+      "respuesta": 3,
+      "explicacion": "P1 = 50.000 / 100.000 × 100 = 50,00 %.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué porcentaje acumulado del valor suman P1 y P2?",
+      "opciones": [
+        "75,00 %",
+        "50,00 %",
+        "85,00 %",
+        "25,00 %"
+      ],
+      "respuesta": 0,
+      "explicacion": "(50.000 + 25.000) / 100.000 × 100 = 75,00 %.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Con porcentajes acumulados P1 = 50 %, P1+P2 = 75 %, P1+P2+P3 = 85 %, ¿qué artículos son de zona A según el criterio del 80 %?",
+      "opciones": [
+        "Solo P1, que ya suma el 50 % del valor",
+        "P1, P2 y P3, hasta superar el 80 % acumulado",
+        "P1 y P2 únicamente, que suman el 75 %",
+        "Todos los artículos, de P1 a P8, sin distinguir zonas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se incluyen artículos hasta alcanzar o superar aproximadamente el 80 % del valor acumulado.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

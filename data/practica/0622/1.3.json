@@ -1,0 +1,249 @@
+{
+  "modulo": "0622",
+  "tema": "1.3",
+  "titulo": "Transporte ferroviario",
+  "preguntas": [
+    {
+      "id": "0622-1.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo se aplican las Reglas Uniformes CIM del Convenio COTIF al transporte de mercancías por ferrocarril?",
+      "opciones": [
+        "A todo contrato oneroso con carga y entrega en dos Estados miembros",
+        "Solo a los transportes realizados en trenes completos",
+        "Solo al transporte ferroviario de mercancías peligrosas",
+        "A cualquier transporte ferroviario, incluso nacional, sin excepción"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 1.1 CIM (Apéndice B de COTIF 1999) las aplica a todo contrato de transporte de mercancías por ferrocarril a título oneroso cuando el lugar de toma de carga y el de entrega están en dos Estados miembros distintos, con independencia del domicilio y la nacionalidad de las partes. Por acuerdo de las partes también pueden aplicarse si solo uno de los Estados es miembro (art. 1.2).",
+      "criterio": "RA1.g",
+      "fuente": "COTIF 1999, Apéndice B (CIM), art. 1 (texto OTIF en vigor desde 01/05/2016).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento confirma el contrato de transporte internacional de mercancías por ferrocarril?",
+      "opciones": [
+        "La carta de porte CMR, propia de la carretera",
+        "El conocimiento de embarque (B/L) marítimo",
+        "La carta de porte CIM",
+        "El documento FIATA FBL de los transitarios"
+      ],
+      "respuesta": 2,
+      "explicacion": "El contrato debe confirmarse mediante una carta de porte conforme a un modelo uniforme: la carta de porte CIM (art. 6.2). La CMR es la del transporte por carretera, el B/L del marítimo y el FBL el del multimodal.",
+      "criterio": "RA5.a",
+      "fuente": "CIM, art. 6.2.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Tiene la carta de porte CIM efecto de conocimiento de embarque?",
+      "opciones": [
+        "Sí: es un título representativo de la mercancía y negociable",
+        "Sí, pero solo cuando se emite «a la orden» del cargador",
+        "Solo si se emite en formato electrónico",
+        "No: no tiene efecto de conocimiento de embarque"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 6.5 CIM lo dice expresamente: la carta de porte no tiene efecto de conocimiento de embarque. Es la prueba del contrato y de la toma a cargo de la mercancía (art. 12.1), pero no un título que represente la mercancía y se pueda transmitir para disponer de ella.",
+      "criterio": "RA3.a",
+      "fuente": "CIM, arts. 6.5 y 12.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dice el CIM sobre la ausencia, irregularidad o pérdida de la carta de porte?",
+      "opciones": [
+        "Anula el contrato de transporte por completo",
+        "No afecta a la validez del contrato",
+        "Obliga a repetir el transporte con una nueva carta de porte",
+        "Traslada toda la responsabilidad al expedidor de la carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "Igual que en el CMR, el contrato existe por el acuerdo de las partes y la carta de porte es su prueba: la ausencia, irregularidad o pérdida no afecta a la existencia ni a la validez del contrato (art. 6.2). La carta de porte hace fe, salvo prueba en contrario, de la conclusión y condiciones del contrato y de la toma a cargo de la mercancía (art. 12.1).",
+      "criterio": "RA3.a",
+      "fuente": "CIM, arts. 6.2 y 12.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Salvo pacto en contrario, ¿cuántas cartas de porte CIM se deben emitir?",
+      "opciones": [
+        "Una por envío, sin pasar de un vagón completo",
+        "Una por tren, aunque lleve mercancías de distintos clientes",
+        "Una por cada país atravesado durante el recorrido",
+        "Una por cada bulto que forme parte del envío"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 6.6 CIM exige una carta de porte por envío y, salvo pacto en contrario entre expedidor y transportista, una carta de porte no puede referirse a más de un vagón completo. El transportista certifica la toma a cargo en el duplicado de la carta de porte y lo devuelve al expedidor (art. 6.4).",
+      "criterio": "RA5.a",
+      "fuente": "CIM, art. 6.4 y 6.6.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el expedidor y el transportista no han pactado nada sobre la carga y descarga de un vagón completo, ¿a quién corresponde según el CIM?",
+      "opciones": [
+        "Al transportista, tanto la carga como la descarga",
+        "Al destinatario, tanto la carga como la descarga",
+        "La carga, al expedidor; la descarga, al destinatario",
+        "Al gestor de la infraestructura ferroviaria en ambos casos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 13.1 CIM: en ausencia de acuerdo, en los bultos cargan y descargan el transportista; en los vagones completos, la carga es del expedidor y la descarga, después de la entrega, del destinatario. El expedidor responde de las consecuencias de una carga defectuosa hecha por él (art. 13.2), con la prueba a cargo del transportista.",
+      "criterio": "RA3.a",
+      "fuente": "CIM, art. 13.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En un envío de vagón completo, sin pacto entre las partes, ¿cuál es el plazo máximo de tránsito que fija el CIM?",
+      "opciones": [
+        "24 horas de expedición más 12 horas por cada 400 km",
+        "12 horas de expedición más 24 horas por 400 km",
+        "48 horas de expedición más un día por cada 1.000 km",
+        "Cinco días naturales, sea cual sea la distancia recorrida"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 16.2.a CIM: para envíos de vagón completo, 12 horas de plazo de expedición y 24 horas de plazo de transporte por cada 400 km o fracción. Para envíos de menos de un vagón completo: 24 horas de expedición y 24 horas por cada 200 km o fracción. Las distancias se refieren a la ruta convenida o, si no, a la más corta.",
+      "criterio": "RA3.d",
+      "fuente": "CIM, art. 16.1-16.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte ferroviario internacional (CIM), ¿cuál es el límite de la indemnización por pérdida de mercancía, por kilogramo de masa bruta que falte?",
+      "opciones": [
+        "8,33 DEG por kilogramo de masa bruta que falte",
+        "26 DEG por kilogramo de masa bruta que falte",
+        "22 DEG por kilogramo de masa bruta que falte",
+        "17 DEG por kilogramo"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 30.2 CIM limita la indemnización a 17 unidades de cuenta (DEG) por kg de masa bruta que falte. Los 8,33 DEG/kg son del transporte por carretera (CMR) y los 26 DEG/kg del aéreo (Montreal). OTIF documentó que en la revisión de 1999 se decidió mantener los 17 DEG.",
+      "criterio": "RA3.g",
+      "fuente": "CIM, art. 30.2; Informe explicativo OTIF de COTIF 1999 (CIM).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el transportista ferroviario supera el plazo de tránsito y ello causa un perjuicio, ¿cuál es el límite de indemnización del CIM?",
+      "opciones": [
+        "El valor total de la mercancía transportada",
+        "Una vez el precio del transporte pagado",
+        "Cuatro veces el precio del transporte",
+        "Diez veces el precio del transporte pagado"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 33.1 CIM limita la indemnización por superación del plazo de tránsito a cuatro veces el precio del transporte (y la suma con la de pérdida o avería no puede exceder la indemnización por pérdida total, art. 33.5). Es un límite mucho más alto que en carretera, donde el CMR lo deja en el precio del transporte (art. 23.5).",
+      "criterio": "RA3.g",
+      "fuente": "CIM, art. 33.1; comparación con CMR, art. 23.5.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el CIM, ¿cuándo puede el titular del derecho considerar perdida la mercancía sin necesidad de más pruebas?",
+      "opciones": [
+        "A los 30 días siguientes a la expiración del plazo de tránsito",
+        "A los siete días de la expiración del plazo de tránsito",
+        "A los sesenta días de la entrega al transportista",
+        "A los noventa días de la fecha de la carta de porte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 29.1 CIM: treinta días después de la expiración de los plazos de tránsito. Si cobra la indemnización, puede pedir por escrito que se le avise si la mercancía reaparece dentro del año siguiente (art. 29.2). En el CMR el supuesto es parecido pero distingue: 30 días tras el plazo convenido o 60 días desde la recepción si no hay plazo (art. 20).",
+      "criterio": "RA6.e",
+      "fuente": "CIM, art. 29; comparación con CMR, art. 20.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo prescriben las acciones derivadas del contrato de transporte ferroviario regido por el CIM?",
+      "opciones": [
+        "Seis meses en todos los casos, sin excepción",
+        "Dos años en todos los casos, sin excepción",
+        "Tres años en todos los casos, sin excepción",
+        "Un año; dos en ciertos casos, como el dolo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 48.1 CIM: un año, ampliado a dos años para las acciones de recuperación de un reembolso cobrado por el transportista, del producto de una venta, por daño causado con intención o temerariamente, y las basadas en contratos anteriores a una reexpedición. En pérdida total el plazo corre desde el trigésimo día tras la expiración del plazo de tránsito.",
+      "criterio": "RA6.e",
+      "fuente": "CIM, art. 48.1 y 48.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué problema operativo tiene el transporte ferroviario de mercancías entre España y Francia por la red convencional?",
+      "opciones": [
+        "La diferencia de peso máximo por eje impide cargar contenedores",
+        "Hay que cambiar de ancho de vía: 1.668 mm frente a 1.435 mm",
+        "No existe ninguna conexión por vía férrea entre ambos países",
+        "El CIM no se aplica a los trenes de mercancías franceses"
+      ],
+      "respuesta": 1,
+      "explicacion": "La red convencional española, por la que circulan mayoritariamente las mercancías, es de ancho ibérico (1.668 mm), mientras que la alta velocidad y gran parte de Europa usan ancho estándar UIC (1.435 mm). Los tráficos internacionales deben cambiar de ancho (transbordo o cambio de ejes) en puntos como Irún/Hendaya y Portbou/Cerbère. El Corredor Mediterráneo se está adaptando a ancho estándar.",
+      "criterio": "RA1.b",
+      "fuente": "Ministerio de Transportes, estudio de planificación del ancho estándar; Adif (Corredor Mediterráneo). Localizados mediante búsqueda: no he abierto los PDF.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el principal inconveniente del transporte ferroviario de mercancías frente al transporte por carretera?",
+      "opciones": [
+        "Las mayores emisiones de CO₂ por tonelada transportada",
+        "La imposibilidad de transportar grandes volúmenes de carga",
+        "Menor flexibilidad: depende de terminales y no llega puerta a puerta",
+        "La incompatibilidad con el transporte en contenedores"
+      ],
+      "respuesta": 2,
+      "explicacion": "El tren ofrece gran capacidad y eficiencia en largas distancias y bajo impacto ambiental, pero es menos ágil: está ligado a la red, a horarios y a terminales, y casi siempre exige acarreos por carretera en origen y destino. Por eso es un modo complementario, base del transporte intermodal.",
+      "criterio": "RA1.b",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Transporte ferroviario: aspectos técnicos, limitaciones, conexiones con otros medios»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    }
+  ]
+}

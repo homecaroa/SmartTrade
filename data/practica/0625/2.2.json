@@ -1,0 +1,277 @@
+{
+  "modulo": "0625",
+  "tema": "2.2",
+  "titulo": "Marco legal de la actividad de almacenaje y distribución",
+  "preguntas": [
+    {
+      "id": "0625-2.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se considera, según la LOTT, un almacenista-distribuidor?",
+      "opciones": [
+        "La que fabrica y vende al por menor sus propios productos",
+        "La que guarda mercancía ajena y gestiona su distribución",
+        "La que alquila camiones con conductor a otras empresas",
+        "La que organiza transportes internacionales por cuenta ajena"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 123 LOTT.",
+      "criterio": "RA1.a",
+      "fuente": "Ley 16/1987 de Ordenación de los Transportes Terrestres (LOTT), art. 123 (texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué otras tareas puede desarrollar el almacenista-distribuidor?",
+      "opciones": [
+        "Llevar la contabilidad y los impuestos del depositante",
+        "Contratar seguros de crédito a favor de los clientes",
+        "Consolidar o romper cargas y gestionar existencias",
+        "Cobrar las facturas del depositante a sus clientes"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 123 LOTT, párrafo segundo.",
+      "criterio": "RA1.a",
+      "fuente": "Ley 16/1987 de Ordenación de los Transportes Terrestres (LOTT), art. 123 (texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un operador logístico según la LOTT?",
+      "opciones": [
+        "La que solo realiza el transporte de la mercancía por carretera",
+        "La que solo almacena mercancía propia en sus naves",
+        "La que solo tramita el despacho aduanero de las cargas",
+        "La que organiza por cuenta ajena el almacenaje y la distribución"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 122 LOTT. Puede usar infraestructuras y medios propios o ajenos.",
+      "criterio": "RA1.a",
+      "fuente": "Ley 16/1987 de Ordenación de los Transportes Terrestres (LOTT), art. 122 (texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un transitario según la LOTT?",
+      "opciones": [
+        "La que organiza por cuenta ajena transportes internacionales",
+        "La que transporta mercancías por carretera con vehículos propios",
+        "La que almacena mercancías ajenas y gestiona su distribución",
+        "La que asegura el transporte de las mercancías al exportador"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 121 LOTT.",
+      "criterio": "RA1.a",
+      "fuente": "Ley 16/1987 de Ordenación de los Transportes Terrestres (LOTT), art. 121 (texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una agencia de transporte según la LOTT?",
+      "opciones": [
+        "La que fabrica los vehículos que utilizan los transportistas",
+        "La que intermedia en el transporte de mercancías",
+        "El banco que financia las operaciones de transporte",
+        "La aseguradora que cubre las mercancías transportadas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 120 LOTT.",
+      "criterio": "RA1.a",
+      "fuente": "Ley 16/1987 de Ordenación de los Transportes Terrestres (LOTT), art. 120 (texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué autorización necesitan quienes intermedian en la contratación de transportes de mercancías por carretera (agencia, transitario, almacenista-distribuidor, operador logístico)?",
+      "opciones": [
+        "Ninguna, porque la intermediación es una actividad libre",
+        "Una licencia de obras para las instalaciones del almacén",
+        "La autorización de operador de transporte",
+        "Un permiso de conducción profesional del responsable"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 119.1 LOTT, con las excepciones del propio artículo.",
+      "criterio": "RA1.a",
+      "fuente": "Ley 16/1987 de Ordenación de los Transportes Terrestres (LOTT), art. 119 (texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo deben contratar los titulares de la autorización de operador de transporte?",
+      "opciones": [
+        "En nombre del cliente, que firma el contrato de transporte",
+        "En nombre del transportista, que asume la contratación",
+        "Sin contrato escrito, mediante acuerdos verbales",
+        "En nombre propio, con el cliente y con el transportista"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 119.3 LOTT.",
+      "criterio": "RA1.a",
+      "fuente": "Ley 16/1987 de Ordenación de los Transportes Terrestres (LOTT), art. 119.3 (texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre un almacén propio y un almacén subcontratado (3PL)?",
+      "opciones": [
+        "El propio lo gestiona la empresa; el 3PL, un operador",
+        "No hay ninguna diferencia entre un almacén propio y uno 3PL",
+        "El almacén 3PL es siempre un almacén aduanero autorizado",
+        "El almacén propio no cuenta con personal contratado"
+      ],
+      "respuesta": 0,
+      "explicacion": "3PL = third party logistics.",
+      "criterio": "RA1.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién responde de las mercancías que el almacenista-distribuidor recibe en depósito?",
+      "opciones": [
+        "Solo el depositante, que conserva el riesgo de las mercancías",
+        "El almacenista, como depositario, según el contrato",
+        "El transportista que las llevó hasta el almacén",
+        "Nadie, porque el depósito no genera responsabilidad"
+      ],
+      "respuesta": 1,
+      "explicacion": "El depositario responde de conservación y devolución (art. 306).",
+      "criterio": "RA1.a",
+      "fuente": "Código de Comercio, art. 306, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué registros o autorizaciones suele exigir la actividad de almacenaje de productos específicos (por ejemplo, alimentos)?",
+      "opciones": [
+        "Ningún registro, porque el almacenaje no está regulado",
+        "Solo el alta fiscal en la Agencia Tributaria",
+        "Registro sanitario y licencias municipales",
+        "Solo el carnet de conducir de los operarios de carretilla"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las exigencias dependen del tipo de producto.",
+      "criterio": "RA1.e",
+      "fuente": "Reglamento (CE) n.º 852/2004 y RD 191/2011; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué licencia municipal necesita normalmente un almacén?",
+      "opciones": [
+        "Licencia de pesca para almacenar productos del mar",
+        "Licencia de armas para custodiar mercancías de valor",
+        "Licencia de caza para los almacenes del medio rural",
+        "Licencia de actividad y de obras"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se tramita ante el ayuntamiento según el uso del local.",
+      "criterio": "RA1.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué obligaciones fiscales tiene normalmente una empresa de almacenaje?",
+      "opciones": [
+        "Alta en actividades, IVA, retenciones e impuestos",
+        "Ninguna, porque el almacenaje está exento de impuestos",
+        "Solo el IVA de importación de las mercancías depositadas",
+        "Solo los impuestos y derechos que cobra la aduana"
+      ],
+      "respuesta": 0,
+      "explicacion": "Son las obligaciones generales de cualquier empresa.",
+      "criterio": "RA1.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un almacén general de depósito?",
+      "opciones": [
+        "Un almacén de una sola empresa para sus propios productos",
+        "Un establecimiento que recibe mercancías ajenas en depósito",
+        "Un almacén aduanero reservado a mercancías no UE",
+        "Un almacén frigorífico para productos perecederos"
+      ],
+      "respuesta": 1,
+      "explicacion": "El Código de Comercio los menciona en el art. 310.",
+      "criterio": "RA1.a",
+      "fuente": "Código de Comercio, art. 310, leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organismo regula la actividad del transporte y las empresas auxiliares en España?",
+      "opciones": [
+        "El Banco de España, con su función de supervisión",
+        "Solo la aduana, que controla todo el comercio exterior",
+        "El Ministerio de Transportes y las comunidades autónomas",
+        "El Ministerio de Cultura, a través de sus delegaciones"
+      ],
+      "respuesta": 2,
+      "explicacion": "La LOTT distribuye competencias entre Estado y comunidades.",
+      "criterio": "RA1.a",
+      "fuente": "LOTT (leída parcialmente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe hacer una empresa de almacenaje que vaya a manipular mercancías peligrosas?",
+      "opciones": [
+        "Nada especial, porque se almacena como cualquier mercancía",
+        "Solo avisar al cliente de que la mercancía es peligrosa",
+        "Solo rotular el almacén con el nombre de la empresa",
+        "Cumplir la normativa química y tener autorizaciones"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se aplican reglamentos específicos de almacenamiento (APQ), seguridad industrial y prevención de incendios.",
+      "criterio": "RA1.c",
+      "fuente": "Reglamento de almacenamiento de productos químicos (RD 656/2017); contenido conocido, no leído.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

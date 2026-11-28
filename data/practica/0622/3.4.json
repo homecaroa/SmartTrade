@@ -1,0 +1,259 @@
+{
+  "modulo": "0622",
+  "tema": "3.4",
+  "titulo": "Responsabilidad y daños resarcibles",
+  "preguntas": [
+    {
+      "id": "0622-3.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, ¿de qué responde el porteador y durante qué periodo?",
+      "opciones": [
+        "Solo de la pérdida total, desde que sale el vehículo hasta que llega",
+        "De pérdida, avería y retraso, desde la recepción hasta la entrega",
+        "Solo de las averías, desde la carga hasta la descarga de la mercancía",
+        "De ningún daño, si la carta de porte ha sido firmada por las partes"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 47.1 Ley 15/2009 hace responsable al porteador de la pérdida total o parcial y de las averías desde la recepción hasta la entrega, y de los daños por retraso. También responde de los actos y omisiones de sus auxiliares, dependientes o independientes (art. 47.3). El régimen es el mismo que el del CMR en el transporte internacional.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 47 (BOE-A-2009-18004).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, ¿cuál de estas NO puede alegar el porteador como causa de exoneración de su responsabilidad?",
+      "opciones": [
+        "La culpa del cargador o del destinatario de la mercancía",
+        "El vicio propio de las mercancías transportadas",
+        "Circunstancias que no pudo evitar ni impedir en sus consecuencias",
+        "Los defectos de los vehículos empleados para el transporte"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 48.1 exonera al porteador si prueba que el daño se debió a culpa del cargador o del destinatario, a una instrucción de estos no motivada por su negligencia, al vicio propio de las mercancías o a circunstancias inevitables. El art. 48.2 dice que en ningún caso puede alegar los defectos de los vehículos. Es la misma regla que el art. 17.3 CMR.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 48; comparación con CMR, art. 17.2 y 17.3.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Un daño es compatible con la falta de embalaje de una mercancía frágil. Según la Ley 15/2009, ¿qué efecto tiene esta circunstancia?",
+      "opciones": [
+        "Se exonera si prueba que el daño pudo derivar de ese riesgo",
+        "El porteador responde siempre del cien por cien del daño",
+        "El cargador pierde todo derecho a reclamar por la avería",
+        "El destinatario debe pagar el doble del flete pactado"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 49 establece presunciones de exoneración: si el porteador prueba que la pérdida o avería han podido resultar verosímilmente de ciertos riesgos (vehículos abiertos convenidos, ausencia o deficiencia de embalaje, manipulación por el cargador o destinatario, naturaleza de la mercancía, deficiente identificación de bultos, animales vivos), queda exonerado, pero el reclamante puede probar que el daño no fue causado por ellos. Si el porteador contribuyó, responde en la medida de su contribución.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 49; comparación con CMR, art. 17.4 y 18.2.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "En caso de pérdida total o parcial de las mercancías, ¿cómo se calcula la indemnización según la Ley 15/2009?",
+      "opciones": [
+        "Según el precio de venta al consumidor final en destino",
+        "Según el valor de la mercancía en el lugar de entrega previsto",
+        "Su valor en el momento y lugar de recepción",
+        "Según el importe del flete que se hubiera pagado"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 52 toma como base el valor de las mercancías no entregadas en el momento y lugar de recepción por el porteador. El valor se determina por el precio de mercado y, si se vendieron justo antes del transporte, se presume el precio de la factura, deducido el transporte (art. 55). Es el mismo criterio del art. 23.1 CMR.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, arts. 52 y 55; CMR, art. 23.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En caso de avería, ¿cómo se calcula la indemnización según la Ley 15/2009?",
+      "opciones": [
+        "El valor total de la mercancía, en todo caso",
+        "Valor sano menos valor con avería, en origen",
+        "El coste de reparar el embalaje dañado",
+        "Dos veces el precio del transporte pagado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 53.1: la indemnización por avería equivale a la pérdida de valor que sufran las mercancías: diferencia entre su valor sanas y su valor averiadas, en el momento y lugar de recepción. Si la avería afecta a la totalidad, no puede exceder la indemnización por pérdida total; si afecta solo a una parte, no puede exceder la de pérdida de esa parte (art. 53.2 y 53.3). El destinatario puede rehusar el envío si la avería lo hace inútil para su venta o consumo (art. 54.2).",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, arts. 53 y 54.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte terrestre nacional, sin declaración de valor, ¿cuál es el límite de la indemnización por pérdida o avería según la Ley 15/2009?",
+      "opciones": [
+        "8,33 DEG por kilogramo de peso bruto de la mercancía",
+        "17 DEG por kilogramo de peso bruto de la mercancía",
+        "El valor total de la mercancía, sin ningún límite",
+        "Un tercio del IPREM/día por kilo de peso bruto"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 57.1 limita la indemnización por pérdida o avería a un tercio del Indicador Público de Renta de Efectos Múltiples (IPREM) diario por cada kilogramo de peso bruto de la mercancía perdida o averiada. A diferencia del CMR (8,33 DEG/kg) el límite se expresa en euros mediante el IPREM, que se actualiza cada año. Con declaración de valor o interés especial (art. 61) o pacto de aumento del límite, se puede reclamar más.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 57.1.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Por los perjuicios derivados del retraso en la entrega en el transporte terrestre nacional, ¿cuál es el límite de la indemnización según la Ley 15/2009?",
+      "opciones": [
+        "El precio del transporte",
+        "El valor de la mercancía transportada",
+        "Tres veces el precio del transporte contratado",
+        "No existe ningún límite legal"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 56: en caso de retraso se indemniza el perjuicio que se pruebe que ha ocasionado el retraso; art. 57.2: la indemnización por retraso no excederá del precio del transporte. El total de las indemnizaciones por varios conceptos no puede superar la suma debida por pérdida total (art. 57.3). Mismo criterio que el CMR (art. 23.5).",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, arts. 56 y 57.2-57.3; CMR, art. 23.5.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Además de la indemnización por pérdida o avería, ¿qué otras cantidades reintegra el porteador según la Ley 15/2009?",
+      "opciones": [
+        "Los beneficios que el cargador hubiera obtenido con la venta",
+        "Todos los daños y perjuicios indirectos, sin ningún límite",
+        "El precio del transporte, gastos devengados y salvamento",
+        "Solo los gastos de embalaje que haya soportado el cargador"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 58: en pérdida o avería total, además de la indemnización se reintegran íntegramente el precio del transporte y los demás gastos devengados; en la parcial, a prorrata. También los gastos de salvamento razonables y proporcionados. El art. 58.3 añade que no se resarcirá ningún otro daño o perjuicio. Mismo criterio que el art. 23.4 CMR.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 58; CMR, art. 23.4.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "El cargador declara en la carta de porte el valor de las mercancías y paga el suplemento acordado. ¿Qué efecto tiene según la Ley 15/2009?",
+      "opciones": [
+        "Ninguno: el límite legal sigue siendo el mismo",
+        "Sustituye al límite legal, si es superior",
+        "El porteador queda exonerado de toda responsabilidad",
+        "Obliga al destinatario a asegurar la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 61.1: la declaración de valor en la carta de porte, contra el pago de un suplemento del precio, sustituye al límite de indemnización previsto siempre que sea superior. El art. 61.2 permite también declarar un interés especial en la entrega, que permite reclamar, además de la indemnización ordinaria, los perjuicios que se prueben hasta el importe declarado. Es el equivalente a los arts. 24 y 26 CMR.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 61.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué caso no se aplican las normas que limitan la responsabilidad del porteador en la Ley 15/2009?",
+      "opciones": [
+        "Cuando el cargador no paga el flete en el plazo pactado",
+        "Cuando el transporte se realiza durante la noche",
+        "Cuando el destinatario es una empresa pública",
+        "Con dolo o infracción consciente y voluntaria del porteador"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 62 priva al porteador del beneficio de limitación (y de las normas que invierten la carga de la prueba) cuando el daño se causó con dolo o con una infracción consciente y voluntaria del deber jurídico asumido que produzca daños que, sin ser queridos directamente, sean consecuencia necesaria de la acción. Así también en el CMR (arts. 29) y Montreal (art. 22.5).",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 62; Convenio de Montreal, art. 22.5.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre con una cláusula contractual que pretenda reducir la responsabilidad del porteador prevista en la Ley 15/2009?",
+      "opciones": [
+        "Es ineficaz y se tiene por no puesta: las normas son imperativas",
+        "Es plenamente válida si la ha firmado el cargador",
+        "Es válida únicamente en el transporte internacional",
+        "Es válida si se ha pactado de forma verbal"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 46 declara imperativas las disposiciones del capítulo de responsabilidad y estipula que las cláusulas que pretendan reducir o aminorar el régimen de responsabilidad del porteador serán ineficaces. Igual en el transporte marítimo (art. 277.1 LNM) y en los convenios internacionales, que no admiten derogaciones en perjuicio del titular.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 15/2009, art. 46; Ley 14/2014, art. 277.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Entre los límites de responsabilidad por kilogramo de estos convenios de transporte, ¿cuál es el más alto?",
+      "opciones": [
+        "CMR (carretera): 8,33 DEG/kg",
+        "CIM (ferrocarril): 17 DEG/kg",
+        "Montreal (aéreo): 26 DEG/kg",
+        "Ginebra 1980 con tramo marítimo: 2,75 DEG/kg"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los límites por kilogramo son: CMR 8,33 DEG; CIM 17 DEG; Montreal 26 DEG (tras la revisión de 2024); Ginebra 1980 2,75 DEG (si hay tramo marítimo o fluvial) o 8,33 DEG (si no); CMNI y La Haya-Visby 2 DEG/kg o 666,67 DEG por bulto, el mayor. El transporte aéreo tiene el límite por kg más alto porque su carga es de mayor valor por kilo.",
+      "criterio": "RA3.g",
+      "fuente": "CMR art. 23.3; CIM art. 30.2; Montreal art. 22.3 (BOE); Convenio de Ginebra art. 18; CMNI art. 20.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Si las mercancías fueron vendidas inmediatamente antes del transporte, ¿cómo presume la Ley 15/2009 su valor de mercado a efectos de la indemnización?",
+      "opciones": [
+        "El precio de venta incrementado con el flete y el seguro",
+        "El precio de la factura, sin el flete ni costes del transporte",
+        "El valor más alto alcanzado en los últimos diez años",
+        "El valor de reposición de la mercancía en destino"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 55: el valor se determina por el precio de mercado o, en su defecto, por el valor de mercancías de su misma naturaleza y calidad. Si fueron vendidas justo antes del transporte, se presume que su valor de mercado es el de la factura de venta, deducidos el precio y demás costes del transporte que figuren en ella. Por eso es clave que la factura describa bien la mercancía y desglose el transporte.",
+      "criterio": "RA3.f",
+      "fuente": "Ley 15/2009, art. 55.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Una mercancía fue indemnizada por pérdida y después reaparece. Según la Ley 15/2009, ¿qué derecho tiene quien cobró la indemnización?",
+      "opciones": [
+        "Ninguno: debe quedarse con la indemnización cobrada",
+        "Exigir la entrega inmediata sin devolver ninguna cantidad",
+        "Quedarse con la mercancía y también con la indemnización",
+        "Pedir la entrega en 30 días, devolviendo la indemnización"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 59: quien cobró por pérdida puede pedir por escrito, al recibir la indemnización, que se le avise si la mercancía reaparece en un año; en 30 días desde el aviso puede exigir su entrega, previo pago de lo previsto en la carta de porte y restitución de la indemnización, deducidos los gastos resarcibles. Sin petición o pasado el año, el porteador dispone libremente de ella. Equivale al art. 20.2-4 CMR.",
+      "criterio": "RA6.e",
+      "fuente": "Ley 15/2009, art. 59; CMR, art. 20.2 a 20.4.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

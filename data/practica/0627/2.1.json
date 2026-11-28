@@ -1,0 +1,295 @@
+{
+  "modulo": "0627",
+  "tema": "2.1",
+  "titulo": "Fuentes de información: ICEX, Cámara de Comercio Internacional, Internet",
+  "preguntas": [
+    {
+      "id": "0627-2.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ICEX España Exportación e Inversiones?",
+      "opciones": [
+        "Una entidad pública que impulsa la internacionalización",
+        "Un banco público que financia las exportaciones con créditos oficiales",
+        "Un organismo de la UE que reparte ayudas a las empresas exportadoras",
+        "Una agencia tributaria que controla las importaciones y exportaciones"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se creó en 2011 (RDL 4/2011) y su estatuto lo aprobó el RD 1636/2011. Presta servicios de información, formación, promoción y apoyo.",
+      "criterio": "RA2.a",
+      "fuente": "ICEX: RDL 4/2011 (BOE-A-2011-6550), RD 1636/2011 (BOE-A-2011-18538) y web oficial de ICEX (localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿A qué ministerio está adscrito el ICEX?",
+      "opciones": [
+        "Al Ministerio del Interior, a través de la Dirección General de la Policía",
+        "Al ministerio de economía y comercio, vía Secretaría de Estado",
+        "Al Ministerio de Transportes, a través de la Dirección General de Aduanas",
+        "Al Ministerio de Hacienda, a través de la Agencia Tributaria"
+      ],
+      "respuesta": 1,
+      "explicacion": "El nombre del ministerio puede cambiar con la reorganización del Gobierno; lo importante es la vinculación con la Secretaría de Estado de Comercio.",
+      "criterio": "RA2.a",
+      "fuente": "ICEX: RDL 4/2011 (BOE-A-2011-6550), RD 1636/2011 (BOE-A-2011-18538) y web oficial de ICEX (localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son servicios típicos del ICEX?",
+      "opciones": [
+        "Cobro de aranceles, control de fronteras y despacho de mercancías",
+        "Concesión de avales bancarios, seguros de crédito y financiación de ventas",
+        "Información de mercados, formación y promoción comercial",
+        "Gestión de licencias de importación, contingentes y certificados fitosanitarios"
+      ],
+      "respuesta": 2,
+      "explicacion": "El despacho lo hace la aduana o un agente, y el seguro de crédito lo presta CESCE.",
+      "criterio": "RA2.a",
+      "fuente": "ICEX: RDL 4/2011 (BOE-A-2011-6550), RD 1636/2011 (BOE-A-2011-18538) y web oficial de ICEX (localizados mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las Oficinas Económicas y Comerciales de España en el exterior?",
+      "opciones": [
+        "Sucursales del Banco de España que gestionan los pagos internacionales",
+        "Delegaciones de la OMC que resuelven los conflictos comerciales de España",
+        "Aduanas españolas en el extranjero que despachan las exportaciones",
+        "Unidades de las embajadas que apoyan a las empresas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Dependen de la Secretaría de Estado de Comercio y colaboran con el ICEX.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las Cámaras de Comercio en España?",
+      "opciones": [
+        "Corporaciones de derecho público que representan a las empresas",
+        "Organismos de la UE que reparten ayudas a la exportación entre las pymes",
+        "Tribunales arbitrales que resuelven los litigios del comercio internacional",
+        "Asociaciones privadas de transportistas con adhesión voluntaria y sin funciones públicas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Ofrecen certificados de origen, formación y programas de internacionalización.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el certificado de origen y quién suele expedirlo en España?",
+      "opciones": [
+        "El documento que acredita el pago de la mercancía; lo expide el banco del importador",
+        "El que acredita el origen de la mercancía; lo expide la Cámara",
+        "El documento que acredita el transporte de la mercancía; lo expide el transportista",
+        "El documento que acredita el seguro de la mercancía; lo expide la aseguradora"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se estudia con detalle en la UD4 (origen de las mercancías).",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué organización elabora los Incoterms y tiene bases de datos y publicaciones sobre comercio internacional?",
+      "opciones": [
+        "La Organización Mundial del Comercio, con sede en Ginebra",
+        "La Conferencia de la ONU sobre Comercio y Desarrollo",
+        "La Cámara de Comercio Internacional, con sede en París",
+        "El Fondo Monetario Internacional, con sede en Washington"
+      ],
+      "respuesta": 2,
+      "explicacion": "La ICC publica los Incoterms, las reglas de créditos documentarios y otros documentos de práctica comercial.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el TARIC?",
+      "opciones": [
+        "El registro de las empresas exportadoras autorizadas por la aduana española",
+        "El sistema de pagos entre bancos que se utiliza en el comercio exterior",
+        "La tabla de fletes marítimos que publican las navieras para cada ruta",
+        "El arancel integrado de la UE, con derechos y medidas por código"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se consulta por código y país de origen o destino para conocer aranceles, restricciones y medidas de defensa comercial.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es Access2Markets?",
+      "opciones": [
+        "El portal de la Comisión con aranceles, origen y requisitos",
+        "Un buscador de transporte internacional con tarifas de fletes en tiempo real",
+        "El portal de la OMC donde las empresas presentan reclamaciones comerciales",
+        "La plataforma del ICEX para contratar seguros de crédito a la exportación"
+      ],
+      "respuesta": 0,
+      "explicacion": "Sustituyó a herramientas anteriores como la Market Access Database y el Export Helpdesk.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; no consultado en la web oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es Eurostat?",
+      "opciones": [
+        "El banco central de la zona euro, que fija los tipos de interés oficiales",
+        "La oficina estadística de la UE, con datos de comercio exterior",
+        "El tribunal que controla las cuentas de las instituciones de la Unión Europea",
+        "La agencia europea que gestiona el estatuto de los operadores aduaneros"
+      ],
+      "respuesta": 1,
+      "explicacion": "Su base Comext recoge el comercio de mercancías de la UE por productos y socios.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué se usan los datos de Trade Map del ITC y de UN Comtrade?",
+      "opciones": [
+        "Para tramitar el pago de los derechos de aduana en la importación",
+        "Para registrar marcas y patentes en los mercados de destino",
+        "Para analizar flujos de comercio mundiales por producto y por país",
+        "Para contratar seguros de crédito frente al impago de clientes"
+      ],
+      "respuesta": 2,
+      "explicacion": "Son fuentes para identificar mercados, competidores y tendencias.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene buscar información en Internet para una operación de comercio exterior?",
+      "opciones": [
+        "Es siempre la fuente más fiable porque se actualiza a diario",
+        "Sustituye a la normativa oficial porque reproduce todas las leyes",
+        "No necesita contrastarse cuando la página es de una empresa conocida",
+        "Rapidez y bajo coste, pero hay que contrastar las fuentes"
+      ],
+      "respuesta": 3,
+      "explicacion": "Conviene priorizar las fuentes oficiales (organismos, aduanas, ICEX, UE) frente a páginas sin garantía.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una fuente de información secundaria sobre un mercado?",
+      "opciones": [
+        "La que recoge datos ya elaborados por otros, como informes",
+        "La que se obtiene mediante una encuesta propia a clientes del mercado",
+        "La que procede de entrevistas directas con distribuidores locales",
+        "La que se genera con pruebas de producto en el mercado de destino"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las primarias se obtienen directamente (encuestas, visitas, entrevistas). Las secundarias son más baratas y rápidas.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Antes de exportar a un país, ¿qué información conviene recopilar?",
+      "opciones": [
+        "Solo el idioma del país, el horario comercial y la moneda local",
+        "Aranceles, normas técnicas, competencia, demanda y riesgos",
+        "Solo el precio del transporte, el seguro y el plazo de entrega",
+        "Solo el nombre del importador, su dirección y su número de teléfono"
+      ],
+      "respuesta": 1,
+      "explicacion": "El RA2.f exige aplicar la normativa legal y fiscal del país de destino.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una feria comercial internacional y para qué sirve?",
+      "opciones": [
+        "Una subasta de divisas donde los bancos compran y venden moneda extranjera",
+        "Un mercado de valores donde cotizan las empresas exportadoras",
+        "Un evento donde empresas muestran productos y captan clientes",
+        "Un curso oficial de aduanas para los agentes de comercio exterior"
+      ],
+      "respuesta": 2,
+      "explicacion": "El ICEX organiza pabellones oficiales de España en ferias internacionales.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es CESCE?",
+      "opciones": [
+        "El organismo que gestiona el despacho aduanero de las exportaciones españolas",
+        "La entidad que concede los créditos oficiales a la exportación (FIEM)",
+        "El departamento de la OMC que cubre el riesgo de impago de los Estados",
+        "La compañía que gestiona el seguro de crédito a la exportación"
+      ],
+      "respuesta": 3,
+      "explicacion": "Cubre riesgos comerciales y políticos de impago; se estudia entre las medidas de apoyo a exportaciones (UD3).",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

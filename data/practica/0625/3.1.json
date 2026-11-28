@@ -1,0 +1,295 @@
+{
+  "modulo": "0625",
+  "tema": "3.1",
+  "titulo": "Logística y almacén: conceptos, funciones y organización",
+  "preguntas": [
+    {
+      "id": "0625-3.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la logística empresarial?",
+      "opciones": [
+        "Planificar y controlar el flujo de materiales",
+        "Solo el transporte de mercancías entre dos puntos",
+        "Solo la gestión de las compras a los proveedores",
+        "Solo el almacenaje de los productos terminados"
+      ],
+      "respuesta": 0,
+      "explicacion": "Abarca aprovisionamiento, producción, almacenaje, distribución e información.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son los objetivos básicos de la logística?",
+      "opciones": [
+        "Maximizar los stocks para no tener roturas de servicio",
+        "El producto correcto, en su cantidad, lugar y momento",
+        "Minimizar siempre el servicio para reducir los costes",
+        "Vender solo productos de lujo con alto margen comercial"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se resumen en servicio al cliente al mínimo coste.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la cadena de suministro (supply chain)?",
+      "opciones": [
+        "Solo los proveedores que suministran las materias primas",
+        "Solo el transporte que une los distintos eslabones",
+        "Las empresas y procesos hasta el cliente final",
+        "Solo el almacén donde se guardan los productos terminados"
+      ],
+      "respuesta": 2,
+      "explicacion": "Incluye flujos físicos, de información y financieros.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por logística de aprovisionamiento?",
+      "opciones": [
+        "La distribución de los productos terminados al cliente final",
+        "La gestión de las devoluciones que hacen los clientes",
+        "La publicidad y promoción de los productos de la empresa",
+        "Compras, recepción y almacenamiento de materias primas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la entrada de materiales a la empresa.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la logística de distribución?",
+      "opciones": [
+        "Almacenar, preparar y transportar el producto terminado",
+        "La compra de las materias primas a los proveedores",
+        "La fabricación de los productos en la planta industrial",
+        "La contabilidad de los costes de producción y venta"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es la salida de productos de la empresa.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la logística inversa?",
+      "opciones": [
+        "El transporte marítimo de mercancías en sentido contrario",
+        "El flujo de devoluciones del cliente al fabricante",
+        "El almacenaje de las mercancías ordenadas al revés",
+        "La logística de aprovisionamiento de materias primas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se estudia en la unidad 6.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la definición de almacén?",
+      "opciones": [
+        "Solo un espacio destinado a guardar el producto terminado",
+        "Solo una oficina con archivos de documentación comercial",
+        "Un espacio donde se recibe, guarda y despacha mercancía",
+        "Solo un muelle para la carga y descarga de camiones"
+      ],
+      "respuesta": 2,
+      "explicacion": "Cumple funciones de regulación de flujos, protección y servicio.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son las funciones básicas del almacén?",
+      "opciones": [
+        "Producción, marketing, ventas y servicio posventa",
+        "Compra, venta, cobro y pago de las mercancías",
+        "Contabilidad, fiscalidad, personal y administración",
+        "Recepción, almacenaje, preparación y expedición"
+      ],
+      "respuesta": 3,
+      "explicacion": "Además se realizan control de inventario y servicios de valor añadido.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los servicios de valor añadido en un almacén?",
+      "opciones": [
+        "Etiquetado, kitting, embalaje o personalización",
+        "Solo guardar la mercancía hasta que se venda",
+        "Solo transportar la mercancía hasta el cliente final",
+        "Solo cobrar las facturas a los clientes del depositante"
+      ],
+      "respuesta": 0,
+      "explicacion": "Diferencian al operador logístico.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función cumple el almacén de regulación entre producción y consumo?",
+      "opciones": [
+        "Elimina la producción cuando hay exceso de stock",
+        "Compensa el ritmo de producción con el de la demanda",
+        "Elimina el transporte entre fábrica y cliente final",
+        "Fija los precios de venta según las existencias"
+      ],
+      "respuesta": 1,
+      "explicacion": "Evita roturas de stock y excesos.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde se sitúa habitualmente el almacén dentro de la empresa industrial?",
+      "opciones": [
+        "Siempre dentro del departamento de marketing de la empresa",
+        "Siempre dentro del departamento de contabilidad",
+        "Entre la producción y la distribución",
+        "Siempre dentro del departamento de recursos humanos"
+      ],
+      "respuesta": 2,
+      "explicacion": "La ubicación de la función logística varía según el tamaño de la empresa.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué actividades logísticas realiza una empresa de distribución comercial?",
+      "opciones": [
+        "Solo fabricación de los productos que se venden",
+        "Solo investigación y desarrollo de nuevos productos",
+        "Solo exportación de los productos a otros países",
+        "Aprovisionamiento, almacenamiento, picking y entrega"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es el núcleo del negocio mayorista y minorista.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué empresas pueden externalizar su logística?",
+      "opciones": [
+        "Cualquier empresa que contrate a un operador logístico",
+        "Solo las pequeñas empresas con poca capacidad de inversión",
+        "Solo las empresas industriales con producción propia",
+        "Ninguna, porque la logística no puede externalizarse"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se denomina outsourcing logístico (3PL).",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventajas aporta externalizar el almacén?",
+      "opciones": [
+        "Pérdida total de control sobre las existencias",
+        "Flexibilidad, menos inversión y tecnología especializada",
+        "Aumento de los costes fijos de la empresa siempre",
+        "Ninguna ventaja frente a gestionar el almacén en propiedad"
+      ],
+      "respuesta": 1,
+      "explicacion": "A cambio, se pierde parte del control directo.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el nivel de servicio logístico?",
+      "opciones": [
+        "El número de empleados que trabajan en el almacén",
+        "El tamaño en metros cuadrados del almacén",
+        "El porcentaje de pedidos completos y en plazo",
+        "El coste de alquiler de las instalaciones logísticas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se mide con indicadores como OTIF.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué relación suele haber entre el nivel de servicio y los costes logísticos?",
+      "opciones": [
+        "No existe ninguna relación entre servicio y coste",
+        "A mayor servicio, menores costes en todos los casos",
+        "A menor servicio, mayor satisfacción del cliente final",
+        "A más servicio, más coste; hay que buscar el equilibrio"
+      ],
+      "respuesta": 3,
+      "explicacion": "El nivel óptimo depende de la estrategia y del cliente.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

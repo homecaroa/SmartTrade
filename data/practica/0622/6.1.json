@@ -1,0 +1,349 @@
+{
+  "modulo": "0622",
+  "tema": "6.1",
+  "titulo": "Sistemas de información y comunicación en el transporte",
+  "preguntas": [
+    {
+      "id": "0622-6.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "En el sector del transporte, el EDI se define como…",
+      "opciones": [
+        "Transmisión automática de documentos estructurados",
+        "El envío de documentos escaneados por correo electrónico",
+        "Una red social profesional del sector logístico",
+        "Un tipo de contenedor para carga especial"
+      ],
+      "respuesta": 0,
+      "explicacion": "Un estándar EDI muy utilizado es UN/EDIFACT.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué estándar internacional de mensajes EDI promueven las Naciones Unidas para el comercio y el transporte?",
+      "opciones": [
+        "ISBN",
+        "UN/EDIFACT",
+        "ISO 9001",
+        "INCOTERMS"
+      ],
+      "respuesta": 1,
+      "explicacion": "Define mensajes como pedido, factura, instrucciones de transporte o estado del envío.",
+      "criterio": "RA6.c",
+      "fuente": "Naciones Unidas (CEPE/UN/CEFACT); contenido conocido, no leído en texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la principal ventaja del EDI frente al intercambio en papel?",
+      "opciones": [
+        "Elimina la necesidad de transportar la mercancía",
+        "Evita el pago de los aranceles de importación",
+        "Menos errores, tiempo y coste, al no reteclear datos",
+        "Sustituye por completo al seguro de transporte"
+      ],
+      "respuesta": 2,
+      "explicacion": "Además mejora la trazabilidad y el cumplimiento de plazos.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un TMS?",
+      "opciones": [
+        "Un sistema de gestión de almacenes y existencias",
+        "Un contenedor especial para carga sensible",
+        "Un tipo de seguro de la mercancía transportada",
+        "Sistema que planifica y controla el transporte"
+      ],
+      "respuesta": 3,
+      "explicacion": "El WMS, en cambio, gestiona el almacén.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un WMS?",
+      "opciones": [
+        "Un sistema de gestión de almacenes (WMS)",
+        "Un sistema de gestión del transporte",
+        "Un sistema de pagos internacionales",
+        "Una norma ISO de calidad"
+      ],
+      "respuesta": 0,
+      "explicacion": "Controla ubicaciones, stock, entradas y salidas del almacén.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tecnología permite localizar un vehículo en tiempo real?",
+      "opciones": [
+        "El código de barras impreso en los bultos",
+        "El GPS/GNSS junto con la telemática del vehículo",
+        "El albarán firmado en el momento de la entrega",
+        "El carnet TIR que acompaña al vehículo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se integra en el TMS o en plataformas de seguimiento.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene el RFID frente al código de barras?",
+      "opciones": [
+        "Es siempre más barato que el código de barras",
+        "Solo funciona si hay luz suficiente",
+        "Lee etiquetas a distancia y varias a la vez",
+        "No necesita ningún tipo de lector"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se usa en palés, contenedores y trazabilidad de activos.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la carta de porte electrónica e-CMR?",
+      "opciones": [
+        "Una carta de porte aérea en formato electrónico",
+        "Un certificado fitosanitario electrónico",
+        "Un cuaderno TIR emitido en papel",
+        "La carta CMR emitida y firmada electrónicamente"
+      ],
+      "respuesta": 3,
+      "explicacion": "Reduce el papel y facilita el seguimiento; requiere que ambos países sean parte del Protocolo.",
+      "criterio": "RA6.c",
+      "fuente": "Protocolo adicional al CMR sobre la carta de porte electrónica (2008); contenido conocido, no leído.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el e-AWB?",
+      "opciones": [
+        "La carta de porte aérea electrónica",
+        "Un contenedor aéreo de uso especial",
+        "Un sistema de reservas de hoteles",
+        "Un tipo de seguro aéreo de la carga"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se apoya en el art. 4.2 del Convenio de Montreal y en los acuerdos IATA.",
+      "criterio": "RA6.c",
+      "fuente": "Convenio de Montreal 1999, art. 4.2 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una Port Community System (PCS)?",
+      "opciones": [
+        "Un tipo de buque especializado en contenedores",
+        "Plataforma neutral que conecta a actores del puerto",
+        "Un seguro específico de la actividad portuaria",
+        "Un contenedor refrigerado de uso portuario"
+      ],
+      "respuesta": 1,
+      "explicacion": "Agiliza el despacho y reduce tiempos de espera.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistema identifica y sigue la posición de los buques en tiempo real?",
+      "opciones": [
+        "El EDIFACT, estándar de mensajes",
+        "El RFID, de etiquetas a distancia",
+        "El AIS (Automatic Identification System)",
+        "El NCTS, de tránsito aduanero"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los buques lo emiten por VHF; muchas aplicaciones web lo muestran.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué instrumento registra los tiempos de conducción y descanso en los vehículos pesados por carretera?",
+      "opciones": [
+        "El odómetro del vehículo",
+        "El GPS del vehículo",
+        "El marcador de combustible",
+        "El tacógrafo (digital o inteligente)"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la base del control del cumplimiento del Reglamento (CE) n.º 561/2006.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene que el transportista comunique un estado del envío (hito) automáticamente al cliente?",
+      "opciones": [
+        "Más visibilidad y reacción antes a retrasos",
+        "Evita tener que pagar el flete pactado",
+        "Sustituye a la carta de porte del transporte",
+        "Elimina la necesidad de contratar un seguro"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se logra con EDI, API o plataformas de seguimiento.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué mensaje comunica al cliente que su mercancía ha sido entregada y recibida?",
+      "opciones": [
+        "La factura proforma de la operación",
+        "La prueba de entrega (POD)",
+        "El manifiesto de carga del buque",
+        "El pedido de compra del cliente"
+      ],
+      "respuesta": 1,
+      "explicacion": "Suele incluir firma, fecha, hora y estado de la mercancía.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe valorarse al elegir el medio de comunicación para una operación de transporte?",
+      "opciones": [
+        "Solo el precio del teléfono que se utilice",
+        "Solo la moda tecnológica del momento",
+        "Urgencia, formalidad, trazabilidad y compatibilidad",
+        "Solo la preferencia personal del chófer"
+      ],
+      "respuesta": 2,
+      "explicacion": "Para instrucciones importantes se prefiere un medio que deje constancia escrita.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué es recomendable dejar constancia escrita de las instrucciones dadas al transportista?",
+      "opciones": [
+        "Para evitar el pago de los impuestos",
+        "Para sustituir a la carta de porte del transporte",
+        "No es recomendable dejar constancia escrita",
+        "Para probar las instrucciones ante reclamaciones"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las instrucciones verbales sin soporte son difíciles de acreditar.",
+      "criterio": "RA6.d",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué reglamento europeo armoniza el intercambio de información electrónica sobre transporte de mercancías con las autoridades (eFTI)?",
+      "opciones": [
+        "El Reglamento (UE) 2020/1056",
+        "El Reglamento (CE) n.º 561/2006",
+        "El Reglamento (CE) n.º 1/2005",
+        "El Reglamento (UE) 2015/478"
+      ],
+      "respuesta": 0,
+      "explicacion": "Obliga a las autoridades a aceptar información electrónica en los transportes.",
+      "criterio": "RA6.c",
+      "fuente": "Reglamento (UE) 2020/1056 (eFTI); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre un sistema EDI y una API?",
+      "opciones": [
+        "Son exactamente lo mismo con distinto nombre",
+        "EDI: mensajes en lotes; API: consulta directa y en tiempo real",
+        "La API solo funciona sobre documentos en papel",
+        "El EDI es un tipo de contenedor especial"
+      ],
+      "respuesta": 1,
+      "explicacion": "Ambos se usan en logística; muchas plataformas combinan los dos.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué información suele ofrecer una plataforma de tracking de contenedores marítimos?",
+      "opciones": [
+        "Solo el precio que se ha pagado por el flete",
+        "El saldo bancario de la cuenta del cargador",
+        "Posición, estado, ETA/ETD y eventos del contenedor",
+        "El peso del conductor que lleva el camión"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se identifica el contenedor por su código ISO 6346.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,241 @@
+{
+  "modulo": "0623",
+  "tema": "7.2",
+  "titulo": "Rentabilidad de inversiones: VAN, TIR y plazo de recuperación",
+  "preguntas": [
+    {
+      "id": "0623-7.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el VAN (valor actual neto)?",
+      "opciones": [
+        "La suma de los flujos sin actualizar",
+        "Los flujos actualizados menos el desembolso inicial",
+        "El beneficio contable acumulado del proyecto",
+        "La tasa de descuento aplicada a los flujos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Mide la creación de valor del proyecto.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo es aceptable un proyecto según el VAN?",
+      "opciones": [
+        "Cuando el VAN es negativo para la empresa",
+        "Siempre, sea cual sea el resultado del VAN",
+        "Cuando el VAN es positivo o cero",
+        "Nunca, porque el VAN no es un criterio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Un VAN > 0 aumenta el valor de la empresa.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la TIR (tasa interna de rentabilidad)?",
+      "opciones": [
+        "La tasa de inflación del periodo considerado",
+        "La tasa de interés del préstamo que financia",
+        "El beneficio medio anual del proyecto",
+        "La tasa que hace el VAN igual a cero"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la rentabilidad intrínseca de la inversión.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo es aceptable un proyecto según la TIR?",
+      "opciones": [
+        "Cuando supera el coste de capital exigido",
+        "Cuando es inferior al coste de capital",
+        "Siempre, aunque sea muy baja",
+        "Cuando es igual a cero por ciento"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se compara con la tasa de descuento.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre con el VAN si aumenta la tasa de descuento?",
+      "opciones": [
+        "Aumenta",
+        "Disminuye",
+        "No cambia",
+        "Se duplica"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los flujos futuros valen menos.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la tasa de retorno?",
+      "opciones": [
+        "El plazo en que se recupera la inversión",
+        "La vida útil del bien de inversión",
+        "La rentabilidad obtenida sobre el capital invertido",
+        "El valor residual del bien al final"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se compara con la rentabilidad exigida.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué se actualizan los flujos de caja en el VAN?",
+      "opciones": [
+        "Porque lo exige la normativa contable",
+        "Porque los flujos cambian cada año",
+        "Para reducir los impuestos del proyecto",
+        "Porque un euro de hoy vale más que uno futuro"
+      ],
+      "respuesta": 3,
+      "explicacion": "La actualización permite comparar flujos de años distintos.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué criterio permite comparar proyectos de distinto tamaño en términos de rentabilidad relativa?",
+      "opciones": [
+        "La TIR o el índice de rentabilidad",
+        "El payback simple del proyecto",
+        "El beneficio total del proyecto",
+        "La amortización anual del proyecto"
+      ],
+      "respuesta": 0,
+      "explicacion": "El VAN es absoluto.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Desembolso de 100.000 € y flujos anuales 30.000, 35.000, 40.000, 35.000 € durante 4 años. Con una tasa del 8 %, ¿cuál es el VAN?",
+      "opciones": [
+        "40.000,00 €",
+        "15.263,97 €",
+        "-100.000,00 €",
+        "25.263,97 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "VAN = −100.000 + Σ flujos/(1,08)^t = 15.263,97 €.",
+      "criterio": "RA7.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Con los mismos datos, ¿cuál es la TIR aproximada?",
+      "opciones": [
+        "8,0 %",
+        "24,5 %",
+        "14,5 %",
+        "7,2 %"
+      ],
+      "respuesta": 2,
+      "explicacion": "La TIR es la tasa que anula el VAN: ≈ 14,5 %.",
+      "criterio": "RA7.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Con VAN positivo y TIR superior a la tasa de descuento del 8 %, ¿qué decisión se recomienda?",
+      "opciones": [
+        "Rechazarlo",
+        "Ser indiferente",
+        "No hay criterio",
+        "Aceptar el proyecto"
+      ],
+      "respuesta": 3,
+      "explicacion": "Ambos criterios coinciden en aceptar.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el plazo de recuperación simple con los datos anteriores?",
+      "opciones": [
+        "2,88 años",
+        "4,00 años",
+        "2,86 años",
+        "3,38 años"
+      ],
+      "respuesta": 0,
+      "explicacion": "Acumulado: 30.000, 65.000, 105.000 → se recupera durante el 3.º año: 2,88 años.",
+      "criterio": "RA7.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Un proyecto de 50.000 € genera un único flujo de 60.000 € dentro de 1 año. ¿Cuál es su TIR?",
+      "opciones": [
+        "10,00 %",
+        "20,00 %",
+        "60,00 %",
+        "120,00 %"
+      ],
+      "respuesta": 1,
+      "explicacion": "TIR = 60.000/50.000 − 1 = 20 %.",
+      "criterio": "RA7.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

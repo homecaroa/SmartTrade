@@ -1,0 +1,385 @@
+{
+  "modulo": "0627",
+  "tema": "1.4",
+  "titulo": "El proceso de integración económica",
+  "preguntas": [
+    {
+      "id": "0627-1.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el nivel más sencillo de integración económica con eliminación de aranceles entre los miembros?",
+      "opciones": [
+        "La zona de libre comercio",
+        "La unión monetaria",
+        "El mercado común",
+        "La unión política"
+      ],
+      "respuesta": 0,
+      "explicacion": "En una zona de libre comercio se suprimen los aranceles y restricciones entre los miembros, pero cada país mantiene su propio arancel frente a terceros.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza a una zona de libre comercio?",
+      "opciones": [
+        "Con un arancel exterior común frente a los países terceros",
+        "Sin aranceles internos y con política arancelaria propia frente a terceros",
+        "Con libre circulación de personas y de capitales entre socios",
+        "Con una moneda única y un banco central común a los miembros"
+      ],
+      "respuesta": 1,
+      "explicacion": "Ejemplos: EFTA, el T-MEC/USMCA, la AFTA de ASEAN.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué añade la unión aduanera respecto a la zona de libre comercio?",
+      "opciones": [
+        "La moneda única y la política monetaria común de los miembros",
+        "La libre circulación de los trabajadores entre los Estados socios",
+        "Un arancel exterior común frente a terceros países",
+        "Una política fiscal común con tipos de IVA armonizados"
+      ],
+      "respuesta": 2,
+      "explicacion": "En la unión aduanera los miembros aplican el mismo arancel a las importaciones de terceros y suelen tener una política comercial común.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué añade el mercado común a la unión aduanera?",
+      "opciones": [
+        "La moneda única y un banco central común a todos los miembros",
+        "Un presupuesto único gestionado por una autoridad federal",
+        "Un ejército común bajo mando de las instituciones de la unión",
+        "Libre circulación de personas, capitales y servicios"
+      ],
+      "respuesta": 3,
+      "explicacion": "El mercado común extiende la libertad de circulación más allá de las mercancías.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué añade la unión económica al mercado común?",
+      "opciones": [
+        "La coordinación de las políticas fiscal, monetaria y social",
+        "Solo la eliminación de las cuotas y contingentes de importación",
+        "Únicamente el arancel exterior común frente a terceros países",
+        "La supresión total de las fronteras con los países terceros"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es el paso previo a la unión económica y monetaria, con moneda única.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué consiste la unión económica y monetaria?",
+      "opciones": [
+        "Una zona de libre comercio en la que cada país tiene su moneda",
+        "Una unión económica con moneda única y política monetaria común",
+        "Un mercado común sin un banco central que coordine la política",
+        "Un acuerdo preferencial parcial con reducciones de aranceles"
+      ],
+      "respuesta": 1,
+      "explicacion": "En la UE, la zona del euro tiene moneda única y una política monetaria gestionada por el BCE y el Eurosistema.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Ordena de menor a mayor grado de integración:",
+      "opciones": [
+        "Unión aduanera, zona de libre comercio, unión monetaria, mercado común",
+        "Mercado común, zona de libre comercio, unión aduanera, unión económica",
+        "Zona de libre comercio, unión aduanera, mercado común, unión económica y monetaria",
+        "Unión económica, mercado común, unión aduanera, zona de libre comercio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es la clásica escala de Balassa, a la que se suma una última etapa: la integración política.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un acuerdo preferencial de comercio?",
+      "opciones": [
+        "Los socios eliminan por completo los aranceles entre ellos",
+        "Los socios adoptan un arancel exterior común frente a terceros",
+        "Los socios adoptan una moneda única y un banco central común",
+        "Los socios se conceden ventajas arancelarias parciales"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la forma más superficial de integración: reducciones arancelarias solo para algunos productos.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "La EFTA (Asociación Europea de Libre Comercio) es un ejemplo de:",
+      "opciones": [
+        "Una zona de libre comercio",
+        "Una unión aduanera con arancel exterior común",
+        "Un mercado común con libre circulación de factores",
+        "Una unión económica y monetaria con moneda única"
+      ],
+      "respuesta": 0,
+      "explicacion": "La EFTA incluye hoy a Islandia, Liechtenstein, Noruega y Suiza; sus miembros mantienen su propio arancel frente a terceros.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "El Mercosur se describe habitualmente como:",
+      "opciones": [
+        "Una zona de libre comercio pura entre sus miembros",
+        "Una unión aduanera, todavía imperfecta",
+        "Una unión monetaria con moneda y banco central comunes",
+        "Una unión política con instituciones supranacionales"
+      ],
+      "respuesta": 1,
+      "explicacion": "Tiene arancel exterior común con excepciones y listas de excepción; su integración es parcial.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "El T-MEC (USMCA), que sustituyó al TLCAN, es un acuerdo entre:",
+      "opciones": [
+        "Estados Unidos, México y Brasil",
+        "Canadá, México y Argentina",
+        "Estados Unidos, México y Canadá",
+        "Estados Unidos, Canadá y Reino Unido"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una zona de libre comercio, no una unión aduanera: cada país mantiene su arancel frente a terceros.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Espacio Económico Europeo (EEE)?",
+      "opciones": [
+        "Es un acuerdo entre la UE y Estados Unidos sobre inversiones",
+        "Es la zona del euro con los países que comparten moneda",
+        "Es el espacio Schengen de libre circulación de personas",
+        "Extiende el mercado interior de la UE a Islandia, Liechtenstein y Noruega"
+      ],
+      "respuesta": 3,
+      "explicacion": "Estos tres países de la EFTA participan en el mercado interior, pero no en la unión aduanera de la UE ni en la política comercial común.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál fue la primera de las Comunidades Europeas, creada por el Tratado de París de 1951?",
+      "opciones": [
+        "La Comunidad Europea del Carbón y del Acero (CECA)",
+        "La Comunidad Económica Europea (CEE), creada en 1957",
+        "La Comunidad Europea de la Energía Atómica (Euratom)",
+        "La Unión Europea Occidental, alianza de defensa de 1954"
+      ],
+      "respuesta": 0,
+      "explicacion": "El Tratado de París (1951) creó la CECA; el Tratado de Roma (1957) creó la CEE y Euratom.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué creó el Tratado de Roma de 1957?",
+      "opciones": [
+        "La moneda única y el Banco Central Europeo",
+        "La CEE y Euratom",
+        "El espacio Schengen y la libre circulación de personas",
+        "La Organización Mundial del Comercio y el GATT"
+      ],
+      "respuesta": 1,
+      "explicacion": "La CEE fijó como objetivos un mercado común y una unión aduanera entre sus miembros.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo se completó la unión aduanera de la CEE?",
+      "opciones": [
+        "En 1957, el mismo año de la firma del Tratado de Roma",
+        "En 1993, con la entrada en vigor del mercado único",
+        "En 1968, con arancel exterior común y sin aranceles internos",
+        "En 2002, con la puesta en circulación del euro"
+      ],
+      "respuesta": 2,
+      "explicacion": "El 1 de julio de 1968 se suprimieron los derechos de aduana entre los seis miembros fundadores y se aplicó el arancel exterior común.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo ingresó España en la Comunidad Económica Europea?",
+      "opciones": [
+        "El 1 de enero de 1957",
+        "El 1 de enero de 1999",
+        "El 1 de enero de 2002",
+        "El 1 de enero de 1986"
+      ],
+      "respuesta": 3,
+      "explicacion": "España y Portugal se incorporaron en 1986; en 1999 se incorporaron al euro.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué creó el Tratado de Maastricht (1992)?",
+      "opciones": [
+        "La Unión Europea y el calendario de la unión monetaria",
+        "La CECA y la política común del carbón y del acero",
+        "El Mercado Único y la eliminación de fronteras interiores",
+        "La Organización Mundial del Comercio y su sistema de disputas"
+      ],
+      "respuesta": 0,
+      "explicacion": "El Tratado de la Unión Europea, firmado en Maastricht, entró en vigor en 1993 y fijó los criterios de convergencia para el euro.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo empezó a circular el euro en forma de billetes y monedas?",
+      "opciones": [
+        "El 1 de enero de 1993",
+        "El 1 de enero de 2002",
+        "El 1 de enero de 1999",
+        "El 1 de enero de 2010"
+      ],
+      "respuesta": 1,
+      "explicacion": "El euro existió como moneda contable desde 1999 y se puso en circulación física en 2002 en los primeros doce países.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el mercado único europeo?",
+      "opciones": [
+        "La zona del euro con una moneda y un banco central comunes",
+        "Un espacio de libre comercio con todos los terceros países",
+        "Espacio sin fronteras interiores con libre circulación de factores",
+        "Un acuerdo comercial con los países de la EFTA"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se completó en 1993 y es la base de los trámites simplificados entre Estados miembros (sin aduanas interiores).",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el espacio Schengen?",
+      "opciones": [
+        "La zona del euro con una moneda y un banco central comunes",
+        "Una unión aduanera de la UE con Rusia y otros países vecinos",
+        "Una zona de libre comercio de la UE con los países de la EFTA",
+        "Un espacio de libre circulación de personas sin controles interiores"
+      ],
+      "respuesta": 3,
+      "explicacion": "No coincide exactamente con la UE: incluye países que no son de la UE y excluye a miembros de la UE que no participan.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.4-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tuvo la salida del Reino Unido de la UE el 31 de enero de 2020 en el comercio con la UE?",
+      "opciones": [
+        "Pasó a ser un tercer país fuera del mercado único y de la unión aduanera",
+        "Siguió dentro de la unión aduanera de la UE de forma indefinida",
+        "Adoptó el euro como moneda para sus intercambios con la UE",
+        "Pasó a formar parte del Espacio Económico Europeo de forma automática"
+      ],
+      "respuesta": 0,
+      "explicacion": "El Acuerdo de Comercio y Cooperación (2021) permite un comercio sin aranceles sujeto a normas de origen, pero con trámites aduaneros.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («El proceso de integración económica. Niveles y fases»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

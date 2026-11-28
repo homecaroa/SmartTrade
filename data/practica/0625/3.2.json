@@ -1,0 +1,295 @@
+{
+  "modulo": "0625",
+  "tema": "3.2",
+  "titulo": "Tipos de almacenes y sistemas de almacenaje",
+  "preguntas": [
+    {
+      "id": "0625-3.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se clasifican los almacenes según su función?",
+      "opciones": [
+        "Solo propios y ajenos, según la titularidad del inmueble",
+        "Central, regional, de tránsito, de consolidación y de distribución",
+        "Solo cubiertos y descubiertos, según el tipo de construcción",
+        "Solo industriales y comerciales, según el sector de actividad"
+      ],
+      "respuesta": 1,
+      "explicacion": "También se clasifican por propiedad, por técnica y por tipo de mercancía.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se clasifican los almacenes según su propiedad?",
+      "opciones": [
+        "Solo propios, porque el resto no son almacenes de la empresa",
+        "Solo públicos, gestionados por las administraciones",
+        "Propios, alquilados y subcontratados",
+        "Solo aduaneros, bajo supervisión de la aduana"
+      ],
+      "respuesta": 2,
+      "explicacion": "Cada modelo tiene ventajas e inversión distinta.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el almacenamiento en bloque (apilado)?",
+      "opciones": [
+        "Colocar los palés en estanterías convencionales de paletización",
+        "Guardar el producto a granel en silos de almacenamiento",
+        "Mover los palés con transelevadores automáticos",
+        "Apilar palés o cajas directamente en el suelo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es barato y flexible, pero reduce la selectividad.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja principal tiene la estantería convencional de paletización?",
+      "opciones": [
+        "Acceso directo a cada palé",
+        "La máxima densidad de almacenamiento por metro cuadrado",
+        "La rotación LIFO obligatoria de todas las referencias",
+        "El menor coste de pasillos por palé almacenado"
+      ],
+      "respuesta": 0,
+      "explicacion": "Requiere más pasillos que los sistemas compactos.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza la estantería drive-in?",
+      "opciones": [
+        "Acceso individual a todos los palés sin mover otros",
+        "Alta densidad, con entrada de carretillas y rotación LIFO",
+        "Rotación FIFO obligatoria con carga por un lado y descarga por otro",
+        "Palés que avanzan por gravedad sobre rodillos inclinados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Pierde selectividad a cambio de densidad.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza la estantería dinámica por gravedad?",
+      "opciones": [
+        "Los palés se almacenan en LIFO sobre carros con raíles",
+        "Los palés se apilan en bloque sin estanterías en el suelo",
+        "Los palés avanzan por rodillos y rotan en FIFO",
+        "Los palés se cargan y descargan solo de forma manual"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se carga por un lado y se descarga por el otro.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza la estantería push-back?",
+      "opciones": [
+        "Rotación FIFO con carga por un lado y descarga por otro",
+        "Carga por gravedad sobre rodillos con pendiente continua",
+        "Estructura pensada solo para almacenar cargas largas",
+        "Carros sobre raíles que empujan los palés, con rotación LIFO"
+      ],
+      "respuesta": 3,
+      "explicacion": "Permite varios palés por canal con acceso por un solo lado.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué se usa la estantería cantilever (en voladizo)?",
+      "opciones": [
+        "Almacenar cargas largas como perfiles, tubos o tablas",
+        "Guardar cajas pequeñas de picking manual en estantes bajos",
+        "Conservar productos refrigerados en cámaras de frío",
+        "Archivar documentos y carpetas en la zona de oficinas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los brazos salen de las columnas.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una estantería móvil o compacta?",
+      "opciones": [
+        "Estanterías fijas con un pasillo para cada fila de palés",
+        "Estanterías sobre bases móviles con un único pasillo",
+        "Estanterías en voladizo para cargas largas y voluminosas",
+        "Estanterías de picking manual con acceso a cada caja"
+      ],
+      "respuesta": 1,
+      "explicacion": "Reduce el espacio de pasillos.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un transelevador (AS/RS)?",
+      "opciones": [
+        "Una carretilla manual que conduce un operario de a pie",
+        "Una transpaleta eléctrica para trayectos horizontales cortos",
+        "Un equipo automático que mueve palés en estanterías altas",
+        "Un contenedor normalizado para el transporte intermodal"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es típico de almacenes automáticos.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la selectividad de un sistema de almacenaje?",
+      "opciones": [
+        "La velocidad máxima a la que se desplaza el transelevador",
+        "El coste por palé almacenado en cada hueco de la estantería",
+        "La altura máxima hasta la que puede estibarse la carga",
+        "Acceder a cualquier unidad de carga sin mover otras"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se opone a la densidad.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistema suele ofrecer más densidad y menos selectividad?",
+      "opciones": [
+        "Drive-in o almacenamiento en bloque",
+        "Estantería convencional de paletización con pasillos amplios",
+        "Estantería para picking de cajas sueltas en altura baja",
+        "Estantería de cajas con acceso por ambos lados"
+      ],
+      "respuesta": 0,
+      "explicacion": "Adecuado para pocas referencias con muchos palés.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistema sería adecuado para muchas referencias con pocos palés por referencia?",
+      "opciones": [
+        "Drive-in, con canales profundos y entrada de carretillas",
+        "Estantería convencional, con alta selectividad",
+        "Almacenamiento en bloque con palés apilados en el suelo",
+        "Estantería push-back con carros sobre raíles inclinados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Cada palé debe ser accesible.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Una estantería convencional tiene 20 módulos, 5 niveles y 2 palés por hueco. ¿Cuántos palés admite en total?",
+      "opciones": [
+        "100",
+        "300",
+        "200",
+        "10"
+      ],
+      "respuesta": 2,
+      "explicacion": "Palés = 20 × 5 × 2 = 200.",
+      "criterio": "RA2.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Con 200 huecos y 160 ocupados, ¿qué porcentaje de ocupación tiene el almacén?",
+      "opciones": [
+        "20,00 %",
+        "64,00 %",
+        "125,00 %",
+        "80,00 %"
+      ],
+      "respuesta": 3,
+      "explicacion": "Ocupación = 160 / 200 × 100 = 80,00 %.",
+      "criterio": "RA2.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene el almacenamiento en altura?",
+      "opciones": [
+        "Aprovecha el volumen y reduce la superficie necesaria",
+        "Reduce la seguridad del trabajo con carretillas elevadoras",
+        "Elimina por completo la necesidad de pasillos de trabajo",
+        "Aumenta el coste de los pasillos y de la manutención"
+      ],
+      "respuesta": 0,
+      "explicacion": "Requiere equipos de manutención adecuados.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

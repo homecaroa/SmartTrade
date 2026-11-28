@@ -1,0 +1,367 @@
+{
+  "modulo": "0623",
+  "tema": "1.3",
+  "titulo": "El entorno de la empresa y la responsabilidad social",
+  "preguntas": [
+    {
+      "id": "0623-1.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el entorno de la empresa?",
+      "opciones": [
+        "Factores externos que influyen y no controla",
+        "El conjunto de empleados y directivos de la empresa",
+        "El local donde la empresa desarrolla su actividad",
+        "El balance contable con sus activos y deudas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se divide en entorno general (macroentorno) y específico (microentorno).",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué factores forman el macroentorno (entorno general)?",
+      "opciones": [
+        "Solo los clientes actuales y potenciales",
+        "Económicos, sociales, demográficos y legales",
+        "Solo la competencia directa del sector",
+        "Solo los proveedores de materias primas"
+      ],
+      "respuesta": 1,
+      "explicacion": "El análisis PESTEL (político, económico, social, tecnológico, ecológico, legal) los recoge.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el análisis PESTEL?",
+      "opciones": [
+        "Un método de amortización de activos fijos",
+        "Un tipo de auditoría de cuentas anuales",
+        "Un análisis de factores políticos y económicos",
+        "Un sistema de facturación electrónica de ventas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Ayuda a detectar oportunidades y amenazas externas.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué factores forman el microentorno (entorno específico)?",
+      "opciones": [
+        "La inflación y los tipos de interés",
+        "La cultura y los valores de un país",
+        "El cambio climático y los recursos naturales",
+        "Competidores, clientes y proveedores"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es el que afecta directamente a la actividad de la empresa en su sector.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son las cinco fuerzas del modelo de Porter?",
+      "opciones": [
+        "Rivales, entrantes, sustitutos, clientes y proveedores",
+        "Precio, producto, plaza, promoción y personas",
+        "Fortalezas, debilidades, amenazas, oportunidades y estrategia",
+        "Planificar, organizar, dirigir, coordinar y controlar"
+      ],
+      "respuesta": 0,
+      "explicacion": "Sirve para analizar el atractivo y la competencia de un sector.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene la subida de los tipos de interés en una empresa que se financia con préstamos?",
+      "opciones": [
+        "Abarata los préstamos y fomenta la inversión",
+        "Encarece la financiación y puede frenar la inversión",
+        "No tiene ningún efecto sobre los costes financieros",
+        "Reduce los impuestos que paga la empresa"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es un factor del entorno económico.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "La digitalización y la aparición de nuevas herramientas de gestión son un factor del entorno:",
+      "opciones": [
+        "Demográfico",
+        "Cultural únicamente",
+        "Tecnológico",
+        "Político-legal"
+      ],
+      "respuesta": 2,
+      "explicacion": "Pueden ser oportunidades (eficiencia) o amenazas (obsolescencia).",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "El envejecimiento de la población es un factor del entorno:",
+      "opciones": [
+        "Tecnológico",
+        "Político",
+        "Financiero",
+        "Demográfico"
+      ],
+      "respuesta": 3,
+      "explicacion": "Condiciona la demanda de productos y la disponibilidad de trabajadores.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la responsabilidad social de la empresa (RSE o RSC)?",
+      "opciones": [
+        "Integrar voluntariamente lo social y ambiental",
+        "La obligación de pagar impuestos a Hacienda",
+        "Una subvención pública que recibe la empresa",
+        "Un tipo de sociedad con fines no lucrativos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Va más allá del cumplimiento de la ley y se plantea como estrategia empresarial (RA1.f).",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quiénes son los grupos de interés (stakeholders) de una empresa?",
+      "opciones": [
+        "Solo los accionistas que aportan el capital",
+        "Quienes se ven afectados por la empresa",
+        "Solo los clientes que compran los productos",
+        "Solo la Administración que regula el sector"
+      ],
+      "respuesta": 1,
+      "explicacion": "La RSC busca equilibrar sus intereses.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el «triple resultado» (triple bottom line)?",
+      "opciones": [
+        "Presentar tres balances contables al año",
+        "Pagar tres tipos de impuestos distintos",
+        "Medir lo económico, social y ambiental",
+        "Mantener tres cuentas bancarias en distintos bancos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una forma de aplicar la sostenibilidad en la gestión.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los Objetivos de Desarrollo Sostenible (ODS)?",
+      "opciones": [
+        "Un tipo de contrato mercantil de suministro",
+        "Los objetivos de ventas anuales de una empresa",
+        "Un conjunto de normas fiscales de la Unión Europea",
+        "Los 17 objetivos de la Agenda 2030 de la ONU"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se aprobaron en 2015. Muchas empresas alinean con ellos su estrategia de sostenibilidad.",
+      "criterio": "RA1.f",
+      "fuente": "Naciones Unidas, Agenda 2030 (conocimiento general; no consultada en la web oficial).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Pacto Mundial de Naciones Unidas (Global Compact)?",
+      "opciones": [
+        "Una iniciativa con diez principios",
+        "Un tratado comercial de la OMC entre Estados",
+        "Una norma contable de obligado cumplimiento",
+        "Un fondo de inversión de la ONU para empresas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es voluntario y no certificable.",
+      "criterio": "RA1.f",
+      "fuente": "Naciones Unidas (conocimiento general; no consultado).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la norma ISO 26000?",
+      "opciones": [
+        "Una norma de calidad certificable",
+        "Una guía no certificable",
+        "Una norma contable internacional",
+        "Una ley europea de responsabilidad social"
+      ],
+      "respuesta": 1,
+      "explicacion": "Orienta sobre cómo integrar la responsabilidad social, sin requisitos auditables para certificar.",
+      "criterio": "RA1.f",
+      "fuente": "ISO (conocimiento general; no consultada).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un código ético de la empresa?",
+      "opciones": [
+        "Un contrato de suministro con un proveedor",
+        "Una póliza de seguro de responsabilidad civil",
+        "Un documento de valores y conducta",
+        "Un plan de marketing para un nuevo producto"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una práctica que incorpora valores éticos (RA1.g).",
+      "criterio": "RA1.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el comercio justo?",
+      "opciones": [
+        "Un comercio exento de todos los impuestos",
+        "Un comercio con aranceles máximos a las importaciones",
+        "Un comercio exclusivo entre empresas públicas",
+        "Un sistema de precios equitativos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es una práctica de responsabilidad social y de ética comercial.",
+      "criterio": "RA1.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es un ejemplo de práctica empresarial ética y social?",
+      "opciones": [
+        "Respetar derechos laborales y reducir impacto",
+        "Ocultar información relevante a los clientes",
+        "Subcontratar sin controlar las condiciones laborales",
+        "Evitar cualquier norma que limite el beneficio"
+      ],
+      "respuesta": 0,
+      "explicacion": "El RA1.g pide identificar prácticas que incorporan valores éticos y sociales.",
+      "criterio": "RA1.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué beneficios puede aportar la RSC a una empresa?",
+      "opciones": [
+        "Exención de todos los impuestos de la empresa",
+        "Mejor reputación y menor riesgo",
+        "Eliminación de la competencia en el sector",
+        "Garantía de beneficios en cada ejercicio"
+      ],
+      "respuesta": 1,
+      "explicacion": "Si es creíble, mejora la imagen corporativa y la sostenibilidad del negocio.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿A qué empresas obliga la Ley 11/2018 a presentar un estado de información no financiera y diversidad?",
+      "opciones": [
+        "A todas las empresas, incluidos los autónomos",
+        "Solo a las empresas públicas del Estado",
+        "A grandes empresas y entidades de interés",
+        "A ninguna empresa, porque es voluntaria"
+      ],
+      "respuesta": 2,
+      "explicacion": "La ley amplía el informe de gestión con información social, ambiental y de derechos humanos.",
+      "criterio": "RA1.f",
+      "fuente": "Ley 11/2018 (conocimiento general; no consultada en el BOE).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.3-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el greenwashing o «lavado verde»?",
+      "opciones": [
+        "Un certificado ambiental oficial de la administración",
+        "Un impuesto verde sobre el consumo de energía",
+        "Una forma de reciclaje de residuos industriales",
+        "Presentarse como más ecológico de lo que se es"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es una práctica engañosa que perjudica la confianza y puede ser sancionada.",
+      "criterio": "RA1.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

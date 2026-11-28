@@ -1,0 +1,277 @@
+{
+  "modulo": "0622",
+  "tema": "1.6",
+  "titulo": "Transporte aéreo (peso tarifario, tarifas, AWB)",
+  "preguntas": [
+    {
+      "id": "0622-1.6-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué característica define mejor al transporte aéreo internacional de mercancías frente al marítimo y al terrestre?",
+      "opciones": [
+        "Gran capacidad de carga y coste muy bajo por kilogramo en mercancías a granel",
+        "Rapidez y fiabilidad en los plazos, con un coste por kilogramo elevado",
+        "Servicio puerta a puerta sin transbordos ni acarreos hasta el aeropuerto",
+        "Posibilidad de transportar cualquier mercancía sin límites de peso, volumen ni naturaleza"
+      ],
+      "respuesta": 1,
+      "explicacion": "La ventaja del avión es la rapidez; su inconveniente, el coste por kilogramo y las limitaciones de capacidad y de mercancías (las peligrosas tienen normativa propia). La gran capacidad y el bajo coste son del marítimo, y el puerta a puerta es del transporte por carretera: el avión siempre necesita acarreos al aeropuerto.",
+      "criterio": "RA1.b",
+      "fuente": "Currículo del módulo 0622 (Decreto 95/2012, «Transporte aéreo: variables, características y limitaciones»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": ["2025-26"]
+    },
+    {
+      "id": "0622-1.6-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Convenio de Montreal de 1999, ¿cuántos ejemplares originales se extienden de la carta de porte aéreo (AWB)?",
+      "opciones": [
+        "Dos: uno para el transportista y otro para el destinatario",
+        "Tres: para el transportista, para el destinatario y para el expedidor",
+        "Cuatro: uno por cada parte interviniente más el agente de carga",
+        "Ocho, porque todos los ejemplares del juego de la aerolínea son originales"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 7 del Convenio exige tres originales: el primero «para el transportista» (lo firma el expedidor), el segundo «para el destinatario» (lo firman expedidor y transportista) y el tercero, firmado por el transportista, que se entrega al expedidor tras aceptar la carga. El juego de AWB de IATA tiene como mínimo ocho ejemplares, pero solo tres son originales; el resto son copias.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de Montreal, art. 7 (BOE-A-2004-9347, texto consolidado). Juego de ocho copias: IATA Res. 600a, Cargo Agent's Handbook.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": ["2025-26"]
+    },
+    {
+      "id": "0622-1.6-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Convenio de Montreal, ¿qué valor tiene la carta de porte aéreo respecto a la celebración del contrato y a sus condiciones de transporte?",
+      "opciones": [
+        "Es prueba plena que no admite prueba en contrario",
+        "Tiene valor meramente informativo y no produce efectos probatorios",
+        "Constituye una presunción, salvo prueba en contrario",
+        "Solo prueba el contrato cuando la ha firmado el destinatario"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 11.1 dice que la carta de porte aéreo constituye presunción, salvo prueba en contrario, de la celebración del contrato, de la aceptación de la carga y de las condiciones de transporte. Además (art. 9), los defectos del documento no afectan a la existencia ni a la validez del contrato.",
+      "criterio": "RA3.a",
+      "fuente": "Convenio de Montreal, arts. 9 y 11.1 (BOE-A-2004-9347).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.6-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se calcula el peso volumétrico de un envío aéreo con la regla general de IATA, con las medidas en centímetros?",
+      "opciones": [
+        "(largo × ancho × alto) ÷ 6.000, y el resultado son kilogramos",
+        "(largo × ancho × alto) ÷ 5.000, que es la regla general de IATA",
+        "(largo × ancho × alto) ÷ 1.000.000, y el resultado son kilogramos",
+        "(largo + ancho + alto) ÷ 6, y el resultado son kilogramos"
+      ],
+      "respuesta": 0,
+      "explicacion": "La resolución de IATA establece que cada 6.000 cm³ equivalen a 1 kg (unos 167 kg por m³). Se toman las dimensiones máximas del envío. Algunos operadores express usan un divisor de 5.000, pero no es la regla general de IATA.",
+      "criterio": "RA3.e",
+      "fuente": "IATA, Cargo Agent's Handbook, Res. 600a (6.000 cm³ = 1 kg); IATA Knowledge Hub, «Air Cargo Tariffs and Rules». Divisor 5.000 en express: Maersk (fuente secundaria).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": ["2023-24", "2025-26"]
+    },
+    {
+      "id": "0622-1.6-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En transporte aéreo, el «peso tarifario» (peso sujeto a cargo) de un envío es:",
+      "opciones": [
+        "El peso neto de la mercancía, sin embalaje",
+        "La suma del peso bruto real y del peso volumétrico",
+        "El menor de los dos valores: peso real o peso volumétrico",
+        "El mayor de los dos valores: peso bruto real o peso volumétrico"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se factura por el mayor entre el peso bruto real y el volumétrico, porque la capacidad del avión se agota tanto por peso como por volumen. Un envío ligero y voluminoso paga por su volumen.",
+      "criterio": "RA3.e",
+      "fuente": "IATA Knowledge Hub, «Air Cargo Tariffs and Rules» (se usa el mayor de ambos); Res. 600a.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": ["2023-24", "2025-26"]
+    },
+    {
+      "id": "0622-1.6-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Un bulto pesa 16 kg y mide 60 × 40 × 50 cm. Aplicando la regla general de IATA, ¿cuál es su peso tarifario?",
+      "opciones": [
+        "16 kg",
+        "20 kg",
+        "36 kg",
+        "24 kg"
+      ],
+      "respuesta": 1,
+      "explicacion": "Volumen: 60 × 40 × 50 = 120.000 cm³. Peso volumétrico: 120.000 ÷ 6.000 = 20 kg. Como 20 kg > 16 kg reales, el peso tarifario es 20 kg. 36 kg sería sumar ambos pesos (error) y 24 kg resulta de dividir entre 5.000.",
+      "criterio": "RA3.e",
+      "fuente": "Cálculo con la regla IATA (cm³ ÷ 6.000, Res. 600a).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": ["2023-24", "2025-26"]
+    },
+    {
+      "id": "0622-1.6-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Una caja de 45 × 30 × 25 cm pesa 4,2 kg. Si el transportista aplica la regla de IATA de redondear al medio kilo superior, ¿qué peso tarifario se factura?",
+      "opciones": [
+        "4,2 kg",
+        "5,5 kg",
+        "5,625 kg",
+        "6,0 kg"
+      ],
+      "respuesta": 3,
+      "explicacion": "Volumen: 45 × 30 × 25 = 33.750 cm³. Peso volumétrico: 33.750 ÷ 6.000 = 5,625 kg, mayor que los 4,2 kg reales. La resolución de IATA redondea el equivalente por exceso al siguiente kilo entero o medio kilo: el siguiente escalón sobre 5,625 es 6,0 kg (5,5 queda por debajo, así que no vale).",
+      "criterio": "RA3.e",
+      "fuente": "IATA Res. 600a (Cargo Agent's Handbook): el equivalente en kg se redondea «up to the next higher full/half kg».",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.6-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En la casilla de clase de tarifa del AWB, ¿qué indica la letra «M»?",
+      "opciones": [
+        "El importe mínimo (cargo mínimo) aplicable al envío",
+        "Mercancía peligrosa sujeta a normativa especial",
+        "Envío consolidado documentado con un Master AWB",
+        "Tarifa reducida para pesos superiores al último escalón"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los códigos de clase de tarifa del AWB son, entre otros: M (cargo mínimo), N (tarifa normal), Q (tarifa de cantidad), C (tarifa de mercancía específica), R (reducción de tarifa de clase) y S (recargo de tarifa de clase). Si el flete calculado queda por debajo del mínimo, se cobra el mínimo.",
+      "criterio": "RA3.c",
+      "fuente": "IATA Res. 600a, Attachment B, apdo. 2.18.5 (Cargo Agent's Handbook).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": ["2024-25", "2025-26"]
+    },
+    {
+      "id": "0622-1.6-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la tarifa normal (N) en el transporte aéreo de mercancías?",
+      "opciones": [
+        "Una tarifa reducida para una mercancía concreta, identificada con un número de producto",
+        "Un descuento porcentual sobre otra tarifa para una clase de mercancía",
+        "La tarifa general por unidad de peso, sin descuento por cantidad",
+        "El importe mínimo que se cobra por cada envío"
+      ],
+      "respuesta": 2,
+      "explicacion": "El glosario de IATA define «Rate, Normal» como la tarifa general de carga sin descuento por cantidad. Las tarifas de cantidad (Q) son las que bajan el precio por kilo al superar un escalón de peso. La primera opción describe la tarifa de mercancía específica (C), la segunda las de clase (R) y la cuarta el cargo mínimo (M).",
+      "criterio": "RA3.c",
+      "fuente": "IATA Cargo Agent's Handbook, glosario («RATE, NORMAL», «QUANTITY DISCOUNT»).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": ["2024-25", "2025-26"]
+    },
+    {
+      "id": "0622-1.6-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En una tarifa por ULD con peso pívot y tarifa «over pivot», ¿cómo se factura el peso que excede del pívot?",
+      "opciones": [
+        "Se cobra de nuevo el importe pívot completo por cada tramo adicional",
+        "No se cobra, porque el importe pívot cubre cualquier peso del contenedor",
+        "Se factura a la tarifa mínima (M) del envío",
+        "Se cobra por kilo según la tarifa «over pivot»"
+      ],
+      "respuesta": 3,
+      "explicacion": "El coste del ULD es el importe pívot (hasta el peso pívot) más el exceso de peso multiplicado por la tarifa «over pivot». En el AWB, el peso pívot se anota en la línea de clase «U» y el exceso en la línea «E». Ejemplo: pívot de 250 kg a 400 €, over pivot a 1,10 €/kg y carga de 310 kg → 400 + 60 × 1,10 = 466 €.",
+      "criterio": "RA3.d",
+      "fuente": "IATA Res. 600a, Attachment B, apdo. 2.18.7.2 (líneas U y E del AWB). El ejemplo numérico es ilustrativo.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": ["2024-25"]
+    },
+    {
+      "id": "0622-1.6-011",
+      "tipo": "opcion_unica",
+      "enunciado": "El expedidor no declara ningún valor de la mercancía para el transporte. ¿Qué debe constar en la casilla «valor declarado para el transporte» del AWB?",
+      "opciones": [
+        "0,00",
+        "NCV",
+        "NVD",
+        "La casilla se deja en blanco"
+      ],
+      "respuesta": 2,
+      "explicacion": "Cuando no se declara valor para el transporte se escribe «NVD» (No Value Declared). «NCV» (No Customs Value) pertenece a otra casilla, la del valor declarado para aduana, que además puede quedar en blanco. Si no se solicita seguro, en la casilla del importe a asegurar se escribe «XXX».",
+      "criterio": "RA5.a",
+      "fuente": "IATA Res. 600a, Attachment B, apdos. 2.14.2, 2.15 y 2.16.2.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": ["2025-26"]
+    },
+    {
+      "id": "0622-1.6-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se compone el número de un AWB según el estándar IATA?",
+      "opciones": [
+        "Siete dígitos de serie, sin prefijo ni dígito de control",
+        "Prefijo de aerolínea de 3 dígitos, 7 dígitos de serie y 1 dígito de control (módulo 7)",
+        "Código IATA de 2 letras de la aerolínea más 9 dígitos",
+        "Prefijo de 3 letras del aeropuerto de origen más 8 dígitos"
+      ],
+      "respuesta": 1,
+      "explicacion": "El número tiene 11 dígitos con el formato 000-00000000: 3 de prefijo de la aerolínea, 7 de serie y un último dígito de control, que es el resto de dividir la serie entre 7. Ejemplo: 105-30797012 → serie 3079701; 3079701 ÷ 7 deja resto 2, que es el dígito final.",
+      "criterio": "RA5.d",
+      "fuente": "IATA DG AutoCheck, «Air Waybill number validation» (11 dígitos, dígito 11 de control módulo 7); prefijo de 3 dígitos: brochure ICAO/OMA «Moving Air Cargo Globally». El ejemplo coincide con el modelo de examen de Madrid 2025-26.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": ["2025-26"]
+    },
+    {
+      "id": "0622-1.6-013",
+      "tipo": "opcion_unica",
+      "enunciado": "En un envío consolidado, ¿qué diferencia hay entre el Master AWB y el House AWB?",
+      "opciones": [
+        "El Master documenta el transporte consolidado entre el transitario y la aerolínea; el House lo emite el transitario a cada cargador",
+        "El Master lo emite el transitario a cada cargador; el House lo emite la aerolínea al transitario",
+        "Son el mismo documento: uno es para el viaje de ida y otro para el de vuelta",
+        "El Master solo se usa en transporte multimodal y el House solo en transporte aéreo"
+      ],
+      "respuesta": 0,
+      "explicacion": "En la consolidación, el transitario o consolidador agrupa envíos de varios cargadores y contrata el vuelo con la aerolínea con un Master AWB (su número es el que usa la aerolínea para rastrear). A cada cargador le emite su House AWB; el número del House lo fija el propio transitario y no sigue el formato IATA de 11 dígitos.",
+      "criterio": "RA5.a",
+      "fuente": "Descripción en documentos de IATA/ICAO localizados por búsqueda; no he abierto una definición normativa. Definición de «consolidated consignment»: IATA Cargo Agent's Handbook, glosario.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.6-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Un destinatario recibe carga aérea con una avería visible. Según el Convenio de Montreal, ¿cuál es el plazo máximo para presentar la protesta por escrito al transportista?",
+      "opciones": [
+        "21 días desde la recepción",
+        "7 días desde la recepción",
+        "2 años desde la llegada a destino",
+        "14 días desde la recepción"
+      ],
+      "respuesta": 3,
+      "explicacion": "En caso de avería de la carga, la protesta debe presentarse por escrito inmediatamente después de notarla y, a más tardar, a los 14 días de la recepción (7 días para el equipaje facturado). En caso de retraso, 21 días desde que la carga se puso a disposición del destinatario. Los 2 años son el plazo para iniciar la acción judicial (art. 35).",
+      "criterio": "RA6.e",
+      "fuente": "Convenio de Montreal, arts. 31 y 35 (BOE-A-2004-9347, texto consolidado).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.6-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el expedidor no ha hecho una declaración especial de valor, ¿cuál es el límite de responsabilidad del transportista por kilogramo de carga según el Convenio de Montreal tras la revisión de 2024?",
+      "opciones": [
+        "17 derechos especiales de giro (DEG)",
+        "19 DEG",
+        "22 DEG",
+        "26 DEG"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 22.3 fija el límite en 26 DEG por kilogramo (texto consolidado vigente). Cifras anteriores: 17 en el texto original de 1999, y revisiones posteriores a 19 y a 22 (esta última desde 2019). Se aplica el peso total de los bultos afectados. Es un dato revisable: ICAO lo actualiza periódicamente.",
+      "criterio": "RA3.g",
+      "fuente": "Convenio de Montreal, art. 22.3 (BOE-A-2004-9347, texto consolidado: 26 DEG/kg). Revisión de 2024 y cifras históricas: ICAO, según resultados de búsqueda (no he abierto el PDF de ICAO).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,283 @@
+{
+  "modulo": "0622",
+  "tema": "1.2b",
+  "titulo": "Carretera: contrato CMR y régimen TIR",
+  "preguntas": [
+    {
+      "id": "0622-1.2b-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos ejemplares originales tiene la carta de porte CMR y a quién se destina cada uno?",
+      "opciones": [
+        "Dos: uno para el remitente y otro para el destinatario",
+        "Tres: remitente, acompaña a la mercancía y transportista",
+        "Tres: remitente, transportista y aduana de destino",
+        "Cuatro: remitente, transportista, destinatario y aseguradora"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 5.1 CMR dice que la carta de porte se expide en tres ejemplares originales firmados por remitente y transportista: el primero se entrega al remitente, el segundo acompaña a la mercancía (y llega al destinatario) y el tercero lo retiene el transportista. La Ley 15/2009 (art. 11) reproduce el mismo reparto para el transporte nacional.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio CMR, art. 5.1 (BOE-A-1974-753); Ley 15/2009, art. 11.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.2b-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre con el contrato de transporte si la carta de porte CMR se pierde o contiene irregularidades?",
+      "opciones": [
+        "El contrato queda anulado y pasa a regirse por el derecho nacional",
+        "El contrato es válido, pero queda fuera del ámbito del Convenio",
+        "El contrato se considera verbal y solo vincula a las partes",
+        "No afecta a su validez; sigue sometido al Convenio"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 4 CMR establece que la carta de porte es documento fehaciente de la existencia del contrato, pero su ausencia, irregularidad o pérdida no afecta a la existencia ni a la validez del contrato, que sigue sometido al Convenio. El contrato es consensual; la carta de porte es su prueba (art. 9.1: da fe, salvo prueba en contrario, de las condiciones del contrato y de la recepción de la mercancía).",
+      "criterio": "RA3.a",
+      "fuente": "Convenio CMR, arts. 4 y 9.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Si la carta de porte CMR no incluye la mención de que el transporte está sometido al Convenio, ¿qué consecuencia tiene para el transportista?",
+      "opciones": [
+        "Responde de los gastos y daños causados por la omisión",
+        "El transporte pasa a regirse por el derecho nacional y queda exento",
+        "El contrato es nulo y el transportista no puede cobrar el flete",
+        "El remitente pierde el derecho a reclamar por pérdidas o averías"
+      ],
+      "respuesta": 0,
+      "explicacion": "La mención de sujeción al Convenio es contenido obligatorio de la carta de porte (art. 6.1.k). Según el art. 7.3, si se omite, el transportista es responsable de todos los gastos y daños sufridos por quien tenga derecho a la mercancía por esa causa. Es una protección del titular de la mercancía: el régimen del CMR se aplica de todos modos.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio CMR, arts. 6.1.k y 7.3.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Al hacerse cargo de la mercancía, el transportista no tiene medios razonables para comprobar el número de bultos que figura en la carta de porte CMR. ¿Qué debe hacer?",
+      "opciones": [
+        "Rechazar el transporte hasta que el remitente lo demuestre",
+        "Corregir él mismo la carta de porte con el número que estime",
+        "Anotar reservas motivadas en la carta de porte",
+        "Dejar que sea el destinatario quien lo verifique al recibir"
+      ],
+      "respuesta": 2,
+      "explicacion": "Según el art. 8, el transportista debe revisar la exactitud del número de bultos, marcas y números y el estado aparente de la mercancía y del embalaje. Si no tiene medios razonables, anota reservas motivadas en la carta de porte, que no comprometen al remitente salvo que las acepte expresamente. Sin reservas, se presume que la mercancía estaba en buen estado aparente y que los datos son conformes (art. 9.2).",
+      "criterio": "RA5.a",
+      "fuente": "Convenio CMR, arts. 8.1, 8.2 y 9.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Convenio CMR, ¿de qué responde el transportista y durante qué periodo?",
+      "opciones": [
+        "Solo de la pérdida total, desde la salida hasta cruzar la frontera",
+        "De pérdida, avería y retraso, desde la recepción hasta la entrega",
+        "Solo de las averías por negligencia probada, de la carga a la descarga",
+        "De cualquier daño, incluso el causado por culpa del remitente"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 17.1 CMR hace responsable al transportista de la pérdida total o parcial, de las averías producidas entre la recepción y la entrega, y del retraso en la entrega. Es una responsabilidad prácticamente objetiva: debe probar él una causa de exoneración (art. 18.1), no el reclamante su culpa.",
+      "criterio": "RA3.g",
+      "fuente": "Convenio CMR, arts. 17.1 y 18.1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.2b-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estas circunstancias NO exonera al transportista de su responsabilidad según el Convenio CMR?",
+      "opciones": [
+        "La culpa del que tiene derecho sobre la mercancía",
+        "El vicio propio de la mercancía transportada",
+        "Circunstancias que el transportista no pudo evitar ni impedir",
+        "Los defectos del vehículo que utiliza"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 17.2 exonera por culpa del titular de la mercancía o instrucción suya, vicio propio y circunstancias inevitables. El art. 17.3 dice expresamente que el transportista no puede alegar defectos del vehículo ni la culpa de las personas a las que haya alquilado el vehículo o de sus empleados.",
+      "criterio": "RA3.g",
+      "fuente": "Convenio CMR, art. 17.2 y 17.3.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Si no se ha declarado valor ni interés especial en la entrega, ¿cuál es el límite de indemnización por pérdida de mercancía en el transporte por carretera regido por el CMR?",
+      "opciones": [
+        "8,33 derechos especiales de giro (DEG) por kilogramo de peso bruto que falte",
+        "17 DEG por kilogramo de peso bruto que falte",
+        "26 DEG por kilogramo de peso bruto que falte",
+        "2 DEG por kilogramo de peso bruto que falte"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 23.3 CMR limita la indemnización a 8,33 unidades de cuenta (DEG) por kg de peso bruto que falte. No lo confundas con otros modos: 17 DEG/kg en ferrocarril (CIM) y 26 DEG/kg en aéreo (Montreal, tras la revisión de 2024). La indemnización se calcula con el valor de la mercancía en el lugar y momento de la recepción (art. 23.1-2).",
+      "criterio": "RA3.g",
+      "fuente": "Convenio CMR, art. 23 (BOE-A-1974-753, texto consolidado). Comparación: CIM art. 30 y Convenio de Montreal art. 22.3.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Por el retraso en la entrega, si el titular prueba que ha sufrido perjuicio, ¿a cuánto limita el CMR la indemnización?",
+      "opciones": [
+        "A 8,33 DEG por kilogramo de peso bruto de la mercancía",
+        "Al valor total de la mercancía transportada",
+        "Al precio del transporte",
+        "A tres veces el precio del transporte pactado"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 23.5 CMR obliga al transportista a indemnizar el perjuicio probado por el retraso, pero la suma en ningún caso excederá del precio del transporte. Hay retraso cuando no se entrega en el plazo convenido o, sin plazo, cuando la duración efectiva supera lo que se concedería a un transportista diligente (art. 19).",
+      "criterio": "RA3.g",
+      "fuente": "Convenio CMR, arts. 19 y 23.5.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Un destinatario recibe la mercancía y días después descubre una avería no manifiesta. Según el CMR, ¿en qué plazo debe formular sus reservas por escrito al transportista?",
+      "opciones": [
+        "En el momento mismo de la entrega de la mercancía",
+        "Veintiún días desde la entrega de la mercancía",
+        "Treinta días desde la entrega de la mercancía",
+        "Siete días desde la entrega, sin domingos ni festivos"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 30.1 CMR exige reservas en el momento de la entrega si las averías o pérdidas son manifiestas, y dentro de siete días desde la entrega (sin contar domingos ni festivos) si no lo son, y por escrito. Sin reservas, se presume que recibió la mercancía en el estado descrito en la carta de porte. En la Ley 15/2009 (art. 60) el plazo son siete días naturales.",
+      "criterio": "RA6.e",
+      "fuente": "Convenio CMR, art. 30.1; Ley 15/2009, art. 60.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Para tener derecho a indemnización por retraso, ¿en qué plazo debe el destinatario dirigir una reserva escrita al transportista según el CMR?",
+      "opciones": [
+        "Siete días desde la entrega de la mercancía",
+        "Veintiún días desde que se pone a su disposición",
+        "Treinta días desde la fecha convenida de entrega",
+        "Un año desde la entrega de la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 30.3 CMR: el retraso solo da lugar a indemnización si se ha dirigido reserva por escrito en el plazo de veintiún días a partir de la puesta de la mercancía a disposición del destinatario. La Ley 15/2009 (art. 60.3) fija el mismo plazo de 21 días para el transporte nacional.",
+      "criterio": "RA6.e",
+      "fuente": "Convenio CMR, art. 30.3; Ley 15/2009, art. 60.3.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo puede el titular considerar perdida la mercancía sin necesidad de prueba, según el CMR?",
+      "opciones": [
+        "A los 30 días del plazo o 60 desde la recepción",
+        "A los siete días del plazo convenido, haya o no plazo",
+        "A los veintiún días de que el transportista se hiciera cargo",
+        "A los noventa días de la fecha de la carta de porte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 20.1 CMR: treinta días sin entrega tras el plazo convenido o, sin plazo convenido, sesenta días desde que el transportista se hizo cargo. Si cobra la indemnización, puede pedir por escrito que se le avise si la mercancía reaparece en el año siguiente (art. 20.2).",
+      "criterio": "RA6.e",
+      "fuente": "Convenio CMR, art. 20.1 y 20.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo prescriben las acciones derivadas de un transporte regido por el Convenio CMR?",
+      "opciones": [
+        "Seis meses; un año en caso de dolo del transportista",
+        "Dos años; cinco años en caso de dolo del transportista",
+        "Un año; tres en caso de dolo",
+        "Tres años en todos los casos, haya o no dolo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 32.1 CMR: un año, o tres si hay dolo o falta equivalente a dolo según la ley del tribunal. El plazo corre desde la entrega (pérdida parcial, avería, mora), desde 30 días tras el plazo convenido o 60 desde la recepción (pérdida total) o desde tres meses tras la conclusión del contrato (demás casos). En el transporte nacional (Ley 15/2009, art. 79) es de un año, y dos si hay dolo.",
+      "criterio": "RA6.e",
+      "fuente": "Convenio CMR, art. 32.1; Ley 15/2009, art. 79.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la finalidad principal del régimen TIR?",
+      "opciones": [
+        "Fijar tarifas únicas para el transporte internacional por carretera",
+        "Facilitar el tránsito: sin pagar derechos en las aduanas de paso",
+        "Regular los tiempos de conducción y descanso de los conductores",
+        "Autorizar el acceso de los transportistas al mercado internacional"
+      ],
+      "respuesta": 1,
+      "explicacion": "El Convenio TIR de 1975 crea un procedimiento de tránsito aduanero: las mercancías transportadas con cuaderno TIR en vehículos o contenedores precintados no pagan ni depositan derechos e impuestos en las aduanas de tránsito (art. 4) y, por regla general, no se inspeccionan en ellas (art. 5). Está garantizado por asociaciones autorizadas (art. 3.b).",
+      "criterio": "RA5.a",
+      "fuente": "Convenio TIR 1975, arts. 3, 4 y 5 (texto consolidado publicado en el BOE: Decisión 2009/477/CE, DOUE-L-2009-81145).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.2b-014",
+      "tipo": "opcion_unica",
+      "enunciado": "En el sistema TIR, ¿quién garantiza el pago de los derechos e impuestos exigibles si se registra una irregularidad?",
+      "opciones": [
+        "El conductor, con su patrimonio personal",
+        "El destinatario de la mercancía en el país de destino",
+        "La aduana de partida del transporte",
+        "Una asociación garante autorizada por el Estado"
+      ],
+      "respuesta": 3,
+      "explicacion": "El transporte TIR debe efectuarse con la garantía de asociaciones autorizadas (art. 3.b), que cada Parte Contratante puede autorizar para expedir cuadernos y actuar como garantes (art. 6). La asociación se compromete a pagar los derechos e impuestos exigibles y responde solidariamente con los deudores (art. 8.1), hasta el importe máximo por cuaderno que fije cada Parte (art. 8.3).",
+      "criterio": "RA5.a",
+      "fuente": "Convenio TIR 1975, arts. 3.b, 6 y 8 (texto consolidado en BOE, DOUE-L-2009-81145).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2b-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estas afirmaciones sobre el cuaderno TIR es correcta?",
+      "opciones": [
+        "Vale para un solo viaje; uno por vehículo o contenedor",
+        "Es válido un año para realizar viajes ilimitados",
+        "Se expide un cuaderno distinto por cada país atravesado",
+        "Solo puede utilizarse en transportes dentro de la Unión Europea"
+      ],
+      "respuesta": 0,
+      "explicacion": "Según el art. 17, se extiende un único cuaderno TIR para cada vehículo o contenedor (o uno para un conjunto de vehículos o varios contenedores cargados en un vehículo, con manifiesto separado) y es válido para un solo viaje. Un transporte TIR puede tener varias aduanas de salida y de destino, pero no más de cuatro en total (art. 18).",
+      "criterio": "RA5.a",
+      "fuente": "Convenio TIR 1975, arts. 17 y 18 (texto consolidado en BOE, DOUE-L-2009-81145).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

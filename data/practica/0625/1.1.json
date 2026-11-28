@@ -1,0 +1,349 @@
+{
+  "modulo": "0625",
+  "tema": "1.1",
+  "titulo": "Introducción, edición de datos y formato de celdas",
+  "preguntas": [
+    {
+      "id": "0625-1.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una celda en una hoja de cálculo?",
+      "opciones": [
+        "El cruce de una fila y una columna, como B3",
+        "Un conjunto de hojas dentro de un mismo libro",
+        "Un tipo de gráfico que representa series de datos",
+        "Un archivo de datos que se guarda en disco"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las celdas contienen datos, fórmulas o formatos.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un libro de hoja de cálculo?",
+      "opciones": [
+        "Una celda que contiene fórmulas y funciones",
+        "El archivo que contiene una o varias hojas",
+        "Un gráfico insertado en una hoja de cálculo",
+        "Un formato de número aplicado a un rango"
+      ],
+      "respuesta": 1,
+      "explicacion": "Cada libro puede incluir varias hojas.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se identifica la celda situada en la columna C y la fila 7?",
+      "opciones": [
+        "7C",
+        "C-7",
+        "C7",
+        "R7C"
+      ],
+      "respuesta": 2,
+      "explicacion": "Primero la columna (letra) y luego la fila (número).",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo de datos puede introducirse en una celda?",
+      "opciones": [
+        "Solo texto, sin ningún tipo de cálculo",
+        "Solo números, sin texto ni fechas",
+        "Solo imágenes y objetos incrustados",
+        "Texto, números, fechas, fórmulas y funciones"
+      ],
+      "respuesta": 3,
+      "explicacion": "Una fórmula empieza por el signo = (o + en algunos programas).",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Con qué carácter empieza una fórmula en Excel?",
+      "opciones": [
+        "Con el signo =",
+        "Con #",
+        "Con @",
+        "Con ?"
+      ],
+      "respuesta": 0,
+      "explicacion": "Sin el signo igual, el programa lo interpreta como texto.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace la opción «Autorrellenar» arrastrando el controlador de relleno?",
+      "opciones": [
+        "Elimina los datos de las celdas adyacentes",
+        "Copia o continúa series de datos o fórmulas",
+        "Imprime la hoja con el formato actual",
+        "Protege la hoja frente a cambios no deseados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Detecta series numéricas, fechas y listas personalizadas.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué atajo de teclado se utiliza habitualmente para copiar?",
+      "opciones": [
+        "Ctrl + X",
+        "Ctrl + Z",
+        "Ctrl + C",
+        "Ctrl + P"
+      ],
+      "respuesta": 2,
+      "explicacion": "Ctrl+V pega; Ctrl+X corta; Ctrl+Z deshace.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué atajo deshace la última acción?",
+      "opciones": [
+        "Ctrl + Y",
+        "Ctrl + C",
+        "Ctrl + B",
+        "Ctrl + Z"
+      ],
+      "respuesta": 3,
+      "explicacion": "Ctrl+Y rehace.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué formato se aplica a una celda para mostrar 0,25 como 25 %?",
+      "opciones": [
+        "El formato de porcentaje",
+        "El formato de moneda con símbolo de divisa",
+        "El formato de fecha con día, mes y año",
+        "El formato de texto sin cálculo posible"
+      ],
+      "respuesta": 0,
+      "explicacion": "El valor sigue siendo 0,25; solo cambia la presentación.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve el formato de moneda?",
+      "opciones": [
+        "Convertir el texto de una celda en fórmulas",
+        "Mostrar números con símbolo de divisa y decimales",
+        "Ordenar los datos de una lista por importe",
+        "Insertar gráficos con los importes de la hoja"
+      ],
+      "respuesta": 1,
+      "explicacion": "No cambia el valor, solo su presentación.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué significa ##### en una celda?",
+      "opciones": [
+        "Hay un error de fórmula en la celda",
+        "La celda está protegida y no se puede editar",
+        "La columna es demasiado estrecha para el contenido",
+        "El valor de la celda es igual a cero"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se soluciona ensanchando la columna.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace la opción «Ajustar texto» en una celda?",
+      "opciones": [
+        "Reduce el tamaño de fuente de la celda a cero",
+        "Elimina el texto sobrante de la celda",
+        "Une la celda con las celdas contiguas",
+        "Muestra el texto en varias líneas dentro de la celda"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es útil para títulos o descripciones largas.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace «Combinar y centrar» celdas?",
+      "opciones": [
+        "Une varias celdas en una y centra el contenido",
+        "Suma los valores de las celdas seleccionadas",
+        "Elimina las celdas seleccionadas de la hoja",
+        "Protege las celdas seleccionadas con contraseña"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se usa mucho para títulos; en datos puede dificultar ordenar.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve «Inmovilizar paneles»?",
+      "opciones": [
+        "Bloquear la edición de las celdas de la hoja",
+        "Mantener visibles filas o columnas al desplazarse",
+        "Ocultar las columnas que no se utilizan",
+        "Proteger las fórmulas frente a cambios accidentales"
+      ],
+      "respuesta": 1,
+      "explicacion": "Útil en listados largos.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve el formato condicional?",
+      "opciones": [
+        "Ordenar los datos de una lista por un criterio",
+        "Sumar los valores de un rango de celdas",
+        "Cambiar el aspecto de celdas según su valor",
+        "Imprimir solo las celdas con datos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Por ejemplo, resaltar existencias por debajo del mínimo.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve la validación de datos?",
+      "opciones": [
+        "Dar formato de fecha a las celdas de una columna",
+        "Calcular promedios de las columnas numéricas",
+        "Crear gráficos a partir de los datos de la hoja",
+        "Limitar lo que se puede introducir en una celda"
+      ],
+      "respuesta": 3,
+      "explicacion": "Reduce errores de entrada.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se insertan nuevas filas o columnas en una hoja?",
+      "opciones": [
+        "Con insertar en el menú contextual o en Inicio",
+        "Copiando una celda y pegándola en otra hoja",
+        "Borrando la hoja y creando otra nueva",
+        "Protegiendo la hoja con contraseña"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las fórmulas se ajustan automáticamente.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si se elimina una columna a la que hace referencia una fórmula?",
+      "opciones": [
+        "La fórmula se calcula como si fuera cero",
+        "La fórmula muestra el error #¡REF!",
+        "La fórmula se mantiene correcta sin cambios",
+        "La fórmula se convierte en texto plano"
+      ],
+      "respuesta": 1,
+      "explicacion": "La referencia deja de ser válida.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve proteger una hoja?",
+      "opciones": [
+        "Acelerar los cálculos de las fórmulas de la hoja",
+        "Ocultar el libro para que no lo vea otro usuario",
+        "Impedir cambios no deseados en celdas bloqueadas",
+        "Borrar los formatos de las celdas de la hoja"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se puede proteger con contraseña.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

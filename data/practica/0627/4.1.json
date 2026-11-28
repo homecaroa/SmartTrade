@@ -1,0 +1,313 @@
+{
+  "modulo": "0627",
+  "tema": "4.1",
+  "titulo": "El origen de las mercancías",
+  "preguntas": [
+    {
+      "id": "0627-4.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el origen de una mercancía a efectos aduaneros?",
+      "opciones": [
+        "El país donde se obtiene o produce la mercancía",
+        "El país desde el que se expide la mercancía hasta destino",
+        "El país del comprador que despacha la mercancía a consumo",
+        "El país de la nacionalidad de la empresa que la transporta"
+      ],
+      "respuesta": 0,
+      "explicacion": "Origen y procedencia pueden diferir: una mercancía china enviada desde Rotterdam tiene origen chino y procedencia neerlandesa.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre origen y procedencia de una mercancía?",
+      "opciones": [
+        "Son lo mismo y se utilizan indistintamente en la aduana",
+        "El origen es donde se produce; la procedencia, desde donde se expide",
+        "El origen es el país del exportador y la procedencia, el del fabricante",
+        "La procedencia es el país del fabricante y el origen, el del vendedor"
+      ],
+      "respuesta": 1,
+      "explicacion": "El origen determina los derechos y el trato preferencial.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Código Aduanero de la Unión, ¿qué origen tienen las mercancías enteramente obtenidas en un solo país o territorio?",
+      "opciones": [
+        "El de la UE en todos los casos, sea cual sea el país",
+        "El del país del comprador que realiza la importación",
+        "El de ese país o territorio",
+        "El del primer puerto de entrada en el territorio aduanero"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 60.1 CAU.",
+      "criterio": "RA4.c",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 60.1 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Si en la producción de una mercancía intervienen varios países, ¿qué origen no preferencial tiene?",
+      "opciones": [
+        "El del país donde se haya empleado más mano de obra",
+        "El del primer país que interviene en la producción",
+        "El del país en el que se realiza la venta final",
+        "El de la última transformación sustancial, económicamente justificada"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 60.2 CAU. La transformación debe efectuarse en una empresa equipada para ello y dar lugar a un producto nuevo o un grado importante de fabricación.",
+      "criterio": "RA4.c",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 60.2 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve el origen no preferencial?",
+      "opciones": [
+        "Aplicar el arancel común, el antidumping y los contingentes",
+        "Reducir los derechos de aduana a cero en todos los casos",
+        "Decidir el flete que se cobra por el transporte de la mercancía",
+        "Calcular el IVA que se paga por la importación de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 59 CAU: los arts. 60 y 61 fijan el origen no preferencial a efectos de arancel, medidas no arancelarias, etc.",
+      "criterio": "RA4.c",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 59 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el origen preferencial?",
+      "opciones": [
+        "El que da prioridad al despacho de la mercancía en la aduana",
+        "El que permite derechos reducidos o nulos por un acuerdo con el país",
+        "El origen de un producto de lujo con trato preferente",
+        "El origen de las mercancías perecederas con despacho rápido"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se acredita con pruebas de origen, como el EUR.1, la declaración en factura o la declaración de origen REX.",
+      "criterio": "RA4.c",
+      "fuente": "Código Aduanero de la Unión, sección 2 «Origen preferencial» (leído); detalles de los certificados, conocimiento general.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué certificado acredita habitualmente el origen preferencial en los intercambios de la UE con muchos socios comerciales?",
+      "opciones": [
+        "El certificado ATP de transporte de mercancías perecederas",
+        "El certificado fitosanitario del país de origen del vegetal",
+        "El certificado EUR.1 o una declaración de origen en factura",
+        "El carnet TIR con el que se ampara el tránsito por carretera"
+      ],
+      "respuesta": 2,
+      "explicacion": "En acuerdos más recientes se usa la declaración de origen del exportador registrado (REX).",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el sistema REX?",
+      "opciones": [
+        "Un sistema de rutas expresas para el transporte de mercancías",
+        "Un seguro de exportación contra el riesgo de impago",
+        "Un registro de transportistas autorizados a operar en la UE",
+        "El sistema de exportadores registrados que certifican el origen en factura"
+      ],
+      "respuesta": 3,
+      "explicacion": "Sustituye en el SGP y otros regímenes a los certificados tradicionales.",
+      "criterio": "RA4.c",
+      "fuente": "Reglamento Delegado (UE) 2015/2446 y práctica habitual; no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué entidades expiden normalmente los certificados de origen no preferencial en España?",
+      "opciones": [
+        "Las cámaras de comercio",
+        "Las compañías aseguradoras que cubren la mercancía",
+        "Los bancos que financian la operación de exportación",
+        "Las navieras que realizan el transporte marítimo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Acreditan el origen para el país de destino.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Si surgen dudas razonables sobre la prueba de origen presentada, ¿qué pueden exigir las autoridades aduaneras?",
+      "opciones": [
+        "Nada, porque la aduana debe aceptar siempre la prueba presentada",
+        "Cualquier otra prueba complementaria para comprobar el origen",
+        "Solo la factura comercial de la operación declarada",
+        "Una nueva declaración de valor en aduana del importador"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 61.2 CAU.",
+      "criterio": "RA4.c",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 61.2 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Cuando en la declaración en aduana se indica un origen, ¿qué pueden exigir las autoridades aduaneras?",
+      "opciones": [
+        "Que el declarante abone una tasa por la verificación del origen",
+        "Que el declarante cambie el origen que figura en su declaración",
+        "Que el declarante acredite el origen de las mercancías",
+        "Nada, porque el origen declarado no puede cuestionarse"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 61.1 CAU.",
+      "criterio": "RA4.c",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 61.1 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué indicación suele figurar en los productos para indicar el país de origen («Made in...»)?",
+      "opciones": [
+        "El código arancelario con el que se clasifica el producto",
+        "El número de lote con el que se identifica la producción",
+        "El número de factura con el que se documenta la venta",
+        "Una mención comercial de origen, que puede no coincidir con el aduanero"
+      ],
+      "respuesta": 3,
+      "explicacion": "La indicación de origen comercial es una cuestión de etiquetado.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Puede el origen de una mercancía modificar los derechos que se pagan en la importación?",
+      "opciones": [
+        "Sí: arancel normal, derecho preferencial, antidumping o ninguno",
+        "No, los derechos son iguales sea cual sea el origen",
+        "Solo en los productos alimenticios y en los vegetales",
+        "Solo en el transporte aéreo de mercancías de valor"
+      ],
+      "respuesta": 0,
+      "explicacion": "El origen es el punto de partida para aplicar medidas comerciales.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la acumulación de origen en acuerdos preferenciales?",
+      "opciones": [
+        "Sumar los pesos de todos los envíos de una misma empresa",
+        "Considerar originarios los materiales de otros países del acuerdo",
+        "Acumular los derechos de aduana de varias operaciones",
+        "Acumular las facturas de un mismo cliente en un periodo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Ayuda a que los productos con insumos de varios socios sigan siendo originarios.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué suelen exigir las reglas de origen para considerar «originario» un producto transformado?",
+      "opciones": [
+        "Que el producto sea transportado por vía marítima",
+        "Que el producto pese menos de una tonelada por envío",
+        "Un cambio de partida arancelaria o un porcentaje de valor añadido",
+        "Que el pago de la operación se haga en euros"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las reglas varían por producto y por acuerdo.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Si un exportador envía mercancía de origen español a un país con acuerdo preferencial, ¿qué debe aportar el importador para beneficiarse del trato preferencial?",
+      "opciones": [
+        "Un permiso de conducir en vigor del transportista",
+        "Un certificado ATP del vehículo que transporta la mercancía",
+        "Una póliza de seguro que cubre la mercancía hasta destino",
+        "La prueba de origen que exija el acuerdo, como el EUR.1"
+      ],
+      "respuesta": 3,
+      "explicacion": "Sin prueba de origen, se aplica el derecho normal.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué es relevante el origen para las medidas antidumping?",
+      "opciones": [
+        "Porque se aplican a productos de determinados países de origen",
+        "Porque lo exige el transportista en el contrato de transporte",
+        "Porque se aplican a todos los países sin distinción",
+        "Porque el origen determina el flete del transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los derechos antidumping se imponen sobre productos originarios de un país concreto (por ejemplo, el Reglamento (UE) 2016/1036).",
+      "criterio": "RA4.c",
+      "fuente": "Reglamento (UE) 2016/1036 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

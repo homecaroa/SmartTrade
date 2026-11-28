@@ -1,0 +1,385 @@
+{
+  "modulo": "0623",
+  "tema": "2.3",
+  "titulo": "Cooperativas, constitución, puesta en marcha y obligaciones",
+  "preguntas": [
+    {
+      "id": "0623-2.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una cooperativa de trabajo asociado?",
+      "opciones": [
+        "Socios trabajadores con gestión democrática",
+        "Una sociedad anónima laboral con acciones",
+        "Una empresa pública gestionada por la administración",
+        "Una comunidad de bienes sin personalidad jurídica"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se rige por el principio de «una persona, un voto» y los socios suelen tener responsabilidad limitada a sus aportaciones.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué principio rige el voto en una cooperativa?",
+      "opciones": [
+        "Un voto por cada euro de capital aportado",
+        "Una persona, un voto, sea cual sea el capital",
+        "El socio fundador decide en todas las votaciones",
+        "El administrador desempata siempre las votaciones"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es el principio democrático de las cooperativas.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una cooperativa de transporte?",
+      "opciones": [
+        "Una empresa pública que presta transporte regular",
+        "Una sociedad anónima de capital abierto",
+        "Transportistas que comparten medios",
+        "Un sindicato de transportistas autónomos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Aparece en el currículo junto a las de trabajo asociado. Aprovecha economías de escala sin que los socios pierdan su autorización de transporte.",
+      "criterio": "RA2.a",
+      "fuente": "Decreto 95/2012 («Cooperativas de trabajo asociado y cooperativas de transporte»); Ley 15/2009, art. 5.2 (menciona a cooperativas de transportistas).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Antes de constituir una sociedad, ¿qué certificación debe obtenerse?",
+      "opciones": [
+        "Una licencia de obras del ayuntamiento",
+        "El alta en el impuesto de actividades económicas",
+        "El libro de visitas de la Inspección de Trabajo",
+        "Certificación negativa de denominación"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 7 LSC prohíbe denominaciones idénticas a las de sociedades preexistentes.",
+      "criterio": "RA2.e",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 7.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento suele abrir el trámite de constitución de una sociedad ante notario?",
+      "opciones": [
+        "La escritura pública con estatutos",
+        "Un contrato verbal firmado ante dos testigos",
+        "Un certificado de empadronamiento de los socios",
+        "El modelo 303 de declaración del IVA"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 20 LSC: la constitución exige escritura pública, que se inscribe en el Registro Mercantil.",
+      "criterio": "RA2.e",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 20.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué deben recoger los estatutos de una sociedad de capital?",
+      "opciones": [
+        "Solo el domicilio social de la empresa",
+        "Denominación, objeto, domicilio y capital",
+        "Solo el nombre y apellidos de los socios",
+        "Solo el objeto social de la sociedad"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 23 LSC.",
+      "criterio": "RA2.e",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 23.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el objeto social?",
+      "opciones": [
+        "El capital que aportan los socios a la sociedad",
+        "El domicilio donde se desarrolla la actividad",
+        "La actividad que es la razón de ser",
+        "La cifra de negocios que alcanza cada ejercicio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 23.b) LSC: los estatutos determinan las actividades que lo integran.",
+      "criterio": "RA2.e",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 23.b.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué órgano permite realizar de forma electrónica y en un único punto muchos de los trámites de creación de empresas?",
+      "opciones": [
+        "La Seguridad Social, que centraliza todos los trámites",
+        "El ayuntamiento, que tramita las altas fiscales",
+        "El Registro de la Propiedad, que inscribe la sociedad",
+        "El PAE, con el sistema CIRCE y el DUE"
+      ],
+      "respuesta": 3,
+      "explicacion": "Permite tramitar la constitución, el NIF, el alta fiscal y otros trámites telemáticamente.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general (CIRCE/PAE); no contrastado con la web oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué alta tributaria debe hacerse al comenzar una actividad económica?",
+      "opciones": [
+        "El alta censal (modelos 036 o 037)",
+        "El modelo 303 de declaración del IVA",
+        "El modelo 111 de retenciones del trabajo",
+        "El modelo 200 del Impuesto sobre Sociedades"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se comunica el inicio de actividad, los impuestos a los que se estará sujeto y otros datos.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general (Agencia Tributaria); no contrastado en su web.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué trámite laboral debe hacerse antes de contratar al primer trabajador?",
+      "opciones": [
+        "Ningún trámite, porque el contrato verbal basta",
+        "Inscribir la empresa y dar de alta al trabajador",
+        "Registrar al trabajador un año después del inicio",
+        "Solo comunicarlo al ayuntamiento del domicilio social"
+      ],
+      "respuesta": 1,
+      "explicacion": "Hay que obtener el código de cuenta de cotización y afiliar y dar de alta al trabajador.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general (Seguridad Social); no contrastado.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los gastos de constitución y puesta en marcha?",
+      "opciones": [
+        "Los gastos de explotación anuales de la empresa",
+        "Los dividendos que se reparten a los socios",
+        "Notaría, registro, asesoría y licencias",
+        "Las amortizaciones del inmovilizado de la sociedad"
+      ],
+      "respuesta": 2,
+      "explicacion": "El RA2.b pide calcularlos según la forma jurídica y consultando la legislación vigente.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué licencia o trámite municipal se requiere habitualmente para abrir un local de actividad?",
+      "opciones": [
+        "Ninguna, porque la actividad es de libre ejercicio",
+        "Una licencia de la OMC para actividades comerciales",
+        "El modelo 036 de la Agencia Tributaria",
+        "Licencia o declaración responsable de apertura"
+      ],
+      "respuesta": 3,
+      "explicacion": "Depende de la normativa municipal y de la actividad.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general; Decreto 95/2012 (autorizaciones y licencias).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué autorización administrativa necesita una empresa de transporte público de mercancías por carretera en España?",
+      "opciones": [
+        "Una autorización de transporte público",
+        "Ninguna, porque la actividad no está regulada",
+        "Solo la licencia municipal de apertura",
+        "Solo el modelo 303 de declaración del IVA"
+      ],
+      "respuesta": 0,
+      "explicacion": "Ver LOTT y los Reglamentos 1071/2009 y 1072/2009 (módulo 0622).",
+      "criterio": "RA2.f",
+      "fuente": "LOTT y Reglamento (CE) 1071/2009 (ver banco 0622); no reverificado aquí.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué impuesto grava el beneficio de las sociedades?",
+      "opciones": [
+        "El IRPF, que grava la renta de las personas físicas",
+        "El Impuesto sobre Sociedades",
+        "El IVA, que grava el consumo de bienes",
+        "El ITP, que grava las transmisiones patrimoniales"
+      ],
+      "respuesta": 1,
+      "explicacion": "El tipo general es del 25 %, con tipos reducidos para determinadas empresas.",
+      "criterio": "RA2.g",
+      "fuente": "Ley 27/2014 del Impuesto sobre Sociedades (conocimiento general; no consultada).",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué impuesto indirecto grava el consumo y debe repercutir la empresa en sus facturas?",
+      "opciones": [
+        "El IRPF, que grava la renta de las personas",
+        "El Impuesto sobre Sociedades de las empresas",
+        "El IVA, Impuesto sobre el Valor Añadido",
+        "El IBI, que grava la propiedad de inmuebles"
+      ],
+      "respuesta": 2,
+      "explicacion": "El empresario repercute el IVA y deduce el soportado, ingresando la diferencia.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué retiene la empresa en la nómina del trabajador y debe ingresar en Hacienda?",
+      "opciones": [
+        "El IVA que repercute la empresa en sus facturas",
+        "El Impuesto sobre Sociedades del ejercicio",
+        "El IAE que paga la empresa al ayuntamiento",
+        "El IRPF, como retención a cuenta"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se declara trimestralmente (modelo 111) y anualmente (modelo 190).",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general (Agencia Tributaria); no contrastado en su web.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué obligaciones laborales tiene el empresario con sus trabajadores?",
+      "opciones": [
+        "Contrato, alta, salario, jornada y prevención",
+        "Solo pagar el salario mínimo interprofesional",
+        "Ninguna obligación si la plantilla es pequeña",
+        "Solo las que decida libremente el empresario"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se recogen en el Estatuto de los Trabajadores, los convenios y la normativa de prevención.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué representación tienen los trabajadores en la empresa?",
+      "opciones": [
+        "Un único gerente designado por la dirección",
+        "Delegados de personal, comité y sindicatos",
+        "Solo el sindicato nacional de su sector",
+        "Ninguna representación en la empresa"
+      ],
+      "respuesta": 1,
+      "explicacion": "El Estatuto de los Trabajadores prevé delegados de personal en empresas de 10 a 49 trabajadores y comité de empresa desde 50.",
+      "criterio": "RA2.h",
+      "fuente": "Estatuto de los Trabajadores, arts. 62 y 63 (conocimiento general; no contrastado en el BOE).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la función de la Inspección de Trabajo y Seguridad Social?",
+      "opciones": [
+        "Recaudar el IVA que repercute la empresa",
+        "Resolver las quiebras de las empresas del sector",
+        "Vigilar la normativa laboral y sancionar",
+        "Aprobar los estatutos de las nuevas sociedades"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una de las instituciones sociales que intervienen en la empresa (RA2.h).",
+      "criterio": "RA2.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una función de los sindicatos en la empresa?",
+      "opciones": [
+        "Fijar los precios de venta de la empresa",
+        "Dirigir la contabilidad y las cuentas anuales",
+        "Aprobar las cuentas anuales en la junta general",
+        "Defender a los trabajadores y negociar convenios"
+      ],
+      "respuesta": 3,
+      "explicacion": "También pueden formar parte del comité de empresa mediante elecciones sindicales.",
+      "criterio": "RA2.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.3-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las ayudas y subvenciones a la creación de empresas?",
+      "opciones": [
+        "Ayudas públicas, a fondo perdido o ventajosas",
+        "Un impuesto sobre la creación de empresas",
+        "Un préstamo con un tipo de interés de usura",
+        "Una sanción por incumplir un requisito formal"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las ofrecen administraciones como el Estado, las comunidades autónomas y la UE (por ejemplo, ENISA, ICO, programas de la Comunidad de Madrid).",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general; no contrastado con convocatorias vigentes.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

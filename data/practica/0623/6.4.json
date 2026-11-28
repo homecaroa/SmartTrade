@@ -1,0 +1,241 @@
+{
+  "modulo": "0623",
+  "tema": "6.4",
+  "titulo": "IVA, impuesto de circulación, tasas y otros impuestos del transporte",
+  "preguntas": [
+    {
+      "id": "0623-6.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el IVA repercutido?",
+      "opciones": [
+        "El IVA que paga a los proveedores en las compras",
+        "El IVA que cobra a los clientes en las ventas",
+        "El Impuesto sobre Sociedades del ejercicio",
+        "El IRPF que retiene a los trabajadores"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se ingresa en Hacienda neto del soportado.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el IVA soportado?",
+      "opciones": [
+        "El IVA que cobra a los clientes en las ventas",
+        "El IVA que se paga en una importación",
+        "El IVA que paga a sus proveedores en las compras",
+        "El IRPF que retiene a los trabajadores"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es deducible si cumple los requisitos.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se calcula la liquidación del IVA?",
+      "opciones": [
+        "IVA soportado menos IVA repercutido siempre",
+        "Ventas más compras del trimestre",
+        "Ingresos menos gastos del ejercicio",
+        "IVA repercutido menos IVA soportado"
+      ],
+      "respuesta": 3,
+      "explicacion": "Si es negativa, se compensa o se devuelve.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué grava el Impuesto sobre Vehículos de Tracción Mecánica (IVTM)?",
+      "opciones": [
+        "La titularidad de vehículos aptos para circular",
+        "La compra del vehículo nuevo o usado",
+        "El consumo de combustible del vehículo",
+        "La conducción del vehículo por la vía pública"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 92 TRLRHL: se consideran aptos los matriculados y no dados de baja.",
+      "criterio": "RA6.g",
+      "fuente": "Texto refundido de la Ley Reguladora de las Haciendas Locales (RDLeg 2/2004), art. 92 (BOE-A-2004-4214, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Está sujeto al IVTM un remolque con carga útil inferior a 750 kg?",
+      "opciones": [
+        "Sí, siempre que esté matriculado como remolque",
+        "No, si su carga útil no supera 750 kg",
+        "Solo si el remolque es nuevo",
+        "Solo si el remolque pertenece a una empresa"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 92.3.b TRLRHL.",
+      "criterio": "RA6.g",
+      "fuente": "Texto refundido de la Ley Reguladora de las Haciendas Locales (RDLeg 2/2004), art. 92.3 (BOE-A-2004-4214, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué cuota mínima fija el TRLRHL para un camión de más de 9.999 kg de carga útil?",
+      "opciones": [
+        "12,62 euros de cuota base, igual que un turismo",
+        "50 euros de cuota fija estatal",
+        "148,30 euros de cuota base, con posible coeficiente",
+        "1.000 euros de cuota fija estatal"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 95 TRLRHL: cuadro de tarifas.",
+      "criterio": "RA6.g",
+      "fuente": "Texto refundido de la Ley Reguladora de las Haciendas Locales (RDLeg 2/2004), art. 95 (BOE-A-2004-4214, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué cuota base fija el TRLRHL para un turismo de menos de 8 caballos fiscales?",
+      "opciones": [
+        "34,08 euros",
+        "71,94 euros",
+        "148,30 euros",
+        "12,62 euros"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 95 TRLRHL, cuadro de tarifas.",
+      "criterio": "RA6.g",
+      "fuente": "Texto refundido de la Ley Reguladora de las Haciendas Locales (RDLeg 2/2004), art. 95 (BOE-A-2004-4214, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién gestiona y cobra el IVTM?",
+      "opciones": [
+        "El ayuntamiento del domicilio del permiso",
+        "La Hacienda estatal mediante autoliquidación",
+        "La DGT al renovar el permiso de circulación",
+        "La comunidad autónoma de residencia del titular"
+      ],
+      "respuesta": 0,
+      "explicacion": "El pago es anual.",
+      "criterio": "RA6.g",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las tasas, cánones y peajes por uso de infraestructuras?",
+      "opciones": [
+        "Impuestos sobre los beneficios de las empresas",
+        "Pagos por usar carreteras, túneles o puertos",
+        "Impuestos sobre las ventas de mercancías",
+        "Cotizaciones sociales de los trabajadores"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se repercuten en el coste del transporte.",
+      "criterio": "RA6.h",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el impuesto sobre hidrocarburos?",
+      "opciones": [
+        "Un impuesto sobre la titularidad de vehículos",
+        "Un impuesto sobre los beneficios de las empresas",
+        "Un impuesto especial sobre el consumo de combustibles",
+        "Una tasa que se cobra en las aduanas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Parte del precio del combustible.",
+      "criterio": "RA6.h",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la Euroviñeta (eurovignette)?",
+      "opciones": [
+        "Un impuesto sobre los beneficios de las empresas",
+        "Un seguro obligatorio para vehículos pesados",
+        "Una tasa aduanera sobre mercancías importadas",
+        "Una tasa de peaje para vehículos pesados en varios países"
+      ],
+      "respuesta": 3,
+      "explicacion": "La Directiva 1999/62/CE regula el cobro de tasas a vehículos pesados.",
+      "criterio": "RA6.h",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "IVA repercutido en el trimestre: 18.000 €; IVA soportado deducible: 11.500 €. ¿Cuál es el resultado de la liquidación?",
+      "opciones": [
+        "6.500,00 € a ingresar",
+        "-6.500,00 € a devolver",
+        "29.500,00 € a ingresar",
+        "18.000,00 € a ingresar"
+      ],
+      "respuesta": 0,
+      "explicacion": "18.000 − 11.500 = 6.500,00 € a ingresar.",
+      "criterio": "RA6.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "IVA repercutido 8.000 € y soportado 9.500 €. ¿Qué resulta?",
+      "opciones": [
+        "1.500,00 € a ingresar",
+        "1.500,00 € a compensar o devolver",
+        "17.500,00 € a ingresar",
+        "0,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "8.000 − 9.500 = −1.500 €: resultado a compensar o devolver.",
+      "criterio": "RA6.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

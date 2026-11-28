@@ -1,0 +1,313 @@
+{
+  "modulo": "0622",
+  "tema": "6.2",
+  "titulo": "Puntos de verificación y trazabilidad",
+  "preguntas": [
+    {
+      "id": "0622-6.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la trazabilidad en logística?",
+      "opciones": [
+        "La rapidez con que se entrega el pedido al cliente",
+        "Conocer ubicación, estado e historial de un producto",
+        "El precio del flete pactado con el transportista",
+        "El tipo de embalaje elegido para proteger la carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "Permite localizar la mercancía, reaccionar a incidencias y retirar lotes.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un «track and trace»?",
+      "opciones": [
+        "Un tipo de contenedor para mercancías de gran valor",
+        "Un seguro de transporte que cubre el extravío de la carga",
+        "Un sistema para seguir y reconstruir el recorrido",
+        "Un permiso de circulación para vehículos especiales"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se alimenta de eventos de recogida, tránsito, aduana y entrega.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los puntos de verificación (checkpoints) de una operación de transporte?",
+      "opciones": [
+        "Los puntos de venta donde el cliente final compra el producto",
+        "Las paradas que hace el conductor para comer y descansar",
+        "Las oficinas que la empresa tiene repartidas por el país",
+        "Hitos donde se registra el estado y la posición"
+      ],
+      "respuesta": 3,
+      "explicacion": "Permiten detectar desvíos pronto.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se comprueba en el punto de recogida de la mercancía?",
+      "opciones": [
+        "Bultos, estado aparente, embalaje y documentación",
+        "El tipo de cambio aplicable a la operación de venta",
+        "El precio del combustible en la fecha de recogida",
+        "El seguro que ha contratado el comprador por su cuenta"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es la base para anotar reservas (por ejemplo, art. 8 CMR).",
+      "criterio": "RA6.a",
+      "fuente": "CMR, art. 8 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué precinto se utiliza para garantizar que un contenedor no se abre en tránsito?",
+      "opciones": [
+        "Un adhesivo cualquiera pegado sobre la puerta del contenedor",
+        "Un precinto numerado y registrado (ISO 17712)",
+        "Una cinta de embalar colocada alrededor del cierre",
+        "Un candado corriente sin numerar ni registrar en los documentos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Su número se anota en la carta de porte o B/L y se verifica en cada punto.",
+      "criterio": "RA6.b",
+      "fuente": "ISO 17712 (precintos de alta seguridad); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué se utilizan los registradores de temperatura (data loggers) en el transporte de perecederos?",
+      "opciones": [
+        "Medir la velocidad del vehículo durante todo el trayecto",
+        "Calcular el peso real de la carga transportada",
+        "Registrar la temperatura y probar la cadena de frío",
+        "Identificar al conductor que realiza cada tramo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es prueba clave ante reclamaciones.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué principio de trazabilidad exige la normativa alimentaria de la UE a los operadores?",
+      "opciones": [
+        "Registrar únicamente las ventas realizadas a los clientes",
+        "Registrar únicamente las compras hechas a los proveedores",
+        "No exige ningún registro, solo una declaración anual",
+        "Saber a quién se compra y a quién se vende"
+      ],
+      "respuesta": 3,
+      "explicacion": "Reglamento (CE) n.º 178/2002, art. 18.",
+      "criterio": "RA6.a",
+      "fuente": "Reglamento (CE) n.º 178/2002, art. 18; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué identificador GS1 se usa para seguir cada palé o unidad logística?",
+      "opciones": [
+        "El SSCC, de 18 dígitos",
+        "El EAN-8, código de los productos de pequeño tamaño",
+        "El número ONU que identifica la mercancía peligrosa",
+        "El código NIMF que se marca en el embalaje de madera"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se codifica en GS1-128 y permite el seguimiento individual.",
+      "criterio": "RA6.b",
+      "fuente": "Especificaciones GS1; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la prueba de entrega (POD) y por qué es importante?",
+      "opciones": [
+        "El permiso de circulación del vehículo transportista",
+        "El documento que acredita la entrega al destinatario",
+        "La póliza de seguro que cubre la mercancía transportada",
+        "El certificado de origen que emite la cámara de comercio"
+      ],
+      "respuesta": 1,
+      "explicacion": "Sin POD, el transportista puede tener dificultades para cobrar o probar la entrega.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Si se descubre que una mercancía ha sufrido daños, ¿qué debe hacer el destinatario en el punto de entrega?",
+      "opciones": [
+        "Firmar el documento sin ningún comentario para no demorar",
+        "Rechazar la mercancía sin escribir ninguna constancia",
+        "Anotar reservas por escrito y fotografiar los daños",
+        "Esperar a la reclamación posterior al seguro sin anotar nada"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las reservas son la base de la reclamación (por ejemplo, CMR art. 30).",
+      "criterio": "RA6.e",
+      "fuente": "CMR, art. 30 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué se recomienda tener la mercancía localizada a lo largo del recorrido?",
+      "opciones": [
+        "Evitar el pago del flete al transportista contratado",
+        "No necesitar contratar ningún seguro de transporte",
+        "Cumplir con las obligaciones del Incoterm pactado",
+        "Reaccionar ante retrasos y reducir pérdidas y robos"
+      ],
+      "respuesta": 3,
+      "explicacion": "La visibilidad reduce el riesgo y mejora el servicio.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo debe actualizarse el estado del envío en el sistema de seguimiento?",
+      "opciones": [
+        "En cada hito relevante del recorrido",
+        "Solo al final, cuando la mercancía ya ha sido entregada",
+        "Una sola vez al mes, al cerrar la facturación",
+        "Nunca, porque el sistema se actualiza por sí solo"
+      ],
+      "respuesta": 0,
+      "explicacion": "La información en tiempo casi real es clave en logística.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por «lote» en trazabilidad?",
+      "opciones": [
+        "Un contenedor de 20 pies cargado con mercancía general",
+        "Unidades producidas en las mismas condiciones, con un código",
+        "Un tipo de embalaje utilizado para el transporte aéreo",
+        "Un tipo de flete que se aplica a los envíos parciales"
+      ],
+      "respuesta": 1,
+      "explicacion": "Permite retirar solo las unidades afectadas ante un problema.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si el sistema de trazabilidad es incompleto cuando surge una alerta sanitaria?",
+      "opciones": [
+        "No ocurre nada, porque la alerta afecta igual a todos",
+        "El coste se reduce al no tener que localizar los lotes",
+        "Cuesta limitar la retirada a los lotes afectados",
+        "La aduana soluciona el problema retirando los productos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Por eso la normativa alimentaria exige la trazabilidad en cada eslabón.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué secciones tiene el cuaderno de a bordo u hoja de ruta de los viajes largos de animales, según el Reglamento (CE) n.º 1/2005?",
+      "opciones": [
+        "Solo el precio del transporte y la factura de la operación",
+        "Origen arancelario, valor en aduana y seguro de la carga",
+        "Peso, volumen y tipo de embalaje de los animales",
+        "Planificación, salida, destino, transportista e incidencias"
+      ],
+      "respuesta": 3,
+      "explicacion": "Anexo II. El organizador debe enviar a la autoridad del lugar de salida la sección 1 al menos dos días hábiles antes del viaje.",
+      "criterio": "RA6.b",
+      "fuente": "Reglamento (CE) n.º 1/2005, anexo II (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el objetivo del seguimiento durante el transporte de mercancías peligrosas?",
+      "opciones": [
+        "Actuar rápido ante una emergencia y seguir instrucciones",
+        "Reducir el peso total de la carga peligrosa transportada",
+        "Aumentar el precio que se cobra por el transporte",
+        "Evitar tener que aplicar el ADR durante el trayecto"
+      ],
+      "respuesta": 0,
+      "explicacion": "El ADR obliga a llevar instrucciones escritas en la cabina (5.4.3).",
+      "criterio": "RA6.e",
+      "fuente": "ADR 2025, 5.4.3 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre trazabilidad ascendente y descendente?",
+      "opciones": [
+        "Ambas son lo mismo y se usan indistintamente",
+        "La ascendente rastrea proveedores; la descendente, clientes",
+        "La ascendente solo se aplica a los productos alimentarios",
+        "La descendente solo se aplica al transporte aéreo de carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "La trazabilidad interna sigue el producto dentro de la empresa.",
+      "criterio": "RA6.a",
+      "fuente": "Conocimiento general de sistemas de información logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

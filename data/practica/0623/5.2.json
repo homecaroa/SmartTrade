@@ -1,0 +1,259 @@
+{
+  "modulo": "0623",
+  "tema": "5.2",
+  "titulo": "IVA en el transporte y en las operaciones internacionales",
+  "preguntas": [
+    {
+      "id": "0623-5.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el tipo general del IVA?",
+      "opciones": [
+        "10 %",
+        "21 %",
+        "4 %",
+        "25 %"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 90 Ley 37/1992.",
+      "criterio": "RA5.c",
+      "fuente": "Ley 37/1992 del IVA, art. 90 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el tipo reducido del IVA aplicable a determinados alimentos y transportes de viajeros?",
+      "opciones": [
+        "21 %",
+        "4 %",
+        "10 %",
+        "5 %"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 91.uno Ley 37/1992 (según el caso).",
+      "criterio": "RA5.b",
+      "fuente": "Ley 37/1992 del IVA, art. 91 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo de IVA se aplica, con carácter general, a los servicios de transporte de mercancías por carretera dentro de España?",
+      "opciones": [
+        "El tipo reducido del 10 % sobre el transporte",
+        "El tipo superreducido del 4 % de primera necesidad",
+        "Ningún tipo, porque el transporte no tributa",
+        "El tipo general del 21 %"
+      ],
+      "respuesta": 3,
+      "explicacion": "Salvo exenciones específicas.",
+      "criterio": "RA5.b",
+      "fuente": "Ley 37/1992 del IVA, arts. 90 y 91 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Están exentas de IVA las exportaciones de bienes fuera de la Comunidad?",
+      "opciones": [
+        "Sí, con los requisitos reglamentarios",
+        "No, la exportación tributa siempre al 21 %",
+        "Solo si el comprador es una empresa",
+        "Solo si la mercancía sale por vía marítima"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 21 Ley 37/1992.",
+      "criterio": "RA5.c",
+      "fuente": "Ley 37/1992 del IVA, art. 21 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Está exenta de IVA la entrega intracomunitaria a un empresario con NIF-IVA de otro Estado miembro?",
+      "opciones": [
+        "No, porque la entrega tributa en origen",
+        "Sí, con NIF-IVA válido y declaración recapitulativa",
+        "Solo si el comprador es un particular",
+        "Solo si el Incoterm pactado es CIF"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 25 Ley 37/1992.",
+      "criterio": "RA5.c",
+      "fuente": "Ley 37/1992 del IVA, art. 25 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre con el IVA en una adquisición intracomunitaria?",
+      "opciones": [
+        "El proveedor lo repercute en su factura",
+        "No se paga nunca por ser comercio comunitario",
+        "El adquirente lo autorrepercute y lo deduce",
+        "El transportista lo ingresa en la aduana"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es la inversión del sujeto pasivo.",
+      "criterio": "RA5.c",
+      "fuente": "Ley 37/1992, art. 84 (leída parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En la Ley del IVA, ¿qué se considera importación de bienes?",
+      "opciones": [
+        "Una compra a una empresa establecida en España",
+        "Una venta de bienes a otro Estado miembro",
+        "Una exportación de bienes a un país tercero",
+        "Entrada de un bien procedente de un territorio tercero"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 18 Ley 37/1992.",
+      "criterio": "RA5.c",
+      "fuente": "Ley 37/1992 del IVA, art. 18 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se calcula la base imponible del IVA en las importaciones?",
+      "opciones": [
+        "Valor en aduana más derechos y gastos hasta el primer destino",
+        "Solo el valor en aduana, sin otros conceptos",
+        "Solo el precio que figura en la factura",
+        "Solo el flete hasta la frontera de la UE"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 83 Ley 37/1992.",
+      "criterio": "RA5.c",
+      "fuente": "Ley 37/1992 del IVA, art. 83 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué impuestos gravan los servicios de transporte?",
+      "opciones": [
+        "Solo el IRPF de los trabajadores",
+        "El IVA, los hidrocarburos y los peajes",
+        "Solo el IBI de las instalaciones",
+        "Ningún impuesto específico"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se estudian con la fiscalidad del transporte.",
+      "criterio": "RA5.b",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo está exenta la prestación de servicios de transporte internacional de mercancías?",
+      "opciones": [
+        "Nunca, porque el transporte internacional siempre tributa",
+        "Siempre, sea cual sea la operación realizada",
+        "Depende de la operación y de los arts. 21, 22 y 64",
+        "Solo si el transporte se hace por carretera"
+      ],
+      "respuesta": 2,
+      "explicacion": "Debe analizarse cada caso.",
+      "criterio": "RA5.b",
+      "fuente": "Ley 37/1992, arts. 21, 22 y 64 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Se factura un servicio de transporte nacional por 5.000,00 € (base imponible) al 21 %. ¿Cuál es la cuota de IVA?",
+      "opciones": [
+        "500,00 €",
+        "6.050,00 €",
+        "105,00 €",
+        "1.050,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Cuota = 5.000,00 × 21 % = 1.050,00 €.",
+      "criterio": "RA5.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el total de la factura con los datos anteriores?",
+      "opciones": [
+        "6.050,00 €",
+        "1.050,00 €",
+        "5.000,00 €",
+        "5.500,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Total = 5.000,00 + 1.050,00 = 6.050,00 €.",
+      "criterio": "RA5.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Una factura total de 6.050 € incluye IVA del 21 %. ¿Cuál es la base imponible?",
+      "opciones": [
+        "5.500,00 €",
+        "5.000,00 €",
+        "4.779,50 €",
+        "3.630,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Base = 6.050 / 1,21 = 5.000 €.",
+      "criterio": "RA5.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa compra en Alemania mercancía por 10.000 € (adquisición intracomunitaria). ¿Cuánto IVA español devenga y cuánto deduce, con derecho total a deducción?",
+      "opciones": [
+        "2.100,00 € devengado y 0 € deducible",
+        "0 € y 0 €",
+        "2.100,00 € devengado y 2.100,00 € deducible",
+        "1.900,00 € devengado y 2.100,00 € deducible"
+      ],
+      "respuesta": 2,
+      "explicacion": "Autorrepercusión: 21 % de 10.000 = 2.100 €, compensados con la deducción.",
+      "criterio": "RA5.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

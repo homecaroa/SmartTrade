@@ -1,0 +1,223 @@
+{
+  "modulo": "0627",
+  "tema": "5.4",
+  "titulo": "Procedimientos simplificados de despacho y estatuto OEA",
+  "preguntas": [
+    {
+      "id": "0627-5.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una declaración simplificada?",
+      "opciones": [
+        "Una declaración que exime del pago de los derechos de importación",
+        "Una declaración que omite datos o documentos que se completan luego",
+        "Una declaración que se presenta sin firma del declarante autorizado",
+        "Una declaración que sustituye al DUA en todas las exportaciones"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 166 CAU: las aduanas podrán aceptar su uso.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 166 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la inscripción en los registros del declarante?",
+      "opciones": [
+        "Inscribir a la empresa en el Registro Mercantil de su provincia",
+        "Registrar al declarante en el sistema de la Seguridad Social",
+        "Incluir las mercancías en el régimen mediante registro contable del operador",
+        "Registrar una marca comercial ante la oficina de propiedad industrial"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 182 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 182 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el despacho centralizado?",
+      "opciones": [
+        "Despachar toda la mercancía de una empresa en un solo puerto",
+        "Despachar varias mercancías con un único transportista autorizado",
+        "Limitar el despacho a la aduana de la capital del país de destino",
+        "Presentar la declaración en la aduana de establecimiento del operador"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 179 CAU: requiere autorización.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 179 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la autoevaluación?",
+      "opciones": [
+        "Determinar el importe de los derechos bajo vigilancia aduanera",
+        "Evaluar el riesgo de crédito de un cliente antes de venderle",
+        "Valorar el desempeño del transportista tras cada entrega",
+        "Examinar a los agentes de aduanas para renovar su habilitación"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 185 CAU: debe ser OEA de simplificaciones aduaneras.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 185 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el estatuto OEA?",
+      "opciones": [
+        "Un seguro marítimo para mercancías de alto valor",
+        "El de operador económico autorizado, con ventajas aduaneras",
+        "Un tipo de arancel reducido para países con acuerdo preferencial",
+        "Un tipo de embalaje homologado para el transporte aéreo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se concede en dos modalidades: simplificaciones aduaneras y seguridad y protección (art. 38 CAU).",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 38 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipos de autorización tiene el estatuto OEA?",
+      "opciones": [
+        "Transporte por carretera y transporte marítimo, combinables",
+        "Importación y exportación, sin posibilidad de combinarse",
+        "Simplificaciones aduaneras y seguridad y protección, combinables",
+        "Nacional e internacional, según el país de establecimiento"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 38.2 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 38.2 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene un OEA en los controles aduaneros?",
+      "opciones": [
+        "Quedar exento del pago de los derechos de aduana",
+        "No tener que presentar declaración en aduana alguna",
+        "Poder despachar sin garantía en todos los regímenes",
+        "Menos controles físicos y documentales y más prioridad"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las ventajas son de facilitación, no de exención de impuestos.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, arts. 38-39 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el tránsito simplificado?",
+      "opciones": [
+        "Un tránsito facilitado para operadores autorizados",
+        "Un tránsito que no necesita garantía alguna del titular",
+        "Un tránsito que se realiza sin ningún documento de tránsito",
+        "Un tránsito que se hace sin precinto en el vehículo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Requiere autorización y garantía.",
+      "criterio": "RA5.e",
+      "fuente": "Convenio de tránsito común; contenido conocido, no leído.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué procedimiento simplificado permite despachar mercancías sin presentarlas físicamente en una aduana?",
+      "opciones": [
+        "La declaración normal presentada ante la aduana de destino",
+        "La inscripción en los registros del declarante, con autorización",
+        "La declaración sumaria presentada por el transportista",
+        "El tránsito externo con garantía del titular del régimen"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 182 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 182 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué suele exigir la aduana para autorizar un procedimiento simplificado?",
+      "opciones": [
+        "Ninguna condición, porque las simplificaciones son un derecho",
+        "El pago previo de una tasa y la presentación de la factura",
+        "Fiabilidad, registros adecuados y, en su caso, garantía y OEA",
+        "Ser una empresa de gran tamaño con más de 250 empleados"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las autorizaciones se conceden previa solicitud.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, arts. 179-185 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué se usan los procedimientos simplificados?",
+      "opciones": [
+        "Evitar el pago de los impuestos que gravan la importación",
+        "Eliminar el control aduanero sobre las operaciones frecuentes",
+        "Sustituir la declaración sumaria de entrada de las mercancías",
+        "Agilizar el despacho y reducir costes, tiempos y trámites"
+      ],
+      "respuesta": 3,
+      "explicacion": "Siguen sujetos a control y a la correcta determinación de la deuda.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre cuando se presenta una declaración simplificada?",
+      "opciones": [
+        "Hay que presentar después una declaración complementaria",
+        "No hace falta completarla porque se da por buena de oficio",
+        "Se archiva de oficio si no hay requerimiento de la aduana",
+        "Se cancela la deuda aduanera si el declarante no la completa"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 167 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, art. 167 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

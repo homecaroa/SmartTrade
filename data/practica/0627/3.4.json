@@ -1,0 +1,331 @@
+{
+  "modulo": "0627",
+  "tema": "3.4",
+  "titulo": "Política agrícola común y medidas de apoyo a las exportaciones",
+  "preguntas": [
+    {
+      "id": "0627-3.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué establece el art. 38 TFUE sobre la agricultura?",
+      "opciones": [
+        "La Unión aplica una política común agrícola y pesquera",
+        "Cada Estado fija libremente sus propios precios agrícolas",
+        "La agricultura queda al margen del mercado interior",
+        "La política común se aplica únicamente a la pesca"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 38.1 TFUE incluye la pesca dentro de la política agrícola común.",
+      "criterio": "RA3.g",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 38.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál NO es un objetivo de la PAC según el art. 39 TFUE?",
+      "opciones": [
+        "Incrementar la productividad agrícola mediante el progreso técnico",
+        "Maximizar los precios al consumidor",
+        "Garantizar un nivel de vida equitativo a los agricultores",
+        "Asegurar suministros al consumidor a precios razonables"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los objetivos son: productividad, nivel de vida equitativo de los agricultores, estabilizar mercados, seguridad de abastecimientos y precios razonables.",
+      "criterio": "RA3.g",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 39.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué objetivo de la PAC se refiere a los ingresos de los agricultores?",
+      "opciones": [
+        "Reducir la producción agrícola para subir los precios",
+        "Eliminar los precios de garantía de los productos agrarios",
+        "Garantizar un nivel de vida digno al agricultor",
+        "Limitar la exportación de los productos agrícolas europeos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es el segundo objetivo del art. 39.1.",
+      "criterio": "RA3.g",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 39.1.b.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una Organización Común de Mercados (OCM)?",
+      "opciones": [
+        "Un acuerdo de la OMC sobre el comercio de productos agrarios",
+        "Un banco de crédito agrario con sede en Luxemburgo",
+        "Un órgano de la ONU para la alimentación y la agricultura",
+        "Reglas comunes por sector agrícola para los objetivos de la PAC"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 40 TFUE las crea; pueden incluir regulación de precios, subvenciones a la producción y comercialización, sistemas de almacenamiento y mecanismos de estabilización de importaciones o exportaciones.",
+      "criterio": "RA3.g",
+      "fuente": "TFUE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 40.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son los dos fondos principales de financiación de la PAC?",
+      "opciones": [
+        "El FEAGA y el FEADER",
+        "El Fondo Monetario Internacional y el Banco Mundial",
+        "El Banco Europeo de Inversiones y el BERD",
+        "El Fondo de Desarrollo Regional y el Fondo Social Europeo"
+      ],
+      "respuesta": 0,
+      "explicacion": "El FEAGA financia pagos directos y medidas de mercado; el FEADER, el desarrollo rural.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son los principios básicos tradicionales de la PAC?",
+      "opciones": [
+        "Libre comercio, ayudas nacionales y soberanía de los Estados",
+        "Unidad de mercado, preferencia comunitaria y solidaridad",
+        "Cuotas, aranceles y subvenciones nacionales a los agricultores",
+        "Neutralidad, apertura exterior y competencia entre productores"
+      ],
+      "respuesta": 1,
+      "explicacion": "La preferencia comunitaria favorece los productos de la UE frente a los importados, mediante la protección en frontera.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué consiste la «preferencia comunitaria»?",
+      "opciones": [
+        "Subvencionar los productos agrícolas de otros países socios",
+        "Prohibir las exportaciones de todos los productos agrícolas",
+        "Dar prioridad a los productos agrícolas de la UE",
+        "Conceder el mismo trato a los productos de terceros países"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se aplica con medidas en frontera como derechos de importación y cláusulas de salvaguardia.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué eran las «exacciones agrícolas»?",
+      "opciones": [
+        "Impuestos sobre las ventas interiores de productos agrícolas",
+        "Tasas de transporte sobre las mercancías agrícolas importadas",
+        "Subvenciones que se concedían a la exportación de cereales",
+        "Derechos variables que igualaban el precio mundial con el interno"
+      ],
+      "respuesta": 3,
+      "explicacion": "Hoy se han sustituido por derechos de aduana fijos tras la Ronda Uruguay («arancelización»).",
+      "criterio": "RA3.g",
+      "fuente": "Decreto 95/2012 («Derechos y exacciones agrícolas»); conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué eran las «restituciones a la exportación» en la PAC?",
+      "opciones": [
+        "Subvenciones que cubrían la diferencia de precios",
+        "Impuestos que gravaban la exportación de productos agrarios",
+        "Aranceles que se aplicaban a la importación de cereales",
+        "Reembolsos del IVA soportado por los exportadores agrícolas"
+      ],
+      "respuesta": 0,
+      "explicacion": "La OMC decidió su eliminación (Nairobi, 2015), por lo que están a cero desde entonces.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; no contrastado con la decisión de la OMC.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los pagos directos de la PAC?",
+      "opciones": [
+        "Pagos que reciben los importadores por comprar productos agrarios",
+        "Ayudas directas al agricultor ligadas a la superficie",
+        "Pagos que reciben los transportistas por el flete de la cosecha",
+        "Pagos de aranceles que abonan los agricultores en la aduana"
+      ],
+      "respuesta": 1,
+      "explicacion": "Han sustituido en gran parte a los sistemas de apoyo de precios.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las medidas de apoyo y fomento de las exportaciones?",
+      "opciones": [
+        "Barreras que limitan las importaciones de productos extranjeros",
+        "Un tipo de arancel que se aplica a las exportaciones",
+        "Instrumentos públicos de ayuda a exportar: información y promoción",
+        "Un cupo que limita la cantidad que puede exportarse"
+      ],
+      "respuesta": 2,
+      "explicacion": "El RA3.g exige determinar las distintas medidas de apoyo y fomento.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la función de CESCE?",
+      "opciones": [
+        "Fijar los tipos de cambio que se aplican a las exportaciones",
+        "Recaudar los aranceles que gravan la importación de mercancías",
+        "Emitir los certificados de origen de las mercancías exportadas",
+        "Asegurar los riesgos de impago de la exportación"
+      ],
+      "respuesta": 3,
+      "explicacion": "CESCE gestiona el seguro de crédito a la exportación por cuenta del Estado y por cuenta propia.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es COFIDES?",
+      "opciones": [
+        "La compañía de financiación de inversiones españolas fuera",
+        "Una aduana especializada en el despacho de las exportaciones",
+        "Una cámara de comercio que emite los certificados de origen",
+        "El banco central que controla las divisas de las empresas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Financia proyectos de inversión de empresas españolas en el exterior con rentabilidad y desarrollo.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el FIEM?",
+      "opciones": [
+        "Un fondo monetario de la UE para los países del euro",
+        "El Fondo para la Internacionalización de la Empresa",
+        "Un fondo de pensiones de los trabajadores del comercio exterior",
+        "Un programa de la OMC para las pymes de países en desarrollo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es un fondo gestionado por el ministerio competente en comercio, con créditos y donaciones para internacionalización.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; no contrastado con la web oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el «drawback» o restitución de derechos?",
+      "opciones": [
+        "Un impuesto adicional sobre las materias primas importadas",
+        "Un seguro que cubre el riesgo de impago de los clientes",
+        "La devolución de derechos de materias primas reexportadas",
+        "Una tasa que se cobra por reexportar productos transformados"
+      ],
+      "respuesta": 2,
+      "explicacion": "Fomenta las exportaciones al evitar que el exportador soporte derechos por insumos importados.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regímenes aduaneros favorecen a los exportadores que transforman mercancías importadas?",
+      "opciones": [
+        "La importación definitiva de las materias primas con pago de derechos",
+        "El tránsito externo de las mercancías por el territorio de la Unión",
+        "El régimen de uso final con tipo reducido de derechos de aduana",
+        "El perfeccionamiento activo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Permiten transformar mercancía no Unión sin pagar derechos si el producto se reexporta (UD4-UD5).",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Barreras no arancelarias, técnicas, administrativas y fiscales»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué prohíbe el Acuerdo sobre Subvenciones de la OMC respecto a los productos industriales?",
+      "opciones": [
+        "Subvenciones ligadas a la exportación o a productos nacionales",
+        "Todas las subvenciones de cualquier tipo y a cualquier sector",
+        "Los seguros de crédito a la exportación sin excepción alguna",
+        "Los aranceles que se aplican a las importaciones de la OMC"
+      ],
+      "respuesta": 0,
+      "explicacion": "Son subvenciones «prohibidas». Las agrícolas se rigen por el Acuerdo sobre la Agricultura.",
+      "criterio": "RA3.g",
+      "fuente": "Acuerdo SMC de la OMC (art. 3). Conocimiento general; no consultado el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.4-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una ayuda de Estado en la UE?",
+      "opciones": [
+        "Un impuesto europeo que financia el presupuesto de la UE",
+        "Ayuda pública que favorece a ciertas empresas",
+        "Una tasa aduanera que se cobra en las fronteras exteriores",
+        "Un acuerdo comercial entre la Unión y los países terceros"
+      ],
+      "respuesta": 1,
+      "explicacion": "La Comisión controla estas ayudas, también a las exportaciones.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; arts. 107-109 TFUE (no leídos).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

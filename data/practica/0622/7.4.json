@@ -1,0 +1,403 @@
+{
+  "modulo": "0622",
+  "tema": "7.4",
+  "titulo": "Contratación del seguro, documentación y gestión de siniestros",
+  "preguntas": [
+    {
+      "id": "0622-7.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el orden habitual para contratar un seguro de mercancías?",
+      "opciones": [
+        "Pagar la prima, esperar el siniestro y pedir presupuesto después",
+        "Embarcar sin seguro y asegurar la mercancía al llegar",
+        "Pedir al transportista una póliza emitida sin ningún dato",
+        "Presupuestos, cuestionario, elegir póliza, firmar y pagar"
+      ],
+      "respuesta": 3,
+      "explicacion": "El cuestionario de riesgo (art. 10 LCS) es la base de la declaración del riesgo.",
+      "criterio": "RA7.e",
+      "fuente": "Conocimiento general; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué datos suele pedir el asegurador para tarificar un seguro de mercancías?",
+      "opciones": [
+        "Mercancía, valor, embalaje, medio, ruta, Incoterm y fechas",
+        "Solo el nombre del comprador y su domicilio fiscal",
+        "Solo el número de cuenta bancaria del asegurado",
+        "Únicamente el peso total de la carga en kilos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Cuanto mejor sea la información, más ajustada la prima y menor el riesgo de reticencia.",
+      "criterio": "RA7.e",
+      "fuente": "Conocimiento general; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documentos suelen acompañar a una reclamación de siniestro de mercancías?",
+      "opciones": [
+        "Solo la póliza o certificado de seguro contratado",
+        "Póliza, factura, documento de transporte, packing list e informe",
+        "Solo el albarán de entrega firmado por el destinatario",
+        "Solo una carta del comprador explicando lo ocurrido"
+      ],
+      "respuesta": 1,
+      "explicacion": "El conjunto acredita la preexistencia, el valor y el daño.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Al recibir mercancía con daños visibles, ¿qué debe hacer el destinatario en el momento de la entrega?",
+      "opciones": [
+        "Firmar sin comentarios para evitar problemas con el transportista",
+        "Rechazar siempre toda la entrega sin dejar constancia alguna",
+        "Anotar reservas por escrito y fotografiar la mercancía",
+        "Esperar a que sea el seguro quien se ponga en contacto"
+      ],
+      "respuesta": 2,
+      "explicacion": "La firma limpia crea la presunción de que se recibió en buen estado; las reservas protegen la reclamación contra el transportista y el asegurador.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte por carretera internacional (CMR), ¿en qué plazo deben formularse las reservas por pérdidas o averías no manifiestas?",
+      "opciones": [
+        "Dentro de las veinticuatro horas siguientes a la entrega",
+        "Dentro de los treinta días naturales desde la entrega",
+        "Dentro de un año contado desde la fecha de entrega",
+        "Siete días desde la entrega, sin domingos ni festivos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 30.1 CMR. Si no se hacen, se presume que la mercancía se recibió en el estado descrito en la carta de porte.",
+      "criterio": "RA7.g",
+      "fuente": "CMR, art. 30 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "En el CMR, ¿en qué plazo debe formularse la reserva por escrito para reclamar por retraso en la entrega?",
+      "opciones": [
+        "Veintiún días desde que se pone a disposición",
+        "Siete días contados desde la entrega de la mercancía",
+        "Tres días naturales desde que llega el vehículo",
+        "Seis meses contados desde la fecha pactada de entrega"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 30.3 CMR.",
+      "criterio": "RA7.g",
+      "fuente": "CMR, art. 30.3 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte nacional por carretera (Ley 15/2009), ¿en qué plazo deben formularse las reservas por averías no manifiestas?",
+      "opciones": [
+        "Siete días, descontando domingos y festivos, desde la entrega",
+        "Siete días naturales siguientes a la entrega",
+        "Dentro de las cuarenta y ocho horas siguientes a la entrega",
+        "Dentro de los treinta días siguientes a la entrega"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 60 Ley 15/2009. Ojo con la diferencia: en el CMR se descuentan domingos y festivos; en la ley nacional son días naturales.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 15/2009 del contrato de transporte terrestre de mercancías, art. 60 (leída).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte aéreo (Convenio de Montreal), ¿cuál es el plazo máximo de protesta por avería de la carga?",
+      "opciones": [
+        "Siete días contados desde la recepción de la carga",
+        "Veintiún días contados desde la recepción de la carga",
+        "Catorce días desde la recepción",
+        "Seis meses contados desde la llegada del avión"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 31.2: siete días para el equipaje facturado y catorce para la carga; veintiún días en caso de retraso.",
+      "criterio": "RA7.g",
+      "fuente": "Convenio de Montreal 1999, art. 31 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte marítimo (Ley 14/2014), ¿cuándo debe darse aviso escrito de pérdida o daño aparente al porteador?",
+      "opciones": [
+        "Siete días naturales en todos los casos posibles",
+        "Treinta días desde que se entrega la mercancía",
+        "No hace falta ningún aviso previo al porteador",
+        "Durante el día laborable siguiente a la entrega"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 285 Ley 14/2014. El aviso no es necesario si hay inspección conjunta.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 285, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué plazo tiene el asegurado para comunicar el siniestro en el seguro marítimo de mercancías?",
+      "opciones": [
+        "Siete días, al asegurador o al comisario de averías",
+        "Veinticuatro horas desde que se conoce el siniestro",
+        "Quince días desde que se conoce el siniestro",
+        "Tres meses desde que se conoce el siniestro"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 426 Ley 14/2014.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 426, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un comisario de averías?",
+      "opciones": [
+        "El capitán del buque que transportó la mercancía",
+        "Un perito designado en la póliza que evalúa los daños",
+        "El funcionario de aduanas que despachó la operación",
+        "El transitario contratado por el exportador"
+      ],
+      "respuesta": 1,
+      "explicacion": "Su informe o certificado de avería es clave para liquidar el siniestro.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Tras comunicar el siniestro, ¿en cuántos días debe el asegurado presentar por escrito la relación de objetos existentes, salvados y la estimación de daños?",
+      "opciones": [
+        "Un día desde que se notifica el siniestro",
+        "Quince días desde que se notifica el siniestro",
+        "Cinco días desde la notificación del siniestro",
+        "Un mes desde que se notifica el siniestro"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 38 Ley 50/1980.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 38 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo debe el asegurador pagar, como mínimo, el importe que pueda deber según las circunstancias conocidas?",
+      "opciones": [
+        "Veinticuatro horas desde la declaración del siniestro",
+        "Diez días desde la declaración del siniestro",
+        "Seis meses desde la declaración del siniestro",
+        "Cuarenta días desde la declaración del siniestro"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 18 Ley 50/1980; el pago definitivo llega al terminar las investigaciones y peritaciones.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 18 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el asegurador incurre en mora (no cumple en tres meses desde el siniestro, ni paga el importe mínimo en cuarenta días), ¿qué interés de demora se aplica?",
+      "opciones": [
+        "Interés legal más un 50 %; tras dos años, al menos el 20 %",
+        "Siempre el 20 % anual desde el primer día de demora",
+        "El interés legal del dinero sin ningún tipo de recargo",
+        "Un interés fijo del 5 % mensual sobre la indemnización"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 20 Ley 50/1980 (texto consolidado). La mora no se aplica si la falta de pago se debe a una causa justificada o no imputable al asegurador.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 20, texto consolidado (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Si asegurado y asegurador no se ponen de acuerdo sobre el importe de la indemnización, ¿qué procedimiento prevé la ley?",
+      "opciones": [
+        "Decide el asegurador unilateralmente el importe a pagar",
+        "Un perito por parte y un tercero si no coinciden",
+        "Se anula el contrato de seguro y se devuelve la prima",
+        "Se paga la mitad del daño y se archiva el expediente"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 38 Ley 50/1980; el dictamen se puede impugnar en 30 días (asegurador) o 180 días (asegurado).",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 38 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el abandono en el seguro de mercancías marítimo?",
+      "opciones": [
+        "La renuncia del asegurado a cobrar cualquier indemnización",
+        "La devolución de la prima pagada por el asegurado",
+        "Transferir la mercancía al asegurador y cobrar la pérdida total",
+        "El cambio del puerto de destino de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 461 Ley 14/2014: pérdida total, averías que igualan el valor de póliza, pérdida del buque y reexpedición imposible en 90 días, entre otros casos.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 461, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo debe declararse el abandono de las mercancías aseguradas?",
+      "opciones": [
+        "Dentro de los siete días siguientes a las circunstancias",
+        "Dentro del año siguiente a las circunstancias",
+        "No existe plazo alguno para declararlo",
+        "Dentro de los sesenta días siguientes"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 462 Ley 14/2014; pasado el plazo solo cabe la acción de avería.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 462, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo prescriben los derechos derivados del contrato de seguro marítimo?",
+      "opciones": [
+        "En dos años desde que pudieron ejercitarse",
+        "En seis meses desde que pudieron ejercitarse",
+        "En cinco años desde que pudieron ejercitarse",
+        "En diez años desde que pudieron ejercitarse"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 438 Ley 14/2014 (igual que el plazo del seguro de daños de la Ley 50/1980).",
+      "criterio": "RA7.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 438, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-019",
+      "tipo": "opcion_unica",
+      "enunciado": "Tras indemnizar al asegurado, ¿qué puede hacer el asegurador frente al transportista responsable?",
+      "opciones": [
+        "Nada, porque el contrato de seguro se lo impide",
+        "Reclamarle por subrogación hasta lo pagado",
+        "Exigir al asegurado que le devuelva la indemnización",
+        "Cancelar la póliza y reclamar la prima al asegurado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 43 Ley 50/1980; por eso el asegurado debe conservar las reservas y no renunciar a sus acciones.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 43 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué plazo general de prescripción tienen las acciones derivadas del contrato de transporte terrestre nacional (Ley 15/2009)?",
+      "opciones": [
+        "Seis meses desde la entrega de la mercancía",
+        "Cinco años desde la entrega de la mercancía",
+        "Un año; dos si hay dolo",
+        "Tres meses desde la entrega de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 79 Ley 15/2009. Conviene reclamar por escrito, pues suspende la prescripción.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 15/2009, art. 79 (leída).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué utilidad tienen las herramientas informáticas en la gestión de seguros de mercancías?",
+      "opciones": [
+        "Sustituyen la necesidad de rellenar el cuestionario de riesgo",
+        "Eliminan el pago de la prima del seguro contratado",
+        "Sustituyen la póliza por la factura comercial",
+        "Comparar ofertas, emitir certificados y seguir siniestros"
+      ],
+      "respuesta": 3,
+      "explicacion": "Muchas aseguradoras y corredores ofrecen portales para presupuestar y emitir certificados.",
+      "criterio": "RA7.h",
+      "fuente": "Conocimiento general; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.4-022",
+      "tipo": "opcion_unica",
+      "enunciado": "Al comparar presupuestos de seguro de mercancías de varias compañías, ¿qué conviene examinar además de la prima?",
+      "opciones": [
+        "Coberturas, exclusiones, franquicia y solvencia",
+        "Solo el nombre comercial de la compañía aseguradora",
+        "Solo el color del logotipo de la compañía",
+        "Solo la antigüedad de la oficina que emite el presupuesto"
+      ],
+      "respuesta": 0,
+      "explicacion": "La póliza más barata puede ser la peor si excluye riesgos relevantes o tiene franquicias altas.",
+      "criterio": "RA7.h",
+      "fuente": "Conocimiento general; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

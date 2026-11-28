@@ -1,0 +1,259 @@
+{
+  "modulo": "0625",
+  "tema": "5.2",
+  "titulo": "Niveles de stock: óptimo, seguridad y punto de pedido",
+  "preguntas": [
+    {
+      "id": "0625-5.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el stock mínimo o de seguridad?",
+      "opciones": [
+        "El nivel más alto que alcanza el stock tras un pedido",
+        "El nivel por debajo del cual no debe bajar el stock",
+        "El nivel promedio de existencias durante el periodo",
+        "El stock que está en camino desde el proveedor"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se calcula según variabilidad de demanda y plazo.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el stock máximo?",
+      "opciones": [
+        "El nivel de seguridad que evita las roturas de stock",
+        "El nivel promedio de existencias en el periodo",
+        "El nivel más alto, justo tras recibir un pedido",
+        "El stock con el que se inicia el ejercicio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Stock máximo = stock de seguridad + lote de pedido.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el stock medio?",
+      "opciones": [
+        "El nivel máximo que se alcanza tras cada pedido",
+        "El nivel mínimo por debajo del cual no se baja",
+        "El stock que queda al finalizar el ejercicio",
+        "El nivel promedio de existencias en un periodo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Con consumo uniforme: (máximo + mínimo) / 2.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el punto de pedido?",
+      "opciones": [
+        "El nivel en el que se lanza el pedido para reponer",
+        "El día de la semana en que se hacen los pedidos",
+        "El nivel máximo que puede alcanzar el stock",
+        "El nivel del stock que ha quedado obsoleto"
+      ],
+      "respuesta": 0,
+      "explicacion": "Punto de pedido = consumo en el plazo + stock de seguridad.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué modelo permite calcular el lote económico de pedido?",
+      "opciones": [
+        "El modelo ABC de clasificación de existencias",
+        "El modelo de Wilson (EOQ)",
+        "El modelo FIFO de valoración de salidas",
+        "El modelo PERT de planificación de proyectos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Minimiza coste de pedido + coste de posesión.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la fórmula del lote económico de pedido (Wilson)?",
+      "opciones": [
+        "Q = D × Cp × Ch, sin raíz cuadrada",
+        "Q = D / Ch, sin coste de pedido",
+        "Q = √(2 × D × Cp / Ch)",
+        "Q = Cp + Ch, sin demanda anual"
+      ],
+      "respuesta": 2,
+      "explicacion": "D = demanda anual, Cp = coste de pedido, Ch = coste de mantener una unidad al año.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En el modelo de Wilson, ¿qué ocurre con el lote óptimo si aumenta el coste de pedido?",
+      "opciones": [
+        "Disminuye, porque interesa pedir lotes menores",
+        "No cambia, porque no depende del coste de pedido",
+        "Se anula, porque se elimina el stock de seguridad",
+        "Aumenta, porque interesa pedir lotes mayores"
+      ],
+      "respuesta": 3,
+      "explicacion": "A mayor coste de pedido, interesa pedir lotes mayores.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el modelo de Wilson, ¿qué ocurre con el lote óptimo si aumenta el coste de mantener una unidad?",
+      "opciones": [
+        "Disminuye, porque interesa pedir menos cantidad",
+        "Aumenta, porque interesa pedir lotes mayores",
+        "No cambia, porque no depende del coste unitario",
+        "Se duplica, porque se almacena el doble de unidades"
+      ],
+      "respuesta": 0,
+      "explicacion": "A mayor coste de posesión, interesa pedir menos cantidad.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Demanda anual 12.000 uds, coste de pedido 50 € y coste de mantener una unidad 2,40 €/año. ¿Cuál es el lote económico (Wilson), en unidades enteras?",
+      "opciones": [
+        "354",
+        "707",
+        "1.414",
+        "240"
+      ],
+      "respuesta": 1,
+      "explicacion": "Q = √(2 × 12.000 × 50 / 2,40) = 707,1 ≈ 707 uds.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Con ese lote (707 uds) y una demanda de 12.000 uds, ¿cuántos pedidos se hacen al año (aproximadamente)?",
+      "opciones": [
+        "169,7",
+        "0,06",
+        "17,0",
+        "1,7"
+      ],
+      "respuesta": 2,
+      "explicacion": "Pedidos = 12.000 / 707 = 17,0.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Consumo medio 40 uds/día, máximo 55 uds/día y plazo de reposición de 6 días. ¿Cuál es el stock de seguridad?",
+      "opciones": [
+        "240 uds",
+        "330 uds",
+        "15 uds",
+        "90 uds"
+      ],
+      "respuesta": 3,
+      "explicacion": "SS = (55 − 40) × 6 = 90 uds.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Con los datos anteriores, ¿cuál es el punto de pedido?",
+      "opciones": [
+        "330 uds",
+        "90 uds",
+        "420 uds",
+        "240 uds"
+      ],
+      "respuesta": 0,
+      "explicacion": "Punto de pedido = 40 × 6 + 90 = 330 uds.",
+      "criterio": "RA4.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Con lote de pedido 500 uds y stock de seguridad 90 uds, ¿cuál es el stock máximo?",
+      "opciones": [
+        "500 uds",
+        "590 uds",
+        "410 uds",
+        "1.000 uds"
+      ],
+      "respuesta": 1,
+      "explicacion": "Stock máximo = 90 + 500 = 590 uds.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Con esos datos (máximo 590, mínimo 90), ¿cuál es el stock medio?",
+      "opciones": [
+        "590 uds",
+        "90 uds",
+        "340 uds",
+        "500 uds"
+      ],
+      "respuesta": 2,
+      "explicacion": "Stock medio = (590 + 90) / 2 = 340 uds.",
+      "criterio": "RA4.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

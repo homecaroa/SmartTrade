@@ -1,0 +1,349 @@
+{
+  "modulo": "0627",
+  "tema": "1.5",
+  "titulo": "Instituciones de la Unión Europea",
+  "preguntas": [
+    {
+      "id": "0627-1.5-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántas instituciones enumera el art. 13 del Tratado de la Unión Europea?",
+      "opciones": [
+        "Siete",
+        "Cinco, entre ellas el Consejo Europeo",
+        "Nueve, incluido el Comité de las Regiones",
+        "Doce, con el Banco Europeo de Inversiones"
+      ],
+      "respuesta": 0,
+      "explicacion": "Son: Parlamento Europeo, Consejo Europeo, Consejo, Comisión Europea, Tribunal de Justicia de la UE, Banco Central Europeo y Tribunal de Cuentas.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 13 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estas es una institución de la Unión Europea según el Tratado?",
+      "opciones": [
+        "El Banco Europeo de Inversiones, con sede en Luxemburgo",
+        "El Banco Central Europeo",
+        "El Comité de las Regiones, de carácter consultivo",
+        "El Defensor del Pueblo Europeo, elegido por el Parlamento"
+      ],
+      "respuesta": 1,
+      "explicacion": "El BCE es institución (art. 13 TUE). El BEI, el Comité de las Regiones y el Defensor del Pueblo son órganos u organismos, no instituciones.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 13 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué funciones ejerce el Parlamento Europeo?",
+      "opciones": [
+        "Solo funciones consultivas, sin competencia legislativa propia",
+        "La iniciativa legislativa en exclusiva sobre todos los actos",
+        "Legislativa y presupuestaria con el Consejo, control político y elección del Presidente de la Comisión",
+        "La política monetaria de los países de la zona euro"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 14.1 TUE. Los eurodiputados representan a los ciudadanos de la Unión y se eligen por sufragio universal.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 14 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos eurodiputados puede tener como máximo el Parlamento Europeo según el Tratado?",
+      "opciones": [
+        "500",
+        "705 en todos los casos",
+        "1.000",
+        "750, más el Presidente"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 14.2 TUE fija el máximo en 750 más el Presidente, con un mínimo de 6 y un máximo de 96 escaños por Estado miembro.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 14.2 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el número mínimo y máximo de escaños por Estado miembro en el Parlamento Europeo?",
+      "opciones": [
+        "Mínimo 6 y máximo 96",
+        "Mínimo 1 y máximo 50",
+        "Mínimo 10 y máximo 100",
+        "Mínimo 3 y máximo 90"
+      ],
+      "respuesta": 0,
+      "explicacion": "La representación es decrecientemente proporcional a la población (art. 14.2 TUE).",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 14.2 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Consejo Europeo?",
+      "opciones": [
+        "Es el órgano legislativo formado por los ministros sectoriales",
+        "Reúne a los jefes de Estado o de Gobierno y fija las orientaciones políticas",
+        "Es el tribunal que garantiza la interpretación del Derecho de la UE",
+        "Es el ejecutivo que propone la legislación y vela por los Tratados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 15 TUE. Lo componen jefes de Estado o de Gobierno, su Presidente y el Presidente de la Comisión; se reúne dos veces por semestre.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 15 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Con qué frecuencia se reúne ordinariamente el Consejo Europeo?",
+      "opciones": [
+        "Una vez al año, en la cumbre de primavera",
+        "Cada día, con la presencia de los ministros",
+        "Dos veces por semestre",
+        "Cada cinco años, al renovarse la Comisión"
+      ],
+      "respuesta": 2,
+      "explicacion": "Cuando la situación lo exige, el Presidente puede convocar una reunión extraordinaria (art. 15.3 TUE).",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 15.3 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién forma parte del Consejo (de la UE o Consejo de Ministros)?",
+      "opciones": [
+        "Los jefes de Estado y de Gobierno de cada Estado miembro",
+        "Los comisarios europeos propuestos por cada Estado miembro",
+        "Los eurodiputados elegidos por cada Estado miembro",
+        "Un representante de cada Estado miembro, de rango ministerial"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 16.2 TUE. Ejerce la función legislativa y presupuestaria junto con el Parlamento y coordina las políticas de los Estados.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 16 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se pronuncia el Consejo, como regla general?",
+      "opciones": [
+        "Por mayoría cualificada",
+        "Por unanimidad de todos los Estados miembros",
+        "Por mayoría simple de los comisarios europeos",
+        "Por votación del Parlamento Europeo en pleno"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 16.3 TUE: mayoría cualificada, salvo que los Tratados dispongan otra cosa (por ejemplo, la política exterior suele exigir unanimidad).",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 16.3 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la mayoría cualificada en el Consejo desde el 1 de noviembre de 2014?",
+      "opciones": [
+        "La mitad más uno de los Estados que representen el 50 % de la población",
+        "Al menos el 55 % de los miembros (15) que reúnan el 65 % de la población",
+        "Dos tercios de los Estados que representen el 60 % de la población",
+        "El 75 % de la población de la Unión, con independencia del número de Estados"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es la regla de «doble mayoría» del art. 16.4 TUE (con la minoría de bloqueo de al menos cuatro miembros).",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 16.4 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función tiene la Comisión Europea?",
+      "opciones": [
+        "Aprobar las leyes de la Unión sin intervención del Parlamento",
+        "Controlar la política monetaria de los países de la zona euro",
+        "Proponer legislación, velar por los Tratados y ejecutar el presupuesto",
+        "Nombrar a los jueces de los tribunales de cada Estado miembro"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 17 TUE. Es la «guardiana de los Tratados» y tiene, por regla general, la iniciativa legislativa.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 17 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-012",
+      "tipo": "opcion_unica",
+      "enunciado": "En la UE, ¿quién tiene, por regla general, la iniciativa legislativa?",
+      "opciones": [
+        "El Parlamento Europeo, junto con el Consejo",
+        "El Consejo Europeo, a propuesta del Parlamento",
+        "El Tribunal de Justicia, en los asuntos de competencia",
+        "La Comisión Europea"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los actos legislativos de la Unión solo pueden adoptarse a propuesta de la Comisión, salvo que los Tratados dispongan otra cosa (art. 17.2 TUE).",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 17.2 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el procedimiento legislativo ordinario de la UE?",
+      "opciones": [
+        "Adopción conjunta por el Parlamento y el Consejo, a propuesta de la Comisión",
+        "Adopción por el Consejo Europeo en solitario, por unanimidad",
+        "Adopción por la Comisión sin intervención de otros órganos",
+        "Adopción por el Banco Central Europeo y los bancos nacionales"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 289.1 TFUE. Se regula en el art. 294 TFUE.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 289 TFUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el objetivo principal del Sistema Europeo de Bancos Centrales (SEBC)?",
+      "opciones": [
+        "Garantizar el pleno empleo en todos los Estados miembros",
+        "Mantener la estabilidad de precios",
+        "Financiar los déficits públicos de los Estados miembros",
+        "Maximizar el volumen de exportaciones de la zona euro"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 127 y 282.2 TFUE: sin perjuicio de este objetivo, apoya las políticas económicas generales de la Unión.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 282.2 TFUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Eurosistema?",
+      "opciones": [
+        "Todos los bancos comerciales europeos supervisados por el BCE",
+        "El BCE junto con el Fondo Monetario Internacional",
+        "El BCE y los bancos centrales nacionales de los países del euro",
+        "La Comisión y el Parlamento en materia monetaria"
+      ],
+      "respuesta": 2,
+      "explicacion": "Dirige la política monetaria de la Unión (art. 282.1 TFUE).",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 282.1 TFUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué controla el Tribunal de Justicia de la UE?",
+      "opciones": [
+        "Los precios de los productos agrícolas de la política común",
+        "La política monetaria de los países de la zona del euro",
+        "Los presupuestos nacionales de los Estados miembros",
+        "La legalidad de los actos de las instituciones de la Unión"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 263 TFUE le atribuye el control de legalidad de actos legislativos, del Consejo, de la Comisión y del BCE (salvo recomendaciones y dictámenes).",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 263 TFUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la sede del Banco Central Europeo?",
+      "opciones": [
+        "Fráncfort del Meno, en Alemania",
+        "Bruselas, sede de la Comisión y del Consejo",
+        "Luxemburgo, sede del Tribunal de Justicia",
+        "Estrasburgo, sede de las sesiones plenarias del Parlamento"
+      ],
+      "respuesta": 0,
+      "explicacion": "El BCE tiene su sede en Fráncfort. El Tribunal de Justicia y el Tribunal de Cuentas están en Luxemburgo.",
+      "criterio": "RA1.e",
+      "fuente": "Conocimiento general sobre las instituciones de la UE.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde se celebran las sesiones plenarias del Parlamento Europeo?",
+      "opciones": [
+        "En Fráncfort, junto con la sede del Banco Central Europeo",
+        "En Estrasburgo, con otras sesiones en Bruselas",
+        "En Luxemburgo, junto con la sede del Tribunal de Justicia",
+        "En París, junto con la sede de la OCDE en Francia"
+      ],
+      "respuesta": 1,
+      "explicacion": "La sede oficial del Parlamento es Estrasburgo; su secretaría está en Luxemburgo y muchas comisiones y sesiones adicionales se celebran en Bruselas.",
+      "criterio": "RA1.e",
+      "fuente": "Conocimiento general sobre las instituciones de la UE.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.5-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Tribunal de Cuentas Europeo?",
+      "opciones": [
+        "El tribunal que resuelve los litigios comerciales entre empresas",
+        "El banco que financia los proyectos de inversión de la Unión",
+        "La institución que audita las cuentas y el presupuesto de la UE",
+        "El órgano que fija los impuestos de los Estados miembros"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una de las siete instituciones; tiene su sede en Luxemburgo.",
+      "criterio": "RA1.e",
+      "fuente": "Tratado de la Unión Europea y TFUE, versiones consolidadas (DOUE C 202, 7.6.2016, vía BOE), art. 13 TUE.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

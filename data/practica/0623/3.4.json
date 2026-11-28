@@ -1,0 +1,367 @@
+{
+  "modulo": "0623",
+  "tema": "3.4",
+  "titulo": "Leasing, renting, compra y garantías bancarias",
+  "preguntas": [
+    {
+      "id": "0623-3.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el leasing (arrendamiento financiero)?",
+      "opciones": [
+        "Cesión en uso de un bien con opción de compra",
+        "Un alquiler a corto plazo con mantenimiento incluido",
+        "Un préstamo sin garantía concedido por el banco",
+        "Una subvención pública para adquirir bienes de equipo"
+      ],
+      "respuesta": 0,
+      "explicacion": "La empresa suele quedarse con el bien ejerciendo la opción de compra por un importe reducido.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el renting?",
+      "opciones": [
+        "Un préstamo con garantía hipotecaria sobre el bien",
+        "Un alquiler operativo con servicios",
+        "Una compra a plazos con reserva de dominio",
+        "Una venta con derecho de devolución del bien"
+      ],
+      "respuesta": 1,
+      "explicacion": "Al terminar el contrato, el bien se devuelve.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la diferencia principal entre leasing y renting?",
+      "opciones": [
+        "El renting incluye la opción de compra y el leasing, no",
+        "No hay diferencia entre ambos contratos",
+        "El leasing tiene opción de compra; el renting, servicios",
+        "El leasing no tiene cuotas periódicas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Contablemente, el leasing se trata como financiero y el renting como un gasto operativo.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué incluye normalmente la cuota de un renting de vehículos?",
+      "opciones": [
+        "Solo el uso del vehículo sin ningún servicio",
+        "Solo el seguro obligatorio del vehículo",
+        "Solo el combustible que consume el vehículo",
+        "Uso, mantenimiento, seguro y asistencia"
+      ],
+      "respuesta": 3,
+      "explicacion": "Por eso la cuota es mayor que la de un leasing sin servicios.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se registra contablemente un leasing en el balance del arrendatario?",
+      "opciones": [
+        "Activo y deuda, por ser arrendamiento financiero",
+        "No se registra en el balance del arrendatario",
+        "Solo como gasto, sin reconocer activo alguno",
+        "Como un ingreso del ejercicio de la empresa"
+      ],
+      "respuesta": 0,
+      "explicacion": "El PGC trata el arrendamiento financiero como una financiación de la compra del activo.",
+      "criterio": "RA3.d",
+      "fuente": "Plan General de Contabilidad (conocimiento general; no contrastado en el texto legal).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se registra contablemente el renting?",
+      "opciones": [
+        "Como un activo no corriente del balance",
+        "Como gasto del ejercicio, sin activar el bien",
+        "Como una subvención de capital recibida",
+        "Como parte del capital de la empresa"
+      ],
+      "respuesta": 1,
+      "explicacion": "No aparece en el balance, lo que mejora algunos ratios de endeudamiento.",
+      "criterio": "RA3.d",
+      "fuente": "Plan General de Contabilidad (conocimiento general; no contrastado).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene el renting para una empresa frente a la compra?",
+      "opciones": [
+        "Es siempre más barato que comprar el vehículo",
+        "Permite quedarse con el vehículo sin pagar nada",
+        "No inmoviliza capital y da cuota fija",
+        "No exige la firma de ningún contrato"
+      ],
+      "respuesta": 2,
+      "explicacion": "A cambio, a largo plazo suele salir más caro que comprar si se usa el bien muchos años.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es un inconveniente del renting?",
+      "opciones": [
+        "Exige un capital inicial muy elevado",
+        "No admite incluir ningún tipo de servicios",
+        "No puede cancelarse nunca antes de su vencimiento",
+        "Puede costar más que comprar"
+      ],
+      "respuesta": 3,
+      "explicacion": "Penalizaciones por exceso de kilometraje o devolución anticipada son habituales.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja ofrece el leasing frente a la compra al contado?",
+      "opciones": [
+        "Financiar sin gran desembolso inicial",
+        "Es un contrato completamente gratuito",
+        "No hay obligación de pagar las cuotas",
+        "No exige la formalización de un contrato"
+      ],
+      "respuesta": 0,
+      "explicacion": "Al terminar, la empresa puede ejercer la opción de compra.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la opción de compra en un leasing?",
+      "opciones": [
+        "Una obligación del arrendador de vender el bien",
+        "El derecho a comprar el bien al final",
+        "El seguro que cubre el bien arrendado",
+        "Una comisión que se paga al abrir el contrato"
+      ],
+      "respuesta": 1,
+      "explicacion": "Si no se ejerce, el bien se devuelve.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene comprar un vehículo con fondos propios?",
+      "opciones": [
+        "No se paga IVA al comprar con fondos propios",
+        "Es siempre la opción más rentable",
+        "Se evita el coste financiero y el bien es propio",
+        "Se evita cualquier gasto de mantenimiento"
+      ],
+      "respuesta": 2,
+      "explicacion": "Inmoviliza capital que podría usarse en otras inversiones.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una desventaja de comprar con fondos propios?",
+      "opciones": [
+        "Nunca tiene desventajas frente a financiar",
+        "Se pagan intereses por el capital propio",
+        "Se pierde la propiedad del bien adquirido",
+        "Inmoviliza liquidez y expone a depreciación"
+      ],
+      "respuesta": 3,
+      "explicacion": "Por eso muchas empresas prefieren leasing o renting.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un aval bancario?",
+      "opciones": [
+        "Garantía del banco ante un tercero por el cliente",
+        "Un préstamo sin intereses a favor del cliente",
+        "Una subvención que recibe la empresa del banco",
+        "Un seguro de vida que contrata el administrador"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se usa, por ejemplo, para licitaciones o para operaciones de transporte especial.",
+      "criterio": "RA3.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una fianza?",
+      "opciones": [
+        "Una garantía real sobre un bien concreto",
+        "Garantía personal: alguien paga la deuda de otro",
+        "Un impuesto que grava la constitución de la deuda",
+        "Una comisión que cobra el notario por la escritura"
+      ],
+      "respuesta": 1,
+      "explicacion": "La fianza compromete el patrimonio del fiador.",
+      "criterio": "RA3.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una garantía bancaria en el transporte?",
+      "opciones": [
+        "Un seguro que cubre la mercancía transportada",
+        "Un préstamo para la compra de camiones",
+        "El banco paga a un tercero si falla la empresa",
+        "Un documento de transporte de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se exige, por ejemplo, en tránsitos aduaneros o en transportes especiales.",
+      "criterio": "RA3.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coste financiero de un leasing?",
+      "opciones": [
+        "El IVA del bien que se adquiere",
+        "El seguro que cubre el bien arrendado",
+        "El mantenimiento anual del bien",
+        "Cuotas pagadas menos el precio de contado"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es el coste de financiar la compra: intereses y comisiones.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Leasing y renting» y «Financiación a corto plazo»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Un vehículo de 30.000,00 € se usará 4 años. Comprado, supone seguro 900 €/año y mantenimiento 1.100 €/año, y al final vale 12.000,00 €. ¿Cuál es el coste neto de la compra?",
+      "opciones": [
+        "26.000,00 €",
+        "38.000,00 €",
+        "18.000,00 €",
+        "50.000,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Coste neto = 30.000,00 + 4 × (900 + 1.100) − 12.000,00 = 26.000,00 €.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-018",
+      "tipo": "opcion_unica",
+      "enunciado": "Mismo vehículo con leasing: 48 cuotas de 560 €, opción de compra de 560 €, seguro y mantenimiento como antes y valor final de 12.000 €. ¿Cuál es el coste neto?",
+      "opciones": [
+        "26.880,00 €",
+        "23.440,00 €",
+        "27.440,00 €",
+        "35.440,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Coste neto = 48 × 560 + 560 + 3.600 + 4.400 − 12.000 = 23.440,00 €.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-019",
+      "tipo": "opcion_unica",
+      "enunciado": "Mismo vehículo con renting: cuota de 640 € al mes durante 48 meses, que incluye seguro y mantenimiento, sin valor final. ¿Cuál es el coste total?",
+      "opciones": [
+        "18.720,00 €",
+        "7.680,00 €",
+        "30.720,00 €",
+        "34.320,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Coste = 48 × 640 = 30.720 €.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.4-020",
+      "tipo": "opcion_unica",
+      "enunciado": "Con los datos anteriores y sin tener en cuenta efectos fiscales ni costes de oportunidad, ¿qué alternativa resulta de menor coste neto?",
+      "opciones": [
+        "La compra (26.000,00 €)",
+        "El renting (30.720,00 €)",
+        "Las tres cuestan lo mismo",
+        "El leasing (23.440,00 €)"
+      ],
+      "respuesta": 3,
+      "explicacion": "El ranking de costes netos es leasing < compra < renting, aunque el renting incluye servicios y menor riesgo. La decisión real también considera impuestos, liquidez y riesgos.",
+      "criterio": "RA3.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

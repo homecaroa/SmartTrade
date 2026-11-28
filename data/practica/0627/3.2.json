@@ -1,0 +1,349 @@
+{
+  "modulo": "0627",
+  "tema": "3.2",
+  "titulo": "Defensa comercial: salvaguardia, vigilancia, antidumping y antisubvención",
+  "preguntas": [
+    {
+      "id": "0627-3.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el dumping según el Reglamento antidumping de la UE?",
+      "opciones": [
+        "Un precio de exportación a la UE inferior al comparable en el país de origen",
+        "Un precio de venta superior al precio comparable en el mercado de la UE",
+        "Una subvención pública al transporte de la mercancía exportada",
+        "Un arancel muy elevado que grava la entrada de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 1.2 del Reglamento (UE) 2016/1036. El dumping es una práctica de discriminación de precios.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE, art. 1.2.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo puede imponerse un derecho antidumping a un producto?",
+      "opciones": [
+        "Siempre que se importe un producto de un país tercero",
+        "Si hay dumping y su despacho a libre práctica causa un perjuicio",
+        "Cuando el exportador sea un Estado o un ente público",
+        "Cuando el producto sea nuevo en el mercado de la Unión"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 1.1: se exige dumping, perjuicio y relación causal con las importaciones objeto de dumping.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE, art. 1.1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un «producto similar» en el Reglamento antidumping?",
+      "opciones": [
+        "Un producto con el mismo embalaje y presentación comercial",
+        "Un producto con el mismo precio de venta en el mercado",
+        "Un producto idéntico o, a falta de este, de características muy parecidas",
+        "Cualquier producto de la misma industria o del mismo sector"
+      ],
+      "respuesta": 2,
+      "explicacion": "Sirve para calcular el valor normal y para definir la rama de producción de la Unión.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE, art. 1.4.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién puede presentar una denuncia para que se abra una investigación antidumping en la UE?",
+      "opciones": [
+        "Solo la Comisión Europea, de oficio y sin denuncia previa",
+        "Cualquier consumidor extranjero perjudicado por los precios",
+        "Únicamente los Estados miembros mediante su representante",
+        "Cualquier persona o asociación que actúe en nombre de la industria de la Unión"
+      ],
+      "respuesta": 3,
+      "explicacion": "La denuncia se presenta a la Comisión o a un Estado miembro, que la remitirá a la Comisión (art. 5.1). La Comisión también puede iniciar de oficio si hay pruebas suficientes.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE, art. 5.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué institución de la UE realiza la investigación antidumping?",
+      "opciones": [
+        "La Comisión Europea",
+        "El Consejo Europeo, que reúne a los jefes de Estado",
+        "El Parlamento Europeo, por mayoría de sus miembros",
+        "El Tribunal de Cuentas, con su función de auditoría"
+      ],
+      "respuesta": 0,
+      "explicacion": "La Comisión investiga e impone derechos provisionales; los definitivos se adoptan mediante reglamento de ejecución.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE (arts. 5 y siguientes).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuánto tiempo tienen, como mínimo, las partes para responder a los cuestionarios de la investigación antidumping?",
+      "opciones": [
+        "7 días desde la publicación del anuncio",
+        "30 días",
+        "24 horas desde la recepción del cuestionario",
+        "6 meses desde la apertura del procedimiento"
+      ],
+      "respuesta": 1,
+      "explicacion": "El plazo para los exportadores empieza a contar desde la recepción del cuestionario, que se supone recibido una semana después de su envío (art. 6.2).",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE, art. 6.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo expiran, en principio, las medidas antidumping definitivas de la UE?",
+      "opciones": [
+        "A los 12 meses, salvo que se prorroguen de oficio",
+        "A los 10 años en todos los casos sin excepción",
+        "A los cinco años, salvo reconsideración por expiración",
+        "Nunca expiran, porque son medidas permanentes"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 11.2. La reconsideración por expiración se inicia a petición de los productores de la Unión o por la Comisión; mientras tanto, la medida sigue vigente.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE, art. 11.2.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el margen de dumping es inferior al 2 % del precio de exportación, ¿qué ocurre en ciertos procedimientos?",
+      "opciones": [
+        "Se impone el derecho máximo que prevé el Reglamento",
+        "Se duplica el margen para compensar la escasa cuantía",
+        "Se aplica una medida de salvaguardia en su lugar",
+        "Se concluye el procedimiento por margen «de minimis»"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 9.3 prevé la conclusión inmediata cuando el margen es inferior al 2 % en los procedimientos a que se refiere.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE, art. 9.3.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los derechos compensatorios o antisubvención?",
+      "opciones": [
+        "Derechos sobre importaciones subvencionadas que dañan a la industria",
+        "Un descuento que se concede al exportador por pronto pago",
+        "Un impuesto sobre las exportaciones de materias primas",
+        "Un seguro obligatorio para los importadores de la Unión"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se regulan en el Reglamento (UE) 2016/1037 y en el Acuerdo SMC de la OMC.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Reglamento (UE) 2016/1037 (no leído).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué se diferencian el antidumping y los derechos compensatorios?",
+      "opciones": [
+        "No se diferencian, son el mismo instrumento con dos nombres",
+        "El dumping, a precios desleales; los compensatorios, a subvenciones",
+        "El antidumping afecta a servicios y el compensatorio, a mercancías",
+        "El antidumping lo aplica la OMC y el compensatorio la ONU"
+      ],
+      "respuesta": 1,
+      "explicacion": "Ambos son medidas de defensa comercial frente a prácticas consideradas desleales, aplicables si hay perjuicio para la industria de la Unión.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una medida de salvaguardia?",
+      "opciones": [
+        "Una sanción que se impone a un exportador por prácticas desleales",
+        "Un seguro de transporte para mercancías de alto valor",
+        "Una medida temporal ante un aumento de importaciones que causa perjuicio grave",
+        "Un impuesto interior que grava el consumo de productos importados"
+      ],
+      "respuesta": 2,
+      "explicacion": "A diferencia del antidumping, no requiere una práctica desleal: basta el aumento de importaciones y el perjuicio grave.",
+      "criterio": "RA3.e",
+      "fuente": "Reglamento (UE) 2015/478 (régimen común aplicable a las importaciones), DOUE L 83, 27.3.2015, vía BOE, art. 15.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién puede adoptar medidas de salvaguardia en la UE?",
+      "opciones": [
+        "Cada Estado miembro por separado en su territorio",
+        "El Banco Central Europeo, a propuesta del Consejo",
+        "Solo el Parlamento Europeo, mediante resolución",
+        "La Comisión, a instancia de un Estado miembro o de oficio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 15 del Reglamento (UE) 2015/478.",
+      "criterio": "RA3.e",
+      "fuente": "Reglamento (UE) 2015/478 (régimen común aplicable a las importaciones), DOUE L 83, 27.3.2015, vía BOE, art. 15.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la duración máxima de las medidas de salvaguardia provisionales según el Reglamento 2015/478?",
+      "opciones": [
+        "200 días",
+        "30 días prorrogables por la Comisión",
+        "12 meses sin posibilidad de ampliación",
+        "5 años con revisión intermedia"
+      ],
+      "respuesta": 0,
+      "explicacion": "Pueden adoptarse cuando circunstancias críticas hacen que un retraso cause un perjuicio difícil de reparar; tienen forma de aumento de derechos de aduana.",
+      "criterio": "RA3.e",
+      "fuente": "Reglamento (UE) 2015/478 (régimen común aplicable a las importaciones), DOUE L 83, 27.3.2015, vía BOE (medidas provisionales de salvaguardia).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una medida de vigilancia?",
+      "opciones": [
+        "Un impuesto especial que grava ciertas importaciones",
+        "Un seguimiento de las importaciones mediante documentos de vigilancia",
+        "Una prohibición temporal de importar un producto determinado",
+        "Un control sanitario previo de los productos de origen animal"
+      ],
+      "respuesta": 1,
+      "explicacion": "La vigilancia se aplica cuando la evolución de las importaciones pudiera hacer necesario recurrir a medidas de salvaguardia.",
+      "criterio": "RA3.e",
+      "fuente": "Reglamento (UE) 2015/478 (régimen común aplicable a las importaciones), DOUE L 83, 27.3.2015, vía BOE, arts. 10 a 14.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué puede exigirse un «documento de vigilancia» en una importación?",
+      "opciones": [
+        "Para cobrar el IVA de importación en la aduana de entrada",
+        "Para contratar el transporte de la mercancía con una naviera",
+        "Para despachar a libre práctica productos bajo vigilancia previa",
+        "Para solicitar un certificado de origen en la Cámara de Comercio"
+      ],
+      "respuesta": 2,
+      "explicacion": "El documento lo emiten las autoridades de los Estados miembros a petición del importador, sin constituir derecho de importación por sí mismo.",
+      "criterio": "RA3.e",
+      "fuente": "Reglamento (UE) 2015/478 (régimen común aplicable a las importaciones), DOUE L 83, 27.3.2015, vía BOE, considerando 9 y art. 11.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre salvaguardia y antidumping?",
+      "opciones": [
+        "No hay diferencia entre ambas medidas de defensa comercial",
+        "La salvaguardia se aplica a las exportaciones y el antidumping, a las importaciones",
+        "El antidumping es temporal y la salvaguardia, permanente",
+        "La salvaguardia, a un aumento súbito de importaciones; el antidumping, a precios desleales"
+      ],
+      "respuesta": 3,
+      "explicacion": "Ambas son medidas de defensa comercial, pero con requisitos y fundamentos distintos en la OMC y la UE.",
+      "criterio": "RA3.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Reconocimiento de las distintas barreras al comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el «perjuicio» en una investigación antidumping?",
+      "opciones": [
+        "Un daño importante a la industria de la Unión, o su amenaza",
+        "La pérdida de un cliente concreto de la empresa exportadora",
+        "Un daño causado al transportista durante el viaje",
+        "La pérdida de un contenedor durante la travesía marítima"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se evalúa con indicadores como cuota de mercado, precios, beneficios y empleo.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE (art. 3, conocimiento general del concepto).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene un derecho antidumping definitivo en el precio de la mercancía importada?",
+      "opciones": [
+        "Abarata el producto importado frente al nacional",
+        "Encarece la importación, pues se suma al arancel normal",
+        "No afecta al precio de la mercancía importada",
+        "Sustituye el arancel por una subvención compensatoria"
+      ],
+      "respuesta": 1,
+      "explicacion": "El derecho se calcula normalmente por la diferencia necesaria para eliminar el perjuicio, sin superar el margen de dumping.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE, art. 9.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-3.2-019",
+      "tipo": "opcion_unica",
+      "enunciado": "En la UE, ¿qué se publica en el Diario Oficial de la UE al imponerse medidas definitivas?",
+      "opciones": [
+        "Una directiva dirigida a los Estados miembros de la Unión",
+        "Una recomendación sin efectos vinculantes para los importadores",
+        "Un reglamento de ejecución que fija los derechos por empresa",
+        "Una carta individual dirigida a cada importador afectado"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los derechos pueden variar según el exportador; los importadores deben consultar el TARIC para conocer el tipo aplicable.",
+      "criterio": "RA3.d",
+      "fuente": "Reglamento (UE) 2016/1036 (antidumping), DOUE L 176, 30.6.2016, vía BOE (conocimiento general sobre el instrumento).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

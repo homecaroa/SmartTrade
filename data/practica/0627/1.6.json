@@ -1,0 +1,371 @@
+{
+  "modulo": "0627",
+  "tema": "1.6",
+  "titulo": "Marco jurídico comunitario, derecho aduanero y presupuesto de la UE",
+  "preguntas": [
+    {
+      "id": "0627-1.6-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué actos adoptan las instituciones de la UE para ejercer sus competencias, según el art. 288 TFUE?",
+      "opciones": [
+        "Reglamentos, directivas, decisiones, recomendaciones y dictámenes",
+        "Leyes, decretos, órdenes ministeriales y circulares internas",
+        "Convenios, protocolos, circulares y comunicaciones oficiales",
+        "Reglamentos, leyes, sentencias y resoluciones administrativas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Son los cinco tipos de acto del Derecho derivado. Los tres primeros son vinculantes; recomendaciones y dictámenes no lo son.",
+      "criterio": "RA1.f",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 288.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0627-1.6-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son los actos jurídicos vinculantes de la UE?",
+      "opciones": [
+        "Reglamento, dictamen y recomendación",
+        "Reglamento, directiva y decisión",
+        "Directiva, dictamen y recomendación",
+        "Reglamento, directiva, decisión, dictamen y recomendación"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 288 TFUE: las recomendaciones y los dictámenes no son vinculantes.",
+      "criterio": "RA1.f",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 288.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0627-1.6-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza a un reglamento de la UE?",
+      "opciones": [
+        "Obliga solo en cuanto al resultado que se debe alcanzar",
+        "Solo obliga a los destinatarios a los que se dirige",
+        "Alcance general, obligatorio y directamente aplicable en cada Estado",
+        "No es vinculante y tiene carácter meramente orientativo"
+      ],
+      "respuesta": 2,
+      "explicacion": "No necesita transposición. Ejemplo: el Reglamento (UE) 952/2013 que contiene el Código Aduanero de la Unión.",
+      "criterio": "RA1.f",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 288.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza a una directiva?",
+      "opciones": [
+        "Es directamente aplicable en los Estados sin necesidad de transposición",
+        "Solo obliga a las empresas y no a los Estados miembros",
+        "Es una recomendación que no vincula a sus destinatarios",
+        "Obliga en cuanto al resultado, y deja la forma y los medios al Estado"
+      ],
+      "respuesta": 3,
+      "explicacion": "Por eso necesita transposición al Derecho nacional. Ejemplo: las directivas del IVA.",
+      "criterio": "RA1.f",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 288.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza a una decisión de la UE?",
+      "opciones": [
+        "Obligatoria en todos sus elementos; si designa destinatarios, solo a ellos",
+        "Obliga solo en cuanto al resultado, dejando libres los medios",
+        "No es vinculante y carece de efectos jurídicos obligatorios",
+        "Tiene siempre alcance general y se aplica a todos los Estados"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se usa para casos concretos, por ejemplo, autorizar una ayuda de Estado o imponer una multa.",
+      "criterio": "RA1.f",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 288.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Son vinculantes las recomendaciones y los dictámenes?",
+      "opciones": [
+        "Sí, para todos los Estados",
+        "No: no son vinculantes",
+        "Sí, solo para las empresas",
+        "Sí, si los aprueba el Parlamento"
+      ],
+      "respuesta": 1,
+      "explicacion": "Expresan una opinión o un consejo; no crean obligaciones jurídicas.",
+      "criterio": "RA1.f",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 288.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Derecho originario de la UE?",
+      "opciones": [
+        "Los reglamentos y las directivas que adoptan las instituciones",
+        "La jurisprudencia de los tribunales nacionales de los Estados",
+        "Los Tratados constitutivos y sus modificaciones, como el TUE y el TFUE",
+        "Las recomendaciones que emite la Comisión Europea"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es la norma de rango más alto. El Derecho derivado se adopta en su aplicación.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del Derecho de la UE; Decreto 95/2012, módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Derecho derivado?",
+      "opciones": [
+        "Los Tratados constitutivos y sus sucesivas modificaciones",
+        "Los acuerdos de la OMC que la UE ha firmado con terceros",
+        "El Derecho civil y mercantil de cada Estado miembro",
+        "Los actos adoptados por las instituciones en aplicación de los Tratados"
+      ],
+      "respuesta": 3,
+      "explicacion": "Debe respetar los Tratados y los principios generales del Derecho de la Unión.",
+      "criterio": "RA1.f",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 288.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el «acervo comunitario»?",
+      "opciones": [
+        "Los derechos, obligaciones y normas que comparten los Estados y deben aceptar los candidatos",
+        "El presupuesto de la UE y sus recursos propios plurianuales",
+        "La lista de los miembros del Parlamento Europeo en cada legislatura",
+        "El conjunto de aranceles que aplica la UE a los terceros países"
+      ],
+      "respuesta": 0,
+      "explicacion": "Incluye los Tratados, el Derecho derivado, la jurisprudencia y las prácticas de la UE.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del Derecho de la UE; Decreto 95/2012, módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué significa el principio de primacía del Derecho de la UE?",
+      "opciones": [
+        "El Derecho nacional prevalece siempre sobre el de la Unión",
+        "En caso de conflicto, el Derecho de la UE prevalece sobre el nacional",
+        "Las directivas prevalecen sobre los Tratados constitutivos",
+        "Solo se aplica en materia aduanera y comercial"
+      ],
+      "respuesta": 1,
+      "explicacion": "Lo estableció la jurisprudencia del Tribunal de Justicia (sentencia Costa/ENEL, 1964).",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del Derecho de la UE; Decreto 95/2012, módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el efecto directo?",
+      "opciones": [
+        "Una ley nacional entra en vigor de forma inmediata en la Unión",
+        "Una norma nacional queda derogada de forma automática",
+        "Los particulares pueden invocar una norma de la UE ante sus jueces",
+        "La Comisión impone una sanción directa al Estado infractor"
+      ],
+      "respuesta": 2,
+      "explicacion": "Lo reconoció la sentencia Van Gend en Loos (1963). Los reglamentos son directamente aplicables.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del Derecho de la UE; Decreto 95/2012, módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Con qué base jurídica se aprueban las medidas de la política comercial común?",
+      "opciones": [
+        "El art. 13 TUE, sin intervención del Parlamento Europeo",
+        "Una decisión de la OMC que obliga a todos los Estados",
+        "Un acuerdo bilateral entre cada Estado y los países terceros",
+        "El art. 207 TFUE, con reglamentos aprobados por Parlamento y Consejo"
+      ],
+      "respuesta": 3,
+      "explicacion": "La política comercial común abarca modificaciones arancelarias, acuerdos comerciales, medidas de protección (antidumping, subvenciones), política de exportación e inversión extranjera directa.",
+      "criterio": "RA3.d",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 207.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma contiene el Código Aduanero de la Unión?",
+      "opciones": [
+        "El Reglamento (UE) nº 952/2013",
+        "La Directiva 2013/952, que cada Estado debe transponer",
+        "La Decisión 952/2013 dirigida a las aduanas nacionales",
+        "El Tratado de Roma, firmado en el año 1957"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es un reglamento, directamente aplicable: regula las normas y procedimientos aduaneros aplicables a las mercancías que entran o salen del territorio aduanero de la Unión.",
+      "criterio": "RA1.f",
+      "fuente": "Reglamento (UE) nº 952/2013, Código Aduanero de la Unión (DOUE L 269, 10.10.2013, vía BOE)",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Código Aduanero de la Unión, ¿en qué se basan los derechos de importación o de exportación adeudados?",
+      "opciones": [
+        "En los aranceles nacionales de cada Estado",
+        "En el arancel aduanero común",
+        "En el precio de venta final",
+        "En los tratados de la OMC"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 56 CAU establece que los derechos se basan en el arancel aduanero común.",
+      "criterio": "RA3.c",
+      "fuente": "Reglamento (UE) nº 952/2013, Código Aduanero de la Unión (DOUE L 269, 10.10.2013, vía BOE), art. 56.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son «mercancías de la Unión»?",
+      "opciones": [
+        "Cualquier mercancía que entre en el territorio de la UE",
+        "Solo las mercancías agrícolas producidas en la Unión",
+        "Solo las fabricadas por empresas de la UE en el extranjero",
+        "Las obtenidas en la Unión o importadas y despachadas a libre práctica"
+      ],
+      "respuesta": 3,
+      "explicacion": "Su estatuto aduanero determina qué trámites se necesitan al circular. Las que no cumplen esos criterios son «mercancías no Unión».",
+      "criterio": "RA4.g",
+      "fuente": "Reglamento (UE) nº 952/2013, Código Aduanero de la Unión (DOUE L 269, 10.10.2013, vía BOE), art. 5 (definición de «mercancías de la Unión»).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Tratado, ¿cómo se financia el presupuesto de la UE?",
+      "opciones": [
+        "Con cargo a los recursos propios, sin perjuicio de otros ingresos",
+        "Solo con préstamos que conceden los Estados miembros",
+        "Con impuestos directos que pagan los ciudadanos de la Unión",
+        "Únicamente con las multas que impone el Banco Central Europeo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 311 TFUE. El sistema de recursos propios lo fija el Consejo por unanimidad, previa consulta al Parlamento, y requiere la aprobación de los Estados.",
+      "criterio": "RA1.f",
+      "fuente": "Tratado de Funcionamiento de la UE, versión consolidada (DOUE C 202, 7.6.2016, vía BOE), art. 311.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son los recursos propios tradicionales de la UE?",
+      "opciones": [
+        "El IVA y la renta nacional bruta de cada Estado miembro",
+        "Derechos de aduana y exacciones sobre el azúcar",
+        "Las multas por infracciones de las normas de competencia",
+        "Las tasas que cobra la OMC por sus servicios"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los Estados miembros retienen un porcentaje como gastos de recaudación. Los otros recursos son el basado en el IVA, el basado en la renta nacional bruta (RNB), y otros como el de envases de plástico no reciclados.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del Derecho de la UE; Decreto 95/2012, módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el recurso propio que aporta más ingresos al presupuesto de la UE?",
+      "opciones": [
+        "Los derechos de aduana sobre las importaciones de terceros países",
+        "Los impuestos especiales sobre el alcohol y el tabaco",
+        "El basado en la renta nacional bruta (RNB)",
+        "Las multas por infracciones de las normas de competencia"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es el recurso «residual» que cubre la diferencia entre los gastos y los demás ingresos.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del Derecho de la UE; Decreto 95/2012, módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el marco financiero plurianual (MFP)?",
+      "opciones": [
+        "El presupuesto anual de un Estado miembro de la Unión",
+        "Un impuesto europeo que se cobra a los consumidores",
+        "Un acuerdo con la OMC sobre las subvenciones agrícolas",
+        "El plan de gasto plurianual, normalmente a siete años, con límites anuales"
+      ],
+      "respuesta": 3,
+      "explicacion": "El MFP vigente cubre 2021-2027. Los presupuestos anuales deben respetar sus topes.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del Derecho de la UE; Decreto 95/2012, módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.6-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son las dos políticas que concentran la mayor parte del gasto del presupuesto de la UE?",
+      "opciones": [
+        "La política agrícola común y la de cohesión",
+        "La defensa común y la sanidad pública de los Estados",
+        "La justicia y la educación de los Estados miembros",
+        "El transporte y la energía de las redes transeuropeas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Entre las dos suman la mayor parte del presupuesto; el resto va a investigación, acción exterior, administración y otras.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del Derecho de la UE; Decreto 95/2012, módulo 0627.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,287 @@
+{
+  "modulo": "0622",
+  "tema": "1.4",
+  "titulo": "Transporte marítimo",
+  "preguntas": [
+    {
+      "id": "0622-1.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Navegación Marítima, ¿qué es el contrato de transporte marítimo de mercancías o fletamento?",
+      "opciones": [
+        "El armador vende el buque al fletador a cambio de un precio",
+        "Un seguro que cubre las mercancías durante la travesía",
+        "El porteador transporta mercancías por mar a cambio de un flete",
+        "El cargador cede la propiedad de las mercancías al porteador"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 203 LNM define el contrato de transporte marítimo de mercancías, también llamado fletamento: el porteador se obliga a transportar por mar mercancías y entregarlas al destinatario en destino, a cambio de un flete. Es un contrato de transporte, no de compraventa del buque ni de seguro.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 203 (BOE-A-2014-7877, texto consolidado).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "En un fletamento por viaje, salvo pacto en contrario, ¿a cargo de quién corren los gastos variables de explotación del buque?",
+      "opciones": [
+        "Del porteador",
+        "Del fletador, que contrata el buque para el viaje",
+        "Se reparten por mitad entre porteador y fletador",
+        "Del destinatario de las mercancías transportadas"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 204.2 LNM distingue: en el fletamento por tiempo, el fletador asume la gestión comercial del buque y los gastos variables de explotación (salvo pacto); en el fletamento por viaje esos gastos son del porteador, salvo pacto distinto. En el fletamento por tiempo el porteador se compromete a realizar los viajes que ordene el fletador durante el periodo pactado; en el de viaje, uno o varios viajes determinados.",
+      "criterio": "RA3.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 204.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Una vez embarcadas las mercancías, ¿qué documento debe entregar el porteador al cargador y qué documenta?",
+      "opciones": [
+        "La póliza de fletamento, que documenta el seguro de la carga",
+        "La factura comercial, que documenta el precio de venta",
+        "El manifiesto de carga, que documenta la propiedad del buque",
+        "El conocimiento de embarque, que da derecho a la restitución"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 246.1 LNM obliga al porteador, al capitán o al agente a entregar al cargador un conocimiento de embarque (Bill of Lading, B/L) una vez las mercancías están a bordo; documenta el derecho a la restitución de esas mercancías en el puerto de destino. Además hace fe de su recepción y estado (art. 256) y puede circular como título (arts. 250 y 251).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 246.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Navegación Marítima, ¿cómo se transmite un conocimiento de embarque emitido «a la orden»?",
+      "opciones": [
+        "Mediante su simple entrega al nuevo tenedor",
+        "Mediante su endoso",
+        "Mediante cesión conforme a las normas de créditos no endosables",
+        "No es transmisible bajo ninguna forma jurídica"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 250 LNM permite conocimientos al portador, a la orden o nominativos. Los al portador se transmiten por entrega, los a la orden por endoso y los nominativos por cesión según las normas de la cesión de créditos no endosables. Esta posibilidad de circular es lo que convierte al B/L en título representativo de las mercancías.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 250.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto produce la transmisión del conocimiento de embarque según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Ninguno: solo se transmite el papel, no los derechos sobre la carga",
+        "Solo permite cobrar el flete que quede pendiente de pago",
+        "Los de la entrega de las mercancías representadas",
+        "Extingue el contrato de transporte entre las partes"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 251 LNM (eficacia traslativa): la transmisión del B/L produce los mismos efectos que la entrega de las mercancías que representa, y el adquirente adquiere los derechos y acciones del transmitente. Por eso el B/L permite vender la mercancía mientras está en el mar.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 251.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Frente a un destinatario que ha adquirido de buena fe el conocimiento de embarque, ¿puede el porteador probar que las mercancías eran distintas de las descritas en el B/L?",
+      "opciones": [
+        "No, salvo que hubiera hecho reservas en el B/L",
+        "Sí, siempre, porque el B/L solo es una presunción de lo cargado",
+        "Sí, pero solo dentro de los tres días laborables tras la entrega",
+        "Sí, mientras el flete todavía no haya sido pagado"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 256.1 LNM da al B/L valor probatorio, salvo prueba en contrario, de la entrega de las mercancías por el cargador con las características y estado que consten. Pero el 256.2 no admite prueba en contrario frente a un tercero de buena fe (incluido el destinatario) que lo haya adquirido sin culpa grave, salvo que el porteador hubiera consignado reservas. Por eso el porteador debe anotar reservas en el B/L si duda de lo declarado.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 256.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte marítimo, ¿qué es el plazo de «plancha»?",
+      "opciones": [
+        "Los días de navegación del buque con la carga a bordo",
+        "Los días de descanso de la tripulación mientras está en puerto",
+        "El tiempo del fletador para cargar o descargar el buque",
+        "El tiempo que el buque espera fondeado fuera del puerto"
+      ],
+      "respuesta": 2,
+      "explicacion": "La plancha es el plazo pactado para las operaciones de carga o descarga. Se cuenta, salvo pacto, excluyendo festivos (art. 239.1) y los periodos en que sea imposible trabajar por causas fortuitas (239.2); se inicia cuando el buque está en el muelle designado, preparado, y el fletador ha recibido la comunicación (art. 240). Terminada la plancha comienzan automáticamente las demoras (art. 241), que el fletador paga.",
+      "criterio": "RA3.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 239 a 242.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2024-25"
+      ]
+    },
+    {
+      "id": "0622-1.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Salvo pacto en contrario, ¿devengan flete las mercancías perdidas durante el viaje?",
+      "opciones": [
+        "Sí, siempre, porque el flete se paga por haber embarcado la carga",
+        "Sí, pero solo la mitad del flete pactado en el contrato",
+        "No, salvo que se deba a su naturaleza o vicio propio",
+        "No, en ningún caso, ni siquiera por vicio propio de la carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 234.1 LNM: no devengan flete las mercancías perdidas durante el viaje, salvo que la pérdida se debiera a su naturaleza, vicio propio o defecto de embalaje; si la pérdida es parcial y el flete se calculó por peso o medida, no se paga la parte perdida. Las mercancías averiadas sí devengan flete y no pueden abandonarse al porteador como forma de pago (art. 234.2).",
+      "criterio": "RA3.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 234.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte marítimo, ¿qué es el «falso flete» (flete sobre vacío)?",
+      "opciones": [
+        "Lo que paga el fletador por la carga contratada y no embarcada",
+        "Un recargo por retraso en la entrega en el puerto de destino",
+        "Una reducción del flete por llevar menos carga de la prevista",
+        "Un flete declarado de forma fraudulenta en el B/L"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 230 LNM: el fletador que no carga la totalidad de las mercancías contratadas debe pagar el flete de la cantidad que deje de embarcar, salvo que el porteador haya tomado otra carga para completar la capacidad del buque. Es el «flete sobre vacío» (dead freight), una compensación por la capacidad contratada y no utilizada.",
+      "criterio": "RA3.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 230.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En un transporte marítimo en régimen de conocimiento de embarque, ¿qué normativa rige la responsabilidad del porteador según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Solo lo que pacten libremente las partes, que pueden excluirla",
+        "El Convenio CMR, aplicado por analogía con el transporte terrestre",
+        "El Convenio de Bruselas de 1924 y la ley, con carácter imperativo",
+        "Solo el Código de Comercio de 1885, sin ninguna otra norma"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los arts. 277.1 y 277.2 LNM aplican imperativamente el régimen de responsabilidad al contrato de transporte marítimo; sin efecto las cláusulas que lo atenúen o anulen en perjuicio del titular de las mercancías. Los contratos en régimen de B/L, nacionales o internacionales, se rigen por el Convenio de Bruselas de 1924, sus protocolos vigentes para España y la ley.",
+      "criterio": "RA1.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 277.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Durante qué periodo es responsable el porteador marítimo de la custodia y conservación de las mercancías según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Solo mientras el buque se encuentra navegando con la carga",
+        "Solo desde que están a bordo hasta que se desembarcan",
+        "Desde la firma de la compraventa hasta el pago del flete",
+        "Desde que las recibe en origen hasta que las entrega"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 279 LNM extiende la responsabilidad desde que el porteador se hace cargo de las mercancías en el puerto de origen hasta que las pone a disposición del destinatario o persona designada en el de destino. Si las normas portuarias obligan a que intervenga una empresa u organismo en la entrega o recepción, no responde del periodo en que las mercancías estén bajo su custodia.",
+      "criterio": "RA3.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 279.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Si no se ha declarado el valor real en el B/L, ¿qué límite de responsabilidad por pérdida o daño establecen las Reglas de La Haya-Visby (con el Protocolo DEG)?",
+      "opciones": [
+        "17 DEG por kilogramo de peso bruto, sin límite por bulto",
+        "666,67 DEG por bulto o 2 DEG por kilo; la mayor",
+        "8,33 DEG por kilogramo de peso bruto transportado",
+        "26 DEG por kilogramo de peso bruto transportado"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 282.1 LNM remite a las cifras del Convenio de Bruselas de 1924 y los protocolos que lo modifican vigentes para España. Las Reglas de La Haya-Visby con el Protocolo DEG de 1979 limitan a 666,67 DEG por bulto o unidad, o 2 DEG por kg de peso bruto, la cifra más alta. Cuando se usan contenedores, cada bulto enumerado en el B/L cuenta como una unidad (art. 282.2). El porteador pierde el límite si el daño se debe a su dolo o temeridad (art. 282.4).",
+      "criterio": "RA3.g",
+      "fuente": "Ley 14/2014, art. 282 (remisión; BOE). Cifras 666,67/2 DEG: Reglas de La Haya-Visby, conocimiento general: no he abierto el texto del convenio ni comprobado qué protocolos ha ratificado España.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Un destinatario recibe un contenedor con mercancía dañada de forma aparente. Según la Ley de Navegación Marítima, ¿en qué plazo debe dar aviso escrito al porteador?",
+      "opciones": [
+        "Durante el día laborable siguiente al de la entrega",
+        "En siete días naturales desde la entrega al destinatario",
+        "En treinta días desde la entrega al destinatario",
+        "En un año desde la entrega al destinatario"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 285 LNM: aviso escrito durante el día laborable siguiente al de la entrega; si el daño no es aparente, en los tres días laborables siguientes; por retraso, en los diez días laborables siguientes. No hace falta aviso si hubo inspección conjunta. Sin aviso en plazo se presume que se entregaron como figuraban en el B/L. Las acciones del fletamento prescriben al año (art. 286).",
+      "criterio": "RA6.e",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 285 y 286.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué se diferencia un contenedor estándar de 20 o 40 pies de uno «high cube»?",
+      "opciones": [
+        "El high cube solo existe en el tamaño de 20 pies",
+        "El high cube es siempre un contenedor refrigerado",
+        "En la altura: 9'6\" frente a 8'6\" del estándar",
+        "El high cube es más ancho que el contenedor estándar"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los contenedores ISO tienen 8 pies de ancho y 8'6\" de alto en el estándar; el high cube añade un pie de altura (9'6\"), por lo que gana capacidad volumétrica. Se fabrica sobre todo en 40 pies. Como unidad de medida, el TEU equivale a un contenedor de 20 pies y el FEU a uno de 40 (2 TEU).",
+      "criterio": "RA1.a",
+      "fuente": "Conocimiento general del sector (norma ISO 668). No he abierto la norma.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": [
+        "2023-24"
+      ]
+    },
+    {
+      "id": "0622-1.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "En una cotización de flete marítimo, ¿qué es el recargo BAF?",
+      "opciones": [
+        "Un recargo por congestión en el puerto de destino",
+        "Traslada al cliente las variaciones del combustible",
+        "Un recargo por la manipulación del contenedor en la terminal",
+        "Un recargo por la seguridad de la ruta marítima"
+      ],
+      "respuesta": 1,
+      "explicacion": "El BAF (Bunker Adjustment Factor) ajusta el flete básico según el precio del combustible (bunker). Otros recargos habituales son el CAF (variación de divisas), el THC (manipulación en terminal), el de congestión portuaria y los de seguridad. El flete básico se calcula normalmente por contenedor o por peso/volumen según lo pactado.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general del sector. Pregunta equivalente en el modelo de Madrid 2025-26 (nº 29).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+{
+  "modulo": "0622",
+  "tema": "2.12",
+  "titulo": "Características de la carga, operativa y planificación",
+  "preguntas": [
+    {
+      "id": "0622-2.12-001",
+      "tipo": "opcion_unica",
+      "enunciado": "En un vehículo de transporte, ¿qué es la carga útil?",
+      "opciones": [
+        "El peso máximo de mercancía: masa máxima menos tara",
+        "El peso del vehículo vacío, sin carga ni conductor",
+        "El peso del conductor y del combustible del depósito",
+        "El volumen exterior total que ocupa el vehículo"
+      ],
+      "respuesta": 0,
+      "explicacion": "La masa máxima autorizada (MMA) es el peso total que puede alcanzar el vehículo cargado; la tara es su peso en vacío. La carga útil es la diferencia: lo que puede llevar de mercancía (incluyendo los elementos de embalaje y estiba que no formen parte del vehículo). Superarla supone sobrepeso e infracciones.",
+      "criterio": "RA2.f",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Características de carga. Carga útil, riesgo, tiempo…»). Conceptos de MMA y tara: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Un camión tiene una masa máxima autorizada de 40 t y una tara de 15 t. ¿Cuál es su carga útil?",
+      "opciones": [
+        "15 t",
+        "55 t",
+        "25 t",
+        "40 t"
+      ],
+      "respuesta": 2,
+      "explicacion": "Carga útil = masa máxima autorizada − tara = 40 − 15 = 25 t. Sumar (55 t) no tiene sentido físico; 40 t es la MMA y 15 t la tara. Además de la carga útil, hay que respetar el reparto de peso por ejes y la altura máxima de la carga.",
+      "criterio": "RA2.f",
+      "fuente": "Cálculo con la definición de carga útil.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué mide el coeficiente de estiba?",
+      "opciones": [
+        "La relación entre el precio de la mercancía y su peso",
+        "La relación entre el volumen que ocupa la mercancía y su peso",
+        "El porcentaje de mercancía dañada durante el viaje",
+        "La relación entre el flete cobrado y la distancia recorrida"
+      ],
+      "respuesta": 1,
+      "explicacion": "El coeficiente (o factor) de estiba indica cuánto espacio ocupa una tonelada de mercancía, incluyendo envases y huecos de estiba (m³/t). Permite saber si una carga es «pesada» (el peso agota la capacidad antes que el volumen) o «voluminosa» (el volumen se agota antes). En el transporte aéreo, la relación equivalente se plasma en el peso volumétrico (6.000 cm³/kg).",
+      "criterio": "RA4.d",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Manipulación y estiba de mercancías. Coeficientes de estiba»); equivalencia con el modelo de Madrid 2025-26 (nº 36).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.12-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Una carga de espuma de embalaje ocupa mucho volumen y pesa muy poco. Al cargarla en un camión, ¿qué límite se alcanzará antes?",
+      "opciones": [
+        "El de peso, es decir, la carga útil del vehículo",
+        "El de la altura legal permitida para el conductor",
+        "El de la velocidad máxima autorizada en la vía",
+        "El de volumen, es decir, la capacidad del espacio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es una carga «voluminosa» (alto coeficiente de estiba): el espacio se llena mucho antes de alcanzar el peso máximo permitido. El flete se calcula entonces sobre el volumen (metros de carga, o peso volumétrico en aéreo). Para una carga pesada y compacta, como acero, ocurre al revés.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística y estiba.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un trasbordo en el transporte de mercancías?",
+      "opciones": [
+        "Pasar la mercancía a otro vehículo a mitad de ruta",
+        "El cambio de conductor durante un viaje largo",
+        "La firma de un nuevo contrato de compraventa",
+        "El embalaje de la mercancía antes de la salida"
+      ],
+      "respuesta": 0,
+      "explicacion": "El trasbordo (o transbordo) es el cambio de medio o de vehículo de la mercancía en un punto intermedio (puerto, aeropuerto, terminal, frontera). En el transporte marítimo, el «transbordo» (transshipment) es el cambio de buque en un puerto intermedio. Añade tiempo, manipulación y riesgo, pero permite conectar redes. El CMR admite prohibirlo expresamente en la carta de porte (art. 6.2.a).",
+      "criterio": "RA2.f",
+      "fuente": "Decreto 95/2012 («Operativa de carga. Trasbordo, tránsito y consolidación»); Convenio CMR, art. 6.2.a.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-006",
+      "tipo": "opcion_unica",
+      "enunciado": "En un envío marítimo de contenedores, ¿qué significan las siglas FCL y LCL?",
+      "opciones": [
+        "Full Cargo Load y Little Cargo Load, cargas de pequeño volumen",
+        "Fast Container Line y Low Container Line, tipos de naviera",
+        "Contenedor completo de un cargador, y carga fraccionada",
+        "Freight Cost Level y Loading Cost Level, niveles de tarifa"
+      ],
+      "respuesta": 2,
+      "explicacion": "FCL es el envío en un contenedor completo, normalmente de un solo cargador, que se carga y precinta en origen. LCL es la carga que no llena un contenedor y se consolida con otras en un almacén (CFS), compartiendo el contenedor. En destino se desconsolida. El LCL es el equivalente marítimo del grupaje por carretera.",
+      "criterio": "RA2.f",
+      "fuente": "Terminología habitual del transporte marítimo. Conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la consolidación de carga?",
+      "opciones": [
+        "Dividir una partida en varias para enviarlas por rutas distintas",
+        "Agrupar envíos de varios expedidores en una unidad de transporte",
+        "Convertir una carga cualquiera en mercancía peligrosa",
+        "Pagar por adelantado el flete de toda la partida"
+      ],
+      "respuesta": 1,
+      "explicacion": "Consolidar es agrupar envíos pequeños de distintos cargadores en una misma unidad (contenedor, ULD, remolque) para beneficiarse de tarifas de carga completa. Lo hacen los transitarios (grupaje, House/Master AWB, LCL). La operación inversa es la desconsolidación en destino.",
+      "criterio": "RA2.f",
+      "fuente": "Decreto 95/2012 («Trasbordo, tránsito y consolidación»); conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En un reparto con varias entregas, ¿cómo conviene ordenar la carga en el vehículo?",
+      "opciones": [
+        "Al azar, porque el orden de la carga no influye en el reparto",
+        "Primero lo más voluminoso, sin tener en cuenta las entregas",
+        "Los bultos más frágiles en el fondo, bajo los más pesados",
+        "Lo primero en entregarse, más accesible"
+      ],
+      "respuesta": 3,
+      "explicacion": "La planificación de la carga sigue el orden inverso de descarga (lo último en entregarse, al fondo), reparte el peso sobre los ejes, coloca lo pesado abajo y lo frágil arriba, y evita movimientos de la carga durante el viaje. Reduce manipulaciones, tiempos y daños.",
+      "criterio": "RA2.f",
+      "fuente": "Decreto 95/2012 («Planificación y distribución de cargas»). Reglas de buena práctica: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dimensiones tiene el palé europeo (EUR/EPAL)?",
+      "opciones": [
+        "1.200 × 800 mm",
+        "1.200 × 1.000 mm, el palé industrial ISO",
+        "1.000 × 800 mm, el palé de formato reducido",
+        "1.219 × 1.016 mm, el palé estándar norteamericano"
+      ],
+      "respuesta": 0,
+      "explicacion": "El palé europeo estándar mide 1.200 × 800 mm. El de 1.200 × 1.000 mm es el palé industrial, muy usado en transporte marítimo, y el de 1.219 × 1.016 mm (48 × 40 pulgadas) es el palé americano. La forma de la carga y del vehículo determina cuántos caben.",
+      "criterio": "RA4.d",
+      "fuente": "Norma de palés EUR/EPAL: conocimiento general; no he consultado la norma.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.12-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En un semirremolque de 13,6 m de largo y 2,45 m de ancho útiles, ¿cuántos palés europeos (1,20 × 0,80 m) caben en una capa si se colocan con el lado de 0,80 m a lo ancho?",
+      "opciones": [
+        "26",
+        "30",
+        "33",
+        "36"
+      ],
+      "respuesta": 2,
+      "explicacion": "A lo largo: 13,6 ÷ 1,2 = 11,33 → 11 filas. A lo ancho: 2,45 ÷ 0,8 = 3,06 → 3 palés por fila. En total, 11 × 3 = 33 palés europeos por capa. Con palés de 1,20 × 1,00 m, colocados con el lado de 1,20 m a lo ancho, caben 13 filas × 2 = 26 (13,6 ÷ 1,0 = 13; 2,45 ÷ 1,2 = 2); por eso el tipo de palé condiciona el plan de carga.",
+      "criterio": "RA2.f",
+      "fuente": "Cálculo de plan de carga con las medidas dadas.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Al cargar mercancías en un mismo vehículo, ¿qué debe cuidarse respecto a la compatibilidad?",
+      "opciones": [
+        "Nada, porque cualquier mercancía puede ir con cualquier otra",
+        "Que no vayan juntas mercancías incompatibles entre sí",
+        "Que se carguen siempre juntas las mercancías peligrosas de distintas clases",
+        "Que las mercancías más pesadas vayan siempre en la parte delantera"
+      ],
+      "respuesta": 1,
+      "explicacion": "El plan de carga debe respetar la compatibilidad y las normas de segregación: alimentos, químicos, peligrosas y mercancías con olores o humedad no deben mezclarse sin criterio. El ADR fija prohibiciones de carga en común entre mercancías peligrosas. Es una de las condiciones de integridad que se estudian en la unidad 4.",
+      "criterio": "RA2.f",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Normativa sobre la consolidación y la compatibilidad de productos. Normas de segregación»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.12-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Cuando la carga es perecedera, ¿qué debe priorizarse en la elección del modo y de la ruta?",
+      "opciones": [
+        "El menor coste, aunque aumente mucho el plazo de entrega",
+        "La máxima capacidad, aunque no haya control de temperatura",
+        "La ruta con más trasbordos para repartir el riesgo",
+        "Rapidez y mantenimiento de la cadena de frío"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las mercancías perecederas exigen tiempos cortos y control continuo de temperatura (vehículos y contenedores refrigerados, certificado ATP en carretera). Cada trasbordo aumenta el riesgo de rotura de la cadena de frío. El tiempo y el riesgo son, por tanto, las variables decisivas, por encima del coste.",
+      "criterio": "RA2.f",
+      "fuente": "Decreto 95/2012 («Características de carga. Carga útil, riesgo, tiempo, exigencias de medio de transporte y de contrato»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

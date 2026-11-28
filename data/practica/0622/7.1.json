@@ -1,0 +1,457 @@
+{
+  "modulo": "0622",
+  "tema": "7.1",
+  "titulo": "Marco legal y contrato de seguro de mercancías",
+  "preguntas": [
+    {
+      "id": "0622-7.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el contrato de seguro según la Ley de Contrato de Seguro?",
+      "opciones": [
+        "El asegurador indemniza el daño a cambio de una prima",
+        "El asegurado evita el siniestro a cambio del pago de una prima",
+        "El tomador indemniza al asegurador por los daños sufridos",
+        "El asegurador garantiza el beneficio de la venta sin cobrar prima"
+      ],
+      "respuesta": 0,
+      "explicacion": "Elementos: asegurador, prima, riesgo/evento cubierto e indemnización dentro de los límites pactados.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 1 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo debe formalizarse el contrato de seguro?",
+      "opciones": [
+        "Basta con un acuerdo verbal sin ningún documento",
+        "Por escrito; póliza o documento provisional",
+        "Solo es válido si se otorga ante notario",
+        "Solo es válido si se inscribe en el Registro Mercantil"
+      ],
+      "respuesta": 1,
+      "explicacion": "El contrato y sus modificaciones se formalizan por escrito (art. 5).",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 5 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En un seguro de mercancías, el vendedor contrata la póliza por cuenta del comprador (tomador y asegurado son personas distintas). ¿A quién corresponden los derechos derivados del contrato?",
+      "opciones": [
+        "Solo al tomador, que es quien paga la prima",
+        "Al transportista, que custodia la mercancía",
+        "Al asegurado o beneficiario; los deberes, al tomador",
+        "Al asegurador, que decide cuándo debe indemnizar"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 7: los derechos son del asegurado o beneficiario; los deberes, del tomador (el asegurador no puede rechazar que los cumpla el asegurado).",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 7 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Si hay duda sobre si el tomador contrató por cuenta propia o ajena, ¿qué se presume?",
+      "opciones": [
+        "Que contrató por cuenta ajena",
+        "Que contrató por cuenta del transportista",
+        "Que el contrato es nulo de pleno derecho",
+        "Que contrató por cuenta propia"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 7: en caso de duda se presumirá que el tomador ha contratado por cuenta propia.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 7 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos datos debe figurar, como mínimo, en la póliza?",
+      "opciones": [
+        "La suma asegurada o alcance de la cobertura",
+        "El Incoterm de la compraventa, en todos los casos",
+        "El número del contenedor del transporte",
+        "El precio de venta al consumidor final"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 8: partes, concepto en que se asegura, riesgo cubierto, objetos asegurados, suma asegurada, prima, duración, etc.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 8 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el contenido de la póliza difiere de la proposición de seguro, ¿de cuánto tiempo dispone el tomador para reclamar la subsanación?",
+      "opciones": [
+        "Siete días",
+        "Un mes desde la entrega de la póliza",
+        "Quince días",
+        "Seis meses"
+      ],
+      "respuesta": 1,
+      "explicacion": "Pasado ese plazo sin reclamar, se estará a lo dispuesto en la póliza (art. 8).",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 8 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué obligación tiene el tomador antes de concluir el contrato?",
+      "opciones": [
+        "Pagar la franquicia por adelantado al asegurador",
+        "Contratar un segundo seguro con otra compañía",
+        "Declarar las circunstancias que influyan en el riesgo",
+        "Esperar a que el asegurador inspeccione la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es el deber de declaración del riesgo (art. 10).",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 10 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el tomador oculta con dolo una circunstancia relevante y después ocurre el siniestro, ¿qué consecuencia tiene?",
+      "opciones": [
+        "El asegurador debe pagar en todo caso el cien por cien",
+        "El asegurador solo puede reclamar al tomador una multa",
+        "El contrato se convierte en un seguro de crédito",
+        "El asegurador queda liberado si hubo dolo o culpa grave"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 10: si medió dolo o culpa grave del tomador, el asegurador queda liberado.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 10 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Durante el contrato, ¿qué debe hacer el tomador si se agrava el riesgo (por ejemplo, cambia la ruta a una zona más peligrosa)?",
+      "opciones": [
+        "Comunicarlo al asegurador cuanto antes",
+        "Esperar a la fecha de renovación de la póliza",
+        "Comunicarlo solo si finalmente hay un siniestro",
+        "No tiene ninguna obligación de comunicarlo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 11: deber de comunicar las circunstancias que agraven el riesgo.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 11 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Salvo pacto en contrario, si la prima no ha sido pagada antes de que ocurra el siniestro, ¿qué ocurre?",
+      "opciones": [
+        "El asegurador paga y descuenta la prima de la indemnización",
+        "El asegurador queda liberado de su obligación",
+        "El asegurador paga únicamente la mitad del daño",
+        "El contrato se prorroga automáticamente un año más"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 15: si por culpa del tomador la primera prima o la prima única no se paga, el asegurador puede resolver o exigirla y, antes del siniestro, queda liberado.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 15 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el plazo máximo para comunicar el siniestro al asegurador, salvo que la póliza fije uno más amplio?",
+      "opciones": [
+        "24 horas",
+        "Quince días",
+        "Siete días desde que se conoció",
+        "Un mes"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 16 (Ley 50/1980). El art. 426 de la Ley de Navegación Marítima fija también siete días en el seguro marítimo.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 16 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe hacer el asegurado tras el siniestro respecto al daño?",
+      "opciones": [
+        "Esperar sin actuar a que llegue el perito",
+        "Vender de inmediato la mercancía dañada",
+        "Reclamar únicamente al transportista",
+        "Emplear los medios a su alcance para reducir el daño"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 17: el incumplimiento permite reducir la prestación; los gastos razonables de salvamento los asume el asegurador.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 17 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo prescriben las acciones derivadas de un seguro de daños?",
+      "opciones": [
+        "Dos años",
+        "Seis meses",
+        "Un año",
+        "Cinco años"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 23: dos años en seguros de daños y cinco en seguros de personas.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 23 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué juez es competente para las acciones derivadas del contrato de seguro?",
+      "opciones": [
+        "El que elijan libremente las partes del contrato",
+        "El del domicilio del asegurado, sin pacto en contra",
+        "El del domicilio social del asegurador",
+        "El del puerto de destino de la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 24 de la Ley de Contrato de Seguro.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 24 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si en un seguro de daños no existe interés del asegurado en el momento de concluir el contrato?",
+      "opciones": [
+        "El contrato es válido, pero queda sin prima",
+        "El asegurador indemniza solo la mitad del daño",
+        "El contrato es nulo",
+        "El contrato se convierte en un seguro de vida"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 25: sin interés del asegurado en la indemnización del daño, el seguro de daños es nulo.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 25 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué principio impide que el asegurado cobre más que el daño real?",
+      "opciones": [
+        "La regla de la prima mínima del contrato",
+        "El principio de libre estimación del daño",
+        "La libertad de forma del contrato de seguro",
+        "El principio indemnizatorio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 26: el seguro no puede ser objeto de enriquecimiento injusto; la suma asegurada es el límite máximo (art. 27).",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, arts. 26-27 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Si la suma asegurada es inferior al valor del interés al ocurrir el siniestro (infraseguro), ¿cómo indemniza el asegurador?",
+      "opciones": [
+        "Proporcionalmente a lo que cubre la suma asegurada",
+        "Paga siempre la suma asegurada completa",
+        "No paga nada, por haber infraseguro",
+        "Paga el daño íntegro y reclama la diferencia de prima"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 30. Se puede excluir la regla proporcional por pacto.",
+      "criterio": "RA7.a",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 30 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "Una mercancía vale 80.000 € y se asegura por 60.000 €. Se pierden mercancías por valor de 20.000 €. Con regla proporcional, ¿cuánto indemniza el asegurador?",
+      "opciones": [
+        "20.000,00 €",
+        "15.000,00 €",
+        "60.000,00 €",
+        "26.666,67 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Indemnización = daño × suma asegurada / valor real = 20.000 × 60.000 / 80.000 = 15.000 €. El asegurado soporta la diferencia por infraseguro.",
+      "criterio": "RA7.b",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 30 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la subrogación del asegurador?",
+      "opciones": [
+        "La cesión del contrato a otra aseguradora",
+        "La sustitución del tomador por otra persona",
+        "Reclamar a los responsables, hasta lo pagado",
+        "La renuncia del asegurador a cobrar la prima"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 43. Por eso el asegurado no debe renunciar a sus acciones contra el transportista.",
+      "criterio": "RA7.g",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 43 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué cubre el seguro de transporte terrestre?",
+      "opciones": [
+        "Solo la responsabilidad civil del transportista",
+        "Solo el retraso en la entrega de la mercancía",
+        "Solo el robo del vehículo que realiza el transporte",
+        "Daños materiales a mercancías o medio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 54 de la Ley de Contrato de Seguro.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 54 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿De qué daño no responde el asegurador en el seguro de transporte terrestre?",
+      "opciones": [
+        "Los vicios propios de la mercancía",
+        "El daño causado por una colisión del vehículo",
+        "El daño causado por el vuelco del vehículo",
+        "El daño causado por un incendio del vehículo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 57. En el seguro marítimo, el art. 420 de la Ley 14/2014 excluye también el vicio propio.",
+      "criterio": "RA7.b",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 57 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-022",
+      "tipo": "opcion_unica",
+      "enunciado": "Si un transporte combina varios medios y no puede determinarse dónde ocurrió el siniestro, ¿qué normas se aplican?",
+      "opciones": [
+        "Siempre las del seguro aéreo",
+        "Las del terrestre, si es el tramo principal",
+        "Siempre las del seguro marítimo",
+        "Las propias del contrato con el transitario"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 55. Si el tramo terrestre es accesorio de uno marítimo o aéreo, se aplican las del marítimo o aéreo a todo el transporte.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 55 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-023",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ley se aplica al seguro de los daños de la navegación marítima y qué rige en lo no previsto en ella?",
+      "opciones": [
+        "Solo el Código Civil, sin ninguna ley especial",
+        "El Convenio CMR sobre transporte por carretera",
+        "La Ley 14/2014; en lo no previsto, la Ley de Contrato de Seguro",
+        "Solo los Incoterms de la Cámara de Comercio Internacional"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 406 de la Ley 14/2014.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 406, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-024",
+      "tipo": "opcion_unica",
+      "enunciado": "El transportista por carretera responde de la mercancía, pero solo hasta un límite. ¿Cuál es el límite de indemnización del CMR?",
+      "opciones": [
+        "26 DEG por kilogramo de peso bruto faltante",
+        "17 DEG por kilogramo de peso bruto faltante",
+        "Siempre el valor total de la mercancía perdida",
+        "8,33 DEG por kilogramo de peso bruto faltante"
+      ],
+      "respuesta": 3,
+      "explicacion": "Por eso el seguro de mercancías complementa la protección jurídica: la responsabilidad del porteador está limitada por convenio.",
+      "criterio": "RA7.c",
+      "fuente": "CMR, art. 23.3 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.1-025",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte aéreo internacional, ¿cuál es el límite de responsabilidad del porteador para la carga por el Convenio de Montreal (según el valor revisado)?",
+      "opciones": [
+        "26 DEG por kilogramo",
+        "8,33 DEG por kilogramo de peso bruto",
+        "17 DEG por kilogramo de peso bruto",
+        "Sin límite, ni siquiera con declaración de valor"
+      ],
+      "respuesta": 0,
+      "explicacion": "Si el valor de la mercancía supera el límite, conviene asegurarla o declarar valor.",
+      "criterio": "RA7.c",
+      "fuente": "Convenio de Montreal 1999, art. 22.3 y revisión de límites (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,191 @@
+{
+  "modulo": "0622",
+  "tema": "2.1",
+  "titulo": "Combinación de modos y tipología de empresas y servicios",
+  "preguntas": [
+    {
+      "id": "0622-2.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se denomina el transporte que utiliza un solo modo (por ejemplo, solo carretera) durante todo el recorrido?",
+      "opciones": [
+        "Multimodal",
+        "Intermodal",
+        "Unimodal",
+        "Combinado"
+      ],
+      "respuesta": 2,
+      "explicacion": "Unimodal es el transporte realizado con un único modo de transporte (carretera, ferrocarril, mar, vías navegables o aire), con un contrato por tramo. Cuando intervienen dos o más modos se habla de transporte multimodal, intermodal o combinado, según se utilice un contrato único, una misma unidad de carga o una combinación de carretera con otro modo.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general; Decreto 95/2012 («Combinación de diferentes modos de transporte»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza al transporte intermodal?",
+      "opciones": [
+        "Varios modos con la misma unidad de carga, sin manipular la mercancía",
+        "Un único contrato, aunque cambie la unidad de carga en cada tramo",
+        "El uso exclusivo de camiones de distintas empresas",
+        "Contratar cada tramo con un transportista distinto sin coordinación"
+      ],
+      "respuesta": 0,
+      "explicacion": "En el transporte intermodal la mercancía viaja en la misma unidad de carga (UTI) y solo se manipula esa unidad al cambiar de modo, lo que reduce daños, tiempos y costes de manipulación. Es un concepto físico/operativo. El multimodal, en cambio, se define por el contrato único con un operador responsable de todo el recorrido (Convenio de Ginebra, art. 1). Un transporte puede ser intermodal sin ser multimodal, y a la inversa.",
+      "criterio": "RA2.d",
+      "fuente": "Terminología de transporte (conocimiento general, definición de la UE/CEPE); contraste con Convenio de Ginebra de 1980, art. 1. No he consultado el glosario oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte intermodal, ¿qué significa que no haya «ruptura de carga» en los cambios de modo?",
+      "opciones": [
+        "La mercancía viaja siempre en contenedores refrigerados",
+        "El contrato se rompe y hay que firmar uno nuevo",
+        "La mercancía se divide en distintos puntos del recorrido",
+        "La mercancía no se descarga ni se manipula al cambiar de modo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Ruptura de carga es la descarga y manipulación de la mercancía para pasarla de un vehículo o modo a otro. En el transporte intermodal no se produce porque se cambia la unidad completa (contenedor, semirremolque). El propio CMR usa la expresión: si el vehículo con la mercancía va por mar, ferrocarril, vía navegable o aire en parte del recorrido «sin ruptura de carga», el Convenio se aplica al conjunto (art. 2).",
+      "criterio": "RA2.f",
+      "fuente": "Convenio CMR, art. 2.1 (BOE-A-1974-753).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Un camión cargado cruza el Canal de la Mancha en ferry sin que se descargue la mercancía. Según el CMR, ¿qué régimen se aplica al conjunto del transporte?",
+      "opciones": [
+        "El régimen del transporte marítimo durante todo el recorrido",
+        "El CMR rige todo el transporte, salvo prueba en contrario",
+        "Ningún convenio, porque el trayecto queda sin regular",
+        "El Convenio de Montreal sobre transporte aéreo internacional"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 2.1 CMR dice que, si el vehículo con la mercancía se transporta por mar (u otro modo) sin ruptura de carga, el CMR se aplica a todo el transporte. Excepción: si se prueba que la pérdida, avería o demora no fue causada por acto u omisión del transportista por carretera sino por un hecho que solo pudo ocurrir durante y por razón del tramo no realizado por carretera, su responsabilidad se determina según la ley del modo utilizado (si existe).",
+      "criterio": "RA1.g",
+      "fuente": "Convenio CMR, art. 2.1 y 2.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En la planificación de una ruta, ¿qué es un «punto de intercambio»?",
+      "opciones": [
+        "El lugar donde se cambia de moneda en una operación de pago",
+        "El lugar donde se firma el contrato de compraventa",
+        "El lugar donde la mercancía cambia de modo de transporte",
+        "La frontera entre dos países de la Unión Europea"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los puntos de intercambio (nodos) son los lugares de transbordo entre modos o medios; junto con los puntos operativos estratégicos (puertos, aeropuertos, terminales, fronteras), determinan plazos, costes y riesgos de la ruta. El currículo pide reconocer las áreas de cobertura de la ruta y los puntos operativos estratégicos (RA2.c).",
+      "criterio": "RA2.c",
+      "fuente": "RD 1574/2011, RA2.c; Decreto 95/2012 («Puntos operativos estratégicos, puntos de intercambio»).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un transitario (agente de transporte o freight forwarder)?",
+      "opciones": [
+        "Empresa que organiza el transporte y los trámites por cuenta ajena",
+        "El propietario del buque que realiza el transporte marítimo",
+        "La autoridad que despacha la mercancía en la aduana",
+        "El fabricante de los contenedores utilizados en el transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "El transitario organiza y gestiona el transporte internacional: elige modos y rutas, contrata espacio, consolida cargas (grupaje), prepara la documentación y puede asumir la responsabilidad del transporte como OTM, emitiendo sus propios documentos (por ejemplo, House AWB o FBL). Se estudia en detalle en 3.7 (agentes del transporte internacional).",
+      "criterio": "RA1.f",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Agentes en el transporte internacional: agentes transitarios…»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un NVOCC (Non-Vessel Operating Common Carrier)?",
+      "opciones": [
+        "Un buque que navega sin capitán a bordo",
+        "Un puerto que carece de actividad comercial",
+        "Un tribunal arbitral especializado en materia marítima",
+        "Operador marítimo que contrata espacio y emite sus propios B/L"
+      ],
+      "respuesta": 3,
+      "explicacion": "El NVOCC actúa como porteador frente a sus clientes (emite su propio B/L, el «House B/L») pero contrata el espacio con navieras (que le emiten un B/L master). Es una figura típica del grupaje marítimo de contenedores (LCL). Su equivalente en el transporte aéreo es el agente-consolidador con Master y House AWB.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general del sector; no consultado en fuente primaria.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza a un servicio marítimo de línea regular?",
+      "opciones": [
+        "Se contrata buque por buque, sin rutas ni calendarios fijos",
+        "Buque con itinerario, escalas y calendario establecidos",
+        "Solo transporta graneles líquidos entre refinerías",
+        "Solo opera dentro de las aguas de un mismo país"
+      ],
+      "respuesta": 1,
+      "explicacion": "En la línea regular (liner) la naviera publica rutas, puertos de escala y frecuencias, y vende espacio a muchos cargadores (típico del contenedor y la carga general). El tráfico no regular o «tramp» se contrata por fletamento, por viaje o por tiempo, según las necesidades del fletador (arts. 203-204 LNM).",
+      "criterio": "RA2.d",
+      "fuente": "Decreto 95/2012 («Línea regular. Régimen de fletamentos»); Ley 14/2014, arts. 203-204.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Un transitario contrata con su cliente, en un único contrato, el transporte puerta a puerta Madrid–Shanghái combinando camión, tren y buque, y responde ante el cliente de todo el recorrido. ¿Qué tipo de transporte es y qué figura es el transitario?",
+      "opciones": [
+        "Multimodal; el transitario actúa como OTM",
+        "Unimodal; el transitario es un agente de aduanas",
+        "Intermodal sin contrato único; el transitario es un simple comisionista",
+        "Combinado; el transitario es el transportista efectivo de todos los tramos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Un único contrato con varios modos y un responsable de todo el recorrido es el rasgo del transporte multimodal; quien lo asume en nombre propio es el operador de transporte multimodal (OTM) (Convenio de Ginebra, art. 1). Puede subcontratar a transportistas efectivos de cada tramo y seguir siendo responsable ante el cliente.",
+      "criterio": "RA2.g",
+      "fuente": "Convenio de Ginebra de 1980, art. 1 (definiciones de transporte multimodal y de OTM).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el currículo del módulo, para seleccionar la ruta óptima hay que analizar:",
+      "opciones": [
+        "Solo el coste del transporte, sin otras variables",
+        "Solo el plazo de entrega comprometido con el cliente",
+        "Costes, plazos de recogida y entrega, y riesgos",
+        "Únicamente la distancia en kilómetros entre los puntos"
+      ],
+      "respuesta": 2,
+      "explicacion": "El criterio de evaluación RA2.e exige analizar todos los componentes de costes, los plazos de recogida y entrega de la mercancía y los riesgos para seleccionar la ruta óptima. El criterio RA2.d añade las rutas disponibles, los puntos de intercambio, las características del producto, el destino y las condiciones de contrato.",
+      "criterio": "RA2.e",
+      "fuente": "RD 1574/2011, Anexo I, módulo 0622, RA2.d y RA2.e.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

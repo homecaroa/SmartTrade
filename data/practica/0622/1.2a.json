@@ -1,0 +1,237 @@
+{
+  "modulo": "0622",
+  "tema": "1.2a",
+  "titulo": "Carretera: normativa, clases, acceso al mercado",
+  "preguntas": [
+    {
+      "id": "0622-1.2a-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Ordenación de los Transportes Terrestres (LOTT), ¿cuándo se considera «público» un transporte por carretera?",
+      "opciones": [
+        "Cuando lo realiza una empresa con vehículos de más de seis toneladas",
+        "Cuando circula por vías de titularidad pública y de uso gratuito",
+        "Cuando se realiza por cuenta ajena y con retribución",
+        "Cuando lo realiza una Administración o una empresa pública"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 62 LOTT clasifica los transportes por carretera en públicos (por cuenta ajena y con retribución) y privados (por cuenta propia: para necesidades particulares o como complemento de la actividad principal de la empresa). Lo que decide es el carácter ajeno y oneroso del servicio, no el tamaño del vehículo ni quién sea el transportista.",
+      "criterio": "RA1.b",
+      "fuente": "Ley 16/1987 (LOTT), art. 62 (BOE-A-1987-17803, texto consolidado).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2023-24",
+        "2024-25"
+      ]
+    },
+    {
+      "id": "0622-1.2a-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa fabricante reparte con sus propios camiones los productos que vende, como complemento de su actividad principal. Según la LOTT, ¿qué tipo de transporte es y qué necesita?",
+      "opciones": [
+        "Privado complementario, que exige autorización",
+        "Transporte público, que no exige ninguna autorización administrativa",
+        "Transporte privado particular, que no exige ninguna autorización",
+        "Transporte privado particular, que exige autorización de operador"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es transporte privado complementario (art. 62.3): por cuenta propia y vinculado a la actividad principal. Su realización exige una autorización (art. 103.1). El privado particular (necesidades personales o domésticas) es el que no está sujeto a autorización (art. 101.2).",
+      "criterio": "RA1.g",
+      "fuente": "LOTT, arts. 62.3, 101.2 y 103.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2a-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo es aplicable el Convenio CMR a un transporte de mercancías por carretera?",
+      "opciones": [
+        "Todo transporte de mercancías por carretera dentro de la Unión Europea",
+        "Solo si expedidor y destinatario tienen nacionalidad de países contratantes",
+        "Solo a los transportes de empresas con licencia comunitaria",
+        "Contrato oneroso con carga y entrega en dos países, uno contratante"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 1.1 CMR lo aplica a los contratos de transporte de mercancías por carretera a título oneroso, con vehículos, cuando el lugar de carga y el de entrega están en dos países distintos y al menos uno es contratante, con independencia del domicilio y la nacionalidad de las partes. Por eso no sirve para transportes nacionales.",
+      "criterio": "RA1.g",
+      "fuente": "Convenio CMR, art. 1.1 (BOE-A-1974-753, texto consolidado).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.2a-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos transportes queda expresamente excluido del ámbito de aplicación del Convenio CMR?",
+      "opciones": [
+        "El transporte de mercancías peligrosas por carretera",
+        "Los transportes funerarios",
+        "El transporte de animales vivos por carretera",
+        "El transporte con vehículos frigoríficos"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 1.4 CMR excluye los transportes realizados bajo convenios postales internacionales, los transportes funerarios y los de mudanzas. Las mercancías peligrosas, los animales vivos y los frigoríficos sí entran en el CMR (con reglas especiales en alguno de los casos, como las exoneraciones del art. 17.4).",
+      "criterio": "RA1.g",
+      "fuente": "Convenio CMR, art. 1.4.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2a-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento habilita a un transportista establecido en un Estado miembro para realizar transporte internacional de mercancías por carretera por cuenta ajena en la Unión Europea?",
+      "opciones": [
+        "El cuaderno TIR",
+        "La carta de porte CMR",
+        "La licencia comunitaria",
+        "El certificado ATP"
+      ],
+      "respuesta": 2,
+      "explicacion": "La licencia comunitaria la expide el Estado miembro de establecimiento al transportista que cumple los requisitos del Reglamento (CE) 1072/2009. El cuaderno TIR es un documento aduanero de tránsito, la carta de porte CMR documenta el contrato y el certificado ATP acredita vehículos para alimentos perecederos.",
+      "criterio": "RA1.g",
+      "fuente": "Reglamento (CE) 1072/2009, art. 4 (DOUE L 300, 14.11.2009, vía BOE).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.2a-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por cuánto tiempo, como máximo, se expide la licencia comunitaria (prorrogable) según el Reglamento (CE) 1072/2009?",
+      "opciones": [
+        "Diez años",
+        "Un año, renovable cada año",
+        "Cinco años, prorrogables",
+        "Veinte años, prorrogables"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las autoridades del Estado miembro de establecimiento expiden la licencia por un periodo de hasta diez años, prorrogable. Los cinco años son el máximo de validez del certificado de conductor (para conductores de terceros países), con el que conviene no confundirla.",
+      "criterio": "RA1.g",
+      "fuente": "Reglamento (CE) 1072/2009, art. 4.2 y art. 5.7 (texto en BOE/DOUE).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2a-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Un camión español descarga en Francia una mercancía procedente de España (transporte internacional entrante). Según el Reglamento (CE) 1072/2009, ¿cuántas operaciones de cabotaje consecutivas puede realizar con ese vehículo en Francia y en qué plazo?",
+      "opciones": [
+        "Hasta dos, en un plazo máximo de tres días",
+        "Hasta tres, en siete días desde la última descarga",
+        "Todas las que quiera, durante un máximo de un mes",
+        "Ninguna, porque el cabotaje está prohibido a los no residentes"
+      ],
+      "respuesta": 1,
+      "explicacion": "El cabotaje (transporte nacional en un Estado miembro por un transportista no residente) está permitido hasta tres operaciones consecutivas a un transporte internacional entrante, y la última descarga debe producirse dentro de los siete días siguientes a la última descarga del transporte internacional.",
+      "criterio": "RA1.g",
+      "fuente": "Reglamento (CE) 1072/2009, art. 8.2 y 8.3 (texto en BOE/DOUE).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2a-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué novedad introdujo el Reglamento (UE) 2020/1055 en las reglas de cabotaje?",
+      "opciones": [
+        "Prohibió el cabotaje con vehículos de más de 3,5 toneladas",
+        "Eliminó el límite de tres operaciones de cabotaje consecutivas",
+        "Obligó a utilizar siempre tacógrafo analógico en el cabotaje",
+        "No repetir cabotaje en el mismo Estado durante cuatro días"
+      ],
+      "respuesta": 3,
+      "explicacion": "El Reglamento (UE) 2020/1055 (paquete de movilidad) mantuvo las tres operaciones en siete días, pero añadió que el mismo vehículo (o su tractora) no puede hacer nuevo cabotaje en el mismo Estado miembro en los cuatro días siguientes a terminar el anterior, para evitar el cabotaje sistemático.",
+      "criterio": "RA1.g",
+      "fuente": "Reglamento (UE) 2020/1055, modificación del art. 8 del Reglamento 1072/2009 (DOUE L 249, 31.7.2020, vía BOE).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.2a-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué permite una autorización bilateral de transporte por carretera?",
+      "opciones": [
+        "Transportes entre los dos Estados firmantes del acuerdo",
+        "Circular por cualquier país de la Unión Europea sin ningún control",
+        "Realizar cabotaje ilimitado en el territorio de ambos Estados",
+        "Transportar solo mercancías peligrosas entre dos puertos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Una autorización bilateral deriva de un acuerdo entre dos Estados y habilita para el transporte entre ellos. Se contrapone a la multilateral (cupos válidos para varios países) y a los transportes liberalizados, que no requieren autorización específica. Dentro de la UE la licencia comunitaria sustituye a estos permisos.",
+      "criterio": "RA1.g",
+      "fuente": "Conocimiento general del currículo («Acceso al mercado de transporte. Autorizaciones bilaterales y multilaterales», Decreto 95/2012).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.2a-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Dentro de la Unión Europea, ¿cómo accede un transportista al transporte internacional de mercancías por carretera entre Estados miembros?",
+      "opciones": [
+        "Solicitando un permiso específico para cada viaje que realice",
+        "Mediante cupos bilaterales entre cada pareja de Estados",
+        "Con la licencia comunitaria, sin permiso por viaje",
+        "Únicamente con un cuaderno TIR en cada operación"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es un mercado liberalizado: el transporte internacional por cuenta ajena entre Estados miembros exige la licencia comunitaria (y una copia certificada en cada vehículo), pero no permisos por viaje ni cupos bilaterales. El TIR es un régimen aduanero de tránsito, no un título de acceso al mercado.",
+      "criterio": "RA1.g",
+      "fuente": "Reglamento (CE) 1072/2009, arts. 3 y 4.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.2a-011",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte de mercancías por carretera, el «grupaje» consiste en:",
+      "opciones": [
+        "Transportar la carga de un solo expedidor que llena el vehículo",
+        "Agrupar en un vehículo envíos de varios expedidores",
+        "Cambiar de vehículo en la frontera sin ruptura de carga",
+        "Transportar juntas mercancías peligrosas y no peligrosas"
+      ],
+      "respuesta": 1,
+      "explicacion": "El grupaje (carga fraccionada) reúne en un vehículo partidas de varios expedidores, cada una con su propio documento de transporte. Se contrapone a la carga completa, en la que un único cargador ocupa el vehículo. Reduce el coste unitario pero añade manipulaciones y tiempo.",
+      "criterio": "RA1.a",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Unidades de carga. Consolidación o grupaje»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": [
+        "2024-25",
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.2a-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la normativa de la UE sobre el acceso a la profesión de transportista por carretera, ¿qué requisitos debe cumplir la empresa?",
+      "opciones": [
+        "Solo tener un vehículo matriculado y un seguro de responsabilidad civil",
+        "Solo contar con capacidad financiera y con la licencia comunitaria",
+        "Establecimiento, honorabilidad y competencia, sin capacidad financiera",
+        "Establecimiento, honorabilidad, capacidad financiera y competencia"
+      ],
+      "respuesta": 3,
+      "explicacion": "El Reglamento (CE) 1071/2009 exige establecimiento efectivo y fijo en un Estado miembro, honorabilidad (del gestor de transporte y de la empresa), capacidad financiera y competencia profesional. La capacidad financiera exige fondos propios y reservas de 9.000 € para un vehículo y 5.000 € por cada vehículo adicional.",
+      "criterio": "RA1.g",
+      "fuente": "Reglamento (CE) 1071/2009, arts. 3 y 7 (DOUE L 300, 14.11.2009, vía BOE; he leído las cifras de capacidad financiera y la definición de honorabilidad).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

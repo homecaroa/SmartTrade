@@ -1,0 +1,241 @@
+{
+  "modulo": "0623",
+  "tema": "6.5",
+  "titulo": "Impuestos sobre beneficios: IRPF e Impuesto sobre Sociedades",
+  "preguntas": [
+    {
+      "id": "0623-6.5-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo tributa el empresario individual por los beneficios de su actividad?",
+      "opciones": [
+        "Por el Impuesto sobre Sociedades del ejercicio",
+        "Por el IVA sobre los servicios prestados",
+        "Por el IRPF, como actividad económica",
+        "Por el IBI de los inmuebles afectos a la actividad"
+      ],
+      "respuesta": 2,
+      "explicacion": "Hacienda aplica la escala de gravamen del IRPF.",
+      "criterio": "RA6.i",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo tributan las sociedades mercantiles por sus beneficios?",
+      "opciones": [
+        "Por el IRPF de cada uno de los socios",
+        "Por el IVA que repercuten en las ventas",
+        "Por el IBI de los inmuebles de la sociedad",
+        "Por el Impuesto sobre Sociedades"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es un impuesto sobre la renta de las sociedades.",
+      "criterio": "RA6.i",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el tipo general de gravamen del Impuesto sobre Sociedades?",
+      "opciones": [
+        "El 25 %, con reducciones para entidades pequeñas",
+        "El 15 %, que aplican las empresas nuevas",
+        "El 10 %, que aplican las microempresas",
+        "El 35 %, que aplican las grandes empresas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 29 LIS, con tipos reducidos para entidades con cifra de negocios inferior a 1 millón de euros.",
+      "criterio": "RA6.i",
+      "fuente": "Ley 27/2014 del Impuesto sobre Sociedades, art. 29 (BOE-A-2014-12328, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo aplican, en los dos primeros periodos con base positiva, las entidades de nueva creación que realizan actividades económicas?",
+      "opciones": [
+        "El 25 % general sin posibilidad de reducción",
+        "El 15 % en los dos primeros periodos positivos",
+        "El 30 % que se aplica a las grandes empresas",
+        "El 5 % que se aplica a las empresas sociales"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 29.1 LIS, con las condiciones del propio artículo.",
+      "criterio": "RA6.i",
+      "fuente": "Ley 27/2014 del Impuesto sobre Sociedades, art. 29.1 (BOE-A-2014-12328, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué entidades aplican una escala reducida en el IS?",
+      "opciones": [
+        "Todas las sociedades mercantiles sin excepción",
+        "Solo las sociedades de mayor tamaño",
+        "Las de cifra de negocios inferior a un millón",
+        "Solo las sociedades cooperativas fiscalmente protegidas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 29.1 LIS. Los tipos de la escala han variado por años: conviene consultar la norma vigente.",
+      "criterio": "RA6.i",
+      "fuente": "Ley 27/2014 del Impuesto sobre Sociedades, art. 29.1 (BOE-A-2014-12328, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la base imponible del IS?",
+      "opciones": [
+        "El activo total que figura en el balance",
+        "El capital social inscrito en el Registro",
+        "Los ingresos totales del ejercicio sin ajustes",
+        "El resultado contable ajustado fiscalmente"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se aplican ajustes positivos y negativos.",
+      "criterio": "RA6.i",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los pagos fraccionados en IRPF de actividades económicas?",
+      "opciones": [
+        "Pagos a cuenta del impuesto anual, cada trimestre",
+        "Pagos del IVA que repercute la empresa",
+        "Pagos de derechos que se hacen en aduanas",
+        "Pagos de las nóminas de los trabajadores"
+      ],
+      "respuesta": 0,
+      "explicacion": "Modelo 130 o 131 según el régimen.",
+      "criterio": "RA6.i",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la estimación objetiva por módulos?",
+      "opciones": [
+        "Un método de contabilidad por partida doble",
+        "Un método simplificado por signos, índices o módulos",
+        "Un método de amortización de activos fijos",
+        "Un método de liquidación del IVA trimestral"
+      ],
+      "respuesta": 1,
+      "explicacion": "Está sujeto a límites y requisitos.",
+      "criterio": "RA6.i",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una aplicación informática de contabilidad?",
+      "opciones": [
+        "Un programa de ventas para los comerciales",
+        "Un programa de diseño gráfico de documentos",
+        "Un programa que registra asientos y genera cuentas",
+        "Un programa de correo electrónico corporativo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Ejemplos: ContaPlus, A3, Sage.",
+      "criterio": "RA6.j",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja ofrece una aplicación de contabilidad?",
+      "opciones": [
+        "Aumenta los errores de registro de operaciones",
+        "Elimina la necesidad de llevar contabilidad",
+        "Sustituye por completo al contable de la empresa",
+        "Reduce errores y agiliza el cierre contable"
+      ],
+      "respuesta": 3,
+      "explicacion": "Requiere criterio profesional.",
+      "criterio": "RA6.j",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Una sociedad tiene una base imponible de 80.000 € y tributa al tipo general del 25 %. ¿Cuál es la cuota íntegra?",
+      "opciones": [
+        "20.000,00 €",
+        "12.000,00 €",
+        "24.000,00 €",
+        "16.000,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "80.000 × 25 % = 20.000,00 €.",
+      "criterio": "RA6.i",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Una entidad de nueva creación obtiene una base imponible de 40.000 € en su primer año con resultado positivo y aplica el 15 %. ¿Cuál es la cuota?",
+      "opciones": [
+        "10.000,00 €",
+        "6.000,00 €",
+        "4.000,00 €",
+        "8.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "40.000 × 15 % = 6.000 €.",
+      "criterio": "RA6.i",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.5-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Con un resultado contable de 100.000 € y un gasto no deducible de 8.000 €, ¿cuál es la base imponible (ajuste positivo)?",
+      "opciones": [
+        "92.000,00 €",
+        "100.000,00 €",
+        "108.000,00 €",
+        "8.000,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Base = 100.000 + 8.000 = 108.000 €.",
+      "criterio": "RA6.i",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

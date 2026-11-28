@@ -1,0 +1,351 @@
+{
+  "modulo": "0623",
+  "tema": "2.1",
+  "titulo": "Empresa individual, sociedades civiles y comunidades de bienes",
+  "preguntas": [
+    {
+      "id": "0623-2.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la empresa individual (empresario individual)?",
+      "opciones": [
+        "La de una sola persona, con responsabilidad ilimitada",
+        "Una sociedad con un capital mínimo de 3.000 euros",
+        "Una sociedad cuyos socios no responden personalmente",
+        "Una empresa pública de titularidad estatal"
+      ],
+      "respuesta": 0,
+      "explicacion": "No tiene personalidad jurídica propia: la persona y la empresa son lo mismo a efectos de responsabilidad.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo responde el empresario individual de las deudas de su negocio?",
+      "opciones": [
+        "Solo con el capital que aportó al iniciar el negocio",
+        "De forma ilimitada, con todos sus bienes",
+        "Solo con los bienes afectos a la actividad del negocio",
+        "No responde, porque lo hace el Estado como garante"
+      ],
+      "respuesta": 1,
+      "explicacion": "Por eso existe la figura del emprendedor de responsabilidad limitada, que protege la vivienda habitual en ciertos casos.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Es obligatoria la inscripción en el Registro Mercantil del empresario individual?",
+      "opciones": [
+        "Sí, siempre y desde el inicio de la actividad",
+        "Solo si factura más de un millón de euros",
+        "No: es potestativa, salvo para el naviero",
+        "Solo si tiene empleados contratados en plantilla"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 19.1 del Código de Comercio la declara potestativa para los empresarios individuales, con excepción del naviero.",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), art. 19.1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0623-2.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si el empresario individual no se inscribe en el Registro Mercantil?",
+      "opciones": [
+        "Es sancionado con una multa de la Administración",
+        "Pierde la condición legal de empresario",
+        "Debe cerrar la actividad hasta que se inscriba",
+        "No puede inscribir documentos ni aprovechar sus efectos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 19.1 Código de Comercio.",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), art. 19.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué están obligadas a inscribirse en el Registro Mercantil según el art. 16 del Código de Comercio?",
+      "opciones": [
+        "Las sociedades mercantiles, entre otros sujetos",
+        "Solo los empresarios individuales con actividad mercantil",
+        "Solo las asociaciones sin ánimo de lucro",
+        "Solo las fundaciones de interés general"
+      ],
+      "respuesta": 0,
+      "explicacion": "El Registro tiene por objeto la inscripción de empresarios individuales, sociedades mercantiles y otras entidades; para las sociedades es obligatoria (art. 19.2).",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), arts. 16 y 19.2.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una sociedad civil?",
+      "opciones": [
+        "Una sociedad anónima que no emite acciones",
+        "Contrato de dos o más personas para partir ganancias",
+        "Una cooperativa de consumo de carácter local",
+        "Una sociedad con capital mínimo de 60.000 euros"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se rige por el Código Civil; los socios suelen responder personalmente con sus bienes.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una comunidad de bienes?",
+      "opciones": [
+        "Una sociedad anónima que emite acciones",
+        "Una cooperativa de trabajo asociado",
+        "Un bien o derecho que pertenece a varias personas",
+        "Una empresa pública con capital estatal"
+      ],
+      "respuesta": 2,
+      "explicacion": "No tiene personalidad jurídica propia ni capital mínimo; los comuneros responden personalmente.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo responden los comuneros de las deudas de una comunidad de bienes?",
+      "opciones": [
+        "Solo con la aportación que hizo cada comunero",
+        "No responden, porque la comunidad tiene personalidad propia",
+        "Solo hasta el límite de 3.000 euros cada uno",
+        "Con su patrimonio personal, sin límite"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es una de sus desventajas frente a las sociedades de capital.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una sociedad civil profesional?",
+      "opciones": [
+        "Sociedad para ejercer en común una profesión",
+        "Una sociedad anónima laboral de trabajadores",
+        "Una cooperativa de transporte de mercancías",
+        "Una comunidad de bienes entre herederos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se rige por la legislación de sociedades profesionales; el art. 16 CCom prevé su inscripción.",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), art. 16.1.7.º.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el RETA?",
+      "opciones": [
+        "El Registro de Empresas y Trabajadores Activos",
+        "El régimen de la Seguridad Social para autónomos",
+        "Un impuesto especial sobre las sociedades",
+        "Un tipo de contrato mercantil de agencia"
+      ],
+      "respuesta": 1,
+      "explicacion": "En él cotizan los autónomos y los socios de sociedades que realizan funciones de dirección y control, según el caso.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una ventaja de la empresa individual?",
+      "opciones": [
+        "Responsabilidad limitada automática de su titular",
+        "Reparto de los beneficios entre muchos socios",
+        "Sencillez: constitución rápida, poco coste y sin capital mínimo",
+        "Capital mínimo elevado exigido por la ley"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es la forma más sencilla de empezar, a costa de la responsabilidad ilimitada.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una desventaja de la empresa individual frente a una sociedad limitada?",
+      "opciones": [
+        "La obligación de otorgar escritura pública",
+        "El capital mínimo de 60.000 euros exigido",
+        "La inscripción obligatoria en el Registro Mercantil",
+        "La responsabilidad ilimitada con su patrimonio personal"
+      ],
+      "respuesta": 3,
+      "explicacion": "En una SL los socios no responden personalmente de las deudas sociales (art. 1 LSC).",
+      "criterio": "RA2.d",
+      "fuente": "Ley de Sociedades de Capital, RDLeg 1/2010 (BOE-A-2010-10544, texto consolidado), art. 1.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién tributa por el beneficio de un empresario individual?",
+      "opciones": [
+        "El empresario, por el IRPF",
+        "La empresa, por el Impuesto sobre Sociedades",
+        "Nadie, hasta que se repartan los beneficios",
+        "El cliente que paga los servicios prestados"
+      ],
+      "respuesta": 0,
+      "explicacion": "Al no tener personalidad jurídica, el beneficio se integra en su renta personal.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién tributa por el beneficio de una sociedad mercantil?",
+      "opciones": [
+        "Los socios, por el IRPF, al obtenerse el beneficio",
+        "La sociedad, por el Impuesto sobre Sociedades",
+        "Nadie, hasta que la sociedad reparta dividendos",
+        "El administrador, por el IRPF de sus retribuciones"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los socios tributan después por los dividendos que reciben.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un emprendedor de responsabilidad limitada?",
+      "opciones": [
+        "Una sociedad con capital mínimo reducido",
+        "Una cooperativa con responsabilidad limitada",
+        "Autónomo que protege su vivienda de deudas profesionales",
+        "Un socio de una sociedad colectiva"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es un régimen especial de la Ley 14/2013 de apoyo a los emprendedores; la protección tiene límites y exige inscripción.",
+      "criterio": "RA2.a",
+      "fuente": "Ley 14/2013 (conocimiento general; no consultada en el BOE).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el NIF?",
+      "opciones": [
+        "Un código de producto del catálogo de la empresa",
+        "Un seguro que cubre las operaciones fiscales",
+        "Un tipo de contrato entre empresario y trabajador",
+        "El número de identificación fiscal de cada persona o entidad"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las sociedades obtienen primero un NIF provisional y luego el definitivo tras la inscripción.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué impuesto grava la compra de una vivienda y no la constitución de una sociedad (operación societaria exenta)?",
+      "opciones": [
+        "El ITP y AJD, que no grava constituir sociedades",
+        "El IVA que grava la entrega de la vivienda",
+        "El IRPF que paga el comprador de la vivienda",
+        "El Impuesto sobre Sociedades de la empresa constructora"
+      ],
+      "respuesta": 0,
+      "explicacion": "La constitución de sociedades es una operación societaria exenta en ITP/AJD.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general; normativa de ITP y AJD (no consultada).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo de personas pueden ser socios de una sociedad civil o comunidad de bienes?",
+      "opciones": [
+        "Solo personas físicas con nacionalidad española",
+        "Personas físicas o jurídicas",
+        "Solo empresas con forma de sociedad mercantil",
+        "Solo personas extranjeras residentes en España"
+      ],
+      "respuesta": 1,
+      "explicacion": "No hay capital mínimo ni forma especial exigida.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Establecimiento de la forma jurídica de la empresa»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-2.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia fundamental hay entre empresa individual y sociedad mercantil?",
+      "opciones": [
+        "La sociedad nunca tributa por sus beneficios",
+        "La empresa individual no puede emplear trabajadores",
+        "La sociedad tiene personalidad jurídica propia",
+        "No hay ninguna diferencia entre ambas figuras"
+      ],
+      "respuesta": 2,
+      "explicacion": "Por eso en una sociedad de capital los socios no responden personalmente de las deudas sociales.",
+      "criterio": "RA2.a",
+      "fuente": "Código de Comercio (BOE-A-1885-6627, texto consolidado), art. 116.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

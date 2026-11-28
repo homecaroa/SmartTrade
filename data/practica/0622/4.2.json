@@ -1,0 +1,385 @@
+{
+  "modulo": "0622",
+  "tema": "4.2",
+  "titulo": "Consolidación, segregación, manipulación y estiba",
+  "preguntas": [
+    {
+      "id": "0622-4.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la consolidación de carga (grupaje, LCL)?",
+      "opciones": [
+        "Cargar un contenedor completo para un solo cliente",
+        "Agrupar envíos de varios cargadores",
+        "Dividir una factura en varias facturas parciales",
+        "Descargar la mercancía en un puerto intermedio"
+      ],
+      "respuesta": 1,
+      "explicacion": "En marítimo se contrapone a FCL (contenedor completo). Requiere comprobar la compatibilidad de las mercancías.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué significa FCL?",
+      "opciones": [
+        "Free Cargo Loading, carga libre de recargos",
+        "Fixed Container Line, línea fija de contenedores",
+        "Full Container Load: contenedor de un cargador",
+        "Fast Cargo Link, enlace rápido de carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "LCL = Less than Container Load (grupaje).",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estas combinaciones de mercancías en un mismo contenedor debe evitarse?",
+      "opciones": [
+        "Cajas de cartón junto con productos textiles",
+        "Palés de papel junto con palés de cartón",
+        "Maquinaria junto con sus repuestos",
+        "Alimentos con químicos que puedan contaminarlos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Por compatibilidad: olores, humedad, polvo y contaminación cruzada.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el ADR, los bultos con etiquetas de peligro distintas…",
+      "opciones": [
+        "No cargarse en común, salvo lo que autorice la tabla",
+        "Pueden cargarse siempre juntos en el mismo vehículo",
+        "Solo pueden ir juntos si son de la misma empresa",
+        "Nunca pueden transportarse por carretera"
+      ],
+      "respuesta": 0,
+      "explicacion": "La tabla de cargamento en común establece qué combinaciones de etiquetas están permitidas.",
+      "criterio": "RA4.d",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 7.5.2.1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe hacerse con los envíos de mercancías peligrosas que no pueden cargarse en común en el mismo vehículo?",
+      "opciones": [
+        "Unirlos en un único documento de transporte",
+        "Cartas de porte distintas para cada envío",
+        "Declararlos como mercancía ordinaria",
+        "Cargarlos con una cinta separadora entre sí"
+      ],
+      "respuesta": 1,
+      "explicacion": "Nota 1 del 7.5.2.1, con referencia al 5.4.1.4.2.",
+      "criterio": "RA4.d",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 7.5.2.1 nota 1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el ADR, ¿cómo deben estibarse los bultos de mercancías peligrosas en el vehículo?",
+      "opciones": [
+        "Sueltos, para que se acomoden con el movimiento del vehículo",
+        "Apilados sin límite de altura dentro del vehículo",
+        "Sujetos con medios que impidan todo movimiento",
+        "Solo apoyados contra la cabina del vehículo"
+      ],
+      "respuesta": 2,
+      "explicacion": "7.5.7.1; se considera cumplido si se estiba conforme a la norma EN 12195-1:2010.",
+      "criterio": "RA4.d",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 7.5.7.1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el ADR, ¿cuándo pueden apilarse los bultos?",
+      "opciones": [
+        "Siempre",
+        "Nunca",
+        "Solo si pesan menos de 5 kg",
+        "Solo si están diseñados para ello"
+      ],
+      "respuesta": 3,
+      "explicacion": "7.5.7.2: además, si se cargan juntos distintos tipos apilables, hay que tener en cuenta su compatibilidad.",
+      "criterio": "RA4.d",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 7.5.7.2 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué publicación internacional recoge buenas prácticas de carga de unidades de transporte, y se cita en el ADR?",
+      "opciones": [
+        "El Código CTU (OMI/OIT/CEPE-ONU)",
+        "Las Reglas de York y Amberes sobre avería gruesa",
+        "El Convenio TIR sobre tránsito aduanero",
+        "Los Incoterms 2020 de la Cámara de Comercio Internacional"
+      ],
+      "respuesta": 0,
+      "explicacion": "El ADR remite a él para información de estiba de mercancías peligrosas (capítulos 9 y 10).",
+      "criterio": "RA4.d",
+      "fuente": "ADR 2025 (BOE-A-2025-77), nota al 7.5.7.1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el ADR, ¿qué está prohibido durante la manipulación cerca de los vehículos o contenedores con mercancías peligrosas?",
+      "opciones": [
+        "Hablar por teléfono móvil",
+        "Fumar, también con cigarrillos electrónicos",
+        "Utilizar carretillas elevadoras",
+        "Usar chaleco reflectante"
+      ],
+      "respuesta": 1,
+      "explicacion": "7.5.9.",
+      "criterio": "RA4.d",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 7.5.9 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué objetivos persigue una correcta estiba?",
+      "opciones": [
+        "Aumentar el flete que se cobra al cargador",
+        "Evitar el uso de documentos de transporte",
+        "Seguridad, evitar daños, aprovechar espacio",
+        "Reducir las inspecciones aduaneras de la carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "Una mala estiba causa vuelcos, desplazamientos y daños; es una causa frecuente de siniestros.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se debe repartir el peso en un contenedor?",
+      "opciones": [
+        "La carga pesada arriba para facilitar la descarga",
+        "Todo el peso hacia una de las puertas del contenedor",
+        "Sin importar el reparto, porque el contenedor lo corrige",
+        "Lo pesado, abajo y centrado; lo ligero, arriba"
+      ],
+      "respuesta": 3,
+      "explicacion": "Un reparto desequilibrado compromete la seguridad del transporte y las grúas.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coeficiente de estiba?",
+      "opciones": [
+        "El volumen que ocupa una unidad de peso, en m³/t",
+        "El precio por metro cúbico de la mercancía",
+        "La velocidad de carga de la grúa en la terminal",
+        "La altura máxima de apilado de los bultos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Relaciona volumen y peso: cuanto mayor es, más voluminosa es la mercancía.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Una partida de 18 m³ pesa 12 toneladas. ¿Cuál es su coeficiente de estiba?",
+      "opciones": [
+        "0,67 m³/t",
+        "1,50 m³/t",
+        "216 m³/t",
+        "6 m³/t"
+      ],
+      "respuesta": 1,
+      "explicacion": "Coeficiente = volumen / peso = 18 / 12 = 1,50 m³/t.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Un contenedor de 20 pies tiene 33 m³ de capacidad y admite 28 t de carga útil. ¿Cuál es su coeficiente de estiba crítico (m³/t)?",
+      "opciones": [
+        "0,85",
+        "5,00",
+        "1,18",
+        "924,00"
+      ],
+      "respuesta": 2,
+      "explicacion": "33 / 28 = 1,18 m³/t. Una mercancía con coeficiente mayor llena el volumen antes que el peso.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Un contenedor tiene un coeficiente de estiba crítico de 1,18 m³/t. Una mercancía con coeficiente de estiba de 2,5 m³/t agotará antes…",
+      "opciones": [
+        "El peso admisible",
+        "Ambos a la vez",
+        "Ninguno: no se llena",
+        "El volumen del contenedor"
+      ],
+      "respuesta": 3,
+      "explicacion": "2,5 > 1,18 → mercancía voluminosa y ligera: se cubre el espacio con menos peso del permitido.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Una mercancía tiene un coeficiente de estiba de 0,8 m³/t y el contenedor un coeficiente crítico de 1,18 m³/t. ¿Qué límite se alcanza primero?",
+      "opciones": [
+        "El peso admisible",
+        "El volumen",
+        "Ninguno",
+        "Los dos exactamente"
+      ],
+      "respuesta": 0,
+      "explicacion": "0,8 < 1,18 → mercancía pesada: se llega a las 28 t antes de llenar los 33 m³.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Sobre un palé de 1.200 × 800 mm se estiban cajas de 400 × 300 mm de base. ¿Cuántas cajas caben por capa?",
+      "opciones": [
+        "10",
+        "8",
+        "6",
+        "16"
+      ],
+      "respuesta": 1,
+      "explicacion": "1.200 × 800 / (400 × 300) = 8 cajas por capa, sin huecos si se disponen correctamente.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-018",
+      "tipo": "opcion_unica",
+      "enunciado": "Un palé tiene 144 mm de altura propia y se estiban cajas de 250 mm de alto; la altura total máxima es de 1.800 mm. ¿Cuántas capas de cajas caben?",
+      "opciones": [
+        "7",
+        "5",
+        "6",
+        "8"
+      ],
+      "respuesta": 2,
+      "explicacion": "Altura útil = 1.800 − 144 = 1656 mm; 1656 / 250 = 6 capas (parte entera).",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-019",
+      "tipo": "opcion_unica",
+      "enunciado": "Un palé de 1.200 × 800 mm (144 mm de altura propia) lleva cajas de 400 × 300 × 250 mm sin huecos y la altura total máxima es de 1.800 mm. ¿Cuántas cajas lleva el palé completo?",
+      "opciones": [
+        "56",
+        "40",
+        "14",
+        "48"
+      ],
+      "respuesta": 3,
+      "explicacion": "Cajas = 8 por capa × 6 capas = 48.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-020",
+      "tipo": "opcion_unica",
+      "enunciado": "En un semirremolque de 13,6 m caben 33 palés europeos en una capa. Si la mercancía es apilable a doble altura, ¿cuántos palés caben como máximo?",
+      "opciones": [
+        "66",
+        "33",
+        "44",
+        "99"
+      ],
+      "respuesta": 0,
+      "explicacion": "33 × 2 = 66 palés, siempre que la mercancía y el peso máximo lo permitan.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.2-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué instrucción es esencial dar al estibador o transitario para evitar daños?",
+      "opciones": [
+        "Ninguna, porque el estibador conoce siempre la carga",
+        "Instrucciones escritas sobre apilado, posición y límites",
+        "Solo el nombre del cliente que contrata el servicio",
+        "Solo el precio del flete acordado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las instrucciones claras delimitan las competencias de los agentes que intervienen y reducen siniestros.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de logística; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

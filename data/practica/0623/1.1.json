@@ -1,0 +1,349 @@
+{
+  "modulo": "0623",
+  "tema": "1.1",
+  "titulo": "Emprendedores, empresario y la empresa como sistema",
+  "preguntas": [
+    {
+      "id": "0623-1.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la cultura emprendedora?",
+      "opciones": [
+        "Actitudes y valores que favorecen crear empresas",
+        "Un impuesto que grava a las empresas de nueva creación",
+        "Un tipo de contrato laboral para jóvenes titulados",
+        "El conjunto de normas contables del Plan General"
+      ],
+      "respuesta": 0,
+      "explicacion": "Fomenta la iniciativa individual, la creatividad y la asunción de riesgos calculados (RA1.a).",
+      "criterio": "RA1.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué características se asocian a un emprendedor de éxito?",
+      "opciones": [
+        "Evitar siempre cualquier riesgo empresarial",
+        "Iniciativa, creatividad, formación y colaboración",
+        "Trabajar siempre en solitario y sin colaborar",
+        "Esperar a que el mercado cambie por sí solo"
+      ],
+      "respuesta": 1,
+      "explicacion": "El RA1.b destaca la iniciativa individual, la creatividad, la formación y la colaboración.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién es el empresario?",
+      "opciones": [
+        "El empleado con más antigüedad de la plantilla",
+        "Solo el propietario del edificio de la empresa",
+        "Quien organiza los factores y asume el riesgo",
+        "El funcionario que concede las licencias de actividad"
+      ],
+      "respuesta": 2,
+      "explicacion": "Puede ser individual (persona física) o social (sociedad).",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las funciones básicas de la empresa?",
+      "opciones": [
+        "Solo la contable y la fiscal de la empresa",
+        "Solo la comercial, que vende los productos",
+        "Solo la de producción, que los fabrica",
+        "Producción, comercial, financiera, personal y administrativa"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se analizan por separado y en conjunto, como un sistema integral (RA1.c).",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función de la empresa se ocupa de captar recursos financieros y de gestionar su uso?",
+      "opciones": [
+        "La función financiera",
+        "La función comercial, que vende los productos",
+        "La función de producción, que fabrica los bienes",
+        "La función de recursos humanos, que gestiona al personal"
+      ],
+      "respuesta": 0,
+      "explicacion": "Decide cómo financiar las inversiones y cuida la liquidez y la rentabilidad.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la función comercial de la empresa?",
+      "opciones": [
+        "La que paga las nóminas del personal de la empresa",
+        "Estudia el mercado, fija precios y vende",
+        "La que fabrica los productos que se venden",
+        "La que lleva la contabilidad de la empresa"
+      ],
+      "respuesta": 1,
+      "explicacion": "Incluye marketing, ventas y relación con clientes.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función se ocupa de seleccionar, formar y retribuir al personal?",
+      "opciones": [
+        "La función financiera de la empresa",
+        "La función comercial de la empresa",
+        "La función de recursos humanos",
+        "La función de producción de la empresa"
+      ],
+      "respuesta": 2,
+      "explicacion": "Gestiona contratación, formación, clima laboral y prevención de riesgos.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué significa ver la empresa «como un sistema»?",
+      "opciones": [
+        "Que funciona de forma aislada y sin ningún entorno",
+        "Que tiene un único departamento que lo hace todo",
+        "Que es inmutable y no puede adaptarse al cambio",
+        "Un conjunto de elementos relacionados entre sí y con su entorno"
+      ],
+      "respuesta": 3,
+      "explicacion": "Entradas (recursos), procesos y salidas (productos, resultados), con retroalimentación.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los objetivos empresariales?",
+      "opciones": [
+        "Los fines que la empresa se propone alcanzar",
+        "Las obligaciones fiscales que debe cumplir cada año",
+        "Los gastos que supone la constitución de la empresa",
+        "Los contratos que tiene firmados con sus clientes"
+      ],
+      "respuesta": 0,
+      "explicacion": "Deben ser concretos, medibles y alcanzables.",
+      "criterio": "RA1.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la cultura empresarial?",
+      "opciones": [
+        "El balance anual de la empresa con sus cuentas",
+        "Valores y normas de conducta compartidos",
+        "El logotipo y la imagen gráfica de la empresa",
+        "La forma jurídica con la que se ha constituido"
+      ],
+      "respuesta": 1,
+      "explicacion": "Influye en cómo se trabaja y se toman decisiones.",
+      "criterio": "RA1.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la imagen corporativa?",
+      "opciones": [
+        "El valor contable que figura en el balance",
+        "El número de empleados que forman la plantilla",
+        "La percepción que la sociedad tiene de la empresa",
+        "El capital social aportado por los socios"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se construye con la identidad visual, la conducta y la comunicación, y afecta a la reputación.",
+      "criterio": "RA1.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se relacionan la cultura empresarial y la imagen corporativa con los objetivos?",
+      "opciones": [
+        "No tienen ninguna relación con los objetivos",
+        "Sustituyen a los objetivos empresariales",
+        "Solo son relevantes para las empresas públicas",
+        "Apoyan su consecución y mejoran la reputación"
+      ],
+      "respuesta": 3,
+      "explicacion": "El RA1.e pide relacionarlas con los objetivos empresariales.",
+      "criterio": "RA1.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un autónomo (trabajador por cuenta propia)?",
+      "opciones": [
+        "Persona física que trabaja por cuenta propia",
+        "Una sociedad de responsabilidad limitada unipersonal",
+        "Un empleado con contrato de trabajo indefinido",
+        "Un socio trabajador de una cooperativa"
+      ],
+      "respuesta": 0,
+      "explicacion": "Cotiza en el Régimen Especial de Trabajadores Autónomos (RETA) y responde con su patrimonio personal.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se clasifican las empresas según el sector de actividad?",
+      "opciones": [
+        "Pequeñas, medianas y grandes empresas",
+        "Primario, secundario y terciario",
+        "Públicas, privadas y mixtas según el capital",
+        "Locales, nacionales y multinacionales según el ámbito"
+      ],
+      "respuesta": 1,
+      "explicacion": "Esta clasificación es por el sector económico; las otras son por tamaño, titularidad y ámbito.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se clasifican las empresas según su titularidad del capital?",
+      "opciones": [
+        "Primarias, secundarias y terciarias según el sector",
+        "Individuales y colectivas según el número de socios",
+        "Privadas, públicas y mixtas",
+        "Pequeñas y grandes según su volumen de negocio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las públicas pertenecen al Estado u organismos públicos; las mixtas combinan capital público y privado.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa de transporte que presta servicios a otras empresas, ¿a qué sector pertenece?",
+      "opciones": [
+        "Al sector primario, de obtención de recursos",
+        "Al sector secundario, de transformación industrial",
+        "A ninguno, porque es una actividad auxiliar",
+        "Al sector terciario, de servicios"
+      ],
+      "respuesta": 3,
+      "explicacion": "El transporte, el comercio y las finanzas son servicios.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el emprendimiento social?",
+      "opciones": [
+        "Iniciativas con objetivo social o ambiental y viables",
+        "Crear una empresa solo para ahorrar impuestos",
+        "Trabajar sin cobrar nunca por la actividad",
+        "Fundar una empresa pública dependiente de un ministerio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Combina la solución de un problema social con un modelo de negocio viable.",
+      "criterio": "RA1.f",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el intraemprendimiento?",
+      "opciones": [
+        "Fundar una empresa nueva en otro país",
+        "Emprender dentro de una empresa ya existente",
+        "Vender productos a un cliente de la propia empresa",
+        "Comprar una empresa competidora del sector"
+      ],
+      "respuesta": 1,
+      "explicacion": "Aprovecha la iniciativa de los empleados para innovar.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la innovación en la empresa (I+D+i)?",
+      "opciones": [
+        "Comprar maquinaria usada para ahorrar costes",
+        "Reducir la plantilla para mejorar la productividad",
+        "Investigar e introducir productos o procesos mejorados",
+        "Pagar los impuestos de sociedades del ejercicio"
+      ],
+      "respuesta": 2,
+      "explicacion": "La innovación puede ser de producto, de proceso, organizativa o comercial.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

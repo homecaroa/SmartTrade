@@ -1,0 +1,295 @@
+{
+  "modulo": "0627",
+  "tema": "4.3",
+  "titulo": "Valoración en aduana de las mercancías",
+  "preguntas": [
+    {
+      "id": "0627-4.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el método principal para determinar el valor en aduana de las mercancías importadas?",
+      "opciones": [
+        "El precio de venta al público en el país de destino",
+        "El precio de coste que soporta el fabricante de la mercancía",
+        "El valor de transacción: el precio realmente pagado o por pagar",
+        "El valor de mercado en el país de origen de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 70.1 CAU.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 70 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué incluye el precio realmente pagado o por pagar?",
+      "opciones": [
+        "Solo el anticipo que el comprador abona al formalizar el pedido",
+        "Solo el precio del transporte hasta el puerto de destino",
+        "Solo el IVA que grava la operación de importación",
+        "El pago total del comprador al vendedor como condición de la venta"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 70.2 CAU.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 70.2 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué elementos se añaden al precio pagado para obtener el valor en aduana, en la medida en que los soporte el comprador y no estén incluidos?",
+      "opciones": [
+        "Comisiones (salvo de compra), envases, embalaje y otros del art. 71",
+        "El IVA de importación que se paga en el despacho aduanero",
+        "Los gastos de transporte posteriores a la entrada en la UE",
+        "Los derechos de aduana que se pagan por la importación"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 71.1.a CAU.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 71 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué elementos NO se incluyen en el valor en aduana?",
+      "opciones": [
+        "El coste del embalaje que forma un todo con la mercancía",
+        "El transporte posterior a la entrada en la UE y los derechos de importación",
+        "Las comisiones de venta que soporta el comprador",
+        "El transporte hasta la frontera de la Unión Europea"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 72 CAU.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 72 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Se incluyen en el valor en aduana los derechos de importación y otros gravámenes pagaderos en la Unión por la importación?",
+      "opciones": [
+        "Sí, siempre, como parte del precio pagado por la mercancía",
+        "Solo el IVA de la importación, no los derechos de aduana",
+        "No",
+        "Solo si los paga el vendedor por cuenta del comprador"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 72.f CAU.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 72 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué valor en aduana se toma en la práctica en España para una importación con Incoterm CIF puerto de destino?",
+      "opciones": [
+        "Solo el precio FOB, sin el transporte ni el seguro internacional",
+        "El precio EXW, que no incluye ningún coste de transporte",
+        "El precio DDP, que incluye los derechos de importación",
+        "El precio CIF: mercancía, transporte y seguro hasta la frontera de la UE"
+      ],
+      "respuesta": 3,
+      "explicacion": "El valor en aduana se establece en la frontera de la UE: incluye transporte y seguro hasta ese punto.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión (valor en aduana) y práctica habitual.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Una importación se compra FOB por 20.000,00 €; el flete hasta el puerto de la UE es de 1.200,00 € y el seguro de 150,00 €. ¿Cuál es el valor en aduana (base CIF)?",
+      "opciones": [
+        "21.350,00 €",
+        "20.000,00 €",
+        "21.200,00 €",
+        "21.650,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Valor en aduana = 20.000,00 + 1.200,00 + 150,00 = 21.350,00 €.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Se importa una mercancía a 20.000,00 € (precio pagado) a la que el comprador debe añadir 300,00 € de comisión de corretaje y 250,00 € de embalaje no incluidos en el precio. ¿Cuál es el valor de transacción ajustado?",
+      "opciones": [
+        "20.000,00 €",
+        "20.550,00 €",
+        "20.300,00 €",
+        "19.950,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "20.000,00 + 300,00 + 250,00 = 20.550,00 €. Son elementos de los arts. 71.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado. Art. 71 CAU.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué orden se aplican los métodos de valoración en aduana?",
+      "opciones": [
+        "En cualquier orden, a elección del importador de la mercancía",
+        "Primero el método residual y después el valor de transacción",
+        "Transacción; luego idénticas, similares, deductivo, reconstruido y residual",
+        "Primero el valor reconstruido y después el deductivo"
+      ],
+      "respuesta": 2,
+      "explicacion": "El orden es secuencial salvo opción entre deductivo y reconstruido.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, arts. 70-74 (leídos parcialmente) y Acuerdo de Valoración de la OMC.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué acuerdo internacional inspira el sistema de valoración en aduana de la UE?",
+      "opciones": [
+        "El Convenio CMR sobre transporte internacional por carretera",
+        "El Convenio de Montreal sobre el transporte aéreo internacional",
+        "El Convenio TIR sobre el tránsito internacional de mercancías",
+        "El Acuerdo de Valoración en Aduana de la OMC (art. VII del GATT)"
+      ],
+      "respuesta": 3,
+      "explicacion": "El CAU (art. 74.3) remite a los principios de dicho Acuerdo.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 74 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento se presenta con la declaración de importación para justificar el valor en aduana?",
+      "opciones": [
+        "La factura comercial y, si procede, la declaración de valor (DV1)",
+        "El permiso de conducir del transportista que presenta la mercancía",
+        "El certificado de origen preferencial de la mercancía",
+        "La carta de porte firmada por el transportista y el cargador"
+      ],
+      "respuesta": 0,
+      "explicacion": "La DV1 se exige cuando el valor supera cierto umbral o hay elementos a ajustar.",
+      "criterio": "RA4.d",
+      "fuente": "Práctica aduanera habitual; no contrastado con la norma vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene una subvaloración en la declaración en aduana?",
+      "opciones": [
+        "Ninguna consecuencia si el importador rectifica en el siguiente envío",
+        "Regularización de derechos, recargos y posibles sanciones",
+        "Una reducción definitiva de la deuda aduanera del importador",
+        "Una diferencia que solo afecta al flete del transporte"
+      ],
+      "respuesta": 1,
+      "explicacion": "La aduana puede rechazar el valor declarado si hay dudas.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Cuando los elementos del valor se expresan en divisa, ¿qué tipo de cambio se usa para la valoración en aduana?",
+      "opciones": [
+        "El tipo de cambio que elija libremente el importador",
+        "El tipo del día de la factura, en cualquier caso",
+        "El tipo de cambio fijado por la normativa aduanera de la UE",
+        "El tipo oficial del país exportador en el momento de la venta"
+      ],
+      "respuesta": 2,
+      "explicacion": "Hay reglas sobre la fecha de referencia.",
+      "criterio": "RA4.d",
+      "fuente": "Ley 37/1992 del IVA, art. 83.cuatro: remite a las disposiciones comunitarias para el valor en aduana (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién puede ser el sujeto que declara el valor en aduana ante la aduana?",
+      "opciones": [
+        "El transportista que presenta la mercancía en la aduana",
+        "El banco que financia la operación de importación",
+        "La aseguradora que cubre la mercancía durante el transporte",
+        "El declarante, que es el importador o su representante"
+      ],
+      "respuesta": 3,
+      "explicacion": "La declaración se presenta por el importador o por un representante aduanero.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué el valor en aduana de una mercancía EXW incluye costes de transporte hasta la frontera de la UE?",
+      "opciones": [
+        "Porque el valor se fija en la entrada en la UE, con los costes hasta allí",
+        "Porque lo establece el propio Incoterm EXW en su regla de entrega",
+        "Porque el vendedor lo paga y lo repercute en la factura",
+        "Porque lo decide el transportista en el contrato de transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 71 CAU: costes de transporte, carga, descarga y seguro hasta el lugar de entrada.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, art. 71 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los cánones y derechos de licencia (royalties) en la valoración?",
+      "opciones": [
+        "Pagos por los seguros que cubren la mercancía durante el viaje",
+        "Pagos por derechos de propiedad intelectual ligados a la mercancía",
+        "Pagos por los fletes que se cobran por el transporte principal",
+        "Pagos por los derechos de aduana que gravan la importación"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 71.1.c CAU.",
+      "criterio": "RA4.d",
+      "fuente": "Código Aduanero de la Unión, art. 71 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

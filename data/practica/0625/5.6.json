@@ -1,0 +1,223 @@
+{
+  "modulo": "0625",
+  "tema": "5.6",
+  "titulo": "Software de gestión de almacenes, aprovisionamiento y existencias",
+  "preguntas": [
+    {
+      "id": "0625-5.6-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un sistema ERP?",
+      "opciones": [
+        "Un programa de dibujo técnico para diseñar instalaciones",
+        "Una hoja de cálculo para llevar el inventario a mano",
+        "Un software integrado de compras, ventas y almacén",
+        "Un tipo de embalaje reutilizable para la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Unifica la información de todas las áreas.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-002",
+      "tipo": "opcion_unica",
+      "enunciado": "En logística, ¿qué función cumple un WMS?",
+      "opciones": [
+        "Lleva la contabilidad general y los asientos de la empresa",
+        "Calcula las nóminas del personal del almacén",
+        "Planifica las rutas y flotas de los transportistas",
+        "Controla ubicaciones, stock y tareas del almacén"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se integra con el ERP.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En logística, ¿qué función cumple un TMS?",
+      "opciones": [
+        "Gestiona y planifica el transporte",
+        "Controla las ubicaciones y el stock del almacén",
+        "Lleva la contabilidad general de la empresa",
+        "Gestiona los recursos humanos de la plantilla"
+      ],
+      "respuesta": 0,
+      "explicacion": "Planifica rutas y costes.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un SGA (sistema de gestión de almacenes)?",
+      "opciones": [
+        "Un sistema de gestión de ventas con clientes",
+        "Es el nombre español de un sistema WMS",
+        "Un sistema de gestión de nóminas del personal",
+        "Un sistema de gestión del transporte por carretera"
+      ],
+      "respuesta": 1,
+      "explicacion": "Gestiona recepciones, ubicaciones y picking.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un sistema de gestión de muelles (YMS/DMS)?",
+      "opciones": [
+        "Una aplicación de contabilidad para el cierre del ejercicio",
+        "Una aplicación de ventas para los comerciales",
+        "Una aplicación que planifica camiones en los muelles",
+        "Una aplicación de recursos humanos para los turnos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Evita esperas y congestión.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve un programa de gestión de aprovisionamientos?",
+      "opciones": [
+        "Fabricar los productos que se necesitan en el almacén",
+        "Vender los productos a los clientes de la empresa",
+        "Pagar las nóminas al personal del almacén",
+        "Calcular necesidades y generar pedidos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se apoya en previsión y puntos de pedido.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventajas tiene una aplicación de gestión de existencias?",
+      "opciones": [
+        "Stock en tiempo real, trazabilidad y alertas",
+        "Más papel y más trabajo manual de registro",
+        "Más errores en los inventarios del almacén",
+        "Menos control sobre las existencias disponibles"
+      ],
+      "respuesta": 0,
+      "explicacion": "Facilita la toma de decisiones.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué datos pueden mantenerse en una base de datos de proveedores?",
+      "opciones": [
+        "Solo el nombre comercial del proveedor",
+        "Datos fiscales, contacto, pago y plazos",
+        "Solo el teléfono de contacto del proveedor",
+        "Ningún dato, porque se consulta en cada compra"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es el fichero maestro de proveedores.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se hace al dar de baja un artículo en el sistema?",
+      "opciones": [
+        "Se borra todo el historial de movimientos del artículo",
+        "Se mantiene activo en el catálogo de compras",
+        "Se marca inactivo y se conserva el histórico",
+        "Se duplica en el sistema con un nuevo código"
+      ],
+      "respuesta": 2,
+      "explicacion": "Evita perder trazabilidad.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene integrar compras, almacén y ventas en un único programa?",
+      "opciones": [
+        "Aumentan las duplicidades en los datos de cada área",
+        "Se pierde información entre departamentos",
+        "Se complican las tareas de cada departamento",
+        "Se comparte la información sin duplicidades"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la idea del ERP.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se utiliza para elaborar las etiquetas de ubicación o de producto en el almacén?",
+      "opciones": [
+        "Impresoras de etiquetas con códigos de barras",
+        "Máquinas de escribir con cinta de tinta",
+        "Papel sin código escrito a mano por el operario",
+        "Sellos manuales con el nombre del producto"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se generan desde el programa.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.6-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por cronograma en la gestión del almacén?",
+      "opciones": [
+        "Un inventario valorado de las existencias",
+        "Un calendario de tareas y plazos",
+        "Un tipo de ficha de producto del catálogo",
+        "Una factura de servicios de almacenaje"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se puede elaborar con hoja de cálculo o programas de gestión de tareas.",
+      "criterio": "RA4.h",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

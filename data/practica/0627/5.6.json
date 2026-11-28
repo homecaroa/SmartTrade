@@ -1,0 +1,241 @@
+{
+  "modulo": "0627",
+  "tema": "5.6",
+  "titulo": "Otros destinos aduaneros: reexportación, destrucción y abandono",
+  "preguntas": [
+    {
+      "id": "0627-5.6-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué otros destinos aduaneros existen además de los regímenes aduaneros?",
+      "opciones": [
+        "Importación definitiva, exportación definitiva y tránsito externo",
+        "Depósito aduanero, perfeccionamiento activo e importación temporal",
+        "Zona franca, reexportación, destrucción y abandono al Estado",
+        "Admisión temporal, destino final y perfeccionamiento pasivo"
+      ],
+      "respuesta": 2,
+      "explicacion": "El CAU contempla estos destinos para las mercancías no UE.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, arts. 197-199 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la reexportación?",
+      "opciones": [
+        "La salida de mercancías de la UE con vocación de no regresar",
+        "La entrada de mercancías no UE para su transformación y posterior venta",
+        "El almacenamiento de mercancías no UE en un depósito autorizado",
+        "La salida de mercancías no UE del territorio aduanero de la Unión"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es el destino de mercancías no UE que salen del territorio.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, art. 5 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué puede disponer la aduana respecto de mercancías presentadas cuando haya motivos razonables?",
+      "opciones": [
+        "Que se destruyan, con costes a cargo del titular de la mercancía",
+        "Que se vendan en subasta pública con el producto para el titular",
+        "Que se devuelvan al origen con los costes a cargo de la aduana",
+        "Que se donen a una entidad benéfica a cargo del presupuesto estatal"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 197 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 197 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el abandono en favor del Estado?",
+      "opciones": [
+        "Dejarla en depósito temporal más de 90 días sin declararla",
+        "Renunciar a la mercancía, que pasa a ser propiedad del Estado",
+        "Reexportarla a su país de origen tras la inspección aduanera",
+        "Destruirla bajo supervisión de la aduana a cargo del Estado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 199 CAU: las mercancías no UE pueden abandonarse en favor del Estado.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, art. 199 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué medidas pueden adoptar las aduanas respecto de mercancías cuando se incumplan obligaciones (por ejemplo, comisos)?",
+      "opciones": [
+        "Una simple advertencia por escrito sin más consecuencias",
+        "La devolución inmediata de la mercancía al exportador",
+        "Decomiso y venta o destrucción, entre otras medidas",
+        "Solo una multa fija sin intervención sobre la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 198 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 198 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué está sujeto a vigilancia aduanera cuando va a salir de la Unión?",
+      "opciones": [
+        "Solo las mercancías peligrosas y las de uso militar",
+        "Solo las de gran valor declarado a efectos del seguro",
+        "Ninguna, porque la vigilancia se limita a las entradas",
+        "Las que van a salir del territorio aduanero de la Unión"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 267 CAU: pueden ser objeto de controles aduaneros.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 267 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué trámites implica la exportación definitiva en la salida de la UE?",
+      "opciones": [
+        "Declaración, control, levante, salida y confirmación de salida",
+        "Solo la factura comercial y el albarán de entrega al transportista",
+        "Solo la contratación del seguro y el pago del flete convenido",
+        "Solo la carta de porte firmada por el transportista y el cargador"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 267 CAU: se sujeta, según proceda, a devolución de derechos, restituciones, etc.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 267 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una exportación temporal?",
+      "opciones": [
+        "La salida de mercancías de la UE sin intención de que vuelvan",
+        "La salida de mercancías de la UE para reimportarlas después",
+        "La salida de mercancías no UE que estaban en depósito aduanero",
+        "El paso de mercancías por la UE sin pagar derechos de aduana"
+      ],
+      "respuesta": 1,
+      "explicacion": "El perfeccionamiento pasivo es un régimen de exportación temporal (art. 259 CAU).",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 259 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el cuaderno ATA?",
+      "opciones": [
+        "Un documento de transporte para mercancías en contenedor por mar",
+        "Un certificado que acredita el origen preferencial de la mercancía",
+        "Un cuaderno internacional de admisión temporal sin pagar derechos",
+        "Una póliza que garantiza el pago de los derechos de importación"
+      ],
+      "respuesta": 2,
+      "explicacion": "Está respaldado por una garantía internacional gestionada por las cámaras de comercio.",
+      "criterio": "RA5.e",
+      "fuente": "Convenio ATA; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué mercancías suelen introducirse con cuaderno ATA?",
+      "opciones": [
+        "Mercancías destinadas al consumo definitivo en el país de destino",
+        "Alimentos frescos y perecederos con vida útil de pocos días",
+        "Mercancías que se importan con el fin de transformarlas y venderlas",
+        "Muestras comerciales, material profesional y bienes para ferias"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se reexportan al terminar la presentación.",
+      "criterio": "RA5.e",
+      "fuente": "Convenio ATA; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Si unas mercancías no UE en depósito temporal no se incluyen en un régimen en 90 días, ¿qué ocurre?",
+      "opciones": [
+        "Se incumple el plazo y la aduana puede adoptar medidas",
+        "Se prorroga automáticamente por otros 90 días sin trámite alguno",
+        "Pasan a considerarse mercancías de la Unión de forma automática",
+        "Se condonan los derechos y se archiva el expediente de oficio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 149 y art. 198 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, arts. 149 y 198 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre «reexportación» y «exportación»?",
+      "opciones": [
+        "La reexportación es de mercancías UE y la exportación, de no UE",
+        "La reexportación es de mercancías no UE; la exportación, de mercancías UE",
+        "No hay diferencia: ambos términos designan la misma operación",
+        "La reexportación se aplica solo a España y la exportación, a la UE"
+      ],
+      "respuesta": 1,
+      "explicacion": "Distinguir el estatuto aduanero de la mercancía.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.6-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se hace con una mercancía que no puede importarse por incumplir una prohibición?",
+      "opciones": [
+        "Despacharse igualmente pagando un recargo sobre los derechos",
+        "Venderse en el mercado interior a precio reducido y sin control",
+        "Reexportarse, destruirse o abandonarse, según el caso",
+        "Devolverse al proveedor sin ningún tipo de control aduanero"
+      ],
+      "respuesta": 2,
+      "explicacion": "Son los otros destinos aduaneros.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, arts. 197-199 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

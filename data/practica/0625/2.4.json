@@ -1,0 +1,295 @@
+{
+  "modulo": "0625",
+  "tema": "2.4",
+  "titulo": "Regímenes de almacenamiento en el comercio internacional",
+  "preguntas": [
+    {
+      "id": "0625-2.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se describe el régimen de depósito aduanero en el Código Aduanero de la Unión?",
+      "opciones": [
+        "Guardar mercancías españolas en un almacén de la Hacienda estatal",
+        "Almacenar mercancías no UE bajo supervisión sin pagar derechos",
+        "Depositar fondos en una entidad bancaria como garantía aduanera",
+        "Estacionar mercancías de tránsito en un almacén intermedio"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 240 CAU.",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 240 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué categoría de regímenes especiales incluye el depósito aduanero?",
+      "opciones": [
+        "Tránsito, junto con el tránsito interno de la Unión",
+        "Perfeccionamiento, activo y pasivo de mercancías",
+        "Depósito, junto con las zonas francas",
+        "Destinos especiales, como la importación temporal"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 210.b CAU.",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 210 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué plazo máximo tienen las mercancías no UE en depósito temporal?",
+      "opciones": [
+        "30 días",
+        "6 meses",
+        "Indefinido",
+        "90 días"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 149 CAU. Pasado el plazo deben incluirse en un régimen o reexportarse.",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 149 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Se pagan derechos de importación por las mercancías mientras están en depósito aduanero?",
+      "opciones": [
+        "No, mientras permanecen en el depósito",
+        "Sí, en todos los casos desde la entrada de la mercancía",
+        "Solo el IVA, porque el depósito no suspende ningún impuesto",
+        "Solo si la mercancía permanece más de 30 días almacenada"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 240 CAU.",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 240 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué requisito es necesario para operar un depósito aduanero?",
+      "opciones": [
+        "Ninguno, porque cualquier almacén puede funcionar como depósito",
+        "Autorización de las autoridades aduaneras",
+        "Una simple comunicación previa al banco que da la garantía",
+        "Solo un seguro de responsabilidad civil del titular"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 211 CAU: autorización para los regímenes especiales (salvo tránsito).",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 211 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una zona franca?",
+      "opciones": [
+        "Un puerto seco del interior para el despacho de contenedores",
+        "Un almacén general abierto a cualquier depositante",
+        "Zona delimitada donde las mercancías no UE se almacenan sin derechos",
+        "Un almacén sin controles ni supervisión de la aduana"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es un régimen de depósito; no requiere declaración en aduana (art. 158).",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, arts. 158 y 243 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un depósito franco?",
+      "opciones": [
+        "Un almacén en el que no se paga nunca el IVA de nada",
+        "Un depósito bancario que garantiza el pago de derechos",
+        "Una nave municipal destinada a mercancías decomisadas",
+        "Lugar delimitado con exenciones fiscales vinculado a zonas francas"
+      ],
+      "respuesta": 3,
+      "explicacion": "En España existen depósitos francos en puertos y aeropuertos.",
+      "criterio": "RA1.d",
+      "fuente": "Ley 37/1992, art. 23 (leída parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un depósito distinto del aduanero (DDA)?",
+      "opciones": [
+        "Un régimen fiscal que suspende el IVA sin ser aduanero",
+        "Un depósito en el que no se exige garantía ninguna",
+        "Un tipo de seguro que cubre el IVA de las existencias",
+        "Una zona franca con régimen aduanero propio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 24.uno.1.º.f Ley del IVA.",
+      "criterio": "RA1.d",
+      "fuente": "Ley 37/1992 del IVA, art. 24 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Están exentas de IVA las entregas de bienes vinculados al régimen de depósito aduanero?",
+      "opciones": [
+        "No, siempre tributan al tipo general del IVA",
+        "Sí, en las condiciones que fije el reglamento",
+        "Solo las de productos alimenticios y perecederos",
+        "Solo las que tienen como destino la exportación"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 24.uno.1.º.e Ley 37/1992.",
+      "criterio": "RA1.d",
+      "fuente": "Ley 37/1992 del IVA, art. 24 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo se produce la importación a efectos del IVA para bienes que entran en una zona franca o régimen de depósito?",
+      "opciones": [
+        "En el momento de su entrada en la zona o el depósito",
+        "Al pagar el flete del transporte hasta el depósito",
+        "Cuando el bien sale de la zona o abandona el régimen",
+        "Cuando se emite la factura de venta de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 18.dos Ley 37/1992.",
+      "criterio": "RA1.d",
+      "fuente": "Ley 37/1992 del IVA, art. 18 (texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja ofrece almacenar en depósito aduanero?",
+      "opciones": [
+        "No pagar nunca derechos ni impuestos por la mercancía",
+        "Evitar los controles de la aduana sobre las existencias",
+        "Evitar la contratación del seguro de la mercancía",
+        "Diferir derechos e impuestos hasta el despacho, mejorando la tesorería"
+      ],
+      "respuesta": 3,
+      "explicacion": "Útil para mercancías con destino incierto o reexportación.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un local autorizado o lugar autorizado para el depósito aduanero?",
+      "opciones": [
+        "Instalación autorizada por la aduana para almacenar en suspenso",
+        "Cualquier almacén de la empresa aunque no tenga autorización",
+        "Un local alquilado por el importador a un tercero",
+        "Una oficina del importador con archivo de los documentos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 240 CAU: instalaciones u otros lugares autorizados.",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 240 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un depósito aduanero público?",
+      "opciones": [
+        "El que utiliza solo su titular para sus mercancías",
+        "El que está a disposición de cualquier persona",
+        "Un depósito propiedad del Estado con gestión pública",
+        "Un depósito de aduanas fiscal de productos tributarios"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 240.2 CAU: depósitos públicos y privados.",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, art. 240.2 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un depósito aduanero privado?",
+      "opciones": [
+        "El que está a disposición de cualquier persona que lo solicite",
+        "Un almacén fiscal de productos sujetos a impuestos especiales",
+        "El destinado al almacenamiento por su propio titular",
+        "Un depósito de documentos de la propia empresa"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es el que usa el propio titular.",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, art. 240.2 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué suele obligar a constituir la aduana a quien explota un depósito aduanero?",
+      "opciones": [
+        "Ninguna garantía, porque el depósito es gratuito",
+        "Solo un seguro de responsabilidad civil del titular",
+        "Solo un contrato con la aduana sin más requisitos",
+        "Una garantía y un registro de entradas y salidas"
+      ],
+      "respuesta": 3,
+      "explicacion": "La contabilidad permite el control aduanero.",
+      "criterio": "RA1.d",
+      "fuente": "Código Aduanero de la Unión, régimen de depósito (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-2.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Si unas mercancías se destinan a un depósito aduanero pero salen al mercado de la UE, ¿qué ocurre?",
+      "opciones": [
+        "Se despachan a libre práctica, con derechos e IVA",
+        "No pagan nada, porque ya estaban en suspenso",
+        "Solo el IVA, porque los derechos quedan condonados",
+        "Solo el flete que se pagó hasta el depósito"
+      ],
+      "respuesta": 0,
+      "explicacion": "El despacho a libre práctica pone fin al régimen.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

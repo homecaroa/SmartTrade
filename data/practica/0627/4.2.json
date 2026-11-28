@@ -1,0 +1,313 @@
+{
+  "modulo": "0627",
+  "tema": "4.2",
+  "titulo": "Estructura del arancel de aduanas y clasificación arancelaria",
+  "preguntas": [
+    {
+      "id": "0627-4.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "En clasificación arancelaria, el Sistema Armonizado (SA) se define como…",
+      "opciones": [
+        "Un sistema de pagos entre bancos de países distintos",
+        "Una nomenclatura internacional de mercancías de seis dígitos",
+        "Un seguro que cubre el transporte internacional de mercancías",
+        "Un sistema de rutas aéreas para el transporte de carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "Gestionado por la Organización Mundial de Aduanas, con convenio de 1983 y revisiones periódicas.",
+      "criterio": "RA4.e",
+      "fuente": "Convenio del Sistema Armonizado (OMA); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos dígitos tiene la Nomenclatura Combinada (NC) de la UE?",
+      "opciones": [
+        "Seis",
+        "Diez",
+        "Ocho",
+        "Cuatro"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los seis primeros son del SA; los dígitos 7 y 8 son subdivisiones comunitarias.",
+      "criterio": "RA4.e",
+      "fuente": "Reglamento (CEE) n.º 2658/87; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos dígitos tiene el código TARIC?",
+      "opciones": [
+        "Seis",
+        "Ocho",
+        "Doce",
+        "Diez"
+      ],
+      "respuesta": 3,
+      "explicacion": "Añade a la NC dos dígitos con medidas comunitarias específicas (antidumping, contingentes, preferencias).",
+      "criterio": "RA4.e",
+      "fuente": "Arancel Integrado de la UE (TARIC); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué reúne el arancel integrado TARIC de la UE para cada producto?",
+      "opciones": [
+        "Las medidas arancelarias y comerciales aplicables a cada producto",
+        "Un tipo de seguro de crédito para las exportaciones de la UE",
+        "Una tasa portuaria que se cobra por la manipulación de carga",
+        "Un registro de las empresas autorizadas a importar en la UE"
+      ],
+      "respuesta": 0,
+      "explicacion": "Permite consultar derechos, restricciones y medidas por código y origen.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la principal finalidad del arancel de aduanas?",
+      "opciones": [
+        "Fijar los fletes que cobran los transportistas internacionales",
+        "Fijar los derechos de aduana de cada producto según su clasificación",
+        "Regular el IVA que se paga en las operaciones interiores",
+        "Fijar los horarios de atención de las oficinas de aduanas"
+      ],
+      "respuesta": 1,
+      "explicacion": "El Arancel Aduanero Común de la UE se aplica a la importación desde terceros países.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántas Reglas Generales de Interpretación (RGI) tiene el Sistema Armonizado?",
+      "opciones": [
+        "Tres",
+        "Diez",
+        "Seis",
+        "Cuatro"
+      ],
+      "respuesta": 2,
+      "explicacion": "Sirven para clasificar mercancías complejas o ambiguas, aplicándose en orden.",
+      "criterio": "RA4.e",
+      "fuente": "Sistema Armonizado; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una información arancelaria vinculante (IAV)?",
+      "opciones": [
+        "Un seguro que cubre las diferencias de clasificación del producto",
+        "Un tipo de arancel reducido para las mercancías de la UE",
+        "Una tasa que se paga por solicitar la clasificación arancelaria",
+        "Una decisión de la aduana que fija la clasificación y vincula a las autoridades"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las decisiones IAV tienen una validez de tres años desde que surten efecto (CAU).",
+      "criterio": "RA4.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, decisiones IAV e IVO (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuánto tiempo tiene de validez una decisión de información arancelaria vinculante (IAV)?",
+      "opciones": [
+        "Tres años",
+        "Un año",
+        "Seis meses",
+        "Diez años"
+      ],
+      "respuesta": 0,
+      "explicacion": "Según el Código Aduanero de la Unión.",
+      "criterio": "RA4.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, decisiones IAV (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se denomina el derecho que se calcula como un porcentaje del valor en aduana?",
+      "opciones": [
+        "Derecho específico",
+        "Derecho ad valorem",
+        "Derecho mixto",
+        "Derecho de salvaguardia"
+      ],
+      "respuesta": 1,
+      "explicacion": "El específico se calcula por unidad de peso o cantidad.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se denomina el derecho que se fija como una cantidad por unidad de medida (por ejemplo, euros por 100 kg)?",
+      "opciones": [
+        "Derecho ad valorem",
+        "Derecho antidumping",
+        "Derecho específico",
+        "Derecho compensatorio"
+      ],
+      "respuesta": 2,
+      "explicacion": "El mixto combina ad valorem y específico.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Una partida de 12.000,00 € de valor en aduana tributa a un derecho ad valorem del 6,50 %. ¿Qué derecho de importación se paga?",
+      "opciones": [
+        "7.800,00 €",
+        "11.220,00 €",
+        "1.846,15 €",
+        "780,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Derecho = 12.000,00 × 6,50 % = 780,00 €.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Una mercancía con derecho específico de 12 € por 100 kg pesa 4.500 kg netos. ¿Qué derecho se paga?",
+      "opciones": [
+        "540,00 €",
+        "54.000,00 €",
+        "54,00 €",
+        "375,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Derecho = 4.500 / 100 × 12 = 540,00 €.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un derecho erga omnes (Arancel Aduanero Común)?",
+      "opciones": [
+        "El derecho reducido que se aplica en los acuerdos preferenciales",
+        "El derecho aplicado a países sin acuerdo preferencial",
+        "El derecho adicional que se impone en casos de dumping",
+        "El derecho que compensa las subvenciones del país exportador"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los acuerdos preferenciales aplican un derecho menor o cero.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué capítulo del Sistema Armonizado agrupa los vehículos automóviles (Sección XVII)?",
+      "opciones": [
+        "El capítulo 84, de máquinas y aparatos mecánicos",
+        "El capítulo 30, de productos farmacéuticos",
+        "El capítulo 87",
+        "El capítulo 61, de prendas de vestir de punto"
+      ],
+      "respuesta": 2,
+      "explicacion": "El capítulo 84 recoge máquinas y aparatos mecánicos; el 85, material eléctrico; el 87, vehículos.",
+      "criterio": "RA4.e",
+      "fuente": "Sistema Armonizado; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos capítulos tiene el Sistema Armonizado?",
+      "opciones": [
+        "50 capítulos, agrupados en 10 secciones de productos",
+        "200 capítulos, agrupados en 40 secciones de productos",
+        "10 capítulos, uno por cada sección de la nomenclatura",
+        "97 capítulos, agrupados en 21 secciones"
+      ],
+      "respuesta": 3,
+      "explicacion": "El capítulo 77 está reservado; los capítulos 98 y 99 se reservan a usos nacionales.",
+      "criterio": "RA4.e",
+      "fuente": "Sistema Armonizado; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe hacerse para conocer los derechos aplicables a un producto?",
+      "opciones": [
+        "Clasificarlo en el TARIC, identificar el origen y ver las medidas",
+        "Preguntar al transportista cuánto cobra por el flete",
+        "Mirar solo el precio que figura en la factura comercial",
+        "Comprobar únicamente el Incoterm pactado en el contrato"
+      ],
+      "respuesta": 0,
+      "explicacion": "La clasificación y el origen determinan los derechos y las medidas.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si un producto se clasifica con un código arancelario erróneo?",
+      "opciones": [
+        "Nada, porque la aduana corrige el código de oficio",
+        "Derechos incorrectos, regularización de la deuda y posibles sanciones",
+        "El transportista asume la deuda que se genere por la diferencia",
+        "Se anula la factura y se emite otra con el código correcto"
+      ],
+      "respuesta": 1,
+      "explicacion": "Por eso es clave la correcta clasificación o solicitar una IAV.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,277 @@
+{
+  "modulo": "0623",
+  "tema": "5.1",
+  "titulo": "Facturación: requisitos, plazos, moneda y tipos de factura",
+  "preguntas": [
+    {
+      "id": "0623-5.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo debe ser la numeración de las facturas dentro de cada serie?",
+      "opciones": [
+        "Correlativa, dentro de cada serie",
+        "Aleatoria, según el criterio del emisor",
+        "Ordenada solo por la fecha de cada factura",
+        "Ordenada por el importe de cada factura"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 6.1.a RD 1619/2012. Se pueden usar series separadas si hay razones que lo justifiquen.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 6.1.a (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué facturas deben expedirse obligatoriamente en series específicas?",
+      "opciones": [
+        "Las de importe superior a 1.000 euros",
+        "Las rectificativas y las del destinatario",
+        "Las de exportaciones a países terceros",
+        "Las de clientes establecidos en el extranjero"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 6.1.a RD 1619/2012.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 6.1.a (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué datos debe contener obligatoriamente una factura?",
+      "opciones": [
+        "Solo el importe total de la operación",
+        "Solo el nombre del emisor de la factura",
+        "Número, fecha, NIF, domicilio, operación, tipo y cuota",
+        "Solo el NIF del destinatario de la factura"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 6 RD 1619/2012.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 6 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo debe consignarse la cuota de IVA repercutida en la factura?",
+      "opciones": [
+        "Incluida en el precio sin desglosar",
+        "Solo en el albarán de entrega",
+        "No se indica en la factura",
+        "Por separado"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 6.1.h RD 1619/2012.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 6.1.h (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo debe consignarse el NIF del destinatario obligatoriamente?",
+      "opciones": [
+        "En entregas intracomunitarias exentas",
+        "Nunca, porque el NIF es un dato opcional",
+        "Solo en las facturas de importe elevado",
+        "Solo cuando el cliente lo solicita expresamente"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 6.1.d RD 1619/2012.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 6.1.d (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el plazo para expedir una factura cuando el destinatario es un empresario o profesional?",
+      "opciones": [
+        "En el plazo de cinco días desde la operación",
+        "Antes del día 16 del mes siguiente al devengo",
+        "En el plazo de un año desde la operación",
+        "En el plazo de tres meses desde el devengo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 11.1 RD 1619/2012. En general, en el momento de realizarse la operación.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 11 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Puede expresarse el importe de una factura en moneda distinta del euro?",
+      "opciones": [
+        "No, la factura debe expresarse siempre en euros",
+        "Solo en dólares estadounidenses",
+        "Sí, con la cuota de IVA expresada en euros",
+        "Solo en libras esterlinas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 12.1 RD 1619/2012, con el tipo de cambio del art. 79 de la Ley del IVA.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 12 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué lengua pueden expedirse las facturas?",
+      "opciones": [
+        "Solo en castellano en todo caso",
+        "Solo en inglés, por ser lengua de comercio",
+        "Solo en las lenguas oficiales del Estado",
+        "En cualquier lengua, con posible traducción"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 12.2 RD 1619/2012.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 12.2 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una factura recapitulativa?",
+      "opciones": [
+        "Agrupa operaciones de un mes a un cliente",
+        "Una factura que agrupa a varios clientes distintos",
+        "Una factura que corrige una factura anterior",
+        "Una factura previa que no tiene valor fiscal"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 13 RD 1619/2012; se expide como máximo el último día del mes natural.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 13 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Hasta qué importe puede expedirse una factura simplificada con carácter general (IVA incluido)?",
+      "opciones": [
+        "100 euros con IVA incluido",
+        "400 euros",
+        "1.000 euros con IVA incluido",
+        "10.000 euros con IVA incluido"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 4 RD 1619/2012 (con límites de 3.000 € en ciertos supuestos).",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 4 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué se expide una factura rectificativa?",
+      "opciones": [
+        "Cobrar un importe adicional al cliente",
+        "Reclamar un impago de una factura anterior",
+        "Corregir o anular datos o cuotas de una factura",
+        "Pedir al cliente el albarán de entrega"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 15 RD 1619/2012.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 15 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la facturación electrónica?",
+      "opciones": [
+        "Escanear una factura en papel sin ninguna garantía",
+        "Enviar albaranes por correo electrónico",
+        "Un sistema de pago mediante tarjeta",
+        "Facturas en formato electrónico con garantías"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 9 RD 1619/2012.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 9 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una factura proforma?",
+      "opciones": [
+        "Documento previo a la venta, sin valor fiscal",
+        "Una factura definitiva con valor fiscal",
+        "Una factura rectificativa de otra anterior",
+        "Un justificante del pago de una operación"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se usa en comercio exterior para permisos o créditos.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Debe el empresario conservar copia de las facturas?",
+      "opciones": [
+        "No, porque basta con el original del cliente",
+        "Sí, debe conservar copia o matriz",
+        "Solo durante un año desde la expedición",
+        "Solo si la factura se expidió de forma electrónica"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 1 y 2 RD 1619/2012; el plazo de conservación se rige por la normativa tributaria y mercantil.",
+      "criterio": "RA5.a",
+      "fuente": "Real Decreto 1619/2012 (Reglamento de facturación), art. 1 (BOE-A-2012-14696, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué base de datos permite registrar y consultar facturas emitidas y recibidas en la empresa?",
+      "opciones": [
+        "Un fichero de nóminas del personal",
+        "Un fichero de clientes sin facturas",
+        "El libro registro o el programa de facturación",
+        "Un inventario de existencias"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los libros registro son obligatorios a efectos del IVA.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

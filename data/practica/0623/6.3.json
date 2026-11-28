@@ -1,0 +1,241 @@
+{
+  "modulo": "0623",
+  "tema": "6.3",
+  "titulo": "Cuentas anuales, PGC para pymes y obligaciones contables",
+  "preguntas": [
+    {
+      "id": "0623-6.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documentos forman las cuentas anuales?",
+      "opciones": [
+        "Balance, pérdidas y ganancias y memoria",
+        "Solo el balance de situación al cierre",
+        "Solo la memoria con las notas explicativas",
+        "Solo las facturas emitidas y recibidas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las pymes pueden formular modelos abreviados.",
+      "criterio": "RA6.e",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué recoge la cuenta de pérdidas y ganancias?",
+      "opciones": [
+        "Los bienes y las deudas de la empresa",
+        "Los ingresos y gastos del ejercicio y el resultado",
+        "El capital social aportado por los socios",
+        "Los cobros pendientes de los clientes"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es un estado de flujo, no de situación.",
+      "criterio": "RA6.e",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el resultado del ejercicio?",
+      "opciones": [
+        "La diferencia entre cobros y pagos del periodo",
+        "El activo menos el pasivo del balance",
+        "La diferencia entre ingresos y gastos",
+        "El capital social más las reservas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Puede ser beneficio o pérdida.",
+      "criterio": "RA6.e",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la memoria?",
+      "opciones": [
+        "Un inventario valorado de las existencias",
+        "Un libro de actas de las juntas de socios",
+        "Una factura con los datos de la operación",
+        "El documento que amplía y comenta las demás cuentas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Incluye criterios y notas explicativas.",
+      "criterio": "RA6.e",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo deben los administradores formular las cuentas anuales?",
+      "opciones": [
+        "En tres meses desde el cierre del ejercicio",
+        "En un mes desde el cierre del ejercicio",
+        "En seis meses desde el cierre del ejercicio",
+        "En un año desde el cierre del ejercicio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 253 LSC.",
+      "criterio": "RA6.e",
+      "fuente": "Ley de Sociedades de Capital (RDLeg 1/2010), art. 253, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo se reúne la junta general ordinaria para aprobar las cuentas?",
+      "opciones": [
+        "En el plazo de un mes desde el cierre",
+        "En los seis primeros meses del ejercicio",
+        "En el primer trimestre del ejercicio",
+        "En los últimos días del año natural"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 164 LSC.",
+      "criterio": "RA6.e",
+      "fuente": "Ley de Sociedades de Capital (RDLeg 1/2010), art. 164, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué plazo debe depositarse las cuentas aprobadas en el Registro Mercantil?",
+      "opciones": [
+        "En el plazo de un año desde su aprobación",
+        "En el plazo de dos meses desde su aprobación",
+        "En el mes siguiente a su aprobación",
+        "En el plazo de diez días desde su aprobación"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 279 LSC.",
+      "criterio": "RA6.e",
+      "fuente": "Ley de Sociedades de Capital (RDLeg 1/2010), art. 279, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el PGC para pymes?",
+      "opciones": [
+        "Un impuesto sobre los beneficios de las pymes",
+        "Una ley mercantil sobre las sociedades pequeñas",
+        "Un tipo de sociedad con capital reducido",
+        "Una versión simplificada del PGC para empresas pequeñas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se aplica si se cumplen límites de activo, ventas y empleados.",
+      "criterio": "RA6.e",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué empresas deben llevar contabilidad según el Código de Comercio?",
+      "opciones": [
+        "Los empresarios en general, de forma ordenada",
+        "Solo las sociedades anónimas de gran tamaño",
+        "Solo las empresas de grandes dimensiones",
+        "Ningún empresario, porque la contabilidad es voluntaria"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los empresarios individuales también.",
+      "criterio": "RA6.e",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué libros contables son obligatorios para el empresario?",
+      "opciones": [
+        "Solo el libro mayor de cuentas",
+        "El diario y el de inventarios y cuentas anuales",
+        "Solo el libro de actas de las juntas",
+        "Ninguno de ellos, porque no hay libros obligatorios"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las sociedades también llevan libro de actas.",
+      "criterio": "RA6.e",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el cierre del ejercicio contable?",
+      "opciones": [
+        "La apertura de las nuevas cuentas del ejercicio",
+        "El pago de los impuestos de la empresa",
+        "Las operaciones que cierran las cuentas y calculan el resultado",
+        "Un inventario físico de las existencias"
+      ],
+      "respuesta": 2,
+      "explicacion": "Incluye regularizaciones y amortizaciones.",
+      "criterio": "RA6.c",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Ingresos del ejercicio 420.000 € y gastos 365.000 €. ¿Cuál es el resultado?",
+      "opciones": [
+        "785.000,00 €",
+        "-55.000,00 €",
+        "420.000,00 €",
+        "55.000,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Resultado = 420.000 − 365.000 = 55.000,00 € (beneficio).",
+      "criterio": "RA6.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Con ingresos de 90.000 € y gastos de 105.000 €, ¿cuál es el resultado?",
+      "opciones": [
+        "-15.000,00 €",
+        "15.000,00 €",
+        "195.000,00 €",
+        "0,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "90.000 − 105.000 = −15.000 € (pérdida).",
+      "criterio": "RA6.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

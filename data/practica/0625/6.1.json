@@ -1,0 +1,241 @@
+{
+  "modulo": "0625",
+  "tema": "6.1",
+  "titulo": "Actividades de la logística inversa y tratamiento de devoluciones",
+  "preguntas": [
+    {
+      "id": "0625-6.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se define la logística inversa?",
+      "opciones": [
+        "El flujo del consumo al origen para recuperar valor",
+        "La logística de aprovisionamiento de materias primas",
+        "El transporte marítimo de mercancías de retorno",
+        "El almacenaje de las mercancías en estanterías altas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Incluye devoluciones, reciclaje, reparación y reutilización.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué actividades abarca la logística inversa?",
+      "opciones": [
+        "Solo ventas y atención posventa al cliente",
+        "Devoluciones, reparación, reciclaje y reutilización",
+        "Solo compras de materias primas a proveedores",
+        "Solo transporte de mercancías entre almacenes"
+      ],
+      "respuesta": 1,
+      "explicacion": "Cada actividad tiene su propio flujo.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué se producen las devoluciones de clientes?",
+      "opciones": [
+        "Solo por el precio del producto en la tienda",
+        "Solo por la marca del producto que se compra",
+        "Error de pedido, defecto, daños o desistimiento",
+        "Nunca se producen, porque el cliente siempre acepta"
+      ],
+      "respuesta": 2,
+      "explicacion": "El comercio electrónico las aumenta.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la política de devoluciones de una empresa?",
+      "opciones": [
+        "Una norma fiscal sobre el IVA de las devoluciones",
+        "Un contrato de seguro que cubre las devoluciones",
+        "Una norma de embalaje de los productos devueltos",
+        "Las reglas sobre cómo se aceptan devoluciones"
+      ],
+      "respuesta": 3,
+      "explicacion": "Debe ser clara y conocida por el cliente.",
+      "criterio": "RA5.a",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se hace con una mercancía devuelta en buen estado?",
+      "opciones": [
+        "Se inspecciona y, si es vendible, vuelve al stock",
+        "Se destruye siempre para evitar su reventa",
+        "Se vende como nueva sin ninguna revisión previa",
+        "Se envía a otro país sin pasar por el almacén"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es la opción más rentable.",
+      "criterio": "RA5.b",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se hace con un producto devuelto con defectos reparables?",
+      "opciones": [
+        "Se destruye porque el defecto no admite reparación",
+        "Se repara y se vende como reacondicionado",
+        "Se devuelve al cliente sin ningún tipo de abono",
+        "Se vende como producto nuevo sin informar del defecto"
+      ],
+      "respuesta": 1,
+      "explicacion": "Recupera parte del valor.",
+      "criterio": "RA5.b",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se hace con productos devueltos que no pueden repararse?",
+      "opciones": [
+        "Se venden como nuevos para recuperar su coste",
+        "Se almacenan indefinidamente en el almacén principal",
+        "Se reciclan, se aprovechan sus piezas o se eliminan",
+        "Se mezclan con el stock bueno para su venta"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se prioriza la recuperación de materiales.",
+      "criterio": "RA5.b",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué medidas evitan la contaminación u obsolescencia de la mercancía retornada?",
+      "opciones": [
+        "Mezclarla con el stock que está disponible para venta",
+        "Dejarla sin etiquetar hasta que se decida su destino",
+        "Almacenarla sin control en una zona no habilitada",
+        "Separarla del stock vendible y tratarla pronto"
+      ],
+      "respuesta": 3,
+      "explicacion": "Evita errores y reclamaciones.",
+      "criterio": "RA5.c",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una zona de devoluciones en el almacén?",
+      "opciones": [
+        "Una zona para recibir e inspeccionar devoluciones",
+        "Una zona de picking para la preparación de pedidos",
+        "Una zona de oficinas para la gestión de documentos",
+        "Una zona de carga para los camiones de reparto"
+      ],
+      "respuesta": 0,
+      "explicacion": "Evita mezclarlos con el stock disponible.",
+      "criterio": "RA5.c",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué normativa aplica al tratamiento de residuos de envases?",
+      "opciones": [
+        "Solo el CMR, que regula el transporte por carretera",
+        "La normativa de envases, con responsabilidad del productor",
+        "Solo la LOTT, que regula las actividades de transporte",
+        "Solo el Código Civil, en materia de depósito"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los productores deben hacerse cargo de los residuos de sus envases.",
+      "criterio": "RA5.d",
+      "fuente": "Ley 11/1997 de envases y residuos de envases y normativa posterior; contenido conocido, no contrastado con el texto vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un SIG (sistema integrado de gestión) de envases?",
+      "opciones": [
+        "Un seguro que cubre los daños en los envases",
+        "Un sistema de rutas para el transporte de retorno",
+        "Un sistema colectivo para recoger y reciclar los envases",
+        "Un sistema de nóminas para los operarios del almacén"
+      ],
+      "respuesta": 2,
+      "explicacion": "En España, por ejemplo, Ecoembes.",
+      "criterio": "RA5.d",
+      "fuente": "Normativa de envases; contenido conocido, no contrastado con el texto vigente.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la trazabilidad de los productos devueltos?",
+      "opciones": [
+        "Contar los bultos que llegan en cada devolución",
+        "Pesar el producto devuelto antes de su inspección",
+        "Pintar el producto devuelto para su identificación",
+        "Identificar su lote, origen y destino final"
+      ],
+      "respuesta": 3,
+      "explicacion": "Facilita el control y las reclamaciones.",
+      "criterio": "RA5.c",
+      "fuente": "Conocimiento general de logística inversa; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-6.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Un producto devuelto con defecto: nuevo vale 200 €, el reacondicionado se vende a 120 € y la reparación cuesta 45 €. ¿Cuál es el margen recuperado por unidad reparada (sin otros costes)?",
+      "opciones": [
+        "75,00 €",
+        "120,00 €",
+        "45,00 €",
+        "155,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "120 − 45 = 75 € de valor recuperado.",
+      "criterio": "RA5.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

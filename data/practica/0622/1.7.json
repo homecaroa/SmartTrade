@@ -1,0 +1,223 @@
+{
+  "modulo": "0622",
+  "tema": "1.7",
+  "titulo": "Mercancías peligrosas, perecederas y animales vivos",
+  "preguntas": [
+    {
+      "id": "0622-1.7-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué acuerdo regula el transporte internacional de mercancías peligrosas por carretera?",
+      "opciones": [
+        "El Convenio CMR",
+        "El ADR",
+        "El RID",
+        "El Código IMDG"
+      ],
+      "respuesta": 1,
+      "explicacion": "El ADR (Acuerdo europeo sobre transporte internacional de mercancías peligrosas por carretera) fija qué mercancías pueden transportarse y en qué condiciones de embalaje, marcado, documentación, vehículos y conductores. Se publica en España en el BOE con sus anejos A y B (edición vigente: ADR 2025). El CMR regula el contrato de transporte, no la peligrosidad; el RID es el reglamento ferroviario y el IMDG el marítimo.",
+      "criterio": "RA1.e",
+      "fuente": "BOE-A-2025-77 (ADR 2025, Anejos A y B, texto enmendado).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué código regula el transporte marítimo de mercancías peligrosas en bultos?",
+      "opciones": [
+        "El RID",
+        "El ADN",
+        "Las DGR",
+        "El Código IMDG"
+      ],
+      "respuesta": 3,
+      "explicacion": "El Código IMDG (Código Marítimo Internacional de Mercancías Peligrosas, de la OMI) rige el modo marítimo. El ADR, en su texto, remite expresamente al Código IMDG y a las Instrucciones técnicas de la OACI para las cadenas de transporte multimodales. El RID es el reglamento del ferrocarril (apéndice de COTIF) y el ADN el de las vías navegables interiores; las DGR son el manual de IATA para el transporte aéreo.",
+      "criterio": "RA1.e",
+      "fuente": "ADR 2025, apdo. 1.1.4 (referencias al IMDG y a las Instrucciones técnicas de la OACI); CIM art. 7 (referencia al RID).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántas clases de mercancías peligrosas distingue el ADR?",
+      "opciones": [
+        "Nueve, numeradas del 1 al 9 (algunas con divisiones)",
+        "Cinco",
+        "Doce",
+        "Siete"
+      ],
+      "respuesta": 0,
+      "explicacion": "El ADR clasifica las mercancías peligrosas en nueve clases (1 a 9), algunas con divisiones como la 4.1, 4.2 y 4.3 (sólidos inflamables, inflamación espontánea y desprendimiento de gases inflamables), la 5.1 y 5.2 (comburentes y peróxidos orgánicos) o la 6.1 y 6.2 (tóxicas e infecciosas). Esa clasificación es común a los demás modos.",
+      "criterio": "RA4.a",
+      "fuente": "ADR 2025 (BOE-A-2025-77): referencias a «las clases de la 1 a la 9 del ADR» y a las divisiones 4.1, 5.2 y 6.2. No he localizado la tabla literal de nombres de la parte 2 en el texto extraído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿A qué clase del ADR pertenecen las materias radiactivas?",
+      "opciones": [
+        "A la clase 2",
+        "A la clase 5",
+        "A la clase 7",
+        "A la clase 9"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las materias radiactivas son la clase 7 (por ejemplo, los números ONU 2912 a 2919 y 2977 y 2978). La clase 2 son los gases, la 5 las materias comburentes y los peróxidos orgánicos, y la 9 las materias y objetos peligrosos diversos.",
+      "criterio": "RA4.a",
+      "fuente": "ADR 2025 (BOE-A-2025-77), referencias a «Clase 7: Nos. ONU del 2912 al 2919…».",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿A qué clase de mercancías peligrosas pertenecen los líquidos inflamables, como la gasolina?",
+      "opciones": [
+        "A la clase 2",
+        "A la clase 3",
+        "A la clase 4.1",
+        "A la clase 8"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los líquidos inflamables son la clase 3. La clase 2 agrupa los gases (comprimidos, licuados o disueltos), la 4.1 las materias sólidas inflamables y la 8 las materias corrosivas.",
+      "criterio": "RA4.a",
+      "fuente": "Clasificación de las clases ADR/ONU (conocimiento general; ADR 2025, parte 2).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué forma y tamaño mínimo tienen las etiquetas de peligro de los bultos con mercancías peligrosas según el ADR?",
+      "opciones": [
+        "Un rombo (cuadrado colocado sobre un vértice a 45º) de al menos 100 mm × 100 mm",
+        "Un círculo de 50 mm de diámetro",
+        "Un rectángulo naranja de 40 × 30 cm",
+        "Un triángulo equilátero de 150 mm de lado"
+      ],
+      "respuesta": 0,
+      "explicacion": "El apartado 5.2.2.2.1.1.2 del ADR dice que la etiqueta tiene forma de cuadrado colocado sobre un vértice (rombo), con dimensiones mínimas de 100 mm × 100 mm y una línea interior paralela al borde. Si el tamaño del bulto lo exige, pueden reducirse proporcionalmente (5.2.2.2.1.1.3). El panel rectangular naranja es otra cosa: señaliza el vehículo, no el bulto.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.2.2.2.1.1.2 y 5.2.2.2.1.1.3.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En una cisterna que transporta una materia peligrosa por carretera, ¿qué indican los paneles de color naranja?",
+      "opciones": [
+        "Solo el número ONU de la materia",
+        "La matrícula del vehículo y el nombre del transportista",
+        "El número de identificación de peligro y el número ONU de la materia transportada",
+        "El código IMDG y la clase de la materia"
+      ],
+      "respuesta": 2,
+      "explicacion": "El ADR (5.3.2.1.2) exige en las cisternas paneles naranja con el número de identificación de peligro y el número ONU de cada materia, tal como figuran en las columnas 20 y 1 de la tabla A del capítulo 3.2. Los vehículos que lleven mercancías peligrosas y atraviesen túneles restringidos también deben llevar paneles naranja.",
+      "criterio": "RA4.c",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 5.3.2.1.2.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Se envía por avión una mercancía peligrosa. ¿Qué indicación debe constar en el AWB junto con el número de bultos peligrosos?",
+      "opciones": [
+        "«Hazardous – open on arrival»",
+        "«Not restricted»",
+        "«NVD»",
+        "«Dangerous Goods as per attached Shipper's Declaration»"
+      ],
+      "respuesta": 3,
+      "explicacion": "La Res. 600a de IATA indica que en la casilla de información de manipulación se escribe la declaración «Dangerous Goods as per attached Shipper's Declaration» (o «as per attached DGD») y se indica el número de bultos con mercancías peligrosas. La declaración del cargador es el documento que acompaña al envío y que certifica que está correctamente clasificado, embalado, marcado y etiquetado.",
+      "criterio": "RA5.a",
+      "fuente": "IATA Res. 600a, Attachment B, apdo. 2.17.2 (Cargo Agent's Handbook).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la declaración del cargador de mercancías peligrosas?",
+      "opciones": [
+        "El documento del transportista que fija el flete",
+        "El documento firmado por el cargador que certifica que la mercancía está correctamente identificada, clasificada, embalada, marcada y etiquetada para su transporte",
+        "El permiso de circulación del vehículo que transporta la mercancía",
+        "El certificado de seguro de la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es la responsabilidad del cargador: declara por escrito que ha cumplido la reglamentación aplicable al modo de transporte (ADR, RID, IMDG o DGR/OACI). Por eso la documentación de mercancías especiales incluye la «declaración del cargador», contenido recogido en el currículo del módulo.",
+      "criterio": "RA5.a",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Declaración del cargador de mercancías»). Contenido de la declaración: conocimiento general, no consultado en fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué acuerdo establece las condiciones de los vehículos especiales para el transporte internacional de alimentos perecederos?",
+      "opciones": [
+        "El ATP",
+        "El ADR",
+        "El TIR",
+        "El CMR"
+      ],
+      "respuesta": 0,
+      "explicacion": "El Acuerdo ATP (Ginebra, 1970) regula el transporte internacional de mercancías perecederas y los vehículos especiales (isotermos, refrigerados, frigoríficos, calefactados) utilizados, que deben contar con certificado ATP. Si se usa un vehículo refrigerado, el CMR impide al transportista alegar la exoneración del art. 17.4.d salvo que pruebe que tomó las medidas debidas (art. 18.4).",
+      "criterio": "RA4.a",
+      "fuente": "Acuerdo ATP: conocimiento general, no consultado en texto oficial. CMR, arts. 17.4.d y 18.4 (BOE-A-1974-753).",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Reglamento (CE) 1/2005 sobre la protección de los animales durante el transporte, ¿a partir de qué duración se considera «viaje largo»?",
+      "opciones": [
+        "Más de tres horas",
+        "Más de cinco horas",
+        "Más de ocho horas",
+        "Más de veinticuatro horas"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 2.m del Reglamento define «viaje largo» como el que supera las ocho horas a partir del momento en que se traslada al primer animal de la partida. Los viajes largos tienen requisitos adicionales de vehículos, control y condiciones de descanso, agua y alimentación.",
+      "criterio": "RA4.a",
+      "fuente": "Reglamento (CE) 1/2005, art. 2.m (DOUE L 3, 5.1.2005, vía BOE).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.7-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Los conductores y cuidadores que transportan équidos domésticos, bovinos, ovinos, caprinos, porcinos o aves de corral, ¿qué deben haber obtenido según el Reglamento (CE) 1/2005?",
+      "opciones": [
+        "Un permiso ADR de mercancías peligrosas",
+        "El carné de transitario",
+        "Un certificado de aprobación del contenedor",
+        "Un certificado de competencia"
+      ],
+      "respuesta": 3,
+      "explicacion": "El Reglamento (art. 6.5 y art. 17.2) exige que los conductores y cuidadores de esas especies hayan obtenido un certificado de competencia, que debe ponerse a disposición de la autoridad competente durante el transporte. Además, los transportistas necesitan autorización y los medios de transporte, un certificado de aprobación.",
+      "criterio": "RA4.a",
+      "fuente": "Reglamento (CE) 1/2005, arts. 6 y 17 (DOUE L 3, 5.1.2005, vía BOE).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

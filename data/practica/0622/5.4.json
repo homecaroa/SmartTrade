@@ -1,0 +1,457 @@
+{
+  "modulo": "0622",
+  "tema": "5.4",
+  "titulo": "Glosario de terminología inglesa en la documentación",
+  "preguntas": [
+    {
+      "id": "0622-5.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «shipper»?",
+      "opciones": [
+        "El destinatario que recibe la mercancía en destino",
+        "El banco emisor del crédito documentario",
+        "El agente de aduanas que despacha la carga",
+        "El cargador o expedidor de la mercancía"
+      ],
+      "respuesta": 3,
+      "explicacion": "En un B/L aparece como «Shipper».",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «consignee»?",
+      "opciones": [
+        "El destinatario de la mercancía",
+        "El cargador que entrega la mercancía",
+        "El transitario que organiza el transporte",
+        "El asegurador que cubre la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es la persona a quien se entrega la mercancía en destino.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «notify party»?",
+      "opciones": [
+        "El capitán del buque que realiza el transporte",
+        "A quien se avisa de la llegada de la mercancía",
+        "El transportista subcontratado para un tramo",
+        "El asegurador que cubre la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Puede ser distinta del consignatario.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «carrier»?",
+      "opciones": [
+        "El cargador",
+        "El comprador",
+        "El porteador o transportista",
+        "El asegurador"
+      ],
+      "respuesta": 2,
+      "explicacion": "Quien se obliga a realizar el transporte.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «freight forwarder»?",
+      "opciones": [
+        "El estibador que carga y descarga el buque",
+        "El capitán que manda el buque durante el viaje",
+        "El agente de seguros que intermedia la póliza",
+        "El transitario, que organiza el transporte"
+      ],
+      "respuesta": 3,
+      "explicacion": "Actúa como intermediario logístico.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «bill of lading (B/L)»?",
+      "opciones": [
+        "Conocimiento de embarque",
+        "Carta de porte aéreo",
+        "Factura comercial",
+        "Certificado de origen"
+      ],
+      "respuesta": 0,
+      "explicacion": "Documento marítimo con función de recibo, contrato y título.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «air waybill (AWB)»?",
+      "opciones": [
+        "Conocimiento de embarque",
+        "Carta de porte aéreo",
+        "Lista de bultos o packing list",
+        "Manifiesto de carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "No es negociable.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «packing list»?",
+      "opciones": [
+        "El albarán de entrega que firma el destinatario",
+        "La factura proforma previa a la venta",
+        "La lista de bultos, con pesos y dimensiones",
+        "El seguro de transporte de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Acompaña a la factura comercial y sirve para la inspección y el despacho.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «commercial invoice»?",
+      "opciones": [
+        "La factura proforma",
+        "La nota de gastos",
+        "El albarán de entrega",
+        "La factura comercial"
+      ],
+      "respuesta": 3,
+      "explicacion": "Documento base para el despacho aduanero.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «pro forma invoice»?",
+      "opciones": [
+        "La factura previa a la venta, para ofertar",
+        "La factura definitiva emitida tras la entrega",
+        "El recibo bancario del pago de la operación",
+        "La carta de porte que acompaña a la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "No tiene valor contable.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «certificate of origin»?",
+      "opciones": [
+        "El certificado fitosanitario",
+        "El certificado de origen",
+        "El certificado de seguro",
+        "El certificado de peso"
+      ],
+      "respuesta": 1,
+      "explicacion": "Acredita el país de origen de la mercancía.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «freight prepaid»?",
+      "opciones": [
+        "Flete que se paga en destino por el consignatario",
+        "Envío sin flete, porque no se cobra el transporte",
+        "Flete pagado en origen por el cargador",
+        "Flete que corre a cargo del banco emisor"
+      ],
+      "respuesta": 2,
+      "explicacion": "Su contrario es «freight collect».",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «freight collect»?",
+      "opciones": [
+        "Flete pagado en origen por el cargador",
+        "Flete gratuito, sin coste para el consignatario",
+        "Flete que se devuelve al finalizar el transporte",
+        "Flete a pagar en destino por el consignatario"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se contrapone a «freight prepaid».",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «ETD»?",
+      "opciones": [
+        "Fecha estimada de salida",
+        "Fecha estimada de llegada del medio de transporte",
+        "Fecha de entrega de los documentos al banco",
+        "Fecha de pago del flete al transportista"
+      ],
+      "respuesta": 0,
+      "explicacion": "ETA = estimated time of arrival.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «ETA»?",
+      "opciones": [
+        "Fecha estimada de salida del medio de transporte",
+        "Fecha estimada de llegada",
+        "Fecha real en la que se ha embarcado la mercancía",
+        "Fecha de vencimiento del crédito documentario"
+      ],
+      "respuesta": 1,
+      "explicacion": "ETD es la fecha estimada de salida.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «demurrage»?",
+      "opciones": [
+        "Un descuento que se aplica por pronto pago",
+        "El recargo que se aplica por el combustible",
+        "El cargo por exceder el tiempo libre del contenedor en terminal",
+        "El seguro que cubre la carga durante el viaje"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se cobra por días de contenedor no retirado a tiempo; «detention» es el cargo por retener el contenedor fuera de la terminal.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-017",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «detention»?",
+      "opciones": [
+        "Un impuesto que se paga en la aduana",
+        "El flete marítimo del trayecto principal",
+        "La estiba de la carga en el buque",
+        "El cargo por retener el contenedor fuera de la terminal"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se distingue de «demurrage», que se produce dentro del puerto.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-018",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «THC»?",
+      "opciones": [
+        "Terminal Handling Charges, gastos de terminal",
+        "Tarifa de carga aérea que cobran las aerolíneas",
+        "Tipo de contenedor de uso en terminales",
+        "Seguro de carga durante la estancia en terminal"
+      ],
+      "respuesta": 0,
+      "explicacion": "Cargo por manipulación del contenedor en la terminal.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-019",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «BAF»?",
+      "opciones": [
+        "Recargo por las variaciones del tipo de cambio",
+        "Recargo por variación del precio del combustible",
+        "Recargo por las medidas de seguridad del puerto",
+        "Recargo por el exceso de peso del contenedor"
+      ],
+      "respuesta": 1,
+      "explicacion": "CAF = Currency Adjustment Factor, recargo por variación del tipo de cambio.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-020",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «CAF»?",
+      "opciones": [
+        "Recargo por las variaciones del precio del combustible",
+        "Recargo por la congestión en el puerto de destino",
+        "Recargo por variaciones del tipo de cambio",
+        "Recargo por las medidas de seguridad del puerto"
+      ],
+      "respuesta": 2,
+      "explicacion": "BAF corresponde al combustible.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-021",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «LCL»?",
+      "opciones": [
+        "Contenedor completo para un solo cargador",
+        "Línea de crédito concedida por un banco",
+        "Contenedor refrigerado para carga perecedera",
+        "Grupaje: carga que no llena un contenedor"
+      ],
+      "respuesta": 3,
+      "explicacion": "FCL = Full Container Load.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-022",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «transhipment»?",
+      "opciones": [
+        "El transbordo de la mercancía en un puerto intermedio",
+        "La descarga definitiva en el puerto de destino",
+        "La inspección aduanera de la mercancía",
+        "La estiba de la carga sobre la cubierta"
+      ],
+      "respuesta": 0,
+      "explicacion": "Puede afectar al tiempo de tránsito y al seguro.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-023",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «dangerous goods»?",
+      "opciones": [
+        "Mercancías perecederas",
+        "Mercancías peligrosas",
+        "Mercancías a granel",
+        "Carga general"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se identifican con número ONU y clase.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-024",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «bulk cargo»?",
+      "opciones": [
+        "Carga en contenedores",
+        "Carga paletizada",
+        "Carga a granel",
+        "Carga refrigerada"
+      ],
+      "respuesta": 2,
+      "explicacion": "Líquida o sólida, sin embalar.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.4-025",
+      "tipo": "opcion_unica",
+      "enunciado": "En la documentación de transporte, ¿qué significa «gross weight»?",
+      "opciones": [
+        "Peso neto, sin embalaje ni envases",
+        "Peso volumétrico, calculado por el volumen",
+        "Tara, el peso del contenedor vacío",
+        "Peso bruto: mercancía más embalaje"
+      ],
+      "respuesta": 3,
+      "explicacion": "El peso neto es solo el de la mercancía.",
+      "criterio": "RA5.a",
+      "fuente": "Terminología habitual del transporte internacional; conocimiento general, no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

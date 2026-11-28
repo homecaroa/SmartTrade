@@ -1,0 +1,249 @@
+{
+  "modulo": "0622",
+  "tema": "2.3",
+  "titulo": "Transporte multimodal: Ginebra, contratación y responsabilidad",
+  "preguntas": [
+    {
+      "id": "0622-2.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Convenio de Ginebra de 1980, ¿qué es el «transporte multimodal internacional»?",
+      "opciones": [
+        "Transporte en un mismo vehículo que atraviesa varios países",
+        "Transporte con dos modos, bajo un contrato, entre países",
+        "Transporte hecho por dos transportistas con contratos independientes",
+        "Cualquier transporte que incluya un transbordo en un puerto"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 1.1 lo define como el transporte de mercancías por al menos dos modos distintos, en virtud de un contrato de transporte multimodal, desde un lugar de un país en que el operador toma las mercancías a su cargo hasta un lugar de entrega situado en otro país. Las operaciones de recogida y entrega en el marco de un contrato unimodal no cuentan como multimodal. La clave es el contrato único con un solo responsable.",
+      "criterio": "RA2.d",
+      "fuente": "Convenio de las Naciones Unidas sobre el Transporte Multimodal Internacional de Mercancías (Ginebra, 1980), art. 1.1 (texto en inglés, Univ. de Oslo).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién es el operador de transporte multimodal (OTM)?",
+      "opciones": [
+        "El conductor del vehículo que realiza el primer tramo",
+        "El agente de aduanas que despacha la mercancía",
+        "El propietario del último buque que interviene en el transporte",
+        "Quien contrata en nombre propio y responde de su ejecución"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 1.2 define al OTM como la persona que, por sí o por medio de otra que actúe en su nombre, celebra un contrato multimodal y actúa como principal, no como agente del expedidor ni de los transportistas que participan, asumiendo la responsabilidad del cumplimiento del contrato. Por eso el OTM puede ser un transitario o una naviera que no hace todos los tramos con medios propios.",
+      "criterio": "RA2.g",
+      "fuente": "Convenio de Ginebra de 1980, art. 1.2.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Durante qué periodo es responsable el OTM de las mercancías según el Convenio de Ginebra?",
+      "opciones": [
+        "Desde que las toma a su cargo hasta su entrega",
+        "Solo durante el tramo marítimo del recorrido completo",
+        "Solo mientras están en poder de un transportista contratado directamente",
+        "Desde la firma del contrato de compraventa internacional"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 14.1 extiende la responsabilidad del OTM desde que toma las mercancías a su cargo hasta su entrega. Esta es la ventaja práctica del multimodal: un único interlocutor responde por todo el recorrido, sin que el cliente tenga que saber en qué tramo se produjo el daño.",
+      "criterio": "RA3.g",
+      "fuente": "Convenio de Ginebra de 1980, art. 14.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Convenio de Ginebra, ¿cuál es la base de la responsabilidad del OTM por pérdida, avería o retraso?",
+      "opciones": [
+        "Solo responde si el cargador prueba su negligencia",
+        "Responde siempre, sin ninguna causa de exoneración posible",
+        "Responde salvo que pruebe que tomó las medidas exigibles",
+        "Responde únicamente de la pérdida total de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 16.1 establece una responsabilidad por culpa presunta: el OTM responde de la pérdida, avería o retraso ocurridos mientras las mercancías estaban a su cargo, a menos que pruebe que tomó todas las medidas razonables para evitarlos. La carga de la prueba la tiene el OTM. Hay retraso cuando no se entrega en el plazo expresamente convenido o, si no hay, en el que sería razonable exigir a un OTM diligente (art. 16.2).",
+      "criterio": "RA3.g",
+      "fuente": "Convenio de Ginebra de 1980, art. 16.1 y 16.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Convenio de Ginebra de 1980, ¿cuál es el límite general de responsabilidad del OTM por pérdida o avería de las mercancías, si el transporte incluye un tramo marítimo o fluvial?",
+      "opciones": [
+        "8,33 DEG por kilogramo de peso bruto, sin límite por bulto",
+        "920 DEG por bulto o 2,75 DEG por kilo; la mayor",
+        "666,67 DEG por bulto, sin límite por kilogramo",
+        "26 DEG por kilogramo de peso bruto de la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 18.1 limita la responsabilidad a 920 unidades de cuenta (DEG) por bulto o unidad de carga, o 2,75 DEG por kg de peso bruto, la cifra mayor. Si el transporte no incluye tramos marítimos ni fluviales, el límite es de 8,33 DEG por kg (art. 18.3), igual que en el CMR. Por retraso, el límite es dos veces y media el flete de las mercancías retrasadas, sin exceder del flete total (art. 18.4).",
+      "criterio": "RA3.g",
+      "fuente": "Convenio de Ginebra de 1980, art. 18.1, 18.3 y 18.4.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "En un transporte multimodal sin tramos marítimos ni por vías navegables interiores, ¿qué límite por kilogramo prevé el Convenio de Ginebra?",
+      "opciones": [
+        "2,75 DEG por kilogramo de peso bruto",
+        "17 DEG por kilogramo de peso bruto",
+        "26 DEG por kilogramo de peso bruto",
+        "8,33 DEG por kilogramo de peso bruto"
+      ],
+      "respuesta": 3,
+      "explicacion": "Cuando el contrato multimodal no comprende transporte por mar ni por vías navegables interiores, el límite es de 8,33 DEG por kg de peso bruto de la mercancía perdida o averiada (art. 18.3), la misma cifra que el CMR. El de 2,75 DEG/kg se aplica si hay un tramo marítimo o fluvial.",
+      "criterio": "RA3.g",
+      "fuente": "Convenio de Ginebra de 1980, art. 18.3.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Por retraso en la entrega, ¿a cuánto limita el Convenio de Ginebra la responsabilidad del OTM?",
+      "opciones": [
+        "Dos veces y media el flete, sin pasar del flete total",
+        "Al valor de la mercancía retrasada en destino",
+        "A 920 DEG por cada bulto retrasado en la entrega",
+        "No limita la indemnización por el retraso en la entrega"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 18.4 limita la responsabilidad por pérdida resultante de retraso a una cantidad equivalente a dos veces y media el flete de las mercancías retrasadas, sin que pueda exceder del flete total pagadero por el contrato multimodal. Es más generoso que el CMR (el precio del transporte) pero menor que el CIM (cuatro veces el precio).",
+      "criterio": "RA3.g",
+      "fuente": "Convenio de Ginebra de 1980, art. 18.4; comparación con CMR art. 23.5 y CIM art. 33.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el Convenio de Ginebra, ¿cuándo debe el destinatario avisar por escrito al OTM de una pérdida o avería no aparente?",
+      "opciones": [
+        "En el mismo momento de la entrega de la mercancía",
+        "En las veinticuatro horas siguientes a la entrega",
+        "En los seis días siguientes a la entrega",
+        "En el plazo de un año desde la entrega"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 24: si el destinatario no da aviso escrito, especificando la naturaleza general del daño, a más tardar el día laborable siguiente a la entrega, la entrega es prueba presunta de que se hizo conforme al documento de transporte multimodal. Si el daño no es aparente, el plazo es de seis días consecutivos desde la entrega.",
+      "criterio": "RA6.e",
+      "fuente": "Convenio de Ginebra de 1980, art. 24.1 y 24.2.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Convenio de Ginebra, ¿en qué plazo prescriben las acciones relativas al transporte multimodal?",
+      "opciones": [
+        "Seis meses desde la firma del contrato multimodal",
+        "Un año desde la entrega de la mercancía",
+        "Cinco años desde que se cargó la mercancía",
+        "Dos años; seis meses sin reclamación escrita"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 25.1 fija un plazo de dos años para iniciar procedimiento judicial o arbitral. Pero si no se ha notificado por escrito la reclamación (naturaleza y datos principales) dentro de los seis meses siguientes a la entrega (o a cuando debió producirse), la acción prescribe al expirar esos seis meses.",
+      "criterio": "RA6.e",
+      "fuente": "Convenio de Ginebra de 1980, art. 25.1.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué formas puede emitirse el documento de transporte multimodal según el Convenio de Ginebra?",
+      "opciones": [
+        "Solo en forma nominativa e intransmisible",
+        "Negociable o no, a elección del cargador",
+        "Solo en forma negociable, siempre a la orden",
+        "Solo como recibo de carga sin valor probatorio"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 5.1 obliga al OTM a emitir un documento de transporte multimodal al tomar las mercancías a su cargo, en forma negociable o no negociable a elección del cargador. El negociable se emite a la orden o al portador (art. 6) y sirve para disponer de la mercancía en tránsito; el FIATA FBL es un ejemplo de documento multimodal negociable.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio de Ginebra de 1980, arts. 5.1 y 6.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-2.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la situación actual del Convenio de Ginebra de 1980 sobre transporte multimodal?",
+      "opciones": [
+        "No ha entrado en vigor: faltan Estados parte",
+        "Está en vigor en todos los Estados miembros de la Unión Europea",
+        "Está en vigor desde 1980 y ha sustituido al Convenio CMR",
+        "Fue derogado por el Convenio de Montreal"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 36 exige que 30 Estados lo firmen sin reserva de ratificación o depositen sus instrumentos; entra en vigor 12 meses después. Las fuentes consultadas indican que no ha entrado en vigor. Por eso el multimodal se rige en la práctica por convenios unimodales según el tramo, la ley nacional y reglas contractuales como las Reglas UNCTAD/CCI de 1992.",
+      "criterio": "RA1.g",
+      "fuente": "Convenio de Ginebra de 1980, art. 36; «not in force» según UNCTAD y la base legal citada en los resultados de búsqueda. No he consultado el estado de ratificaciones en la colección de tratados de la ONU.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Navegación Marítima, si un contrato de transporte comprende medios distintos del marítimo, ¿qué normas se aplican a cada fase?",
+      "opciones": [
+        "Toda la ley marítima se aplica a todo el contrato",
+        "Las normas marítimas nunca se aplican al transporte multimodal",
+        "Solo a la fase marítima; las demás, por su norma",
+        "Se aplica siempre el Convenio CMR a todo el recorrido"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 209 LNM prevé que, en un contrato que incluya medios de transporte distintos del marítimo, las normas del capítulo se apliquen solo a la fase marítima, y las demás fases se rijan por la normativa específica que les corresponda siempre que tenga carácter imperativo. Es un sistema de «red» frente a un régimen uniforme.",
+      "criterio": "RA1.g",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 209 (BOE-A-2014-7877).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-2.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué naturaleza jurídica tienen las Reglas UNCTAD/CCI de 1992 para documentos de transporte multimodal?",
+      "opciones": [
+        "Un convenio internacional obligatorio en toda la Unión Europea",
+        "Reglas contractuales voluntarias, si las partes las incorporan",
+        "Una directiva europea de transposición obligatoria",
+        "La ley aplicable a todo el transporte aéreo internacional"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las Reglas UNCTAD/CCI, vigentes desde el 1 de enero de 1992, las elaboró un grupo de trabajo conjunto de UNCTAD y la Cámara de Comercio Internacional. No tienen fuerza de ley: se aplican solo cuando se incorporan al contrato de transporte multimodal. Fijan la responsabilidad del OTM por pérdida, avería y retraso, con las exoneraciones de la regla 5.4 y de la regla 6.",
+      "criterio": "RA3.a",
+      "fuente": "UNCTAD/ICC Rules for Multimodal Transport Documents (1992), según resultados de búsqueda; no he abierto el texto de las Reglas.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

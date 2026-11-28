@@ -1,0 +1,295 @@
+{
+  "modulo": "0625",
+  "tema": "3.4",
+  "titulo": "Almacenamiento de materiales, manipulación y medios de manutención",
+  "preguntas": [
+    {
+      "id": "0625-3.4-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el método FIFO?",
+      "opciones": [
+        "Último en entrar, primero en salir de la ubicación",
+        "First In, First Out: sale primero lo primero",
+        "Primero en caducar, primero en salir del almacén",
+        "Salida sin orden, según la comodidad del operario"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es el método de rotación más habitual.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el método LIFO?",
+      "opciones": [
+        "Primero en entrar, primero en salir de la ubicación",
+        "Primero en caducar, primero en salir del almacén",
+        "Last In, First Out: sale primero lo último",
+        "Rotación aleatoria según el hueco libre más cercano"
+      ],
+      "respuesta": 2,
+      "explicacion": "Típico de apilados y drive-in.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el método FEFO?",
+      "opciones": [
+        "Primero entrado, primero salido, sin mirar la caducidad",
+        "Último entrado, primero salido, como en el apilado",
+        "Primero comprado, primero vendido en el punto de venta",
+        "First Expired, First Out: sale antes lo que caduca"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es el método recomendable para productos con caducidad.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la ubicación fija?",
+      "opciones": [
+        "Cada referencia tiene un lugar determinado",
+        "Los productos se colocan en cualquier hueco libre",
+        "Los productos se mueven de sitio de forma constante",
+        "No hay ubicaciones asignadas a ninguna referencia"
+      ],
+      "respuesta": 0,
+      "explicacion": "Facilita la localización, pero puede desaprovechar espacio.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la ubicación aleatoria (caótica)?",
+      "opciones": [
+        "Cada referencia tiene un sitio fijo asignado de antemano",
+        "Cualquier hueco libre, con control informático",
+        "No se registra la ubicación de las unidades de carga",
+        "La mercancía se deja siempre en el muelle de recepción"
+      ],
+      "respuesta": 1,
+      "explicacion": "Optimiza el espacio, pero exige un WMS fiable.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué criterio se usa para ubicar cerca de los muelles las referencias de mayor rotación?",
+      "opciones": [
+        "El orden alfabético de las referencias del catálogo",
+        "El color del embalaje con el que se presenta el producto",
+        "El análisis ABC o por rotación",
+        "El precio de compra del producto exclusivamente"
+      ],
+      "respuesta": 2,
+      "explicacion": "Reduce los recorridos.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una carretilla contrapesada?",
+      "opciones": [
+        "Una transpaleta manual de poca altura de elevación",
+        "Un transelevador que se desplaza por un pasillo fijo",
+        "Una grúa pórtico con carriles de traslación",
+        "Elevadora con contrapeso trasero"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la más habitual en almacenes.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una carretilla retráctil?",
+      "opciones": [
+        "Carretilla de mástil desplazable para pasillos estrechos",
+        "Una carretilla de contrapeso para pasillos anchos",
+        "Una transpaleta eléctrica de conductor a pie",
+        "Un tractor de arrastre para remolques de carga"
+      ],
+      "respuesta": 0,
+      "explicacion": "Permite pasillos más estrechos.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una transpaleta?",
+      "opciones": [
+        "Un transelevador para estanterías de gran altura",
+        "Equipo para mover palés a poca altura",
+        "Una grúa para el traslado de cargas muy pesadas",
+        "Un apilador para elevar palés a gran altura"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se usa para trayectos cortos.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un apilador?",
+      "opciones": [
+        "Un equipo que solo mueve las cargas en horizontal",
+        "Un camión que transporta los palés entre almacenes",
+        "Un equipo que eleva y apila palés a media altura",
+        "Una cinta que desplaza cajas entre dos puntos fijos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Puede ser manual o eléctrico.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una cinta transportadora?",
+      "opciones": [
+        "Un equipo manual para mover una sola carga a la vez",
+        "Un vehículo que circula libremente por el almacén",
+        "Un tipo de estantería para almacenar cajas en altura",
+        "Un medio continuo entre puntos fijos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se usa en preparación de pedidos y clasificación.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un puente grúa?",
+      "opciones": [
+        "Un equipo que traslada cargas sobre carriles",
+        "Una transpaleta para mover palés por el suelo",
+        "Una carretilla elevadora de contrapeso trasero",
+        "Un contenedor normalizado para carga intermodal"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es un medio fijo.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué criterio influye al elegir un equipo de manutención?",
+      "opciones": [
+        "Solo el color de la máquina y su aspecto exterior",
+        "Carga, altura, pasillo, frecuencia y coste",
+        "Solo la marca del fabricante del equipo",
+        "Solo el tamaño de la empresa que lo adquiere"
+      ],
+      "respuesta": 1,
+      "explicacion": "La elección condiciona el diseño del almacén.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tienen los pasillos estrechos?",
+      "opciones": [
+        "Reducen siempre la seguridad de los operarios",
+        "Encarecen siempre la estantería por palé almacenado",
+        "Aprovechan superficie, pero exigen carretillas especiales",
+        "Disminuyen la capacidad total de almacenamiento"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una solución de alta densidad.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Una carretilla elevadora mueve 24 palés por hora. ¿Cuántos palés mueve en una jornada de 8 horas?",
+      "opciones": [
+        "144",
+        "240",
+        "32",
+        "192"
+      ],
+      "respuesta": 3,
+      "explicacion": "Palés = 24 × 8 = 192.",
+      "criterio": "RA2.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.4-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Un almacén con 8.000 palés al año requiere 4 operaciones de manipulación por palé. ¿Cuántas operaciones son al año?",
+      "opciones": [
+        "32.000",
+        "2.000",
+        "8.004",
+        "320.000"
+      ],
+      "respuesta": 0,
+      "explicacion": "Operaciones = 8.000 × 4 = 32.000.",
+      "criterio": "RA2.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

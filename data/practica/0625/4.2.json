@@ -1,0 +1,259 @@
+{
+  "modulo": "0625",
+  "tema": "4.2",
+  "titulo": "Coste de adquisición y coste por unidad almacenada",
+  "preguntas": [
+    {
+      "id": "0625-4.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué incluye el coste de adquisición de una mercancía?",
+      "opciones": [
+        "Solo el precio de venta al cliente final",
+        "Precio de compra más gastos hasta el almacén, menos descuentos",
+        "Solo el flete del transporte desde el proveedor",
+        "Solo los impuestos que se pueden recuperar después"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es la base de la valoración de existencias.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se trata el IVA soportado deducible en el coste de adquisición?",
+      "opciones": [
+        "Se suma siempre al precio de compra de la mercancía",
+        "Se resta siempre del precio que se paga al proveedor",
+        "No forma parte del coste, porque es deducible",
+        "Se duplica cuando la compra se hace a otro Estado miembro"
+      ],
+      "respuesta": 2,
+      "explicacion": "El IVA no deducible sí se incluye.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un descuento por volumen?",
+      "opciones": [
+        "Recargo que se aplica por pagar la factura con retraso",
+        "Impuesto que grava las compras de gran volumen",
+        "Tipo de flete que cobra el transportista por cantidad",
+        "Rebaja del precio unitario por comprar grandes cantidades"
+      ],
+      "respuesta": 3,
+      "explicacion": "Reduce el coste de adquisición.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Para el comprador, el descuento por pronto pago es…",
+      "opciones": [
+        "Rebaja por pagar antes del plazo pactado",
+        "Rebaja por la cantidad de unidades que se compran",
+        "Recargo por pagar después del plazo de vencimiento",
+        "Gasto financiero por aplazar el pago de la factura"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es un ingreso financiero.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coste por unidad almacenada?",
+      "opciones": [
+        "El precio de venta de cada unidad almacenada",
+        "El coste total del almacén entre las unidades almacenadas",
+        "El precio de compra de cada unidad almacenada",
+        "El coste de transporte de cada unidad hasta el cliente"
+      ],
+      "respuesta": 1,
+      "explicacion": "Permite comparar la eficiencia.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se calcula el coste por palé almacenado?",
+      "opciones": [
+        "Multiplicando el coste del almacén por el número de palés",
+        "Dividiendo el coste del almacén entre las ventas anuales",
+        "Dividiendo el coste del almacén entre los palés almacenados",
+        "Dividiendo el coste del almacén entre el número de empleados"
+      ],
+      "respuesta": 2,
+      "explicacion": "Depende del nivel de ocupación.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre con el coste unitario si aumenta la ocupación del almacén y los costes fijos no cambian?",
+      "opciones": [
+        "Aumenta, porque hay más unidades que manipular",
+        "No cambia, porque los costes fijos no varían",
+        "Se duplica, porque se ocupa el doble de espacio",
+        "Disminuye, porque los fijos se reparten entre más unidades"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es el efecto de las economías de escala.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el coste de oportunidad del espacio en el almacén?",
+      "opciones": [
+        "El beneficio al que se renuncia por dedicar el espacio a otro uso",
+        "El coste de alquiler que se paga por el espacio ocupado",
+        "El coste de transporte de las mercancías almacenadas",
+        "El coste de compra de las mercancías almacenadas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es un coste implícito.",
+      "criterio": "RA3.c",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Se compran 2.000 unidades a 12,50 € con un descuento del 4 %. ¿Cuál es el importe neto de la compra?",
+      "opciones": [
+        "25.000,00 €",
+        "24.000,00 €",
+        "1.000,00 €",
+        "26.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Neto = 25.000,00 × (1 − 0.04) = 24.000,00 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Con ese neto, más 350,00 € de transporte y 90,00 € de seguro, ¿cuál es el coste de adquisición total?",
+      "opciones": [
+        "24.000,00 €",
+        "24.350,00 €",
+        "24.440,00 €",
+        "25.440,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "24.000,00 + 350,00 + 90,00 = 24.440,00 €.",
+      "criterio": "RA3.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el coste de adquisición por unidad con los datos anteriores?",
+      "opciones": [
+        "12,00 €",
+        "12,50 €",
+        "122,20 €",
+        "12,22 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "24.440,00 / 2.000 = 12,22 €.",
+      "criterio": "RA3.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Un almacén cuesta 120.000 € al año y almacena de media 800 palés. ¿Cuál es el coste anual por palé?",
+      "opciones": [
+        "150,00 €",
+        "0,01 €",
+        "1.500,00 €",
+        "96.000.000,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "120.000 / 800 = 150,00 € por palé y año.",
+      "criterio": "RA3.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Con el coste anterior por palé (150 €/año), ¿cuál es el coste mensual por palé?",
+      "opciones": [
+        "1.800,00 €",
+        "12,50 €",
+        "2,88 €",
+        "5,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "150 / 12 = 12,50 € por palé y mes.",
+      "criterio": "RA3.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Si la ocupación sube a 1.000 palés con el mismo coste total de 120.000 €, ¿cuál es el nuevo coste por palé?",
+      "opciones": [
+        "150,00 €",
+        "8,33 €",
+        "120,00 €",
+        "100,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "120.000 / 1.000 = 120,00 €: baja por el reparto de costes fijos.",
+      "criterio": "RA3.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

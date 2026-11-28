@@ -1,0 +1,313 @@
+{
+  "modulo": "0623",
+  "tema": "7.3",
+  "titulo": "Inmovilizado, cash-flow y punto muerto",
+  "preguntas": [
+    {
+      "id": "0623-7.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el valor de adquisición de un elemento del inmovilizado?",
+      "opciones": [
+        "El precio de venta del elemento",
+        "El valor residual al final de su vida",
+        "Precio de compra más gastos hasta su puesta en marcha",
+        "El coste actual de un elemento equivalente"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es la base de la amortización.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la vida útil?",
+      "opciones": [
+        "El plazo de garantía del fabricante",
+        "El plazo de devolución del préstamo",
+        "El plazo de pago al proveedor",
+        "El periodo en que el activo es útil"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se usa para calcular la amortización.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el valor residual?",
+      "opciones": [
+        "El valor estimado al final de su vida útil",
+        "El valor de compra que figura en la factura",
+        "El valor contable en el ejercicio actual",
+        "El coste de una reparación importante"
+      ],
+      "respuesta": 0,
+      "explicacion": "No se amortiza.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el valor actual (valor contable neto)?",
+      "opciones": [
+        "El valor de compra que figura en la factura",
+        "El valor de adquisición menos la amortización acumulada",
+        "El valor de mercado del activo usado",
+        "El valor residual al final de la vida útil"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es el valor en libros.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el valor de reposición?",
+      "opciones": [
+        "El valor histórico que figura en el balance",
+        "El valor residual al final de la vida útil",
+        "El coste actual de adquirir un elemento equivalente",
+        "El valor contable tras amortizaciones"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se usa para decidir la renovación.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el cash-flow (flujo de tesorería)?",
+      "opciones": [
+        "El beneficio contable del ejercicio",
+        "El capital social de la empresa",
+        "Las ventas totales del ejercicio",
+        "Beneficio más amortizaciones y gastos no monetarios"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es una medida de autofinanciación.",
+      "criterio": "RA7.e",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el período medio de maduración?",
+      "opciones": [
+        "El tiempo del ciclo, de la compra al cobro",
+        "El tiempo de entrega de los proveedores",
+        "La vida útil de los activos fijos",
+        "El plazo de pago a los acreedores"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se estudia con la gestión de stocks.",
+      "criterio": "RA7.e",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el punto muerto o umbral de rentabilidad?",
+      "opciones": [
+        "El nivel máximo de ventas de la empresa",
+        "El nivel en que ingresos y costes se igualan",
+        "El nivel en que se obtiene el máximo beneficio",
+        "El nivel de existencias en el almacén"
+      ],
+      "respuesta": 1,
+      "explicacion": "A partir de él hay beneficio.",
+      "criterio": "RA7.f",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la fórmula del punto muerto en unidades?",
+      "opciones": [
+        "Costes variables entre precio de venta",
+        "Costes fijos multiplicados por el precio",
+        "Costes fijos / (precio − coste variable unitarios)",
+        "Ingresos menos costes totales del ejercicio"
+      ],
+      "respuesta": 2,
+      "explicacion": "El denominador es el margen de contribución unitario.",
+      "criterio": "RA7.f",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el margen de contribución unitario?",
+      "opciones": [
+        "El precio de compra de cada unidad",
+        "El coste fijo repartido por unidad",
+        "El beneficio neto de cada unidad vendida",
+        "Precio de venta menos coste variable unitario"
+      ],
+      "respuesta": 3,
+      "explicacion": "Cubre costes fijos y genera beneficio.",
+      "criterio": "RA7.f",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si aumentan los costes fijos?",
+      "opciones": [
+        "Aumenta el punto muerto",
+        "Disminuye",
+        "No cambia",
+        "Se anula"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es una relación directa.",
+      "criterio": "RA7.f",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se utiliza para calcular ratios y rentabilidad con una hoja de cálculo?",
+      "opciones": [
+        "Solo papel",
+        "Fórmulas y funciones sobre los datos contables",
+        "Solo calculadora",
+        "Solo memoria"
+      ],
+      "respuesta": 1,
+      "explicacion": "Permite automatizar y comparar.",
+      "criterio": "RA7.h",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Beneficio neto de 45.000 € y amortizaciones de 12.000 €. ¿Cuál es el cash-flow?",
+      "opciones": [
+        "45.000,00 €",
+        "12.000,00 €",
+        "57.000,00 €",
+        "33.000,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Cash-flow = 45.000 + 12.000 = 57.000,00 €.",
+      "criterio": "RA7.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Un activo costó 50.000 €, se ha amortizado en 18.000 € y su valor residual es 5.000 €. ¿Cuál es su valor contable neto?",
+      "opciones": [
+        "45.000,00 €",
+        "18.000,00 €",
+        "27.000,00 €",
+        "32.000,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "50.000 − 18.000 = 32.000 €.",
+      "criterio": "RA7.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Costes fijos de 90.000 €, precio de venta de 50 €/unidad y coste variable de 30 €/unidad. ¿Cuál es el punto muerto en unidades?",
+      "opciones": [
+        "4.500 uds",
+        "1.800 uds",
+        "3.000 uds",
+        "1.800.000 uds"
+      ],
+      "respuesta": 0,
+      "explicacion": "Punto muerto = 90.000 / (50 − 30) = 4.500 uds.",
+      "criterio": "RA7.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Con ese punto muerto de 4.500 uds, ¿cuál es el importe de ventas en el umbral?",
+      "opciones": [
+        "135.000,00 €",
+        "225.000,00 €",
+        "90.000,00 €",
+        "112.500,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Ventas = 4.500 × 50 = 225.000,00 €.",
+      "criterio": "RA7.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Si se venden 6.000 uds con los datos anteriores, ¿cuál es el beneficio?",
+      "opciones": [
+        "300.000,00 €",
+        "120.000,00 €",
+        "30.000,00 €",
+        "210.000,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Beneficio = 6.000 × 20 − 90.000 = 30.000,00 €.",
+      "criterio": "RA7.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

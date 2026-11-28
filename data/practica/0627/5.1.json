@@ -1,0 +1,295 @@
+{
+  "modulo": "0627",
+  "tema": "5.1",
+  "titulo": "Gestión aduanera, presentación de la mercancía y declaración sumaria",
+  "preguntas": [
+    {
+      "id": "0627-5.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo deben presentarse en aduana las mercancías introducidas en el territorio aduanero de la Unión?",
+      "opciones": [
+        "Justo tras su llegada al lugar designado",
+        "Cuando el importador lo decida, sin plazo fijo alguno",
+        "En el plazo de un año desde la llegada del medio de transporte",
+        "Una vez abonada la factura del proveedor extranjero"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 139 CAU: lo presenta quien las introdujo o la persona por cuya cuenta actúa o quien asumió el transporte.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 139 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la declaración sumaria de entrada (ENS)?",
+      "opciones": [
+        "La factura con la que se documenta la importación",
+        "La declaración previa a la entrada, para análisis de riesgos",
+        "El pago del arancel antes de que llegue la mercancía",
+        "La declaración que se presenta al salir de la Unión Europea"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es previa a la llegada y se presenta por el transportista (u otra persona).",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, art. 127 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué plazo tienen las mercancías no UE en depósito temporal antes de incluirse en un régimen o reexportarse?",
+      "opciones": [
+        "30 días",
+        "6 meses",
+        "90 días",
+        "1 año"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 149 CAU.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 149 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el depósito temporal?",
+      "opciones": [
+        "Un régimen de importación definitiva con pago de derechos",
+        "Un tipo de seguro que cubre las mercancías en el puerto",
+        "Un almacén del vendedor en el país de origen de la mercancía",
+        "La situación previa a su inclusión en un régimen"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 5 CAU define «depósito temporal».",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, art. 5 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una declaración en aduana?",
+      "opciones": [
+        "Manifestar la voluntad de incluir mercancías en un régimen",
+        "El pago del IVA que corresponde a la importación de la mercancía",
+        "El albarán con el que el transportista entrega la mercancía",
+        "La factura que emite el transportista por el flete"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 5.12 CAU.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, art. 5.12 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué mercancías deben ser objeto de una declaración en aduana?",
+      "opciones": [
+        "Solo las de valor superior a 1.000 euros por envío",
+        "Las que se incluyan en un régimen, salvo zona franca",
+        "Solo las mercancías peligrosas y las de uso militar",
+        "Solo las que tengan un origen preferencial acreditado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 158.1 CAU.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 158 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la diferencia entre un destino aduanero y un régimen aduanero?",
+      "opciones": [
+        "Son lo mismo y se pueden utilizar indistintamente",
+        "El destino aduanero solo se aplica a las exportaciones",
+        "El destino incluye regímenes y otras opciones, como destruir",
+        "El régimen aduanero es un impuesto sobre la importación"
+      ],
+      "respuesta": 2,
+      "explicacion": "El destino aduanero es el género; el régimen aduanero es un tipo de destino.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué trámites básicos tiene una importación en aduana?",
+      "opciones": [
+        "Solo el pago del flete al transportista que hizo el transporte",
+        "Solo la contratación del seguro de la mercancía en el viaje",
+        "Solo la entrega de la mercancía al destinatario final",
+        "Presentación, sumaria, DUA, pago de la deuda y levante"
+      ],
+      "respuesta": 3,
+      "explicacion": "Después de la admisión de la declaración y la comprobación se concede el levante.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué trámites básicos tiene una exportación definitiva?",
+      "opciones": [
+        "Declaración, control, levante, salida y confirmación",
+        "Solo la emisión de la factura de venta al cliente extranjero",
+        "Solo el pago del IVA correspondiente a la exportación",
+        "Solo la contratación del seguro durante el transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "La confirmación de salida acredita la exención del IVA de exportación.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, art. 267 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las mercancías «no pertenecientes a la Unión»?",
+      "opciones": [
+        "Las mercancías de los Estados miembros de la Unión Europea",
+        "Las de terceros países o que han perdido el estatuto UE",
+        "Las mercancías de origen español, vayan o no al extranjero",
+        "Las mercancías de bajo valor que no tienen que declararse"
+      ],
+      "respuesta": 1,
+      "explicacion": "La distinción es clave para saber si se pagan derechos.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, art. 5 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el estatuto aduanero de una mercancía?",
+      "opciones": [
+        "Su categoría arancelaria dentro de la nomenclatura combinada",
+        "Su origen preferencial según el acuerdo que le sea aplicable",
+        "Su condición de mercancía de la Unión o no",
+        "Su valor en aduana tras sumar los gastos de transporte"
+      ],
+      "respuesta": 2,
+      "explicacion": "Determina si se puede circular libremente o si está sujeta a derechos y control.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre si las mercancías llegan a la aduana sin la declaración sumaria?",
+      "opciones": [
+        "Nada, porque la aduana la presenta de oficio",
+        "Se despachan automáticamente sin ningún control previo",
+        "Se devuelven al origen sin pagar ningún derecho",
+        "Pueden retenerse o no autorizarse su descarga"
+      ],
+      "respuesta": 3,
+      "explicacion": "La ENS es necesaria para el análisis de riesgos previo.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién suele presentar la declaración sumaria de entrada?",
+      "opciones": [
+        "El transportista o quien introduce las mercancías",
+        "El comprador, que siempre es quien la presenta",
+        "El banco que financia la operación de importación",
+        "El asegurador que cubre la mercancía en el viaje"
+      ],
+      "respuesta": 0,
+      "explicacion": "El CAU lo atribuye al que introduce las mercancías o su representante.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, art. 127 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la declaración sumaria de salida?",
+      "opciones": [
+        "La que se presenta al entrar en el territorio aduanero",
+        "La que se presenta al salir sin declaración en aduana",
+        "La declaración de valor que acompaña a la importación",
+        "La declaración del IVA que se presenta cada trimestre"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 271 CAU.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 271 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se denomina quien presenta la declaración en aduana por cuenta propia?",
+      "opciones": [
+        "Transitario, que organiza el transporte de la mercancía",
+        "Asegurador, que cubre los riesgos del transporte",
+        "Declarante",
+        "Porteador, que realiza el transporte material de la carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "Puede actuar en nombre propio o como representante.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipos de representación aduanera existen?",
+      "opciones": [
+        "Solo directa, siempre en nombre y por cuenta de otro",
+        "Solo indirecta, siempre en nombre propio y por cuenta ajena",
+        "Ninguna, porque el declarante siempre actúa por sí solo",
+        "Directa, en nombre del representado; indirecta, en nombre propio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 18 CAU.",
+      "criterio": "RA5.d",
+      "fuente": "Código Aduanero de la Unión, art. 18 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

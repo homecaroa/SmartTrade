@@ -1,0 +1,313 @@
+{
+  "modulo": "0623",
+  "tema": "5.3",
+  "titulo": "Medios de cobro y pago, morosidad, impagados y divisas",
+  "preguntas": [
+    {
+      "id": "0623-5.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué medios de pago son habituales en una empresa?",
+      "opciones": [
+        "Solo el pago en efectivo por caja",
+        "Solo el cheque nominativo bancario",
+        "Transferencia, cheque, recibo, tarjeta, letra y pagaré",
+        "Solo la tarjeta de crédito de empresa"
+      ],
+      "respuesta": 2,
+      "explicacion": "Cada uno tiene coste, riesgo y plazo distintos.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una transferencia bancaria?",
+      "opciones": [
+        "Un documento de crédito que emite el proveedor",
+        "Un pagaré con vencimiento a fecha fija",
+        "Un cheque que se entrega al beneficiario",
+        "Una orden al banco para mover fondos entre cuentas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es rápida, segura y barata.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué riesgo tiene el cheque para el que lo recibe?",
+      "opciones": [
+        "Que no tenga fondos o sea falsificado",
+        "Ninguno, porque el cheque siempre se cobra",
+        "Que la cuenta tenga demasiados fondos",
+        "Que el banco cobre el cheque antes de tiempo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se pueden pedir cheques conformados.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene el recibo domiciliado (adeudo directo SEPA)?",
+      "opciones": [
+        "Cobro sin consentimiento del deudor",
+        "Cobro automatizado y previsible",
+        "Cobro inmediato en todos los casos",
+        "Cobro sin ningún coste bancario"
+      ],
+      "respuesta": 1,
+      "explicacion": "Requiere mandato del deudor.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Mercantilmente, una letra de cambio es…",
+      "opciones": [
+        "Una factura que reclama un importe al cliente",
+        "Un cheque a la vista contra una cuenta bancaria",
+        "Un documento de orden de pago a una fecha",
+        "Un contrato de suministro entre dos empresas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Puede descontarse en el banco.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Mercantilmente, un pagaré es…",
+      "opciones": [
+        "Una orden de pago dirigida a un tercero",
+        "Un seguro que cubre el impago de una factura",
+        "Una factura que reclama el pago de una venta",
+        "Un documento en que el firmante se obliga a pagar"
+      ],
+      "respuesta": 3,
+      "explicacion": "Interviene el emisor y el beneficiario.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 3/2004, ¿cuál es el plazo de pago legal si no se pactó otro?",
+      "opciones": [
+        "Treinta días naturales desde la recepción",
+        "Diez días desde la fecha de la factura",
+        "Noventa días desde la fecha de la factura",
+        "Un año desde la recepción de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 4 Ley 3/2004.",
+      "criterio": "RA5.f",
+      "fuente": "Ley 3/2004 de lucha contra la morosidad, art. 4 (BOE-A-2004-21830, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el plazo máximo de pago que pueden pactar las partes (con carácter general)?",
+      "opciones": [
+        "Treinta días naturales desde la recepción",
+        "Sesenta días naturales desde la recepción",
+        "Noventa días naturales desde la recepción",
+        "Ciento veinte días desde la fecha de la factura"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 4 Ley 3/2004, modificada por la Ley 15/2010.",
+      "criterio": "RA5.f",
+      "fuente": "Ley 3/2004 de lucha contra la morosidad, art. 4 (BOE-A-2004-21830, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué interés de demora establece la Ley 3/2004 si no se pacta otro?",
+      "opciones": [
+        "Un interés fijo del 1 % mensual",
+        "El interés legal del dinero sin recargo",
+        "El tipo del BCE más ocho puntos porcentuales",
+        "Ningún interés, porque la mora no devenga intereses"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 7 Ley 3/2004.",
+      "criterio": "RA5.f",
+      "fuente": "Ley 3/2004 de lucha contra la morosidad, art. 7 (BOE-A-2004-21830, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué cantidad fija puede reclamar el acreedor por costes de cobro en mora?",
+      "opciones": [
+        "10 euros, sin costes adicionales",
+        "100 euros como indemnización fija",
+        "500 euros como indemnización máxima",
+        "40 euros, además de los costes acreditados"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 8 Ley 3/2004.",
+      "criterio": "RA5.f",
+      "fuente": "Ley 3/2004 de lucha contra la morosidad, art. 8 (BOE-A-2004-21830, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué pasos sigue una empresa para gestionar un impago?",
+      "opciones": [
+        "Reclamación amistosa, requerimiento, extrajudicial y judicial",
+        "Ignorar el impago hasta que prescriba la deuda",
+        "Cancelar la factura y emitir una nueva",
+        "Esperar un año antes de reclamar nada"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se conservan las pruebas de la deuda.",
+      "criterio": "RA5.f",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el protesto de una letra?",
+      "opciones": [
+        "El pago de la letra en la fecha de vencimiento",
+        "El acto notarial que acredita el impago de la letra",
+        "El descuento de la letra en una entidad financiera",
+        "La aceptación de la letra por el librado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es necesario para ciertas acciones cambiarias.",
+      "criterio": "RA5.f",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el riesgo de cambio en una operación en divisas?",
+      "opciones": [
+        "Un tipo de impuesto sobre las operaciones en divisas",
+        "Un tipo de seguro de mercancías en transporte",
+        "La pérdida posible por variaciones del tipo de cambio",
+        "Una penalización por pagar en moneda extranjera"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se cubre con seguros de cambio o contratos a plazo.",
+      "criterio": "RA5.g",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un seguro de cambio (forward)?",
+      "opciones": [
+        "Un seguro de mercancías durante el transporte",
+        "Un préstamo en moneda extranjera",
+        "Una factura emitida en divisa",
+        "Un contrato que fija hoy el tipo de cambio futuro"
+      ],
+      "respuesta": 3,
+      "explicacion": "Elimina la incertidumbre del tipo.",
+      "criterio": "RA5.g",
+      "fuente": "Conocimiento general de facturación y cobros; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Se factura 20.000 USD con tipo de cambio 1,10 USD/EUR al emitir. ¿Cuántos euros equivalen?",
+      "opciones": [
+        "18.181,82 €",
+        "22.000,00 €",
+        "20.000,00 €",
+        "19.047,62 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "20.000 / 1,10 = 18.181,82 €.",
+      "criterio": "RA5.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Al cobrar, el tipo de cambio es 1,05 USD/EUR. ¿Cuántos euros se reciben por los 20.000 USD?",
+      "opciones": [
+        "18.181,82 €",
+        "19.047,62 €",
+        "21.000,00 €",
+        "20.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "20.000 / 1,05 = 19.047,62 €. Es una diferencia de cambio positiva respecto de 18.181,82 €.",
+      "criterio": "RA5.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-5.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Una factura de 10.000 € vence con 45 días de retraso. A un interés de demora del 11,5 % anual, ¿cuánto interés se devenga (año de 365 días)?",
+      "opciones": [
+        "1.150,00 €",
+        "183,75 €",
+        "141,78 €",
+        "95,83 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "10.000 × 0,115 × 45 / 365 = 141,78 €.",
+      "criterio": "RA5.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,313 @@
+{
+  "modulo": "0627",
+  "tema": "2.2",
+  "titulo": "Bases de datos de clientes y proveedores, CRM, comunicación y archivo",
+  "preguntas": [
+    {
+      "id": "0627-2.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un fichero maestro de clientes?",
+      "opciones": [
+        "Una base de datos con los datos básicos y estables de cada cliente",
+        "Un archivo con las facturas ya cobradas de todos los clientes del año",
+        "Un informe mensual de ventas agrupado por producto y por país",
+        "Una lista de los productos con sus precios y referencias de catálogo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los ficheros maestros se crean una vez y se actualizan cuando cambian los datos; sirven de base para pedidos, facturas e informes.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué datos debe contener la ficha de un cliente extranjero?",
+      "opciones": [
+        "Solo el nombre comercial, el logotipo y la página web del cliente",
+        "Razón social, dirección, NIF, contacto, moneda y condiciones de pago",
+        "Solo el correo electrónico, el teléfono y el nombre del contacto",
+        "Solo el volumen de compras del último año y el saldo pendiente"
+      ],
+      "respuesta": 1,
+      "explicacion": "El NIF-IVA intracomunitario (VAT) es esencial en operaciones con la UE para aplicar la exención de IVA.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el número VAT o NIF-IVA intracomunitario?",
+      "opciones": [
+        "El número de la cuenta bancaria que se usa para cobrar en euros dentro de la UE",
+        "El número de registro de la empresa en la aduana de su país de establecimiento",
+        "El número de identificación a efectos de IVA en la UE",
+        "El código arancelario con el que se clasifica la mercancía en el intercambio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se puede validar en el sistema VIES de la Comisión Europea.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve el sistema VIES?",
+      "opciones": [
+        "Para calcular el arancel que corresponde a una mercancía importada",
+        "Para consultar los códigos del arancel integrado de la UE (TARIC)",
+        "Para reservar el transporte de la mercancía entre dos Estados miembros",
+        "Para comprobar la validez de los números de IVA intracomunitarios"
+      ],
+      "respuesta": 3,
+      "explicacion": "Si el cliente no tiene un VAT válido, la entrega intracomunitaria puede no estar exenta de IVA.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general; sistema VIES de la Comisión Europea.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un sistema CRM (Customer Relationship Management)?",
+      "opciones": [
+        "Una herramienta para gestionar contactos, ofertas y seguimiento",
+        "Un programa de contabilidad para registrar asientos y obtener balances",
+        "Un sistema de gestión del transporte para planificar rutas y flotas",
+        "Un registro oficial de operadores que lleva la administración aduanera"
+      ],
+      "respuesta": 0,
+      "explicacion": "El Decreto 95/2012 incluye el manejo de la herramienta de gestión de relaciones con clientes.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una ventaja de usar una base de datos frente a hojas dispersas de cálculo?",
+      "opciones": [
+        "Es siempre más barata de mantener que cualquier hoja de cálculo",
+        "Evita duplicidades y centraliza la información",
+        "No requiere ningún mantenimiento una vez instalada en la empresa",
+        "Elimina la necesidad de hacer copias de seguridad de los datos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Una base de datos relacional con claves únicas reduce errores y mejora la integridad de la información.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una clave primaria en una base de datos?",
+      "opciones": [
+        "El primer campo que aparece en la tabla, sea cual sea su contenido",
+        "La contraseña que da acceso al administrador de la base de datos",
+        "Un campo que identifica de forma única cada registro",
+        "La copia de seguridad principal que se guarda fuera de la empresa"
+      ],
+      "respuesta": 2,
+      "explicacion": "Por ejemplo, el código de cliente o el NIF.",
+      "criterio": "RA2.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el mantenimiento de una base de datos de clientes y proveedores?",
+      "opciones": [
+        "Imprimir todos los datos cada mes para guardarlos en papel",
+        "Cambiar de programa informático cada año para evitar errores",
+        "Dejar la base sin tocar para no perder información ya guardada",
+        "Actualizar datos, eliminar duplicados y revisar su calidad"
+      ],
+      "respuesta": 3,
+      "explicacion": "El RA2.d lo menciona: realizar el mantenimiento y actualización de las bases de datos.",
+      "criterio": "RA2.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué informe sobre clientes es típico a partir de una base de datos?",
+      "opciones": [
+        "Ranking de ventas por cliente o país y riesgos de cobro",
+        "El calendario de festivos de cada país con el que opera la empresa",
+        "El horario de apertura de las oficinas de los clientes extranjeros",
+        "El inventario del mobiliario y los equipos de la oficina comercial"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los informes ayudan a decidir condiciones comerciales y a detectar riesgos.",
+      "criterio": "RA2.e",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe cumplir el tratamiento de datos personales de clientes y proveedores personas físicas?",
+      "opciones": [
+        "Ninguna norma, porque son datos comerciales y no personales",
+        "La normativa de protección de datos (RGPD y LOPDGDD)",
+        "Solo el Código de Comercio y sus normas sobre libros de contabilidad",
+        "Solo la normativa aduanera sobre la conservación de documentos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Hay que informar al interesado, limitar la finalidad, proteger los datos y permitir ejercer sus derechos.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; RGPD (Reglamento (UE) 2016/679).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es un medio de comunicación habitual con clientes y proveedores en comercio internacional?",
+      "opciones": [
+        "Únicamente el fax, que es el único medio válido en el comercio exterior",
+        "Únicamente la carta certificada con acuse de recibo del destinatario",
+        "Correo electrónico, videoconferencia y plataformas B2B",
+        "Únicamente las redes sociales, sin constancia escrita de lo acordado"
+      ],
+      "respuesta": 2,
+      "explicacion": "Por seguridad jurídica conviene confirmar por escrito las condiciones pactadas.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el EDI (intercambio electrónico de datos)?",
+      "opciones": [
+        "Un tipo de contenedor normalizado para el transporte intermodal",
+        "Un seguro que cubre las pérdidas de mercancía en el transporte",
+        "Un impuesto que grava el intercambio de bienes entre países de la UE",
+        "El intercambio automatizado de documentos entre sistemas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se usa para pedidos, facturas, avisos de expedición y declaraciones aduaneras.",
+      "criterio": "RA2.c",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuánto tiempo hay que conservar, en general, la documentación mercantil de las operaciones?",
+      "opciones": [
+        "Seis años (Código de Comercio), sin perjuicio de otros plazos",
+        "Un año desde el cierre del ejercicio al que se refiere cada documento",
+        "Tres meses desde la fecha de emisión de cada documento mercantil",
+        "No existe ninguna obligación legal de conservarla, solo una costumbre"
+      ],
+      "respuesta": 0,
+      "explicacion": "A efectos aduaneros, el Código Aduanero de la Unión exige conservar la documentación un mínimo de tres años (y más en ciertos casos).",
+      "criterio": "RA2.g",
+      "fuente": "Código de Comercio, art. 30 (conocimiento general; no contrastado en el texto legal).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistema de archivo permite localizar un documento con rapidez en una empresa exportadora?",
+      "opciones": [
+        "Archivar los documentos por el color del papel en que se han impreso",
+        "Archivo ordenado por expediente, con numeración y copia digital",
+        "No archivar las copias y conservar solo los documentos originales",
+        "Guardar los originales sueltos en cajas sin ninguna numeración"
+      ],
+      "respuesta": 1,
+      "explicacion": "Un expediente por operación (contrato, factura, packing, transporte, seguro, DUA) facilita la trazabilidad y las inspecciones.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una ventaja del archivo informático frente al manual?",
+      "opciones": [
+        "No necesita ninguna copia, porque el sistema nunca pierde los datos",
+        "Es siempre válido sin firma ni certificado, sea cual sea el documento",
+        "Búsqueda rápida y copias de seguridad, con medidas de seguridad",
+        "No ocupa nada de memoria y no requiere ningún mantenimiento"
+      ],
+      "respuesta": 2,
+      "explicacion": "El archivo electrónico debe garantizar integridad, autenticidad y legibilidad durante el plazo de conservación.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una copia de seguridad (backup)?",
+      "opciones": [
+        "Una factura duplicada que se emite cuando se extravía el original",
+        "Un contrato de seguro que cubre la pérdida de información",
+        "Un tipo de archivo manual que se guarda en la oficina",
+        "Una copia de los datos en otro lugar para poder recuperarlos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es una medida básica de protección de la información (RA5.h).",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-2.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre un cliente y un proveedor en la base de datos de la empresa exportadora?",
+      "opciones": [
+        "El cliente compra a la empresa y el proveedor le vende bienes o servicios",
+        "Ninguna, porque en la base de datos ambos tipos de registro son iguales",
+        "El proveedor siempre está establecido en el extranjero y el cliente, en España",
+        "El cliente siempre es una empresa nacional y el proveedor, una persona física"
+      ],
+      "respuesta": 0,
+      "explicacion": "Ambos necesitan ficha maestra con sus condiciones de pago y datos fiscales.",
+      "criterio": "RA2.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0627 («Organización de sistemas de información»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

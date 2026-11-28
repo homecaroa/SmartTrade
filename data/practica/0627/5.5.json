@@ -1,0 +1,295 @@
+{
+  "modulo": "0627",
+  "tema": "5.5",
+  "titulo": "Regímenes aduaneros económicos o especiales",
+  "preguntas": [
+    {
+      "id": "0627-5.5-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué categorías de regímenes especiales establece el Código Aduanero de la Unión?",
+      "opciones": [
+        "Tránsito, depósito, destinos especiales y perfeccionamiento",
+        "Importación, exportación, reexportación y destrucción de mercancías",
+        "Libre práctica, salida, abandono y despacho a consumo definitivo",
+        "Comercio, transporte, seguro y financiación de las operaciones"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 210 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 210 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regímenes comprende el tránsito?",
+      "opciones": [
+        "El tránsito aéreo y el tránsito marítimo de mercancías de la UE",
+        "El tránsito externo y el tránsito interno",
+        "El tránsito simple y el tránsito complejo de pasajeros y equipajes",
+        "El tránsito fiscal y el tránsito aduanero de bienes de consumo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 210.a CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 210 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regímenes comprende el depósito?",
+      "opciones": [
+        "El depósito legal y el depósito fiscal de los productos tributarios",
+        "El depósito temporal y el depósito definitivo de las mercancías",
+        "El depósito aduanero y las zonas francas",
+        "El depósito en origen y el depósito en destino de la carga"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 210.b CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 210 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regímenes comprenden los destinos especiales?",
+      "opciones": [
+        "La exportación definitiva y la reexportación de mercancías no UE",
+        "El tránsito externo y el depósito aduanero de las mercancías",
+        "El perfeccionamiento activo y el perfeccionamiento pasivo",
+        "La importación temporal y el destino final"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 210.c CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 210 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regímenes comprende el perfeccionamiento?",
+      "opciones": [
+        "El perfeccionamiento activo y el pasivo",
+        "La importación definitiva y la exportación definitiva de bienes",
+        "El depósito aduanero y el tránsito externo de las mercancías",
+        "La reexportación y la destrucción de mercancías no UE"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 210.d CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 210 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué consiste el tránsito externo?",
+      "opciones": [
+        "Mercancías de la UE circulan libremente entre Estados miembros sin trámites",
+        "Mercancías no UE circulan por la Unión sin derechos ni medidas comerciales",
+        "Mercancías no UE salen de la Unión tras abonar sus derechos de salida",
+        "Mercancías no UE se destruyen bajo vigilancia aduanera en el puerto"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 226 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 226 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el depósito aduanero?",
+      "opciones": [
+        "Guardar las mercancías de la empresa en un almacén propio sin control",
+        "Almacenar mercancías españolas bajo supervisión de la Hacienda estatal",
+        "Almacenar mercancías no UE bajo supervisión aduanera sin pagar derechos",
+        "Constituir una garantía en efectivo a favor de la aduana de partida"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 240 CAU: sin estar sujetas a derechos de importación, otros gravámenes ni medidas de política comercial (mientras no prohíban la entrada).",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 240 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la duración máxima habitual de la importación temporal, salvo circunstancias excepcionales?",
+      "opciones": [
+        "6 meses, prorrogables por otros 6",
+        "12 meses, sin posibilidad de prórroga alguna",
+        "60 meses, con garantía del importador",
+        "24 meses"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 250 CAU: plazo de 24 meses para el fin autorizado.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 250 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el régimen de destino final?",
+      "opciones": [
+        "Libre práctica con exención o tipo reducido según el destino",
+        "Destrucción de las mercancías por la autoridad aduanera",
+        "Reexportación de las mercancías fuera del territorio de la UE",
+        "Almacenamiento indefinido de las mercancías en un depósito"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 254 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 254 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué permite el perfeccionamiento activo?",
+      "opciones": [
+        "Exportar mercancías de la UE para transformarlas fuera y reimportarlas",
+        "Importar mercancías no UE para transformarlas y reexportarlas",
+        "Almacenar mercancías no UE en un depósito bajo supervisión aduanera",
+        "Destruir mercancías no UE bajo control de la autoridad aduanera"
+      ],
+      "respuesta": 1,
+      "explicacion": "Las mercancías no UE se transforman en la UE; se suspenden los derechos si se reexporta.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, arts. 256 y ss. (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué permite el perfeccionamiento pasivo?",
+      "opciones": [
+        "Importar mercancías no UE para transformarlas dentro de la Unión",
+        "Almacenar mercancías de la Unión en un depósito aduanero autorizado",
+        "Exportar temporalmente mercancías UE para transformarlas fuera",
+        "Destruir mercancías de la Unión bajo control de la autoridad"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 259 CAU: mercancías de la Unión que se exportan temporalmente para ser objeto de operaciones de transformación.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 259 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué requisito general tienen los regímenes especiales aduaneros (salvo el tránsito)?",
+      "opciones": [
+        "No requieren autorización, basta una comunicación a la aduana",
+        "Solo una comunicación previa al banco que emite la garantía",
+        "Solo el pago de una tasa por cada operación que se realice",
+        "Requieren autorización de las autoridades aduaneras"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 211 CAU.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 211 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la zona franca?",
+      "opciones": [
+        "Parte delimitada del territorio donde las mercancías no UE se consideran fuera para los derechos",
+        "Zona del territorio donde ninguna mercancía paga impuesto alguno",
+        "Almacén privado de una empresa con la llave en poder de la aduana",
+        "Puerto seco del interior donde se despacha toda la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es un régimen de depósito que no requiere declaración en aduana para incluir las mercancías (art. 158).",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, arts. 158 y 243 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tienen los regímenes económicos o especiales?",
+      "opciones": [
+        "Eliminar todos los controles aduaneros sobre las mercancías vinculadas",
+        "Suspender o reducir derechos mientras se usan, almacenan o transforman",
+        "Eliminar el IVA de forma definitiva en todas las operaciones",
+        "Eliminar la necesidad de acreditar el origen de la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Siguen sujetos a control y a garantía.",
+      "criterio": "RA5.e",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documentos suelen exigirse para solicitar un régimen económico aduanero?",
+      "opciones": [
+        "Solo el pasaporte del representante legal de la empresa",
+        "Solo la factura comercial de la operación que se pretende realizar",
+        "Solicitud, justificación económica, garantía y documentos del régimen",
+        "Solo el certificado de origen de la mercancía que se importa"
+      ],
+      "respuesta": 2,
+      "explicacion": "El procedimiento y plazos dependen del régimen.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, art. 211 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.5-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por «ultimar» o descargar un régimen especial?",
+      "opciones": [
+        "Prorrogar el régimen por un nuevo periodo con la misma garantía",
+        "Abrir el régimen inscribiendo las mercancías en el registro",
+        "Pagar el flete del transporte que se hizo bajo el régimen",
+        "Poner fin al régimen con un nuevo destino aduanero o reexportación"
+      ],
+      "respuesta": 3,
+      "explicacion": "Por ejemplo, al despachar a libre práctica o reexportar las mercancías.",
+      "criterio": "RA5.e",
+      "fuente": "Código Aduanero de la Unión, art. 215 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

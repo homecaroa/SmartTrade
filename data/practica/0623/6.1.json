@@ -1,0 +1,259 @@
+{
+  "modulo": "0623",
+  "tema": "6.1",
+  "titulo": "El balance: activo, pasivo y patrimonio neto; conceptos de inversión, gasto, pago, ingreso y cobro",
+  "preguntas": [
+    {
+      "id": "0623-6.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué recoge el activo del balance?",
+      "opciones": [
+        "Los bienes y derechos de la empresa",
+        "Las deudas que mantiene con terceros",
+        "El capital aportado por los socios",
+        "Los ingresos obtenidos en el ejercicio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se divide en no corriente y corriente.",
+      "criterio": "RA6.a",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el activo no corriente?",
+      "opciones": [
+        "Los bienes que se venden en pocos meses",
+        "Bienes duraderos, como vehículos o maquinaria",
+        "Las deudas con vencimiento a largo plazo",
+        "Los ingresos obtenidos por la actividad"
+      ],
+      "respuesta": 1,
+      "explicacion": "También llamado inmovilizado.",
+      "criterio": "RA6.a",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el activo corriente?",
+      "opciones": [
+        "Los vehículos y la maquinaria duraderos",
+        "Las deudas con vencimiento a corto plazo",
+        "Bienes que se convierten en dinero en menos de un año",
+        "Las reservas constituidas por la empresa"
+      ],
+      "respuesta": 2,
+      "explicacion": "Antes llamado circulante.",
+      "criterio": "RA6.a",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué recoge el patrimonio neto?",
+      "opciones": [
+        "Las deudas contraídas con las entidades bancarias",
+        "Los créditos que se tienen frente a los clientes",
+        "Los ingresos obtenidos por las ventas del ejercicio",
+        "Los fondos propios: capital, reservas y resultados"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la parte de financiación propia.",
+      "criterio": "RA6.a",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el pasivo no corriente?",
+      "opciones": [
+        "Las deudas con vencimiento superior a un año",
+        "Las deudas con vencimiento a corto plazo",
+        "El capital aportado por los socios",
+        "Los derechos de cobro frente a clientes"
+      ],
+      "respuesta": 0,
+      "explicacion": "Por ejemplo, un préstamo a largo plazo.",
+      "criterio": "RA6.a",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el pasivo corriente?",
+      "opciones": [
+        "Las reservas constituidas con beneficios",
+        "Las deudas con vencimiento inferior a un año",
+        "Los vehículos y la maquinaria de la empresa",
+        "Las existencias que se mantienen en el almacén"
+      ],
+      "respuesta": 1,
+      "explicacion": "Debe cubrirse con el activo corriente.",
+      "criterio": "RA6.a",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la ecuación fundamental del patrimonio?",
+      "opciones": [
+        "Activo = Pasivo − Patrimonio neto",
+        "Pasivo = Activo + Patrimonio neto",
+        "Activo = Patrimonio neto + Pasivo",
+        "Patrimonio neto = Pasivo + Activo"
+      ],
+      "respuesta": 2,
+      "explicacion": "El balance siempre cuadra.",
+      "criterio": "RA6.a",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007) y PGC de pymes (RD 1515/2007); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una inversión?",
+      "opciones": [
+        "Un gasto que se imputa íntegramente al ejercicio",
+        "Un cobro por la venta de un bien",
+        "Una deuda contraída con un proveedor",
+        "Un desembolso para adquirir un activo duradero"
+      ],
+      "respuesta": 3,
+      "explicacion": "No se imputa a pérdidas y ganancias de golpe.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un gasto?",
+      "opciones": [
+        "Un consumo que reduce el patrimonio neto",
+        "Un ingreso que aumenta el patrimonio neto",
+        "Un cobro que entra en la tesorería",
+        "Una inversión en un activo duradero"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se devenga con independencia del pago.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre gasto y pago?",
+      "opciones": [
+        "Ninguna, porque ambos conceptos coinciden siempre",
+        "El gasto es el consumo y el pago es la salida de dinero",
+        "El pago es el consumo y el gasto es el dinero",
+        "El gasto es la salida de dinero y el pago es el consumo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Principio del devengo.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre ingreso y cobro?",
+      "opciones": [
+        "Ninguna, porque ambos conceptos coinciden siempre",
+        "El cobro es la venta y el ingreso es el dinero",
+        "El ingreso es la venta y el cobro es la entrada de dinero",
+        "El ingreso es la entrada de dinero y el cobro es la venta"
+      ],
+      "respuesta": 2,
+      "explicacion": "Pueden producirse en momentos distintos.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué principio contable reconoce ingresos y gastos cuando se producen, aunque no se cobren o paguen?",
+      "opciones": [
+        "El principio de caja, que registra al cobrar o pagar",
+        "El principio de prudencia valorativa",
+        "El principio de empresa en funcionamiento",
+        "El principio del devengo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es la base del PGC.",
+      "criterio": "RA6.b",
+      "fuente": "Conocimiento general de contabilidad y fiscalidad; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Un balance muestra activo de 250.000 €, patrimonio neto de 100.000 € y pasivo no corriente de 80.000 €. ¿Cuál es el pasivo corriente?",
+      "opciones": [
+        "70.000,00 €",
+        "150.000,00 €",
+        "170.000,00 €",
+        "180.000,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "PC = 250.000 − 100.000 − 80.000 = 70.000,00 €.",
+      "criterio": "RA6.a",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-6.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Con activo no corriente 160.000 € y activo corriente 90.000 €, ¿cuál es el total del activo?",
+      "opciones": [
+        "160.000,00 €",
+        "250.000,00 €",
+        "90.000,00 €",
+        "70.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "160.000 + 90.000 = 250.000 €.",
+      "criterio": "RA6.a",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

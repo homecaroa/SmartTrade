@@ -1,0 +1,385 @@
+{
+  "modulo": "0622",
+  "tema": "5.1",
+  "titulo": "Documentación en carretera, ferrocarril y régimen TIR",
+  "preguntas": [
+    {
+      "id": "0622-5.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el documento básico del contrato de transporte internacional por carretera?",
+      "opciones": [
+        "La carta de porte CMR",
+        "El conocimiento de embarque",
+        "La carta de porte aéreo (AWB)",
+        "El manifiesto de carga marítimo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Acredita el contrato, la recepción de la mercancía por el transportista y las condiciones del transporte.",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 4, leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En cuántos ejemplares originales se expide la carta de porte CMR?",
+      "opciones": [
+        "Uno",
+        "Tres, firmados por remitente y transportista",
+        "Dos",
+        "Cinco"
+      ],
+      "respuesta": 1,
+      "explicacion": "El primero es para el remitente, el segundo acompaña a la mercancía y el tercero lo retiene el transportista (art. 5).",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 5, leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En la carta de porte CMR, ¿qué ejemplar acompaña a la mercancía?",
+      "opciones": [
+        "El primero",
+        "El tercero",
+        "El segundo",
+        "Ninguno: se envía por correo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Primero: remitente; segundo: acompaña a la mercancía; tercero: transportista.",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 5, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Afecta a la validez del contrato de transporte la ausencia, irregularidad o pérdida de la carta de porte CMR?",
+      "opciones": [
+        "Sí, el contrato es nulo",
+        "Solo si el transporte es nacional",
+        "Solo si el valor supera 150 €",
+        "No; el contrato sigue sometido al Convenio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 4 CMR: la carta de porte prueba el contrato, pero no es requisito de existencia.",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 4, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos datos debe figurar obligatoriamente en la carta de porte CMR?",
+      "opciones": [
+        "Partes, lugares de carga y entrega y fecha de toma de carga",
+        "El número de cuenta bancaria del destinatario",
+        "El color y la matrícula del vehículo de transporte",
+        "La fotografía del conductor que realiza el transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 6.1: además naturaleza de la mercancía, número de paquetes, peso bruto, gastos de transporte, instrucciones de aduana y mención de sujeción al Convenio.",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 6, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué mención debe llevar la carta de porte CMR para que el transporte quede sometido al Convenio «aunque se haya estipulado lo contrario»?",
+      "opciones": [
+        "La prohibición de efectuar transbordos durante el viaje",
+        "Que el transporte está sometido al Convenio CMR",
+        "El valor declarado de la mercancía transportada",
+        "El plazo de entrega pactado con el destinatario"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 6.1.k. Si falta, el transportista es responsable de los daños que cause la omisión (art. 7.3).",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), arts. 6 y 7, leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estas indicaciones es «eventual» (art. 6.2) y no obligatoria en la carta de porte CMR?",
+      "opciones": [
+        "La naturaleza de la mercancía transportada",
+        "El peso bruto de la mercancía transportada",
+        "Valor declarado e interés especial en la entrega",
+        "El lugar de entrega de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 6.2: prohibición de transbordo, gastos a cargo del remitente, reembolso, valor declarado, instrucciones sobre seguro, plazo de transporte y lista de documentos.",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 6.2, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿De qué responde el remitente en relación con las indicaciones de la carta de porte CMR?",
+      "opciones": [
+        "De nada, porque todo es responsabilidad del transportista",
+        "Solo del precio que corresponde al transporte",
+        "Solo cuando ha actuado con mala fe",
+        "De los perjuicios del transportista por indicaciones inexactas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 7.1.",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 7, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Al hacerse cargo de la mercancía, ¿qué debe revisar el transportista?",
+      "opciones": [
+        "Bultos, marcas, números y estado aparente",
+        "La solvencia económica del destinatario",
+        "El precio de venta de la mercancía",
+        "El origen arancelario de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Si no puede verificarlo, anotará reservas motivadas en la carta de porte (art. 8).",
+      "criterio": "RA5.d",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 8, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el transportista anota reservas en la carta de porte CMR, ¿cuándo comprometen al remitente?",
+      "opciones": [
+        "Siempre que el transportista las anote en la carta",
+        "Solo si las ha aceptado expresamente por escrito",
+        "Nunca, porque no obligan al remitente en ningún caso",
+        "Solo si el remitente es una empresa y no un particular"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 8.2.",
+      "criterio": "RA5.d",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 8.2, leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos ejemplares originales tiene la carta de porte del transporte terrestre nacional (Ley 15/2009)?",
+      "opciones": [
+        "Uno, que firman ambas partes",
+        "Dos, que firman ambas partes",
+        "Tres, firmados por cargador y porteador",
+        "Cuatro, que firman ambas partes"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 11: primero al cargador, segundo viaja con la mercancía, tercero queda en poder del porteador.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 15/2009 del contrato de transporte terrestre de mercancías, art. 11, leída.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, ¿cuántas cartas de porte se emiten para un envío que se reparte en varios vehículos?",
+      "opciones": [
+        "Siempre una sola carta, sea cual sea el número de vehículos",
+        "Ninguna carta, porque no resulta exigible en ese caso",
+        "Dos cartas por cada envío, con independencia de los vehículos",
+        "Cualquiera puede exigir una carta por vehículo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 10.3 y 10.4: una carta de porte por envío, o por vehículo si se distribuye.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 15/2009 del contrato de transporte terrestre de mercancías, art. 10, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Si una parte se niega a formalizar la carta de porte en un transporte terrestre nacional, ¿qué puede hacer la otra?",
+      "opciones": [
+        "Considerarla desistida del contrato",
+        "Nada, porque el contrato se mantiene sin documento",
+        "Cobrar una multa fija establecida por la ley",
+        "Obligarla judicialmente a firmar en el acto"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 10.6 Ley 15/2009.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 15/2009 del contrato de transporte terrestre de mercancías, art. 10.6, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene la omisión de alguna de las menciones del art. 10.1 en la carta de porte del transporte terrestre nacional?",
+      "opciones": [
+        "Anula toda la carta de porte del transporte",
+        "No priva de eficacia a las menciones incluidas",
+        "Anula el contrato de transporte entre las partes",
+        "Obliga al porteador a devolver el precio cobrado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 13.2 Ley 15/2009. Además, la ausencia o irregularidad de la carta de porte del art. 10 bis no produce la inexistencia ni la nulidad del contrato (art. 13.1).",
+      "criterio": "RA5.d",
+      "fuente": "Ley 15/2009 del contrato de transporte terrestre de mercancías, art. 13, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, ¿de qué hace fe la carta de porte firmada por ambas partes?",
+      "opciones": [
+        "Solo del precio que se ha pagado por el transporte",
+        "Solo de la entrega de la mercancía al destinatario",
+        "De la conclusión y contenido del contrato",
+        "De la solvencia económica del cargador"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 14.1. Sin reservas motivadas del porteador, se presume que la mercancía y su embalaje están en el estado descrito (art. 14.2).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 15/2009 del contrato de transporte terrestre de mercancías, art. 14, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el cuaderno TIR?",
+      "opciones": [
+        "Un certificado de origen de la mercancía transportada",
+        "Un permiso de conducir profesional del transportista",
+        "Una póliza de seguro de la mercancía transportada",
+        "Documento aduanero de tránsito con garantía"
+      ],
+      "respuesta": 3,
+      "explicacion": "Convenio TIR de 14 de noviembre de 1975: amparo de tránsito aduanero con vehículos o contenedores precintados.",
+      "criterio": "RA5.a",
+      "fuente": "Convenio TIR (1975), texto publicado en el BOE (leído).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la ventaja principal del régimen TIR?",
+      "opciones": [
+        "Evita revisar la mercancía en las aduanas de tránsito",
+        "Elimina los aranceles que se pagan en el país de destino",
+        "Evita tener que emitir la carta de porte",
+        "Evita la inspección fitosanitaria de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Facilita el transporte por carretera entre países adheridos, siempre que el vehículo o contenedor esté autorizado y precintado.",
+      "criterio": "RA5.b",
+      "fuente": "Convenio TIR (1975), texto publicado en el BOE (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué documento acompaña al transporte ferroviario internacional (COTIF)?",
+      "opciones": [
+        "La carta de porte CMR",
+        "La carta de porte CIM",
+        "El conocimiento de embarque",
+        "El carnet ATA"
+      ],
+      "respuesta": 1,
+      "explicacion": "El contrato de transporte ferroviario se confirma con una carta de porte CIM de modelo uniforme.",
+      "criterio": "RA5.a",
+      "fuente": "Reglas Uniformes CIM (COTIF), art. 6, leídas.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién debe firmar la carta de porte CIM?",
+      "opciones": [
+        "Solo el destinatario",
+        "Solo el transportista",
+        "Nadie: es un documento sin firma",
+        "El expedidor y el transportista"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 6 §3. El transportista, tras aceptar la mercancía, devuelve el duplicado al expedidor.",
+      "criterio": "RA5.a",
+      "fuente": "Reglas Uniformes CIM (COTIF), art. 6 §3, leídas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe comprobarse sobre importes, fechas y plazos en la documentación de transporte?",
+      "opciones": [
+        "Que sean coherentes con el contrato y la factura",
+        "Nada, porque el transportista corrige cualquier error",
+        "Solo la firma de las partes en el documento",
+        "Solo el color del sello de la empresa"
+      ],
+      "respuesta": 0,
+      "explicacion": "Una discrepancia puede dar lugar a retrasos, reclamaciones o impago.",
+      "criterio": "RA5.d",
+      "fuente": "Conocimiento general de documentación del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-5.1-022",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué un transportista de carretera puede exigir una carta de porte por vehículo cuando la partida se reparte?",
+      "opciones": [
+        "Para cobrar un precio más alto al cargador",
+        "Cada vehículo lleva su parte y responsabilidad",
+        "Porque la aduana lo exige en todos los casos",
+        "Para evitar que se aplique el Convenio CMR"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 5.2 CMR y art. 10.4 de la Ley 15/2009.",
+      "criterio": "RA5.a",
+      "fuente": "CMR (Convenio relativo al contrato de transporte internacional de mercancías por carretera), art. 5.2, leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

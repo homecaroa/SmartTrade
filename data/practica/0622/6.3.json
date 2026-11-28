@@ -1,0 +1,349 @@
+{
+  "modulo": "0622",
+  "tema": "6.3",
+  "titulo": "Variaciones en la ruta, incidencias y tiempos de conducción",
+  "preguntas": [
+    {
+      "id": "0622-6.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos factores puede obligar a modificar la ruta prevista?",
+      "opciones": [
+        "Cierre de carretera, huelga, accidente o avería",
+        "Un cambio de color en la factura comercial",
+        "Un aumento de peso del conductor del vehículo",
+        "Un cambio en el nombre del comprador"
+      ],
+      "respuesta": 0,
+      "explicacion": "El transportista debe valorar alternativas y comunicar la incidencia.",
+      "criterio": "RA6.e",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Si la ejecución del transporte por carretera resulta irrealizable en las condiciones previstas antes de llegar al lugar de entrega, ¿qué debe hacer el transportista según el CMR?",
+      "opciones": [
+        "Descargar y abandonar la mercancía en el lugar",
+        "Pedir instrucciones a quien dispone de la mercancía",
+        "Continuar el viaje sin consultar a nadie",
+        "Devolver la mercancía al origen sin avisar"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 14.1 CMR. Si no recibe instrucciones a tiempo, tomará las medidas que juzgue más convenientes en interés del que tiene el poder de disposición (art. 14.2).",
+      "criterio": "RA6.e",
+      "fuente": "CMR, art. 14 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Si tras llegar al destino hay impedimentos para la entrega, ¿a quién pide instrucciones el transportista, según el CMR?",
+      "opciones": [
+        "Al destinatario",
+        "A la aduana",
+        "Al remitente",
+        "A la compañía de seguros"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 15.1 CMR.",
+      "criterio": "RA6.e",
+      "fuente": "CMR, art. 15 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién soporta los gastos que ocasione la petición de instrucciones o su ejecución, salvo culpa del transportista?",
+      "opciones": [
+        "El transportista, siempre y en todo caso",
+        "La aduana del lugar donde se encuentre la carga",
+        "El banco que financia la operación de transporte",
+        "Quien dispone de la mercancía, que debe pagarlo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 16.1 CMR.",
+      "criterio": "RA6.e",
+      "fuente": "CMR, art. 16.1 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En los casos de los arts. 14.1 y 15 del CMR, ¿qué puede hacer el transportista con la mercancía?",
+      "opciones": [
+        "Descargarla por cuenta del titular del derecho",
+        "Venderla sin condiciones para recuperar el flete",
+        "Quedársela como compensación de sus gastos",
+        "Destruirla para evitar el pago de la custodia"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 16.2: asume entonces la custodia y puede confiarla a un tercero.",
+      "criterio": "RA6.e",
+      "fuente": "CMR, art. 16.2 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo puede el transportista vender la mercancía sin esperar instrucciones, según el CMR?",
+      "opciones": [
+        "Siempre que quiera, sin esperar instrucciones",
+        "Si es perecedera o la custodia sale muy cara",
+        "Nunca, bajo ninguna circunstancia",
+        "Solo si el destinatario se lo pide expresamente"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 16.3. El producto de la venta se pone a disposición del que tiene derecho, deducidos los gastos (art. 16.4).",
+      "criterio": "RA6.e",
+      "fuente": "CMR, art. 16.3 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe hacer la empresa de transporte ante un retraso previsible importante?",
+      "opciones": [
+        "Ocultarlo hasta el momento de la entrega",
+        "Esperar a que sea el cliente quien llame",
+        "Avisar pronto, proponer alternativas y documentar",
+        "Cambiar la carta de porte para justificarlo"
+      ],
+      "respuesta": 2,
+      "explicacion": "La comunicación temprana reduce costes y reclamaciones.",
+      "criterio": "RA6.e",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué debe documentarse la causa de una incidencia (fotos, partes, informes)?",
+      "opciones": [
+        "Para ocultar el problema al cliente",
+        "Para evitar el pago del flete pactado",
+        "Para no tener que contratar ningún seguro",
+        "Para acreditar responsabilidades y reclamar"
+      ],
+      "respuesta": 3,
+      "explicacion": "Sin pruebas es difícil reclamar al transportista o al asegurador.",
+      "criterio": "RA6.e",
+      "fuente": "Conocimiento general de gestión del transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Reglamento (CE) n.º 561/2006, ¿cuál es el tiempo máximo de conducción diaria, salvo ampliación?",
+      "opciones": [
+        "Nueve horas",
+        "Ocho horas",
+        "Doce horas",
+        "Quince horas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 6.1; puede ampliarse a diez horas no más de dos veces durante la semana.",
+      "criterio": "RA6.d",
+      "fuente": "Reglamento (CE) n.º 561/2006, art. 6.1 (texto original de 2006, leído en el BOE; posteriormente modificado por el Reglamento (UE) 2020/1054).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántas veces por semana puede ampliarse el tiempo diario de conducción de nueve a diez horas?",
+      "opciones": [
+        "Cuatro veces",
+        "Como máximo dos veces",
+        "Ninguna",
+        "Todos los días"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 6.1 Reglamento (CE) n.º 561/2006.",
+      "criterio": "RA6.d",
+      "fuente": "Reglamento (CE) n.º 561/2006, art. 6.1 (texto original de 2006, leído en el BOE; posteriormente modificado por el Reglamento (UE) 2020/1054).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el tiempo máximo de conducción semanal según el Reglamento (CE) n.º 561/2006?",
+      "opciones": [
+        "40 horas",
+        "60 horas",
+        "56 horas",
+        "72 horas"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 6.2; el tiempo acumulado en dos semanas consecutivas no puede superar 90 horas (art. 6.3).",
+      "criterio": "RA6.d",
+      "fuente": "Reglamento (CE) n.º 561/2006, art. 6.2 (texto original de 2006, leído en el BOE; posteriormente modificado por el Reglamento (UE) 2020/1054).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el máximo de conducción acumulado en dos semanas consecutivas?",
+      "opciones": [
+        "56 horas",
+        "112 horas",
+        "60 horas",
+        "90 horas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 6.3 Reglamento (CE) n.º 561/2006.",
+      "criterio": "RA6.d",
+      "fuente": "Reglamento (CE) n.º 561/2006, art. 6.3 (texto original de 2006, leído en el BOE; posteriormente modificado por el Reglamento (UE) 2020/1054).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Tras cuatro horas y media de conducción, ¿qué debe hacer el conductor?",
+      "opciones": [
+        "Una pausa ininterrumpida de 45 minutos como mínimo",
+        "Una pausa de cinco minutos antes de continuar",
+        "Seguir conduciendo hasta terminar la jornada",
+        "Una pausa de dos horas, siempre y sin excepción"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 7. La pausa puede sustituirse por una de al menos 15 minutos seguida de otra de al menos 30.",
+      "criterio": "RA6.d",
+      "fuente": "Reglamento (CE) n.º 561/2006, art. 7 (texto original de 2006, leído en el BOE; posteriormente modificado por el Reglamento (UE) 2020/1054).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo puede fraccionarse la pausa de 45 minutos?",
+      "opciones": [
+        "En tres pausas de quince minutos cada una",
+        "15 minutos como mínimo y luego 30 como mínimo",
+        "En una pausa de 30 minutos y luego otra de 15",
+        "No puede fraccionarse bajo ningún concepto"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 7: el orden 15 + 30 es obligatorio.",
+      "criterio": "RA6.d",
+      "fuente": "Reglamento (CE) n.º 561/2006, art. 7 (texto original de 2006, leído en el BOE; posteriormente modificado por el Reglamento (UE) 2020/1054).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos períodos de descanso diario reducido (entre 9 y 11 horas) pueden tomarse como máximo entre dos descansos semanales?",
+      "opciones": [
+        "Uno",
+        "Cinco",
+        "Tres",
+        "Ninguno"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 8.4 Reglamento (CE) n.º 561/2006.",
+      "criterio": "RA6.d",
+      "fuente": "Reglamento (CE) n.º 561/2006, art. 8.4 (texto original de 2006, leído en el BOE; posteriormente modificado por el Reglamento (UE) 2020/1054).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué descanso diario mínimo debe tomarse en las 24 horas siguientes al final del descanso anterior, para que no se considere reducido?",
+      "opciones": [
+        "8 horas",
+        "9 horas",
+        "14 horas",
+        "Al menos 11 horas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 8.2: si es superior a 9 horas pero inferior a 11, es descanso diario reducido.",
+      "criterio": "RA6.d",
+      "fuente": "Reglamento (CE) n.º 561/2006, art. 8.2 (texto original de 2006, leído en el BOE; posteriormente modificado por el Reglamento (UE) 2020/1054).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Un recorrido de 810 km se hace a una velocidad media de 60 km/h. ¿Cuántas horas de conducción requiere?",
+      "opciones": [
+        "13,5 horas",
+        "10,1 horas",
+        "18,0 horas",
+        "14,5 horas"
+      ],
+      "respuesta": 0,
+      "explicacion": "Tiempo = distancia / velocidad = 810 / 60 = 13,5 h; supera 9 h de conducción diaria, por lo que exige al menos dos jornadas.",
+      "criterio": "RA6.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "Con 13,5 horas de conducción necesarias y un máximo de 9 horas diarias (sin ampliación), ¿cuántas jornadas mínimas hacen falta?",
+      "opciones": [
+        "Una",
+        "Dos",
+        "Tres",
+        "Cuatro"
+      ],
+      "respuesta": 1,
+      "explicacion": "13,5 / 9 = 1,5 → se redondea hacia arriba: 2 jornadas, con el descanso diario entre ambas.",
+      "criterio": "RA6.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-6.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "Si ocurre un siniestro durante el transporte, ¿qué debe hacerse primero?",
+      "opciones": [
+        "Ocultar el siniestro para evitar problemas",
+        "Seguir la ruta sin avisar a nadie",
+        "Proteger personas y carga, avisar y documentar",
+        "Esperar a recibir la factura del transporte"
+      ],
+      "respuesta": 2,
+      "explicacion": "Después se aplica el procedimiento de reclamación al transportista y al asegurador (7 días para comunicar el siniestro al asegurador).",
+      "criterio": "RA6.e",
+      "fuente": "Ley 50/1980, art. 16 (leída).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

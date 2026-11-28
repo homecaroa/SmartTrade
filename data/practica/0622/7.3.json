@@ -1,0 +1,349 @@
+{
+  "modulo": "0622",
+  "tema": "7.3",
+  "titulo": "Selección de la póliza: Incoterms, riesgos y necesidades de cobertura",
+  "preguntas": [
+    {
+      "id": "0622-7.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "En una venta CIF (Incoterms 2020), ¿quién debe contratar el seguro de la mercancía?",
+      "opciones": [
+        "El comprador",
+        "El transportista",
+        "El vendedor, a favor del comprador",
+        "Nadie está obligado"
+      ],
+      "respuesta": 2,
+      "explicacion": "En CIF y CIP el vendedor debe contratar el seguro de la carga; el riesgo, en cambio, se transmite al comprador al cargar a bordo (CIF) o al entregar al primer transportista (CIP).",
+      "criterio": "RA7.f",
+      "fuente": "Incoterms 2020 (ICC), reglas A5/B5 de CIF y CIP; contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué importe mínimo debe contratarse el seguro en CIF y CIP, salvo pacto en contrario?",
+      "opciones": [
+        "El 100 % exacto del precio del contrato",
+        "El 110 % del precio del contrato",
+        "El 150 % del precio del contrato",
+        "El 90 % del precio del contrato"
+      ],
+      "respuesta": 1,
+      "explicacion": "El 10 % adicional cubre gastos y beneficio esperado.",
+      "criterio": "RA7.f",
+      "fuente": "Incoterms 2020 (ICC), reglas A5/B5 de CIF y CIP; contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En una venta FOB, ¿tiene el vendedor obligación de contratar el seguro de transporte?",
+      "opciones": [
+        "Sí, siempre, y con la cláusula (A) de todo riesgo",
+        "Sí, con la cláusula (C) de cobertura mínima",
+        "No; ninguna parte está obligada a contratarlo",
+        "Solo si el transporte se realiza por vía aérea"
+      ],
+      "respuesta": 2,
+      "explicacion": "En FOB, el riesgo se transmite al comprador al cargar a bordo; es él quien suele asegurar.",
+      "criterio": "RA7.f",
+      "fuente": "Incoterms 2020 (ICC), reglas A5/B5 de CIF y CIP; contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "En una venta DAP o DDP, ¿quién soporta el riesgo durante el transporte hasta el destino?",
+      "opciones": [
+        "El comprador",
+        "El transportista siempre",
+        "El banco emisor",
+        "El vendedor"
+      ],
+      "respuesta": 3,
+      "explicacion": "Aunque no hay obligación de asegurar frente al comprador, el vendedor tiene interés asegurable en la mercancía hasta que la pone a disposición.",
+      "criterio": "RA7.f",
+      "fuente": "Incoterms 2020 (ICC), reglas A5/B5 de CIF y CIP; contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el interés asegurable de un exportador en una venta FCA?",
+      "opciones": [
+        "El que tiene mientras soporta el riesgo",
+        "Ninguno desde que se firma el contrato",
+        "El mismo durante todo el transporte hasta destino",
+        "Solo el valor del flete que se haya pagado"
+      ],
+      "respuesta": 0,
+      "explicacion": "El seguro sigue el riesgo: debe asegurar quien lo soporta.",
+      "criterio": "RA7.f",
+      "fuente": "Incoterms 2020 (ICC), reglas A5/B5 de CIF y CIP; contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "Una venta CIF se pacta por 42.500,00 €. ¿Cuál es el importe mínimo por el que debe asegurarse la mercancía?",
+      "opciones": [
+        "42.500,00 €",
+        "46.750,00 €",
+        "44.000,00 €",
+        "51.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Valor asegurado mínimo = 42.500,00 × 110 % = 46.750,00 €.",
+      "criterio": "RA7.f",
+      "fuente": "Incoterms 2020 (ICC), reglas A5/B5 de CIF y CIP; contenido conocido, no leído en el texto oficial (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Con una tasa de prima del 0,35 % sobre el valor asegurado de 46.750,00 €, ¿cuál es la prima?",
+      "opciones": [
+        "148,75 €",
+        "1.636,25 €",
+        "163,63 €",
+        "16.362,50 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "Prima = 46.750,00 × 0,35 % = 163,63 €.",
+      "criterio": "RA7.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Una póliza de mercancías tiene franquicia de 500 € por siniestro. Si el daño es de 3.200 € y está totalmente cubierto, ¿cuánto cobra el asegurado?",
+      "opciones": [
+        "3.200,00 €",
+        "500,00 €",
+        "3.700,00 €",
+        "2.700,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Indemnización = 3.200 − 500 = 2.700 €.",
+      "criterio": "RA7.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Una póliza de mercancías tiene franquicia del 1 % del valor asegurado de 90.000 €. Si el daño cubierto es de 5.000 €, ¿cuánto cobra el asegurado?",
+      "opciones": [
+        "4.100,00 €",
+        "5.000,00 €",
+        "-4.000,00 €",
+        "900,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Franquicia = 90.000 × 1 % = 900 €. Indemnización = 5.000 − 900 = 4.100 €.",
+      "criterio": "RA7.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué riesgo típico de una operación de compraventa internacional NO cubre el seguro de transporte de mercancías?",
+      "opciones": [
+        "La pérdida total por el naufragio del buque",
+        "El impago del comprador (riesgo de crédito)",
+        "El daño por incendio durante el transporte",
+        "El vuelco del camión durante el recorrido"
+      ],
+      "respuesta": 1,
+      "explicacion": "El impago se cubre con otros instrumentos: seguro de crédito a la exportación, crédito documentario, garantías.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general del comercio internacional; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué riesgo suele quedar fuera del seguro de transporte al ser un daño debido a la propia mercancía?",
+      "opciones": [
+        "La colisión del vehículo que la transporta",
+        "El incendio del medio de transporte",
+        "El vicio propio de la mercancía",
+        "El hundimiento del buque que la transporta"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 57 de la Ley 50/1980 y art. 420 de la Ley 14/2014 lo excluyen.",
+      "criterio": "RA7.b",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 57 (BOE-A-1980-22501, texto consolidado), leída. Ley 14/2014 de Navegación Marítima, art. 420, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué riesgo está excluido habitualmente de la cobertura por ser consecuencia de un embalaje defectuoso hecho por el propio asegurado?",
+      "opciones": [
+        "El daño producido por un incendio",
+        "El daño producido por una colisión",
+        "El daño producido por un vuelco",
+        "El embalaje insuficiente o inadecuado"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las Institute Cargo Clauses excluyen el embalaje o preparación insuficiente cuando lo realiza el asegurado.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general del comercio internacional; no contrastado con fuente primaria.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cubre normalmente el seguro de mercancías el retraso en la entrega y la pérdida de mercado?",
+      "opciones": [
+        "No, salvo pacto expreso",
+        "Sí, siempre y sin ninguna condición",
+        "Solo cuando el transporte se hace por vía aérea",
+        "Solo en la cláusula (A) y con prima extra obligatoria"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las cláusulas del Instituto excluyen la pérdida de mercado y el retraso.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general del comercio internacional; no contrastado con fuente primaria.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el seguro cubre mercancías con alto riesgo de robo, ¿qué conviene comprobar al elegir la póliza?",
+      "opciones": [
+        "Que sea la cláusula (C), por ser la más barata",
+        "Que sea todo riesgo (A) o incluya el robo",
+        "Que sea solo una póliza de responsabilidad del porteador",
+        "Que la póliza no tenga ninguna franquicia"
+      ],
+      "respuesta": 1,
+      "explicacion": "El robo y el hurto están cubiertos por (A) pero no por (B) ni (C).",
+      "criterio": "RA7.f",
+      "fuente": "Conocimiento general del comercio internacional; no contrastado con fuente primaria.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Un exportador envía mensualmente mercancía similar a varios países. ¿Qué tipo de póliza suele resultar más adecuada?",
+      "opciones": [
+        "Una póliza individual por viaje para cada envío",
+        "Un seguro de vida para el transportista",
+        "Una póliza flotante o abierta, con cobertura automática",
+        "Ninguna, porque el transportista responde de todo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Evita contratar cada embarque, garantiza cobertura automática y suele abaratar la prima.",
+      "criterio": "RA7.f",
+      "fuente": "Conocimiento general del comercio internacional; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué no basta confiar en la responsabilidad del transportista y conviene asegurar la mercancía?",
+      "opciones": [
+        "El transportista nunca responde de la mercancía",
+        "La ley prohíbe reclamar al transportista",
+        "El seguro sustituye a la carta de porte",
+        "Su responsabilidad está limitada y tiene exclusiones"
+      ],
+      "respuesta": 3,
+      "explicacion": "Ejemplo: CMR 8,33 DEG/kg; Montreal 26 DEG/kg; cabe además reclamar al transportista tras la indemnización (subrogación).",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general del comercio internacional; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene sobre la prima declarar un valor muy inferior al real para pagar menos?",
+      "opciones": [
+        "Infraseguro: se aplica la regla proporcional",
+        "Ninguno: siempre se indemniza el daño completo",
+        "El asegurador cubre más de lo contratado",
+        "El contrato se anula de inmediato por ley"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 30 de la Ley 50/1980.",
+      "criterio": "RA7.f",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 30 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene asegurar por encima del valor del interés (sobreseguro)?",
+      "opciones": [
+        "Se cobra más indemnización que el daño real",
+        "Cualquiera puede exigir reducir la suma y la prima",
+        "El asegurador debe pagar la suma asegurada completa",
+        "El contrato mejora la cobertura del asegurado"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 31: ante un siniestro se indemniza el daño efectivamente causado.",
+      "criterio": "RA7.f",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 31 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.3-021",
+      "tipo": "opcion_unica",
+      "enunciado": "Si se contratan dos pólizas sobre el mismo riesgo e interés con aseguradores distintos, ¿qué debe hacer el tomador?",
+      "opciones": [
+        "Ocultarlo para poder cobrar dos veces",
+        "Cancelar ambas pólizas de forma inmediata",
+        "Comunicar a cada asegurador los demás seguros",
+        "Nada, porque no tiene obligación alguna"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 32: la omisión dolosa libera a los aseguradores; los aseguradores contribuyen en proporción a su suma asegurada, sin superar el daño.",
+      "criterio": "RA7.f",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 32 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

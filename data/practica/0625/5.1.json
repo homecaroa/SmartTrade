@@ -1,0 +1,277 @@
+{
+  "modulo": "0625",
+  "tema": "5.1",
+  "titulo": "Existencias, criterios de valoración y objetivos de la gestión de stocks",
+  "preguntas": [
+    {
+      "id": "0625-5.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las existencias?",
+      "opciones": [
+        "Bienes que se tienen para vender o transformar",
+        "Los inmuebles en que la empresa desarrolla su actividad",
+        "Los créditos que la empresa tiene contra sus clientes",
+        "Las inversiones financieras que mantiene a largo plazo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se registran en el activo corriente.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipos de existencias distingue habitualmente la empresa?",
+      "opciones": [
+        "Solo mercaderías destinadas a la venta",
+        "Mercaderías, materias primas y productos",
+        "Solo materias primas utilizadas en la producción",
+        "Solo productos terminados listos para su entrega"
+      ],
+      "respuesta": 1,
+      "explicacion": "Según el tipo de actividad.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función cumple el stock?",
+      "opciones": [
+        "Aumentar el coste de funcionamiento del almacén",
+        "Reducir las ventas para ajustarlas a la producción",
+        "Absorber diferencias entre oferta y demanda",
+        "Eliminar el transporte entre fábrica y cliente"
+      ],
+      "respuesta": 2,
+      "explicacion": "Permite continuidad del servicio.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el stock de seguridad?",
+      "opciones": [
+        "El stock mínimo que fija la ley para cada sector",
+        "El stock de temporada para las campañas de venta",
+        "El stock obsoleto que ya no tiene demanda",
+        "Cantidad adicional para imprevistos de demanda"
+      ],
+      "respuesta": 3,
+      "explicacion": "Evita roturas de stock.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una rotura de stock?",
+      "opciones": [
+        "Falta de existencias para atender un pedido",
+        "Exceso de existencias respecto de la demanda prevista",
+        "Error de inventario entre el stock físico y el teórico",
+        "Devolución de mercancía por parte de un cliente"
+      ],
+      "respuesta": 0,
+      "explicacion": "Genera ventas perdidas.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el stock obsoleto?",
+      "opciones": [
+        "El stock de seguridad que cubre imprevistos",
+        "El que ya no tiene demanda o ha perdido valor",
+        "El stock nuevo recién recibido del proveedor",
+        "El stock en tránsito entre proveedor y almacén"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es un coste de posesión.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el stock en tránsito?",
+      "opciones": [
+        "Mercancía que espera en el muelle de recepción",
+        "Mercancía devuelta por el cliente al almacén",
+        "Mercancía enviada que aún no ha llegado",
+        "Mercancía vendida que está pendiente de entrega"
+      ],
+      "respuesta": 2,
+      "explicacion": "Pertenece a la logística de aprovisionamiento.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué métodos de valoración de existencias admite el Plan General Contable?",
+      "opciones": [
+        "Solo el método LIFO, de última entrada primera salida",
+        "El LIFO y el FIFO, a elección de la empresa",
+        "Solo el precio de venta al público de las existencias",
+        "El precio medio ponderado (PMP) y el FIFO"
+      ],
+      "respuesta": 3,
+      "explicacion": "El LIFO no está admitido por el PGC.",
+      "criterio": "RA4.d",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007), norma de registro y valoración 10.ª (existencias); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué método NO admite el PGC para valorar las existencias?",
+      "opciones": [
+        "LIFO",
+        "FIFO, primera entrada primera salida",
+        "PMP, precio medio ponderado",
+        "Coste de adquisición de cada unidad"
+      ],
+      "respuesta": 0,
+      "explicacion": "El LIFO se admite en otros regímenes, pero no en el PGC español.",
+      "criterio": "RA4.d",
+      "fuente": "Plan General de Contabilidad (RD 1514/2007), norma de registro y valoración 10.ª (existencias); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el coste de producción de un producto terminado?",
+      "opciones": [
+        "Solo el precio de venta del producto terminado",
+        "Precio de compra, costes directos y parte de indirectos",
+        "Solo la mano de obra directa de la fabricación",
+        "Solo los gastos financieros de la producción"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es el valor al que se contabiliza.",
+      "criterio": "RA4.d",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué objetivo persigue la gestión de stocks?",
+      "opciones": [
+        "Maximizar el stock para no tener nunca roturas",
+        "Eliminar el stock para suprimir su coste de posesión",
+        "Minimizar costes garantizando el servicio",
+        "Almacenar siempre más de lo que se necesita"
+      ],
+      "respuesta": 2,
+      "explicacion": "Equilibrio entre coste de posesión y de ruptura.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué factores influyen en la gestión de stocks?",
+      "opciones": [
+        "Solo el precio de compra de las existencias",
+        "Solo el color de las cajas que se almacenan",
+        "Solo el tamaño del embalaje de los productos",
+        "Demanda, plazos, costes y nivel de servicio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Todos condicionan las decisiones.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de gestión de stocks; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Entran 100 uds a 10 € y 150 uds a 10,50 €. ¿Cuál es el precio medio ponderado (PMP)?",
+      "opciones": [
+        "10,30 €",
+        "10,25 €",
+        "10,50 €",
+        "10,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "PMP = (100 × 10 + 150 × 10,5) / 250 = 10,30 €.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Con esas existencias, salen 120 uds valoradas por PMP; luego entran 200 uds a 11 €. ¿Cuál es el nuevo PMP?",
+      "opciones": [
+        "11,00 €",
+        "10,72 €",
+        "10,30 €",
+        "10,65 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Stock tras la salida: 130 uds a 10,30 €. Nuevo PMP = (1.339,00 + 2.200) / 330 = 10,72 €.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Con las mismas entradas (100 a 10 € y 150 a 10,50 €), ¿qué coste tiene una salida de 120 uds por FIFO?",
+      "opciones": [
+        "1.260,00 €",
+        "1.230,00 €",
+        "1.210,00 €",
+        "1.200,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "FIFO: primero salen las 100 más antiguas (10 €) y 20 de las siguientes (10,50 €): 1.000 + 210 = 1.210 €.",
+      "criterio": "RA4.d",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

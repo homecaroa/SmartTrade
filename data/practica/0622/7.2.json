@@ -1,0 +1,439 @@
+{
+  "modulo": "0622",
+  "tema": "7.2",
+  "titulo": "Tipos de pólizas, cláusulas y cobertura de mercancías",
+  "preguntas": [
+    {
+      "id": "0622-7.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una póliza por viaje (o individual) en el seguro de mercancías?",
+      "opciones": [
+        "La que cubre automáticamente todas las expediciones de un año",
+        "La de una expedición concreta, de origen a destino",
+        "La que solo cubre el retraso en la entrega",
+        "La que cubre únicamente el vehículo del transportista"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se contrata para cada embarque; es la opción habitual para operaciones esporádicas.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general del seguro de transporte (Institute Cargo Clauses, Lloyd's); no contrastado con el texto de las cláusulas.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué caracteriza a la póliza flotante?",
+      "opciones": [
+        "Cubre un único embarque que ya ha sido realizado",
+        "Solo cubre el buque y no la carga que transporta",
+        "Cobertura automática de los embarques definidos en ella",
+        "Se cancela por completo tras cada expedición"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 458.1 de la Ley 14/2014. Es la modalidad idónea para exportadores con embarques frecuentes.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 458, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En una póliza flotante, ¿qué debe expresar respecto al capital?",
+      "opciones": [
+        "El precio de la prima de cada contenedor embarcado",
+        "El nombre del capitán del buque que transporta",
+        "Solo el capital total anual, sin límite por expedición",
+        "El capital máximo por cada expedición"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 458.2.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 458, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿De qué plazo mínimo dispone el asegurado para comunicar al asegurador una expedición en curso bajo póliza flotante?",
+      "opciones": [
+        "No inferior a cuarenta y ocho horas",
+        "Veinticuatro horas desde que tuvo noticia",
+        "Siete días desde que tuvo noticia",
+        "No existe plazo alguno para comunicarla"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 459.1. Si incumple el aviso, el asegurador queda liberado de cubrir esa expedición, pero puede reclamar la prima (art. 459.2).",
+      "criterio": "RA7.c",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 459, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el asegurado no avisa de una expedición dentro del plazo de la póliza flotante, ¿qué ocurre?",
+      "opciones": [
+        "Pierde la cobertura de todas las expediciones anteriores",
+        "El asegurador queda liberado de esa expedición",
+        "La póliza se anula con efectos retroactivos",
+        "El asegurador cubre igualmente y duplica la prima"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 459.2 Ley 14/2014. Además, el asegurador puede resolver el contrato sin afectar a las expediciones notificadas.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 459, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el certificado de seguro en una póliza abierta o flotante?",
+      "opciones": [
+        "Un informe de averías que redacta el perito",
+        "El certificado de origen de la mercancía asegurada",
+        "El documento que acredita la cobertura de una expedición",
+        "Una factura por la prima de la póliza"
+      ],
+      "respuesta": 2,
+      "explicacion": "En operaciones documentarias (p. ej. CIF) el certificado acompaña al resto de documentos.",
+      "criterio": "RA7.e",
+      "fuente": "Conocimiento general del seguro de transporte (Institute Cargo Clauses, Lloyd's); no contrastado con el texto de las cláusulas.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene el certificado de cobertura para el comprador de buena fe?",
+      "opciones": [
+        "Anula la póliza general del vendedor",
+        "Obliga al comprador a pagar la prima atrasada",
+        "Solo es válido frente al transportista",
+        "El asegurador no puede oponerle el impago de la prima"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 425.3 de la Ley 14/2014 (seguros de mercancías).",
+      "criterio": "RA7.c",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 425.3, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una póliza estimada?",
+      "opciones": [
+        "Aquella que fija un valor aceptado para el interés asegurado",
+        "Aquella cuya prima se estima al final del año",
+        "Aquella cuyo capital se calcula después del siniestro",
+        "Aquella que carece de suma asegurada"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 28 Ley 50/1980. El asegurador solo puede impugnar el valor por violencia, intimidación, dolo o error notablemente superior al real.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 28 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué casos puede el asegurador impugnar el valor estimado de una póliza estimada?",
+      "opciones": [
+        "Siempre que ocurra un siniestro cubierto por la póliza",
+        "Si hubo violencia, intimidación, dolo o error notable",
+        "Cuando la prima resulta muy alta para el riesgo",
+        "Nunca, en ningún caso, puede impugnarlo"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 28.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 28 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En el seguro de transporte terrestre, a falta de estimación, ¿qué cubre la indemnización por pérdida total?",
+      "opciones": [
+        "El precio de venta en destino en todos los casos",
+        "Solo el flete que se ha pagado por el transporte",
+        "El precio en el momento de la carga, más gastos y seguro",
+        "El valor de reposición del vehículo del transportista"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 62: si las mercancías se destinan a la venta, se regula por el valor en el lugar de destino.",
+      "criterio": "RA7.c",
+      "fuente": "Ley 50/1980 de Contrato de Seguro, art. 62 (BOE-A-1980-22501, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué valor asegurable de las mercancías fija, salvo pacto, la Ley de Navegación Marítima?",
+      "opciones": [
+        "Solo el valor de la mercancía en origen",
+        "Solo el precio de venta al cliente final",
+        "El valor que figuraba en la póliza anterior",
+        "Valor en origen, transporte, aduana y beneficio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 454.1. Para asegurar un beneficio superior al 10 % del valor en origen hay que declararlo expresamente (art. 454.2).",
+      "criterio": "RA7.c",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 454, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué margen de beneficio esperado puede asegurarse sin declararlo expresamente, según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Hasta el 10 % del valor en origen",
+        "Hasta el 25 % del valor en origen",
+        "Hasta el 50 % del valor en origen",
+        "Ninguno, salvo que se declare expresamente"
+      ],
+      "respuesta": 0,
+      "explicacion": "Para superar el 10 % hay que declararlo expresamente en la póliza o certificado (art. 454.2).",
+      "criterio": "RA7.c",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 454, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Sin pacto en contrario, ¿cuándo se inicia y finaliza la cobertura de las mercancías en el seguro marítimo?",
+      "opciones": [
+        "Desde el almacén del vendedor hasta el almacén del comprador",
+        "Desde que se deja tierra para embarcar hasta tierra en destino",
+        "Solo mientras las mercancías están a bordo del buque",
+        "Desde la firma del contrato de compraventa internacional"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 455.",
+      "criterio": "RA7.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 455, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué significa la cláusula «de almacén a almacén»?",
+      "opciones": [
+        "Solo se cubre el tramo marítimo del viaje",
+        "El asegurador almacena la mercancía sin coste alguno",
+        "La cobertura va del almacén de origen al de destino",
+        "La cobertura termina cuando se descarga el buque"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 456 Ley 14/2014; es la cláusula habitual del seguro de mercancías.",
+      "criterio": "RA7.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 456, leída.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cubre la póliza los transbordos y los cambios de ruta ajenos a la voluntad del asegurado?",
+      "opciones": [
+        "No, el asegurador queda siempre liberado de su obligación",
+        "Solo si el cambio de ruta dura menos de un día",
+        "Solo cuando se trata de transporte terrestre",
+        "Sí, comunicándolo al asegurador y pagando sobreprima si procede"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 460 Ley 14/2014.",
+      "criterio": "RA7.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 460, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "En las Institute Cargo Clauses, ¿qué modalidad ofrece la cobertura más amplia («all risks»)?",
+      "opciones": [
+        "La cláusula (A)",
+        "La cláusula (B), de cobertura intermedia",
+        "La cláusula (C), de cobertura mínima",
+        "Las tres ofrecen exactamente la misma cobertura"
+      ],
+      "respuesta": 0,
+      "explicacion": "La (A) cubre todo riesgo de pérdida o daño salvo las exclusiones expresas; la (B) y la (C) enumeran riesgos.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general del seguro de transporte (Institute Cargo Clauses, Lloyd's); no contrastado con el texto de las cláusulas.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia fundamental hay entre la cláusula (A) y las cláusulas (B) y (C) de las Institute Cargo Clauses?",
+      "opciones": [
+        "La (A) solo se aplica al transporte aéreo",
+        "La (A) cubre todo riesgo; (B) y (C), los enumerados",
+        "Las (B) y (C) cubren más riesgos que la (A)",
+        "No hay diferencia alguna, solo cambia el nombre"
+      ],
+      "respuesta": 1,
+      "explicacion": "Lo que no esté listado en (B) o (C) no está cubierto, aunque no esté excluido.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general del seguro de transporte (Institute Cargo Clauses, Lloyd's); no contrastado con el texto de las cláusulas.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué riesgo cubre la cláusula (B) pero no la (C)?",
+      "opciones": [
+        "El incendio o la explosión en el medio de transporte",
+        "El vuelco del medio de transporte terrestre",
+        "La entrada de agua de mar, lago o río",
+        "El sacrificio de avería gruesa"
+      ],
+      "respuesta": 2,
+      "explicacion": "La (C) es la cobertura mínima (incendio, explosión, varada, colisión, vuelco, avería gruesa, echazón...). La (B) añade, entre otros, entrada de agua y caída al mar de bultos.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general del seguro de transporte (Institute Cargo Clauses, Lloyd's); no contrastado con el texto de las cláusulas.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué suele contratarse aparte la cobertura de guerra y huelgas?",
+      "opciones": [
+        "Porque la ley prohíbe incluirlas en la póliza",
+        "Porque son siempre gratuitas para el asegurado",
+        "Porque solo las cubre el transportista",
+        "Las excluyen las ICC; se cubren aparte"
+      ],
+      "respuesta": 3,
+      "explicacion": "En el seguro marítimo español, art. 418 Ley 14/2014 también excluye guerra, piratería, terrorismo y huelgas salvo pacto.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general del seguro de transporte (Institute Cargo Clauses, Lloyd's); no contrastado con el texto de las cláusulas.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-020",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley de Navegación Marítima, ¿qué riesgos quedan excluidos de la cobertura del seguro marítimo?",
+      "opciones": [
+        "Guerra, captura, piratería, terrorismo y huelgas",
+        "El incendio y el naufragio del buque asegurado",
+        "La colisión y la varada del buque asegurado",
+        "El incendio a bordo del buque asegurado"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 418; las partes pueden pactar libremente las condiciones de cobertura (art. 407).",
+      "criterio": "RA7.b",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 418, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-021",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la avería gruesa (o común)?",
+      "opciones": [
+        "Cualquier daño accidental sufrido por un contenedor",
+        "Daño o gasto extraordinario causado para la salvación común",
+        "El retraso del buque en el puerto de escala",
+        "La pérdida producida por el vicio propio de la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 347 Ley 14/2014. Se reparte entre los intereses en riesgo, en proporción a su valor salvado (art. 349), conforme a las Reglas de York y Amberes.",
+      "criterio": "RA7.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 347-349, leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-022",
+      "tipo": "opcion_unica",
+      "enunciado": "En la avería gruesa, ¿quién soporta los daños o gastos ocasionados?",
+      "opciones": [
+        "Solo el armador, que es el propietario del buque",
+        "Solo el propietario de la mercancía sacrificada",
+        "Los titulares de los intereses en riesgo, proporcionalmente",
+        "Solo el asegurador del buque que se salvó"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 349. El seguro de mercancías incluye la contribución a la avería gruesa a cargo del interés asegurado (art. 430.1.a).",
+      "criterio": "RA7.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 349 y 430, leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-023",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la franquicia en un seguro?",
+      "opciones": [
+        "La comisión que cobra el corredor de seguros",
+        "La prima de recargo que se aplica al asegurado",
+        "El plazo de espera hasta cobrar la indemnización",
+        "La parte del daño que queda a cargo del asegurado en cada siniestro"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se pacta en la póliza; reduce la prima.",
+      "criterio": "RA7.d",
+      "fuente": "Conocimiento general del seguro de transporte (Institute Cargo Clauses, Lloyd's); no contrastado con el texto de las cláusulas.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-7.2-024",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué fue la póliza S.G. («Ship and Goods») del Lloyd's?",
+      "opciones": [
+        "El modelo histórico de póliza marítima del Lloyd's",
+        "Un tipo de seguro de crédito a la exportación",
+        "Un convenio de transporte por carretera",
+        "Un certificado aduanero de la mercancía"
+      ],
+      "respuesta": 0,
+      "explicacion": "Su redacción antigua dio origen a conceptos del seguro marítimo; actualmente se usan formularios modernos con las Institute Clauses.",
+      "criterio": "RA7.c",
+      "fuente": "Conocimiento general; no verificado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

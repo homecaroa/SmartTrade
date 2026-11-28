@@ -1,0 +1,403 @@
+{
+  "modulo": "0622",
+  "tema": "4.1",
+  "titulo": "Integridad física, riesgos del transporte, UTI y embalajes",
+  "preguntas": [
+    {
+      "id": "0622-4.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la función principal del embalaje en el transporte internacional?",
+      "opciones": [
+        "Proteger la mercancía, contenerla y facilitar su manipulación, almacenaje e identificación",
+        "Aumentar siempre el peso facturable",
+        "Sustituir al seguro de mercancías",
+        "Evitar la necesidad de documentos de transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "El embalaje debe adecuarse a la mercancía, al modo de transporte y a las manipulaciones previstas.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tres niveles distingue habitualmente la logística de embalaje?",
+      "opciones": [
+        "Embalaje exterior, interior y ficticio",
+        "Envase primario (producto), embalaje secundario o colectivo (cajas) y embalaje terciario o unidad de carga (palé, contenedor)",
+        "Embalaje sanitario, fiscal y comercial",
+        "Embalaje aéreo, marítimo y terrestre"
+      ],
+      "respuesta": 1,
+      "explicacion": "Cada nivel cumple una función: presentar, agrupar y facilitar el transporte.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una unidad de transporte intermodal (UTI)?",
+      "opciones": [
+        "Un vehículo exclusivo de transporte aéreo",
+        "Un tipo de documento de transporte",
+        "Un recipiente de carga (contenedor, caja móvil, semirremolque) que puede pasar de un modo de transporte a otro sin manipular la mercancía",
+        "Un seguro específico para multimodal"
+      ],
+      "respuesta": 2,
+      "explicacion": "Reduce manipulaciones, tiempos y riesgos de daño en los cambios de modo.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la ventaja principal del contenedor frente al transporte de carga suelta?",
+      "opciones": [
+        "Siempre es más barato por kilo",
+        "No necesita documentos",
+        "Elimina el riesgo de robo por completo",
+        "Protege la mercancía, permite el transporte multimodal sin manipulación y facilita el precintado y la seguridad"
+      ],
+      "respuesta": 3,
+      "explicacion": "La unitarización agiliza las operaciones portuarias y reduce daños y pérdidas.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dimensiones externas tiene un contenedor ISO de 20 pies (TEU)?",
+      "opciones": [
+        "Aproximadamente 6,06 m de largo, 2,44 m de ancho y 2,59 m de alto",
+        "12,19 m de largo",
+        "3,00 m de ancho",
+        "2,00 m de alto"
+      ],
+      "respuesta": 0,
+      "explicacion": "El contenedor de 40 pies (FEU) mide unos 12,19 m; los «high cube» tienen unos 2,90 m de alto.",
+      "criterio": "RA4.b",
+      "fuente": "ISO 668 (dimensiones nominales); contenido conocido, no leído en el texto de la norma.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué equivale en TEU un contenedor de 40 pies?",
+      "opciones": [
+        "1 TEU",
+        "2 TEU",
+        "4 TEU",
+        "0,5 TEU"
+      ],
+      "respuesta": 1,
+      "explicacion": "TEU = twenty-foot equivalent unit; un 40' equivale a dos de 20'.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo de contenedor se usa para transportar mercancías que requieren frío o calor controlado?",
+      "opciones": [
+        "Open top",
+        "Flat rack",
+        "Contenedor refrigerado (reefer)",
+        "Contenedor cisterna"
+      ],
+      "respuesta": 2,
+      "explicacion": "El reefer incorpora equipo frigorífico y se alimenta de la red del buque o terminal.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipo de contenedor es adecuado para mercancía de gran volumen que sobresale por la parte superior?",
+      "opciones": [
+        "Reefer",
+        "Contenedor estándar cerrado",
+        "Contenedor cisterna",
+        "Open top (techo abierto)"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se carga por arriba con grúa y se cubre con lona; para carga fuera de gálibo también existen flat rack.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué dimensiones tiene un palé europeo (EUR/EPAL)?",
+      "opciones": [
+        "1.200 mm × 800 mm",
+        "1.200 mm × 1.000 mm",
+        "1.000 mm × 1.000 mm",
+        "1.500 mm × 1.100 mm"
+      ],
+      "respuesta": 0,
+      "explicacion": "El palé ISO habitual mide 1.200 × 1.000 mm. En un camión de 13,6 m caben unos 33 palés europeos.",
+      "criterio": "RA4.b",
+      "fuente": "Norma EUR/EPAL; contenido conocido, no verificado en la fuente primaria.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene paletizar la mercancía?",
+      "opciones": [
+        "Elimina la necesidad de embalaje",
+        "Permite mover y estibar la carga unitarizada con carretilla, reduciendo tiempos y daños",
+        "Siempre reduce el peso",
+        "Evita la inspección aduanera"
+      ],
+      "respuesta": 1,
+      "explicacion": "El palé es la base de la unidad de carga; se asegura con film, flejes o esquineros.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos es un riesgo típico durante la fase de transporte?",
+      "opciones": [
+        "Solo el cambio de tipo de moneda",
+        "La subida de aranceles",
+        "Golpes y vibraciones, compresión por apilado, humedad y condensación, temperatura, robo y manipulación incorrecta",
+        "El retraso de la factura"
+      ],
+      "respuesta": 2,
+      "explicacion": "El embalaje y la estiba se diseñan frente a estos riesgos físicos.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la condensación en el interior de un contenedor («lluvia de contenedor»)?",
+      "opciones": [
+        "La carga eléctrica acumulada",
+        "Un fallo de la cerradura",
+        "El exceso de peso",
+        "La humedad que se condensa en el techo y paredes por cambios de temperatura y que puede mojar la mercancía"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se mitiga con desecantes, ventilación, embalajes impermeables y mercancía seca.",
+      "criterio": "RA4.b",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué aplica a las mercancías peligrosas transportadas por carretera?",
+      "opciones": [
+        "El Acuerdo ADR",
+        "El Convenio de Montreal",
+        "Las Reglas de La Haya",
+        "El Convenio CIM"
+      ],
+      "respuesta": 0,
+      "explicacion": "ADR = Acuerdo europeo sobre transporte internacional de mercancías peligrosas por carretera (versión 2025 publicada en el BOE).",
+      "criterio": "RA4.a",
+      "fuente": "ADR 2025 (BOE-A-2025-77), leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma europea regula la protección de los animales durante el transporte?",
+      "opciones": [
+        "El Reglamento (CE) n.º 1071/2009",
+        "El Reglamento (CE) n.º 1/2005",
+        "El Convenio CMR",
+        "El ADR"
+      ],
+      "respuesta": 1,
+      "explicacion": "Define, entre otros aspectos, el «viaje largo» (más de ocho horas).",
+      "criterio": "RA4.a",
+      "fuente": "Reglamento (CE) n.º 1/2005, art. 2 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Según el Reglamento (CE) n.º 1/2005, ¿qué se considera «viaje largo»?",
+      "opciones": [
+        "Un viaje de más de 24 horas",
+        "Un viaje de más de tres horas",
+        "Un viaje cuya duración supere las ocho horas",
+        "Un viaje internacional de cualquier duración"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 2, letra m.",
+      "criterio": "RA4.a",
+      "fuente": "Reglamento (CE) n.º 1/2005, art. 2.m (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué acuerdo regula los transportes internacionales de mercancías perecederas y los equipos especiales para ellos?",
+      "opciones": [
+        "El ADR",
+        "El CIM",
+        "El Convenio TIR",
+        "El Acuerdo ATP"
+      ],
+      "respuesta": 3,
+      "explicacion": "Fija las condiciones de los vehículos isotermos, refrigerados y frigoríficos.",
+      "criterio": "RA4.a",
+      "fuente": "Acuerdo ATP; contenido conocido, no leído en texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se clasifica habitualmente el transporte de maquinaria que excede las dimensiones o pesos reglamentarios?",
+      "opciones": [
+        "Transporte especial o excepcional, que requiere autorización administrativa y condiciones de circulación específicas",
+        "Transporte ordinario sin permisos",
+        "Transporte de mercancías peligrosas",
+        "Cabotaje obligatorio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Según el Reglamento General de Vehículos y la normativa de cada país.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de logística y embalaje; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un embalaje combinado según el ADR?",
+      "opciones": [
+        "Un embalaje de un solo material sin envase interior",
+        "Un embalaje exterior que contiene uno o más envases interiores",
+        "Un contenedor con dos puertas",
+        "Un palé con film"
+      ],
+      "respuesta": 1,
+      "explicacion": "En los embalajes combinados, el código ADR solo designa el embalaje exterior (6.1.2.3).",
+      "criterio": "RA4.b",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 6.1.2.3 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "En el código ADR de un embalaje, ¿qué indica la primera cifra?",
+      "opciones": [
+        "El material",
+        "La capacidad",
+        "El género de embalaje (1 bidón, 3 jerricán, 4 caja, 5 saco, 6 embalaje compuesto)",
+        "El país de fabricación"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las letras que siguen indican el material (A acero, B aluminio, C madera natural, D contrachapado, G cartón, H plástico...).",
+      "criterio": "RA4.b",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 6.1.2.5-6.1.2.6 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-020",
+      "tipo": "opcion_unica",
+      "enunciado": "Un embalaje ADR con código 4G es…",
+      "opciones": [
+        "Un bidón de acero",
+        "Un jerricán de plástico",
+        "Un saco de papel",
+        "Una caja de cartón"
+      ],
+      "respuesta": 3,
+      "explicacion": "4 = caja; G = cartón.",
+      "criterio": "RA4.b",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 6.1.2.5-6.1.2.6 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-021",
+      "tipo": "opcion_unica",
+      "enunciado": "Un embalaje ADR con código 1A1 es…",
+      "opciones": [
+        "Un bidón de acero con tapa fija",
+        "Un bidón de aluminio con tapa móvil",
+        "Una caja de acero",
+        "Un jerricán de acero con tapa fija"
+      ],
+      "respuesta": 0,
+      "explicacion": "1 = bidón; A = acero; 1 = tapa fija.",
+      "criterio": "RA4.b",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 6.1.2.7 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-4.1-022",
+      "tipo": "opcion_unica",
+      "enunciado": "Un embalaje ADR con código 3H1 es…",
+      "opciones": [
+        "Un bidón de plástico",
+        "Un jerricán de plástico con tapa fija",
+        "Una caja de plástico",
+        "Un saco de plástico"
+      ],
+      "respuesta": 1,
+      "explicacion": "3 = jerricán; H = plástico; 1 = tapa fija.",
+      "criterio": "RA4.b",
+      "fuente": "ADR 2025 (BOE-A-2025-77), 6.1.2.5-6.1.2.7 (leído).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

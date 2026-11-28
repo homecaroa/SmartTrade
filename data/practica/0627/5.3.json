@@ -1,0 +1,259 @@
+{
+  "modulo": "0627",
+  "tema": "5.3",
+  "titulo": "Despacho a libre práctica, deuda aduanera y levante",
+  "preguntas": [
+    {
+      "id": "0627-5.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el despacho a libre práctica?",
+      "opciones": [
+        "El régimen por el que mercancías no UE pasan a ser de la Unión",
+        "Un régimen suspensivo que permite almacenar sin pagar derechos",
+        "La salida de mercancías de la UE con devolución de los derechos",
+        "El tránsito de mercancías no UE entre dos aduanas de la Unión"
+      ],
+      "respuesta": 0,
+      "explicacion": "Implica pago de derechos de importación e IVA, salvo exenciones.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, art. 201 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo nace la deuda aduanera de importación por despacho a libre práctica?",
+      "opciones": [
+        "Al llegar el buque al puerto y atracar en el muelle designado",
+        "Al admitirse la declaración en aduana",
+        "Al pagar la factura del proveedor extranjero de la mercancía",
+        "Al emitirse el levante y retirar la mercancía del recinto"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 77 CAU: la deuda nace por la inclusión en el régimen mediante declaración admitida.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, art. 77 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el levante de las mercancías?",
+      "opciones": [
+        "La carga de la mercancía en el vehículo del transportista",
+        "El pago de la deuda aduanera a las autoridades competentes",
+        "La puesta de las mercancías a disposición del declarante",
+        "El seguro que cubre la mercancía hasta el almacén del cliente"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 194 CAU: se concede cuando se cumplen las condiciones y no hay prohibiciones o restricciones.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 194 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué momento se concede el levante, según el CAU?",
+      "opciones": [
+        "Siempre transcurridos treinta días desde la presentación",
+        "Solo después de pagar la factura al vendedor extranjero",
+        "Cuando lo decida el transportista que entrega la mercancía",
+        "Al comprobarse la declaración, si no hay restricciones"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 194.1 CAU.",
+      "criterio": "RA4.g",
+      "fuente": "Código Aduanero de la Unión, Reglamento (UE) n.º 952/2013, art. 194 (texto original de 2013, leído; modificado posteriormente).",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el plazo máximo de pago de la deuda aduanera desde su notificación al deudor, salvo aplazamiento?",
+      "opciones": [
+        "10 días",
+        "30 días, ampliables con garantía",
+        "5 días, sin posibilidad de aplazamiento",
+        "6 meses, con aval bancario"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 108 CAU (con las condiciones del art. 105 y el pago aplazado).",
+      "criterio": "RA4.f",
+      "fuente": "Código Aduanero de la Unión, arts. 105 y 108 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la contracción de la deuda aduanera?",
+      "opciones": [
+        "El pago de la deuda por parte del declarante ante la aduana",
+        "El registro por las autoridades del importe de los derechos exigibles",
+        "La aceptación del levante tras la comprobación de la declaración",
+        "El aplazamiento del pago de los derechos hasta el vencimiento"
+      ],
+      "respuesta": 1,
+      "explicacion": "Tras la contracción se notifica el importe al deudor.",
+      "criterio": "RA4.f",
+      "fuente": "Código Aduanero de la Unión, art. 102 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué garantía puede exigirse para asegurar el pago de la deuda aduanera?",
+      "opciones": [
+        "Ninguna, porque la deuda se cobra siempre en el acto",
+        "Solo un seguro de vida a favor de la aduana de entrada",
+        "Aval bancario, depósito en efectivo u otra garantía admitida",
+        "Solo una póliza de crédito emitida por el vendedor extranjero"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las garantías pueden ser globales o individuales.",
+      "criterio": "RA4.f",
+      "fuente": "Código Aduanero de la Unión, arts. 89 y ss. (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué efecto tiene el pago de los derechos de aduana?",
+      "opciones": [
+        "Concede de forma automática el estatuto de operador autorizado",
+        "Cierra el régimen de tránsito que se hubiera iniciado antes",
+        "No tiene ningún efecto sobre la situación de la deuda",
+        "Extingue la deuda aduanera"
+      ],
+      "respuesta": 3,
+      "explicacion": "El pago es una de las causas de extinción de la deuda.",
+      "criterio": "RA4.f",
+      "fuente": "Código Aduanero de la Unión, art. 124 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Puede la aduana verificar la declaración antes del levante?",
+      "opciones": [
+        "Sí, con comprobación documental o reconocimiento físico",
+        "No, la aduana debe aceptar siempre los datos que declara el importador",
+        "Solo si el importador lo solicita por escrito antes del levante",
+        "Únicamente en las exportaciones y nunca en las importaciones"
+      ],
+      "respuesta": 0,
+      "explicacion": "Determina si hay discrepancias de clasificación, valor u origen.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por «despacho a consumo»?",
+      "opciones": [
+        "Sacar las mercancías de la UE con exención de derechos",
+        "Poner las mercancías en el mercado de la UE pagando derechos",
+        "Mover las mercancías entre aduanas bajo régimen de tránsito",
+        "Guardar las mercancías en un depósito aduanero autorizado"
+      ],
+      "respuesta": 1,
+      "explicacion": "En la práctica se declara conjuntamente con la libre práctica (régimen 40).",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Si una mercancía importada incumple una obligación aduanera, ¿puede nacer una deuda aduanera?",
+      "opciones": [
+        "No, la deuda solo nace al admitirse una declaración de importación",
+        "Solo en las exportaciones, nunca en las importaciones de mercancías",
+        "Sí, por incumplimiento de las obligaciones del régimen",
+        "Solo cuando el valor de la mercancía supera los 5.000 euros"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 79 CAU: deuda por incumplimiento.",
+      "criterio": "RA4.f",
+      "fuente": "Código Aduanero de la Unión, art. 79 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién es el deudor aduanero en una importación a libre práctica?",
+      "opciones": [
+        "El transportista que introduce las mercancías en el territorio",
+        "El exportador establecido en el país tercero de procedencia",
+        "El banco que emite la garantía a favor de la aduana de entrada",
+        "El declarante y, si la representación es indirecta, quien encarga"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 77.3 CAU.",
+      "criterio": "RA4.f",
+      "fuente": "Código Aduanero de la Unión, art. 77.3 (leído parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por liquidación de la deuda aduanera?",
+      "opciones": [
+        "La determinación del importe exacto de los derechos a pagar",
+        "El pago de los derechos al transportista que presenta la declaración",
+        "La aprobación del seguro que cubre las mercancías importadas",
+        "La devolución de los derechos pagados en exceso al importador"
+      ],
+      "respuesta": 0,
+      "explicacion": "Incluye derechos de arancel, IVA y, en su caso, otros impuestos.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión aduanera; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-5.3-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ocurre con los derechos si las mercancías son rechazadas y reexportadas antes del despacho?",
+      "opciones": [
+        "Se pagan igualmente porque la deuda nace con la llegada",
+        "Puede pedirse su no exigibilidad o devolución, según el caso",
+        "Se multiplican por dos como sanción por la reexportación",
+        "Se pierde la mercancía en favor del Estado sin compensación"
+      ],
+      "respuesta": 1,
+      "explicacion": "Existen supuestos de devolución o condonación.",
+      "criterio": "RA4.f",
+      "fuente": "Código Aduanero de la Unión, arts. 116-124 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

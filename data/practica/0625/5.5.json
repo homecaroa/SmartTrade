@@ -1,0 +1,259 @@
+{
+  "modulo": "0625",
+  "tema": "5.5",
+  "titulo": "Control de incidencias y ciclo del pedido del cliente",
+  "preguntas": [
+    {
+      "id": "0625-5.5-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una incidencia en el almacén?",
+      "opciones": [
+        "Un pedido servido correctamente y en plazo",
+        "Una anomalía en la mercancía o el pedido",
+        "Una factura emitida con todos sus datos correctos",
+        "Un inventario realizado sin diferencias de stock"
+      ],
+      "respuesta": 1,
+      "explicacion": "Debe registrarse y resolverse.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué tipos de incidencias son frecuentes en la recepción?",
+      "opciones": [
+        "Solo excesos de mercancía respecto al pedido",
+        "Solo daños en el embalaje de los bultos",
+        "Faltas, excesos, daños y referencias erróneas",
+        "Ninguna, porque la recepción no genera incidencias"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se anotan en el albarán y se comunican.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué incidencias son frecuentes en la expedición?",
+      "opciones": [
+        "Solo faltas de mercancía en el pedido servido",
+        "Ninguna, porque en la expedición no se producen errores",
+        "Solo errores en la factura del pedido servido",
+        "Errores de preparación, faltas, daños y retrasos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Impactan en el nivel de servicio.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué datos debe incluir el registro de una incidencia?",
+      "opciones": [
+        "Fecha, tipo, referencia, cantidad y causa",
+        "Solo la fecha en que se detectó la incidencia",
+        "Solo la referencia del artículo afectado",
+        "Solo el responsable que atendió la incidencia"
+      ],
+      "respuesta": 0,
+      "explicacion": "Permite analizar y mejorar.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ciclo del pedido del cliente?",
+      "opciones": [
+        "Solo la preparación de los pedidos en el almacén",
+        "Del pedido del cliente a su entrega y facturación",
+        "Solo el transporte hasta el domicilio del cliente",
+        "Solo la facturación del pedido servido"
+      ],
+      "respuesta": 1,
+      "explicacion": "Incluye recepción, validación, picking, expedición y entrega.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué fases tiene el ciclo del pedido?",
+      "opciones": [
+        "Solo la expedición de los pedidos a los clientes",
+        "Solo el cobro de las facturas a los clientes",
+        "Recepción, stock, preparación, entrega y facturación",
+        "Solo la producción de los artículos pedidos"
+      ],
+      "respuesta": 2,
+      "explicacion": "El tiempo total es el plazo de entrega.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el plazo de entrega (lead time)?",
+      "opciones": [
+        "El tiempo que se tarda en fabricar el producto",
+        "El tiempo que tarda el cliente en pagar la factura",
+        "El tiempo que se emplea en hacer el inventario",
+        "El tiempo entre recibir el pedido y entregarlo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es un indicador clave de servicio.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el ciclo del pedido, ¿qué función cumple el albarán de entrega?",
+      "opciones": [
+        "Acompaña a la mercancía y acredita su entrega",
+        "Es la factura que se emite al cliente tras la venta",
+        "Es el pedido que realiza el cliente al almacén",
+        "Es el contrato marco de suministro firmado con el cliente"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se firma en la recepción.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el nivel de servicio en el ciclo del pedido?",
+      "opciones": [
+        "El número total de pedidos servidos en el mes",
+        "El porcentaje de pedidos completos y en plazo",
+        "El coste medio de servicio por cada pedido",
+        "El tiempo medio de preparación de cada pedido"
+      ],
+      "respuesta": 1,
+      "explicacion": "OTIF = on time in full.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se hace con los pedidos que no pueden servirse completos por falta de stock?",
+      "opciones": [
+        "Ignorarlos hasta que se reciba el stock necesario",
+        "Anularlos siempre, sin consultar al cliente",
+        "Servirlos en parte o dejarlos pendientes",
+        "Cobrarlos igualmente sin servir la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Debe informarse al cliente.",
+      "criterio": "RA4.f",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el código EAN en la gestión de stocks?",
+      "opciones": [
+        "Un precio recomendado de venta al público",
+        "Un tipo de embalaje normalizado para palés",
+        "Un tipo de transporte para mercancías ligeras",
+        "El código de barras que identifica el producto"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se asocia al artículo en la base de datos.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué datos se mantienen en el fichero maestro de artículos?",
+      "opciones": [
+        "Código, descripción, EAN, proveedor y ubicación",
+        "Solo el precio de venta de cada artículo",
+        "Solo el nombre comercial de cada artículo",
+        "Solo el proveedor que suministra cada artículo"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es la base del sistema de gestión.",
+      "criterio": "RA4.g",
+      "fuente": "Conocimiento general de gestión de stocks y de aplicaciones de almacén; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Un pedido tarda 95 min en validarse, 60 min en prepararse y 30 min en expedirse. ¿Cuál es el tiempo total de proceso interno?",
+      "opciones": [
+        "155 min",
+        "185 min",
+        "125 min",
+        "370 min"
+      ],
+      "respuesta": 1,
+      "explicacion": "95 + 60 + 30 = 185 min.",
+      "criterio": "RA4.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-5.5-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Se sirvieron 940 de 1.000 pedidos completos y a tiempo. ¿Cuál es el OTIF?",
+      "opciones": [
+        "6,00 %",
+        "9,40 %",
+        "94,00 %",
+        "100,00 %"
+      ],
+      "respuesta": 2,
+      "explicacion": "940 / 1.000 = 94 %.",
+      "criterio": "RA4.f",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "modulo": "0622",
+  "tema": "1.8",
+  "titulo": "Calidad en el transporte: UNE, ISO y modelos de excelencia",
+  "preguntas": [
+    {
+      "id": "0622-1.8-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué trata la norma UNE-EN 13816 en el ámbito del transporte?",
+      "opciones": [
+        "La calidad del servicio en el transporte público de pasajeros",
+        "Los requisitos técnicos de los contenedores marítimos de carga",
+        "El cálculo del peso volumétrico en el transporte aéreo",
+        "La seguridad de las mercancías peligrosas por carretera"
+      ],
+      "respuesta": 0,
+      "explicacion": "La UNE-EN 13816 («Transporte. Logística y servicios. Transporte público de pasajeros. Definición, objetivos y medición de la calidad del servicio») aporta un marco común de calidad de servicio centrado en las expectativas del cliente, desde el punto de vista de la Administración, del operador y del usuario. AENOR certifica a los operadores con esta norma.",
+      "criterio": "RA1.b",
+      "fuente": "AENOR («Calidad en el transporte público de pasajeros») y ficha de la norma UNE-EN 13816 localizadas mediante búsqueda; no he abierto el texto de la norma (de pago).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Entre las áreas de compromiso de calidad de la certificación AENOR basada en la UNE-EN 13816, ¿cuál NO figura?",
+      "opciones": [
+        "Información y comunicación con los clientes",
+        "Accesibilidad de los vehículos y las instalaciones",
+        "Rentabilidad económica del operador",
+        "Impacto ambiental de la actividad del servicio"
+      ],
+      "respuesta": 2,
+      "explicacion": "Según AENOR, los compromisos se agrupan en ocho áreas: tiempo, confort, información, accesibilidad, seguridad, oferta de servicio, atención al cliente e impacto ambiental. La rentabilidad del operador es un objetivo de gestión propio, pero no una de las áreas de calidad del servicio percibida por el cliente.",
+      "criterio": "RA1.b",
+      "fuente": "AENOR, «Calidad en el transporte público de pasajeros» (localizado mediante búsqueda).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué técnica de auditoría utiliza habitualmente AENOR en la certificación del servicio de transporte público según la UNE-EN 13816?",
+      "opciones": [
+        "La inspección técnica de los vehículos cada 100.000 kilómetros",
+        "Una auditoría solo documental, sin visitar el servicio",
+        "Un sorteo de usuarios para una encuesta anual obligatoria",
+        "El «cliente misterioso»: un auditor que usa el servicio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Entre las auditorías del esquema de AENOR figura la del «cliente misterioso», que mide la calidad realmente prestada desde la perspectiva del usuario. Es una forma de comprobar los indicadores de calidad del servicio, no solo la documentación.",
+      "criterio": "RA2.h",
+      "fuente": "AENOR, «7 ventajas del certificado UNE-EN 13816» (localizado mediante búsqueda; no he abierto el PDF).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la norma ISO 9001?",
+      "opciones": [
+        "Una norma sobre gestión ambiental de la organización",
+        "La norma certificable de requisitos de gestión de calidad",
+        "Una norma sobre la seguridad de la cadena de suministro",
+        "Un modelo de autoevaluación que no se puede certificar"
+      ],
+      "respuesta": 1,
+      "explicacion": "ISO 9001 es la norma de la familia ISO 9000 que contiene los requisitos de un sistema de gestión de la calidad y la única de ella que puede certificarse (la certificación no es obligatoria). Para el transporte permite sistematizar procesos, indicadores y mejora continua. La gestión ambiental es ISO 14001 y la seguridad de la cadena de suministro ISO 28000.",
+      "criterio": "RA2.h",
+      "fuente": "ISO, «Quality management: the path to continual improvement» y ficha de ISO 9001 (iso.org; edición vigente por comprobar).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos NO es uno de los siete principios de gestión de la calidad de ISO?",
+      "opciones": [
+        "Enfoque al cliente y orientación a sus necesidades",
+        "Liderazgo de la dirección de la organización",
+        "Enfoque basado en procesos de la actividad",
+        "Maximización de los beneficios a corto plazo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los siete principios de ISO son: enfoque al cliente, liderazgo, compromiso de las personas, enfoque a procesos, mejora, toma de decisiones basada en la evidencia y gestión de las relaciones. La maximización del beneficio a corto plazo no es un principio de gestión de la calidad.",
+      "criterio": "RA2.h",
+      "fuente": "ISO, «Quality management principles» (PUB100080).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO establece los requisitos de un sistema de gestión ambiental?",
+      "opciones": [
+        "ISO 14001",
+        "ISO 9001, de gestión de la calidad",
+        "ISO 28000, de seguridad de la cadena",
+        "ISO 668, de clasificación de contenedores"
+      ],
+      "respuesta": 0,
+      "explicacion": "ISO 14001 («Sistemas de gestión ambiental. Requisitos con orientación para su uso») ayuda a las organizaciones, también las de transporte y logística, a reducir su impacto ambiental. Se relaciona con el criterio RA2.i del módulo (apuesta por medios que contribuyan a políticas de conservación medioambiental). ISO 668 es la norma de los contenedores de carga.",
+      "criterio": "RA2.i",
+      "fuente": "ISO, listado de normas de sistemas de gestión (iso.org); edición vigente por comprobar.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué norma ISO se ocupa de los sistemas de gestión de la seguridad, aplicables también a la cadena de suministro?",
+      "opciones": [
+        "ISO 9001, de gestión de la calidad",
+        "ISO 14001, de gestión ambiental",
+        "ISO 28000",
+        "ISO 45001, de seguridad y salud en el trabajo"
+      ],
+      "respuesta": 2,
+      "explicacion": "ISO 28000 («Seguridad y resiliencia. Sistemas de gestión de la seguridad. Requisitos») es la norma de sistemas de gestión de la seguridad, con su serie 28004 de orientación para la cadena de suministro. Es relevante para operadores de transporte y logística que quieren demostrar control de riesgos de protección de la mercancía.",
+      "criterio": "RA2.h",
+      "fuente": "ISO, listado de normas de sistemas de gestión (iso.org).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué consiste el ciclo PDCA (Planificar-Hacer-Verificar-Actuar) en un sistema de gestión de la calidad?",
+      "opciones": [
+        "Un calendario anual de auditorías externas de la empresa",
+        "Un método de mejora continua: planificar, hacer, verificar y actuar",
+        "Un sistema de reparto de costes entre porteador y cargador",
+        "Un método para calcular el peso tarifario de una carga"
+      ],
+      "respuesta": 1,
+      "explicacion": "El ciclo PDCA (o ciclo de Deming) es el método de mejora continua que está detrás de ISO 9001: se planifican objetivos y procesos, se ejecutan, se miden con indicadores (por ejemplo, entregas en plazo) y se actúa sobre las desviaciones. Conecta con el criterio RA6.f del módulo: indicadores de calidad y actuaciones ante desviaciones repetitivas.",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de gestión de calidad.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un modelo de excelencia como el EFQM?",
+      "opciones": [
+        "Un marco de autoevaluación y mejora, no certificable",
+        "Una norma ISO obligatoria para todos los operadores de transporte",
+        "Un convenio internacional sobre el contrato de transporte",
+        "Un seguro que cubre las mercancías transportadas"
+      ],
+      "respuesta": 0,
+      "explicacion": "El modelo EFQM (European Foundation for Quality Management) es un marco de gestión para autoevaluar y mejorar la organización en liderazgo, estrategia, procesos y resultados; se reconoce con sellos de excelencia, no con una certificación ISO. Es más amplio que ISO 9001, que se centra en el sistema de gestión de la calidad.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; no he consultado la versión vigente del modelo en la web de EFQM.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.8-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte, el indicador OTD (On Time Delivery) mide:",
+      "opciones": [
+        "El peso total transportado por cada viaje realizado",
+        "El porcentaje de entregas dentro del plazo comprometido",
+        "El coste medio por kilómetro recorrido por el vehículo",
+        "El número de reclamaciones por daños recibidas al mes"
+      ],
+      "respuesta": 1,
+      "explicacion": "El OTD es el indicador de puntualidad: entregas en plazo sobre el total de entregas. Es un indicador básico de calidad del servicio de transporte, junto con la tasa de incidencias o daños y el tiempo de respuesta a reclamaciones; cuando se desvía de forma repetida, hay que actuar sobre la causa (RA6.f).",
+      "criterio": "RA6.f",
+      "fuente": "Conocimiento general de logística y transporte.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

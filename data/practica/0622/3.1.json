@@ -1,0 +1,205 @@
+{
+  "modulo": "0622",
+  "tema": "3.1",
+  "titulo": "Contrato de transporte: aspectos generales",
+  "preguntas": [
+    {
+      "id": "0622-3.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009 del contrato de transporte terrestre de mercancías, ¿qué es el contrato de transporte de mercancías?",
+      "opciones": [
+        "El cargador compra las mercancías al porteador a un precio fijado",
+        "El porteador asegura las mercancías del cargador contra daños",
+        "El porteador traslada mercancías a cambio de un precio",
+        "El destinatario se obliga a pagar los impuestos de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 2.1 Ley 15/2009 define el contrato de transporte de mercancías: el porteador se obliga frente al cargador, a cambio de un precio, a trasladar mercancías de un lugar a otro y a ponerlas a disposición de la persona designada en el contrato. Es un contrato de resultado: no basta con mover la mercancía, hay que entregarla.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 15/2009, art. 2.1 (BOE-A-2009-18004, texto consolidado).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué normas regulan el contrato de transporte terrestre de mercancías según la Ley 15/2009?",
+      "opciones": [
+        "Tratados, normas de la UE y la propia ley; luego, el derecho mercantil",
+        "Solo la voluntad de las partes contratantes, sin otra norma",
+        "Solo el Código Civil, con exclusión de la normativa mercantil",
+        "Únicamente los convenios internacionales de transporte aéreo"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 2.2 establece una jerarquía: tratados internacionales vigentes en España (por ejemplo, el CMR en el transporte internacional por carretera), normas de la Unión Europea y la propia ley; en lo no previsto, se aplican las normas de la contratación mercantil. Por eso la Ley 15/2009 regula sobre todo el transporte nacional, y el internacional queda sujeto al convenio correspondiente.",
+      "criterio": "RA1.g",
+      "fuente": "Ley 15/2009, art. 2.2.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, ¿quién es el cargador?",
+      "opciones": [
+        "La persona a quien el porteador debe entregar las mercancías en destino",
+        "La empresa que realiza materialmente el transporte contratado",
+        "El tercero que entrega las mercancías al porteador por cuenta de otro",
+        "Quien contrata en nombre propio y frente al que el porteador se obliga"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 4 distingue: cargador (contrata en nombre propio el transporte), porteador (asume la obligación de realizarlo en nombre propio, aunque lo ejecute con sus medios o subcontrate), destinatario (a quien se entregan las mercancías) y expedidor (tercero que por cuenta del cargador entrega las mercancías al porteador). Una misma persona puede ser a la vez cargador y expedidor o cargador y destinatario.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 15/2009, art. 4.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa de transporte entrega las mercancías al porteador en el almacén del vendedor, por encargo del cargador, pero no ha contratado el transporte. Según la Ley 15/2009, ¿qué figura es?",
+      "opciones": [
+        "Cargador",
+        "Expedidor",
+        "Destinatario",
+        "Porteador efectivo"
+      ],
+      "respuesta": 1,
+      "explicacion": "El expedidor es el tercero que, por cuenta del cargador, hace entrega de las mercancías al transportista en el lugar de recepción (art. 4.4). No contrata el transporte (eso lo hace el cargador) ni recibe las mercancías (destinatario), ni las transporta (porteador). Es una distinción importante en documentos como la carta de porte y el AWB, donde el «shipper» puede ser cargador o expedidor.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 15/2009, art. 4.4.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Según la Ley 15/2009, un transitario, una agencia de transporte o un operador logístico que contratan habitualmente transportes, ¿en nombre de quién pueden contratarlos?",
+      "opciones": [
+        "En nombre del cliente que les encarga el servicio, siempre",
+        "Indistintamente en nombre propio o ajeno, a su elección",
+        "Solo en nombre propio",
+        "En nombre del transportista que va a realizar el transporte"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los contratos de transporte se presuponen celebrados en nombre propio (art. 5.1) y los operadores y agencias de transporte, transitarios, almacenistas-distribuidores, operadores logísticos y demás que contraten o intermedien habitualmente solo podrán contratarlos en nombre propio (art. 5.2). Así, el cliente puede reclamarles directamente como porteadores. La LOTT impone la misma regla a los titulares de la autorización de operador de transporte (art. 119.3).",
+      "criterio": "RA3.a",
+      "fuente": "Ley 15/2009, art. 5; LOTT, art. 119.3.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Un porteador contrata con el cargador el transporte y subcontrata una parte del recorrido con otro porteador. ¿De qué responde frente al cargador según la Ley 15/2009?",
+      "opciones": [
+        "Del transporte íntegro, aunque lo ejecute otro",
+        "Solo del tramo que ejecuta con sus propios vehículos",
+        "De nada, porque responde únicamente el porteador subcontratado",
+        "Solo si el cargador autoriza expresamente la subcontratación"
+      ],
+      "respuesta": 0,
+      "explicacion": "El porteador que contrata con el cargador responde frente a él de la realización íntegra del transporte conforme a la ley, aunque lo subcontrate (art. 6.1). Frente al porteador subcontratado actúa como cargador (art. 6.2). El art. 47.3 refuerza la idea: responde de los actos y omisiones de sus auxiliares, dependientes o independientes.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 15/2009, arts. 6 y 47.3.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué quiere decir que la Ley 15/2009 tenga «naturaleza dispositiva»?",
+      "opciones": [
+        "Que ninguna de sus normas puede modificarse por las partes",
+        "Que solo se aplica a los transportes de carácter internacional",
+        "Que solo se aplica si el transportista es una empresa pública",
+        "Que las partes pueden excluir contenidos de la ley por pacto"
+      ],
+      "respuesta": 3,
+      "explicacion": "El art. 3 establece que, salvo expresa estipulación contraria de la ley o de la legislación especial, las partes pueden excluir determinados contenidos mediante pacto, y también modificar las condiciones generales de los contratos cuando resulten más beneficiosas para el adherente. Pero hay normas imperativas, como el art. 46 (carácter imperativo del régimen de responsabilidad) y las que protegen contra pactos abusivos.",
+      "criterio": "RA3.a",
+      "fuente": "Ley 15/2009, art. 3 (y art. 46 sobre el carácter imperativo de la responsabilidad).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte terrestre nacional de mercancías, ¿quién puede exigir que se extienda una carta de porte según la Ley 15/2009?",
+      "opciones": [
+        "Solo el destinatario de las mercancías",
+        "Cualquiera de las partes del contrato",
+        "Solo el porteador que las transporta",
+        "Solo una autoridad administrativa competente"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. 10.1 permite que cualquiera de las partes exija a la otra que se extienda una carta de porte, con las menciones que enumera (lugar y fecha, cargador, porteador, recepción y entrega, destinatario, naturaleza de las mercancías y bultos, carácter peligroso, cantidad, embalaje, precio y quién lo paga…). Se emite en tres ejemplares (art. 11).",
+      "criterio": "RA5.a",
+      "fuente": "Ley 15/2009, arts. 10 y 11.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estas indicaciones NO figura entre las menciones de la carta de porte de la Ley 15/2009?",
+      "opciones": [
+        "Nombre y dirección del cargador de las mercancías",
+        "Naturaleza de las mercancías, bultos y signos de identificación",
+        "El margen comercial del porteador",
+        "Precio convenido del transporte y quién lo paga"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 10 incluye, entre otras menciones, el lugar y fecha de emisión, el nombre y dirección del cargador, del porteador y del destinatario, la naturaleza de las mercancías, los bultos, el carácter peligroso, la cantidad, el embalaje, el precio convenido y quién lo paga, y, si procede, el valor declarado. El margen comercial del porteador es información interna que no se refleja en la carta de porte.",
+      "criterio": "RA5.a",
+      "fuente": "Ley 15/2009, art. 10.1.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el Código de Buenas Prácticas Mercantiles en la contratación del transporte de mercancías por carretera?",
+      "opciones": [
+        "Un acuerdo voluntario de adhesión de transportistas y cargadores",
+        "Una ley estatal de cumplimiento obligatorio para todos los transportistas",
+        "Un reglamento de la Unión Europea sobre tiempos de conducción",
+        "Un convenio internacional adoptado en el seno de Naciones Unidas"
+      ],
+      "respuesta": 0,
+      "explicacion": "El código lo acordaron el Comité Nacional del Transporte por Carretera y asociaciones de cargadores (AECOC, AEUTRANSMER, TRANSPRIME); la adhesión es voluntaria y compromete a la empresa adherida a respetar sus principios. Está en el currículo del módulo porque trata de la contratación de transporte, aunque no es una norma jurídica.",
+      "criterio": "RA3.a",
+      "fuente": "Decreto 95/2012 («Código de Buenas Prácticas Mercantiles en la contratación de transporte de mercancía»); documentos del CNTC y AECOC localizados mediante búsqueda (no abiertos).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Un contrato de transporte continuado se ha pactado por tiempo indefinido. ¿Cómo puede extinguirse según la Ley 15/2009?",
+      "opciones": [
+        "Solo por mutuo acuerdo de las partes, nunca de forma unilateral",
+        "Por denuncia verbal de cualquiera de las partes, sin plazo",
+        "Automáticamente, al cumplirse el primer año de contrato",
+        "Por denuncia escrita de buena fe con 30 días de antelación mínima"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los contratos de transporte continuado con plazo se extinguen al transcurrir el plazo (salvo prórroga); si no tienen plazo, se entienden pactados por tiempo indefinido y se extinguen por denuncia de buena fe de cualquiera de las partes, notificada por escrito o por otro medio que acredite su recepción, con una antelación razonable que en ningún caso puede ser inferior a treinta días naturales (art. 43).",
+      "criterio": "RA3.b",
+      "fuente": "Ley 15/2009, art. 43.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

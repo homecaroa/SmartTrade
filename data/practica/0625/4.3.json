@@ -1,0 +1,241 @@
+{
+  "modulo": "0625",
+  "tema": "4.3",
+  "titulo": "Desviaciones presupuestarias y hoja de cálculo",
+  "preguntas": [
+    {
+      "id": "0625-4.3-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se calcula una desviación presupuestaria?",
+      "opciones": [
+        "Presupuesto menos ingresos obtenidos en el periodo",
+        "Coste real más coste previsto para el periodo",
+        "Coste real menos coste presupuestado",
+        "Coste real dividido entre doce meses"
+      ],
+      "respuesta": 2,
+      "explicacion": "Un resultado positivo en costes es desfavorable.",
+      "criterio": "RA3.e",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-002",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el coste real supera al presupuestado, la desviación es…",
+      "opciones": [
+        "Favorable: se ha gastado menos de lo previsto",
+        "Nula: el gasto coincide con el presupuesto",
+        "Neutra: depende del volumen de actividad",
+        "Desfavorable: se ha gastado más de lo previsto"
+      ],
+      "respuesta": 3,
+      "explicacion": "Hay que investigar la causa.",
+      "criterio": "RA3.e",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué causas pueden provocar desviaciones en el presupuesto del almacén?",
+      "opciones": [
+        "Precios, consumos, productividad, actividad y errores de previsión",
+        "Solo errores de contabilidad en el registro de facturas",
+        "Solo el clima y la estacionalidad de la demanda",
+        "Solo el color de las cajas que se utilizan"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se analizan por partidas.",
+      "criterio": "RA3.e",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se hace tras detectar una desviación significativa?",
+      "opciones": [
+        "Ignorarla porque en el siguiente periodo se compensará",
+        "Analizar su causa y proponer medidas correctoras",
+        "Cambiar el presupuesto sin analizar la causa",
+        "Reducir la plantilla para recuperar la desviación"
+      ],
+      "respuesta": 1,
+      "explicacion": "El análisis permite mejorar la previsión.",
+      "criterio": "RA3.e",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un presupuesto flexible?",
+      "opciones": [
+        "Un presupuesto fijo que no cambia durante el año",
+        "Un presupuesto elaborado sin datos históricos",
+        "Un presupuesto ajustado al nivel real de actividad",
+        "Un presupuesto mensual cerrado sin revisión posterior"
+      ],
+      "respuesta": 2,
+      "explicacion": "Compara costes reales con los que correspondían a la actividad real.",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función de hoja de cálculo permite sumar los costes de un concepto concreto en un listado?",
+      "opciones": [
+        "BUSCARV, que localiza un dato en una tabla",
+        "CONTAR, que cuenta las celdas con números",
+        "PROMEDIO, que calcula la media de un rango",
+        "SUMAR.SI, con el criterio del concepto"
+      ],
+      "respuesta": 3,
+      "explicacion": "Útil para totalizar por partida.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué herramienta de la hoja de cálculo resume costes por mes y concepto?",
+      "opciones": [
+        "Una tabla dinámica",
+        "El formato condicional que colorea las celdas",
+        "La validación de datos que limita las entradas",
+        "Un salto de página que divide la impresión"
+      ],
+      "respuesta": 0,
+      "explicacion": "Permite analizar rápidamente.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué formato condicional ayuda a detectar desviaciones?",
+      "opciones": [
+        "Cambiar el tipo de fuente de toda la hoja",
+        "Resaltar en rojo desviaciones que superen un umbral",
+        "Insertar una imagen con el logotipo de la empresa",
+        "Ocultar las columnas que no tengan desviaciones"
+      ],
+      "respuesta": 1,
+      "explicacion": "Facilita la lectura.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué fórmula calcula el porcentaje de desviación sobre el presupuesto (celdas real=B2, presupuesto=C2)?",
+      "opciones": [
+        "=B2*C2",
+        "=C2/B2-1000",
+        "=(B2-C2)/C2",
+        "=SUMA(B2:C2)"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se aplica formato de porcentaje.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de costes y gestión de almacenes; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Presupuesto anual 65.000 €; gasto real 71.500 €. ¿Cuál es la desviación en euros?",
+      "opciones": [
+        "-6.500,00 €",
+        "136.500,00 €",
+        "65.000,00 €",
+        "6.500,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Desviación = 71.500 − 65.000 = 6.500,00 € (desfavorable).",
+      "criterio": "RA3.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el porcentaje de desviación sobre el presupuesto con los datos anteriores?",
+      "opciones": [
+        "10,00 %",
+        "9,09 %",
+        "90,91 %",
+        "100,00 %"
+      ],
+      "respuesta": 0,
+      "explicacion": "6.500 / 65.000 × 100 = 10,00 %.",
+      "criterio": "RA3.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-012",
+      "tipo": "opcion_unica",
+      "enunciado": "El presupuesto de personal era 30.000 € y el real fue 28.500 €. ¿Cuál es la desviación?",
+      "opciones": [
+        "1.500,00 €",
+        "-1.500,00 €",
+        "58.500,00 €",
+        "-15.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "28.500 − 30.000 = −1.500 € (favorable: se gastó menos).",
+      "criterio": "RA3.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-4.3-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Con un coste de 4,5 €/unidad previsto y un coste real de 5 €/unidad para 20.000 unidades, ¿cuál es la desviación total de costes?",
+      "opciones": [
+        "5.000,00 €",
+        "90.000,00 €",
+        "10.000,00 €",
+        "100.000,00 €"
+      ],
+      "respuesta": 2,
+      "explicacion": "(5 − 4,5) × 20.000 = 10.000 € desfavorables.",
+      "criterio": "RA3.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

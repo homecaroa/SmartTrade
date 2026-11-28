@@ -1,0 +1,349 @@
+{
+  "modulo": "0623",
+  "tema": "1.2",
+  "titulo": "Plan de empresa y estudio de viabilidad",
+  "preguntas": [
+    {
+      "id": "0623-1.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una idea de negocio?",
+      "opciones": [
+        "Qué se ofrecerá, a quién y con qué ventaja",
+        "El balance de situación de la empresa al cierre",
+        "Un contrato de financiación con una entidad bancaria",
+        "El registro de la marca ante la oficina de patentes"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es el punto de partida del plan de empresa.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el plan de empresa?",
+      "opciones": [
+        "Un contrato de trabajo con el primer empleado",
+        "El documento con la idea, el mercado y la estrategia",
+        "Un impuesto anual sobre la actividad empresarial",
+        "La escritura de constitución de la sociedad"
+      ],
+      "respuesta": 1,
+      "explicacion": "Sirve para decidir si el proyecto es viable y para obtener financiación o ayudas.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve el plan de empresa?",
+      "opciones": [
+        "Pagar menos impuestos por la actividad de la empresa",
+        "Evitar registrarse ante las administraciones públicas",
+        "Analizar la viabilidad y presentar el proyecto a terceros",
+        "Sustituir a la contabilidad obligatoria de la empresa"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una herramienta de decisión, de gestión y de comunicación.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué apartados suele incluir un plan de empresa?",
+      "opciones": [
+        "Solo el plan financiero con las previsiones",
+        "Solo el análisis del entorno general de la empresa",
+        "Solo la descripción del producto o servicio",
+        "Resumen, mercado, marketing, operaciones, personal y finanzas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Cuanto más claro y realista sea cada apartado, más útil es el plan.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el resumen ejecutivo del plan de empresa?",
+      "opciones": [
+        "Una síntesis breve del proyecto al principio",
+        "La lista completa de proveedores de la empresa",
+        "El balance de cierre del último ejercicio",
+        "El contrato de alquiler del local comercial"
+      ],
+      "respuesta": 0,
+      "explicacion": "Debe captar el interés del lector en pocas páginas.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué incluye el estudio de viabilidad de una pyme?",
+      "opciones": [
+        "Solo el análisis de la competencia del sector",
+        "Análisis comercial, técnico, jurídico y económico-financiero",
+        "Solo la forma jurídica de la empresa",
+        "Solo el logotipo y la imagen de marca"
+      ],
+      "respuesta": 1,
+      "explicacion": "El RA1.h pide un estudio de viabilidad económica y financiera.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el análisis DAFO?",
+      "opciones": [
+        "Un tipo de impuesto sobre los beneficios",
+        "Un método de amortización de los activos",
+        "Debilidades, fortalezas, amenazas y oportunidades",
+        "Un análisis de solvencia de la empresa únicamente"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se usa para formular la estrategia: aprovechar fortalezas y oportunidades, y corregir debilidades y amenazas.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En el DAFO, ¿qué factores son internos?",
+      "opciones": [
+        "Las amenazas y las oportunidades del entorno",
+        "Los competidores actuales del mercado",
+        "Los proveedores y los clientes del sector",
+        "Las debilidades y las fortalezas"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las amenazas y oportunidades vienen del entorno (externas).",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa de transporte detecta que su flota es antigua. ¿Cómo se clasifica en el DAFO?",
+      "opciones": [
+        "Una debilidad, por ser un factor interno",
+        "Una oportunidad, por ser un factor externo",
+        "Una amenaza, por proceder del mercado",
+        "Una fortaleza, por ser un activo propio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es un factor propio de la empresa que perjudica su posición.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "La subida del precio del combustible, en el DAFO de una empresa de transporte, es:",
+      "opciones": [
+        "Una fortaleza, por reducir costes de la empresa",
+        "Una amenaza, por ser un factor externo",
+        "Una debilidad, por ser un factor interno",
+        "Una oportunidad, por ser un cambio del mercado"
+      ],
+      "respuesta": 1,
+      "explicacion": "No depende de la empresa y puede perjudicarla.",
+      "criterio": "RA1.d",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa tiene costes fijos de 30.000 €, un precio de venta de 50 € por unidad y un coste variable de 20 € por unidad. ¿Cuál es su punto muerto en unidades?",
+      "opciones": [
+        "600 unidades",
+        "1.500 unidades",
+        "3.000 unidades",
+        "1.000 unidades"
+      ],
+      "respuesta": 3,
+      "explicacion": "Punto muerto = costes fijos ÷ (precio − coste variable unitario) = 30.000 ÷ 30 = 1.000 unidades.",
+      "criterio": "RA1.h",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Con los datos de la pregunta anterior, ¿qué beneficio obtiene si vende 1.500 unidades?",
+      "opciones": [
+        "15.000 €",
+        "30.000 €",
+        "45.000 €",
+        "7.500 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "Ingresos 75.000 − costes variables 30.000 − costes fijos 30.000 = 15.000 €. O: (1.500 − 1.000) × 30.",
+      "criterio": "RA1.h",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Una inversión de 60.000 € genera cobros netos de 20.000 € cada año. ¿Cuál es su plazo de recuperación (payback)?",
+      "opciones": [
+        "2 años",
+        "3 años",
+        "4 años",
+        "6 años"
+      ],
+      "respuesta": 1,
+      "explicacion": "Payback = inversión ÷ flujo anual = 60.000 ÷ 20.000 = 3 años. Es un método simple, que no tiene en cuenta el valor del dinero en el tiempo.",
+      "criterio": "RA1.h",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una limitación del método del plazo de recuperación?",
+      "opciones": [
+        "Es muy difícil de calcular con una hoja",
+        "Solo es útil para empresas de gran tamaño",
+        "No considera el valor del dinero en el tiempo",
+        "Siempre da el mismo resultado que el VAN"
+      ],
+      "respuesta": 2,
+      "explicacion": "Por eso se completa con el VAN y la TIR.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el VAN (valor actual neto) de un proyecto?",
+      "opciones": [
+        "La suma de todos los costes fijos del proyecto",
+        "El beneficio contable del último año",
+        "El valor contable de la empresa al cierre",
+        "Los flujos futuros actualizados menos la inversión"
+      ],
+      "respuesta": 3,
+      "explicacion": "Si el VAN es positivo, el proyecto crea valor con la tasa de descuento elegida.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Si el VAN de un proyecto es positivo, ¿qué indica?",
+      "opciones": [
+        "Que el proyecto es rentable con esa tasa y se aceptaría",
+        "Que el proyecto genera pérdidas para la empresa",
+        "Que el proyecto no requiere ninguna inversión",
+        "Que el proyecto incumple la normativa vigente"
+      ],
+      "respuesta": 0,
+      "explicacion": "La inversión se recupera y se obtiene una rentabilidad superior a la exigida.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el modelo Canvas?",
+      "opciones": [
+        "Un tipo de contrato mercantil de suministro",
+        "Una herramienta visual de nueve bloques del negocio",
+        "Un sistema de contabilidad por partida doble",
+        "Un impuesto que grava la actividad empresarial"
+      ],
+      "respuesta": 1,
+      "explicacion": "Incluye propuesta de valor, segmentos de clientes, canales, relaciones, ingresos, recursos, actividades, socios y costes.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un producto mínimo viable (MVP)?",
+      "opciones": [
+        "El producto final con todas las funciones añadidas",
+        "Un producto que se regala sin establecer precio",
+        "Una versión básica para probar la idea con clientes",
+        "Una garantía bancaria que cubre el lanzamiento"
+      ],
+      "respuesta": 2,
+      "explicacion": "Permite validar hipótesis con poca inversión antes de ampliar.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-1.2-020",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la previsión de tesorería?",
+      "opciones": [
+        "La cuenta de resultados del ejercicio anterior",
+        "El valor de las existencias en el almacén",
+        "El capital social inscrito de la empresa",
+        "El cálculo de cobros y pagos esperados en cada periodo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Una empresa rentable puede tener problemas de liquidez si cobra más tarde de lo que paga.",
+      "criterio": "RA1.h",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Recopilación de la información sobre iniciativas emprendedoras»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

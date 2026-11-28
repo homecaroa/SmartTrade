@@ -1,0 +1,295 @@
+{
+  "modulo": "0627",
+  "tema": "4.5",
+  "titulo": "Operaciones intracomunitarias, IVA e INTRASTAT",
+  "preguntas": [
+    {
+      "id": "0627-4.5-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se denominan las operaciones de comercio de mercancías entre Estados miembros de la UE?",
+      "opciones": [
+        "Introducciones y expediciones (adquisiciones y entregas)",
+        "Importaciones y exportaciones con terceros países de la UE",
+        "Tránsitos y cabotajes entre los Estados de la Unión",
+        "Reexportaciones y destinos aduaneros especiales"
+      ],
+      "respuesta": 0,
+      "explicacion": "Con terceros países se habla de importaciones y exportaciones.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre importación e introducción?",
+      "opciones": [
+        "Ninguna: ambos términos designan el mismo tipo de operación",
+        "Importación: de un país tercero; introducción: de otro Estado miembro",
+        "La importación se hace por mar y la introducción, por avión",
+        "La introducción paga siempre arancel y la importación no"
+      ],
+      "respuesta": 1,
+      "explicacion": "Lo mismo ocurre con exportación (a terceros) y expedición (a otro Estado miembro).",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre exportación y expedición?",
+      "opciones": [
+        "Ninguna: ambos términos designan el mismo tipo de operación",
+        "La expedición paga siempre IVA y la exportación está exenta",
+        "Exportación: a un país tercero; expedición: a otro Estado miembro",
+        "La exportación se realiza solo por vía aérea y la expedición, por mar"
+      ],
+      "respuesta": 2,
+      "explicacion": "En expediciones intracomunitarias no hay trámite aduanero de salida.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Se presenta DUA en las operaciones intracomunitarias de mercancías de la UE?",
+      "opciones": [
+        "Sí, en todas las operaciones intracomunitarias sin excepción",
+        "Solo en las introducciones y no en las expediciones",
+        "Solo para los productos alimenticios y los perecederos",
+        "No hay declaración en aduana, pero sí obligaciones de IVA y estadística"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las obligaciones son el modelo 349 y, en su caso, la declaración INTRASTAT.",
+      "criterio": "RA4.a",
+      "fuente": "Conocimiento general de comercio exterior; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué requisitos exige la Ley del IVA para que una entrega a otro Estado miembro esté exenta?",
+      "opciones": [
+        "Que se envíe a otro Estado miembro a un empresario con NIF-IVA",
+        "Que el comprador sea un particular sin NIF-IVA comunitario",
+        "Que la operación se realice sin factura entre las partes",
+        "Que el pago se haga en efectivo en el momento de la entrega"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 25 Ley 37/1992: además debe comunicarse el NIF-IVA al vendedor.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 25 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué declaración debe incluir el vendedor español las entregas intracomunitarias exentas?",
+      "opciones": [
+        "Solo en el modelo 303 de la autoliquidación del IVA",
+        "En la declaración recapitulativa (modelo 349)",
+        "En el DUA de exportación que presenta el vendedor",
+        "Únicamente en la declaración INTRASTAT de estadística"
+      ],
+      "respuesta": 1,
+      "explicacion": "Art. 25 Ley 37/1992: la exención queda condicionada a su inclusión en esa declaración.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 25 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué sistema permite comprobar la validez de un NIF-IVA de otro Estado miembro?",
+      "opciones": [
+        "El TARIC, arancel integrado de la Unión Europea",
+        "El EDIFACT, estándar de mensajes de comercio electrónico",
+        "El sistema VIES de intercambio de información sobre el IVA",
+        "El REX, sistema de exportadores registrados de origen"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es una base de datos de la Comisión Europea con los números de IVA de los operadores.",
+      "criterio": "RA4.h",
+      "fuente": "Sistema VIES; contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una adquisición intracomunitaria de bienes?",
+      "opciones": [
+        "Comprar bienes a un proveedor establecido en España",
+        "Importar bienes procedentes de un país tercero a la UE",
+        "Entregar bienes a un cliente en una zona franca",
+        "Obtener bienes enviados desde otro Estado miembro a un empresario"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 15 Ley 37/1992.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 15 y 13 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo no está sujeta al IVA una adquisición intracomunitaria realizada por determinadas personas (por ejemplo, personas jurídicas que no actúan como empresarios)?",
+      "opciones": [
+        "Mientras las adquisiciones del año anterior no lleguen a 10.000 euros",
+        "Mientras no superen los 100 euros en cada operación",
+        "Nunca, porque siempre están sujetas al IVA",
+        "Mientras no superen el millón de euros de facturación"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 14.dos Ley 37/1992. Se mantiene en el año en curso hasta alcanzar el importe.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 14 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En una adquisición intracomunitaria de bienes, ¿quién ingresa el IVA en España?",
+      "opciones": [
+        "El proveedor extranjero, que lo repercute en su factura",
+        "El propio adquirente, que lo devenga y lo deduce",
+        "El transportista, que lo ingresa en la aduana de entrada",
+        "La aduana, que lo liquida al entrar la mercancía"
+      ],
+      "respuesta": 1,
+      "explicacion": "El proveedor factura sin IVA al ser entrega intracomunitaria exenta.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992, arts. 84 y 25 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es INTRASTAT?",
+      "opciones": [
+        "Un impuesto que grava las introducciones de mercancías",
+        "Un seguro que cubre el transporte intracomunitario",
+        "El sistema de estadística del comercio de bienes entre Estados de la UE",
+        "Una base de datos que acredita el origen de la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Sustituyó a la información de las fronteras interiores tras la unión aduanera.",
+      "criterio": "RA4.h",
+      "fuente": "Reglamento (UE) 2019/2152 (estadísticas europeas sobre empresas); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué operaciones recoge la declaración INTRASTAT?",
+      "opciones": [
+        "Las importaciones de mercancías procedentes de terceros países",
+        "Los pagos bancarios que se realizan entre empresas de la UE",
+        "Las ventas al por menor realizadas a consumidores finales",
+        "Las introducciones y expediciones con otros Estados miembros, sobre umbrales"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los umbrales los fija cada Estado miembro y varían con los años.",
+      "criterio": "RA4.h",
+      "fuente": "Normativa estadística de comercio intracomunitario; umbrales no verificados.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué información debe contener la factura de una entrega intracomunitaria exenta?",
+      "opciones": [
+        "NIF-IVA de ambas partes, bienes y referencia a la exención",
+        "Solo el nombre del comprador y la fecha de la operación",
+        "El número del contenedor y la referencia del transportista",
+        "El importe del arancel y el código del arancel aplicado"
+      ],
+      "respuesta": 0,
+      "explicacion": "Sin el NIF-IVA válido del comprador, puede perderse la exención.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992, art. 25 (leída) y Reglamento de facturación (no contrastado).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa española compra a un proveedor alemán mercancía por 10.000,00 € con NIF-IVA válidos en ambos países. ¿Cuánto IVA le factura el proveedor?",
+      "opciones": [
+        "2.100,00 €",
+        "0,00 €",
+        "1.900,00 €",
+        "1.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "La entrega está exenta en Alemania y el adquirente español autorrepercute el IVA español, de modo que la factura no incluye IVA.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992, arts. 25 y 84 (leídos parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-015",
+      "tipo": "opcion_unica",
+      "enunciado": "La empresa española compra por 10.000,00 € y autorrepercute el IVA al 21 %. ¿Cuánto IVA devengado y cuánto soportado declara (suponiendo derecho a deducción total)?",
+      "opciones": [
+        "2.100,00 € devengado y 0 € soportado",
+        "0 € y 0 €",
+        "2.100,00 € devengado y 2.100,00 € soportado",
+        "1.900,00 € devengado y 2.100,00 € soportado"
+      ],
+      "respuesta": 2,
+      "explicacion": "La cuota neta es 0 €: ingreso y deducción se compensan.",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 (leída parcialmente).",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-4.5-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Un comprador portugués particular (sin NIF-IVA) recibe mercancía de una empresa española. ¿Aplica la exención del art. 25 la empresa española?",
+      "opciones": [
+        "Sí, siempre que el particular resida en otro Estado miembro",
+        "Sí, si el particular paga la mercancía en efectivo",
+        "Sí, si el particular firma el DUA de expedición",
+        "No, necesita un empresario con NIF-IVA de otro Estado (salvo excepciones)"
+      ],
+      "respuesta": 3,
+      "explicacion": "Sin esos requisitos tributa en España (salvo reglas de ventas a distancia).",
+      "criterio": "RA4.f",
+      "fuente": "Ley 37/1992 del IVA, art. 25 (BOE-A-1992-28740, texto consolidado), leída; la versión descargada puede no recoger las últimas reformas.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

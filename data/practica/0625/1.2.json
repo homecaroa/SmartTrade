@@ -1,0 +1,349 @@
+{
+  "modulo": "0625",
+  "tema": "1.2",
+  "titulo": "Operaciones básicas, fórmulas y funciones",
+  "preguntas": [
+    {
+      "id": "0625-1.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué devuelve =SUMA(A1:A5)?",
+      "opciones": [
+        "El promedio de los valores de A1 a A5",
+        "La suma de los valores de A1 a A5",
+        "El valor máximo de las celdas de A1 a A5",
+        "El número de celdas con datos de A1 a A5"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los dos puntos indican un rango.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace =PROMEDIO(B2:B6)?",
+      "opciones": [
+        "Suma todos los valores numéricos del rango",
+        "Cuenta las celdas que tienen datos en el rango",
+        "Calcula la media aritmética de los valores del rango",
+        "Devuelve el mayor de los valores del rango"
+      ],
+      "respuesta": 2,
+      "explicacion": "Ignora las celdas vacías y el texto.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué devuelve =MAX(C1:C10)?",
+      "opciones": [
+        "La suma de todos los valores del rango",
+        "El valor mínimo de todos los valores del rango",
+        "El primer valor que aparece en el rango",
+        "El valor máximo del rango"
+      ],
+      "respuesta": 3,
+      "explicacion": "MIN devuelve el mínimo.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace =CONTAR(A1:A10)?",
+      "opciones": [
+        "Cuenta las celdas con números",
+        "Suma los números que contiene el rango",
+        "Cuenta todas las celdas con datos de cualquier tipo",
+        "Cuenta únicamente las celdas que contienen texto"
+      ],
+      "respuesta": 0,
+      "explicacion": "CONTARA cuenta celdas no vacías.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace =CONTAR.SI(A1:A10;\"Madrid\")?",
+      "opciones": [
+        "Suma los valores de las celdas con Madrid",
+        "Cuenta las celdas que contienen «Madrid»",
+        "Busca Madrid y devuelve su posición en el rango",
+        "Elimina las celdas del rango que contienen Madrid"
+      ],
+      "respuesta": 1,
+      "explicacion": "Cuenta con un criterio.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace =SUMAR.SI(A1:A10;\"Palé\";B1:B10)?",
+      "opciones": [
+        "Cuenta cuántos palés aparecen en el rango",
+        "Calcula el promedio de las filas con palés",
+        "Suma B1:B10 en las filas donde A contiene «Palé»",
+        "Devuelve el valor máximo de las filas con palés"
+      ],
+      "respuesta": 2,
+      "explicacion": "SUMAR.SI(rango criterio; criterio; rango suma).",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué devuelve =SI(A1>100;\"Reponer\";\"OK\") si A1 vale 150?",
+      "opciones": [
+        "OK",
+        "150",
+        "Error",
+        "Reponer"
+      ],
+      "respuesta": 3,
+      "explicacion": "La condición se cumple, por lo que devuelve el valor para «verdadero».",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace la función BUSCARV?",
+      "opciones": [
+        "Busca un valor en la primera columna y devuelve otro dato de la fila",
+        "Suma los valores de una columna de la tabla",
+        "Cuenta las celdas de una columna de la tabla",
+        "Ordena los datos de la tabla por la primera columna"
+      ],
+      "respuesta": 0,
+      "explicacion": "Sintaxis: BUSCARV(valor; matriz; indicador de columnas; [ordenado]).",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué valor debe ponerse en el último argumento de BUSCARV para una búsqueda exacta?",
+      "opciones": [
+        "VERDADERO",
+        "FALSO (o 0)",
+        "1",
+        "2"
+      ],
+      "respuesta": 1,
+      "explicacion": "VERDADERO/1 busca el valor aproximado y exige la tabla ordenada.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre referencia relativa y absoluta?",
+      "opciones": [
+        "No hay diferencia entre ambos tipos de referencia",
+        "La absoluta cambia siempre al copiar la fórmula",
+        "La relativa cambia al copiarla; la absoluta ($A$1) no",
+        "La relativa solo funciona con celdas de texto"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se alterna con la tecla F4.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué referencia mantiene fija tanto la columna como la fila?",
+      "opciones": [
+        "B2",
+        "B$2",
+        "$B2",
+        "$B$2"
+      ],
+      "respuesta": 3,
+      "explicacion": "B$2 fija la fila y $B2 fija la columna.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué error muestra la hoja al dividir entre cero?",
+      "opciones": [
+        "#¡DIV/0!",
+        "#¡REF!",
+        "#¿NOMBRE?",
+        "#N/A"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se evita con SI o SI.ERROR.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué error indica que se escribió mal el nombre de una función?",
+      "opciones": [
+        "#¡DIV/0!",
+        "#¿NOMBRE?",
+        "#¡NUM!",
+        "#N/A"
+      ],
+      "respuesta": 1,
+      "explicacion": "Por ejemplo, =SUMAA(A1:A3).",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué error devuelve BUSCARV si no encuentra el valor buscado?",
+      "opciones": [
+        "#¡REF!",
+        "#¡DIV/0!",
+        "#N/A",
+        "#¡NUM!"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se puede controlar con SI.ERROR.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirve la función SI.ERROR?",
+      "opciones": [
+        "Ordenar los datos de una lista por un criterio",
+        "Sumar los números de un rango de celdas",
+        "Crear tablas dinámicas a partir de los datos",
+        "Devolver un valor alternativo si hay un error"
+      ],
+      "respuesta": 3,
+      "explicacion": "Por ejemplo, =SI.ERROR(A1/B1;0).",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué hace la función REDONDEAR(3,14159;2)?",
+      "opciones": [
+        "Devuelve 3,14",
+        "Devuelve 3,2 al redondear al primer decimal",
+        "Devuelve 3,1 al truncar el segundo decimal",
+        "Devuelve 3,15 al redondear hacia arriba"
+      ],
+      "respuesta": 0,
+      "explicacion": "El segundo argumento son los decimales.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué devuelve =HOY()?",
+      "opciones": [
+        "La hora actual del sistema operativo",
+        "La fecha actual",
+        "El día de la semana en que estamos",
+        "La fecha en que se guardó el archivo"
+      ],
+      "respuesta": 1,
+      "explicacion": "AHORA() devuelve fecha y hora.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función une el contenido de varias celdas de texto?",
+      "opciones": [
+        "SUMAR, que suma los valores de un rango",
+        "BUSCAR, que localiza un dato en una tabla",
+        "CONCATENAR, UNIRCADENAS o el operador &",
+        "SI, que evalúa una condición lógica"
+      ],
+      "respuesta": 2,
+      "explicacion": "Por ejemplo, =A1&\" \"&B1.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general de hojas de cálculo (Excel/LibreOffice Calc); no contrastado con documentación oficial del programa.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-1.2-019",
+      "tipo": "opcion_unica",
+      "enunciado": "Para un préstamo de 20.000 € al 6 % anual, a 48 meses con cuotas mensuales constantes, ¿cuál es el pago mensual aproximado (función PAGO)?",
+      "opciones": [
+        "416,67 €",
+        "100,00 €",
+        "563,64 €",
+        "469,70 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "PAGO(0,06/12; 48; -20.000) = 469,70 €. En Excel el resultado sale negativo si el capital se introduce en positivo.",
+      "criterio": "RA3.g",
+      "fuente": "Cálculo con la fórmula de la cuota constante.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

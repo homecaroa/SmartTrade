@@ -1,0 +1,331 @@
+{
+  "modulo": "0625",
+  "tema": "3.6",
+  "titulo": "Unidades de carga, sistemas de seguimiento y gestión del embalaje",
+  "preguntas": [
+    {
+      "id": "0625-3.6-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una unidad de carga?",
+      "opciones": [
+        "Mercancías agrupadas como un solo bulto",
+        "Una caja individual con una sola unidad de producto",
+        "Un contenedor vacío a la espera de su carga",
+        "Un vehículo destinado al reparto de los pedidos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Facilita la manipulación, estiba y control.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la principal ventaja de la unitarización de la carga?",
+      "opciones": [
+        "Aumenta el peso de cada unidad de carga transportada",
+        "Menos tiempo y costes de manipulación",
+        "Elimina la necesidad de cualquier tipo de embalaje",
+        "Evita tener que hacer inventarios de las existencias"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es la base del transporte moderno.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son las medidas en planta del palé EUR/EPAL?",
+      "opciones": [
+        "1.200 × 1.000 mm",
+        "1.000 × 1.000 mm",
+        "1.200 × 800 mm",
+        "800 × 600 mm"
+      ],
+      "respuesta": 2,
+      "explicacion": "Su altura es de 144 mm.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el sistema modular de embalaje de 600 × 400 mm?",
+      "opciones": [
+        "Una norma de seguridad para el trabajo con carretillas",
+        "Un tipo de estantería para almacenar cajas pequeñas",
+        "Un contenedor normalizado de 20 pies de longitud",
+        "Una base submúltiplo del palé de 1.200 × 800 mm"
+      ],
+      "respuesta": 3,
+      "explicacion": "Permite aprovechar el palé al máximo.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántas cajas de 600 × 400 mm caben en una capa de un palé de 1.200 × 800 mm?",
+      "opciones": [
+        "4",
+        "2",
+        "6",
+        "8"
+      ],
+      "respuesta": 0,
+      "explicacion": "1.200 × 800 / (600 × 400) = 4.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un contenedor ISO?",
+      "opciones": [
+        "Un tipo de palé de madera con medidas europeas",
+        "Una unidad normalizada para varios transportes",
+        "Una caja de cartón ondulado para productos de consumo",
+        "Una estantería metálica para el almacenaje de palés"
+      ],
+      "respuesta": 1,
+      "explicacion": "Los más comunes son de 20 y 40 pies.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una jaula o contenedor de reja (roll container)?",
+      "opciones": [
+        "Un contenedor marítimo cerrado para carga seca",
+        "Un palé de madera tratado según la norma NIMF 15",
+        "Una unidad con ruedas y paredes de rejilla",
+        "Un embalaje de cartón para la venta al detalle"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se usa en logística de distribución.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Para qué sirven los códigos de barras en el almacén?",
+      "opciones": [
+        "Decorar el embalaje del producto con fines comerciales",
+        "Calcular el IVA de cada venta del producto",
+        "Firmar los albaranes de entrega de la mercancía",
+        "Identificar productos y ubicaciones"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se leen con lectores láser o cámaras.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tienen los códigos 2D (QR, DataMatrix) frente a los lineales?",
+      "opciones": [
+        "Guardan más información y se leen con cámara",
+        "Almacenan menos información que los códigos lineales",
+        "No pueden leerse con un teléfono móvil con cámara",
+        "Son siempre más caros de imprimir que los lineales"
+      ],
+      "respuesta": 0,
+      "explicacion": "Útiles para trazabilidad.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la radiofrecuencia (RFID) en logística?",
+      "opciones": [
+        "Un código de barras que se lee con un lector láser",
+        "Identifica etiquetas a distancia y varias a la vez",
+        "Un tipo de embalaje reforzado para mercancía frágil",
+        "Un sistema de impresión de etiquetas térmicas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Permite inventarios muy rápidos.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los terminales de radiofrecuencia (RF) portátiles?",
+      "opciones": [
+        "Una impresora de etiquetas conectada al sistema del almacén",
+        "Una balanza que pesa las unidades de carga a la entrada",
+        "Dispositivos móviles para confirmar tareas",
+        "Una cinta transportadora que clasifica los bultos por destino"
+      ],
+      "respuesta": 2,
+      "explicacion": "Se integran con el WMS.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-012",
+      "tipo": "opcion_unica",
+      "enunciado": "En un almacén, ¿qué gestiona un WMS?",
+      "opciones": [
+        "Un sistema de gestión del transporte de las rutas",
+        "Un sistema de contabilidad general de la empresa",
+        "Un sistema de nóminas del personal del almacén",
+        "Un sistema de gestión de almacenes (WMS)"
+      ],
+      "respuesta": 3,
+      "explicacion": "Controla ubicaciones, stock y tareas.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ventaja tiene el reconocimiento de voz en el almacén?",
+      "opciones": [
+        "Manos libres y menos errores de lectura",
+        "Aumenta los errores de lectura de las referencias",
+        "Necesita siempre papel para confirmar cada tarea",
+        "No exige ninguna formación previa del operario"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es típico del picking por voz.",
+      "criterio": "RA2.f",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la función principal del embalaje en el almacén?",
+      "opciones": [
+        "Aumentar el peso de las unidades para que ocupen más",
+        "Proteger el producto y facilitar su manipulación",
+        "Eliminar el etiquetado de los bultos para ahorrar costes",
+        "Sustituir al seguro de las mercancías almacenadas"
+      ],
+      "respuesta": 1,
+      "explicacion": "El embalaje condiciona la estiba y el transporte.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un embalaje reutilizable?",
+      "opciones": [
+        "Un embalaje de un solo uso que se desecha tras la entrega",
+        "Un embalaje de papel de baja resistencia",
+        "Un embalaje diseñado para varios usos",
+        "Un embalaje sin función protectora para la mercancía"
+      ],
+      "respuesta": 2,
+      "explicacion": "Contribuye a la sostenibilidad.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué significa «reducir, reutilizar y reciclar» (3R) aplicado al embalaje?",
+      "opciones": [
+        "Aumentar, vender y comprar embalajes de forma continua",
+        "Almacenar, enviar y cobrar los embalajes al cliente",
+        "Medir, pesar y contar los embalajes que salen",
+        "Menos material, más reutilización y reciclaje"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es un principio de gestión de residuos.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el film retráctil o estirable?",
+      "opciones": [
+        "Una película de plástico que fija la carga paletizada",
+        "Un tipo de palé de plástico reforzado",
+        "Un código de barras para identificar unidades de carga",
+        "Una estantería para almacenar bobinas de film"
+      ],
+      "respuesta": 0,
+      "explicacion": "Evita desplazamientos de la carga.",
+      "criterio": "RA2.g",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.6-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué carga máxima recomienda la guía técnica del INSST para la manipulación manual en condiciones ideales?",
+      "opciones": [
+        "5 kg",
+        "25 kg",
+        "50 kg",
+        "100 kg"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es una recomendación general; en condiciones desfavorables, menos.",
+      "criterio": "RA2.h",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

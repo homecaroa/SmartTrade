@@ -1,0 +1,259 @@
+{
+  "modulo": "0622",
+  "tema": "3.10",
+  "titulo": "Transferencia de riesgos e Incoterms 2020",
+  "preguntas": [
+    {
+      "id": "0622-3.10-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántas reglas contienen los Incoterms 2020 de la ICC y cómo se agrupan según el modo de transporte?",
+      "opciones": [
+        "Once: siete para cualquier modo y cuatro marítimos",
+        "Trece: seis para el transporte marítimo y siete para el terrestre",
+        "Once, todas ellas válidas solo para el transporte marítimo",
+        "Siete, todas ellas para cualquier modo de transporte"
+      ],
+      "respuesta": 0,
+      "explicacion": "Los Incoterms 2020 tienen once reglas: siete para cualquier modo o modos de transporte (EXW, FCA, CPT, CIP, DAP, DPU, DDP) y cuatro solo para el transporte marítimo y por vías navegables interiores (FAS, FOB, CFR, CIF). Esta es la distinción principal de la versión de 2020.",
+      "criterio": "RA3.a",
+      "fuente": "ICC (Incoterms 2020: ICC Academy, ICC Digital Library); trade.gov, «Know your Incoterms». Localizados mediante búsqueda: el libro de las reglas es de pago y no lo he leído.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuáles son los Incoterms 2020 que solo deben utilizarse para el transporte marítimo y por vías navegables interiores?",
+      "opciones": [
+        "EXW, FCA, CPT y CIP",
+        "DAP, DPU y DDP",
+        "FAS, FOB, CFR y CIF",
+        "FCA, FOB, DAP y DDP"
+      ],
+      "respuesta": 2,
+      "explicacion": "Las reglas marítimas son FAS (Free Alongside Ship), FOB (Free On Board), CFR (Cost and Freight) y CIF (Cost, Insurance and Freight). Las demás (EXW, FCA, CPT, CIP, DAP, DPU y DDP) valen para cualquier modo, incluido el marítimo y el multimodal.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020 (ver pregunta anterior).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-003",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa va a exportar mercancía en contenedor que entregará en una terminal del puerto antes de que embarque el buque. ¿Qué regla suele ser más adecuada que FOB?",
+      "opciones": [
+        "EXW",
+        "FAS",
+        "CFR",
+        "FCA"
+      ],
+      "respuesta": 3,
+      "explicacion": "FOB sitúa la entrega y la transmisión del riesgo cuando la mercancía está a bordo, pero en el transporte en contenedor el vendedor entrega la carga en la terminal, mucho antes de que el contenedor embarque, y pierde el control. Por eso la ICC recomienda FCA (entrega al transportista designado por el comprador en un lugar convenido) en el transporte en contenedor. FOB queda para carga a granel o convencional.",
+      "criterio": "RA3.a",
+      "fuente": "Orientación de la ICC en las notas de uso de los Incoterms 2020 (conocimiento general). No he leído el texto de las reglas.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-004",
+      "tipo": "opcion_unica",
+      "enunciado": "En un contrato CIF (Incoterms 2020), ¿qué cobertura mínima de seguro debe contratar el vendedor?",
+      "opciones": [
+        "Ninguna, porque el seguro corre por cuenta del comprador",
+        "Las Cláusulas del Instituto de Carga (C), la mínima",
+        "Las Cláusulas del Instituto de Carga (A), todo riesgo",
+        "Un seguro de responsabilidad civil del transportista"
+      ],
+      "respuesta": 1,
+      "explicacion": "En CIF el vendedor debe contratar un seguro con la cobertura mínima, que corresponde a las Institute Cargo Clauses (C); las partes pueden pactar una cobertura mayor. La póliza debe cubrir al menos el 110 % del precio del contrato y estar en la moneda del contrato.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020 (CIF: Cláusulas (C)), según ICC Digital Library y ICC Academy. La cifra del 110 % es de las reglas CIF/CIP, no leída en la fuente primaria.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-005",
+      "tipo": "opcion_unica",
+      "enunciado": "En un contrato CIP (Incoterms 2020), ¿qué cobertura de seguro debe contratar el vendedor?",
+      "opciones": [
+        "Cláusulas del Instituto de Carga (A), todo riesgo",
+        "Cláusulas del Instituto de Carga (C), la cobertura mínima",
+        "Ninguna, porque el seguro corre por cuenta del comprador",
+        "Un seguro de vida para el conductor del camión"
+      ],
+      "respuesta": 0,
+      "explicacion": "Una de las novedades de los Incoterms 2020 es que en CIP el vendedor debe contratar el seguro con la cobertura de las Institute Cargo Clauses (A) (todo riesgo), mientras que en CIF sigue siendo suficiente la (C). Se justifica porque el CIP se usa para mercancías manufacturadas de mayor valor.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020 (CIP: Cláusulas (A)), según ICC Digital Library y ICC Academy.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En cuáles de los Incoterms 2020 tiene el vendedor la obligación de contratar un seguro de transporte para el comprador?",
+      "opciones": [
+        "En todos",
+        "En ninguno",
+        "Solo en CIF y CIP",
+        "Solo en EXW y FCA"
+      ],
+      "respuesta": 2,
+      "explicacion": "Solo en CIF y CIP el vendedor debe contratar el seguro (con cobertura mínima, de la que depende el nivel (C) o (A)). En las demás reglas no hay obligación de asegurar entre las partes: cada una puede asegurar el tramo en que corre el riesgo por su interés. Por eso el comprador en FOB, CFR o FCA suele contratar su propio seguro.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020, según ICC Digital Library y ICC Academy.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-007",
+      "tipo": "opcion_unica",
+      "enunciado": "En EXW (Ex Works), ¿cuál es la obligación del vendedor respecto a la entrega?",
+      "opciones": [
+        "Cargar la mercancía en el camión del comprador y despachar la exportación",
+        "Entregar la mercancía en el puerto de destino",
+        "Pagar el flete principal hasta el destino",
+        "Poner la mercancía a disposición, sin cargar ni despachar"
+      ],
+      "respuesta": 3,
+      "explicacion": "EXW es la regla de mínima obligación para el vendedor: pone la mercancía a disposición del comprador en el lugar convenido (normalmente su fábrica o almacén), sin cargarla en el vehículo de recogida ni despacharla para la exportación. El riesgo pasa al comprador desde la puesta a disposición. Si el vendedor ha de cargar y despachar, es mejor FCA.",
+      "criterio": "RA3.a",
+      "fuente": "Reglas Incoterms 2020 (EXW), conocimiento general; no he leído el texto de las reglas.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regla de los Incoterms 2020 sustituyó a DAT (Delivered at Terminal) y qué implica?",
+      "opciones": [
+        "FCA, porque el vendedor entrega al transportista",
+        "DPU: entrega descargada en el lugar de destino convenido",
+        "CPT, porque el vendedor paga el transporte",
+        "DAP, porque el vendedor entrega sin descargar"
+      ],
+      "respuesta": 1,
+      "explicacion": "En 2020 DAT se sustituyó por DPU (Delivered at Place Unloaded): el vendedor entrega y descarga la mercancía en el lugar de destino convenido, que puede ser cualquier lugar, no solo una terminal. Es la única regla que obliga al vendedor a descargar. Asume el coste y el riesgo hasta que la mercancía está descargada.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020, novedades (ICC Academy). Detalle recordado de la explicación general; no he leído el texto de las reglas.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿En qué se diferencian DAP y DPU?",
+      "opciones": [
+        "En DAP no se descarga; en DPU, el vendedor descarga",
+        "En DAP el vendedor despacha la importación y en DPU no",
+        "DAP es solo marítimo y DPU es solo aéreo",
+        "No se diferencian: son dos nombres de la misma regla"
+      ],
+      "respuesta": 0,
+      "explicacion": "Con DAP (Delivered at Place) el vendedor entrega la mercancía lista para descargar en el medio de transporte de llegada, en el lugar de destino convenido; el comprador asume la descarga. Con DPU (Delivered at Place Unloaded) el vendedor la entrega descargada. En ambos, el despacho de importación y los derechos corren por el comprador; solo en DDP los asume el vendedor.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020. Explicación general; no he leído el texto de las reglas.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regla de los Incoterms 2020 impone al vendedor las máximas obligaciones, incluido el despacho de importación y el pago de derechos?",
+      "opciones": [
+        "EXW",
+        "DAP",
+        "DDP",
+        "FAS"
+      ],
+      "respuesta": 2,
+      "explicacion": "DDP (Delivered Duty Paid) es la regla de máxima obligación del vendedor: entrega la mercancía en el lugar de destino ya despachada para la importación, con los derechos e impuestos pagados, y asume costes y riesgos hasta allí. EXW es la de mínima obligación. En la práctica, DDP es delicado cuando el vendedor no puede gestionar el IVA o el despacho en el país del comprador.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020. Explicación general; no he leído el texto de las reglas.",
+      "verificacion": "secundaria",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-011",
+      "tipo": "opcion_unica",
+      "enunciado": "En FOB (Free On Board) según los Incoterms 2020, ¿cuándo pasa el riesgo de pérdida o daño del vendedor al comprador?",
+      "opciones": [
+        "Cuando el vendedor firma el contrato de compraventa",
+        "Cuando la mercancía llega al puerto de destino",
+        "Cuando el comprador paga el precio de la mercancía",
+        "Al estar la mercancía a bordo del buque en origen"
+      ],
+      "respuesta": 3,
+      "explicacion": "En FOB el vendedor entrega la mercancía a bordo del buque designado por el comprador en el puerto de embarque convenido, y el riesgo pasa en ese momento (en FAS pasa antes, cuando la mercancía está al costado del buque). Los costes de flete, seguro y descarga posteriores son del comprador.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020: riesgo en FAS «alongside the ship» y en CIF «on board» (ICC Digital Library, ICC Academy); FOB sigue la misma regla de entrega a bordo.",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-012",
+      "tipo": "opcion_unica",
+      "enunciado": "En un contrato CIF Valencia–Shanghái, el vendedor contrata y paga el flete y el seguro hasta Shanghái. ¿Dónde pasa el riesgo de pérdida o daño al comprador?",
+      "opciones": [
+        "En Shanghái, al descargar la mercancía del buque",
+        "En Valencia, con la mercancía a bordo del buque",
+        "En el almacén del comprador, al final del recorrido",
+        "Cuando el comprador recibe la factura del vendedor"
+      ],
+      "respuesta": 1,
+      "explicacion": "En las reglas del grupo C (CFR, CIF, CPT, CIP) hay dos puntos críticos distintos: el vendedor paga el transporte hasta el destino, pero el riesgo se transmite al comprador en el lugar de embarque (a bordo, en CIF). Por eso el vendedor contrata el seguro a favor del comprador. Un siniestro durante la travesía es riesgo del comprador, que reclama a la aseguradora.",
+      "criterio": "RA3.g",
+      "fuente": "ICC, Incoterms 2020: riesgo en CIF «once goods are on board» (ICC Digital Library); doble punto crítico de las reglas C: conocimiento general.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estas cuestiones NO regulan los Incoterms?",
+      "opciones": [
+        "El lugar de entrega de la mercancía",
+        "El reparto de los costes entre vendedor y comprador",
+        "La transmisión de propiedad, el precio y el pago",
+        "La transmisión del riesgo de pérdida o daño"
+      ],
+      "respuesta": 2,
+      "explicacion": "Los Incoterms regulan la entrega, la transmisión del riesgo, el reparto de costes y de tareas (transporte, seguro, despacho, documentos). No regulan la transmisión de la propiedad, el precio, la forma de pago, la ley aplicable ni las consecuencias de un incumplimiento: eso lo fija el contrato de compraventa y la ley. Son de aplicación voluntaria.",
+      "criterio": "RA3.a",
+      "fuente": "ICC, Incoterms 2020 (alcance de las reglas): conocimiento general; no he leído el texto de las reglas.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.10-014",
+      "tipo": "opcion_unica",
+      "enunciado": "En los términos CPT y CIP, ¿cuándo pasa el riesgo al comprador?",
+      "opciones": [
+        "Al entregarla al primer transportista",
+        "Al llegar la mercancía al lugar de destino",
+        "Cuando se paga la prima del seguro",
+        "Cuando se despacha la importación en destino"
+      ],
+      "respuesta": 0,
+      "explicacion": "En CPT y CIP el vendedor contrata y paga el transporte hasta el destino convenido, pero el riesgo pasa al comprador cuando la mercancía se entrega al primer transportista (o al designado por el vendedor). Es la misma lógica de doble punto crítico de CFR y CIF. En CIP, además, el vendedor contrata el seguro (A).",
+      "criterio": "RA3.g",
+      "fuente": "ICC, Incoterms 2020 (reglas C). Explicación general; no he leído el texto de las reglas.",
+      "verificacion": "secundaria",
+      "dificultad": 3,
+      "visto_en": []
+    }
+  ]
+}

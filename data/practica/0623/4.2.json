@@ -1,0 +1,241 @@
+{
+  "modulo": "0623",
+  "tema": "4.2",
+  "titulo": "Plan de inversión, financiación y recuperación",
+  "preguntas": [
+    {
+      "id": "0623-4.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es un plan de inversión?",
+      "opciones": [
+        "Un plan de ventas para el siguiente ejercicio",
+        "El estudio de recursos, financiación y flujos del proyecto",
+        "Un plan de marketing para lanzar un producto",
+        "Un plan de personal con las contrataciones previstas"
+      ],
+      "respuesta": 1,
+      "explicacion": "Incluye desembolso inicial, flujos y plazos.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué variables definen una inversión?",
+      "opciones": [
+        "Solo el precio del bien que se adquiere",
+        "Solo el plazo en que se recupera el dinero",
+        "Desembolso, flujos, duración, tasa y valor residual",
+        "Solo el color y el diseño del bien adquirido"
+      ],
+      "respuesta": 2,
+      "explicacion": "Son la base de VAN y TIR.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la financiación propia?",
+      "opciones": [
+        "Los préstamos que conceden los bancos",
+        "Los créditos que conceden los proveedores",
+        "Los contratos de leasing con entidades financieras",
+        "Recursos de los socios o generados por la empresa"
+      ],
+      "respuesta": 3,
+      "explicacion": "No genera obligación de devolución.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la financiación ajena?",
+      "opciones": [
+        "Recursos de terceros que se devuelven con intereses",
+        "El capital social aportado por los socios",
+        "Las reservas que constituye la empresa",
+        "Los beneficios que se retienen en la empresa"
+      ],
+      "respuesta": 0,
+      "explicacion": "Aumenta el endeudamiento.",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué se entiende por recuperación de la inversión a corto plazo?",
+      "opciones": [
+        "Vender el activo adquirido al terminar su vida útil",
+        "Recuperar el desembolso en pocos años con los flujos",
+        "Amortizar contablemente el activo en el ejercicio",
+        "Pagar el impuesto que grava la inversión"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se mide con el plazo de recuperación (payback).",
+      "criterio": "RA4.c",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el plazo de recuperación (payback)?",
+      "opciones": [
+        "La vida útil estimada del bien adquirido",
+        "El plazo de devolución del préstamo contratado",
+        "El tiempo en que los flujos recuperan el desembolso",
+        "El plazo de entrega que fija el proveedor"
+      ],
+      "respuesta": 2,
+      "explicacion": "No considera el valor del dinero en el tiempo si es simple.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué limitación tiene el plazo de recuperación simple?",
+      "opciones": [
+        "Es muy difícil de calcular en una hoja",
+        "Depende del color y la marca del bien",
+        "No tiene ninguna limitación en su aplicación",
+        "No considera el valor del dinero en el tiempo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Por eso se complementa con VAN y TIR.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el flujo de caja de una inversión?",
+      "opciones": [
+        "La diferencia entre cobros y pagos del proyecto",
+        "El beneficio contable que muestra la cuenta de resultados",
+        "El precio de compra del bien de inversión",
+        "La amortización anual del bien de inversión"
+      ],
+      "respuesta": 0,
+      "explicacion": "Es la base de la valoración.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué decisión conviene cuando dos inversiones tienen el mismo coste y una recupera antes?",
+      "opciones": [
+        "Elegir siempre la que recupera más despacio",
+        "Valorar también el VAN o la TIR y el riesgo",
+        "Elegir una de las dos al azar",
+        "Rechazar ambas inversiones por falta de datos"
+      ],
+      "respuesta": 1,
+      "explicacion": "El criterio único puede inducir a error.",
+      "criterio": "RA4.e",
+      "fuente": "Conocimiento general de gestión de empresas de transporte; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "Se invierten 60.000 € y se esperan flujos anuales de 15.000, 20.000, 22.000, 24.000 €. ¿Cuál es el plazo de recuperación simple (años)?",
+      "opciones": [
+        "3 años",
+        "4,00 años",
+        "3,12 años",
+        "4,12 años"
+      ],
+      "respuesta": 2,
+      "explicacion": "Acumulado: 15.000, 35.000, 57.000 y 81.000: en el 4.º año faltan 3.000 de 24.000, por lo que el plazo es 3,12 años.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "Con esos flujos, ¿cuál es el flujo medio anual?",
+      "opciones": [
+        "60.000,00 €",
+        "81.000,00 €",
+        "15.000,00 €",
+        "20.250,00 €"
+      ],
+      "respuesta": 3,
+      "explicacion": "Media = 81.000 / 4 = 20.250,00 €.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Una inversión de 80.000 € genera un beneficio medio anual de 12.000 €. ¿Cuál es su rentabilidad media anual sobre el desembolso?",
+      "opciones": [
+        "15,00 %",
+        "6,67 %",
+        "12,00 %",
+        "150,00 %"
+      ],
+      "respuesta": 0,
+      "explicacion": "12.000 / 80.000 × 100 = 15 %.",
+      "criterio": "RA4.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-4.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Se financia un 40 % de una inversión de 90.000 € con fondos propios. ¿Cuánta financiación ajena se necesita?",
+      "opciones": [
+        "36.000,00 €",
+        "54.000,00 €",
+        "90.000,00 €",
+        "40.000,00 €"
+      ],
+      "respuesta": 1,
+      "explicacion": "Ajena = 90.000 × 60 % = 54.000 €.",
+      "criterio": "RA4.c",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

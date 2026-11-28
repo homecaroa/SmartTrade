@@ -1,0 +1,236 @@
+{
+  "modulo": "0622",
+  "tema": "1.1",
+  "titulo": "El transporte internacional de mercancías",
+  "preguntas": [
+    {
+      "id": "0622-1.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "Dentro de la logística internacional, ¿cuál es la función principal del transporte?",
+      "opciones": [
+        "Fijar el precio de venta de la mercancía al cliente",
+        "Controlar las existencias del almacén de origen",
+        "Llevar la mercancía del origen al destino en plazo",
+        "Tramitar las declaraciones aduaneras de la operación"
+      ],
+      "respuesta": 2,
+      "explicacion": "El transporte es la actividad logística que desplaza físicamente la mercancía del lugar de origen al de destino, respetando plazo, condiciones y coste pactados. El precio lo fija la compraventa, el stock es función del almacenaje y las declaraciones son gestión aduanera.",
+      "criterio": "RA1.a",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Transporte y logística. Importancia del transporte en el comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué factor hace más complejo el transporte internacional que el nacional?",
+      "opciones": [
+        "Más normativas, documentos, idiomas y prácticas distintas",
+        "Un menor número de intermediarios en la operación",
+        "Trayectos que son siempre más cortos que los nacionales",
+        "La uniformidad de los trámites administrativos entre países"
+      ],
+      "respuesta": 0,
+      "explicacion": "En el transporte internacional intervienen regímenes jurídicos distintos (convenios, normas nacionales), aduanas, monedas, idiomas y usos comerciales, además de más agentes y riesgos. Por eso existen convenios que unifican reglas por modo (CMR, CIM, Montreal…) y reglas comerciales como los Incoterms.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; currículo del módulo (Decreto 95/2012, apartado de aspectos generales).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "En logística, ¿a qué se denomina flujo de materiales?",
+      "opciones": [
+        "Al intercambio de información entre los agentes de la cadena",
+        "A los cobros y pagos que genera la operación comercial",
+        "A la documentación aduanera de exportación e importación",
+        "Al movimiento físico de la mercancía hasta el cliente"
+      ],
+      "respuesta": 3,
+      "explicacion": "La cadena logística tiene tres flujos: el flujo físico o de materiales (la mercancía), el flujo de información (pedidos, documentos, seguimiento) y el flujo financiero (cobros y pagos). El transporte es el que sostiene el flujo físico entre las etapas de la cadena.",
+      "criterio": "RA1.a",
+      "fuente": "Conocimiento general de logística.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué relación hay entre la logística y el transporte?",
+      "opciones": [
+        "Son sinónimos y se utilizan indistintamente en la empresa",
+        "El transporte es una de las actividades de la logística",
+        "La logística solo gestiona el almacén y no incluye el transporte",
+        "El transporte engloba a la logística y la dirige por completo"
+      ],
+      "respuesta": 1,
+      "explicacion": "La logística es el conjunto de actividades que gestionan el flujo de mercancías e información desde el origen hasta el consumo: aprovisionamiento, almacenaje, inventarios, preparación de pedidos, transporte y distribución. El transporte es una de ellas, la que traslada la mercancía entre puntos.",
+      "criterio": "RA1.a",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Transporte y logística»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Una empresa debe enviar una partida urgente, de poco peso y alto valor, a 9.000 km de distancia. ¿Qué modo de transporte es el más adecuado?",
+      "opciones": [
+        "Marítimo",
+        "Ferroviario",
+        "Aéreo",
+        "Fluvial"
+      ],
+      "respuesta": 2,
+      "explicacion": "El transporte aéreo es el más rápido en largas distancias y su coste por kilogramo, elevado, se compensa cuando la mercancía es urgente, ligera, perecedera o de alto valor. Marítimo, ferroviario y fluvial son más baratos pero mucho más lentos.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; cf. unidad 1.6 de este banco (aéreo).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "Un exportador debe mover miles de toneladas de cereal sin embalar entre continentes, sin urgencia. ¿Qué modo suele ser el más adecuado por coste y capacidad?",
+      "opciones": [
+        "Marítimo, en buque granelero",
+        "Aéreo, en avión de carga de gran capacidad",
+        "Carretera, con camiones de 40 toneladas de carga útil",
+        "Mensajería urgente con entrega puerta a puerta"
+      ],
+      "respuesta": 0,
+      "explicacion": "El transporte marítimo ofrece la mayor capacidad y el menor coste por tonelada-kilómetro, ideal para graneles sólidos (cereales, carbón, minerales) y líquidos (crudo) en rutas intercontinentales cuando el plazo no es crítico.",
+      "criterio": "RA1.c",
+      "fuente": "Conocimiento general; cf. unidad 1.4 de este banco (marítimo).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué modo de transporte destaca por su flexibilidad y por permitir la distribución puerta a puerta?",
+      "opciones": [
+        "Ferroviario",
+        "Carretera",
+        "Marítimo",
+        "Fluvial"
+      ],
+      "respuesta": 1,
+      "explicacion": "El camión llega directamente al punto de carga y al de entrega, con gran adaptabilidad de rutas y horarios, por lo que domina las distancias cortas y medias y los acarreos. Tiene menos capacidad por viaje y más coste y emisiones por tonelada que tren o barco en largas distancias.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; cf. unidad 1.2 de este banco (carretera).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué distingue al transporte discrecional del transporte regular?",
+      "opciones": [
+        "El discrecional está sujeto a calendarios y frecuencias fijos",
+        "El regular se adapta a cada cliente según sus necesidades",
+        "Solo el regular necesita autorización administrativa para operar",
+        "Adapta rutas y horarios; el regular tiene calendario fijo"
+      ],
+      "respuesta": 3,
+      "explicacion": "En el transporte regular el operador ofrece itinerarios, horarios y frecuencias predeterminados (por ejemplo, una línea marítima regular o un servicio ferroviario con salidas fijas). En el discrecional el servicio se contrata y organiza a medida, con rutas y horarios según la necesidad del cliente. Ambos pueden requerir autorización según el modo.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; LOTT (distingue servicios regulares y discrecionales).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0622-1.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué variable del transporte se refiere a cuánta carga puede mover un medio en un viaje?",
+      "opciones": [
+        "La capacidad de carga",
+        "La flexibilidad",
+        "La frecuencia",
+        "La fiabilidad"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las variables habituales para comparar modos son capacidad de carga, rapidez, coste, flexibilidad (adaptación a puntos y horarios), frecuencia, fiabilidad, seguridad (riesgo de daños) e impacto ambiental. La capacidad de carga es la cantidad de peso o volumen por viaje o unidad de transporte.",
+      "criterio": "RA1.b",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Variables del transporte»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Por qué es tan importante el transporte en el comercio internacional?",
+      "opciones": [
+        "Su coste es irrelevante en el precio final del producto",
+        "Solo afecta a las exportaciones de productos perecederos",
+        "Condiciona coste, plazo y estado de llegada de la mercancía",
+        "Sustituye por completo al contrato de compraventa internacional"
+      ],
+      "respuesta": 2,
+      "explicacion": "El transporte forma parte del precio final (flete, seguros, gastos), determina cuándo llega la mercancía y en qué estado, y cambia el reparto de riesgos y costes entre vendedor y comprador (Incoterms). Una mala elección de modo o de ruta puede hacer inviable una operación rentable.",
+      "criterio": "RA1.c",
+      "fuente": "Currículo del módulo (Decreto 95/2012: «Importancia del transporte en el comercio internacional»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la carga a granel?",
+      "opciones": [
+        "Mercancía paletizada en pequeños lotes de poco volumen",
+        "Mercancía sin embalar, en grandes cantidades",
+        "Mercancía transportada en contenedores refrigerados",
+        "Mercancía peligrosa embalada en bultos homologados"
+      ],
+      "respuesta": 1,
+      "explicacion": "El granel es la carga sin embalaje, que se carga y descarga a granel o por conductos, bien sólido (cereales, carbón, minerales) o líquido (petróleo, productos químicos). Se transporta en buques graneleros o petroleros, vagones tolva y cisternas. Se contrapone a la carga general (bultos, palés, contenedores).",
+      "criterio": "RA1.a",
+      "fuente": "Conocimiento general del sector.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-1.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "En una operación de transporte internacional, ¿qué son los «acarreos»?",
+      "opciones": [
+        "El transporte ferroviario entre la estación de origen y la de destino",
+        "El movimiento interno de mercancías dentro del recinto portuario",
+        "El transporte dentro de una misma ciudad sin cambiar de vehículo",
+        "El transporte por carretera hasta o desde la terminal"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los acarreos son los tramos terrestres cortos, normalmente por carretera, que unen al exportador con la terminal (puerto, aeropuerto, estación) y esta con el consignatario. También se llaman pre-transporte y post-transporte; son parte del coste y del plazo total, y se aplican incluso al modo aéreo y marítimo.",
+      "criterio": "RA1.a",
+      "fuente": "Currículo del módulo (Decreto 95/2012, «acarreos»); concepto en los modelos de Madrid.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": [
+        "2024-25",
+        "2025-26"
+      ]
+    }
+  ]
+}

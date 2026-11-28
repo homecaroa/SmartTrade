@@ -1,0 +1,349 @@
+{
+  "modulo": "0623",
+  "tema": "7.1",
+  "titulo": "Equilibrio financiero, fondo de maniobra y ratios",
+  "preguntas": [
+    {
+      "id": "0623-7.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el fondo de maniobra?",
+      "opciones": [
+        "Activo corriente menos pasivo corriente",
+        "La diferencia entre el activo total y el pasivo total",
+        "El capital social aportado por los socios",
+        "El saldo de la tesorería de la empresa"
+      ],
+      "respuesta": 0,
+      "explicacion": "Mide la capacidad de pagar deudas a corto plazo.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué indica un fondo de maniobra positivo?",
+      "opciones": [
+        "Que la empresa tiene pérdidas en el ejercicio",
+        "Activo corriente superior al pasivo corriente",
+        "Que la empresa no tiene ninguna deuda",
+        "Que hay un exceso de capital en todos los casos"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es la situación de solvencia normal.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué indica un fondo de maniobra negativo?",
+      "opciones": [
+        "Una mayor rentabilidad de la empresa",
+        "Una mayor liquidez de la empresa",
+        "Riesgo de impago: el activo corriente no cubre el pasivo",
+        "Ausencia de deudas a corto plazo"
+      ],
+      "respuesta": 2,
+      "explicacion": "Puede indicar tensión de tesorería.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ratio de liquidez general?",
+      "opciones": [
+        "Pasivo total entre activo total de la empresa",
+        "Activo total entre patrimonio neto",
+        "Beneficio del ejercicio entre ventas",
+        "Activo corriente entre pasivo corriente"
+      ],
+      "respuesta": 3,
+      "explicacion": "Valor óptimo en torno a 1,5-2.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ratio de tesorería (acid test)?",
+      "opciones": [
+        "Realizable más disponible entre pasivo corriente",
+        "Activo corriente entre activo total",
+        "Disponible entre activo total de la empresa",
+        "Pasivo total entre patrimonio neto"
+      ],
+      "respuesta": 0,
+      "explicacion": "Mide la capacidad de pagar sin vender existencias.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ratio de endeudamiento?",
+      "opciones": [
+        "El beneficio entre las ventas del ejercicio",
+        "El exigible entre el activo total",
+        "El activo corriente entre el pasivo corriente",
+        "Las ventas del ejercicio entre el activo total"
+      ],
+      "respuesta": 1,
+      "explicacion": "Indica la proporción de financiación ajena.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ratio de solvencia o garantía?",
+      "opciones": [
+        "Pasivo exigible entre activo total",
+        "Patrimonio neto entre pasivo exigible",
+        "Activo total entre pasivo exigible",
+        "Ventas del ejercicio entre activo total"
+      ],
+      "respuesta": 2,
+      "explicacion": "Un valor superior a 1,5 se considera adecuado.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la rentabilidad económica (ROA)?",
+      "opciones": [
+        "Beneficio neto entre patrimonio neto",
+        "Ventas del ejercicio entre activo total",
+        "Activo total entre pasivo exigible",
+        "BAII entre activo total"
+      ],
+      "respuesta": 3,
+      "explicacion": "Mide la rentabilidad de las inversiones.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la rentabilidad financiera (ROE)?",
+      "opciones": [
+        "Beneficio neto entre patrimonio neto",
+        "BAII entre activo total de la empresa",
+        "Ventas del ejercicio entre activo total",
+        "Activo total entre pasivo exigible"
+      ],
+      "respuesta": 0,
+      "explicacion": "Mide la rentabilidad para los socios.",
+      "criterio": "RA7.g",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el apalancamiento financiero?",
+      "opciones": [
+        "Un tipo de préstamo con garantía personal",
+        "El efecto de la deuda sobre la rentabilidad de los socios",
+        "Un tipo de seguro que cubre las deudas",
+        "Un impuesto que grava el endeudamiento"
+      ],
+      "respuesta": 1,
+      "explicacion": "También aumenta el riesgo.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué equilibrio patrimonial es sano a largo plazo?",
+      "opciones": [
+        "Financiar el activo fijo con pasivo corriente",
+        "No tener ninguna deuda en el balance",
+        "Financiar el activo fijo con fuentes permanentes",
+        "Que todos los activos sean corrientes"
+      ],
+      "respuesta": 2,
+      "explicacion": "La financiación básica debe cubrir el inmovilizado.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué diferencia hay entre financiación básica y del circulante?",
+      "opciones": [
+        "No hay diferencia entre ambos tipos de financiación",
+        "La básica es a corto plazo y la del circulante, a largo",
+        "La del circulante procede de las aportaciones de socios",
+        "La básica es permanente y la del circulante, a corto"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se asignan a inversiones de distinta duración.",
+      "criterio": "RA7.b",
+      "fuente": "Conocimiento general de análisis económico-financiero; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "Activo corriente 120.000 € y pasivo corriente 60.000 €. ¿Cuál es el fondo de maniobra?",
+      "opciones": [
+        "60.000,00 €",
+        "180.000,00 €",
+        "-60.000,00 €",
+        "300.000,00 €"
+      ],
+      "respuesta": 0,
+      "explicacion": "FM = 120.000 − 60.000 = 60.000,00 €.",
+      "criterio": "RA7.b",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "Con ese activo y pasivo corrientes, ¿cuál es el ratio de liquidez general?",
+      "opciones": [
+        "0,50",
+        "2,00",
+        "0,40",
+        "3,00"
+      ],
+      "respuesta": 1,
+      "explicacion": "120.000 / 60.000 = 2,00.",
+      "criterio": "RA7.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "Con existencias 40.000 €, realizable 50.000 € y disponible 30.000 €, y pasivo corriente 60.000 €, ¿cuál es el ratio de tesorería (acid test)?",
+      "opciones": [
+        "2,00",
+        "0,50",
+        "1,33",
+        "0,67"
+      ],
+      "respuesta": 2,
+      "explicacion": "(50.000 + 30.000) / 60.000 = 1,33.",
+      "criterio": "RA7.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "Con activo total 300.000 €, patrimonio neto 140.000 €, pasivo no corriente 100.000 € y pasivo corriente 60.000 €, ¿cuál es el ratio de endeudamiento (pasivo exigible / activo total)?",
+      "opciones": [
+        "1,88",
+        "0,88",
+        "2,33",
+        "0,53"
+      ],
+      "respuesta": 3,
+      "explicacion": "(100.000 + 60.000) / 300.000 = 0,53.",
+      "criterio": "RA7.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "Con esos datos, ¿cuál es el ratio de solvencia (activo total / pasivo exigible)?",
+      "opciones": [
+        "1,88",
+        "0,53",
+        "0,88",
+        "2,00"
+      ],
+      "respuesta": 0,
+      "explicacion": "300.000 / 160.000 = 1,88.",
+      "criterio": "RA7.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "Con un BAII de 36.000 € y un activo total de 300.000 €, ¿cuál es la rentabilidad económica?",
+      "opciones": [
+        "1,20 %",
+        "12,00 %",
+        "8,33 %",
+        "36,00 %"
+      ],
+      "respuesta": 1,
+      "explicacion": "36.000 / 300.000 × 100 = 12 %.",
+      "criterio": "RA7.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-7.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "Con un beneficio neto de 21.000 € y un patrimonio neto de 140.000 €, ¿cuál es la rentabilidad financiera?",
+      "opciones": [
+        "10,00 %",
+        "21,00 %",
+        "15,00 %",
+        "6,67 %"
+      ],
+      "respuesta": 2,
+      "explicacion": "21.000 / 140.000 × 100 = 15 %.",
+      "criterio": "RA7.g",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    }
+  ]
+}

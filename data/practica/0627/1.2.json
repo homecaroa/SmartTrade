@@ -1,0 +1,349 @@
+{
+  "modulo": "0627",
+  "tema": "1.2",
+  "titulo": "La Organización Mundial del Comercio (OMC)",
+  "preguntas": [
+    {
+      "id": "0627-1.2-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuándo empezó a funcionar la Organización Mundial del Comercio (OMC)?",
+      "opciones": [
+        "El 1 de enero de 1995",
+        "El 1 de enero de 1947",
+        "El 1 de enero de 1986",
+        "El 1 de enero de 2001"
+      ],
+      "respuesta": 0,
+      "explicacion": "La OMC nació el 1 de enero de 1995 como resultado de la Ronda Uruguay, y sustituyó al GATT como organización que supervisa el sistema multilateral de comercio.",
+      "criterio": "RA1.b",
+      "fuente": "OMC («Understanding the WTO», wto.org; localizado mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Dónde tiene su sede la OMC?",
+      "opciones": [
+        "En Bruselas (Bélgica)",
+        "En Ginebra (Suiza)",
+        "En Washington D. C. (EE. UU.)",
+        "En París (Francia)"
+      ],
+      "respuesta": 1,
+      "explicacion": "La sede de la OMC está en Ginebra. El FMI y el Banco Mundial están en Washington, y la OCDE en París.",
+      "criterio": "RA1.b",
+      "fuente": "OMC («Understanding the WTO», wto.org; localizado mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿A qué organización sustituyó la OMC?",
+      "opciones": [
+        "A la OCDE, creada en 1961 en París",
+        "A la UNCTAD, creada en 1964 en Ginebra",
+        "Al GATT, en vigor desde 1947",
+        "Al Banco Mundial, creado en 1944 en Bretton Woods"
+      ],
+      "respuesta": 2,
+      "explicacion": "El GATT de 1947 era un acuerdo provisional sin estructura institucional estable. Su texto actualizado, el GATT de 1994, forma parte de los acuerdos de la OMC.",
+      "criterio": "RA1.b",
+      "fuente": "OMC («Understanding the WTO», wto.org; localizado mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué ronda de negociaciones dio lugar a la creación de la OMC?",
+      "opciones": [
+        "La Ronda Kennedy, de 1964 a 1967",
+        "La Ronda Tokio, de 1973 a 1979",
+        "La Ronda de Doha, lanzada en el año 2001",
+        "La Ronda Uruguay, de 1986 a 1994"
+      ],
+      "respuesta": 3,
+      "explicacion": "La Ronda Uruguay creó la OMC y extendió las reglas al comercio de servicios (AGCS) y a la propiedad intelectual (ADPIC), no solo a las mercancías.",
+      "criterio": "RA1.b",
+      "fuente": "OMC («Understanding the WTO», wto.org; localizado mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-005",
+      "tipo": "opcion_unica",
+      "enunciado": "A diferencia del GATT, que se ocupaba sobre todo de mercancías, los acuerdos de la OMC también cubren:",
+      "opciones": [
+        "Los servicios y la propiedad intelectual",
+        "Solo la agricultura y los productos agrarios",
+        "Solo los productos industriales y las manufacturas",
+        "Únicamente las políticas monetarias y cambiarias"
+      ],
+      "respuesta": 0,
+      "explicacion": "El AGCS regula el comercio de servicios y el ADPIC los aspectos de la propiedad intelectual relacionados con el comercio.",
+      "criterio": "RA1.b",
+      "fuente": "OMC («Understanding the WTO», wto.org; localizado mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es el órgano supremo de decisión de la OMC?",
+      "opciones": [
+        "El Consejo General, que se reúne cada año",
+        "La Conferencia Ministerial, cada dos años",
+        "El Director General, elegido por los miembros",
+        "El Órgano de Solución de Diferencias, con sede en Ginebra"
+      ],
+      "respuesta": 1,
+      "explicacion": "La Conferencia Ministerial reúne a todos los miembros y es el nivel más alto; el Consejo General actúa entre conferencias.",
+      "criterio": "RA1.b",
+      "fuente": "OMC («Understanding the WTO», wto.org; localizado mediante búsqueda).",
+      "verificacion": "oficial",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el principio de la nación más favorecida (NMF) en la OMC?",
+      "opciones": [
+        "Se da ventaja comercial al país miembro más pobre",
+        "Cada país elige a su socio comercial preferido",
+        "Una ventaja concedida a un miembro se extiende a todos",
+        "Los países desarrollados pagan menos aranceles que el resto"
+      ],
+      "respuesta": 2,
+      "explicacion": "Es el principio básico de no discriminación entre socios comerciales (art. I del GATT), con excepciones como las uniones aduaneras y las zonas de libre comercio.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué establece el principio de trato nacional?",
+      "opciones": [
+        "Los productos nacionales pagan más impuestos que los importados",
+        "Se prohíbe importar productos extranjeros ya fabricados en el país",
+        "Los aranceles son iguales en todos los países miembros",
+        "El producto importado recibe un trato no menos favorable que el nacional"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se aplica una vez la mercancía ha pasado la aduana: impuestos y reglamentos internos no pueden discriminar al producto importado (art. III del GATT).",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los «aranceles consolidados» en la OMC?",
+      "opciones": [
+        "Los tipos máximos de arancel que un miembro se compromete a no superar",
+        "Los aranceles que se aplican a las exportaciones de materias primas",
+        "Los aranceles temporales que se imponen por dumping demostrado",
+        "Los aranceles de los países menos desarrollados exclusivamente"
+      ],
+      "respuesta": 0,
+      "explicacion": "Cada miembro «consolida» sus aranceles en sus listas de compromisos; puede aplicar menos, pero no más, salvo renegociación.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En general, ¿qué hace el GATT con las restricciones cuantitativas a la importación (cupos)?",
+      "opciones": [
+        "Las permite siempre, sin necesidad de justificación alguna",
+        "Las prohíbe, salvo excepciones como balanza de pagos o salvaguardia",
+        "Las exige a los países desarrollados frente a los demás miembros",
+        "Las sustituye por subvenciones obligatorias a la importación"
+      ],
+      "respuesta": 1,
+      "explicacion": "El art. XI del GATT prohíbe restricciones cuantitativas; las excepciones están tasadas. La protección debe hacerse mediante aranceles, más transparentes.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cómo se toman normalmente las decisiones en la OMC?",
+      "opciones": [
+        "Por mayoría de los países desarrollados",
+        "Por decisión del Director General",
+        "Por consenso entre los miembros",
+        "Por votación ponderada según el PIB"
+      ],
+      "respuesta": 2,
+      "explicacion": "El consenso es la práctica habitual; cada miembro tiene en teoría un voto en caso de votación.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué función cumple el Órgano de Solución de Diferencias (OSD) de la OMC?",
+      "opciones": [
+        "Fijar los aranceles máximos que aplicará cada país miembro",
+        "Conceder préstamos a los países con dificultades de pagos",
+        "Elaborar el Sistema Armonizado de clasificación de mercancías",
+        "Resolver conflictos comerciales entre miembros mediante consultas y paneles"
+      ],
+      "respuesta": 3,
+      "explicacion": "Es el mecanismo para que un miembro denuncie incumplimientos de otro. Según lo que conozco, la fase de apelación está paralizada desde 2019 por falta de miembros del Órgano de Apelación (dato por comprobar).",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regula el Acuerdo Antidumping de la OMC?",
+      "opciones": [
+        "Cuándo se pueden aplicar derechos a importaciones vendidas bajo su valor normal",
+        "La protección de las patentes y de las marcas comerciales",
+        "El comercio de servicios financieros entre los países miembros",
+        "Los certificados sanitarios que se exigen a los alimentos"
+      ],
+      "respuesta": 0,
+      "explicacion": "Desarrolla el art. VI del GATT: exige demostrar dumping, perjuicio a la rama de producción nacional y relación causal.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regula el Acuerdo sobre Subvenciones y Medidas Compensatorias (SMC)?",
+      "opciones": [
+        "Los precios de transferencia entre empresas de un mismo grupo",
+        "Las subvenciones y los derechos compensatorios que pueden imponerse",
+        "Los créditos que concede el Fondo Monetario Internacional",
+        "La política agrícola común y sus ayudas a los agricultores"
+      ],
+      "respuesta": 1,
+      "explicacion": "Distingue subvenciones prohibidas, recurribles y no recurribles y regula los derechos compensatorios.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué regula el Acuerdo sobre Salvaguardias de la OMC?",
+      "opciones": [
+        "Los controles de calidad que se hacen a las mercancías en la frontera",
+        "Las normas de origen preferencial de los acuerdos comerciales",
+        "Medidas temporales de emergencia ante un aumento de importaciones dañino",
+        "El pago de los derechos de aduana en el despacho a libre práctica"
+      ],
+      "respuesta": 2,
+      "explicacion": "Desarrolla el art. XIX del GATT. A diferencia del antidumping, se aplica sin hacer falta una práctica desleal, y con duración limitada.",
+      "criterio": "RA3.e",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ADPIC (TRIPS)?",
+      "opciones": [
+        "Un acuerdo sobre inversiones extranjeras directas en los miembros",
+        "Un acuerdo sobre el transporte marítimo de mercancías",
+        "Un acuerdo sobre subvenciones a la producción agrícola",
+        "El Acuerdo sobre propiedad intelectual relacionada con el comercio"
+      ],
+      "respuesta": 3,
+      "explicacion": "Fija estándares mínimos de protección de patentes, marcas, derechos de autor, etc.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el AGCS (GATS)?",
+      "opciones": [
+        "El Acuerdo General sobre el Comercio de Servicios",
+        "El Acuerdo general sobre contratación pública entre los miembros",
+        "Un acuerdo sobre cuotas agrícolas de importación y exportación",
+        "Un acuerdo sobre reducción de aranceles industriales"
+      ],
+      "respuesta": 0,
+      "explicacion": "Extiende a los servicios los principios del GATT, con compromisos específicos de cada miembro.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los acuerdos OTC y MSF de la OMC?",
+      "opciones": [
+        "Acuerdos sobre transporte, seguros y servicios portuarios",
+        "Obstáculos técnicos al comercio y medidas sanitarias y fitosanitarias",
+        "Acuerdos sobre moneda, finanzas y tipos de cambio",
+        "Acuerdos sobre compras públicas, subvenciones y dumping"
+      ],
+      "respuesta": 1,
+      "explicacion": "Regulan que reglamentos técnicos y requisitos sanitarios no se usen como barreras encubiertas. Enlazan con las barreras técnicas (UD3).",
+      "criterio": "RA3.f",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0627-1.2-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la Ronda de Doha?",
+      "opciones": [
+        "La ronda que creó la OMC y sustituyó al GATT en 1995",
+        "La ronda en la que se firmó el tratado del euro en 1992",
+        "La ronda lanzada en 2001 con agenda de desarrollo, aún sin concluir",
+        "Una ronda de negociaciones bilateral entre la UE y EE. UU."
+      ],
+      "respuesta": 2,
+      "explicacion": "La Agenda de Doha para el Desarrollo (2001) se ha estancado por las diferencias sobre agricultura y subvenciones, entre otras cuestiones.",
+      "criterio": "RA1.b",
+      "fuente": "Conocimiento general; Decreto 95/2012 («La Organización Mundial de Comercio (OMC)»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

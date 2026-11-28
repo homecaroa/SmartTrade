@@ -1,0 +1,353 @@
+{
+  "modulo": "0623",
+  "tema": "3.1",
+  "titulo": "Inversión y financiación: fuentes propias y ajenas",
+  "preguntas": [
+    {
+      "id": "0623-3.1-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la estructura económica de la empresa?",
+      "opciones": [
+        "Las inversiones que posee: el activo",
+        "Las deudas que mantiene con terceros",
+        "El capital social aportado por los socios",
+        "Los ingresos obtenidos durante el ejercicio"
+      ],
+      "respuesta": 0,
+      "explicacion": "Muestra en qué se ha invertido el dinero: activo no corriente (inmovilizado) y corriente.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la estructura financiera de la empresa?",
+      "opciones": [
+        "El conjunto de máquinas e instalaciones de la empresa",
+        "Las fuentes de financiación, propias y ajenas",
+        "Las existencias que mantiene en el almacén",
+        "Los derechos de cobro frente a los clientes"
+      ],
+      "respuesta": 1,
+      "explicacion": "Muestra de dónde procede el dinero que financia el activo.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los recursos propios?",
+      "opciones": [
+        "Préstamos que conceden las entidades bancarias",
+        "Deudas pendientes de pago con los proveedores",
+        "Fondos de los socios y generados por la empresa",
+        "Créditos que otorgan los proveedores comerciales"
+      ],
+      "respuesta": 2,
+      "explicacion": "No hay que devolverlos a terceros en un plazo fijado; forman el patrimonio neto.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son los recursos ajenos?",
+      "opciones": [
+        "El capital social que aportan los socios",
+        "Las reservas constituidas con beneficios previos",
+        "Los beneficios retenidos del ejercicio anterior",
+        "Deudas con terceros que hay que devolver con intereses"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se clasifican en corto y largo plazo según su vencimiento.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la autofinanciación?",
+      "opciones": [
+        "Financiarse con beneficios no repartidos y amortizaciones",
+        "Pedir un préstamo a una entidad bancaria",
+        "Recibir una subvención de una administración",
+        "Obtener un crédito comercial de los proveedores"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se llama también financiación interna.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la autofinanciación de mantenimiento?",
+      "opciones": [
+        "La que procede de las reservas voluntarias",
+        "La que repone el inmovilizado con amortizaciones",
+        "La que se obtiene vendiendo nuevas acciones",
+        "La que procede de subvenciones públicas de capital"
+      ],
+      "respuesta": 1,
+      "explicacion": "La de enriquecimiento procede de reservas, es decir, de beneficios retenidos.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0623-3.1-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las reservas en relación con la financiación?",
+      "opciones": [
+        "Un recurso ajeno que se devuelve con intereses",
+        "Una deuda a corto plazo con proveedores",
+        "Beneficios no repartidos, autofinanciación de enriquecimiento",
+        "Una subvención pública de explotación"
+      ],
+      "respuesta": 2,
+      "explicacion": "Forman parte del patrimonio neto; no son un recurso ajeno.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": [
+        "2025-26"
+      ]
+    },
+    {
+      "id": "0623-3.1-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué son las provisiones y la amortización respecto a la financiación?",
+      "opciones": [
+        "Recursos ajenos a largo plazo con intereses",
+        "Subvenciones públicas a fondo perdido",
+        "Capital social aportado por los socios",
+        "Autofinanciación de mantenimiento: gastos sin salida de caja"
+      ],
+      "respuesta": 3,
+      "explicacion": "La amortización recupera el valor del inmovilizado y las provisiones cubren riesgos futuros.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la financiación a largo plazo?",
+      "opciones": [
+        "La que vence en más de un año",
+        "La que vence en menos de un año",
+        "La que no tiene ningún coste financiero",
+        "La procedente solo de los proveedores"
+      ],
+      "respuesta": 0,
+      "explicacion": "Se destina a financiar el activo no corriente.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la financiación a corto plazo?",
+      "opciones": [
+        "Los préstamos a diez años con garantía hipotecaria",
+        "La que vence en un año o menos",
+        "El capital social que aportan los socios",
+        "Las reservas constituidas con beneficios"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se destina a financiar necesidades de circulante.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el principio de equilibrio financiero en la financiación?",
+      "opciones": [
+        "Financiar todo con deuda a corto plazo",
+        "Financiar todo con capital de los socios",
+        "Activo fijo con recursos permanentes y circulante con corto plazo",
+        "No financiar ninguna inversión con recursos ajenos"
+      ],
+      "respuesta": 2,
+      "explicacion": "Financiar inversiones a largo plazo con deuda a corto genera riesgo de iliquidez.",
+      "criterio": "RA3.g",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una fuente de financiación ajena a corto plazo?",
+      "opciones": [
+        "El capital social de los socios",
+        "Las reservas de la empresa",
+        "Las aportaciones de los socios",
+        "El crédito de proveedores"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se obtiene al aplazar el pago de las compras; no suele tener coste explícito salvo pérdida del descuento por pronto pago.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una fuente de financiación propia externa?",
+      "opciones": [
+        "Las aportaciones de los socios",
+        "Los préstamos de entidades de crédito",
+        "El descuento de efectos comerciales",
+        "El crédito de los proveedores comerciales"
+      ],
+      "respuesta": 0,
+      "explicacion": "Las aportaciones de socios son recursos propios que vienen del exterior de la empresa.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una subvención?",
+      "opciones": [
+        "Un préstamo con intereses de una entidad bancaria",
+        "Ayuda pública que normalmente no se devuelve",
+        "Un seguro que cubre un riesgo de la empresa",
+        "Una deuda pendiente con un proveedor"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se registra en el patrimonio neto y se imputa a resultados.",
+      "criterio": "RA3.a",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el ICO (Instituto de Crédito Oficial)?",
+      "opciones": [
+        "Una aseguradora privada de créditos comerciales",
+        "Un tribunal arbitral de conflictos mercantiles",
+        "El banco público de financiación con condiciones favorables",
+        "Un sindicato de empresas del sector financiero"
+      ],
+      "respuesta": 2,
+      "explicacion": "Sus líneas se canalizan por la banca colaboradora (mediación).",
+      "criterio": "RA3.a",
+      "fuente": "Conocimiento general (ICO); no contrastado en su web.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es ENISA?",
+      "opciones": [
+        "Un banco comercial con red de oficinas",
+        "Una cámara de comercio de ámbito nacional",
+        "Una aseguradora de crédito a la exportación",
+        "Una empresa pública de préstamos participativos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Se usa para financiar proyectos con potencial de crecimiento.",
+      "criterio": "RA3.a",
+      "fuente": "Conocimiento general (ENISA); no contrastado en su web.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es una sociedad de garantía recíproca (SGR)?",
+      "opciones": [
+        "Una entidad que avala a pymes para obtener financiación",
+        "Una compañía de seguros de vida de ámbito regional",
+        "Un fondo de inversión de renta variable",
+        "Una cooperativa de consumo de bienes de uso diario"
+      ],
+      "respuesta": 0,
+      "explicacion": "El aval de la SGR sirve como garantía ante el banco.",
+      "criterio": "RA3.a",
+      "fuente": "Conocimiento general; no contrastado.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-018",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el capital riesgo?",
+      "opciones": [
+        "Un préstamo de bajo riesgo concedido por un banco",
+        "Invertir en el capital de empresas con potencial",
+        "Un seguro que cubre el crédito de los clientes",
+        "Una subvención pública para empresas innovadoras"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es una fuente de financiación propia para proyectos de crecimiento.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0623-3.1-019",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es el crowdfunding?",
+      "opciones": [
+        "Un préstamo que concede un solo banco comercial",
+        "Un crédito comercial que concede un proveedor",
+        "Muchas pequeñas aportaciones para financiar un proyecto",
+        "Una subvención pública a fondo perdido"
+      ],
+      "respuesta": 2,
+      "explicacion": "Puede ser de donaciones, recompensas, préstamos o participación en capital.",
+      "criterio": "RA3.b",
+      "fuente": "Conocimiento general; Decreto 95/2012, módulo 0623 («Organización de los trámites para la obtención de recursos financieros»).",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

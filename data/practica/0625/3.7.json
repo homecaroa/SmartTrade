@@ -1,0 +1,313 @@
+{
+  "modulo": "0625",
+  "tema": "3.7",
+  "titulo": "Seguridad e higiene en almacenes",
+  "preguntas": [
+    {
+      "id": "0625-3.7-001",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la altura mínima de los locales de trabajo según el RD 486/1997?",
+      "opciones": [
+        "2 metros desde el suelo hasta el techo en todos los casos",
+        "3 m de altura (2,5 m en comercios y oficinas)",
+        "4 metros desde el suelo hasta el techo de la nave",
+        "5 metros desde el suelo hasta las vigas de cubierta"
+      ],
+      "respuesta": 1,
+      "explicacion": "Anexo I del RD 486/1997.",
+      "criterio": "RA2.h",
+      "fuente": "Real Decreto 486/1997 (lugares de trabajo), anexo I, 2 (BOE-A-1997-8669, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué superficie libre mínima por trabajador exige el RD 486/1997?",
+      "opciones": [
+        "1 metro cuadrado",
+        "5 metros cuadrados",
+        "2 metros cuadrados",
+        "10 metros cuadrados"
+      ],
+      "respuesta": 2,
+      "explicacion": "Además, 10 m³ no ocupados por trabajador.",
+      "criterio": "RA2.h",
+      "fuente": "Real Decreto 486/1997 (lugares de trabajo), anexo I, 2 (BOE-A-1997-8669, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué volumen mínimo no ocupado por trabajador exige el RD 486/1997?",
+      "opciones": [
+        "2 metros cúbicos",
+        "20 metros cúbicos",
+        "50 metros cúbicos",
+        "10 metros cúbicos"
+      ],
+      "respuesta": 3,
+      "explicacion": "Anexo I.2.",
+      "criterio": "RA2.h",
+      "fuente": "Real Decreto 486/1997 (lugares de trabajo), anexo I, 2 (BOE-A-1997-8669, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-004",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es la anchura mínima de los pasillos y puertas exteriores en los lugares de trabajo?",
+      "opciones": [
+        "1 m los pasillos y 80 cm las puertas exteriores",
+        "50 cm los pasillos y 1 m las puertas exteriores",
+        "2 m los pasillos y 1 m las puertas exteriores",
+        "30 cm los pasillos y 50 cm las puertas exteriores"
+      ],
+      "respuesta": 0,
+      "explicacion": "Anexo I.5 RD 486/1997.",
+      "criterio": "RA2.h",
+      "fuente": "Real Decreto 486/1997 (lugares de trabajo), anexo I, 5.3.º (BOE-A-1997-8669, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-005",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe permitir la anchura de las vías por las que circulan medios de transporte y peatones?",
+      "opciones": [
+        "Solo el paso de los vehículos de carga del almacén",
+        "El paso de ambos a la vez con separación suficiente",
+        "Solo el paso de los peatones y del personal de oficina",
+        "Nada especial, porque la anchura no está regulada"
+      ],
+      "respuesta": 1,
+      "explicacion": "Anexo I.5.4.º.",
+      "criterio": "RA2.h",
+      "fuente": "Real Decreto 486/1997 (lugares de trabajo), anexo I, 5.4.º (BOE-A-1997-8669, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-006",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe garantizar el empresario respecto a la formación en prevención?",
+      "opciones": [
+        "Solo una charla anual de carácter general",
+        "Solo formación para el personal directivo",
+        "Formación teórica y práctica al contratar y cambiar funciones",
+        "Ninguna formación si el trabajador ya tiene experiencia"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 19 Ley 31/1995.",
+      "criterio": "RA6.g",
+      "fuente": "Ley 31/1995 de Prevención de Riesgos Laborales, art. 19 (BOE-A-1995-24292, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-007",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe analizar el empresario respecto a las emergencias?",
+      "opciones": [
+        "Nada, porque las emergencias las gestionan los bomberos",
+        "Solo la contratación de un seguro de incendios",
+        "Solo el aviso a la policía en caso de siniestro",
+        "Analizar emergencias y designar personal"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 20 Ley 31/1995.",
+      "criterio": "RA2.h",
+      "fuente": "Ley 31/1995 de Prevención de Riesgos Laborales, art. 20 (BOE-A-1995-24292, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-008",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Es obligatoria la vigilancia de la salud para el trabajador?",
+      "opciones": [
+        "Voluntaria, salvo excepciones, con consentimiento",
+        "Es siempre obligatoria para todos los trabajadores",
+        "Nunca se realiza en el ámbito del almacén",
+        "Solo se ofrece al personal directivo de la empresa"
+      ],
+      "respuesta": 0,
+      "explicacion": "Art. 22 Ley 31/1995.",
+      "criterio": "RA2.h",
+      "fuente": "Ley 31/1995 de Prevención de Riesgos Laborales, art. 22 (BOE-A-1995-24292, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-009",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuántos delegados de prevención corresponden a una empresa de 80 trabajadores?",
+      "opciones": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "respuesta": 1,
+      "explicacion": "Escala del art. 35: 50-100 trabajadores, 2 delegados.",
+      "criterio": "RA2.h",
+      "fuente": "Ley 31/1995 de Prevención de Riesgos Laborales, art. 35 (BOE-A-1995-24292, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-010",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Quién actúa como delegado de prevención en las empresas de hasta treinta trabajadores?",
+      "opciones": [
+        "El gerente de la empresa o quien lo represente",
+        "El jefe de almacén designado por la dirección",
+        "El delegado de personal",
+        "Un técnico externo contratado por el servicio de prevención"
+      ],
+      "respuesta": 2,
+      "explicacion": "Art. 35 Ley 31/1995.",
+      "criterio": "RA2.h",
+      "fuente": "Ley 31/1995 de Prevención de Riesgos Laborales, art. 35 (BOE-A-1995-24292, texto consolidado), leída.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué debe incluir la información sobre equipos de trabajo, según el RD 1215/1997?",
+      "opciones": [
+        "Solo el precio de adquisición del equipo de trabajo",
+        "Solo la marca y el modelo del fabricante",
+        "Nada, porque la información la da el fabricante en exclusiva",
+        "Uso correcto, situaciones anormales y experiencia"
+      ],
+      "respuesta": 3,
+      "explicacion": "Art. 5 RD 1215/1997. Se suministra preferentemente por escrito.",
+      "criterio": "RA2.h",
+      "fuente": "Real Decreto 1215/1997 (equipos de trabajo), art. 5 (BOE-A-1997-17824, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-012",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué exige el RD 1215/1997 a las carretillas elevadoras ocupadas por trabajadores para limitar el riesgo de vuelco?",
+      "opciones": [
+        "Cabina, estructura antivuelco o retención del operador",
+        "Nada especial, porque no existe riesgo de vuelco",
+        "Solo un claxon que avise de su presencia a los peatones",
+        "Solo un cinturón de tela sin estructura de protección"
+      ],
+      "respuesta": 0,
+      "explicacion": "Anexo I, 2.1.e RD 1215/1997.",
+      "criterio": "RA2.h",
+      "fuente": "Real Decreto 1215/1997 (equipos de trabajo), anexo I (BOE-A-1997-17824, texto consolidado), leído.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-013",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué EPI son habituales en un almacén?",
+      "opciones": [
+        "Solo gafas de sol para el trabajo en el muelle",
+        "Calzado de seguridad, guantes, chaleco y casco",
+        "Ninguno, porque en el almacén no existen riesgos",
+        "Solo una bufanda para el trabajo en cámaras de frío"
+      ],
+      "respuesta": 1,
+      "explicacion": "Se determinan en la evaluación de riesgos.",
+      "criterio": "RA2.h",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-014",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué normas de seguridad aplican al uso de carretillas?",
+      "opciones": [
+        "Cualquier persona de la plantilla puede conducir la carretilla",
+        "La carretilla puede llevar pasajeros si hay espacio",
+        "Personal formado y autorizado, respetando velocidades y señales",
+        "Las cargas pueden apilarse sin límite de altura ni de peso"
+      ],
+      "respuesta": 2,
+      "explicacion": "El operador debe estar formado y autorizado.",
+      "criterio": "RA2.h",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-015",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué señalización es necesaria en un almacén?",
+      "opciones": [
+        "Ninguna, porque el almacén no es un lugar público",
+        "Solo la señal de entrada al recinto del almacén",
+        "Solo la señalización comercial de la empresa",
+        "Salidas, pasillos, extintores y prohibiciones"
+      ],
+      "respuesta": 3,
+      "explicacion": "La señalización de seguridad la regula el RD 485/1997.",
+      "criterio": "RA2.h",
+      "fuente": "Real Decreto 485/1997 (señalización); contenido conocido, no leído en el texto oficial.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-016",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál es una causa frecuente de accidentes en almacenes?",
+      "opciones": [
+        "Manipulación manual, atropellos y caídas de objetos",
+        "El exceso de iluminación natural en las naves",
+        "La falta de estanterías para almacenar la mercancía",
+        "El exceso de ventilación en las zonas de trabajo"
+      ],
+      "respuesta": 0,
+      "explicacion": "La evaluación de riesgos identifica y prioriza.",
+      "criterio": "RA2.h",
+      "fuente": "Conocimiento general de logística de almacenamiento; no contrastado con fuente primaria.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0625-3.7-017",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué es la evaluación de riesgos?",
+      "opciones": [
+        "Un seguro que cubre los accidentes de los trabajadores",
+        "Identificar peligros y valorar riesgos",
+        "Una factura que emite el servicio de prevención",
+        "Un certificado de aptitud de los operarios"
+      ],
+      "respuesta": 1,
+      "explicacion": "Es la base del sistema de prevención.",
+      "criterio": "RA2.h",
+      "fuente": "Ley 31/1995, arts. 15-16 (leída parcialmente).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}

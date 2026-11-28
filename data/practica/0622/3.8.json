@@ -1,0 +1,225 @@
+{
+  "modulo": "0622",
+  "tema": "3.8",
+  "titulo": "Técnicas, tarifas y costes del transporte",
+  "preguntas": [
+    {
+      "id": "0622-3.8-001",
+      "tipo": "opcion_unica",
+      "enunciado": "En una tarifa marítima de carga general expresada como «W/M», ¿cómo se calcula el flete?",
+      "opciones": [
+        "Siempre por peso, expresado en toneladas",
+        "Por peso o volumen, aplicando el mayor",
+        "Siempre por volumen, expresado en metros cúbicos",
+        "Por la distancia recorrida, expresada en millas"
+      ],
+      "respuesta": 1,
+      "explicacion": "«W/M» (weight or measurement) indica que el flete se factura por la unidad que resulte mayor: tonelada de peso o metro cúbico de volumen (con la equivalencia habitual 1 t = 1 m³). Es la misma lógica que el peso tarifario en aéreo (el mayor entre peso real y volumétrico). El art. 233 LNM prevé que, si el flete se calcula por peso o volumen, se haga según el declarado en el conocimiento de embarque, salvo fraude o error.",
+      "criterio": "RA3.c",
+      "fuente": "Ley 14/2014, art. 233.a (BOE). Equivalencia 1 t = 1 m³ y términos W/M: conocimiento general del sector.",
+      "verificacion": "secundaria",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-002",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos es un coste fijo del transporte por carretera?",
+      "opciones": [
+        "El combustible consumido",
+        "Los neumáticos",
+        "Los peajes de una ruta",
+        "La amortización del vehículo"
+      ],
+      "respuesta": 3,
+      "explicacion": "Los costes fijos no dependen de los kilómetros recorridos en el periodo: amortización del vehículo, seguros, impuestos, salarios fijos y estructura. Los variables sí aumentan con la actividad: combustible, neumáticos, mantenimiento por kilómetro, peajes y dietas. La suma de ambos da el coste total.",
+      "criterio": "RA3.e",
+      "fuente": "Decreto 95/2012 («Costes: cálculo y control. Costes fijos y variables»).",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-003",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Cuál de estos es un coste variable del transporte por carretera?",
+      "opciones": [
+        "El combustible",
+        "El seguro anual del vehículo",
+        "El impuesto de circulación",
+        "La amortización lineal del camión"
+      ],
+      "respuesta": 0,
+      "explicacion": "El combustible (y, además, neumáticos, mantenimiento por km, peajes y dietas) varía con los kilómetros recorridos. El seguro, los impuestos y la amortización son costes fijos en el periodo. La Ley 15/2009 (art. 38) reconoce el peso del combustible en la estructura de costes al prever la revisión automática del precio cuando varía un 5 % o más.",
+      "criterio": "RA3.e",
+      "fuente": "Decreto 95/2012 («Costes fijos y variables»); Ley 15/2009, art. 38.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-004",
+      "tipo": "opcion_unica",
+      "enunciado": "Un camión tiene unos costes fijos anuales de 30.000 € y recorre 100.000 km al año, con un coste variable de 0,55 €/km. ¿Cuál es su coste total por kilómetro?",
+      "opciones": [
+        "0,30 €/km",
+        "0,55 €/km",
+        "0,85 €/km",
+        "1,30 €/km"
+      ],
+      "respuesta": 2,
+      "explicacion": "Coste fijo por km = 30.000 ÷ 100.000 = 0,30 €/km. Coste total por km = fijo + variable = 0,30 + 0,55 = 0,85 €/km. Un error típico es dar solo el variable (0,55). Ten en cuenta que el coste fijo por km baja si se recorren más kilómetros (mayor utilización).",
+      "criterio": "RA3.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-005",
+      "tipo": "opcion_unica",
+      "enunciado": "Un servicio de transporte tiene costes fijos de 24.000 €, un coste variable de 0,60 €/km y se cobra a 1,40 € por km recorrido. ¿A partir de cuántos kilómetros cubre costes (punto de equilibrio)?",
+      "opciones": [
+        "17.143 km",
+        "30.000 km",
+        "40.000 km",
+        "24.000 km"
+      ],
+      "respuesta": 1,
+      "explicacion": "El punto de equilibrio es el volumen de actividad en que los ingresos igualan a los costes: km = costes fijos ÷ (precio por km − coste variable por km) = 24.000 ÷ (1,40 − 0,60) = 24.000 ÷ 0,80 = 30.000 km. Por debajo no se cubren los costes; por encima hay beneficio. Si el precio no supera al coste variable unitario, nunca se alcanza.",
+      "criterio": "RA3.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-006",
+      "tipo": "opcion_unica",
+      "enunciado": "En las tarifas de grupaje por escalones de peso, ¿qué ocurre normalmente al aumentar el peso del envío?",
+      "opciones": [
+        "El precio por kilo sube",
+        "El precio por kilo no cambia nunca",
+        "El precio por kilo solo cambia en el transporte aéreo",
+        "El precio por kilo baja en cada escalón superior"
+      ],
+      "respuesta": 3,
+      "explicacion": "Las tarifas por escalones reflejan economías de escala: a más peso, menor precio por kilo, hasta el límite del vehículo o unidad de carga (cuando ya es más barata la carga completa). En el aéreo se aplica con las tarifas de cantidad (clase Q) y los pivotes. Al tarifar hay que comparar, por si salga más barato pagar el escalón siguiente.",
+      "criterio": "RA3.c",
+      "fuente": "Decreto 95/2012 («Técnicas y tarifas de transporte. Componentes»); IATA Res. 600a para las clases de tarifa aérea.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-007",
+      "tipo": "opcion_unica",
+      "enunciado": "Si no hay pacto sobre el cálculo del flete marítimo y este se establece por peso o volumen, ¿qué peso o volumen se toma según la Ley de Navegación Marítima?",
+      "opciones": [
+        "El declarado en el conocimiento de embarque",
+        "El que mida el capitán del buque en el puerto de destino",
+        "El que decida unilateralmente el destinatario",
+        "El promedio de los pesos de tres pesadas distintas"
+      ],
+      "respuesta": 0,
+      "explicacion": "El art. 233.a LNM: si el flete se calculara por el peso o volumen de las mercancías, se fijará según el peso o volumen declarado en el conocimiento de embarque, salvo fraude o error. Por eso conviene declarar con exactitud: un exceso paga flete de más y una declaración inferior puede dar lugar a regularización o responsabilidad.",
+      "criterio": "RA3.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, art. 233.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-008",
+      "tipo": "opcion_unica",
+      "enunciado": "En un fletamento por tiempo, ¿cómo se devenga el flete salvo pacto en contrario según la Ley de Navegación Marítima?",
+      "opciones": [
+        "Al cargar la última mercancía a bordo del buque",
+        "Al final del contrato, de una sola vez",
+        "Día a día, con el buque a disposición del fletador",
+        "Por el número de contenedores embarcados"
+      ],
+      "respuesta": 2,
+      "explicacion": "El art. 233.b: en el fletamento por tiempo el flete se devenga día a día durante todo el tiempo que el buque esté a disposición del fletador en condiciones de utilización efectiva (el llamado «hire»). El fletador asume los gastos variables de explotación (art. 204.2). En el fletamento por viaje el flete suele ser a tanto alzado o por unidad de carga.",
+      "criterio": "RA3.d",
+      "fuente": "Ley 14/2014 de Navegación Marítima, arts. 204.2 y 233.b.",
+      "verificacion": "oficial",
+      "dificultad": 3,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-009",
+      "tipo": "opcion_unica",
+      "enunciado": "En una cotización marítima, ¿qué es el recargo CAF?",
+      "opciones": [
+        "Un recargo por la variación del precio del combustible",
+        "Un recargo por las fluctuaciones del tipo de cambio",
+        "Un recargo por la manipulación de la carga en terminal",
+        "Un recargo por la congestión del puerto de descarga"
+      ],
+      "respuesta": 1,
+      "explicacion": "El CAF (Currency Adjustment Factor) ajusta el flete a las variaciones del tipo de cambio cuando la tarifa se expresa en una divisa distinta. No lo confundas con el BAF (combustible), el THC (manipulación en terminal) ni el recargo de congestión. Los recargos forman parte de los componentes del coste que hay que desglosar en la oferta.",
+      "criterio": "RA3.d",
+      "fuente": "Conocimiento general del sector marítimo.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-010",
+      "tipo": "opcion_unica",
+      "enunciado": "En el transporte aéreo, ¿qué es una tarifa de mercancía específica (SCR)?",
+      "opciones": [
+        "La tarifa mínima que se aplica a cualquier envío",
+        "Un recargo de combustible sobre la tarifa general",
+        "Una tarifa que depende únicamente de la distancia recorrida",
+        "Tarifa reducida para una mercancía entre dos puntos, código «C»"
+      ],
+      "respuesta": 3,
+      "explicacion": "La tarifa de mercancía específica (specific commodity rate, SCR) es una tarifa inferior a la general para ciertos productos y ciertos tramos; se identifica con un número de producto y se anota con el código C en la clase de tarifa del AWB. Para aplicarla hay que cumplir un peso mínimo y que la mercancía coincida con la descrita.",
+      "criterio": "RA3.c",
+      "fuente": "IATA Res. 600a, Attachment B, apdo. 2.18.5 (código C) y glosario (Cargo Agent's Handbook).",
+      "verificacion": "oficial",
+      "dificultad": 2,
+      "visto_en": [
+        "2022-23"
+      ]
+    },
+    {
+      "id": "0622-3.8-011",
+      "tipo": "opcion_unica",
+      "enunciado": "¿Qué indicadores se utilizan para controlar los costes de una operación de transporte por carretera?",
+      "opciones": [
+        "Coste por km, por tonelada, factor de carga y km en vacío",
+        "El número de empleados que tiene el cliente",
+        "El color del vehículo y el logotipo del transportista",
+        "El número de países que integran la Unión Europea"
+      ],
+      "respuesta": 0,
+      "explicacion": "El control de costes usa indicadores como coste por km, por tonelada o por envío, factor de ocupación (carga transportada frente a la capacidad), kilómetros en vacío y consumo medio. Permiten detectar desviaciones y fijar tarifas rentables. El RA3.e pide calcular el coste de las operaciones.",
+      "criterio": "RA3.e",
+      "fuente": "Decreto 95/2012 («Costes: cálculo y control»). Indicadores: conocimiento general.",
+      "verificacion": "general",
+      "dificultad": 1,
+      "visto_en": []
+    },
+    {
+      "id": "0622-3.8-012",
+      "tipo": "opcion_unica",
+      "enunciado": "Un envío de 6 palés europeos (1,20 × 0,80 m) se carga con el lado de 0,80 m a lo ancho de un vehículo de 2,45 m, tres palés por fila. ¿Cuántos metros lineales de vehículo ocupa?",
+      "opciones": [
+        "1,2 m",
+        "3,6 m",
+        "2,4 m",
+        "4,8 m"
+      ],
+      "respuesta": 2,
+      "explicacion": "Cada fila de 3 palés ocupa 1,20 m de largo. Los 6 palés forman 2 filas: 2 × 1,20 = 2,4 metros lineales. En el grupaje por carretera se tarifa muchas veces por metros lineales (o palés), no solo por peso, porque el vehículo se llena antes por espacio que por carga útil.",
+      "criterio": "RA3.e",
+      "fuente": "Cálculo con los datos del enunciado.",
+      "verificacion": "general",
+      "dificultad": 2,
+      "visto_en": []
+    }
+  ]
+}
